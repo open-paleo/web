@@ -8,6 +8,7 @@ import {
     formatAuthority,
     formatAuthorNames,
     formatCountry,
+    formatGenusCount,
     formatGeologicAge,
     formatPlace,
     formatShortCitation,
@@ -169,4 +170,11 @@ test("getFirstSentence stops at the first sentence end, not at an abbreviation",
         "The species T. rex is the type.",
     );
     assert.equal(getFirstSentence("Only one sentence"), "Only one sentence");
+});
+
+test("formatGenusCount uses the singular for one", () =>
+{
+    assert.equal(formatGenusCount(1), "1 genus");
+    assert.equal(formatGenusCount(1428), "1,428 genera");
+    assert.equal(formatGenusCount(0), "0 genera");
 });

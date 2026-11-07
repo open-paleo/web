@@ -1,0 +1,68 @@
+---
+import { formatGenusCount } from "../data/format.ts";
+import type { CladeEntry } from "../data/site-data.ts";
+import { getSiteData } from "../data/site-data.ts";
+import { createPagePath } from "../data/urls.ts";
+
+/**
+ * Properties of the list of clades directly below a clade.
+ */
+type Props = {
+    /**
+     * Names of the child clades, in tree order.
+     */
+    names: Array<string>;
+};
+
+const { names } = Astro.props;
+const siteData = getSiteData();
+const baseUrl = import.meta.env.BASE_URL;
+const subclades = new Array<CladeEntry>();
+
+for (const name of names)
+{
+    const entry = siteData.cladeByName.get(name);
+
+    if (entry)
+    {
+        subclades.push(entry);
+    }
+}
+---
+
+<ul class="subclade-list">
+    {subclades.map((subclade) => (
+        <li>
+            <a href={createPagePath(baseUrl, "clade", subclade.slug)}>{subclade.name}</a>
+            <span class="genus-count figures">{formatGenusCount(subclade.totalGenusCount)}</span>
+        </li>
+    ))}
+</ul>
+
+<style>
+    .subclade-list
+    {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+        gap: 0 var(--space-6);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-family: var(--font-sans);
+    }
+
+    li
+    {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--space-3);
+        padding-block: var(--space-2);
+        border-top: 1px solid var(--color-line);
+    }
+
+    .genus-count
+    {
+        color: var(--color-muted);
+        white-space: nowrap;
+    }
+</style>

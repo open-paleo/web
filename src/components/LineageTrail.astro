@@ -7,8 +7,8 @@ import { createPagePath } from "../data/urls.ts";
  */
 type Props = {
     /**
-     * Ancestor clades from the root down to the record's parent, as the dataset's taxonomy
-     * gives them.
+     * Ancestor clades from the root down to the record's parent. Clades without a record of
+     * their own have no page, so they are shown without a link.
      */
     taxonomy: Array<string>;
 
@@ -43,7 +43,9 @@ const hiddenCount = ranks.length > visibleAtEachEnd * 2 + 1 ? ranks.length - vis
     <ol>
         {ranks.map((name, index) => (
             <li class:list={{ "lineage-middle": hiddenCount > 0 && index >= visibleAtEachEnd && index < ranks.length - visibleAtEachEnd }}>
-                <a href={createPagePath(baseUrl, "clade", siteData.cladeByName.get(name)?.slug ?? "")}>{name}</a>
+                {siteData.cladeByName.get(name)?.record
+                    ? <a href={createPagePath(baseUrl, "clade", siteData.cladeByName.get(name)?.slug ?? "")}>{name}</a>
+                    : <span>{name}</span>}
                 {index === ranks.length - 1 && placement && <span class="placement"> <i>{placement}</i></span>}
             </li>
         ))}

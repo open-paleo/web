@@ -1,4 +1,5 @@
 ---
+import type { AgeRow } from "../data/age-figure.ts";
 import { createAgeFigureModel } from "../data/age-figure.ts";
 import type { Period } from "../data/dataset.ts";
 import { formatAgeRange, formatGeologicAge } from "../data/format.ts";
@@ -12,9 +13,15 @@ type Props = {
      * The record's period block, with its stages and numeric age range.
      */
     period: Period;
+
+    /**
+     * Text placed before the age range in the caption, such as "Its genera lived". The range
+     * reads on its own when this is left out.
+     */
+    rangeIntroduction?: string;
 };
 
-const { period } = Astro.props;
+const { period, rangeIntroduction } = Astro.props;
 const timeline = getSiteData().timeline;
 const model = timeline ? createAgeFigureModel(period, timeline) : undefined;
 const ageRange = period.from_ma !== undefined && period.to_ma !== undefined ? formatAgeRange(period.from_ma, period.to_ma) : "";
@@ -30,13 +37,23 @@ const labelledBandPercent = 9;
  * a phone.
  */
 const labelledBandPercentWhenNarrow = 20;
-const rows = model ? [model.periodRow, model.stageRow] : [];
+const rows = new Array<AgeRow>();
+
+if (model)
+{
+    rows.push(model.periodRow);
+
+    if (model.stageRow)
+    {
+        rows.push(model.stageRow);
+    }
+}
 ---
 
 {model && (
     <figure class="age-figure">
         <figcaption class="age-caption">
-            <span class="age-range figures">{ageRange}</span>
+            <span class="age-range figures">{rangeIntroduction && <span class="age-introduction">{rangeIntroduction} </span>}{ageRange}</span>
             <span class="age-context">{geologicAge}</span>
         </figcaption>
         {rows.map((row, rowIndex) => (
@@ -94,6 +111,11 @@ const rows = model ? [model.periodRow, model.stageRow] : [];
     .age-range
     {
         font-weight: 700;
+    }
+
+    .age-introduction
+    {
+        font-weight: 400;
     }
 
     .age-context,

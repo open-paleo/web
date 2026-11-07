@@ -4,7 +4,7 @@ import { test } from "node:test";
 import * as url from "node:url";
 
 import type { AgeRow, GeologicTimeline } from "../src/data/age-figure.ts";
-import { createAgeFigureModel, createGeologicTimeline, getPeriodName } from "../src/data/age-figure.ts";
+import { createAgeFigureModel, createGeologicTimeline, findEpochAt, getPeriodName } from "../src/data/age-figure.ts";
 import { readDataset } from "../src/data/load-dataset.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
@@ -95,7 +95,7 @@ test("a Maastrichtian record gets the Mesozoic periods and the Late Cretaceous s
 {
     const model = createAgeFigureModel({ from_ma: 72.2, to_ma: 66 }, getTimeline());
 
-    assert.ok(model);
+    assert.ok(model?.stageRow);
     assert.deepEqual(listBandNames(model.periodRow), ["Triassic", "Jurassic", "Cretaceous"]);
     assert.equal(model.stageRow.label, "Late Cretaceous stages");
     assert.equal(model.stageRow.bands[model.stageRow.bands.length - 1].name, "Maastrichtian");
@@ -108,7 +108,7 @@ test("band widths fill the row and the marker sits at the young end", () =>
 {
     const model = createAgeFigureModel({ from_ma: 72.2, to_ma: 66 }, getTimeline());
 
-    assert.ok(model);
+    assert.ok(model?.stageRow);
     assert.ok(Math.abs(sumBandWidths(model.periodRow) - 100) < 1e-9);
     assert.ok(Math.abs(sumBandWidths(model.stageRow) - 100) < 1e-9);
     assert.ok(Math.abs(model.stageRow.marker.leftPercent + model.stageRow.marker.widthPercent - 100) < 1e-9);
@@ -119,7 +119,7 @@ test("a range across two epochs shows the stages of both", () =>
 {
     const model = createAgeFigureModel({ from_ma: 152, to_ma: 140 }, getTimeline());
 
-    assert.ok(model);
+    assert.ok(model?.stageRow);
     assert.equal(model.stageRow.label, "Late Jurassic and Early Cretaceous stages");
     assert.ok(listBandNames(model.stageRow).includes("Tithonian"));
     assert.ok(listBandNames(model.stageRow).includes("Berriasian"));
@@ -134,7 +134,7 @@ test("the marker and the time either side of it fill the row", () =>
 {
     const model = createAgeFigureModel({ from_ma: 154.8, to_ma: 143.1 }, getTimeline());
 
-    assert.ok(model);
+    assert.ok(model?.stageRow);
 
     for (const row of [model.periodRow, model.stageRow])
     {
@@ -142,4 +142,26 @@ test("the marker and the time either side of it fill the row", () =>
 
         assert.ok(Math.abs(total - 100) < 1e-9, row.label);
     }
+});
+
+test("a range across more than two epochs gets no stage row", () =>
+{
+    const model = createAgeFigureModel({ from_ma: 233, to_ma: 66 }, getTimeline());
+
+    assert.ok(model);
+    assert.equal(model.stageRow, undefined);
+    assert.equal(model.periodRow.bands.length, 3);
+});
+
+test("findEpochAt puts a boundary on the side of the range it belongs to", () =>
+{
+    const timeline = getTimeline();
+
+    assert.equal(findEpochAt(timeline, 70, "start")?.name, "Late Cretaceous");
+    assert.equal(findEpochAt(timeline, 70, "end")?.name, "Late Cretaceous");
+    assert.equal(findEpochAt(timeline, 66, "end")?.name, "Late Cretaceous");
+    assert.equal(findEpochAt(timeline, 66, "start")?.name, "Paleocene");
+    assert.equal(findEpochAt(timeline, 100.5, "start")?.name, "Late Cretaceous");
+    assert.equal(findEpochAt(timeline, 100.5, "end")?.name, "Early Cretaceous");
+    assert.equal(findEpochAt(timeline, 400, "start"), undefined);
 });

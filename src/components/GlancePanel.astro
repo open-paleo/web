@@ -9,6 +9,7 @@ import {
     joinNonEmpty,
 } from "../data/format.ts";
 import { getTypeSpecies, listSizeMeasurements } from "../data/records.ts";
+import FactList from "./FactList.astro";
 
 /**
  * Properties of the "at a glance" panel beside a genus's description.
@@ -34,99 +35,63 @@ const identifiers = genus.identifiers ?? [];
 const sizeNote = genus.species.length > 1 ? "Size and place are those of the type species." : "";
 ---
 
-<aside class="glance-panel" aria-label="At a glance">
-    <dl>
-        {genus.diet && (
-            <>
-                <dt>Diet</dt>
-                <dd>{capitalizeFirstLetter(genus.diet)}</dd>
-            </>
-        )}
-        {genus.locomotion && (
-            <>
-                <dt>Locomotion</dt>
-                <dd>{capitalizeFirstLetter(genus.locomotion)}</dd>
-            </>
-        )}
-        {integument && (
-            <>
-                <dt>Integument</dt>
-                <dd>{integument}{appearance?.evidence && <span class="glance-muted"> ({appearance.evidence} evidence)</span>}</dd>
-            </>
-        )}
-        {appearance?.features && appearance.features.length > 0 && (
-            <>
-                <dt>Features</dt>
-                <dd class="chips">{appearance.features.map((feature) => <span class="chip">{feature}</span>)}</dd>
-            </>
-        )}
-        {genus.paleoenvironment && genus.paleoenvironment.length > 0 && (
-            <>
-                <dt>Environment</dt>
-                <dd>{capitalizeFirstLetter(genus.paleoenvironment.join(", "))}</dd>
-            </>
-        )}
-        {measurements.map((measurement) => (
-            <>
-                <dt>{measurement.label}</dt>
-                <dd class="figures">{measurement.value}</dd>
-            </>
-        ))}
-        {foundIn && (
-            <>
-                <dt>Found in</dt>
-                <dd>{foundIn}</dd>
-            </>
-        )}
-        {identifiers.length > 0 && (
-            <>
-                <dt>Elsewhere</dt>
-                <dd class="identifiers">
-                    {identifiers.map((identifier) => (
-                        <a href={getIdentifierUrl(identifier.source ?? "", identifier.id ?? "")}>{getIdentifierSourceName(identifier.source ?? "")}</a>
-                    ))}
-                </dd>
-            </>
-        )}
-    </dl>
-    {sizeNote && <p class="glance-note">{sizeNote}</p>}
-</aside>
+<FactList label="At a glance">
+    {genus.diet && (
+        <>
+            <dt>Diet</dt>
+            <dd>{capitalizeFirstLetter(genus.diet)}</dd>
+        </>
+    )}
+    {genus.locomotion && (
+        <>
+            <dt>Locomotion</dt>
+            <dd>{capitalizeFirstLetter(genus.locomotion)}</dd>
+        </>
+    )}
+    {integument && (
+        <>
+            <dt>Integument</dt>
+            <dd>{integument}{appearance?.evidence && <span class="glance-muted"> ({appearance.evidence} evidence)</span>}</dd>
+        </>
+    )}
+    {appearance?.features && appearance.features.length > 0 && (
+        <>
+            <dt>Features</dt>
+            <dd class="chips">{appearance.features.map((feature) => <span class="chip">{feature}</span>)}</dd>
+        </>
+    )}
+    {genus.paleoenvironment && genus.paleoenvironment.length > 0 && (
+        <>
+            <dt>Environment</dt>
+            <dd>{capitalizeFirstLetter(genus.paleoenvironment.join(", "))}</dd>
+        </>
+    )}
+    {measurements.map((measurement) => (
+        <>
+            <dt>{measurement.label}</dt>
+            <dd class="figures">{measurement.value}</dd>
+        </>
+    ))}
+    {foundIn && (
+        <>
+            <dt>Found in</dt>
+            <dd>{foundIn}</dd>
+        </>
+    )}
+    {identifiers.length > 0 && (
+        <>
+            <dt>Elsewhere</dt>
+            <dd class="identifiers">
+                {identifiers.map((identifier) => (
+                    <a href={getIdentifierUrl(identifier.source ?? "", identifier.id ?? "")}>{getIdentifierSourceName(identifier.source ?? "")}</a>
+                ))}
+            </dd>
+        </>
+    )}
+    {sizeNote && <p class="glance-note" slot="note">{sizeNote}</p>}
+</FactList>
 
 <style>
-    .glance-panel
-    {
-        display: grid;
-        gap: var(--space-3);
-        font-family: var(--font-sans);
-        font-size: var(--text-interface);
-    }
-
-    dl
-    {
-        display: grid;
-        grid-template-columns: max-content minmax(0, 1fr);
-        margin: 0;
-        border-bottom: 1px solid var(--color-line);
-    }
-
-    dt,
-    dd
-    {
-        padding-block: var(--space-2);
-        border-top: 1px solid var(--color-line);
-    }
-
-    dt
-    {
-        padding-right: var(--space-4);
-        color: var(--color-muted);
-    }
-
-    dd
-    {
-        margin: 0;
-    }
-
     .glance-muted,
     .glance-note
     {
@@ -135,6 +100,7 @@ const sizeNote = genus.species.length > 1 ? "Size and place are those of the typ
 
     .glance-note
     {
+        font-family: var(--font-sans);
         font-size: var(--text-small);
     }
 

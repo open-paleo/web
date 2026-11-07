@@ -1,0 +1,56 @@
+---
+/**
+ * Properties of a list of labeled facts. The facts are the slotted `dt` and `dd` pairs.
+ */
+type Props = {
+    /**
+     * Accessible name of the panel the list sits in.
+     */
+    label: string;
+};
+
+const { label } = Astro.props;
+---
+
+<aside class="fact-list" aria-label={label}>
+    <dl>
+        <slot />
+    </dl>
+    <slot name="note" />
+</aside>
+
+<style>
+    .fact-list
+    {
+        display: grid;
+        gap: var(--space-3);
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
+    }
+
+    dl
+    {
+        display: grid;
+        grid-template-columns: max-content minmax(0, 1fr);
+        margin: 0;
+        border-bottom: 1px solid var(--color-line);
+    }
+
+    .fact-list :global(dt),
+    .fact-list :global(dd)
+    {
+        padding-block: var(--space-2);
+        border-top: 1px solid var(--color-line);
+    }
+
+    .fact-list :global(dt)
+    {
+        padding-right: var(--space-4);
+        color: var(--color-muted);
+    }
+
+    .fact-list :global(dd)
+    {
+        margin: 0;
+    }
+</style>

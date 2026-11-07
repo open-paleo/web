@@ -1,0 +1,313 @@
+---
+import AgeFigure from "../../components/AgeFigure.astro";
+import CladeGenusTable from "../../components/CladeGenusTable.astro";
+import DiagnosisList from "../../components/DiagnosisList.astro";
+import DisputeNote from "../../components/DisputeNote.astro";
+import FactList from "../../components/FactList.astro";
+import LineageTrail from "../../components/LineageTrail.astro";
+import Prose from "../../components/Prose.astro";
+import ReferenceList from "../../components/ReferenceList.astro";
+import SubcladeList from "../../components/SubcladeList.astro";
+import SynonymTable from "../../components/SynonymTable.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { createAgeSpan, createCladeGenusRows, listDescendantGenera } from "../../data/clades.ts";
+import type { Clade } from "../../data/dataset.ts";
+import { formatAgeNumbers, formatAuthority, formatGenusCount, getFirstSentence } from "../../data/format.ts";
+import type { CladeEntry } from "../../data/site-data.ts";
+import { getSiteData } from "../../data/site-data.ts";
+import { createPagePath, createReferenceAnchor } from "../../data/urls.ts";
+
+/**
+ * Properties of a clade page.
+ */
+type Props = {
+    /**
+     * The clade the page describes.
+     */
+    entry: CladeEntry;
+
+    /**
+     * The clade's record. Only clades with a record get a page.
+     */
+    record: Clade;
+};
+
+/**
+ * One generated clade page: its URL parameter and its properties.
+ */
+type CladePath = {
+    /**
+     * URL parameters: the clade slug.
+     */
+    params: CladePathParameters;
+
+    /**
+     * Properties passed to the page.
+     */
+    props: Props;
+};
+
+/**
+ * URL parameters of a clade page.
+ */
+type CladePathParameters = {
+    /**
+     * The clade slug, as in clade/{slug}/.
+     */
+    slug: string;
+};
+
+/**
+ * List one page per clade that has a record. The ranks above Dinosauria (Life to Archosauria)
+ * have none and get no page.
+ *
+ * @returns The path and properties of every clade page.
+ */
+export function getStaticPaths(): Array<CladePath>
+{
+    const paths = new Array<CladePath>();
+
+    for (const entry of getSiteData().clades)
+    {
+        if (entry.record)
+        {
+            paths.push({ params: { slug: entry.slug }, props: { entry, record: entry.record } });
+        }
+    }
+
+    return paths;
+}
+
+const { entry, record } = Astro.props;
+const siteData = getSiteData();
+const baseUrl = import.meta.env.BASE_URL;
+const authority = formatAuthority(record.authors, record.described, false);
+const authorityReferenceId = record.erected_in ?? "";
+const authorityAnchor = "#" + createReferenceAnchor(siteData.referenceById.get(authorityReferenceId)?.slug ?? authorityReferenceId);
+const typeGenus = record.type_genus ? siteData.genusByName.get(record.type_genus) : undefined;
+const descendantGenera = listDescendantGenera(entry, siteData);
+const ageSpan = createAgeSpan(descendantGenera, siteData.timeline);
+const genusRows = createCladeGenusRows(entry, siteData, ageSpan);
+const rangeHeading = ageSpan?.from_ma !== undefined && ageSpan.to_ma !== undefined
+    ? "Range, " + formatAgeNumbers(ageSpan.from_ma, ageSpan.to_ma) + " Ma"
+    : "Range";
+const ancestors = record.taxonomy.slice(0, -1);
+const references = record.references ?? [];
+const placedDirectly = entry.genusNames.length;
+---
+
+<BaseLayout title={entry.name} description={getFirstSentence(record.description ?? entry.name)}>
+    <article class="clade-page">
+        <LineageTrail taxonomy={ancestors} />
+
+        <header class="clade-header">
+            <h1 class="clade-name">{entry.name}</h1>
+            <p class="clade-meta">
+                {authority && <a class="authority" href={authorityAnchor}>{authority}</a>}
+                {typeGenus && <span>Type genus <a class="taxon" href={createPagePath(baseUrl, "genus", typeGenus.slug)}>{typeGenus.name}</a></span>}
+            </p>
+        </header>
+
+        <div class="clade-age">{ageSpan && <AgeFigure period={ageSpan} rangeIntroduction="Its genera lived" />}</div>
+
+        <div class="clade-main">
+            <section class="clade-introduction">
+                {record.description && <p class="lede"><Prose text={record.description.trim()} /></p>}
+                {record.dispute && <DisputeNote dispute={record.dispute} />}
+            </section>
+
+            {record.diagnostic_features && record.diagnostic_features.length > 0 && (
+                <section class="clade-section">
+                    <h2>Diagnosis</h2>
+                    <DiagnosisList features={record.diagnostic_features} />
+                </section>
+            )}
+
+            {entry.childCladeNames.length > 0 && (
+                <section class="clade-section">
+                    <h2>Clades within {entry.name}</h2>
+                    <SubcladeList names={entry.childCladeNames} />
+                </section>
+            )}
+
+        </div>
+
+        {genusRows.length > 0 && (
+            <section class="clade-section clade-genera">
+                <h2>Genera placed directly in {entry.name}</h2>
+                <CladeGenusTable rows={genusRows} rangeHeading={rangeHeading} />
+            </section>
+        )}
+
+        <div class="clade-after">
+            {record.synonyms && record.synonyms.length > 0 && (
+                <section class="clade-section">
+                    <h2>Synonyms</h2>
+                    <SynonymTable synonyms={record.synonyms} />
+                </section>
+            )}
+
+            {references.length > 0 && (
+                <section class="clade-section">
+                    <h2>References</h2>
+                    <ReferenceList references={references} />
+                </section>
+            )}
+        </div>
+
+        <FactList label="At a glance">
+            <dt>Genera</dt>
+            <dd class="figures">{formatGenusCount(entry.totalGenusCount)}</dd>
+            <dt>Placed directly</dt>
+            <dd class="figures">{formatGenusCount(placedDirectly)}</dd>
+            {entry.childCladeNames.length > 0 && (
+                <>
+                    <dt>Subclades</dt>
+                    <dd class="figures">{entry.childCladeNames.length}</dd>
+                </>
+            )}
+        </FactList>
+    </article>
+</BaseLayout>
+
+<style>
+    .clade-page
+    {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) var(--sidebar-width);
+        grid-template-areas:
+            "lineage lineage"
+            "header header"
+            "age age"
+            "main facts"
+            "genera genera"
+            "after after";
+        gap: var(--space-5) var(--space-7);
+        align-items: start;
+    }
+
+    .clade-page > :global(.lineage-trail)
+    {
+        grid-area: lineage;
+    }
+
+    .clade-header
+    {
+        grid-area: header;
+        display: grid;
+        gap: var(--space-2);
+    }
+
+    .clade-age
+    {
+        grid-area: age;
+    }
+
+    .clade-age:empty
+    {
+        display: none;
+    }
+
+    .clade-main,
+    .clade-after
+    {
+        display: grid;
+        gap: var(--space-7);
+        min-width: 0;
+    }
+
+    .clade-main
+    {
+        grid-area: main;
+    }
+
+    /* The genus table spans the full page width: it needs the room, and the facts panel beside
+       the text is short. */
+    .clade-genera
+    {
+        grid-area: genera;
+        min-width: 0;
+        margin-top: var(--space-5);
+    }
+
+    .clade-after
+    {
+        grid-area: after;
+        margin-top: var(--space-5);
+    }
+
+    .clade-after:empty
+    {
+        display: none;
+    }
+
+    .clade-page > :global(.fact-list)
+    {
+        grid-area: facts;
+    }
+
+    .clade-name
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+        letter-spacing: -0.01em;
+    }
+
+    .clade-meta
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: var(--space-1) var(--space-5);
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+    }
+
+    .authority
+    {
+        color: var(--color-ink);
+        text-decoration: none;
+    }
+
+    .authority:hover
+    {
+        color: var(--color-accent);
+        text-decoration: underline;
+    }
+
+    .clade-introduction,
+    .clade-section
+    {
+        display: grid;
+        gap: var(--space-4);
+        max-width: var(--measure);
+    }
+
+    .clade-genera,
+    .clade-section:has(table)
+    {
+        max-width: none;
+    }
+
+    .lede
+    {
+        font-size: var(--text-lede);
+        line-height: 1.55;
+    }
+
+    @media (max-width: 52rem)
+    {
+        .clade-page
+        {
+            grid-template-columns: minmax(0, 1fr);
+            grid-template-areas:
+                "lineage"
+                "header"
+                "age"
+                "facts"
+                "main"
+                "genera"
+                "after";
+        }
+    }
+</style>

@@ -4,6 +4,16 @@
 
 ### Added
 
+- Clade pages (`clade/{slug}/`, one for each of the 188 clades with a record): classification
+  trail, authority and type genus, an age figure spanning every genus in the clade (with the
+  stage row only when the span covers at most two epochs), description, dispute note,
+  diagnosis, the clades directly below with their genus counts, synonyms, references, and a
+  facts panel with genus counts. A full-width table lists the genera placed directly in the
+  clade: authority, age, a range bar on the clade's span, and country, in ruled columns that
+  keep to one line (narrow screens scroll the table). The ranks above Dinosauria have no record
+  and get no page; classification trails show them without a link
+- Components: `CladeGenusTable`, `RangeBar`, `SubcladeList`, and `FactList`, which the genus
+  page's "at a glance" panel now uses too
 - Genus pages (`genus/{slug}/`, one per genus): classification trail, name, authority and
   pronunciation, description with genus and species names set in italics, dispute note,
   etymology, diagnosis, a section per species with its type-specimen label and synonyms,

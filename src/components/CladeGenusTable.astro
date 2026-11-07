@@ -1,0 +1,132 @@
+---
+import type { CladeGenusRow } from "../data/clades.ts";
+import { createPagePath } from "../data/urls.ts";
+import RangeBar from "./RangeBar.astro";
+import StatusBadge from "./StatusBadge.astro";
+
+/**
+ * Properties of the table of genera placed directly in a clade.
+ */
+type Props = {
+    /**
+     * The formatted rows.
+     */
+    rows: Array<CladeGenusRow>;
+
+    /**
+     * Heading of the range column, naming the scale the bars are drawn on.
+     */
+    rangeHeading: string;
+};
+
+const { rows, rangeHeading } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<div class="table-scroll">
+    <table class="clade-genus-table">
+        <thead>
+            <tr>
+                <th scope="col">Genus</th>
+                <th scope="col">Authority</th>
+                <th scope="col">Age</th>
+                <th scope="col" class="numeric">Ma</th>
+                <th scope="col" class="range-heading">{rangeHeading}</th>
+                <th scope="col">Found in</th>
+            </tr>
+        </thead>
+        <tbody>
+            {rows.map((row) => (
+                <tr>
+                    <td class="genus-cell">
+                        <a class="taxon" href={createPagePath(baseUrl, "genus", row.entry.slug)}>{row.entry.name}</a>
+                        <StatusBadge status={row.status} />
+                        {row.isIncertaeSedis && <span class="row-note"><i>incertae sedis</i></span>}
+                        {row.isDisputed && <span class="row-note row-dispute">under dispute</span>}
+                    </td>
+                    <td class="text-cell">{row.authority}</td>
+                    <td class="text-cell">{row.age}</td>
+                    <td class="numeric figures">{row.ageNumbers}</td>
+                    <td class="range-cell">{row.rangeBar && <RangeBar geometry={row.rangeBar} />}</td>
+                    <td class="text-cell">{row.country}</td>
+                </tr>
+            ))}
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .table-scroll
+    {
+        overflow-x: auto;
+    }
+
+    /* Columns are separated by vertical rules, with equal padding either side of each rule. */
+    th,
+    td
+    {
+        padding-inline: var(--space-3);
+    }
+
+    th + th,
+    td + td
+    {
+        border-left: 1px solid var(--color-line);
+    }
+
+    th:first-child,
+    td:first-child
+    {
+        padding-left: 0;
+    }
+
+    th:last-child,
+    td:last-child
+    {
+        padding-right: 0;
+    }
+
+    .numeric
+    {
+        text-align: right;
+        white-space: nowrap;
+    }
+
+    /* Cells keep to one line (the genus cell's notes are on lines of their own by design); on a
+       narrow screen the table scrolls sideways inside its container instead. */
+    .text-cell
+    {
+        white-space: nowrap;
+    }
+
+    .genus-cell
+    {
+        min-width: 10rem;
+        white-space: nowrap;
+    }
+
+    .genus-cell :global(.status-badge)
+    {
+        margin-left: var(--space-2);
+    }
+
+    .row-note
+    {
+        display: block;
+        color: var(--color-muted);
+        font-size: var(--text-caption);
+    }
+
+    .row-dispute
+    {
+        color: var(--color-caution);
+    }
+
+    /* The range column takes whatever width the other columns leave. */
+    .range-heading,
+    .range-cell
+    {
+        width: 100%;
+        min-width: 8rem;
+    }
+</style>

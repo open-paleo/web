@@ -141,10 +141,17 @@ export type AgeFigureModel = {
     periodRow: AgeRow;
 
     /**
-     * The stages of the epochs the record's range falls in, with the range marked.
+     * The stages of the epochs the record's range falls in, with the range marked. Absent when
+     * the range covers more epochs than a row of stages can show legibly.
      */
-    stageRow: AgeRow;
+    stageRow: AgeRow | undefined;
 };
+
+/**
+ * The most epochs whose stages fit legibly in one row. A clade spanning the whole Mesozoic would
+ * otherwise get a row of thirty stages.
+ */
+const maximumStageRowEpochs = 2;
 
 /**
  * Periods drawn on every age figure; others are added when a record's range reaches them.
@@ -330,8 +337,8 @@ function joinEpochNames(epochs: Array<Epoch>): string
 
 /**
  * Work out what the age figure draws for a record: the Mesozoic periods (and any other period
- * the record reaches), and the stages of the epochs its range falls in, each row with the
- * range marked.
+ * the record reaches), and the stages of the epochs its range falls in (when there are at most
+ * two such epochs), each row with the range marked.
  *
  * @param period - The record's period block.
  * @param timeline - The arranged timescale.
@@ -381,6 +388,40 @@ export function createAgeFigureModel(period: Period, timeline: GeologicTimeline)
 
     return {
         periodRow: createAgeRow("Periods", periods, "period", fromMa, toMa),
-        stageRow: createAgeRow(joinEpochNames(epochs) + " stages", stages, "stage", fromMa, toMa),
+        stageRow: epochs.length <= maximumStageRowEpochs
+            ? createAgeRow(joinEpochNames(epochs) + " stages", stages, "stage", fromMa, toMa)
+            : undefined,
     };
+}
+
+/**
+ * Which end of an age range an age is: its older start or its younger end.
+ */
+export type RangeEnd = "start" | "end";
+
+/**
+ * Find the epoch an age at one end of a range falls in. On a boundary, the start of a range
+ * belongs to the younger epoch and the end of a range to the older one: a range ending at
+ * 66.0 Ma ends in the Late Cretaceous, and one starting there starts in the Paleocene.
+ *
+ * @param timeline - The arranged timescale.
+ * @param ageMa - The age, in millions of years ago.
+ * @param end - Whether the age starts or ends its range.
+ * @returns The epoch, or undefined if the age is outside the timescale.
+ */
+export function findEpochAt(timeline: GeologicTimeline, ageMa: number, end: RangeEnd): Epoch | undefined
+{
+    for (const epoch of timeline.epochs)
+    {
+        const isInside = end === "start"
+            ? ageMa <= epoch.fromMa && ageMa > epoch.toMa
+            : ageMa < epoch.fromMa && ageMa >= epoch.toMa;
+
+        if (isInside)
+        {
+            return epoch;
+        }
+    }
+
+    return undefined;
 }

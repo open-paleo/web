@@ -523,3 +523,40 @@ export function getFirstSentence(text: string): string
 
     return sentenceEnd ? text.slice(0, sentenceEnd.index + 1).trim() : text.trim();
 }
+
+/**
+ * Format a species' age briefly for a table: the stages, or the periods when no stage is
+ * recorded. "Campanian–Maastrichtian", "Late Jurassic".
+ *
+ * @param period - The species' period block.
+ * @returns The span, or an empty string when neither is recorded.
+ */
+export function formatShortAge(period: Period): string
+{
+    const stages = joinTimeUnits(period.stage ?? []);
+
+    return stages !== "" ? stages : joinTimeUnits(period.name ?? []);
+}
+
+/**
+ * Format an age range as bare numbers for a table column: "72.2–66.0".
+ *
+ * @param fromMa - Older bound, in millions of years ago.
+ * @param toMa - Younger bound, in millions of years ago.
+ * @returns The range to one decimal place.
+ */
+export function formatAgeNumbers(fromMa: number, toMa: number): string
+{
+    return fromMa === toMa ? fromMa.toFixed(1) : fromMa.toFixed(1) + "–" + toMa.toFixed(1);
+}
+
+/**
+ * Count genera in words: "1 genus", "1,428 genera".
+ *
+ * @param count - How many genera.
+ * @returns The count with the right noun.
+ */
+export function formatGenusCount(count: number): string
+{
+    return integerFormat.format(count) + (count === 1 ? " genus" : " genera");
+}
