@@ -1,0 +1,35 @@
+---
+import type { Reference } from "../data/dataset.ts";
+import { formatShortCitation } from "../data/format.ts";
+import { getSiteData } from "../data/site-data.ts";
+import { createReferenceAnchor } from "../data/urls.ts";
+
+/**
+ * Properties of a short in-text citation that links to the page's reference list.
+ */
+type Props = {
+    /**
+     * Key of the cited reference.
+     */
+    id: string;
+
+    /**
+     * The record's references, which the key resolves against.
+     */
+    references: Array<Reference>;
+};
+
+const { id, references } = Astro.props;
+const entry = getSiteData().referenceById.get(id);
+let label = id;
+
+for (const reference of references)
+{
+    if (reference.id === id)
+    {
+        label = formatShortCitation(reference);
+    }
+}
+---
+
+<a class="citation-link" href={"#" + createReferenceAnchor(entry?.slug ?? id)}>{label}</a>

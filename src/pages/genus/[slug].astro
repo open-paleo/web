@@ -1,0 +1,259 @@
+---
+import AgeFigure from "../../components/AgeFigure.astro";
+import DiagnosisList from "../../components/DiagnosisList.astro";
+import DisputeNote from "../../components/DisputeNote.astro";
+import GlancePanel from "../../components/GlancePanel.astro";
+import IcznCaseList from "../../components/IcznCaseList.astro";
+import LineageTrail from "../../components/LineageTrail.astro";
+import NotableSpecimenList from "../../components/NotableSpecimenList.astro";
+import Prose from "../../components/Prose.astro";
+import ReferenceList from "../../components/ReferenceList.astro";
+import SpeciesSection from "../../components/SpeciesSection.astro";
+import StatusBadge from "../../components/StatusBadge.astro";
+import SynonymTable from "../../components/SynonymTable.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatAuthority, getFirstSentence } from "../../data/format.ts";
+import { getTypeSpecies } from "../../data/records.ts";
+import type { GenusEntry } from "../../data/site-data.ts";
+import { getSiteData } from "../../data/site-data.ts";
+import { createReferenceAnchor } from "../../data/urls.ts";
+
+/**
+ * Properties of a genus page.
+ */
+type Props = {
+    /**
+     * The genus the page describes.
+     */
+    entry: GenusEntry;
+};
+
+/**
+ * One generated genus page: its URL parameter and its properties.
+ */
+type GenusPath = {
+    /**
+     * URL parameters: the genus slug.
+     */
+    params: GenusPathParameters;
+
+    /**
+     * Properties passed to the page.
+     */
+    props: Props;
+};
+
+/**
+ * URL parameters of a genus page.
+ */
+type GenusPathParameters = {
+    /**
+     * The genus slug, as in genus/{slug}/.
+     */
+    slug: string;
+};
+
+/**
+ * List one page per genus.
+ *
+ * @returns The path and properties of every genus page.
+ */
+export function getStaticPaths(): Array<GenusPath>
+{
+    const paths = new Array<GenusPath>();
+
+    for (const entry of getSiteData().genera)
+    {
+        paths.push({ params: { slug: entry.slug }, props: { entry } });
+    }
+
+    return paths;
+}
+
+const { entry } = Astro.props;
+const genus = entry.record;
+const siteData = getSiteData();
+const typeSpecies = getTypeSpecies(genus);
+const references = genus.references ?? [];
+const authority = formatAuthority(genus.authors, genus.described, false);
+const authorityReferenceId = genus.erected_in ?? typeSpecies.erected_in;
+const authorityAnchor = "#" + createReferenceAnchor(siteData.referenceById.get(authorityReferenceId)?.slug ?? authorityReferenceId);
+const pronunciation = genus.pronunciation;
+---
+
+<BaseLayout title={genus.genus} description={getFirstSentence(genus.description)}>
+    <article class="genus-page">
+        <LineageTrail taxonomy={genus.taxonomy} placement={genus.placement} />
+
+        <header class="genus-header">
+            <h1 class="genus-name taxon">{genus.genus}</h1>
+            <p class="genus-meta">
+                {authority && <a class="authority" href={authorityAnchor}>{authority}</a>}
+                {pronunciation?.phonetic && <span>{pronunciation.phonetic}</span>}
+                {pronunciation?.ipa && <span>{pronunciation.ipa}</span>}
+                <StatusBadge status={typeSpecies.status} />
+            </p>
+        </header>
+
+        <div class="genus-age"><AgeFigure period={typeSpecies.period} /></div>
+
+        <div class="genus-main">
+            <section class="genus-introduction">
+                <p class="lede"><Prose text={genus.description.trim()} /></p>
+                {genus.dispute && <DisputeNote dispute={genus.dispute} />}
+                {genus.etymology && <p><strong>Etymology.</strong> <Prose text={genus.etymology.trim()} /></p>}
+            </section>
+
+            {genus.diagnostic_features && genus.diagnostic_features.length > 0 && (
+                <section class="genus-section">
+                    <h2>Diagnosis</h2>
+                    <DiagnosisList features={genus.diagnostic_features} />
+                </section>
+            )}
+
+            {genus.species.map((species) => <SpeciesSection species={species} />)}
+
+            {genus.synonyms && genus.synonyms.length > 0 && (
+                <section class="genus-section">
+                    <h2>Synonyms of the genus</h2>
+                    <SynonymTable synonyms={genus.synonyms} />
+                </section>
+            )}
+
+            {genus.notable_specimens && genus.notable_specimens.length > 0 && (
+                <section class="genus-section">
+                    <h2>Notable specimens</h2>
+                    <NotableSpecimenList specimens={genus.notable_specimens} references={references} />
+                </section>
+            )}
+
+            {genus.iczn_cases && genus.iczn_cases.length > 0 && (
+                <section class="genus-section">
+                    <h2>ICZN cases</h2>
+                    <IcznCaseList cases={genus.iczn_cases} references={references} />
+                </section>
+            )}
+
+            {references.length > 0 && (
+                <section class="genus-section">
+                    <h2>References</h2>
+                    <ReferenceList references={references} />
+                </section>
+            )}
+        </div>
+
+        <GlancePanel genus={genus} />
+    </article>
+</BaseLayout>
+
+<style>
+    .genus-page
+    {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) var(--sidebar-width);
+        grid-template-areas:
+            "lineage lineage"
+            "header header"
+            "age age"
+            "main glance";
+        gap: var(--space-5) var(--space-7);
+        align-items: start;
+    }
+
+    .genus-page > :global(.lineage-trail)
+    {
+        grid-area: lineage;
+    }
+
+    .genus-header
+    {
+        grid-area: header;
+        display: grid;
+        gap: var(--space-2);
+    }
+
+    .genus-age
+    {
+        grid-area: age;
+    }
+
+    .genus-age:empty
+    {
+        display: none;
+    }
+
+    .genus-main
+    {
+        grid-area: main;
+        display: grid;
+        gap: var(--space-7);
+        min-width: 0;
+    }
+
+    .genus-page > :global(.glance-panel)
+    {
+        grid-area: glance;
+    }
+
+    .genus-name
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+        letter-spacing: -0.01em;
+    }
+
+    .genus-meta
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: var(--space-1) var(--space-5);
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+    }
+
+    .authority
+    {
+        color: var(--color-ink);
+        text-decoration: none;
+    }
+
+    .authority:hover
+    {
+        color: var(--color-accent);
+        text-decoration: underline;
+    }
+
+    .genus-introduction,
+    .genus-section
+    {
+        display: grid;
+        gap: var(--space-4);
+        max-width: var(--measure);
+    }
+
+    .genus-section:has(table)
+    {
+        max-width: none;
+    }
+
+    .lede
+    {
+        font-size: var(--text-lede);
+        line-height: 1.55;
+    }
+
+    @media (max-width: 52rem)
+    {
+        .genus-page
+        {
+            grid-template-columns: minmax(0, 1fr);
+            grid-template-areas:
+                "lineage"
+                "header"
+                "age"
+                "glance"
+                "main";
+        }
+    }
+</style>

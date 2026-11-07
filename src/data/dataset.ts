@@ -23,6 +23,15 @@ export type {
     Species,
     Status,
     Synonym,
+    Timescale,
     TreeNode,
     TypeSpecimen,
 } from "./bindings/open-paleo";
+
+import type { Timescale } from "./bindings/open-paleo";
+
+/**
+ * One stage of the timescale: its epoch and boundary ages. The bindings declare this type
+ * inline, so it is named here.
+ */
+export type TimescaleStage = Timescale["stages"][string];

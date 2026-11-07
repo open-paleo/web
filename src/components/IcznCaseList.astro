@@ -1,0 +1,88 @@
+---
+import type { IcznCase, Reference } from "../data/dataset.ts";
+import { capitalizeFirstLetter, formatVocabularyValue } from "../data/format.ts";
+import CitationLink from "./CitationLink.astro";
+import Prose from "./Prose.astro";
+
+/**
+ * Properties of a list of cases before the International Commission on Zoological
+ * Nomenclature.
+ */
+type Props = {
+    /**
+     * The cases.
+     */
+    cases: Array<IcznCase>;
+
+    /**
+     * The record's references, which each case's reference keys resolve against.
+     */
+    references: Array<Reference>;
+};
+
+const { cases, references } = Astro.props;
+---
+
+<ul class="iczn-cases">
+    {cases.map((icznCase) => (
+        <li>
+            <p class="case-heading">
+                {capitalizeFirstLetter(formatVocabularyValue(icznCase.type))}
+                {icznCase.case && <span class="case-number">Case {icznCase.case}</span>}
+                <span class="case-status">{icznCase.status === "opinion" ? "Ruled" : capitalizeFirstLetter(icznCase.status)}</span>
+            </p>
+            {icznCase.notes && <p><Prose text={icznCase.notes.trim()} /></p>}
+            <p class="case-sources">
+                {icznCase.petition && <span>Application: <CitationLink id={icznCase.petition} references={references} /></span>}
+                {icznCase.ruling && <span>Opinion: <CitationLink id={icznCase.ruling} references={references} /></span>}
+                {icznCase.notices && icznCase.notices.length > 0 && (
+                    <span>Notices: {icznCase.notices.map((id) => <CitationLink id={id} references={references} />)}</span>
+                )}
+            </p>
+        </li>
+    ))}
+</ul>
+
+<style>
+    .iczn-cases
+    {
+        display: grid;
+        gap: var(--space-4);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li
+    {
+        display: grid;
+        gap: var(--space-2);
+        max-width: var(--measure);
+    }
+
+    .case-heading
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-1) var(--space-4);
+        font-family: var(--font-sans);
+        font-weight: 700;
+    }
+
+    .case-number,
+    .case-status
+    {
+        color: var(--color-muted);
+        font-weight: 400;
+    }
+
+    .case-sources
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-1) var(--space-4);
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+</style>

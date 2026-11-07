@@ -1,0 +1,40 @@
+---
+import type { Dispute } from "../data/dataset.ts";
+import Prose from "./Prose.astro";
+
+/**
+ * Properties of the note that summarizes a live scientific dispute about a record.
+ */
+type Props = {
+    /**
+     * The record's dispute block.
+     */
+    dispute: Dispute;
+};
+
+const { dispute } = Astro.props;
+---
+
+<aside class="dispute-note" aria-label="Dispute">
+    <p class="dispute-title">Under dispute</p>
+    <p><Prose text={dispute.summary.trim()} /></p>
+</aside>
+
+<style>
+    .dispute-note
+    {
+        display: grid;
+        gap: var(--space-2);
+        max-width: var(--measure);
+        padding: var(--space-4) var(--space-5);
+        background: var(--color-caution-soft);
+        border-radius: var(--radius);
+    }
+
+    .dispute-title
+    {
+        color: var(--color-caution);
+        font-family: var(--font-sans);
+        font-weight: 700;
+    }
+</style>

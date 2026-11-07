@@ -1,0 +1,23 @@
+---
+import type { Reference } from "../data/dataset.ts";
+import { createCitationParts } from "../data/format.ts";
+import Prose from "./Prose.astro";
+
+/**
+ * Properties of a full citation of a published work.
+ */
+type Props = {
+    /**
+     * The reference.
+     */
+    reference: Reference;
+};
+
+const { reference } = Astro.props;
+const parts = createCitationParts(reference);
+const doiUrl = "https://doi.org/" + parts.doi;
+const locationAfterContainer = parts.location ? " " + parts.location : "";
+---
+
+{/* One line on purpose: Astro's HTML compression drops line breaks between expressions, so every space between parts is written out. */}
+<span class="citation">{parts.authors} ({parts.year}). <Prose text={parts.title} />.{parts.container && <>{" "}<i>{parts.container}</i>{locationAfterContainer}.</>}{!parts.container && parts.location && <>{" "}{parts.location}.</>}{parts.publisher && <>{" "}{parts.publisher}.</>}{parts.doi && <>{" "}<a href={doiUrl}>doi:{parts.doi}</a></>}{parts.url && <>{" "}<a href={parts.url}>{parts.url}</a></>}</span>

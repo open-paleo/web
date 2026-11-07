@@ -34,9 +34,9 @@ test("compareSchemaVersions classifies versions against the supported one", () =
 
 test("readDataset reads a dataset with a supported schema", () =>
 {
-    const dataset = readDataset(fixtureDirectory, "3.2.0");
+    const dataset = readDataset(fixtureDirectory, "3.3.0");
 
-    assert.equal(dataset._metadata.schema_version, "3.2.0");
+    assert.equal(dataset._metadata.schema_version, "3.3.0");
     assert.ok(dataset.genera.Tyrannosaurus);
 });
 

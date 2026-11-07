@@ -1,0 +1,162 @@
+---
+import type { Species } from "../data/dataset.ts";
+import {
+    capitalizeFirstLetter,
+    describeAgeResolution,
+    formatAgeRange,
+    formatGeologicAge,
+    formatPlace,
+    formatSpecimenType,
+    formatStratigraphicUnits,
+    joinNonEmpty,
+} from "../data/format.ts";
+import Prose from "./Prose.astro";
+
+/**
+ * Properties of the collection label for a species' type specimen.
+ */
+type Props = {
+    /**
+     * The species whose type specimen, horizon and locality the label shows.
+     */
+    species: Species;
+};
+
+const { species } = Astro.props;
+const specimen = species.type_specimen;
+const specimenIds = specimen?.specimen_id ?? [];
+const specimenType = formatSpecimenType(specimen?.specimen_type, specimenIds.length);
+const location = species.location;
+const units = location ? formatStratigraphicUnits(location) : "";
+const place = location ? formatPlace(location) : "";
+const geologicAge = formatGeologicAge(species.period);
+const ageRange = species.period.from_ma !== undefined && species.period.to_ma !== undefined
+    ? formatAgeRange(species.period.from_ma, species.period.to_ma)
+    : "";
+const ageNote = describeAgeResolution(species.period.resolution);
+const horizon = joinNonEmpty([units, geologicAge]);
+const locality = location ? joinNonEmpty([location.locality ?? "", place]) : "";
+---
+
+<dl class="specimen-label">
+    {specimen && (
+        <>
+            <dt>{specimenType}</dt>
+            <dd>
+                {specimenIds.length > 0
+                    ? specimenIds.map((id, index) => <><span class="catalog-number">{id}</span>{index < specimenIds.length - 1 ? ", " : ""}</>)
+                    : "Not catalogued"}
+                {specimen.institution && <>, {specimen.institution}</>}
+                {specimen.status && <span class="specimen-status"> ({specimen.status})</span>}
+            </dd>
+        </>
+    )}
+    {specimen?.former_ids && specimen.former_ids.length > 0 && (
+        <>
+            <dt>Formerly</dt>
+            <dd>
+                {specimen.former_ids.map((formerId) => (
+                    <span class="former-id"><span class="catalog-number">{formerId.from_id}</span> ({formerId.reason}{formerId.from_institution ? " from " + formerId.from_institution : ""})</span>
+                ))}
+            </dd>
+        </>
+    )}
+    {specimen?.material && (
+        <>
+            <dt>Material</dt>
+            <dd><Prose text={specimen.material} /></dd>
+        </>
+    )}
+    {specimen?.notes && (
+        <>
+            <dt>Notes</dt>
+            <dd><Prose text={specimen.notes} /></dd>
+        </>
+    )}
+    {horizon && (
+        <>
+            <dt>Horizon</dt>
+            <dd>
+                {horizon}
+                {ageRange && <span class="age-range figures">, {ageRange}</span>}
+                {ageNote && <span class="age-note">{ageNote}</span>}
+            </dd>
+        </>
+    )}
+    {locality && (
+        <>
+            <dt>Locality</dt>
+            <dd>
+                {locality}
+                {location?.notes && <span class="location-note">{capitalizeFirstLetter(location?.notes ?? "")}</span>}
+            </dd>
+        </>
+    )}
+</dl>
+
+<style>
+    .specimen-label
+    {
+        display: grid;
+        grid-template-columns: max-content minmax(0, 1fr);
+        gap: var(--space-2) var(--space-5);
+        margin: 0;
+        padding: var(--space-4) var(--space-5);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+    }
+
+    dt
+    {
+        padding-top: 0.15rem;
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+
+    dd
+    {
+        margin: 0;
+    }
+
+    .catalog-number
+    {
+        font-family: var(--font-sans);
+        font-weight: 500;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+    }
+
+    .specimen-status
+    {
+        color: var(--color-caution);
+    }
+
+    .former-id
+    {
+        display: block;
+    }
+
+    .age-note,
+    .location-note
+    {
+        display: block;
+        color: var(--color-muted);
+        font-size: var(--text-interface);
+    }
+
+    @media (max-width: 30rem)
+    {
+        .specimen-label
+        {
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-1);
+        }
+
+        dd + dt
+        {
+            padding-top: var(--space-3);
+        }
+    }
+</style>

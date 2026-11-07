@@ -114,7 +114,7 @@ it:
 | Component | Description |
 |-----------|-------------|
 | Classification trail | Ranks from Dinosauria down to the parent clade; middle ranks collapse behind a "6 more" button |
-| Age figure | Two rows of ICS bands: the whole Mesozoic, then the stages of the record's epoch, each with an outlined marker over the record's range, and the boundary ages beneath |
+| Age figure | Two rows of ICS bands: the Mesozoic periods, then the stages of the record's epoch. The record's range is outlined in `--color-on-period` and the time outside it is dimmed toward the page background, so the range stands out in both themes. Boundary ages beneath each row |
 | Specimen label | Bordered surface panel for a type specimen: catalog number, institution, material, horizon, locality |
 | At a glance | Definition list of diet, locomotion, integument, appearance features, size, location and identifiers |
 | Status badge | "Disputed" (caution, solid border) and "Nomen dubium" (muted, dashed border) |

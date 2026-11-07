@@ -4,6 +4,19 @@
 
 ### Added
 
+- Genus pages (`genus/{slug}/`, one per genus): classification trail, name, authority and
+  pronunciation, description with genus and species names set in italics, dispute note,
+  etymology, diagnosis, a section per species with its type-specimen label and synonyms,
+  notable specimens, ICZN cases, the reference list, and an "at a glance" panel
+- The age figure on genus pages: the Mesozoic periods and the stages of the type species'
+  epoch in ICS colors, with the record's range outlined and the time outside it dimmed. It
+  reads the `timescale` the dataset publishes from schema 3.3.0; the bindings are updated to
+  3.3.0
+- Components: `AgeFigure`, `Prose`, `StatusBadge`, `DisputeNote`, `LineageTrail`, `Citation`,
+  `CitationLink`, `ReferenceList`, `DiagnosisList`, `SpecimenLabel`, `SynonymTable`,
+  `NotableSpecimenList`, `IcznCaseList`, `SpeciesSection`, `GlancePanel`
+- Formatting helpers in `src/data/format.ts` and `src/data/records.ts`, and the taxon-name
+  matcher in `src/data/taxon-names.ts`, with tests
 - Data loading in `src/data/`: locating `open-paleo.json`, a schema-version check against the
   copied bindings, and lookup tables for the pages (sorted genera, the clade tree with children
   and genus counts, every reference with the records that cite it, and URL slugs). The home

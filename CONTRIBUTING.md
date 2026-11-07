@@ -278,9 +278,11 @@ const { dispute, question } = Astro.props;
   `{species.map((item) => <SpeciesSection species={item} />)}` is how Astro repeats elements,
   and there is no loop form in a template. Keep the arrow to a single element; anything more
   belongs in the frontmatter or in `src/data/`
-- **Keep a `{value}` on the same line as the word before it.** Astro's HTML compression drops
-  a line break that falls directly before an expression, so `genera in` at the end of one line
-  and `{count} clades` on the next renders as "in188 clades"
+- **Keep a `{value}` or an inline element on the same line as the text before it.** Astro's
+  HTML compression drops a line break that falls directly before an expression or a tag, so
+  `genera in` at the end of one line and `{count} clades` on the next renders as "in188
+  clades", and `licensed under` followed by `<a>` on the next line renders as "underCC BY".
+  Where parts must be joined by expressions, write the space out as `{" "}`
 - **Astro escapes every `{value}` in the template.** Never use `set:html` on dataset text;
   components that add markup to prose (italic taxon names) build it from escaped parts
 - ESLint does not check template markup or `<style>` blocks, so reviewers do: 4-space

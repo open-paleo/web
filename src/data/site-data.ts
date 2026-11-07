@@ -1,6 +1,10 @@
+import type { GeologicTimeline } from "./age-figure.ts";
+import { createGeologicTimeline } from "./age-figure.ts";
 import type { Clade, Genus, Metadata, OpenPaleoDataset, Reference, TreeNode } from "./dataset.ts";
 import { loadDataset } from "./load-dataset.ts";
 import { createSlug } from "./slugs.ts";
+import type { TaxonNameIndex } from "./taxon-names.ts";
+import { createTaxonNameIndex } from "./taxon-names.ts";
 
 /**
  * A genus with the values the site derives for it.
@@ -156,6 +160,17 @@ export type SiteData = {
      * Cited works by key.
      */
     referenceById: Map<string, ReferenceEntry>;
+
+    /**
+     * Genus and species names, for setting them in italics in prose.
+     */
+    taxonNames: TaxonNameIndex;
+
+    /**
+     * The geologic timescale arranged into periods, epochs and stages, for age figures.
+     * Absent when the dataset predates schema 3.3.0, which added the timescale.
+     */
+    timeline: GeologicTimeline | undefined;
 };
 
 const nameCollator = new Intl.Collator("en", { sensitivity: "base", numeric: true });
@@ -406,6 +421,8 @@ export function createSiteData(dataset: OpenPaleoDataset): SiteData
         cladeByName,
         references,
         referenceById,
+        taxonNames: createTaxonNameIndex(dataset),
+        timeline: dataset.timescale ? createGeologicTimeline(dataset.timescale) : undefined,
     };
 }
 

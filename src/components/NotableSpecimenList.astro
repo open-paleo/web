@@ -1,0 +1,117 @@
+---
+import type { NotableSpecimen, Reference } from "../data/dataset.ts";
+import { formatVocabularyValue } from "../data/format.ts";
+import CitationLink from "./CitationLink.astro";
+import Prose from "./Prose.astro";
+
+/**
+ * Properties of a genus's list of notable specimens.
+ */
+type Props = {
+    /**
+     * The notable specimens.
+     */
+    specimens: Array<NotableSpecimen>;
+
+    /**
+     * The genus's references, which each specimen's reference keys resolve against.
+     */
+    references: Array<Reference>;
+};
+
+const { specimens, references } = Astro.props;
+---
+
+<ul class="notable-specimens">
+    {specimens.map((specimen) => (
+        <li>
+            <span class="specimen-name">{specimen.nickname ?? specimen.specimen_id?.[0] ?? "Unnamed specimen"}</span>
+            <div class="specimen-body">
+                <p class="specimen-facts">
+                    {specimen.specimen_id && specimen.specimen_id.length > 0 && <span class="catalog-number">{specimen.specimen_id.join(", ")}</span>}
+                    {specimen.institution && <span>{specimen.institution}</span>}
+                    {specimen.discovered?.year && (
+                        <span>Found {specimen.discovered.year}{specimen.discovered.by ? " by " + specimen.discovered.by : ""}</span>
+                    )}
+                    {specimen.category && <span class="specimen-category">{formatVocabularyValue(specimen.category)}</span>}
+                </p>
+                <p><Prose text={specimen.significance.trim()} /></p>
+                {specimen.references && specimen.references.length > 0 && (
+                    <p class="specimen-sources">
+                        {specimen.references.map((id) => <CitationLink id={id} references={references} />)}
+                    </p>
+                )}
+            </div>
+        </li>
+    ))}
+</ul>
+
+<style>
+    .notable-specimens
+    {
+        display: grid;
+        gap: var(--space-5);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li
+    {
+        display: grid;
+        grid-template-columns: 8rem minmax(0, 1fr);
+        gap: var(--space-1) var(--space-5);
+        padding-top: var(--space-4);
+        border-top: 1px solid var(--color-line);
+    }
+
+    .specimen-name
+    {
+        font-family: var(--font-serif);
+        font-size: var(--text-heading-2);
+        font-weight: 700;
+        line-height: var(--leading-heading);
+        overflow-wrap: anywhere;
+    }
+
+    .specimen-body
+    {
+        display: grid;
+        gap: var(--space-2);
+        min-width: 0;
+    }
+
+    .specimen-facts,
+    .specimen-sources
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-1) var(--space-4);
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+
+    .catalog-number
+    {
+        font-weight: 500;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .specimen-category
+    {
+        padding: 0 var(--space-2);
+        color: var(--color-accent);
+        background: var(--color-accent-soft);
+        border-radius: var(--radius-small);
+        white-space: nowrap;
+    }
+
+    @media (max-width: 30rem)
+    {
+        li
+        {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+</style>

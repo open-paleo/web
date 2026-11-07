@@ -1,0 +1,190 @@
+---
+import { createAgeFigureModel } from "../data/age-figure.ts";
+import type { Period } from "../data/dataset.ts";
+import { formatAgeRange, formatGeologicAge } from "../data/format.ts";
+import { getSiteData } from "../data/site-data.ts";
+
+/**
+ * Properties of the age figure: where a record sits in geologic time.
+ */
+type Props = {
+    /**
+     * The record's period block, with its stages and numeric age range.
+     */
+    period: Period;
+};
+
+const { period } = Astro.props;
+const timeline = getSiteData().timeline;
+const model = timeline ? createAgeFigureModel(period, timeline) : undefined;
+const ageRange = period.from_ma !== undefined && period.to_ma !== undefined ? formatAgeRange(period.from_ma, period.to_ma) : "";
+const geologicAge = formatGeologicAge(period);
+
+/**
+ * Bands narrower than this share of the row show their name only on hover.
+ */
+const labelledBandPercent = 9;
+
+/**
+ * Bands narrower than this share of the row also hide their name when the row is narrow, as on
+ * a phone.
+ */
+const labelledBandPercentWhenNarrow = 20;
+const rows = model ? [model.periodRow, model.stageRow] : [];
+---
+
+{model && (
+    <figure class="age-figure">
+        <figcaption class="age-caption">
+            <span class="age-range figures">{ageRange}</span>
+            <span class="age-context">{geologicAge}</span>
+        </figcaption>
+        {rows.map((row, rowIndex) => (
+            <div class="age-row-group">
+                {rowIndex > 0 && <div class="age-row-label">{row.label}</div>}
+                <div class="age-row" aria-hidden="true">
+                    {row.bands.map((band) => (
+                        <span
+                            class:list={[
+                                "age-band",
+                                {
+                                    "has-dark-color": band.hasDarkColor,
+                                    "is-narrow": band.widthPercent < labelledBandPercent,
+                                    "is-small": band.widthPercent < labelledBandPercentWhenNarrow,
+                                },
+                            ]}
+                            style={"flex-basis: " + band.widthPercent + "%; background: var(" + band.colorToken + ")"}
+                            title={band.name}
+                        >{band.name}</span>
+                    ))}
+                    <span class="age-shade" style={"left: 0; width: " + row.marker.leftPercent + "%"}></span>
+                    <span class="age-shade" style={"right: 0; width: " + row.marker.remainingPercent + "%"}></span>
+                    <span class="age-marker" style={"left: " + row.marker.leftPercent + "%; width: " + row.marker.widthPercent + "%"}></span>
+                </div>
+                <div class="age-scale figures" aria-hidden="true">
+                    <span>{row.fromMa.toFixed(1)} Ma</span>
+                    <span>{row.toMa.toFixed(1)} Ma</span>
+                </div>
+            </div>
+        ))}
+    </figure>
+)}
+
+<style>
+    .age-figure
+    {
+        display: grid;
+        gap: var(--space-2);
+        margin: 0;
+        padding-top: var(--space-4);
+        border-top: 1px solid var(--color-line);
+        font-family: var(--font-sans);
+        font-size: var(--text-caption);
+    }
+
+    .age-caption
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: var(--space-1) var(--space-4);
+        font-size: var(--text-interface);
+    }
+
+    .age-range
+    {
+        font-weight: 700;
+    }
+
+    .age-context,
+    .age-row-label,
+    .age-scale
+    {
+        color: var(--color-muted);
+    }
+
+    .age-row-group
+    {
+        display: grid;
+        gap: var(--space-1);
+        container-type: inline-size;
+    }
+
+    .age-row-label
+    {
+        padding-top: var(--space-2);
+    }
+
+    .age-row
+    {
+        position: relative;
+        display: flex;
+        height: 2.1rem;
+        overflow: hidden;
+        border-radius: var(--radius-small);
+    }
+
+    .age-band
+    {
+        display: flex;
+        flex-grow: 0;
+        flex-shrink: 0;
+        align-items: center;
+        min-width: 0;
+        padding-inline: var(--space-2);
+        overflow: hidden;
+        color: var(--color-on-period);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .age-band + .age-band
+    {
+        box-shadow: inset 1px 0 0 var(--color-surface);
+    }
+
+    .age-band.has-dark-color
+    {
+        color: var(--color-on-period-dark);
+    }
+
+    .age-band.is-narrow
+    {
+        color: transparent;
+    }
+
+    @container (max-width: 36rem)
+    {
+        .age-band.is-small
+        {
+            color: transparent;
+        }
+    }
+
+    /* Time outside the record's range is dimmed toward the page background, so the range
+       stands out in both themes. */
+    .age-shade
+    {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background: color-mix(in srgb, var(--color-background) 55%, transparent);
+    }
+
+    /* The bands keep their chart colors in both themes, so the marker uses the fixed dark
+       color drawn on them rather than the theme's ink. */
+    .age-marker
+    {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        min-width: 3px;
+        border: 2px solid var(--color-on-period);
+    }
+
+    .age-scale
+    {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>

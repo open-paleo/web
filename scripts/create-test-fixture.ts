@@ -137,6 +137,7 @@ const fixture: OpenPaleoDataset = {
         genus_count: Object.keys(genera).length,
         clade_count: Object.keys(clades).length,
     },
+    timescale: dataset.timescale,
     tree: pruneTree(dataset.tree, keptClades),
     clades,
     genera,

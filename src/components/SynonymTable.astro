@@ -1,0 +1,58 @@
+---
+import type { Synonym } from "../data/dataset.ts";
+import Prose from "./Prose.astro";
+
+/**
+ * Properties of a table of synonyms.
+ */
+type Props = {
+    /**
+     * The synonyms of a genus or species.
+     */
+    synonyms: Array<Synonym>;
+};
+
+const { synonyms } = Astro.props;
+---
+
+<div class="table-scroll">
+    <table class="synonym-table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Reason</th>
+            </tr>
+        </thead>
+        <tbody>
+            {synonyms.map((synonym) => (
+                <tr>
+                    <td class="synonym-name"><i class="taxon">{synonym.name}</i></td>
+                    <td class="synonym-type">{synonym.type}</td>
+                    <td class="synonym-reason">{synonym.reason && <Prose text={synonym.reason.trim()} />}</td>
+                </tr>
+            ))}
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .table-scroll
+    {
+        overflow-x: auto;
+    }
+
+    .synonym-name,
+    .synonym-type
+    {
+        white-space: nowrap;
+    }
+
+    .synonym-reason
+    {
+        min-width: 16rem;
+        color: var(--color-muted);
+        font-family: var(--font-serif);
+        font-size: var(--text-interface);
+    }
+</style>

@@ -1,0 +1,18 @@
+---
+import { getSiteData } from "../data/site-data.ts";
+
+/**
+ * Properties of a run of prose from the dataset.
+ */
+type Props = {
+    /**
+     * The text. Genus and species names in it are set in italics.
+     */
+    text: string;
+};
+
+const { text } = Astro.props;
+const segments = getSiteData().taxonNames.splitProse(text);
+---
+
+{segments.map((segment) => segment.isTaxon ? <i class="taxon">{segment.text}</i> : segment.text)}

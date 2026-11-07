@@ -1,0 +1,149 @@
+---
+import { getSiteData } from "../data/site-data.ts";
+import { createPagePath } from "../data/urls.ts";
+
+/**
+ * Properties of the classification trail above a record's name.
+ */
+type Props = {
+    /**
+     * Ancestor clades from the root down to the record's parent, as the dataset's taxonomy
+     * gives them.
+     */
+    taxonomy: Array<string>;
+
+    /**
+     * "incertae sedis" when the record cannot be placed below its parent clade.
+     */
+    placement?: string;
+};
+
+const { taxonomy, placement } = Astro.props;
+const siteData = getSiteData();
+const baseUrl = import.meta.env.BASE_URL;
+
+// Start at the first clade with a record of its own: the ranks above it (Life to Archosauria)
+// are the same on every page.
+let firstShown = 0;
+
+while (firstShown < taxonomy.length - 1 && !siteData.cladeByName.get(taxonomy[firstShown])?.record)
+{
+    firstShown++;
+}
+
+const ranks = taxonomy.slice(firstShown);
+
+// Long trails show the first three and last three ranks; a script hides the middle behind a
+// button. Without JavaScript the whole trail shows.
+const visibleAtEachEnd = 3;
+const hiddenCount = ranks.length > visibleAtEachEnd * 2 + 1 ? ranks.length - visibleAtEachEnd * 2 : 0;
+---
+
+<nav class="lineage-trail" aria-label="Classification" data-hidden-count={hiddenCount}>
+    <ol>
+        {ranks.map((name, index) => (
+            <li class:list={{ "lineage-middle": hiddenCount > 0 && index >= visibleAtEachEnd && index < ranks.length - visibleAtEachEnd }}>
+                <a href={createPagePath(baseUrl, "clade", siteData.cladeByName.get(name)?.slug ?? "")}>{name}</a>
+                {index === ranks.length - 1 && placement && <span class="placement"> <i>{placement}</i></span>}
+            </li>
+        ))}
+    </ol>
+</nav>
+
+<script>
+    /**
+     * Collapse the middle ranks of each long classification trail behind a button that shows
+     * them again.
+     */
+    function collapseLineageTrails(): void
+    {
+        for (const trail of document.querySelectorAll<HTMLElement>(".lineage-trail"))
+        {
+            const hiddenCount = Number(trail.dataset.hiddenCount);
+            const firstMiddle = trail.querySelector(".lineage-middle");
+
+            if (hiddenCount > 0 && firstMiddle)
+            {
+                const item = document.createElement("li");
+                const button = document.createElement("button");
+
+                button.type = "button";
+                button.className = "lineage-expand";
+                button.textContent = hiddenCount + " more";
+                button.setAttribute("aria-label", "Show " + hiddenCount + " more ranks");
+                button.addEventListener("click", () =>
+                {
+                    trail.classList.remove("is-collapsed");
+                    item.remove();
+                });
+                item.className = "lineage-expand-item";
+                item.append(button);
+                firstMiddle.before(item);
+                trail.classList.add("is-collapsed");
+            }
+        }
+    }
+
+    collapseLineageTrails();
+</script>
+
+<style>
+    .lineage-trail
+    {
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+        color: var(--color-muted);
+    }
+
+    ol
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-1) 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li + li::before,
+    :global(.lineage-expand-item)::before
+    {
+        content: "›";
+        padding-inline: var(--space-2);
+        color: var(--color-line);
+    }
+
+    a
+    {
+        color: var(--color-muted);
+        text-decoration: none;
+    }
+
+    a:hover
+    {
+        color: var(--color-accent);
+        text-decoration: underline;
+    }
+
+    .placement
+    {
+        color: var(--color-ink);
+    }
+
+    .lineage-trail.is-collapsed .lineage-middle
+    {
+        display: none;
+    }
+
+    :global(.lineage-expand)
+    {
+        padding: 0 var(--space-2);
+        color: var(--color-muted);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-small);
+        font-size: var(--text-small);
+        line-height: 1.4;
+        cursor: pointer;
+    }
+</style>
