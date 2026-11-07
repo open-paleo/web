@@ -1,5 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getSiteData } from "../data/site-data.ts";
+
+const siteData = getSiteData();
+const numberFormat = new Intl.NumberFormat("en-US");
+const genusCount = numberFormat.format(siteData.genera.length);
+const cladeCount = numberFormat.format(siteData.metadata.clade_count);
+const referenceCount = numberFormat.format(siteData.references.length);
 ---
 
 <BaseLayout description="A community-maintained, version-controlled phylogenetic dataset for paleontology.">
@@ -7,9 +14,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <h1>Open Paleo</h1>
         <p>
             A community-maintained phylogenetic dataset for paleontology, backed by published
-            literature. The website is under construction; until it is ready, the dataset is
-            available from the
-            <a href="https://github.com/open-paleo/data">open-paleo/data repository</a>.
+            literature. Release {siteData.metadata.version} holds {genusCount} genera
+            in {cladeCount} clades, citing {referenceCount} published works.
+        </p>
+        <p>
+            The website is under construction; until it is ready, the dataset is available from
+            the <a href="https://github.com/open-paleo/data">open-paleo/data repository</a>.
         </p>
     </section>
 </BaseLayout>

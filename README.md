@@ -47,12 +47,13 @@ npm run dev         # local server with live reload at http://localhost:4321/
 npm run build       # write the site to dist/
 npm run preview     # serve dist/ as it will be published
 
+npm test            # unit tests against a fixture cut from the real dataset
 npm run typecheck   # TypeScript and astro check
 npm run lint        # ESLint (style and correctness)
 npm run spellcheck  # cspell over Markdown, TypeScript, Astro and CSS
 ```
 
-The build will read the dataset from `../data/dist/open-paleo.json`, so clone
+The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 [open-paleo/data](https://github.com/open-paleo/data) beside this repository, or set
 `OPEN_PALEO_DATA` to the directory that holds `open-paleo.json`.
 

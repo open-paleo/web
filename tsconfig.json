@@ -1,10 +1,25 @@
 {
     "extends": "astro/tsconfigs/strict",
     "compilerOptions": {
-        "lib": ["ESNext", "DOM", "DOM.Iterable"],
-        "types": ["node"],
+        "lib": [
+            "ESNext",
+            "DOM",
+            "DOM.Iterable"
+        ],
+        "types": [
+            "node"
+        ],
         "checkJs": true
     },
-    "include": [".astro/types.d.ts", "**/*"],
-    "exclude": ["dist", "node_modules", "scratch", "data"]
+    "include": [
+        ".astro/types.d.ts",
+        "**/*"
+    ],
+    "exclude": [
+        "dist",
+        "node_modules",
+        "scratch",
+        "data",
+        "test/fixtures"
+    ]
 }

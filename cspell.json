@@ -4,8 +4,12 @@
   "words": [
     "Alegreya",
     "Allman",
+    "Archosauria",
     "clade",
     "clades",
+    "d'emic",
+    "Daspletosaurus",
+    "demic",
     "Dinosauria",
     "dubium",
     "Fiorillo",
@@ -16,11 +20,17 @@
     "lede",
     "Loewen",
     "Maastrichtian",
+    "martínez",
     "Maryańska",
+    "Nanotyrannus",
     "Newick",
     "nums",
     "paleo",
+    "slowiak",
+    "sowiak",
     "stratigraphic",
+    "słowiak",
+    "Tarbosaurus",
     "taxon",
     "Tykoski",
     "Tyrannosaurinae",
@@ -35,6 +45,9 @@
     "src/theme/fonts/**",
     "src/theme/tokens.css",
     "dist/**",
-    ".astro/**"
+    ".astro/**",
+    "src/data/bindings/**",
+    "test/fixtures/**",
+    "data/**"
   ]
 }

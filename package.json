@@ -12,10 +12,13 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "test": "node --experimental-strip-types --test test/*.test.ts",
+    "typecheck": "node node_modules/typescript7/bin/tsc --noEmit && astro check",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "node node_modules/typescript7/bin/tsc --noEmit && astro check",
-    "spellcheck": "cspell \"**/*.md\" \"*.ts\" \"scripts/**/*.ts\" \"src/**/*.{ts,astro,css}\" --no-progress"
+    "spellcheck": "cspell \"**/*.md\" \"*.ts\" \"scripts/**/*.ts\" \"src/**/*.{ts,astro,css}\" --no-progress",
+    "update-bindings": "node --experimental-strip-types scripts/update-bindings.ts",
+    "create-test-fixture": "node --experimental-strip-types scripts/create-test-fixture.ts"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",

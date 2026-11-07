@@ -69,10 +69,38 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
   source YAML under `genera/`, `clades/` and `references/` can change shape between releases
 - If the site needs something that is not in `dist/`, propose adding it to the data
   repository's build. Do not read source files around the contract
-- Types for the dataset come from the data repository's generated bindings
-  (`dist/bindings/open-paleo.d.ts`), not from hand-written copies
+- Types for the dataset come from the data repository's generated bindings, copied into
+  `src/data/bindings/` by `npm run update-bindings` along with the schema version they describe.
+  Import them from `src/data/dataset.ts`. Never edit the copy by hand
+- The build refuses a dataset whose schema has a different major version from the bindings,
+  and warns on a different minor version. When the data repository publishes a new schema,
+  run `npm run update-bindings`, fix what the type checker reports, and regenerate the test
+  fixture
 - Never write data values into templates or copy. Every value on the site comes from the
   dataset, which is backed by published literature
+
+### How pages get the data
+
+`src/data/` loads the dataset once per build and arranges it for the pages:
+
+| Module | Contents |
+|--------|----------|
+| `locate-dataset.ts` | Finds `open-paleo.json`: `OPEN_PALEO_DATA`, then `./data/dist/`, then `../data/dist/` |
+| `load-dataset.ts` | Reads and parses it, and checks the schema version |
+| `site-data.ts` | `getSiteData()`: sorted genera, the clade tree with children and genus counts, every reference with the records that cite it, and URL slugs |
+| `slugs.ts` | `createSlug()`: the URL form of a name or reference key |
+| `dataset.ts` | The dataset's types |
+
+Pages call `getSiteData()` from their frontmatter or `getStaticPaths()`; the first call loads
+the file and later calls reuse the result.
+
+### Tests
+
+`npm test` runs `node:test` over `test/*.test.ts`. Tests read `test/fixtures/open-paleo.json`,
+a small dataset cut from the real one by `npm run create-test-fixture`: a few named genera,
+plus the first genus that shows each case the tests need (a nomen dubium, an ICZN case,
+reference keys with accents and apostrophes). Regenerate it after a schema change and review
+the diff. Tests never use invented records.
 
 ## Code style
 
@@ -250,6 +278,9 @@ const { dispute, question } = Astro.props;
   `{species.map((item) => <SpeciesSection species={item} />)}` is how Astro repeats elements,
   and there is no loop form in a template. Keep the arrow to a single element; anything more
   belongs in the frontmatter or in `src/data/`
+- **Keep a `{value}` on the same line as the word before it.** Astro's HTML compression drops
+  a line break that falls directly before an expression, so `genera in` at the end of one line
+  and `{count} clades` on the next renders as "in188 clades"
 - **Astro escapes every `{value}` in the template.** Never use `set:html` on dataset text;
   components that add markup to prose (italic taxon names) build it from escaped parts
 - ESLint does not check template markup or `<style>` blocks, so reviewers do: 4-space
@@ -301,10 +332,11 @@ const { dispute, question } = Astro.props;
 npm run typecheck
 npm run lint
 npm run spellcheck
+npm test
 npm run build
 ```
 
-All four run in CI on every pull request. Add words that the spell checker rejects but are
+All five run in CI on every pull request, against the current `main` of open-paleo/data. Add words that the spell checker rejects but are
 correct (taxon names, font names) to `cspell.json`.
 
 ## AI and LLM use

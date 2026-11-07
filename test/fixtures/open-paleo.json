@@ -1,0 +1,4116 @@
+{
+  "_metadata": {
+    "attribution": "Open Paleo contributors",
+    "built_at": "2026-11-05T04:20:26.120Z",
+    "clade_count": 27,
+    "genus_count": 8,
+    "license": "CC-BY-4.0",
+    "schema_version": "3.2.0",
+    "version": "2026.11"
+  },
+  "tree": {
+    "Life": {
+      "Animalia": {
+        "Chordata": {
+          "Vertebrata": {
+            "Sarcopterygii": {
+              "Tetrapoda": {
+                "Reptilia": {
+                  "Archosauria": {
+                    "Dinosauria": {
+                      "Saurischia": {
+                        "Theropoda": {
+                          "Neotheropoda": {
+                            "Averostra": {
+                              "Tetanurae": {
+                                "Avetheropoda": {
+                                  "Allosauroidea": {
+                                    "Allosauria": {
+                                      "Allosauridae": {},
+                                      "Carcharodontosauria": {
+                                        "Carcharodontosauridae": {}
+                                      }
+                                    }
+                                  },
+                                  "Coelurosauria": {
+                                    "Tyrannosauroidea": {
+                                      "Eutyrannosauria": {
+                                        "Tyrannosauridae": {
+                                          "Tyrannosaurinae": {}
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Sauropodomorpha": {
+                          "Bagualosauria": {
+                            "Plateosauria": {
+                              "Massopoda": {
+                                "Massospondylidae": {}
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "Ornithischia": {
+                        "Genasauria": {
+                          "Thyreophora": {
+                            "Ankylosauria": {
+                              "Nodosauridae": {}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "clades": {
+    "Allosauria": {
+      "description": "Allosauria is a clade of allosauroid theropods comprising Allosauridae and Carcharodontosauria, recovered as the sister group of the metriacanthosaurids within Allosauroidea. The group unites the well-known Late Jurassic Allosaurus with the giant carcharodontosaurians that were among the largest terrestrial predators of the Cretaceous.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Allosauroidea",
+        "Allosauria"
+      ],
+      "described": 1988,
+      "authors": "Paul, G. S.",
+      "erected_in": "paul1988a",
+      "described_in": "carrano2012a",
+      "diagnostic_features": [
+        "Maxilla with a prominent horizontal ridge (lingual bar) between the palatal process and the antorbital fenestra",
+        "Paradental plates of the dentary fused into a continuous medial lamina, with the tooth replacement groove absent",
+        "Retroarticular process wider mediolaterally than the posterior width of the dentary",
+        "Pneumatic pleurocoelous fossae on the sacral vertebral centra",
+        "Iliac pubic peduncle elongate, more than twice as long as wide",
+        "Ischial symphysis expanded into an apron"
+      ],
+      "references": [
+        {
+          "id": "paul1988a",
+          "authors": "Paul, G. S.",
+          "year": 1988,
+          "title": "Predatory Dinosaurs of the World",
+          "journal": "Simon & Schuster, New York",
+          "pages": "1-464"
+        },
+        {
+          "id": "carrano2012a",
+          "authors": "Carrano, M. T.; Benson, R. B. J.; Sampson, S. D.",
+          "year": 2012,
+          "title": "The phylogeny of Tetanurae (Dinosauria: Theropoda)",
+          "journal": "Journal of Systematic Palaeontology",
+          "publisher": "Informa UK Limited",
+          "volume": "10",
+          "issue": "2",
+          "pages": "211-300",
+          "doi": "10.1080/14772019.2011.630927"
+        }
+      ]
+    },
+    "Allosauridae": {
+      "description": "Allosauridae is a family of medium to large, bipedal, carnivorous allosauroid theropod dinosaurs from the Late Jurassic, best known from Allosaurus. Their overall anatomy is fairly typical of other theropods, which has long made the family's precise membership difficult to define; Saurophaganax has been attributed to the group, though Danison and colleagues (2024) refer some of its distinguishing elements to a diplodocid sauropod, base a new species of Allosaurus on other material referred to it, and treat Saurophaganax maximus as a nomen dubium. Allosaurid skulls carry prominent horns or hornlets on the lacrimal bones above the eyes that would have been sheathed in keratin, and show marked cranial kinesis, with flexible joints that cushioned the skull and let the animals gape their jaws very wide. Like most theropods they had short forelimbs relative to their hindlimbs, with three-fingered hands bearing long, strongly curved claws suited to raking and grasping prey. The pubis is greatly elongated and ends in a broad \"foot\" that likely helped support the body's weight when the animal rested in a crouch.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Allosauroidea",
+        "Allosauria",
+        "Allosauridae"
+      ],
+      "type_genus": "Allosaurus",
+      "described": 1878,
+      "authors": "Marsh, O. C.",
+      "erected_in": "marsh1878a",
+      "described_in": "carrano2012a",
+      "diagnostic_features": [
+        "Prominent lacrimal horns or hornlets above the eyes",
+        "Strongly downturned paroccipital processes terminating well ventral to the basal tubera",
+        "Shortened quadrate relative to other allosauroids",
+        "Expanded distal end of the scapula"
+      ],
+      "references": [
+        {
+          "id": "marsh1878a",
+          "authors": "Marsh, O. C.",
+          "year": 1878,
+          "title": "Notice of new dinosaurian reptiles",
+          "journal": "American Journal of Science",
+          "publisher": "American Journal of Science (AJS)",
+          "volume": "s3-15",
+          "issue": "87",
+          "pages": "241-244",
+          "doi": "10.2475/ajs.s3-15.87.241",
+          "notes": "Named the family Allosauridae."
+        },
+        {
+          "id": "carrano2012a",
+          "authors": "Carrano, M. T.; Benson, R. B. J.; Sampson, S. D.",
+          "year": 2012,
+          "title": "The phylogeny of Tetanurae (Dinosauria: Theropoda)",
+          "journal": "Journal of Systematic Palaeontology",
+          "publisher": "Informa UK Limited",
+          "volume": "10",
+          "issue": "2",
+          "pages": "211-300",
+          "doi": "10.1080/14772019.2011.630927",
+          "notes": "Revised Tetanurae, restricting Allosauridae to Allosaurus and Saurophaganax."
+        },
+        {
+          "id": "currie1993c",
+          "authors": "Currie, P. J.; Zhao, X. J.",
+          "year": 1993,
+          "title": "A new carnosaur (Dinosauria, Theropoda) from the Jurassic of Xinjiang, People's Republic of China",
+          "journal": "Canadian Journal of Earth Sciences",
+          "publisher": "Canadian Science Publishing",
+          "volume": "30",
+          "issue": "10",
+          "pages": "2037-2081",
+          "doi": "10.1139/e93-179",
+          "notes": "Source of the cranial and pectoral diagnostic characters."
+        },
+        {
+          "id": "danison2024a",
+          "authors": "Danison, A. D.; Wedel, M. J.; Barta, D. E.; Woodward, H. N.; Flora, H. M.; Lee, A. H.; Snively, E.",
+          "year": 2024,
+          "title": "Chimerism of specimens referred to Saurophaganax maximus reveals a new species of Allosaurus (Dinosauria, Theropoda)",
+          "journal": "Vertebrate Anatomy Morphology Palaeontology",
+          "volume": "12",
+          "issue": "1",
+          "pages": "81-114",
+          "doi": "10.18435/vamp29404",
+          "notes": "Referred some elements used to diagnose Saurophaganax to a diplodocid, treated the name as a nomen dubium, and named a new species of Allosaurus for other referred material."
+        }
+      ]
+    },
+    "Allosauroidea": {
+      "description": "Allosauroidea is a superfamily of carnosaurian theropod dinosaurs comprising the metriacanthosaurids (sinraptorids), the allosaurids, and the carcharodontosaurians. Its members were among the first giant predators in theropod history, some weighing more than two tons, and together with the megalosauroids they served as apex predators from the Middle Jurassic to the early Late Cretaceous. Fossils have been recovered across North America, South America, Europe, Africa, and Asia, though in North America and Asia allosauroids were eventually replaced by the tyrannosauroids during the Late Cretaceous. These medium- to gigantic-sized bipedal hunters are distinguished by large, narrow skulls roughly two and a half to three times longer than tall, frequently ornamented with crests or rugosities, and by long, laterally compressed, serrated teeth well suited to slicing flesh from prey.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Allosauroidea"
+      ],
+      "type_genus": "Allosaurus",
+      "described": 1993,
+      "authors": "Currie, P. J.; Zhao, X. J.",
+      "erected_in": "currie1993c",
+      "diagnostic_features": [
+        "Antorbital sinus invades the interior of the lacrimal, nasal, and jugal",
+        "Quadrate–quadratojugal fenestra present, with an associated pneumatic sinus",
+        "Pneumatic basisphenoid recess opening the braincase posteriorly between non-pedunculate basal tubera",
+        "Downturned paroccipital processes",
+        "Triangular, elongate scapular blade sharply set off from the acromial process and glenoid lip",
+        "Obturator fenestra of the ischium opening into a notch to form a distinct obturator process"
+      ],
+      "references": [
+        {
+          "id": "currie1993c",
+          "authors": "Currie, P. J.; Zhao, X. J.",
+          "year": 1993,
+          "title": "A new carnosaur (Dinosauria, Theropoda) from the Jurassic of Xinjiang, People's Republic of China",
+          "journal": "Canadian Journal of Earth Sciences",
+          "publisher": "Canadian Science Publishing",
+          "volume": "30",
+          "issue": "10",
+          "pages": "2037-2081",
+          "doi": "10.1139/e93-179",
+          "notes": "Defined Allosauroidea and provided the shared cranial and postcranial characters used as its diagnosis."
+        }
+      ]
+    },
+    "Ankylosauria": {
+      "description": "Ankylosauria is a clade of herbivorous ornithischian dinosaurs that includes the great majority of the armored dinosaurs, whose bodies were sheathed in bony osteoderms much like a turtle's shell. Its members were bulky, low-slung quadrupeds carried on short, powerful limbs. The group first appeared in North Africa during the Middle Jurassic and persisted until the end of the Late Cretaceous. It was traditionally split into the Nodosauridae and the Ankylosauridae, a dichotomy that Raven and colleagues (2023) do not recover. The basal Parankylosauria, known from the latest Cretaceous of southern Gondwana, split from all other ankylosaurs before about 167 million years ago (Soto-Acuña and colleagues, 2021). Together with the plated and spiked stegosaurs, ankylosaurs make up the Thyreophora, the armored branch of ornithischians distinct from the ornithopods and marginocephalians.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Ornithischia",
+        "Genasauria",
+        "Thyreophora",
+        "Ankylosauria"
+      ],
+      "type_genus": "Ankylosaurus",
+      "described": 1923,
+      "authors": "Osborn, H. F.",
+      "erected_in": "osborn1923b",
+      "described_in": "madzia2021a",
+      "diagnostic_features": [
+        "Extensive dermal armor covering the dorsal surface and flanks",
+        "Low, wide body plan with short, robust limbs",
+        "Fused osteoderms on the skull forming a solid cranial shield",
+        "Tail club present in Ankylosauridae (modified distal caudal vertebrae and osteoderms)",
+        "Laterally projecting cervical or shoulder spines in many taxa",
+        "Secondary palate present"
+      ],
+      "references": [
+        {
+          "id": "osborn1923b",
+          "authors": "Osborn, H. F.",
+          "year": 1923,
+          "title": "Two Lower Cretaceous dinosaurs of Mongolia",
+          "journal": "American Museum Novitates",
+          "volume": "95",
+          "pages": "1-10",
+          "notes": "Used the name Ankylosauria, as 'the armored suborder Ankylosauria', in describing Psittacosaurus; Madzia and colleagues (2021) credit the name to this paper."
+        },
+        {
+          "id": "madzia2021a",
+          "authors": "Madzia, D.; Arbour, V. M.; Boyd, C. A.; Farke, A. A.; Cruzado-Caballero, P.; Evans, D. C.",
+          "year": 2021,
+          "title": "The phylogenetic nomenclature of ornithischian dinosaurs",
+          "journal": "PeerJ",
+          "volume": "9",
+          "pages": "e12362",
+          "doi": "10.7717/peerj.12362",
+          "notes": "Defined Ankylosauria as the largest clade containing Ankylosaurus magniventris but not Stegosaurus stenops."
+        },
+        {
+          "id": "raven2023a",
+          "authors": "Raven, T. J.; Barrett, P. M.; Joyce, C. B.; Maidment, S. C. R.",
+          "year": 2023,
+          "title": "The phylogenetic relationships and evolutionary history of the armoured dinosaurs (Ornithischia: Thyreophora)",
+          "journal": "Journal of Systematic Palaeontology",
+          "volume": "21",
+          "issue": "1",
+          "pages": "2205433",
+          "doi": "10.1080/14772019.2023.2205433",
+          "notes": "Comprehensive recent phylogeny of the armored dinosaurs."
+        },
+        {
+          "id": "soto-acuña2021a",
+          "authors": "Soto-Acuña, S.; Vargas, A. O.; Kaluza, J.; Leppe, M. A.; Botelho, J. F.; Palma-Liberona, J.; Simon-Gutstein, C.; Fernández, R. A.; Ortiz, H.; Milla, V.; Aravena, B.; Manríquez, L. M. E.; Alarcón-Muñoz, J.; Pino, J. P.; Trevisan, C.; Mansilla, H.; Hinojosa, L. F.; Muñoz-Walther, V.; Rubilar-Rogers, D.",
+          "year": 2021,
+          "title": "Bizarre tail weaponry in a transitional ankylosaur from subantarctic Chile",
+          "journal": "Nature",
+          "publisher": "Springer Science and Business Media LLC",
+          "volume": "600",
+          "issue": "7888",
+          "pages": "259-263",
+          "doi": "10.1038/s41586-021-04147-1",
+          "notes": "Named Parankylosauria for Stegouros and its Gondwanan relatives, inferring an origin before the earliest euankylosaurs some 167 million years ago."
+        }
+      ]
+    },
+    "Averostra": {
+      "description": "Averostra, meaning \"bird snouts,\" is a clade of theropod dinosaurs within Neotheropoda that encompasses most theropods, uniting the two great branches Ceratosauria and Tetanurae. It represents the only lineage of theropods to survive beyond the Early Jurassic, and so includes nearly every theropod from the Middle Jurassic onward, from the horned ceratosaurs and abelisaurs to the megalosaurs, allosaurs, and the feathered coelurosaurs that ultimately gave rise to birds. Its members are among the most derived theropods, distinguished by the complete loss of the fifth metacarpal, a hand bone that other saurischians retained in reduced form. They also share a promaxillary or maxillary fenestra, an extra opening near the front of the upper jaw, together with fewer teeth in the maxilla, a tooth row set further back along the jaw, and a lacrimal fenestra.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra"
+      ],
+      "described": 2002,
+      "authors": "Paul, G. S.",
+      "erected_in": "paul2002a",
+      "described_in": "ezcurra2007a",
+      "references": [
+        {
+          "id": "paul2002a",
+          "authors": "Paul, G. S.",
+          "year": 2002,
+          "title": "Dinosaurs of the Air: The Evolution and Loss of Flight in Dinosaurs and Birds",
+          "publisher": "Johns Hopkins University Press, Baltimore",
+          "pages": "1-472",
+          "notes": "Coined Averostra (p. 25) as an apomorphy-based name for avepods with an accessory maxillary opening into a maxillary sinus, and their descendants, in the clade including Dromaeosauridae."
+        },
+        {
+          "id": "ezcurra2007a",
+          "authors": "Ezcurra, M. D.; Cuny, G.",
+          "year": 2007,
+          "title": "The coelophysoid Lophostropheus airelensis, gen. nov.: a review of the systematics of \"Liliensternus\" airelensis from the Triassic-Jurassic outcrops of Normandy (France)",
+          "journal": "Journal of Vertebrate Paleontology",
+          "publisher": "Informa UK Limited",
+          "volume": "27",
+          "issue": "1",
+          "pages": "73-86",
+          "doi": "10.1671/0272-4634(2007)27[73:tclagn]2.0.co;2",
+          "notes": "Defined Averostra as the node-based clade of Ceratosaurus nasicornis, Allosaurus fragilis and all descendants of their common ancestor, following Paul's original arrangement."
+        }
+      ]
+    },
+    "Avetheropoda": {
+      "description": "Avetheropoda is a clade of tetanuran theropod dinosaurs comprising Allosaurus, modern birds, and all descendants of their most recent common ancestor. In effect it unites the two great advanced theropod lineages, the allosauroid carnosaurs and the coelurosaurs, which diverge from one another at the base of the group; it is often treated as equivalent to Neotetanurae (Carrano and colleagues, 2012). Avetheropods account for the bulk of predatory dinosaur diversity of the Late Jurassic and Cretaceous, and they include the only theropods to survive to the present day, the living birds. They are set apart from more basal tetanurans such as the megalosauroids by skeletal details, including a femoral head oriented fully medially rather than anteromedially. The group is recovered in many analyses (Carrano and colleagues, 2012), though Rauhut and colleagues (2024), like some earlier studies, instead unite allosauroids and megalosauroids as Carnosauria.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda"
+      ],
+      "described": 1988,
+      "authors": "Paul, G. S.",
+      "erected_in": "paul1988a",
+      "described_in": "holtz2004a",
+      "diagnostic_features": [
+        "Maxillary fenestra present and well-developed",
+        "Reduced or absent prefrontal bone",
+        "Enlarged orbit relative to skull length",
+        "Fused interdental plates",
+        "Opisthopubic or mesopubic pelvis in derived members"
+      ],
+      "references": [
+        {
+          "id": "paul1988a",
+          "authors": "Paul, G. S.",
+          "year": 1988,
+          "title": "Predatory Dinosaurs of the World",
+          "journal": "Simon & Schuster, New York",
+          "pages": "1-464",
+          "notes": "Named Avetheropoda for the bird-like theropods, from compsognathids and coelurids to the allosaur-tyrannosaur group and the protobirds."
+        },
+        {
+          "id": "holtz2004a",
+          "authors": "Holtz, T. R.; Molnar, R. E.; Currie, P. J.",
+          "year": 2004,
+          "title": "Basal Tetanurae",
+          "book": "The Dinosauria, Second Edition (Weishampel, D. B.; Dodson, P.; Osmólska, H., eds.)",
+          "publisher": "University of California Press, Berkeley",
+          "pages": "71-110",
+          "notes": "Defined Avetheropoda as Allosaurus fragilis, Passer domesticus, their most recent common ancestor and all its descendants."
+        },
+        {
+          "id": "carrano2012a",
+          "authors": "Carrano, M. T.; Benson, R. B. J.; Sampson, S. D.",
+          "year": 2012,
+          "title": "The phylogeny of Tetanurae (Dinosauria: Theropoda)",
+          "journal": "Journal of Systematic Palaeontology",
+          "publisher": "Informa UK Limited",
+          "volume": "10",
+          "issue": "2",
+          "pages": "211-300",
+          "doi": "10.1080/14772019.2011.630927",
+          "notes": "Recovered Avetheropoda and treated Neotetanurae as its synonym in a classification of Tetanurae."
+        },
+        {
+          "id": "rauhut2024a",
+          "authors": "Rauhut, O. W. M.; Bakirov, A. A.; Wings, O.; Fernandes, A. E.; Hübner, T. R.",
+          "year": 2024,
+          "title": "A new theropod dinosaur from the Callovian Balabansai Formation of Kyrgyzstan",
+          "journal": "Zoological Journal of the Linnean Society",
+          "publisher": "Oxford University Press (OUP)",
+          "volume": "201",
+          "issue": "4",
+          "doi": "10.1093/zoolinnean/zlae090",
+          "notes": "Described a new theropod from the Callovian Balabansai Formation and recovered Carnosauria, uniting Megalosauroidea and Allosauroidea, rather than Avetheropoda."
+        }
+      ]
+    },
+    "Bagualosauria": {
+      "description": "Bagualosauria is a clade of sauropodomorph dinosaurs uniting Bagualosaurus with its more derived relatives, including the group Plateosauria and, nested within it, the sauropods. It is the sister lineage to Saturnaliidae, a group of smaller, more basal Carnian sauropodomorphs from South America such as Saturnalia and Chromogisaurus, and Bagualosauria excludes these earliest-diverging forms. Bagualosaurus itself, among the most basal known members of the clade, already shows skull and dental modifications linked to more efficient herbivory along with a moderate increase in body size compared to its saturnaliid relatives, hinting at trends that became far more pronounced later in the group's history. Because it excludes only that earliest-diverging grade, Bagualosauria encompasses most sauropodomorph diversity, ranging from moderate-sized Triassic and Early Jurassic forms to the giant long-necked sauropods of the later Mesozoic.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria"
+      ],
+      "described": 2019,
+      "authors": "Langer, M. C.; McPhee, B. W.; Marsola, J. C. de A.; Roberto-da-Silva, L.; Cabreira, S. F.",
+      "erected_in": "langer2019b",
+      "references": [
+        {
+          "id": "langer2019b",
+          "authors": "Langer, M. C.; McPhee, B. W.; Marsola, J. C. de A.; Roberto-da-Silva, L.; Cabreira, S. F.",
+          "year": 2019,
+          "title": "Anatomy of the dinosaur Pampadromaeus barberenai (Saurischia—Sauropodomorpha) from the Late Triassic Santa Maria Formation of southern Brazil",
+          "journal": "PLoS ONE",
+          "volume": "14",
+          "issue": "2",
+          "pages": "e0212543",
+          "doi": "10.1371/journal.pone.0212543",
+          "notes": "Named and phylogenetically defined Bagualosauria."
+        }
+      ]
+    },
+    "Carcharodontosauria": {
+      "description": "Carcharodontosauria is a clade of allosauroid theropods comprising Carcharodontosauridae and their closest relatives, encompassing many of the largest terrestrial predators of the Cretaceous across both Gondwana and Laurasia. Its basal members are medium-sized forms that grade into the giant carcharodontosaurids. The carcharodontosaurids underwent a worldwide dispersal during the Early Cretaceous before the family died out in the Turonian, roughly 90 million years ago, after which other large theropods took over the apex-predator role.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Allosauroidea",
+        "Allosauria",
+        "Carcharodontosauria"
+      ],
+      "described": 2010,
+      "authors": "Benson, R. B. J.; Carrano, M. T.; Brusatte, S. L.",
+      "erected_in": "benson2010d",
+      "diagnostic_features": [
+        "Large body size with proportionally large, ornamented skulls",
+        "Laterally compressed, serrated teeth",
+        "Extensive cranial pneumaticity",
+        "Rugose ornamentation on the lacrimal and postorbital bones"
+      ],
+      "references": [
+        {
+          "id": "benson2010d",
+          "authors": "Benson, R. B. J.; Carrano, M. T.; Brusatte, S. L.",
+          "year": 2010,
+          "title": "A new clade of archaic large-bodied predatory dinosaurs (Theropoda: Allosauroidea) that survived to the latest Mesozoic",
+          "journal": "Naturwissenschaften",
+          "volume": "97",
+          "issue": "1",
+          "pages": "71-78",
+          "doi": "10.1007/s00114-009-0614-x"
+        }
+      ]
+    },
+    "Carcharodontosauridae": {
+      "description": "Carcharodontosauridae is a family of giant carnivorous theropod dinosaurs forming a clade within Carnosauria. Its members include some of the largest land predators ever known, among them Acrocanthosaurus, Giganotosaurus, Mapusaurus, and Tyrannotitan, the biggest of which rivaled Tyrannosaurus and Spinosaurus in size, with the heaviest estimated at 8 to 10 metric tons. Together with the spinosaurids, carcharodontosaurids were the dominant large predators of the Early and mid-Cretaceous across Gondwana, and species also occur in North America, Europe, and possibly Asia. Their fossil record spans the Cretaceous from the Barremian to the Turonian, after which they were replaced by smaller abelisaurids in Gondwana and by tyrannosaurids in North America and Asia. Coria and Currie (2006) named a South American subfamily, Giganotosaurinae, for Giganotosaurus and Mapusaurus, which Brusatte and Sereno (2008) replaced with the tribe Giganotosaurini; Carrano and colleagues (2012) found little support for grouping the two genera.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Allosauroidea",
+        "Allosauria",
+        "Carcharodontosauria",
+        "Carcharodontosauridae"
+      ],
+      "type_genus": "Carcharodontosaurus",
+      "described": 1931,
+      "authors": "Stromer, E.",
+      "erected_in": "stromer1931a",
+      "described_in": "brusatte2008b",
+      "diagnostic_features": [
+        "Large, laterally compressed teeth with pronounced, shark-like serrations",
+        "Very large body size, often exceeding 10 meters in length",
+        "Prominent ornamentation on the lacrimal and postorbital bones",
+        "Pneumatized cranial bones with extensive sinus systems",
+        "Elongate, narrow maxilla"
+      ],
+      "references": [
+        {
+          "id": "stromer1931a",
+          "authors": "Stromer, E.",
+          "year": 1931,
+          "title": "Ergebnisse der Forschungsreisen Prof. E. Stromers in den Wüsten Ägyptens. II. Wirbeltier-Reste der Baharîjestufe (unterstes Cenoman). 10. Ein Skelett-Rest von Carcharodontosaurus nov. gen [Results of Prof. E. Stromer's research expeditions in the deserts of Egypt. II. Vertebrate remains of the Baharîje Stage (lowermost Cenomanian). 10. A skeletal remain of Carcharodontosaurus nov. gen.]",
+          "journal": "Abhandlungen der Bayerischen Akademie der Wissenschaften Mathematisch-naturwissenschaftliche Abteilung, Neue Folge",
+          "volume": "9",
+          "pages": "1-23",
+          "notes": "Named Carcharodontosaurus and wrote that its peculiarity could justify a family Carcharodontosauridae; later works credit the family to this paper."
+        },
+        {
+          "id": "brusatte2008b",
+          "authors": "Brusatte, S. L.; Sereno, P. C.",
+          "year": 2008,
+          "title": "Phylogeny of Allosauroidea (Dinosauria: Theropoda): comparative analysis and resolution",
+          "journal": "Journal of Systematic Palaeontology",
+          "volume": "6",
+          "issue": "2",
+          "pages": "155-182",
+          "notes": "Printed Sereno's revised definition (Carcharodontosaurus saharicus but not Sinraptor dongi, Allosaurus fragilis or Passer domesticus) and erected Carcharodontosaurinae."
+        },
+        {
+          "id": "coria2006a",
+          "authors": "Coria, R. A.; Currie, P. J.",
+          "year": 2006,
+          "title": "A new carcharodontosaurid (Dinosauria, Theropoda) from the Upper Cretaceous of Argentina",
+          "journal": "Geodiversitas",
+          "volume": "28",
+          "issue": "1",
+          "pages": "71-118",
+          "doi": "10.5281/zenodo.5376792",
+          "notes": "Described Mapusaurus and named the subfamily Giganotosaurinae for it and Giganotosaurus."
+        },
+        {
+          "id": "carrano2012a",
+          "authors": "Carrano, M. T.; Benson, R. B. J.; Sampson, S. D.",
+          "year": 2012,
+          "title": "The phylogeny of Tetanurae (Dinosauria: Theropoda)",
+          "journal": "Journal of Systematic Palaeontology",
+          "publisher": "Informa UK Limited",
+          "volume": "10",
+          "issue": "2",
+          "pages": "211-300",
+          "doi": "10.1080/14772019.2011.630927",
+          "notes": "Found little support for a Giganotosaurus plus Mapusaurus clade in a phylogenetic revision of Tetanurae."
+        }
+      ]
+    },
+    "Coelurosauria": {
+      "description": "Coelurosauria is a large and diverse subgroup of theropod dinosaurs, defined as all theropods more closely related to birds than to carnosaurs. It encompasses compsognathids, tyrannosauroids, ornithomimosaurs, and the bird-line maniraptorans, along with megaraptorans, whose exact position remains uncertain. Coelurosaurs range from some of the largest carnivorous dinosaurs, such as Tyrannosaurus, to some of the smallest, and they diversified into omnivorous, insectivorous, herbivorous, and carnivorous forms. Most feathered dinosaurs found so far are coelurosaurs, and many lineages bore filamentous integument or true feathers, though some retained scales over parts of the body. The clade appears by the Middle Jurassic and includes birds, the only dinosaur lineage to survive the end-Cretaceous extinction and the only one alive today.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Coelurosauria"
+      ],
+      "described": 1914,
+      "authors": "Huene, F. von",
+      "erected_in": "huene1914a",
+      "diagnostic_features": [
+        "Elongate distal caudal vertebrae with reduced or absent transverse processes",
+        "Filamentous integument or feathers present in many lineages",
+        "Reduced or absent prefrontal bone",
+        "Semilunate carpal bone in the wrist of many derived taxa",
+        "Enlarged cerebrum relative to body size"
+      ],
+      "references": [
+        {
+          "id": "huene1914a",
+          "authors": "Huene, F. von",
+          "year": 1914,
+          "title": "Das natürliche System der Saurischia [The natural system of the Saurischia]",
+          "journal": "Centralblatt für Mineralogie, Geologie und Paläontologie B",
+          "volume": "1914",
+          "pages": "154-158"
+        }
+      ]
+    },
+    "Dinosauria": {
+      "description": "Dinosauria is a clade of archosaurian reptiles that first appeared early in the Triassic period and went on to become the dominant terrestrial vertebrates for much of the Mesozoic era, through the Jurassic and Cretaceous. The group is extraordinarily diverse, with paleontologists having identified more than 900 genera and over 1,000 species of extinct non-avian dinosaurs alone, ranging from small bipeds to the largest land animals that ever lived, the biggest sauropods reaching nearly 40 meters in length. Dinosaurs share an erect, bird-like leg posture that set them apart from the sprawling stance of most other reptiles, and elaborate display structures such as horns and crests appear across the group, while some lineages evolved bony armor and spines. They were ancestrally bipedal, though many groups became quadrupedal, and the evidence indicates that all laid eggs, with nest-building widespread. Birds are the one dinosaur lineage to have survived the Cretaceous–Paleogene extinction roughly 66 million years ago, so the clade is divided into the avian dinosaurs (birds) and the extinct non-avian dinosaurs.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria"
+      ],
+      "described": 1842,
+      "authors": "Owen, R.",
+      "erected_in": "owen1842a",
+      "diagnostic_features": [
+        "Fully erect, parasagittal hindlimb posture",
+        "Perforated (fully open) acetabulum",
+        "Three or more sacral vertebrae",
+        "Elongate deltopectoral crest on the humerus",
+        "Asymmetrical fourth trochanter on the femur",
+        "Open hip socket allowing pillar-erect stance"
+      ],
+      "references": [
+        {
+          "id": "owen1842a",
+          "authors": "Owen, R.",
+          "year": 1842,
+          "title": "Report on British fossil reptiles, Part II",
+          "journal": "Report of the British Association for the Advancement of Science",
+          "volume": "11",
+          "pages": "60-204"
+        }
+      ]
+    },
+    "Eutyrannosauria": {
+      "description": "Eutyrannosauria is a clade of large-bodied tyrannosauroid theropod dinosaurs of the Northern Hemisphere, encompassing the family Tyrannosauridae together with its closest non-tyrannosaurid relatives, such as the eastern North American genera Dryptosaurus and Appalachiosaurus (Voris and colleagues, 2025). The southwestern North American Bistahieversor is the sister of Tyrannosauridae in the analysis of Delcourt and Grillo (2018) but falls within Tyrannosaurinae in that of Voris and colleagues (2025). It was defined to set these advanced, often gigantic northern forms apart from the more basal, globally distributed tyrannosauroids. Members are distinguished by their great size and by prominent cranial ornamentation, including roughened, ridge-bearing nasal bones. Powers and colleagues (2026) instead recover a family Dryptosauridae, including Dryptosaurus, in all their implied-weights analyses.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Coelurosauria",
+        "Tyrannosauroidea",
+        "Eutyrannosauria"
+      ],
+      "described": 2018,
+      "authors": "Delcourt, R.; Grillo, O. N.",
+      "erected_in": "delcourt2018a",
+      "diagnostic_features": [
+        "Rugose nasals with cornual ornamentation",
+        "Lacrimal with an inflated cornual process that expands dorsally during ontogeny",
+        "Anteroposteriorly expanded dorsal process of the quadratojugal",
+        "Pneumatic recess on the anterior surface of the quadrate condyles",
+        "Medial margins of the distal condyle and diaphysis of metatarsal III aligned (not offset)"
+      ],
+      "references": [
+        {
+          "id": "delcourt2018a",
+          "authors": "Delcourt, R.; Grillo, O. N.",
+          "year": 2018,
+          "title": "Tyrannosauroids from the Southern Hemisphere: implications for biogeography, evolution, and taxonomy",
+          "journal": "Palaeogeography, Palaeoclimatology, Palaeoecology",
+          "volume": "511",
+          "pages": "379-387",
+          "doi": "10.1016/j.palaeo.2018.09.003",
+          "notes": "Erected Eutyrannosauria as the least inclusive clade containing Tyrannosaurus rex and Dryptosaurus, with two unambiguous synapomorphies."
+        },
+        {
+          "id": "voris2025a",
+          "authors": "Voris, J. T.; Zelenitsky, D. K.; Kobayashi, Y.; Modesto, S. P.; Therrien, F.; Tsutsumi, H.; Chinzorig, T.; Tsogtbaatar, K.",
+          "year": 2025,
+          "title": "A new Mongolian tyrannosauroid and the evolution of Eutyrannosauria",
+          "journal": "Nature",
+          "publisher": "Springer Science and Business Media LLC",
+          "volume": "642",
+          "issue": "8069",
+          "pages": "973-979",
+          "doi": "10.1038/s41586-025-08964-6",
+          "notes": "Uses Eutyrannosauria (Delcourt and Grillo, 2018) as an established clade and recovers Khankhuuluu mongoliensis as its immediate sister taxon."
+        },
+        {
+          "id": "powers2026a",
+          "authors": "Powers, M. J.; Napoli, J. G.; Coppock, C. C.; Sharpe, H. S.; Garros, C. W.; Demers-Potvin, A. V.; Raun, G. S.; Stock, J. C.; Miyashita, T.; Currie, P. J.",
+          "year": 2026,
+          "title": "A new albertosaurine from the Oldman Formation, Alberta, Canada, illuminates ambiguity between albertosaurine and tyrannosaurine characteristics",
+          "journal": "Journal of Vertebrate Paleontology",
+          "publisher": "Informa UK Limited",
+          "pages": "e2728669",
+          "doi": "10.1080/02724634.2026.2728669",
+          "notes": "Described a new albertosaurine and recovered Dryptosauridae as a clade in all implied-weights analyses, in place of Eutyrannosauria."
+        }
+      ]
+    },
+    "Genasauria": {
+      "description": "Genasauria is a clade that encompasses the great majority of ornithischian dinosaurs, excluding only the earliest-diverging forms such as Lesothosaurus. It unites two major branches: Thyreophora, the armored dinosaurs including ankylosaurs, stegosaurs, and more primitive relatives like Scelidosaurus; and Cerapoda, which gathers the ornithopods, ceratopsians, pachycephalosaurs, and various small early forms. Members were primarily herbivores that typically held their heads about a meter off the ground, suggesting they fed mainly on ground-level plants such as ferns, cycads, and other low-growing gymnosperms. A hallmark of the group is the presence of fleshy cheeks bounding inset tooth rows, an adaptation for more efficient processing of plant material in the mouth.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Ornithischia",
+        "Genasauria"
+      ],
+      "described": 1986,
+      "authors": "Sereno, P. C.",
+      "erected_in": "sereno1986a",
+      "described_in": "madzia2021a",
+      "diagnostic_features": [
+        "Buccal emargination of the tooth rows, with maxillary and dentary teeth inset from the lateral jaw margin (implying muscular cheeks)",
+        "Spout-shaped, edentulous anterior margin of the predentary and premaxilla",
+        "Reduced number of premaxillary teeth",
+        "Cheek-tooth crowns bearing a prominent primary ridge"
+      ],
+      "references": [
+        {
+          "id": "sereno1986a",
+          "authors": "Sereno, P. C.",
+          "year": 1986,
+          "title": "Phylogeny of the bird-hipped dinosaurs (Order Ornithischia)",
+          "journal": "National Geographic Research",
+          "volume": "2",
+          "issue": "2",
+          "pages": "234-256",
+          "notes": "Erected Genasauria."
+        },
+        {
+          "id": "madzia2021a",
+          "authors": "Madzia, D.; Arbour, V. M.; Boyd, C. A.; Farke, A. A.; Cruzado-Caballero, P.; Evans, D. C.",
+          "year": 2021,
+          "title": "The phylogenetic nomenclature of ornithischian dinosaurs",
+          "journal": "PeerJ",
+          "volume": "9",
+          "pages": "e12362",
+          "doi": "10.7717/peerj.12362",
+          "notes": "Provides the modern phylogenetic definition of Genasauria."
+        }
+      ]
+    },
+    "Massopoda": {
+      "description": "Massopoda is a clade of sauropodomorph dinosaurs that lived from the Late Triassic through the Late Cretaceous. It is defined as all sauropodomorphs more closely related to Saltasaurus than to Plateosaurus (Yates, 2007), and its name is a contraction of Massospondylidae and Sauropoda, two very different groups that both fall within it. Nested inside is the more exclusive Sauropodiformes, the most inclusive group that contains Saltasaurus but excludes Massospondylus (McPhee and colleagues, 2014). Its members range from small, bipedal massospondylids to the gigantic, quadrupedal true sauropods, and together they encompass the great majority of sauropodomorph diversity.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda"
+      ],
+      "described": 2007,
+      "authors": "Yates, A. M.",
+      "erected_in": "yates2007a",
+      "diagnostic_features": [
+        "Anterior end of the premaxilla deflected to form an enlarged narial region",
+        "Reduced or absent lateral lamina of the prefrontal",
+        "Distal end of the tibia with a transversely expanded, sub-rectangular outline",
+        "Trend toward enlarged body size and graviportal limb proportions"
+      ],
+      "references": [
+        {
+          "id": "yates2007a",
+          "authors": "Yates, A. M.",
+          "year": 2007,
+          "title": "Solving a dinosaurian puzzle: the identity of Aliwalia rex Galton",
+          "journal": "Historical Biology",
+          "volume": "19",
+          "issue": "1",
+          "pages": "93-123",
+          "doi": "10.1080/08912960600866953",
+          "notes": "Erected Massopoda."
+        },
+        {
+          "id": "mcphee2014a",
+          "authors": "McPhee, B. W.; Yates, A. M.; Choiniere, J. N.; Abdala, F.",
+          "year": 2014,
+          "title": "The complete anatomy and phylogenetic relationships of Antetonitrus ingenipes (Sauropodiformes, Dinosauria): implications for the origins of Sauropoda",
+          "journal": "Zoological Journal of the Linnean Society",
+          "volume": "171",
+          "issue": "1",
+          "pages": "151-205",
+          "doi": "10.1111/zoj.12127",
+          "notes": "Redefined Sauropodiformes as all taxa closer to Saltasaurus than to Massospondylus, replacing Sereno's node-based definition."
+        }
+      ]
+    },
+    "Massospondylidae": {
+      "description": "Massospondylidae is a family of early massopod sauropodomorph dinosaurs that lived from the Late Triassic to the Early Jurassic, with a near-global spread that reached Asia, Africa, North America, South America, and Antarctica. It is defined as a stem-based group encompassing all animals more closely related to Massospondylus carinatus than to Plateosaurus or Saltasaurus (Sereno, 2007). Most recent analyses recover a monophyletic Massospondylidae that usually includes Massospondylus, Coloradisaurus and Lufengosaurus with a variable number of other taxa, though some have found it to contain Massospondylus alone (Barrett and colleagues, 2019); Fernández and Werneburg (2022) add Adeopapposaurus, Glacialisaurus and Leyesaurus, and Pradhania falls within the family for Novas and colleagues (2010) but in Unaysauridae for Barrett and colleagues (2026). Its members were small to medium-sized, long-necked, facultatively bipedal herbivores or omnivores that represent an early-branching lineage of sauropodomorphs rather than close relatives of the true sauropods.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Massospondylidae"
+      ],
+      "type_genus": "Massospondylus",
+      "described": 1914,
+      "authors": "Huene, F. von",
+      "erected_in": "huene1914b",
+      "described_in": "sereno2007a",
+      "diagnostic_features": [
+        "Snout with a depression behind the external naris",
+        "Strongly ventrally curved symphyseal end of the dentary",
+        "Cervical vertebrae 4 or 5 more than four times longer than the anterior centrum height",
+        "Lacrimal with a web of bone spanning the junction of its anterior and ventral rami"
+      ],
+      "references": [
+        {
+          "id": "huene1914a",
+          "authors": "Huene, F. von",
+          "year": 1914,
+          "title": "Das natürliche System der Saurischia [The natural system of the Saurischia]",
+          "journal": "Centralblatt für Mineralogie, Geologie und Paläontologie B",
+          "volume": "1914",
+          "pages": "154-158",
+          "notes": "Grouped Massospondylus and Aetonyx as a family, printed only in the German form Massospondyliden."
+        },
+        {
+          "id": "sereno2007a",
+          "authors": "Sereno, P. C.",
+          "year": 2007,
+          "title": "Basal Sauropodomorpha: historical and recent phylogenetic hypotheses, with comments on Ammosaurus major (Marsh, 1889)",
+          "journal": "Special Papers in Palaeontology",
+          "volume": "77",
+          "pages": "261-289",
+          "notes": "Defined Massospondylidae as the most inclusive clade containing Massospondylus carinatus but not Plateosaurus engelhardti or Saltasaurus loricatus."
+        },
+        {
+          "id": "apaldetti2011a",
+          "authors": "Apaldetti, C.; Martínez, R. N.; Alcober, O. A.; Pol, D.",
+          "year": 2011,
+          "title": "A New Basal Sauropodomorph (Dinosauria: Saurischia) from Quebrada del Barro Formation (Marayes-El Carrizal Basin), Northwestern Argentina",
+          "journal": "PLoS ONE",
+          "publisher": "Public Library of Science (PLoS)",
+          "volume": "6",
+          "issue": "11",
+          "pages": "e26964",
+          "doi": "10.1371/journal.pone.0026964",
+          "notes": "Recovered Massospondylidae with an expanded membership in the analysis describing Leyesaurus."
+        },
+        {
+          "id": "barrett2019a",
+          "authors": "Barrett, P. M.; Chapelle, K. E. J.; Staunton, C. K.; Botha, J.; Choiniere, J. N.",
+          "year": 2019,
+          "title": "Postcranial osteology of the neotype specimen of Massospondylus carinatus Owen, 1854 (Dinosauria: Sauropodomorpha) from the upper Elliot Formation of South Africa",
+          "journal": "Palaeontologia Africana",
+          "volume": "53",
+          "pages": "114-178",
+          "notes": "Redescribed the Massospondylus neotype, tracing the family's definition to Sereno (1998) as amended and noting that most analyses recover it with a variable membership."
+        },
+        {
+          "id": "sereno1998a",
+          "authors": "Sereno, P. C.",
+          "year": 1998,
+          "title": "A rationale for phylogenetic definitions, with application to the higher-level taxonomy of Dinosauria",
+          "journal": "Neues Jahrbuch für Geologie und Paläontologie, Abhandlungen",
+          "volume": "210",
+          "pages": "41-83",
+          "doi": "10.1127/njgpa/210/1998/41",
+          "notes": "Gave the original stem-based definition of Massospondylidae, with Plateosaurus as the external specifier."
+        },
+        {
+          "id": "fernández2022a",
+          "authors": "Fernández, O. R. R.; Werneburg, I.",
+          "year": 2022,
+          "title": "A new massopodan sauropodomorph from Trossingen Formation (Germany) hidden as 'Plateosaurus' for 100 years in the historical Tübingen collection",
+          "journal": "Vertebrate Zoology",
+          "publisher": "Pensoft Publishers",
+          "volume": "72",
+          "pages": "771-822",
+          "doi": "10.3897/vz.72.e86348",
+          "notes": "Listed Massospondylus, Leyesaurus, Adeopapposaurus, Glacialisaurus, Coloradisaurus and Lufengosaurus in Massospondylidae."
+        },
+        {
+          "id": "novas2010a",
+          "authors": "Novas, F. E.; Ezcurra, M. D.; Chatterjee, S.; Kutty, T. S.",
+          "year": 2010,
+          "title": "New dinosaur species from the Upper Triassic Upper Maleri and Lower Dharmaram formations of Central India",
+          "journal": "Earth and Environmental Science Transactions of the Royal Society of Edinburgh",
+          "publisher": "Cambridge University Press (CUP)",
+          "volume": "101",
+          "issue": "3-4",
+          "pages": "333-349",
+          "doi": "10.1017/S1755691011020093",
+          "notes": "Described new Maleri sauropodomorphs and recovered Pradhania, included in its analysis, nested within Massospondylidae."
+        },
+        {
+          "id": "barrett2026a",
+          "authors": "Barrett, P. M.; Botha, J.; Sciscio, L.; Stuart, B. P.; Lovegrove, J.; Munyikwa, D.; Zondo, M.; Broderick, T. J.; Edwards, S. F.; Mbambo, E.; Chapelle, K. E. J.; Dollman, K. N.; Tolan, S.; Choiniere, J. N.",
+          "year": 2026,
+          "title": "A new sauropodomorph dinosaur from the Pebbly Arkose Formation (Upper Triassic: Norian) of Kariba, Zimbabwe",
+          "journal": "Journal of Systematic Palaeontology",
+          "publisher": "Informa UK Limited",
+          "volume": "24",
+          "issue": "2",
+          "pages": "2678610",
+          "doi": "10.1080/14772019.2026.2678610",
+          "notes": "Described a new sauropodomorph and recovered Pradhania in a monophyletic Unaysauridae."
+        },
+        {
+          "id": "huene1914b",
+          "authors": "Huene, F. von",
+          "year": 1914,
+          "title": "Saurischia et Ornithischia triadica (\"Dinosauria\" triadica)",
+          "journal": "Fossilium Catalogus I: Animalia",
+          "volume": "4",
+          "pages": "1-21",
+          "publisher": "W. Junk, Berlin",
+          "notes": "Named the family Massospondylidae (p. 13), marked as new, for Massospondylus."
+        }
+      ]
+    },
+    "Neotheropoda": {
+      "description": "Neotheropoda, meaning \"new theropods,\" is a clade that encompasses nearly all theropod dinosaurs, from the small, lightly built coelophysoids of the Late Triassic to the more advanced ceratosaurs and tetanurans, the latter of which ultimately gave rise to modern birds. Its members are distinguished by a reduction of several foot bones, which left the characteristic three-toed (tridactyl) footprints associated with theropods. It is the only group of theropods to survive the Triassic-Jurassic extinction event, after which it radiated into the dominant terrestrial predators of the Jurassic and Cretaceous. The more derived members form the clade Averostra, which unites the ceratosaurs and the tetanurans; by the Early Jurassic the non-averostran lineages had died out.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda"
+      ],
+      "described": 1986,
+      "authors": "Bakker, R. T.",
+      "erected_in": "bakker1986a",
+      "described_in": "sereno1998a",
+      "references": [
+        {
+          "id": "bakker1986a",
+          "authors": "Bakker, R. T.",
+          "year": 1986,
+          "title": "The Dinosaur Heresies: New Theories Unlocking the Mystery of the Dinosaurs and Their Extinction",
+          "journal": "William Morrow, New York",
+          "notes": "First printed the name Neotheropoda as a branch label on its dinosaur family tree (p. 458), for the ceratosaurs and more derived theropods above the podokesaurs; the text does not discuss it."
+        },
+        {
+          "id": "sereno1998a",
+          "authors": "Sereno, P. C.",
+          "year": 1998,
+          "title": "A rationale for phylogenetic definitions, with application to the higher-level taxonomy of Dinosauria",
+          "journal": "Neues Jahrbuch für Geologie und Paläontologie, Abhandlungen",
+          "volume": "210",
+          "pages": "41-83",
+          "doi": "10.1127/njgpa/210/1998/41",
+          "notes": "Defined Neotheropoda as the node of Coelophysis and modern birds."
+        }
+      ]
+    },
+    "Nodosauridae": {
+      "description": "Nodosauridae is a family of armored, quadrupedal, herbivorous ankylosaurian dinosaurs known from the Late Jurassic to the Late Cretaceous of Asia, Europe, North America, and possibly South America. Like their close relatives the ankylosaurids, nodosaurids were heavily built and clad in rows of bony nodules and spines set into the skin and sheathed in keratin, but they lacked the mace-like bony tail club of the ankylosaurids and instead retained a more flexible tail. Many bore prominent spikes projecting outward from the neck and shoulders, and they carried a narrower, more elongate skull than the broad-headed ankylosaurids. The family is traditionally composed of the spiny, basal polacanthines, together with the panoplosaurine and struthiosaurine lineages of the more derived Nodosaurinae. One exceptionally preserved nodosaurid, the \"mummy\" of Borealopelta, retains its armor in life position along with keratin and skin traces that record a reddish, countershaded coloration.\n",
+      "dispute": {
+        "summary": "The monophyly of Nodosauridae is contested. It is the traditional, broadly used family for non-tail-clubbed ankylosaurs, but Raven and colleagues (2023) recovered it as paraphyletic, with separate panoplosaurid, polacanthid and struthiosaurid radiations, for which they defined the existing names Panoplosauridae, Polacanthidae and Struthiosauridae; the basal polacanthine taxa (Polacanthus, Hylaeosaurus, Gastonia, Hoplitosaurus) variously fall within or outside it across analyses. The traditional Nodosauridae is retained pending broad consensus.\n"
+      },
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Ornithischia",
+        "Genasauria",
+        "Thyreophora",
+        "Ankylosauria",
+        "Nodosauridae"
+      ],
+      "type_genus": "Nodosaurus",
+      "described": 1890,
+      "authors": "Marsh, O. C.",
+      "erected_in": "marsh1890a",
+      "described_in": "madzia2021a",
+      "diagnostic_features": [
+        "Absence of a bony tail club",
+        "Narrow, anteroposteriorly elongate skull",
+        "Prominent laterally projecting cervical, shoulder, and flank spines in many taxa",
+        "Closed lateral temporal fenestra concealed by cranial armor"
+      ],
+      "references": [
+        {
+          "id": "marsh1890a",
+          "authors": "Marsh, O. C.",
+          "year": 1890,
+          "title": "Additional characters of the Ceratopsidae, with notice of new Cretaceous dinosaurs",
+          "journal": "American Journal of Science",
+          "publisher": "American Journal of Science (AJS)",
+          "volume": "s3-39",
+          "issue": "233",
+          "pages": "418-426",
+          "doi": "10.2475/ajs.s3-39.233.418",
+          "notes": "Named the family Nodosauridae."
+        },
+        {
+          "id": "madzia2021a",
+          "authors": "Madzia, D.; Arbour, V. M.; Boyd, C. A.; Farke, A. A.; Cruzado-Caballero, P.; Evans, D. C.",
+          "year": 2021,
+          "title": "The phylogenetic nomenclature of ornithischian dinosaurs",
+          "journal": "PeerJ",
+          "volume": "9",
+          "pages": "e12362",
+          "doi": "10.7717/peerj.12362",
+          "notes": "Defined Nodosauridae as the largest clade containing Nodosaurus textilis but not Ankylosaurus magniventris."
+        },
+        {
+          "id": "rivera-sylva2018a",
+          "authors": "Rivera-Sylva, H. E.; Frey, E.; Stinnesbeck, W.; Carbot-Chanona, G.; Sánchez-Uribe, I. E.; Guzmán-Gutiérrez, J. R.",
+          "year": 2018,
+          "title": "Paleodiversity of Late Cretaceous Ankylosauria from Mexico and their phylogenetic significance",
+          "journal": "Swiss Journal of Palaeontology",
+          "publisher": "Pensoft Publishers",
+          "volume": "137",
+          "issue": "1",
+          "pages": "83-93",
+          "doi": "10.1007/s13358-018-0153-1",
+          "notes": "Described Acantholipan and recovered it within Nodosauridae, in the analysis later used as the family's reference phylogeny."
+        },
+        {
+          "id": "raven2023a",
+          "authors": "Raven, T. J.; Barrett, P. M.; Joyce, C. B.; Maidment, S. C. R.",
+          "year": 2023,
+          "title": "The phylogenetic relationships and evolutionary history of the armoured dinosaurs (Ornithischia: Thyreophora)",
+          "journal": "Journal of Systematic Palaeontology",
+          "volume": "21",
+          "issue": "1",
+          "pages": "2205433",
+          "doi": "10.1080/14772019.2023.2205433",
+          "notes": "Recovered Nodosauridae as paraphyletic and defined Panoplosauridae, Polacanthidae and Struthiosauridae, all existing names, for its separate radiations."
+        }
+      ]
+    },
+    "Ornithischia": {
+      "description": "Ornithischia, meaning \"bird-hipped,\" is one of the two great branches of dinosaurs, encompassing a mostly herbivorous radiation whose members are known from every continent and across an enormous range of sizes. The group takes its name from a pelvis superficially resembling that of birds, though this is a case of convergence, since birds are in fact theropods and only distantly related. Its major subgroups include the horn-faced ceratopsians, the thick-domed pachycephalosaurs, the armored thyreophorans such as stegosaurs and ankylosaurs, and the ornithopods, alongside a scattering of small, early-diverging forms near the base of the group. The earliest members were lightly built bipeds around one to two meters long with long counterbalancing tails, but later lineages grew far larger and many became quadrupedal. Most were browsers or grazers of ground-level plants, though a few were opportunistic omnivores. Several ornithischians are known to have lived in herds, sometimes with juveniles flocking apart from adults, and exceptionally preserved specimens reveal a range of skin coverings from mosaic scales to disputed filamentous, quill-like structures.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Ornithischia"
+      ],
+      "described": 1888,
+      "authors": "Seeley, H. G.",
+      "erected_in": "seeley1888b",
+      "described_in": "madzia2021a",
+      "diagnostic_features": [
+        "Opisthopubic pelvis with the pubis rotated posteriorly to parallel the ischium",
+        "Predentary bone capping the tip of the lower jaw",
+        "Leaf-shaped cheek-tooth crowns with denticulate margins",
+        "Palpebral (supraorbital) bone roofing the orbit",
+        "Ossified epaxial tendons along the vertebral column in many members"
+      ],
+      "references": [
+        {
+          "id": "seeley1888b",
+          "authors": "Seeley, H. G.",
+          "year": 1888,
+          "title": "On the classification of the fossil animals commonly named Dinosauria",
+          "journal": "Proceedings of the Royal Society of London",
+          "volume": "43",
+          "pages": "165-171",
+          "doi": "10.1098/rspl.1887.0117",
+          "notes": "Erected Ornithischia."
+        },
+        {
+          "id": "madzia2021a",
+          "authors": "Madzia, D.; Arbour, V. M.; Boyd, C. A.; Farke, A. A.; Cruzado-Caballero, P.; Evans, D. C.",
+          "year": 2021,
+          "title": "The phylogenetic nomenclature of ornithischian dinosaurs",
+          "journal": "PeerJ",
+          "volume": "9",
+          "pages": "e12362",
+          "doi": "10.7717/peerj.12362",
+          "notes": "Provides the modern phylogenetic definition of Ornithischia."
+        }
+      ]
+    },
+    "Plateosauria": {
+      "description": "Plateosauria is a large, node-based clade within Sauropodomorpha, conventionally defined as the last common ancestor of Plateosaurus and Massospondylus (Sereno, 2007), or of Plateosaurus and Jingshanosaurus (Galton and Upchurch, 2004), together with all of that ancestor's descendants. So defined, it unites the Plateosauridae with the more inclusive Massopoda and takes in Late Triassic and Early Jurassic sauropodomorphs such as Coloradisaurus, Euskelosaurus, Jingshanosaurus, Massospondylus, Mussaurus, Sellosaurus, and Yunnanosaurus, while its descendant lineages also encompass the giant, long-necked true sauropods. It groups the more derived, generally herbivorous members of the lineage, spanning the transition from largely bipedal early forms toward larger-bodied, increasingly quadrupedal ones. In all, it accounts for the bulk of sauropodomorph diversity above the earliest, most basal grade.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria"
+      ],
+      "described": 1913,
+      "authors": "Tornier, G.",
+      "erected_in": "tornier1913a",
+      "described_in": "sereno2007a",
+      "diagnostic_features": [
+        "Leaf-shaped cheek teeth with coarse marginal denticles set at an angle to the crown margin",
+        "Robust, weight-bearing limb proportions",
+        "Enlarged, broad-bladed manual pollex",
+        "Anteroposteriorly elongate, low ilium"
+      ],
+      "references": [
+        {
+          "id": "tornier1913a",
+          "authors": "Tornier, G.",
+          "year": 1913,
+          "title": "Reptilia (Paläontologie)",
+          "book": "Handwörterbuch der Naturwissenschaften",
+          "volume": "8",
+          "pages": "337-376",
+          "notes": "Proposed the suborder Plateosauria, with a diagnosis, as a replacement name for Theropoda, its six families including Plateosauridae, Anchisauridae and Megalosauridae."
+        },
+        {
+          "id": "sereno2007a",
+          "authors": "Sereno, P. C.",
+          "year": 2007,
+          "title": "Basal Sauropodomorpha: historical and recent phylogenetic hypotheses, with comments on Ammosaurus major (Marsh, 1889)",
+          "journal": "Special Papers in Palaeontology",
+          "volume": "77",
+          "pages": "261-289",
+          "notes": "Defined Plateosauria as the least inclusive clade containing Massospondylus carinatus and Plateosaurus engelhardti but not Saltasaurus loricatus."
+        },
+        {
+          "id": "müller2018a",
+          "authors": "Müller, R. T.; Langer, M. C.; Dias-da-Silva, S.",
+          "year": 2018,
+          "title": "An exceptionally preserved association of complete dinosaur skeletons reveals the oldest long-necked sauropodomorphs",
+          "journal": "Biology Letters",
+          "publisher": "The Royal Society",
+          "volume": "14",
+          "issue": "11",
+          "pages": "20180633",
+          "doi": "10.1098/rsbl.2018.0633",
+          "notes": "Recovers Plateosauria as Plateosauridae plus Massopoda, sister to Unaysauridae."
+        },
+        {
+          "id": "galton2004a",
+          "authors": "Galton, P. M.; Upchurch, P.",
+          "year": 2004,
+          "title": "Prosauropoda",
+          "book": "The Dinosauria, Second Edition (Weishampel, D. B.; Dodson, P.; Osmólska, H., eds.)",
+          "publisher": "University of California Press, Berkeley",
+          "pages": "232-258",
+          "notes": "Defined Plateosauria as Jingshanosaurus, Plateosaurus, their most recent common ancestor and all its descendants."
+        }
+      ]
+    },
+    "Saurischia": {
+      "description": "Saurischia, meaning \"lizard-hipped,\" is one of the two major divisions of dinosaurs, distinguished from the ornithischians by hip structure. Its members retain the ancestral, three-pronged pelvic arrangement in which the pubis points forward, the same configuration seen in modern lizards and other reptiles, rather than the backward-rotated pubis of ornithischians. The group encompasses the mostly carnivorous, typically bipedal theropods together with the long-necked, herbivorous sauropodomorphs, and because birds are a lineage of maniraptoran theropods, they too fall within Saurischia. It is defined as birds and all dinosaurs more closely related to them than to Triceratops (Sereno, 1998); Gauthier (1986) had defined it against Ornithischia as a whole. All saurischians except birds died out in the Cretaceous-Paleogene extinction event at the end of the Cretaceous, while birds survive as the clade's only living descendants.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia"
+      ],
+      "described": 1888,
+      "authors": "Seeley, H. G.",
+      "erected_in": "seeley1888b",
+      "diagnostic_features": [
+        "Forward-pointing (anteroventrally directed) pubis in basal members",
+        "Elongate, mobile neck with cervical vertebrae bearing well-developed pleurocoels",
+        "Asymmetrical hand with digit II longest",
+        "Subnarial foramen present between premaxilla and maxilla"
+      ],
+      "references": [
+        {
+          "id": "seeley1888b",
+          "authors": "Seeley, H. G.",
+          "year": 1888,
+          "title": "On the classification of the fossil animals commonly named Dinosauria",
+          "journal": "Proceedings of the Royal Society of London",
+          "volume": "43",
+          "pages": "165-171",
+          "doi": "10.1098/rspl.1887.0117"
+        },
+        {
+          "id": "sereno1998a",
+          "authors": "Sereno, P. C.",
+          "year": 1998,
+          "title": "A rationale for phylogenetic definitions, with application to the higher-level taxonomy of Dinosauria",
+          "journal": "Neues Jahrbuch für Geologie und Paläontologie, Abhandlungen",
+          "volume": "210",
+          "pages": "41-83",
+          "doi": "10.1127/njgpa/210/1998/41",
+          "notes": "Defined Saurischia as all dinosaurs closer to Neornithes than to Triceratops."
+        },
+        {
+          "id": "gauthier1986a",
+          "authors": "Gauthier, J. A.",
+          "year": 1986,
+          "title": "Saurischian monophyly and the origin of birds",
+          "journal": "Memoirs of the California Academy of Sciences",
+          "volume": "8",
+          "pages": "1-55",
+          "notes": "Defined Saurischia as birds and all dinosaurs closer to birds than to Ornithischia."
+        }
+      ]
+    },
+    "Sauropodomorpha": {
+      "description": "Sauropodomorpha is a clade of saurischian dinosaurs that includes the long-necked, herbivorous sauropods together with their earlier relatives, the basal forms traditionally grouped as \"prosauropods.\" The clade first appeared among the earliest dinosaurs in the Late Triassic, around 230 million years ago, and persisted until the end-Cretaceous extinction. Its earliest members were small bipeds that were omnivorous or even carnivorous, but over time the group shifted toward plant-eating, larger body size, and, in the true sauropods, quadrupedal locomotion. The sauropods became the dominant terrestrial herbivores through much of the Mesozoic and include the largest animals ever to walk on land. Their remains have been found on every continent, including Antarctica.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha"
+      ],
+      "described": 1932,
+      "authors": "Huene, F. V.",
+      "erected_in": "huene1932a",
+      "described_in": "sereno2007a",
+      "diagnostic_features": [
+        "Elongated neck with ten or more cervical vertebrae",
+        "Small skull relative to body size",
+        "Leaf-shaped or spatulate teeth adapted for herbivory",
+        "Enlarged external nares",
+        "Large pollex (thumb) claw on manus digit I",
+        "Evolutionary trend toward increasing body size"
+      ],
+      "references": [
+        {
+          "id": "huene1932a",
+          "authors": "Huene, F. V.",
+          "year": 1932,
+          "title": "Die fossile Reptil-Ordnung Saurischia, ihre Entwicklung und Geschichte [The fossil reptile order Saurischia, their development and history]",
+          "journal": "Monographien zur Geologie und Palaeontologie, serie 1",
+          "volume": "4",
+          "issue": "1-2",
+          "pages": "1-361",
+          "notes": "Named Sauropodomorpha for the prosauropods together with the sauropods, which form their direct continuation (p. 18); the name first appears on p. 4."
+        },
+        {
+          "id": "sereno2007a",
+          "authors": "Sereno, P. C.",
+          "year": 2007,
+          "title": "Basal Sauropodomorpha: historical and recent phylogenetic hypotheses, with comments on Ammosaurus major (Marsh, 1889)",
+          "journal": "Special Papers in Palaeontology",
+          "volume": "77",
+          "pages": "261-289",
+          "notes": "Defined Sauropodomorpha as the most inclusive clade containing Saltasaurus loricatus but not Passer domesticus or Triceratops horridus."
+        }
+      ]
+    },
+    "Tetanurae": {
+      "description": "Tetanurae, meaning \"stiff tails,\" is a large clade of theropod dinosaurs that includes most predatory dinosaur diversity, encompassing the megalosauroids, the allosauroids, and the coelurosaurs, the last of which contains tyrannosauroids, ornithomimosaurs, compsognathids, and the maniraptorans, including living birds. The group is defined as all theropods more closely related to modern birds than to Ceratosauria (Gauthier, 1986), its sister lineage, from which it diverged during the Late Triassic according to Sereno and colleagues (1994). Tetanurans appear in the fossil record by the Early Jurassic and had become globally distributed by the Middle Jurassic. Their evolution was marked by the parallel diversification of several lineages that repeatedly attained large body size and similar locomotor forms; basal members were the first theropods to reach truly giant sizes, with some megalosauroids and allosauroids exceeding a ton. Distinctive features of the group include stiffened tails, the loss of the fourth finger to leave a three-fingered hand, maxillary teeth restricted to the front of the snout, and, in more advanced forms, an air-sac-ventilated lung system resembling that of modern birds. Birds are the only living survivors of the clade.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae"
+      ],
+      "described": 1986,
+      "authors": "Gauthier, J. A.",
+      "erected_in": "gauthier1986a",
+      "diagnostic_features": [
+        "Stiffened distal tail with interlocking zygapophyses",
+        "Reduction of the hand to three functional digits (loss of digit IV)",
+        "Maxillary tooth row restricted to anterior portion of skull, not extending posterior to antorbital fenestra",
+        "Large, well-developed maxillary fenestra",
+        "Tibia longer than or equal to femur"
+      ],
+      "references": [
+        {
+          "id": "gauthier1986a",
+          "authors": "Gauthier, J. A.",
+          "year": 1986,
+          "title": "Saurischian monophyly and the origin of birds",
+          "journal": "Memoirs of the California Academy of Sciences",
+          "volume": "8",
+          "pages": "1-55",
+          "notes": "Named Tetanurae as a new taxon, defined as birds and all other theropods closer to birds than to Ceratosauria."
+        },
+        {
+          "id": "sereno1994a",
+          "authors": "Sereno, P. C.; Wilson, J. A.; Larsson, H. C. E.; Dutheil, D. B.; Sues, H. D.",
+          "year": 1994,
+          "title": "Early Cretaceous Dinosaurs from the Sahara",
+          "journal": "Science",
+          "publisher": "American Association for the Advancement of Science (AAAS)",
+          "volume": "266",
+          "issue": "5183",
+          "pages": "267-271",
+          "doi": "10.1126/science.266.5183.267",
+          "notes": "Described Early Cretaceous Saharan theropods and inferred that Ceratosauria and Tetanurae diverged during the Late Triassic."
+        }
+      ]
+    },
+    "Theropoda": {
+      "description": "Theropoda is one of the three major clades of dinosaurs, alongside Ornithischia and Sauropodomorpha, and is generally grouped among the saurischians as a nearer relative of the sauropodomorphs. Theropods were ancestrally carnivorous and included the majority of large terrestrial predators from the Early Jurassic until the end of the Cretaceous, among them the largest meat-eating land animals ever to exist, such as Tyrannosaurus and Giganotosaurus. First appearing in the Late Triassic, the group spans an enormous range of body sizes and lifestyles, with several lineages independently shifting to herbivory or omnivory. Its major subgroups include the early coelophysoids and the often horned ceratosaurs, together with the sprawling tetanuran radiation, which encompasses the semiaquatic spinosaurids, the allosauroids, and the feathered coelurosaurs, the last including tyrannosaurids, ornithomimosaurs, dromaeosaurids, and therizinosaurs. From small, specialized coelurosaurs, birds arose during the Jurassic and endure today as roughly 11,000 living species, making theropods the only dinosaur lineage still present on Earth.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda"
+      ],
+      "described": 1881,
+      "authors": "Marsh, O. C.",
+      "erected_in": "marsh1881b",
+      "diagnostic_features": [
+        "Hollow (pneumatized) long bones",
+        "Obligate bipedal stance",
+        "Three weight-bearing digits on the pes (functionally tridactyl foot)",
+        "Furcula (fused clavicles) present",
+        "Intramandibular joint in the lower jaw",
+        "Carnivorous dentition with serrated, laterally compressed teeth in basal members"
+      ],
+      "references": [
+        {
+          "id": "marsh1881b",
+          "authors": "Marsh, O. C.",
+          "year": 1881,
+          "title": "Principal characters of American Jurassic dinosaurs, Part V",
+          "journal": "American Journal of Science",
+          "volume": "21",
+          "pages": "417-423"
+        }
+      ]
+    },
+    "Thyreophora": {
+      "description": "Thyreophora, meaning \"shield bearers,\" is a clade of armored ornithischian dinosaurs. It contains two major subgroups, the plated stegosaurs and the heavily armored ankylosaurs, together with a grade of early-diverging forms such as Scutellosaurus, Emausaurus, and Scelidosaurus. Its members are defined by body armor arranged in longitudinal rows along the back and flanks: primitive forms bore simple low keeled scutes, while more derived members developed elaborate spikes and plates. Thyreophorans first appeared in the Early Jurassic and persisted until the end of the Cretaceous. The earliest species were small and at least partly bipedal, but the group trended toward a robust, low-slung body plan, with the large stegosaurs and ankylosaurs becoming obligate quadrupeds whose forelimbs were much shorter than their hindlimbs.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Ornithischia",
+        "Genasauria",
+        "Thyreophora"
+      ],
+      "described": 1915,
+      "authors": "Nopcsa, B. F.",
+      "erected_in": "nopcsa1915a",
+      "described_in": "madzia2021a",
+      "diagnostic_features": [
+        "Parasagittal rows of keeled dermal osteoderms along the dorsal surface",
+        "Low, transversely broad jugal with a horizontally expanded anterior process",
+        "Postorbital region of the skull roof thickened and rugose",
+        "Robust, low-slung body plan trending toward obligate quadrupedality",
+        "Simple, low-crowned, leaf-shaped cheek teeth"
+      ],
+      "references": [
+        {
+          "id": "nopcsa1915a",
+          "authors": "Nopcsa, B. F.",
+          "year": 1915,
+          "title": "Die Dinosaurier der siebenbürgischen Landesteile Ungarns [The Dinosaurs of the Transylvanian Territories of Hungary]",
+          "journal": "Mitteilungen aus dem Jahrbuche der Königlich Ungarischen Geologischen Reichsanstalt",
+          "volume": "23",
+          "pages": "1-26",
+          "notes": "Erected Thyreophora."
+        },
+        {
+          "id": "madzia2021a",
+          "authors": "Madzia, D.; Arbour, V. M.; Boyd, C. A.; Farke, A. A.; Cruzado-Caballero, P.; Evans, D. C.",
+          "year": 2021,
+          "title": "The phylogenetic nomenclature of ornithischian dinosaurs",
+          "journal": "PeerJ",
+          "volume": "9",
+          "pages": "e12362",
+          "doi": "10.7717/peerj.12362",
+          "notes": "Provides the modern phylogenetic definition of Thyreophora."
+        }
+      ]
+    },
+    "Tyrannosauridae": {
+      "description": "Tyrannosauridae is a family of coelurosaurian theropod dinosaurs that lived near the end of the Cretaceous period, with fossils known only from North America and Asia. It is divided into two subfamilies: the more lightly built Albertosaurinae, comprising the North American genera Albertosaurus and Gorgosaurus, and the Tyrannosaurinae, which includes Daspletosaurus, Tarbosaurus, Teratophoneus, Zhuchengtyrannus, and Tyrannosaurus itself, among others. Estimates of how many genera the family contains range from as few as three to around fifteen. Though descended from smaller ancestors, tyrannosaurids were almost always the largest predators in their ecosystems, standing at the apex of the food chain. They were bipedal carnivores with massive, deep skulls packed with large teeth, proportionally long and cursorial hindlimbs for their size, and greatly reduced forelimbs bearing only two functional fingers.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Coelurosauria",
+        "Tyrannosauroidea",
+        "Eutyrannosauria",
+        "Tyrannosauridae"
+      ],
+      "type_genus": "Tyrannosaurus",
+      "described": 1906,
+      "authors": "Osborn, H. F.",
+      "erected_in": "osborn1906a",
+      "diagnostic_features": [
+        "Proportionally enormous skull with robust, deeply rooted teeth",
+        "D-shaped cross-section of premaxillary teeth (incisiform premaxillary teeth)",
+        "Extremely reduced forelimbs with only two functional digits",
+        "Massive adductor musculature indicating powerful bite force",
+        "Arctometatarsalian foot with pinched third metatarsal",
+        "Fused nasals along the midline"
+      ],
+      "references": [
+        {
+          "id": "osborn1906a",
+          "authors": "Osborn, H. F.",
+          "year": 1906,
+          "title": "Tyrannosaurus, Upper Cretaceous carnivorous dinosaur (second communication)",
+          "journal": "Bulletin of the American Museum of Natural History",
+          "volume": "22",
+          "pages": "281-296",
+          "notes": "Proposed Tyrannosauridae conditionally, for a separate family of the Theropoda that \"may be called Tyrannosauridæ\" if it proved distinct."
+        }
+      ]
+    },
+    "Tyrannosaurinae": {
+      "description": "Tyrannosaurinae is one of the two subfamilies of tyrannosaurid theropods, known from Late Cretaceous deposits of western North America and east Asia. Compared with their albertosaurine relatives, tyrannosaurines were generally more robust, larger, and more heavily built, with deep, powerful skulls; the exceptions were the long-snouted, more gracile alioramins. The group includes some of the oldest tyrannosaurids, such as Lythronax, alongside its youngest and most famous member, Tyrannosaurus rex. Its genera are usually sorted into several lineages: the basal Alioramini, the American southwestern Teratophoneini, and a group uniting the Daspletosaurini and the Tyrannosaurini, which contains Tarbosaurus and Tyrannosaurus. Studies of Tyrannosaurus growth suggest these animals changed markedly with age, shifting from slender, semi-long-snouted juveniles into robust, heavy-headed adults that likely occupied different ecological niches as they matured.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Coelurosauria",
+        "Tyrannosauroidea",
+        "Eutyrannosauria",
+        "Tyrannosauridae",
+        "Tyrannosaurinae"
+      ],
+      "type_genus": "Tyrannosaurus",
+      "described": 1906,
+      "authors": "Osborn, H. F.",
+      "erected_in": "osborn1906a",
+      "described_in": "currie2003a",
+      "diagnostic_features": [
+        "Inflated ectopterygoid sinus",
+        "Jugal anterior ramus deep below the pneumatic opening in mature individuals",
+        "Parietal sagittal crest extending forward onto the back of the frontals",
+        "Tall but broad parietal nuchal crest"
+      ],
+      "references": [
+        {
+          "id": "osborn1906a",
+          "authors": "Osborn, H. F.",
+          "year": 1906,
+          "title": "Tyrannosaurus, Upper Cretaceous carnivorous dinosaur (second communication)",
+          "journal": "Bulletin of the American Museum of Natural History",
+          "volume": "22",
+          "pages": "281-296",
+          "notes": "Proposed the family Tyrannosauridae, from which the subfamily name takes its authorship by coordination."
+        },
+        {
+          "id": "currie2003a",
+          "authors": "Currie, P. J.; Hurum, J. H.; Sabath, K.",
+          "year": 2003,
+          "title": "Skull structure and evolution in tyrannosaurid dinosaurs",
+          "journal": "Acta Palaeontologica Polonica",
+          "volume": "48",
+          "issue": "2",
+          "pages": "227-234",
+          "url": "https://app.pan.pl/article/item/app48-227.html",
+          "notes": "Provides the modern phylogenetic definition and cranial diagnosis of Tyrannosaurinae."
+        }
+      ]
+    },
+    "Tyrannosauroidea": {
+      "description": "Tyrannosauroidea is a superfamily of coelurosaurian theropod dinosaurs that unites the family Tyrannosauridae with a range of smaller, more basal relatives such as the proceratosaurids. The group arose on the northern supercontinent Laurasia in the Jurassic and persisted until the end of the Cretaceous, when tyrannosauroids became the dominant large predators of the Northern Hemisphere, culminating in the giant Tyrannosaurus; their fossils are known from what are now North America, Europe, and Asia. All members were bipedal carnivores distinguished by a suite of skull and pelvic features, including a tall premaxilla that blunted the front of the snout, fused and often roughly textured nasal bones, and small, D-shaped premaxillary teeth. Early forms were small animals with long, three-fingered forelimbs, whereas the later giants reached enormous size yet had proportionately tiny, two-fingered arms; the derived forms also developed a pinched third metatarsal, the arctometatarsus, tied to running efficiency. Primitive filamentous feathers are preserved in several species, and many tyrannosauroids bore bony crests of varied shape on the skull that likely served for display.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Coelurosauria",
+        "Tyrannosauroidea"
+      ],
+      "type_genus": "Tyrannosaurus",
+      "described": 1906,
+      "authors": "Osborn, H. F.",
+      "erected_in": "osborn1906a",
+      "described_in": "holtz2004b",
+      "diagnostic_features": [
+        "Tall premaxilla forming a blunt snout tip",
+        "Fused, rugose-textured nasal bones",
+        "Small, D-shaped (asymmetric) premaxillary teeth",
+        "Braincase with a deep otic recess (columellar canal) bearing an internal fenestra vestibuli",
+        "Elongate cochlear duct, indicating heightened sensitivity to low-frequency sound",
+        "Tubular brain endocast with only a slight midbrain flexure",
+        "Pronounced midbrain peak on the endocast, anterior to the posterior middle cerebral vein",
+        "Indistinct flocculus that barely crosses the plane of the anterior semicircular canal"
+      ],
+      "references": [
+        {
+          "id": "osborn1906a",
+          "authors": "Osborn, H. F.",
+          "year": 1906,
+          "title": "Tyrannosaurus, Upper Cretaceous carnivorous dinosaur (second communication)",
+          "journal": "Bulletin of the American Museum of Natural History",
+          "volume": "22",
+          "pages": "281-296",
+          "notes": "Proposed the family Tyrannosauridae, from which the superfamily name takes its authorship by coordination."
+        },
+        {
+          "id": "holtz2004b",
+          "authors": "Holtz, T. R.",
+          "year": 2004,
+          "title": "Tyrannosauroidea",
+          "book": "The Dinosauria, Second Edition (Weishampel, D. B.; Dodson, P.; Osmólska, H., eds.)",
+          "publisher": "University of California Press, Berkeley",
+          "pages": "111-136",
+          "notes": "Defined Tyrannosauroidea as Tyrannosaurus rex and all taxa closer to it than to Ornithomimus velox, Deinonychus antirrhopus or Allosaurus fragilis, and diagnosed it."
+        },
+        {
+          "id": "brusatte2016a",
+          "authors": "Brusatte, S. L.; Averianov, A.; Sues, H. D.; Muir, A.; Butler, I. B.",
+          "year": 2016,
+          "title": "New tyrannosaur from the mid-Cretaceous of Uzbekistan clarifies evolution of giant body sizes and advanced senses in tyrant dinosaurs",
+          "journal": "Proceedings of the National Academy of Sciences",
+          "publisher": "Proceedings of the National Academy of Sciences",
+          "volume": "113",
+          "issue": "13",
+          "pages": "3447-3452",
+          "doi": "10.1073/pnas.1600140113",
+          "notes": "Described the braincase and endocast of Timurlengia, showing the shallow endocast and long cochlear duct that earlier studies identify as tyrannosauroid synapomorphies."
+        }
+      ]
+    }
+  },
+  "genera": {
+    "Acanthopholis": {
+      "genus": "Acanthopholis",
+      "parent": "Nodosauridae",
+      "placement": "incertae sedis",
+      "etymology": "From Greek 'akantha' meaning 'spine' or 'thorn' and 'pholis' meaning 'scale'; meaning 'spiny scales'",
+      "pronunciation": {
+        "phonetic": "a-kan-THOF-o-lis",
+        "ipa": "/ˌækənˈθɒfoʊlɪs/"
+      },
+      "description": "Acanthopholis is a nomen dubium for armored ankylosaur remains from the Cenomanian of Kent, England, which Pereda-Suberbiola and Barrett (1999) refer to Nodosauridae. Only its type species, A. horrida, is retained in the genus; Seeley's further species are now referred to other groups.",
+      "diet": "herbivore",
+      "locomotion": "quadrupedal",
+      "paleoenvironment": [
+        "marine"
+      ],
+      "appearance": {
+        "integument": "armored",
+        "evidence": "direct"
+      },
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "38818"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q133200"
+        },
+        {
+          "source": "gbif",
+          "id": "4823211"
+        },
+        {
+          "source": "eol",
+          "id": "4533736"
+        }
+      ],
+      "species": [
+        {
+          "name": "Acanthopholis horrida",
+          "etymology": "From Latin 'horrida' (originally 'horridus') meaning 'frightening' or 'rough', referring to the animal's armored appearance.",
+          "status": "nomen dubium",
+          "type_species": true,
+          "period": {
+            "name": [
+              "Late Cretaceous"
+            ],
+            "stage": [
+              "Cenomanian"
+            ],
+            "from_ma": 100.5,
+            "to_ma": 93.9
+          },
+          "location": {
+            "country": "GB",
+            "region": "Kent",
+            "locality": "East of Copt Point, near Folkestone",
+            "formation": "West Melbury Marly Chalk",
+            "part": "lower",
+            "notes": "Etheridge (1867) placed the remains in the lower part of the Chalk Marl, about eight feet above the Upper Greensand, and fixed them to the lower part of the Grey Chalk series on an associated fauna of some forty species, among them Ammonites varians and Holaster subglobosus.",
+            "region_code": "GB-KEN",
+            "part_of": "formation"
+          },
+          "size": {
+            "length_m": {
+              "min": 3,
+              "max": 5.5
+            },
+            "weight_kg": {
+              "min": 380,
+              "max": 380
+            }
+          },
+          "erected_in": "huxley1867a",
+          "type_specimen": {
+            "specimen_id": [
+              "GSM 109045",
+              "GSM 109046",
+              "GSM 109047",
+              "GSM 109048",
+              "GSM 109049",
+              "GSM 109050",
+              "GSM 109051",
+              "GSM 109052",
+              "GSM 109053",
+              "GSM 109055",
+              "GSM 109056",
+              "GSM 109057"
+            ],
+            "specimen_type": "syntype",
+            "institution": "British Geological Survey",
+            "material": "Scutes and spines of dermal armor, three teeth, fragmentary vertebrae, partial skull (basioccipital and basisphenoid), and distal end of a humerus.",
+            "completeness": "fragmentary",
+            "notes": "Huxley (1867) founded the species on a series of 12 specimens and designated no holotype; no lectotype has been designated since. Pereda-Suberbiola and Barrett (1999) exclude GSM 109054 and GSM 109058, two caudal vertebrae added to the type series by Coombs (1978) but not mentioned by Huxley, regarding them as Ankylosauria indeterminate and indeterminate respectively. The syntypes are not demonstrably one individual: Huxley inferred association because the specimens \"all came from one small area\", but the same assemblage yielded the teeth and sclerotic ring of a large ichthyosaur.\n"
+          },
+          "authors": "Huxley, T. H.",
+          "described": 1867
+        }
+      ],
+      "references": [
+        {
+          "id": "hopson2005a",
+          "authors": "Hopson, P. M.",
+          "year": 2005,
+          "title": "A stratigraphical framework for the Upper Cretaceous Chalk of England and Scotland, with statements on the Chalk of Northern Ireland and the UK Offshore Sector",
+          "journal": "British Geological Survey Research Report",
+          "publisher": "British Geological Survey",
+          "volume": "RR/05/01",
+          "notes": "Defines the West Melbury Marly Chalk Formation and names Copt Point among its primary reference sections."
+        },
+        {
+          "id": "vickaryous2004a",
+          "authors": "Vickaryous, M. K.; Maryańska, T.; Weishampel, D. B.",
+          "year": 2004,
+          "title": "Ankylosauria",
+          "book": "The Dinosauria, Second Edition (Weishampel, D. B.; Dodson, P.; Osmólska, H., eds.)",
+          "publisher": "University of California Press, Berkeley",
+          "pages": "363-392",
+          "notes": "Lists Acanthopholis horridus and its congeners among the nomina dubia of Ankylosauria."
+        },
+        {
+          "id": "kirkland2013a",
+          "authors": "Kirkland, J. I.; Alcalá, L.; Loewen, M. A.; Espílez, E.; Mampel, L.; Wiersma, J. P.",
+          "year": 2013,
+          "title": "The Basal Nodosaurid Ankylosaur Europelta carbonensis n. gen., n. sp. from the Lower Cretaceous (Lower Albian) Escucha Formation of Northeastern Spain",
+          "journal": "PLoS ONE",
+          "publisher": "Public Library of Science (PLoS)",
+          "volume": "8",
+          "issue": "12",
+          "pages": "e80405",
+          "doi": "10.1371/journal.pone.0080405",
+          "notes": "Repeats that Acanthopholis is a nomen dubium and, on that basis, rejects Acanthopholinae in favor of Nopcsa's (1923) Struthiosaurinae, which it defines phylogenetically."
+        },
+        {
+          "id": "nopcsa1923a",
+          "authors": "Nopcsa, F.",
+          "year": 1923,
+          "title": "Die Familien der Reptilien [The families of the reptiles]",
+          "journal": "Fortschritte der Geologie und Palaeontologie",
+          "volume": "2",
+          "pages": "1-210",
+          "notes": "Lists the family \"Acanthopolidae\" with the subfamilies Struthiosaurinae and Ankylosaurinae, without comment."
+        },
+        {
+          "id": "barrett2020a",
+          "authors": "Barrett, P. M.; Bonsor, J. A.",
+          "year": 2020,
+          "title": "A revision of the non-avian dinosaurs 'Eucercosaurus tanyspondylus' and 'Syngonosaurus macrocercus' from the Cambridge Greensand, UK",
+          "journal": "Cretaceous Research",
+          "publisher": "Elsevier BV",
+          "volume": "118",
+          "pages": "104638",
+          "doi": "10.1016/j.cretres.2020.104638",
+          "notes": "Reaffirms that Acanthopholis horridus is a nomen dubium while revising other Cambridge Greensand material."
+        },
+        {
+          "id": "huxley1867a",
+          "authors": "Huxley, T. H.",
+          "year": 1867,
+          "title": "IV.-On Acanthopholis Horridus, a New Reptile from the Chalk-marl",
+          "journal": "Geological Magazine",
+          "publisher": "Cambridge University Press (CUP)",
+          "volume": "4",
+          "issue": "32",
+          "pages": "65-67",
+          "doi": "10.1017/s001675680017102x"
+        },
+        {
+          "id": "pereda-suberbiola1999a",
+          "authors": "Pereda-Suberbiola, X.; Barrett, P. M.",
+          "year": 1999,
+          "title": "A systematic review of ankylosaurian dinosaur remains from the Albian-Cenomanian of England",
+          "journal": "Special Papers in Palaeontology",
+          "volume": "60",
+          "pages": "177-208",
+          "notes": "Found the A. horridus syntypes to lack unique diagnostic characters, doubted that all belong to one individual, and restricted the type series to the 12 specimens listed by Huxley."
+        },
+        {
+          "id": "coombs1978a",
+          "authors": "Coombs, W. P. Jr.",
+          "year": 1978,
+          "title": "The families of the ornithischian dinosaur order Ankylosauria",
+          "journal": "Palaeontology",
+          "volume": "21",
+          "issue": "1",
+          "pages": "143-170"
+        },
+        {
+          "id": "etheridge1867a",
+          "authors": "Etheridge, R.",
+          "year": 1867,
+          "title": "V.-On the Stratigraphical Position of Acanthopholis Horridus (Huxley)",
+          "journal": "Geological Magazine",
+          "publisher": "Cambridge University Press (CUP)",
+          "volume": "4",
+          "issue": "32",
+          "pages": "67-69",
+          "doi": "10.1017/s0016756800171031",
+          "notes": "Fixes the horizon to the lower Chalk Marl about eight feet above the Upper Greensand, on an associated fauna of some forty species."
+        }
+      ],
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Ornithischia",
+        "Genasauria",
+        "Thyreophora",
+        "Ankylosauria",
+        "Nodosauridae"
+      ],
+      "authors": "Huxley, T. H.",
+      "described": 1867
+    },
+    "Acrocanthosaurus": {
+      "genus": "Acrocanthosaurus",
+      "parent": "Carcharodontosauridae",
+      "pronunciation": {
+        "phonetic": "AK-roh-KAN-thuh-SOR-uhs",
+        "ipa": "/ˌækroʊˌkænθəˈsɔːrəs/"
+      },
+      "etymology": "From Greek 'akros' meaning 'high', 'akantha' meaning 'spine', and 'sauros' meaning 'lizard', referring to its high-spined vertebrae.",
+      "description": "Acrocanthosaurus is a genus of carcharodontosaurid dinosaurs that existed in what is now North America during the Barremian and early Cenomanian stages of the Early Cretaceous and Late Cretaceous, from 125 to 99.6 million years ago. Like most dinosaur genera, Acrocanthosaurus contains only a single species, A. atokensis. It had a continent-wide range, with fossil remains known from the U.S. states of Oklahoma, Texas, and Wyoming in the west and Maryland in the east. However, most of these remains are assigned to the species based on the assumption that Acrocanthosaurus is the only large carcharodontosaurid from North America during this time, and the possibility exists that some referred specimens could represent distinct taxa.",
+      "diet": "carnivore",
+      "locomotion": "bipedal",
+      "paleoenvironment": [
+        "fluvial"
+      ],
+      "diagnostic_features": [
+        "Massive and greatly elongated neural spines throughout cervical and dorsal vertebrae",
+        "Medial caudal vertebrae with supplementary (double) neural processes",
+        "Anterior chevrons closed proximally by transverse bar and bearing an upward-projecting anterior process on each ramus",
+        "Tibia strongly bowed outward, more so than in any known allied genus",
+        "Metatarsal III somewhat constricted proximally by lateral elements (metatarsals II and IV)"
+      ],
+      "appearance": {
+        "features": [
+          "dorsal sail"
+        ],
+        "integument": "scaled",
+        "evidence": "inferred"
+      },
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "38597"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q131021"
+        },
+        {
+          "source": "gbif",
+          "id": "4822586"
+        },
+        {
+          "source": "eol",
+          "id": "4433599"
+        },
+        {
+          "source": "zoobank",
+          "id": "844AD682-58EB-40B0-AC0E-EAFC2A3E9791"
+        }
+      ],
+      "synonyms": [
+        {
+          "name": "Acracanthus",
+          "type": "nomen ex dissertatione",
+          "reason": "Name appears in a dissertation, which does not meet ICZN publication requirements; referable to Acrocanthosaurus. Per Olshevsky's Dinosaur Genera List."
+        }
+      ],
+      "species": [
+        {
+          "name": "Acrocanthosaurus atokensis",
+          "etymology": "Named for Atoka County in Oklahoma, where the original specimens were found.",
+          "status": "valid",
+          "type_species": true,
+          "period": {
+            "name": [
+              "Early Cretaceous"
+            ],
+            "stage": [
+              "Aptian",
+              "Albian"
+            ],
+            "from_ma": 121.4,
+            "to_ma": 100.5
+          },
+          "location": {
+            "country": "US",
+            "locality": "Cochran farm",
+            "region": "Oklahoma",
+            "formation": "Antlers",
+            "region_code": "US-OK"
+          },
+          "type_specimen": {
+            "specimen_id": [
+              "OMNH 10146"
+            ],
+            "specimen_type": "holotype",
+            "institution": "Oklahoma Museum of Natural History",
+            "material": "Partial skeleton with skull-roof and braincase elements and partial left mandible, nine cervical plus dorsal and caudal vertebrae, ribs, gastralia, coracoid, pubes, ischium, and fragmentary hindlimb bones",
+            "completeness": "partial"
+          },
+          "size": {
+            "length_m": {
+              "min": 11,
+              "max": 12.2
+            },
+            "weight_kg": {
+              "min": 7500,
+              "max": 8400
+            },
+            "hip_height_m": {
+              "min": 3.96,
+              "max": 3.96
+            },
+            "skull_length_m": {
+              "min": 1.23,
+              "max": 1.29
+            }
+          },
+          "erected_in": "stovall1950a",
+          "authors": "Stovall, J. W.; Langston, W.",
+          "described": 1950
+        }
+      ],
+      "notable_specimens": [
+        {
+          "nickname": "Fran",
+          "specimen_id": [
+            "NCSM 14345"
+          ],
+          "institution": "North Carolina Museum of Natural Sciences",
+          "species": "Acrocanthosaurus atokensis",
+          "category": "most-complete",
+          "significance": "Most complete and largest known skeleton, with the only complete skull and forelimb. Its braincase enabled CT brain and inner-ear reconstruction, and the intact forelimb allowed the first study of arm range of motion and predatory function.",
+          "discovered": {
+            "by": "Cephis Hall, Sid Love"
+          },
+          "references": [
+            "currie2000a"
+          ]
+        },
+        {
+          "specimen_id": [
+            "USNM 466054"
+          ],
+          "institution": "National Museum of Natural History, Smithsonian Institution",
+          "category": "range-extension",
+          "significance": "Subadult identified in 2024 as the first definitive record of the genus from eastern North America. The most completely known theropod from the Arundel Formation, previously misidentified as an ornithomimosaur, and the smallest known individual of the genus.",
+          "discovered": {
+            "year": 1992
+          },
+          "references": [
+            "carrano2024a"
+          ]
+        },
+        {
+          "specimen_id": [
+            "SMU 74646"
+          ],
+          "institution": "Shuler Museum of Paleontology, Southern Methodist University",
+          "species": "Acrocanthosaurus atokensis",
+          "category": "historic",
+          "significance": "A partial skeleton missing most of the skull from the Twin Mountains Formation of Texas, one of the first much more complete specimens described in the 1990s; now part of the Fort Worth Museum of Science and History collection.",
+          "references": [
+            "harris1998a"
+          ]
+        },
+        {
+          "specimen_id": [
+            "UM 20796"
+          ],
+          "institution": "Museum of Paleontology, University of Michigan",
+          "species": "Acrocanthosaurus atokensis",
+          "category": "range-extension",
+          "significance": "A juvenile partial skeleton that established the presence of the genus in the Cloverly Formation of Wyoming in 2012. Found near the shoulder blade of a Sauroposeidon in a Bighorn Basin bonebed.",
+          "discovered": {
+            "year": 2008,
+            "by": "Michael D. D'Emic"
+          },
+          "references": [
+            "d'emic2012a"
+          ]
+        }
+      ],
+      "references": [
+        {
+          "id": "stovall1950a",
+          "authors": "Stovall, J. W.; Langston, W.",
+          "year": 1950,
+          "title": "Acrocanthosaurus atokensis, a New Genus and Species of Lower Cretaceous Theropoda from Oklahoma",
+          "journal": "American Midland Naturalist",
+          "publisher": "JSTOR",
+          "volume": "43",
+          "issue": "3",
+          "pages": "696",
+          "doi": "10.2307/2421859"
+        },
+        {
+          "id": "harris1998a",
+          "authors": "Harris, J. D.",
+          "year": 1998,
+          "title": "A reanalysis of Acrocanthosaurus atokensis, its phylogenetic status, and paleobiogeographic implications, based on a new specimen from Texas",
+          "journal": "New Mexico Museum of Natural History and Science Bulletin",
+          "volume": "13",
+          "pages": "1-75"
+        },
+        {
+          "id": "currie2000a",
+          "authors": "Currie, P. J.; Carpenter, K.",
+          "year": 2000,
+          "title": "A new specimen of Acrocanthosaurus atokensis (Theropoda, Dinosauria) from the Lower Cretaceous Antlers Formation (Lower Cretaceous, Aptian) of Oklahoma, USA",
+          "journal": "Geodiversitas",
+          "volume": "22",
+          "issue": "2",
+          "pages": "207-246"
+        },
+        {
+          "id": "d'emic2012a",
+          "authors": "D'Emic, M. D.; Melstrom, K. M.; Eddy, D. R.",
+          "year": 2012,
+          "title": "Paleobiology and geographic range of the large-bodied Cretaceous theropod dinosaur Acrocanthosaurus atokensis",
+          "journal": "Palaeogeography, Palaeoclimatology, Palaeoecology",
+          "volume": "333-334",
+          "pages": "13-23",
+          "doi": "10.1016/j.palaeo.2012.03.003"
+        },
+        {
+          "id": "carrano2024a",
+          "authors": "Carrano, M. T.",
+          "year": 2024,
+          "title": "First definitive record of Acrocanthosaurus (Theropoda: Carcharodontosauridae) in the Lower Cretaceous of eastern North America",
+          "journal": "Cretaceous Research",
+          "volume": "157",
+          "pages": "105814",
+          "doi": "10.1016/j.cretres.2023.105814"
+        },
+        {
+          "id": "jones2026c",
+          "authors": "Jones, B.",
+          "year": 2026,
+          "title": "The Princeton Encyclopedia of Dinosaurs: Theropods",
+          "publisher": "Princeton University Press",
+          "isbn": "978-0-691-25021-2",
+          "notes": "Source of the appearance features."
+        }
+      ],
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Allosauroidea",
+        "Allosauria",
+        "Carcharodontosauria",
+        "Carcharodontosauridae"
+      ],
+      "authors": "Stovall, J. W.; Langston, W.",
+      "described": 1950
+    },
+    "Adeopapposaurus": {
+      "genus": "Adeopapposaurus",
+      "parent": "Massospondylidae",
+      "etymology": "From Greek 'adeo' meaning 'to eat one's fill' (or 'far'), 'pappo' meaning 'grandfather' or possibly 'eating', and 'sauros' meaning 'lizard'; meaning 'far eating lizard', referring to its long neck",
+      "pronunciation": {
+        "phonetic": "ah-dee-o-pah-po-sor-us"
+      },
+      "description": "Adeopapposaurus is a genus of plateosaurian dinosaur from the Early Jurassic Cañón del Colorado Formation of San Juan, Argentina. It was similar to Massospondylus. Four partial skeletons with two partial skulls are known.",
+      "locomotion": "bipedal",
+      "paleoenvironment": [
+        "fluvial"
+      ],
+      "diet": "herbivore",
+      "diagnostic_features": [
+        "Series of large foramina in a sub-vertical row on the lateral surface of the premaxilla.",
+        "Strongly rugose depression bordered by a protuberance with a series of foramina in a sub-vertical row on the lateral surface of the anterior end of the dentary.",
+        "Eleven anteroposteriorly elongated cervical vertebrae.",
+        "Thirteen dorsal vertebrae with neural arches taller than their respective centra."
+      ],
+      "appearance": {
+        "features": [
+          "keratinous beak"
+        ],
+        "integument": "scaled",
+        "evidence": "inferred"
+      },
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "146361"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q24039152"
+        },
+        {
+          "source": "gbif",
+          "id": "4822549"
+        }
+      ],
+      "species": [
+        {
+          "name": "Adeopapposaurus mognai",
+          "etymology": "Named for the Mogna locality in San Juan, Argentina, where the fossils were found.",
+          "status": "valid",
+          "type_species": true,
+          "period": {
+            "name": [
+              "Early Jurassic"
+            ],
+            "stage": [
+              "Hettangian",
+              "Sinemurian",
+              "Pliensbachian",
+              "Toarcian"
+            ],
+            "from_ma": 201.4,
+            "to_ma": 174.7
+          },
+          "location": {
+            "country": "AR",
+            "locality": "southwestern Sierra de Mogna",
+            "region": "San Juan",
+            "formation": "Cañón del Colorado",
+            "part": "middle",
+            "notes": "Martínez (2009) places the holotype in the \"Upper Pelitic Member\", 148 m from the base, in an earlier scheme; Martínez and Colombi (2011) divide the formation into lower, middle and upper members and name the middle member's pelitic facies as the source of Adeopapposaurus.",
+            "region_code": "AR-J",
+            "part_of": "formation"
+          },
+          "size": {
+            "length_m": {
+              "min": 2.9,
+              "max": 2.9
+            },
+            "weight_kg": {
+              "min": 60,
+              "max": 60
+            },
+            "hip_height_m": {
+              "min": 0.8,
+              "max": 0.8
+            }
+          },
+          "erected_in": "martínez2009a",
+          "type_specimen": {
+            "specimen_id": [
+              "PVSJ610"
+            ],
+            "specimen_type": "holotype",
+            "institution": "División de Paleontología de Vertebrados del Museo de Ciencias Naturales y Universidad Nacional de San Juan",
+            "material": "Incomplete skeleton: complete skull with mandible in occlusion; complete cervical, dorsal, and sacral vertebral series; nine articulated caudal vertebrae with chevrons; pectoral girdle; forelimbs; incomplete pelvic girdle and hindlimbs.",
+            "completeness": "complete"
+          },
+          "authors": "Martínez, R. N.",
+          "described": 2009
+        }
+      ],
+      "references": [
+        {
+          "id": "martínez2011b",
+          "authors": "Martínez, R. N.; Colombi, C. E.",
+          "year": 2011,
+          "title": "Evolución litofacial y edad de la Formación Cañón del Colorado (Jurásico Inferior), Precordillera Oriental, San Juan [Lithofacial evolution and age of the Cañón del Colorado Formation (Lower Jurassic), Eastern Precordillera, San Juan]",
+          "journal": "Revista de la Asociación Geológica Argentina",
+          "volume": "68",
+          "issue": "1",
+          "pages": "96-108",
+          "notes": "Defines lower, middle and upper members and places the Adeopapposaurus fauna in the middle member."
+        },
+        {
+          "id": "martínez2009a",
+          "authors": "Martínez, R. N.",
+          "year": 2009,
+          "title": "Adeopapposaurus mognai, gen. et sp. nov. (Dinosauria: Sauropodomorpha), with comments on adaptations of basal Sauropodomorpha",
+          "journal": "Journal of Vertebrate Paleontology",
+          "publisher": "Informa UK Limited",
+          "volume": "29",
+          "issue": "1",
+          "pages": "142-164",
+          "doi": "10.1671/039.029.0102"
+        },
+        {
+          "id": "jones2026b",
+          "authors": "Jones, B.",
+          "year": 2026,
+          "title": "The Princeton Encyclopedia of Dinosaurs: Sauropods",
+          "publisher": "Princeton University Press",
+          "isbn": "978-0-691-25023-6",
+          "notes": "Source of the body length, mass, and hip height estimates, and the appearance features."
+        }
+      ],
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Massospondylidae"
+      ],
+      "authors": "Martínez, R. N.",
+      "described": 2009
+    },
+    "Allosaurus": {
+      "genus": "Allosaurus",
+      "parent": "Allosauridae",
+      "etymology": "From Greek 'allos' meaning 'different' or 'other' and 'sauros' meaning 'lizard'; meaning 'different lizard', alluding to its lightweight vertebrae",
+      "pronunciation": {
+        "ipa": "/ˌæləˈsɔːrəs/",
+        "phonetic": "AL-o-SAWR-us"
+      },
+      "description": "Allosaurus is a genus of theropod dinosaur that lived 155 to 145 million years ago during the Late Jurassic period (Kimmeridgian to late Tithonian ages). The first fossil remains that could definitively be ascribed to this genus were described in 1877 by Othniel C. Marsh. The name \"Allosaurus\" means \"different lizard\", alluding to its lightweight vertebrae, which Marsh believed were unique. The genus has a very complicated taxonomy and includes at least three valid species, the best known of which is A. fragilis. The bulk of Allosaurus remains come from North America's Morrison Formation, with material also known from the Alcobaça, Bombarral, and Lourinhã formations in Portugal. It was known for over half of the 20th century as Antrodemus, but a study of the abundant remains from the Cleveland-Lloyd Dinosaur Quarry returned the name \"Allosaurus\" to prominence. As one of the first well-known theropod dinosaurs, it has long attracted attention outside of paleontological circles.",
+      "diet": "carnivore",
+      "locomotion": "bipedal",
+      "paleoenvironment": [
+        "fluvial",
+        "lacustrine"
+      ],
+      "diagnostic_features": [
+        "Vertebral centra deeply excavated on the sides to reduce weight, producing an hourglass form in some elements",
+        "Vertebrae biconcave with shallow cavities, centra not pneumatic but greatly lightened by lateral excavations",
+        "Anterior caudal centrum so strongly constricted that its least transverse diameter (38 mm) is far less than its anterior face diameter (90 mm)",
+        "Foot bones very slender"
+      ],
+      "appearance": {
+        "features": [
+          "brow horns"
+        ],
+        "integument": "scaled",
+        "evidence": "direct"
+      },
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "38590"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q14400"
+        },
+        {
+          "source": "gbif",
+          "id": "4822587"
+        },
+        {
+          "source": "eol",
+          "id": "4433671"
+        },
+        {
+          "source": "zoobank",
+          "id": "3DCFDE6A-EDB6-4436-B2DD-A65C44D22112"
+        }
+      ],
+      "synonyms": [
+        {
+          "name": "Antrodemus",
+          "type": "junior subjective",
+          "reason": "Although described before Allosaurus, the type material is too poor to be diagnostic; Allosaurus is given priority and Antrodemus treated as a junior synonym."
+        },
+        {
+          "name": "Wyomingraptor",
+          "type": "nomen nudum",
+          "reason": "Coined by an anonymous caller on Dr. Bob's Dinofacts radio show; never officially described in scientific literature."
+        },
+        {
+          "name": "Labrosaurus",
+          "type": "junior subjective",
+          "reason": "Type material is now considered indistinguishable from Allosaurus."
+        },
+        {
+          "name": "Creosaurus",
+          "type": "junior subjective",
+          "reason": "Williston (1901) noted that Marsh had never adequately distinguished Creosaurus from Allosaurus; subsequent work has confirmed the synonymy."
+        },
+        {
+          "name": "Madsenius",
+          "type": "nomen nudum",
+          "reason": "Informal name; never met ICZN requirements for formal publication and is treated as referable to Allosaurus. Per Olshevsky's Dinosaur Genera List."
+        }
+      ],
+      "iczn_cases": [
+        {
+          "type": "type-specimen",
+          "status": "opinion",
+          "ruling": "iczn2023a",
+          "petition": "paul2010a",
+          "notes": "Designated USNM 4734 as the neotype of Allosaurus fragilis, conserving usage (Opinion 2486, Case 3506); replaces the non-diagnostic original syntype YPM 1930."
+        }
+      ],
+      "species": [
+        {
+          "name": "Allosaurus fragilis",
+          "etymology": "From Latin 'fragilis' meaning 'fragile', referring to the lightweight construction features of the vertebrae that Othniel Charles Marsh noted when describing the species in 1877.",
+          "status": "valid",
+          "type_species": true,
+          "period": {
+            "name": [
+              "Late Jurassic"
+            ],
+            "stage": [
+              "Kimmeridgian",
+              "Tithonian"
+            ],
+            "from_ma": 154.8,
+            "to_ma": 143.1
+          },
+          "location": {
+            "country": "US",
+            "locality": "Felch Quarry 1, Garden Park",
+            "region": "Colorado",
+            "formation": "Morrison",
+            "member": "Brushy Basin",
+            "region_code": "US-CO"
+          },
+          "type_specimen": {
+            "specimen_id": [
+              "USNM 4734"
+            ],
+            "specimen_type": "neotype",
+            "institution": "National Museum of Natural History, Smithsonian Institution",
+            "material": "Nearly complete skeleton including the skull and lower jaws, presacral vertebrae, a complete sacrum, about thirty caudal vertebrae, the pelvis, ribs, and all four limbs and feet.",
+            "completeness": "complete"
+          },
+          "size": {
+            "length_m": {
+              "min": 8.5,
+              "max": 8.5
+            },
+            "weight_kg": {
+              "min": 6000,
+              "max": 6000
+            }
+          },
+          "erected_in": "marsh1877c",
+          "described_in": "gilmore1920a",
+          "synonyms": [
+            {
+              "name": "Epanterias amplexus",
+              "type": "junior subjective",
+              "reason": "Based on AMNH 5767; generally treated as a junior synonym of Allosaurus fragilis, though debate persists. Epanterias is also widely considered nomen dubium due to lack of diagnostic features."
+            }
+          ],
+          "authors": "Marsh, O. C.",
+          "described": 1877
+        },
+        {
+          "name": "Allosaurus jimmadseni",
+          "etymology": "Honors James H. Madsen Jr., for work excavating, preparing, and curating Cleveland-Lloyd Allosaurus material.",
+          "status": "valid",
+          "type_species": false,
+          "period": {
+            "name": [
+              "Late Jurassic"
+            ],
+            "stage": [
+              "Kimmeridgian"
+            ],
+            "from_ma": 154.8,
+            "to_ma": 149.2
+          },
+          "location": {
+            "country": "US",
+            "region": "Utah",
+            "formation": "Morrison",
+            "member": "Salt Wash",
+            "locality": "Dinosaur National Monument (locality DNM 116)",
+            "region_code": "US-UT"
+          },
+          "type_specimen": {
+            "specimen_id": [
+              "DINO 11541"
+            ],
+            "specimen_type": "holotype",
+            "institution": "Dinosaur National Monument",
+            "material": "Nearly complete articulated skeleton: left half of skull with occluded mandible, cervical-caudal vertebral column, ribs, gastral basket, pectoral girdle and forelimb, complete pelvis, hindlimbs, and partial pes.",
+            "completeness": "complete"
+          },
+          "diagnostic_features": [
+            "Ventral margin of the jugal is virtually straight, lacking the pronounced sigmoidal convexity present in A. fragilis",
+            "Nasals bear paired, blade-like crests along their lateral margins forming a pronounced nasolacrimal crest, absent in A. fragilis",
+            "A row of neurovascular foramina pierces the medioventral wall of the maxillary antorbital fossa",
+            "Relatively taller lacrimal horns than in A. fragilis",
+            "Straight posteroventral jugal ramus of the maxilla where it articulates with the jugal, rather than the pronounced ventral deflection seen in A. fragilis",
+            "Axial intercentrum is rotated dorsally and has a flared rim in lateral view"
+          ],
+          "erected_in": "chure2020a",
+          "authors": "Chure, D. J.; Loewen, M. A.",
+          "described": 2020
+        }
+      ],
+      "notable_specimens": [
+        {
+          "nickname": "Big Al",
+          "specimen_id": [
+            "MOR 693"
+          ],
+          "institution": "Museum of the Rockies",
+          "category": "iconic",
+          "significance": "A 95 percent complete, partially articulated subadult, one of the most famous Allosaurus specimens. Renowned for its 19 broken or infected bones, including a long-lived foot infection that may have contributed to its death; later referred to A. jimmadseni.",
+          "discovered": {
+            "year": 1991,
+            "by": "Kirby Siber"
+          },
+          "references": [
+            "chure2020a"
+          ]
+        },
+        {
+          "nickname": "Big Al II",
+          "specimen_id": [
+            "SMA 0005"
+          ],
+          "institution": "Sauriermuseum Aathal",
+          "category": "exceptional-preservation",
+          "significance": "A second well-preserved Allosaurus from Howe Ranch. Preserves a 20 by 20 centimeter skin impression at the base of the tail showing large scales up to 2 centimeters across, though the scales resemble sauropod skin and associated non-theropod remains cast some doubt on the attribution.",
+          "references": [
+            "chure2020a"
+          ]
+        },
+        {
+          "specimen_id": [
+            "AMNH 5753"
+          ],
+          "institution": "American Museum of Natural History",
+          "category": "historic",
+          "significance": "Found in 1879 but left unpacked until 1903, when it proved to be one of the most complete theropod specimens then known. Put on view in 1908 as the first free-standing mount of a theropod dinosaur, famously posed as if scavenging an Apatosaurus, though never scientifically described.",
+          "discovered": {
+            "year": 1879,
+            "by": "H. F. Hubbell"
+          },
+          "references": [
+            "breithaupt1999a"
+          ]
+        },
+        {
+          "specimen_id": [
+            "AMNH 680"
+          ],
+          "institution": "American Museum of Natural History",
+          "category": "largest-individual",
+          "significance": "The largest definitive Allosaurus specimen, estimated at about 9.7 meters long and 2.3 to 2.7 tonnes, used to anchor maximum-size estimates for the genus.",
+          "references": [
+            "chure2000a"
+          ]
+        }
+      ],
+      "references": [
+        {
+          "id": "marsh1877c",
+          "authors": "Marsh, O. C.",
+          "year": 1877,
+          "title": "Notice of new dinosaurian reptiles from the Jurassic formation",
+          "journal": "American Journal of Science",
+          "publisher": "American Journal of Science (AJS)",
+          "volume": "s3-14",
+          "issue": "84",
+          "pages": "514-516",
+          "doi": "10.2475/ajs.s3-14.84.514"
+        },
+        {
+          "id": "gilmore1920a",
+          "authors": "Gilmore, C. W.",
+          "year": 1920,
+          "title": "Osteology of the carnivorous Dinosauria in the United States National Museum, with special reference to the genera Antrodemus (Allosaurus) and Ceratosaurus",
+          "journal": "Bulletin of the United States National Museum",
+          "publisher": "Smithsonian Institution",
+          "volume": "110",
+          "pages": "1-154",
+          "doi": "10.5479/si.03629236.110.i",
+          "notes": "Redescribes the neotype USNM 4734 (as Antrodemus); source of the holotype material."
+        },
+        {
+          "id": "breithaupt1999a",
+          "authors": "Breithaupt, B. H.",
+          "year": 1999,
+          "title": "AMNH 5753: The world's first free-standing theropod skeleton",
+          "journal": "Journal of Vertebrate Paleontology",
+          "volume": "19",
+          "issue": "3, Supplement",
+          "pages": "33A",
+          "doi": "10.1080/02724634.1999.10011202"
+        },
+        {
+          "id": "chure2000a",
+          "authors": "Chure, D. J.",
+          "year": 2000,
+          "title": "A new species of Allosaurus from the Morrison Formation of Dinosaur National Monument (UT-CO) and a revision of the theropod family Allosauridae",
+          "thesis": "doctoral",
+          "school": "Columbia University",
+          "notes": "Ph.D. dissertation."
+        },
+        {
+          "id": "paul2010a",
+          "authors": "Paul, G. S.; Carpenter, K.",
+          "year": 2010,
+          "title": "Allosaurus Marsh, 1877 (Dinosauria, Theropoda): proposed conservation of usage by designation of a neotype for its type species Allosaurus fragilis Marsh, 1877",
+          "journal": "Bulletin of Zoological Nomenclature",
+          "volume": "67",
+          "issue": "1",
+          "pages": "53-56",
+          "doi": "10.21805/bzn.v67i1.a7"
+        },
+        {
+          "id": "chure2020a",
+          "authors": "Chure, D. J.; Loewen, M. A.",
+          "year": 2020,
+          "title": "Cranial anatomy of Allosaurus jimmadseni, a new species from the lower part of the Morrison Formation (Upper Jurassic) of Western North America",
+          "journal": "PeerJ",
+          "volume": "8",
+          "pages": "e7803",
+          "doi": "10.7717/peerj.7803",
+          "notes": "Formally erects Allosaurus jimmadseni on holotype DINO 11541 from the lower Morrison Formation; source of the species diagnosis."
+        },
+        {
+          "id": "iczn2023a",
+          "authors": "International Commission on Zoological Nomenclature",
+          "year": 2023,
+          "title": "Opinion 2486 (Case 3506) - Allosaurus Marsh, 1877 (Dinosauria, Theropoda): usage conserved by designation of a neotype for its type species Allosaurus fragilis Marsh, 1877",
+          "journal": "Bulletin of Zoological Nomenclature",
+          "volume": "80",
+          "issue": "1",
+          "pages": "65-68",
+          "doi": "10.21805/bzn.v80.a015"
+        },
+        {
+          "id": "paul2024a",
+          "authors": "Paul, G. S.",
+          "year": 2024,
+          "title": "The Princeton Field Guide to Dinosaurs (3rd ed.)",
+          "publisher": "Princeton University Press",
+          "notes": "Source of the appearance features."
+        },
+        {
+          "id": "hendrickx2022a",
+          "authors": "Hendrickx, C.; Bell, P. R.; Pittman, M.; Milner, A. R. C.; Cuesta, E.; O'Connor, J.; Loewen, M.; Currie, P. J.; Mateus, O.; Kaye, T. G.; Delcourt, R.",
+          "year": 2022,
+          "title": "Morphology and distribution of scales, dermal ossifications, and other non-feather integumentary structures in non-avialan theropod dinosaurs",
+          "journal": "Biological Reviews",
+          "volume": "97",
+          "issue": "3",
+          "pages": "960-1004",
+          "doi": "10.1111/brv.12829",
+          "notes": "Documents preserved pebbly scale impressions in several specimens."
+        },
+        {
+          "id": "williston1901a",
+          "authors": "Williston, S. W.",
+          "year": 1901,
+          "title": "The dinosaurian genus Creosaurus, Marsh",
+          "journal": "American Journal of Science",
+          "publisher": "American Journal of Science",
+          "volume": "s4-11",
+          "issue": "62",
+          "pages": "111-114",
+          "doi": "10.2475/ajs.s4-11.62.111",
+          "notes": "Noted that Creosaurus was not adequately distinguished from Allosaurus."
+        }
+      ],
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Allosauroidea",
+        "Allosauria",
+        "Allosauridae"
+      ],
+      "authors": "Marsh, O. C.",
+      "described": 1877
+    },
+    "Daspletosaurus": {
+      "genus": "Daspletosaurus",
+      "parent": "Tyrannosaurinae",
+      "etymology": "From Greek daspletos ('frightful') + sauros ('lizard'), meaning 'frightful lizard'.",
+      "pronunciation": {
+        "phonetic": "das-PLEET-uh-SOR-uhs",
+        "ipa": "/dæsˌpliːtəˈsɔːrəs/"
+      },
+      "description": "Daspletosaurus is a genus of tyrannosaurid dinosaur that lived in Laramidia between about 77 and 74.4 million years ago, during the Late Cretaceous Period. The genus Daspletosaurus contains three named species. Fossils of the earlier type species, D. torosus, have been found in Alberta, while fossils of a later species, D. horneri, have been found in Montana and Alberta. D. wilsoni has been suggested as an intermediate species between D. torosus and D. horneri that evolved through anagenesis, though further research may be required to definitively support the theory.",
+      "diet": "carnivore",
+      "locomotion": "bipedal",
+      "paleoenvironment": [
+        "fluvial",
+        "coastal"
+      ],
+      "diagnostic_features": [
+        "Premaxilla does not contact nasal below external naris.",
+        "Lacrimal 'horn' triangular in lateral aspect, with apex centered above antorbital ramus of bone; exceeds postorbital 'horn' in development.",
+        "Neural spine of fourth cervical vertebra much larger than that of fifth; spine of fifth distally pointed.",
+        "In adults humerus length estimated equal to 38 per cent of femur length; forelimb powerfully developed.",
+        "Anterodistal condyle of metacarpal I reduced, causing first digit to diverge distally from second.",
+        "In adults circumference of femur equals 38 to 41 per cent of femur length."
+      ],
+      "appearance": {
+        "features": [
+          "cranial bosses"
+        ],
+        "integument": "scaled",
+        "evidence": "direct"
+      },
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "38608"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q18511071"
+        },
+        {
+          "source": "gbif",
+          "id": "4822634"
+        },
+        {
+          "source": "eol",
+          "id": "4433651"
+        },
+        {
+          "source": "zoobank",
+          "id": "CCD4EA0D-076C-4990-ADE5-BA1F5E329CC4"
+        }
+      ],
+      "species": [
+        {
+          "name": "Daspletosaurus torosus",
+          "etymology": "From Latin 'torosus' meaning 'muscular' or 'brawny', a reference to the animal's robust build.",
+          "status": "valid",
+          "type_species": true,
+          "period": {
+            "name": [
+              "Late Cretaceous"
+            ],
+            "stage": [
+              "Campanian"
+            ],
+            "from_ma": 83.6,
+            "to_ma": 72.2
+          },
+          "location": {
+            "country": "CA",
+            "locality": "Quarry 88",
+            "region": "Alberta",
+            "formation": "Oldman",
+            "notes": "Russell (1970) gives the type as from \"quarry 88 of Sternberg 1905\", under a pre-1993 Oldman Formation. Powers and colleagues (2026) list CMN 8506 at their quarry Q072, which they call the type locality, 3.867 m below the nearest Oldman-Dinosaur Park Formation contact.",
+            "region_code": "CA-AB"
+          },
+          "type_specimen": {
+            "specimen_id": [
+              "NMC 8506"
+            ],
+            "specimen_type": "holotype",
+            "institution": "Canadian Museum of Nature",
+            "material": "Skull and skeleton lacking hind limbs.",
+            "completeness": "partial"
+          },
+          "size": {
+            "length_m": {
+              "min": 8.5,
+              "max": 11
+            },
+            "weight_kg": {
+              "min": 2000,
+              "max": 3000
+            },
+            "hip_height_m": {
+              "min": 2.2,
+              "max": 2.2
+            },
+            "skull_length_m": {
+              "min": 1,
+              "max": 1
+            }
+          },
+          "erected_in": "russell1970a",
+          "authors": "Russell, D. A.",
+          "described": 1970
+        },
+        {
+          "name": "Daspletosaurus horneri",
+          "etymology": "Latinized form of 'Horner', honoring John R. (Jack) Horner for a Two Medicine Formation field program and mentorship.",
+          "status": "valid",
+          "type_species": false,
+          "period": {
+            "name": [
+              "Late Cretaceous"
+            ],
+            "stage": [
+              "Campanian"
+            ],
+            "from_ma": 83.6,
+            "to_ma": 72.2
+          },
+          "location": {
+            "country": "US",
+            "region": "Montana",
+            "formation": "Two Medicine",
+            "part": "upper",
+            "region_code": "US-MT",
+            "part_of": "formation"
+          },
+          "type_specimen": {
+            "specimen_id": [
+              "MOR 590"
+            ],
+            "specimen_type": "holotype",
+            "institution": "Museum of the Rockies",
+            "material": "Complete skull, partial pectoral limb, and nearly complete hindlimb."
+          },
+          "diagnostic_features": [
+            "Skull taller than in D. torosus, with a shorter rostral ramus of the lacrimal relative to the ventral ramus (rostral ramus longer in D. torosus).",
+            "Antorbital fossa of the lacrimal confluent with the ventral ramus of the bone (separated by a deep concavity in D. torosus).",
+            "Coronoid region of the surangular facing more laterally than dorsally (facing equally dorsally and laterally in D. torosus).",
+            "Primary lacrimal cornual process lower and less prominent, about 53% the height of the rostral ramus (about 69% in D. torosus).",
+            "Pneumatic foramen penetrating the lateral surface of the quadratojugal.",
+            "Humerus about 34% the length of the femur."
+          ],
+          "erected_in": "carr2017a",
+          "authors": "Carr, T. D.; Varricchio, D. J.; Sedlmayr, J. C.; Roberts, E. M.; Moore, J. R.",
+          "described": 2017
+        },
+        {
+          "name": "Daspletosaurus wilsoni",
+          "etymology": "Latinization of 'Wilson', after John Wilson, discoverer of the holotype.",
+          "status": "valid",
+          "type_species": false,
+          "period": {
+            "name": [
+              "Late Cretaceous"
+            ],
+            "stage": [
+              "Campanian"
+            ],
+            "from_ma": 83.6,
+            "to_ma": 72.2
+          },
+          "location": {
+            "country": "US",
+            "region": "Montana",
+            "formation": "Judith River",
+            "locality": "Jack's B2",
+            "region_code": "US-MT"
+          },
+          "type_specimen": {
+            "specimen_id": [
+              "BDM 107"
+            ],
+            "specimen_type": "holotype",
+            "institution": "Badlands Dinosaur Museum",
+            "material": "Partial skull and postcranium: premaxillae, maxilla, jugal, lacrimal, quadrate, quadratojugal, dentary, splenial, postorbital, squamosal, cervical/sacral/caudal vertebrae, rib, chevron, metatarsal."
+          },
+          "diagnostic_features": [
+            "Mylohyoid foramen of the splenial elongate and dorsoventrally shallow (much deeper in D. torosus and D. horneri).",
+            "Cornual process of the lacrimal short (5.2 cm), intermediate in height between the tall process of D. torosus and the low one of D. horneri.",
+            "Prefrontal oriented rostrocaudally (rostromedially to mediolaterally in D. horneri).",
+            "Cornual process of the postorbital subdivided into a supraorbital shelf and a caudodorsal tuberosity (undivided in D. horneri).",
+            "Dorsal quadrate contact of the quadratojugal broadly visible in lateral view (concealed in D. torosus).",
+            "Premaxillary tooth row oriented entirely mediolaterally, concealing all but the distalmost tooth in lateral view (rostromedial, several teeth visible in D. torosus)."
+          ],
+          "erected_in": "warshaw2022a",
+          "authors": "Warshaw, E. A.; Fowler, D. W.",
+          "described": 2022
+        }
+      ],
+      "notable_specimens": [
+        {
+          "nickname": "Pete III",
+          "specimen_id": [
+            "CMC VP 15826"
+          ],
+          "institution": "Museum of Natural History and Science, Cincinnati Museum Center",
+          "category": "largest-individual",
+          "significance": "Largest known specimen of Daspletosaurus, suggesting the genus could reach lengths of over 9 meters; its description identified new anatomical features previously unknown from the genus and may represent an unnamed species.",
+          "references": [
+            "warner-cowgill2025a"
+          ]
+        },
+        {
+          "specimen_id": [
+            "OTM 200"
+          ],
+          "institution": "Old Trail Museum",
+          "category": "gut-contents",
+          "significance": "Two Medicine Formation specimen preserving the digested remains of a juvenile hadrosaur in its gut region, providing direct evidence that Daspletosaurus fed on hadrosaurs.",
+          "references": [
+            "varricchio2001a"
+          ]
+        },
+        {
+          "specimen_id": [
+            "TMP 1985.062.0001"
+          ],
+          "institution": "Royal Tyrrell Museum of Paleontology",
+          "category": "pathology",
+          "significance": "A full-grown Dinosaur Park Daspletosaurus exhibiting tyrannosaur bite marks on its skull, cited as evidence of intraspecific facial biting in the genus.",
+          "references": [
+            "tanke1998a"
+          ]
+        },
+        {
+          "specimen_id": [
+            "FMNH PR308"
+          ],
+          "institution": "Field Museum of Natural History",
+          "species": "Daspletosaurus torosus",
+          "category": "historic",
+          "significance": "Nearly complete skeleton and skull collected by Barnum Brown, mounted for display in Chicago and labeled Albertosaurus libratus for many years before being reassigned to Daspletosaurus torosus.",
+          "discovered": {
+            "year": 1914,
+            "by": "Barnum Brown"
+          },
+          "references": [
+            "carr1999a"
+          ]
+        }
+      ],
+      "references": [
+        {
+          "id": "russell1970a",
+          "authors": "Russell, D. A.",
+          "year": 1970,
+          "title": "Tyrannosaurs from the Late Cretaceous of western Canada",
+          "journal": "Publications in Palaeontology",
+          "publisher": "National Museum of Natural Sciences, Ottawa",
+          "volume": "1",
+          "doi": "10.5281/zenodo.1040973"
+        },
+        {
+          "id": "powers2026a",
+          "authors": "Powers, M. J.; Napoli, J. G.; Coppock, C. C.; Sharpe, H. S.; Garros, C. W.; Demers-Potvin, A. V.; Raun, G. S.; Stock, J. C.; Miyashita, T.; Currie, P. J.",
+          "year": 2026,
+          "title": "A new albertosaurine from the Oldman Formation, Alberta, Canada, illuminates ambiguity between albertosaurine and tyrannosaurine characteristics",
+          "journal": "Journal of Vertebrate Paleontology",
+          "publisher": "Informa UK Limited",
+          "pages": "e2728669",
+          "doi": "10.1080/02724634.2026.2728669",
+          "notes": "Lists the holotype CMN 8506 at quarry Q072, 3.867 m below the nearest Oldman-Dinosaur Park Formation contact."
+        },
+        {
+          "id": "paul2024a",
+          "authors": "Paul, G. S.",
+          "year": 2024,
+          "title": "The Princeton Field Guide to Dinosaurs (3rd ed.)",
+          "publisher": "Princeton University Press",
+          "notes": "Source of the appearance features."
+        },
+        {
+          "id": "warner-cowgill2025a",
+          "authors": "Warner-Cowgill, E.; Storrs, G. W.; Rogers, R. R.; Maltese, A. E.",
+          "year": 2025,
+          "title": "Cranial anatomy and stratigraphy of a new specimen of the tyrannosaurine dinosaur Daspletosaurus from the Judith River Formation of Central Montana, USA",
+          "journal": "Acta Palaeontologica Polonica",
+          "volume": "70",
+          "issue": "1",
+          "pages": "159-174",
+          "doi": "10.4202/app.01143.2024"
+        },
+        {
+          "id": "varricchio2001a",
+          "authors": "Varricchio, D. J.",
+          "year": 2001,
+          "title": "Gut contents from a Cretaceous tyrannosaurid: implications for theropod dinosaur digestive tracts",
+          "journal": "Journal of Paleontology",
+          "volume": "75",
+          "issue": "2",
+          "pages": "401-406",
+          "doi": "10.1666/0022-3360(2001)075<0401:GCFACT>2.0.CO;2"
+        },
+        {
+          "id": "tanke1998a",
+          "authors": "Tanke, D. H.; Currie, P. J.",
+          "year": 1998,
+          "title": "Head-biting behavior in theropod dinosaurs: paleopathological evidence",
+          "journal": "Gaia",
+          "volume": "15",
+          "issue": "15",
+          "pages": "167-184",
+          "notes": "Issue dated 1998 but not printed until 2000."
+        },
+        {
+          "id": "carr1999a",
+          "authors": "Carr, T. D.",
+          "year": 1999,
+          "title": "Craniofacial ontogeny in Tyrannosauridae (Dinosauria, Coelurosauria)",
+          "journal": "Journal of Vertebrate Paleontology",
+          "volume": "19",
+          "issue": "3",
+          "pages": "497-520",
+          "doi": "10.1080/02724634.1999.10011161"
+        },
+        {
+          "id": "carr2017a",
+          "authors": "Carr, T. D.; Varricchio, D. J.; Sedlmayr, J. C.; Roberts, E. M.; Moore, J. R.",
+          "year": 2017,
+          "title": "A new tyrannosaur with evidence for anagenesis and crocodile-like facial sensory system",
+          "journal": "Scientific Reports",
+          "publisher": "Springer Science and Business Media LLC",
+          "volume": "7",
+          "pages": "44942",
+          "doi": "10.1038/srep44942",
+          "notes": "Erects Daspletosaurus horneri on skull MOR 590 from the Two Medicine Formation of Montana, proposing anagenesis from D. torosus."
+        },
+        {
+          "id": "warshaw2022a",
+          "authors": "Warshaw, E. A.; Fowler, D. W.",
+          "year": 2022,
+          "title": "A transitional species of Daspletosaurus Russell, 1970 from the Judith River Formation of eastern Montana",
+          "journal": "PeerJ",
+          "publisher": "PeerJ",
+          "volume": "10",
+          "pages": "e14461",
+          "doi": "10.7717/peerj.14461",
+          "notes": "Erects Daspletosaurus wilsoni on BDM 107 from the Judith River Formation of Montana, interpreted as morphologically transitional."
+        }
+      ],
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Coelurosauria",
+        "Tyrannosauroidea",
+        "Eutyrannosauria",
+        "Tyrannosauridae",
+        "Tyrannosaurinae"
+      ],
+      "authors": "Russell, D. A.",
+      "described": 1970
+    },
+    "Nanotyrannus": {
+      "genus": "Nanotyrannus",
+      "parent": "Eutyrannosauria",
+      "etymology": "Originally proposed by Bakker, Williams and Currie (1988) as Latin nano (\"small\") plus tyrannus (\"tyrant\"); the derivation is now usually corrected to Greek nanos (\"dwarf\" or \"pygmy\") and tyrannos (\"king\"), in reference to the small body size relative to other tyrannosauroids.",
+      "pronunciation": {
+        "ipa": "/ˌnænoʊˈtaɪrænəs/",
+        "phonetic": "NAN-oh-tye-RAN-us"
+      },
+      "description": "Nanotyrannus is a genus of tyrannosauroid dinosaur that lived in what is now western North America during the Maastrichtian age of the Late Cretaceous, 67 to 66 million years ago. Its fossils are known from the Hell Creek Formation. It was one of the last-known non-avian dinosaurs and lived until the Cretaceous-Paleogene extinction event. The first named species, N. lancensis, was described as a new species of Gorgosaurus in 1946 by Charles W. Gilmore based on a single skull. Re-examination of the specimen in 1988 by Robert T. Bakker, Michael Williams and Philip J. Currie moved the species to a new genus of tyrannosaurid, named Nanotyrannus in reference to its small body size compared to other tyrannosaurids.\n",
+      "dispute": {
+        "summary": "The validity of Nanotyrannus is actively contested. After the 1988 erection of the genus, Carr (1999) and Woodward and colleagues (2020) argued that the holotype CMNH 7541 is an immature Tyrannosaurus rex, citing tooth-grain immaturity and femoral osteohistology. Longrich and Saitta (2024), Zanno and Napoli (2025) — who erected a second species, N. lethaeus — and Griffin and colleagues (2025, ceratobranchial histology) reaffirmed Nanotyrannus as a distinct, skeletally mature taxon. No broad consensus yet.\n"
+      },
+      "diet": "carnivore",
+      "locomotion": "bipedal",
+      "paleoenvironment": [
+        "wetland"
+      ],
+      "diagnostic_features": [
+        "Muzzle width greatly constricted, only one fourth the width of the temporal region.",
+        "Extraordinarily wide basicranium between basitubera and basipterygoid processes.",
+        "Two large pneumatic foramina placed one behind the other near the midline of the basisphenoid.",
+        "Dorsal surface of the nasal lacks strong ridges and striae.",
+        "Parietal wing of the occiput with a sharp angle between dorsal and lateral edges.",
+        "Basicranial boxwork with flat ventral floor."
+      ],
+      "appearance": {
+        "integument": "unknown"
+      },
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "53212"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q131673"
+        },
+        {
+          "source": "gbif",
+          "id": "4822620"
+        },
+        {
+          "source": "eol",
+          "id": "4433653"
+        }
+      ],
+      "synonyms": [
+        {
+          "name": "Clevelanotyrannus",
+          "type": "nomen nudum",
+          "reason": "Unpublished manuscript name for CMNH 7541 that predated the formal description; the published 1988 paper (Bakker, Williams and Currie) used Nanotyrannus instead, so Clevelanotyrannus was never validly published."
+        }
+      ],
+      "erected_in": "bakker1988b",
+      "species": [
+        {
+          "name": "Nanotyrannus lancensis",
+          "etymology": "From Latin lancensis (\"of the Lance\"), referring to the Lance Formation — Gilmore's (1946) original (and mistaken) attribution of the holotype's geological context; the actual horizon is the Hell Creek Formation.",
+          "status": "disputed",
+          "type_species": true,
+          "period": {
+            "name": [
+              "Late Cretaceous"
+            ],
+            "stage": [
+              "Maastrichtian"
+            ],
+            "from_ma": 72.2,
+            "to_ma": 66
+          },
+          "location": {
+            "country": "US",
+            "region": "Montana",
+            "formation": "Hell Creek",
+            "locality": "Sand Creek",
+            "region_code": "US-MT"
+          },
+          "type_specimen": {
+            "specimen_id": [
+              "CMNH 7541"
+            ],
+            "specimen_type": "holotype",
+            "institution": "Cleveland Museum of Natural History",
+            "material": "A nearly complete skull with tightly articulated lower jaws (~57 cm premaxilla-to-quadrate); the right squamosal, postfrontal, quadratojugal and upper half of the right quadrate are missing, and many teeth are incomplete.",
+            "completeness": "partial"
+          },
+          "synonyms": [
+            {
+              "name": "Gorgosaurus lancensis",
+              "type": "reassigned",
+              "reason": "Original combination established by Gilmore (1946) for CMNH 7541, based on apparent affinities with G. sternbergi and G. libratus. Bakker, Williams and Currie (1988) reassigned the species to a new genus Nanotyrannus, yielding Nanotyrannus lancensis (Gilmore, 1946)."
+            },
+            {
+              "name": "Larsonvenator elegans",
+              "type": "junior subjective",
+              "reason": "Named by Sancarlo and Paul (2026) as a new genus and species on NCSM 40000, which Zanno and Napoli (2025) referred to N. lancensis. Sancarlo and Paul hold that its low, long-snouted skull and high tooth count fit no previously named taxon."
+            }
+          ],
+          "erected_as": "Gorgosaurus lancensis",
+          "erected_in": "gilmore1946a",
+          "authors": "Gilmore, C. W.",
+          "described": 1946
+        },
+        {
+          "name": "Nanotyrannus lethaeus",
+          "etymology": "From Latin Lethaeus, the adjective of Lethe (the mythological river of forgetfulness flowing through the Greco-Roman underworld); the name references both the Hell Creek Formation and the river's mythological role.",
+          "status": "valid",
+          "type_species": false,
+          "period": {
+            "name": [
+              "Late Cretaceous"
+            ],
+            "stage": [
+              "Maastrichtian"
+            ],
+            "from_ma": 72.2,
+            "to_ma": 66
+          },
+          "location": {
+            "country": "US",
+            "region": "Montana",
+            "formation": "Hell Creek",
+            "region_code": "US-MT"
+          },
+          "type_specimen": {
+            "specimen_id": [
+              "BMRP 2002.4.1"
+            ],
+            "specimen_type": "holotype",
+            "institution": "Burpee Museum of Natural History",
+            "material": "Partial skeleton (\"Jane\") including skull, axial column, pelvic and hindlimb elements; estimated body mass at death ~819 kg, asymptotic adult mass modeled at ~1,264 kg.",
+            "completeness": "partial"
+          },
+          "synonyms": [
+            {
+              "name": "Gilmoretyrannus lethaeus",
+              "type": "reassigned",
+              "reason": "Combination proposed by Sancarlo and Paul (2026), who erected the new genus Gilmoretyrannus for the species on the grounds that BMRP 2002.4.1 differs from the Nanotyrannus holotype CMNH 7541 more than species within other tyrannosaur genera differ from one another."
+            }
+          ],
+          "erected_in": "zanno2025a",
+          "authors": "Zanno, L. E.; Napoli, J. G.",
+          "described": 2025
+        }
+      ],
+      "notable_specimens": [
+        {
+          "nickname": "Bloody Mary",
+          "specimen_id": [
+            "NCSM 40000"
+          ],
+          "institution": "North Carolina Museum of Natural Sciences",
+          "species": "Nanotyrannus lancensis",
+          "category": "iconic",
+          "significance": "Virtually complete Hell Creek skeleton, the most complete known specimen of the genus and part of the Dueling Dinosaurs. Histology shows 25 cyclical growth marks and skeletal maturity, with death at age 17-22, central evidence that Nanotyrannus is a valid, mature taxon distinct from Tyrannosaurus.",
+          "discovered": {
+            "year": 2006
+          },
+          "references": [
+            "zanno2025a"
+          ]
+        }
+      ],
+      "references": [
+        {
+          "id": "bakker1988b",
+          "authors": "Bakker, R. T.; Williams, M.; Currie, P. J.",
+          "year": 1988,
+          "title": "Nanotyrannus, a new genus of pygmy tyrannosaur, from the latest Cretaceous of Montana",
+          "journal": "Hunteria",
+          "volume": "1",
+          "issue": "5",
+          "pages": "1-30",
+          "notes": "Erects Nanotyrannus lancensis on CMNH 7541 (transferred from Gorgosaurus lancensis Gilmore 1946); diagnosed on muzzle constriction, ziphodont maxillary teeth, and basicranial pneumatic pattern."
+        },
+        {
+          "id": "gilmore1946a",
+          "authors": "Gilmore, C. W.",
+          "year": 1946,
+          "title": "A new carnivorous dinosaur from the Lance Formation of Montana",
+          "journal": "Smithsonian Miscellaneous Collections",
+          "volume": "106",
+          "issue": "13",
+          "pages": "1-19",
+          "notes": "Original description of CMNH 7541 as Gorgosaurus lancensis on a nearly complete skull collected by D.H. Dunkle in 1942 from Carter County, Montana; published posthumously."
+        },
+        {
+          "id": "carr1999a",
+          "authors": "Carr, T. D.",
+          "year": 1999,
+          "title": "Craniofacial ontogeny in Tyrannosauridae (Dinosauria, Coelurosauria)",
+          "journal": "Journal of Vertebrate Paleontology",
+          "volume": "19",
+          "issue": "3",
+          "pages": "497-520",
+          "doi": "10.1080/02724634.1999.10011161",
+          "notes": "Anti-validity: \"I thus consider Nanotyrannus lancensis Bakker et al., 1988 a subjective junior synonym of Tyrannosaurus rex.\" Cites immature bone grain + 13 T. rex synapomorphies in CMNH 7541."
+        },
+        {
+          "id": "woodward2020a",
+          "authors": "Woodward, H. N.; Tremaine, K.; Williams, S. A.; Zanno, L. E.; Horner, J. R.; Myhrvold, N.",
+          "year": 2020,
+          "title": "Growing up Tyrannosaurus rex: Osteohistology refutes the pygmy 'Nanotyrannus' and supports ontogenetic niche partitioning in juvenile Tyrannosaurus",
+          "journal": "Science Advances",
+          "volume": "6",
+          "issue": "1",
+          "pages": "eaax6250",
+          "doi": "10.1126/sciadv.aax6250",
+          "notes": "Anti-validity histology: femur/tibia osteohistology of BMRP 2002.4.1 and 2006.4.4 shows woven-parallel cortex to periosteum with no EFS, interpreted as skeletally immature juvenile T. rex."
+        },
+        {
+          "id": "longrich2024d",
+          "authors": "Longrich, N. R.; Saitta, E. T.",
+          "year": 2024,
+          "title": "Taxonomic Status of Nanotyrannus lancensis (Dinosauria: Tyrannosauroidea) — A Distinct Taxon of Small-Bodied Tyrannosaur",
+          "journal": "Fossil Studies",
+          "volume": "2",
+          "issue": "1",
+          "pages": "1-65",
+          "doi": "10.3390/fossils2010001",
+          "notes": "Pro-validity: distinct taxon differing from T. rex in >150 characters; histology interpreted as mature subadults; phylogenetic analyses suggest Nanotyrannus may lie outside Tyrannosauridae."
+        },
+        {
+          "id": "zanno2025a",
+          "authors": "Zanno, L. E.; Napoli, J. G.",
+          "year": 2025,
+          "title": "Nanotyrannus and Tyrannosaurus coexisted at the close of the Cretaceous",
+          "journal": "Nature",
+          "volume": "648",
+          "pages": "357-367",
+          "doi": "10.1038/s41586-025-09801-6",
+          "notes": "Pro-validity. NCSM 40000 (\"Bloody Mary\") interpreted as mature N. lancensis (~700 kg); erects N. lethaeus on BMRP 2002.4.1 (\"Jane\"); erects Nanotyrannidae."
+        },
+        {
+          "id": "voris2025a",
+          "authors": "Voris, J. T.; Zelenitsky, D. K.; Kobayashi, Y.; Modesto, S. P.; Therrien, F.; Tsutsumi, H.; Chinzorig, T.; Tsogtbaatar, K.",
+          "year": 2025,
+          "title": "A new Mongolian tyrannosauroid and the evolution of Eutyrannosauria",
+          "journal": "Nature",
+          "publisher": "Springer Science and Business Media LLC",
+          "volume": "642",
+          "issue": "8069",
+          "pages": "973-979",
+          "doi": "10.1038/s41586-025-08964-6",
+          "notes": "Excludes N. lancensis from its phylogenetic analysis as a \"problematic\" taxon."
+        },
+        {
+          "id": "paul2025b",
+          "authors": "Paul, G. S.",
+          "year": 2025,
+          "title": "A presentation of the current data on the exceptionally diverse non-tyrannosaurid eutyrannosaur and Tyrannosaurini genera and species of western North America during the end Cretaceous North American interchange",
+          "journal": "Mesozoic",
+          "volume": "2",
+          "issue": "2",
+          "pages": "85-138",
+          "doi": "10.11646/mesozoic.2.2.1",
+          "notes": "Pro-validity under the Multiple Small Theropod Taxa Hypothesis; treats Hell Creek small graciles as multiple non-tyrannosaurid eutyrannosaurs; provisional diagnoses for Nanotyrannus and Stygivenator."
+        },
+        {
+          "id": "griffin2025a",
+          "authors": "Griffin, C. T.; Bugos, J.; Poust, A. W.; Morris, Z. S.; Sombathy, R. S.; D'Emic, M. D.; O'Connor, P. M.; Petermann, H.; Fabbri, M.; Colleary, C.",
+          "year": 2025,
+          "title": "A diminutive tyrannosaur lived alongside Tyrannosaurus rex",
+          "journal": "Science",
+          "doi": "10.1126/science.adx8706",
+          "notes": "Pro-validity: ceratobranchial I histology of CMNH 7541 indicates the specimen was nearing or had reached skeletal maturity, supporting taxonomic distinctness from coeval Tyrannosaurus rex."
+        },
+        {
+          "id": "woodward2026a",
+          "authors": "Woodward, H. N.; Myhrvold, N. P.; Horner, J. R.",
+          "year": 2026,
+          "title": "Prolonged growth and extended subadult development in the Tyrannosaurus rex species complex revealed by expanded histological sampling and statistical modeling",
+          "journal": "PeerJ",
+          "doi": "10.7717/peerj.20469",
+          "notes": "BMRP 2002.4.1 and 2006.4.4 \"do not fit with other Tyrannosaurus specimens\"; authors note data \"do not directly bear on the Nanotyrannus or multi-taxic proposals\" — agnostic but compatible."
+        },
+        {
+          "id": "sancarlo2026a",
+          "authors": "Sancarlo, F.; Paul, G. S.",
+          "year": 2026,
+          "title": "The taxonomics of the lithe basal eutyrannosaur genera and species of late Maastrichtian western North America",
+          "journal": "ZooNova",
+          "volume": "54",
+          "pages": "1-65",
+          "publisher": "Afriherp Communications",
+          "doi": "10.5281/zenodo.22944014",
+          "notes": "Proposes Gilmoretyrannus for N. lethaeus (BMRP 2002.4.1) and Larsonvenator elegans for NCSM 40000; its own analysis recovers both outside Tyrannosauridae with CMNH 7541."
+        }
+      ],
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Coelurosauria",
+        "Tyrannosauroidea",
+        "Eutyrannosauria"
+      ],
+      "authors": "Bakker, R. T.; Williams, M.; Currie, P. J.",
+      "described": 1988
+    },
+    "Tarbosaurus": {
+      "genus": "Tarbosaurus",
+      "parent": "Tyrannosaurinae",
+      "etymology": "From Ancient Greek 'tarbos' meaning 'terror' or 'alarm' and 'sauros' meaning 'lizard'.",
+      "pronunciation": {
+        "phonetic": "TAR-buh-SOR-uhs",
+        "ipa": "/ˌtɑːrbəˈsɔːrəs/"
+      },
+      "description": "Tarbosaurus is a genus of large tyrannosaurid dinosaur that lived in Asia during the Maastrichtian age of the Late Cretaceous epoch. It contains the type and single species Tarbosaurus bataar, which is known from the Nemegt Formation of Mongolia, with more fragmentary remains found further afield in the Subashi Formation of China. Tarbosaurus is represented by dozens of fossil specimens, including several complete skulls and skeletons. These remains have allowed studies focusing on its phylogeny, skull mechanics, and brain structure. Further fossil remains have been reported from other geologic formations of Asia, however, these remains are fragmentary and cannot be confidently assigned to Tarbosaurus or the type species.",
+      "diet": "carnivore",
+      "locomotion": "bipedal",
+      "paleoenvironment": [
+        "fluvial"
+      ],
+      "dispute": {
+        "summary": "The generic placement of the single Mongolian species is long debated. Maleev (1955) named the type material Tyrannosaurus bataar (holotype PIN 551-1) and, in a companion paper, erected Tarbosaurus for the related Tarbosaurus efremovi. Rozhdestvensky (1965) interpreted Maleev's several Mongolian species as growth stages of one animal and, keeping the genus Tarbosaurus, coined the combination Tarbosaurus bataar. Carpenter (1992) judged the differences from Tyrannosaurus to fall within normal individual and ontogenetic variation and sank Tarbosaurus into Tyrannosaurus (Tyrannosaurus bataar), whereas Olshevsky, Ford and Yamamoto (1995) instead split the material among Tarbosaurus, Jenghizkhan and Maleevosaurus. Most work since 1999 recognizes a single species; the majority retains Tarbosaurus bataar, with a minority (e.g. Carr and others) treating it as Tyrannosaurus bataar.\n"
+      },
+      "diagnostic_features": [
+        "Large skull, massive, with 2 large premaxillary foramina and third small foramen between premaxilla and maxilla",
+        "Pisolitic orbits",
+        "Maxilla long, raised, equipped with powerful saber-like teeth, slightly compressed and serrated marginally",
+        "Short neck consisting of 8-9 opisthocoelous cervical vertebrae",
+        "Forelimbs extremely reduced; humerus very short with strong deltopectoral crest; proportion of humerus to scapula 3:1",
+        "Pubic symphysis strongly elongate anteriorly and curved ventrally forming powerful bony foot"
+      ],
+      "appearance": {
+        "features": [
+          "reduced forelimbs",
+          "cranial bosses"
+        ],
+        "integument": "scaled",
+        "evidence": "direct"
+      },
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "53224"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q2491"
+        },
+        {
+          "source": "gbif",
+          "id": "4822629"
+        },
+        {
+          "source": "eol",
+          "id": "4433641"
+        }
+      ],
+      "synonyms": [
+        {
+          "name": "Maleevosaurus",
+          "type": "junior subjective",
+          "reason": "Erected by Carpenter (1992) for Gorgosaurus novojilovi; now generally interpreted as a juvenile Tarbosaurus."
+        },
+        {
+          "name": "Jenghizkhan",
+          "type": "possible subjective",
+          "reason": "Paul (2025) lists Jenghizkhan among the synonyms of Tarbosaurus but marks it doubtful, and offers no supporting discussion; the name is Paul's own coinage."
+        }
+      ],
+      "erected_in": "maleev1955a",
+      "species": [
+        {
+          "name": "Tarbosaurus bataar",
+          "etymology": "From Mongolian 'baatar' meaning 'hero', though the original spelling was a misspelling of the word.",
+          "status": "valid",
+          "type_species": true,
+          "period": {
+            "name": [
+              "Late Cretaceous"
+            ],
+            "stage": [
+              "Maastrichtian"
+            ],
+            "from_ma": 72.2,
+            "to_ma": 66
+          },
+          "location": {
+            "country": "MN",
+            "locality": "Nemegt",
+            "region": "Ömnögovi",
+            "formation": "Nemegt",
+            "region_code": "MN-053"
+          },
+          "type_specimen": {
+            "specimen_id": [
+              "PIN 551-1"
+            ],
+            "specimen_type": "holotype",
+            "institution": "Paleontological Institute, Russian Academy of Sciences",
+            "material": "Skull and postcranial skeleton.",
+            "completeness": "complete"
+          },
+          "size": {
+            "length_m": {
+              "min": 10,
+              "max": 12
+            },
+            "weight_kg": {
+              "min": 4500,
+              "max": 5000
+            },
+            "hip_height_m": {
+              "min": 3,
+              "max": 3
+            },
+            "skull_length_m": {
+              "min": 1.4,
+              "max": 1.4
+            }
+          },
+          "synonyms": [
+            {
+              "name": "Tyrannosaurus bataar",
+              "type": "reassigned",
+              "reason": "Original combination (Maleev, 1955, on holotype PIN 551-1); recombined as Tarbosaurus bataar by Rozhdestvensky (1965). Still used by authors who regard the taxon as an Asian species of Tyrannosaurus."
+            },
+            {
+              "name": "Tarbosaurus efremovi",
+              "type": "junior subjective",
+              "reason": "Named by Maleev (1955) on PIN 551-2 as the type species of Tarbosaurus; treated as a growth stage of T. bataar since Rozhdestvensky (1965)."
+            },
+            {
+              "name": "Gorgosaurus lancinator",
+              "type": "junior subjective",
+              "reason": "Named by Maleev (1955); synonymized with T. bataar as a growth stage by Rozhdestvensky (1965)."
+            },
+            {
+              "name": "Gorgosaurus novojilovi",
+              "type": "junior subjective",
+              "reason": "Named by Maleev (1955); made the basis of Maleevosaurus by Carpenter (1992) and later regarded as a juvenile Tarbosaurus."
+            },
+            {
+              "name": "Shanshanosaurus",
+              "type": "junior subjective",
+              "reason": "S. houyanshanensis has been provisionally accepted as referable to Tarbosaurus bataar."
+            }
+          ],
+          "erected_as": "Tyrannosaurus bataar",
+          "erected_in": "maleev1955b",
+          "authors": "Maleev, E. A.",
+          "described": 1955
+        }
+      ],
+      "notable_specimens": [
+        {
+          "specimen_id": [
+            "MPC-D 107/7"
+          ],
+          "institution": "Paleontological Center, Mongolian Academy of Sciences",
+          "species": "Tarbosaurus bataar",
+          "category": "ontogeny",
+          "significance": "A rare juvenile, probably 2 to 3 years old, with a complete 290 mm skull, documenting the life history and growth of Tarbosaurus; its weakly built skull and thin teeth indicate different food preferences in juveniles, and its sclerotic rings suggest crepuscular or nocturnal hunting.",
+          "discovered": {
+            "year": 2006
+          },
+          "references": [
+            "tsuihiji2011a"
+          ]
+        }
+      ],
+      "references": [
+        {
+          "id": "paul2025b",
+          "authors": "Paul, G. S.",
+          "year": 2025,
+          "title": "A presentation of the current data on the exceptionally diverse non-tyrannosaurid eutyrannosaur and Tyrannosaurini genera and species of western North America during the end Cretaceous North American interchange",
+          "journal": "Mesozoic",
+          "volume": "2",
+          "issue": "2",
+          "pages": "85-138",
+          "doi": "10.11646/mesozoic.2.2.1",
+          "notes": "Lists Jenghizkhan among the synonyms of Tarbosaurus, marked doubtful."
+        },
+        {
+          "id": "tsuihiji2011a",
+          "authors": "Tsuihiji, T.; Watabe, M.; Tsogtbaatar, K.; Tsubamoto, T.; Barsbold, R.; Suzuki, S.; Lee, A. H.; Ridgely, R. C.; Kawahara, Y.; Witmer, L. M.",
+          "year": 2011,
+          "title": "Cranial osteology of a juvenile specimen of Tarbosaurus bataar (Theropoda, Tyrannosauridae) from the Nemegt Formation (Upper Cretaceous) of Bugin Tsav, Mongolia",
+          "journal": "Journal of Vertebrate Paleontology",
+          "volume": "31",
+          "issue": "3",
+          "pages": "497-517",
+          "doi": "10.1080/02724634.2011.557116"
+        },
+        {
+          "id": "maleev1955a",
+          "authors": "Maleev, E. A.",
+          "year": 1955,
+          "title": "[New carnivorous dinosaurs from the Upper Cretaceous of Mongolia]",
+          "journal": "Doklady Akademii Nauk USSR",
+          "volume": "104",
+          "issue": "5",
+          "pages": "779-783"
+        },
+        {
+          "id": "maleev1955b",
+          "authors": "Maleev, E. A.",
+          "year": 1955,
+          "title": "[Giant carnivorous dinosaurs of Mongolia]",
+          "journal": "Doklady Akademii Nauk USSR",
+          "volume": "104",
+          "issue": "4",
+          "pages": "634-637",
+          "notes": "Original description of the species as Tyrannosaurus bataar."
+        },
+        {
+          "id": "rozhdestvensky1965a",
+          "authors": "Rozhdestvensky, A. K.",
+          "year": 1965,
+          "title": "[Growth changes in Asian dinosaurs and some problems of their taxonomy]",
+          "journal": "Paleontologicheskii Zhurnal",
+          "issue": "3",
+          "pages": "95-109",
+          "notes": "Established the combination Tarbosaurus bataar, treating Maleev's Mongolian species as growth stages."
+        },
+        {
+          "id": "carpenter1992a",
+          "authors": "Carpenter, K.",
+          "year": 1992,
+          "title": "Tyrannosaurids (Dinosauria) of Asia and North America",
+          "book": "Aspects of Nonmarine Cretaceous Geology",
+          "publisher": "China Ocean Press, Beijing",
+          "pages": "250-268",
+          "notes": "Reassigned the species to Tyrannosaurus and erected Maleevosaurus for Gorgosaurus novojilovi."
+        },
+        {
+          "id": "paul2024b",
+          "authors": "Paul, G. S.",
+          "year": 2024,
+          "title": "The Princeton Field Guide to Predatory Dinosaurs",
+          "publisher": "Princeton University Press",
+          "notes": "Source of the appearance features."
+        },
+        {
+          "id": "hendrickx2022a",
+          "authors": "Hendrickx, C.; Bell, P. R.; Pittman, M.; Milner, A. R. C.; Cuesta, E.; O'Connor, J.; Loewen, M.; Currie, P. J.; Mateus, O.; Kaye, T. G.; Delcourt, R.",
+          "year": 2022,
+          "title": "Morphology and distribution of scales, dermal ossifications, and other non-feather integumentary structures in non-avialan theropod dinosaurs",
+          "journal": "Biological Reviews",
+          "volume": "97",
+          "issue": "3",
+          "pages": "960-1004",
+          "doi": "10.1111/brv.12829",
+          "notes": "Documents pebbly body skin from the thoracic region and reticulate scales on referred pedal impressions."
+        },
+        {
+          "id": "olshevsky1995a",
+          "authors": "Olshevsky, G.; Ford, T. L.; Yamamoto, S.",
+          "year": 1995,
+          "title": "The origin and evolution of the tyrannosaurids (Part 1)",
+          "journal": "Kyoryugaku Saizensen",
+          "volume": "9",
+          "pages": "92-119"
+        }
+      ],
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Coelurosauria",
+        "Tyrannosauroidea",
+        "Eutyrannosauria",
+        "Tyrannosauridae",
+        "Tyrannosaurinae"
+      ],
+      "authors": "Maleev, E. A.",
+      "described": 1955
+    },
+    "Tyrannosaurus": {
+      "genus": "Tyrannosaurus",
+      "parent": "Tyrannosaurinae",
+      "etymology": "From Greek tyrannos (tyrant) and sauros (lizard); meaning \"tyrant lizard\", a name Osborn coined to convey the genus's exceptional size relative to all then-known carnivorous land vertebrates.",
+      "pronunciation": {
+        "phonetic": "ti-RAN-o-SAWR-us",
+        "ipa": "/tɪˌrænəˈsɔːrəs/"
+      },
+      "description": "Tyrannosaurus is a genus of large theropod dinosaur. The type species Tyrannosaurus rex (rex meaning 'king' in Latin), often shortened to T. rex, is one of the best represented theropods. It lived throughout what is now western North America, on what was then an island continent known as Laramidia, and had a much wider range than other tyrannosaurids. Fossils are found in a variety of geological formations dated to the late Maastrichtian age of the Late Cretaceous period, 69 to 66 million years ago, with isolated specimens possibly indicating an earlier origin in the middle Campanian age. It was one of the last known members of the tyrannosaurids and among the last non-avian dinosaurs to exist before the Cretaceous-Paleogene extinction event.",
+      "diet": "carnivore",
+      "locomotion": "bipedal",
+      "paleoenvironment": [
+        "fluvial",
+        "wetland"
+      ],
+      "appearance": {
+        "features": [
+          "reduced forelimbs",
+          "orbital crest"
+        ],
+        "integument": "scaled",
+        "evidence": "direct"
+      },
+      "diagnostic_features": [
+        "Megalocephalic skull with deep, massively built proportions, brought close to the sacrum by a shortened presacral column of approximately 23 vertebrae.",
+        "Fused nasals forming an arched midline ridge on the snout that reinforces the skull against bite-induced stress.",
+        "Teeth heterodont and broadly oval to D-shaped in cross-section, with transverse diameter exceeding anteroposterior; alveolar reinforcing plates on the inner surface of the maxilla and dentary.",
+        "Squamosal bearing a distinctive horizontal anterior bar projecting into the laterotemporal fenestra.",
+        "Forelimb extremely reduced; functionally didactyl manus with powerful recurved unguals; humerus little more than half the length of the femur.",
+        "Five sacral vertebrae coossified into a single neural plate with three small fenestrations between S2 and S5.",
+        "Pubis, ilium and ischium firmly coalesced; pubis terminating distally in a hugely expanded pedicle (\"pubic boot\").",
+        "Caudal series of approximately 53 vertebrae forming a long, flexible balancing tail without the rod-like rigidity of ornithomimids."
+      ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "38613"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q14332"
+        },
+        {
+          "source": "gbif",
+          "id": "4822631"
+        },
+        {
+          "source": "eol",
+          "id": "4433634"
+        },
+        {
+          "source": "zoobank",
+          "id": "FBBAFFFB-40AB-4429-AD28-C9DCC0FE6BEC"
+        }
+      ],
+      "species": [
+        {
+          "name": "Tyrannosaurus rex",
+          "etymology": "From Latin rex, \"king\", chosen by Osborn to evoke the animal's standing as the largest carnivorous land vertebrate then known.",
+          "status": "valid",
+          "type_species": true,
+          "period": {
+            "name": [
+              "Late Cretaceous"
+            ],
+            "stage": [
+              "Maastrichtian"
+            ],
+            "from_ma": 72.2,
+            "to_ma": 66
+          },
+          "location": {
+            "country": "US",
+            "region": "Montana",
+            "formation": "Hell Creek",
+            "locality": "Quarry No. 1, near Jordan",
+            "region_code": "US-MT"
+          },
+          "size": {
+            "hip_height_m": {
+              "min": 3.75,
+              "max": 3.75
+            },
+            "length_m": {
+              "min": 11.9,
+              "max": 13
+            },
+            "weight_kg": {
+              "min": 5400,
+              "max": 9500
+            }
+          },
+          "type_specimen": {
+            "specimen_id": [
+              "CM 9380"
+            ],
+            "specimen_type": "holotype",
+            "institution": "Carnegie Museum of Natural History",
+            "material": "Partial skeleton with both jaws and portions of the skull, vertebrae, ribs, scapula, humerus, ilium, pubis, ischium, and metapodials.",
+            "completeness": "partial"
+          },
+          "synonyms": [
+            {
+              "name": "Dinotyrannus megagracilis",
+              "type": "junior subjective",
+              "reason": "Erected by Olshevsky (1995) as a new genus for Albertosaurus megagracilis Paul, 1988. Currie and colleagues (2003) judged the material probably a juvenile Tyrannosaurus rex and later work has followed, though Longrich and Saitta (2024) refer it only to Tyrannosaurus indet."
+            },
+            {
+              "name": "Dynamosaurus imperiosus",
+              "type": "junior subjective",
+              "reason": "Erected by Osborn (1905) in the same paper as T. rex on AMNH 5866 from Wyoming; formally synonymized with T. rex by Osborn (1906) after direct comparison of the two type specimens."
+            },
+            {
+              "name": "Manospondylus gigas",
+              "type": "nomen oblitum",
+              "reason": "Erected by Cope (1892) on two dorsal vertebrae from the Hell Creek Formation of South Dakota; treated as indeterminate by Osborn (1917). The name is technically senior to Tyrannosaurus rex but, having been used in fewer than 25 publications since 1899, is suppressed under ICZN Article 23.9 in favor of Tyrannosaurus rex (nomen protectum)."
+            }
+          ],
+          "erected_in": "osborn1905a",
+          "authors": "Osborn, H. F.",
+          "described": 1905
+        }
+      ],
+      "notable_specimens": [
+        {
+          "nickname": "Sue",
+          "specimen_id": [
+            "FMNH PR2081"
+          ],
+          "institution": "Field Museum of Natural History",
+          "species": "Tyrannosaurus rex",
+          "category": "most-complete",
+          "significance": "The most complete (about 85 percent) and largest Tyrannosaurus skeleton, from the Hell Creek Formation. Histology shows it reached full size at age 19 and died at about 28, the longest estimated life of any tyrannosaur known.",
+          "discovered": {
+            "year": 1990,
+            "by": "Sue Hendrickson"
+          },
+          "references": [
+            "brochu2003a"
+          ]
+        },
+        {
+          "nickname": "Stan",
+          "specimen_id": [
+            "NHMAD 2020.00001",
+            "BHI 3033"
+          ],
+          "institution": "Natural History Museum Abu Dhabi",
+          "species": "Tyrannosaurus rex",
+          "category": "pathology",
+          "significance": "The second most complete Tyrannosaurus skeleton, 199 bones representing 70 percent of the total, from the Hell Creek Formation. Its pathologies include broken and healed ribs, a broken and healed neck, and a hole in the back of the head about the size of a Tyrannosaurus tooth.",
+          "discovered": {
+            "year": 1992,
+            "by": "Stan Sacrison"
+          },
+          "references": [
+            "wolff2009a",
+            "tanke1998a"
+          ]
+        },
+        {
+          "nickname": "Scotty",
+          "specimen_id": [
+            "RSM P2523.8"
+          ],
+          "institution": "Royal Saskatchewan Museum",
+          "species": "Tyrannosaurus rex",
+          "category": "largest-individual",
+          "significance": "Reported to measure 13 meters in length. Using a mass estimation technique extrapolating from femur circumference, Scotty was estimated as the largest known Tyrannosaurus specimen at 8.87 t in body mass.",
+          "references": [
+            "persons2019a"
+          ]
+        },
+        {
+          "nickname": "B-rex",
+          "specimen_id": [
+            "MOR 1125"
+          ],
+          "institution": "Museum of the Rockies",
+          "species": "Tyrannosaurus rex",
+          "category": "reproductive",
+          "significance": "From the Hell Creek Formation. Yielded medullary tissue in its femur, found only in female birds during ovulation, confirming it as a female that died during ovulation; the only Tyrannosaurus conclusively sexed. Also a source of reported soft-tissue blood vessels and collagen.",
+          "references": [
+            "schweitzer2005a"
+          ]
+        },
+        {
+          "nickname": "Wyrex",
+          "specimen_id": [
+            "HMNS 2006.1743.01",
+            "BHI 6230"
+          ],
+          "institution": "Houston Museum of Nature and Science",
+          "species": "Tyrannosaurus rex",
+          "category": "exceptional-preservation",
+          "significance": "Preserves patches of mosaic scales on the tail, hip, and neck, used in a 2017 review concluding that feather covering of large tyrannosaurids, if present, was limited to the upper side of the trunk. Also shows pathologies: a hole penetrating its jugal and severe tail trauma with bone remodeling.",
+          "discovered": {
+            "year": 2002,
+            "by": "Dan Wells and Don Wyrick"
+          },
+          "references": [
+            "bell2017a"
+          ]
+        },
+        {
+          "nickname": "Wankel rex",
+          "specimen_id": [
+            "MOR 555"
+          ],
+          "institution": "Museum of the Rockies",
+          "species": "Tyrannosaurus rex",
+          "category": "complementary",
+          "significance": "The first complete Tyrannosaurus forelimbs were identified in 1989 belonging to MOR 555, confirming that the genus had short two-fingered arms about 1 meter long, as had been suggested from the related Gorgosaurus.",
+          "references": [
+            "carpenter2001c"
+          ]
+        }
+      ],
+      "references": [
+        {
+          "id": "larson2008a",
+          "authors": "Larson, N. L.",
+          "year": 2008,
+          "title": "One Hundred Years of Tyrannosaurus rex: The Skeletons",
+          "book": "Tyrannosaurus rex, the Tyrant King (Larson, P.; Carpenter, K., eds.)",
+          "publisher": "Indiana University Press, Bloomington",
+          "pages": "1-55",
+          "notes": "Gives the holotype as \"From Quarry No. 1, near Jordan, Garfield County, MT (Osborn 1905)\"."
+        },
+        {
+          "id": "brochu2003a",
+          "authors": "Brochu, C. R.",
+          "year": 2003,
+          "title": "Osteology of Tyrannosaurus rex: insights from a nearly complete skeleton and high-resolution computed tomographic analysis of the skull",
+          "journal": "Society of Vertebrate Paleontology Memoirs",
+          "volume": "7",
+          "pages": "1-138",
+          "doi": "10.2307/3889334"
+        },
+        {
+          "id": "wolff2009a",
+          "authors": "Wolff, E. D. S.; Salisbury, S. W.; Horner, J. R.; Varricchio, D. J.",
+          "year": 2009,
+          "title": "Common avian infection plagued the tyrant dinosaurs",
+          "journal": "PLOS ONE",
+          "publisher": "Public Library of Science (PLoS)",
+          "volume": "4",
+          "issue": "9",
+          "pages": "e7288",
+          "doi": "10.1371/journal.pone.0007288"
+        },
+        {
+          "id": "tanke1998a",
+          "authors": "Tanke, D. H.; Currie, P. J.",
+          "year": 1998,
+          "title": "Head-biting behavior in theropod dinosaurs: paleopathological evidence",
+          "journal": "Gaia",
+          "volume": "15",
+          "issue": "15",
+          "pages": "167-184"
+        },
+        {
+          "id": "persons2019a",
+          "authors": "Persons, S. W.; Currie, P. J.; Erickson, G. M.",
+          "year": 2019,
+          "title": "An older and exceptionally large adult specimen of Tyrannosaurus rex",
+          "journal": "The Anatomical Record",
+          "volume": "303",
+          "issue": "4",
+          "pages": "656-672",
+          "doi": "10.1002/ar.24118"
+        },
+        {
+          "id": "schweitzer2005a",
+          "authors": "Schweitzer, M. H.; Wittmeyer, J. L.; Horner, J. R.",
+          "year": 2005,
+          "title": "Gender-specific reproductive tissue in ratites and Tyrannosaurus rex",
+          "journal": "Science",
+          "volume": "308",
+          "issue": "5727",
+          "pages": "1456-1460",
+          "doi": "10.1126/science.1112158"
+        },
+        {
+          "id": "bell2017a",
+          "authors": "Bell, P. R.; Campione, N. E.; Persons, W. S., IV; Currie, P. J.; Larson, P. L.; Tanke, D. H.; Bakker, R. T.",
+          "year": 2017,
+          "title": "Tyrannosauroid integument reveals conflicting patterns of gigantism and feather evolution",
+          "journal": "Biology Letters",
+          "volume": "13",
+          "issue": "6",
+          "pages": "20170092",
+          "doi": "10.1098/rsbl.2017.0092"
+        },
+        {
+          "id": "carpenter2001c",
+          "authors": "Carpenter, K.; Smith, M.",
+          "year": 2001,
+          "title": "Forelimb osteology and biomechanics of Tyrannosaurus rex",
+          "book": "Mesozoic Vertebrate Life: New Research Inspired by the Paleontology of Philip J. Currie (Tanke, D. H.; Carpenter, K., eds.)",
+          "publisher": "Indiana University Press, Bloomington",
+          "isbn": "978-0-253-33907-2",
+          "pages": "90-116"
+        },
+        {
+          "id": "osborn1905a",
+          "authors": "Osborn, H. F.",
+          "year": 1905,
+          "title": "Tyrannosaurus and other Cretaceous carnivorous dinosaurs",
+          "journal": "Bulletin of the American Museum of Natural History",
+          "volume": "21",
+          "issue": "14",
+          "pages": "259-265",
+          "doi": "10.5281/zenodo.814935",
+          "notes": "Erects Tyrannosaurus rex on AMNH 973 (now CM 9380) from the Hell Creek Formation of Dawson County, Montana, and in the same paper names Dynamosaurus imperiosus and Albertosaurus sarcophagus."
+        },
+        {
+          "id": "osborn1906a",
+          "authors": "Osborn, H. F.",
+          "year": 1906,
+          "title": "Tyrannosaurus, Upper Cretaceous carnivorous dinosaur (second communication)",
+          "journal": "Bulletin of the American Museum of Natural History",
+          "volume": "22",
+          "pages": "281-296",
+          "notes": "Refines the T. rex skull description and formally synonymizes Dynamosaurus imperiosus with Tyrannosaurus."
+        },
+        {
+          "id": "osborn1917a",
+          "authors": "Osborn, H. F.",
+          "year": 1917,
+          "title": "Skeletal adaptations of Ornitholestes, Struthiomimus, Tyrannosaurus",
+          "journal": "Bulletin of the American Museum of Natural History",
+          "volume": "35",
+          "issue": "43",
+          "pages": "733-771",
+          "notes": "First detailed monograph on the mounted AMNH 5027 referred skeleton; treats Manospondylus gigas as indeterminate and establishes the classic 20th-century Tyrannosaurus skeletal interpretation."
+        },
+        {
+          "id": "brusatte2010a",
+          "authors": "Brusatte, S. L.; Norell, M. A.; Carr, T. D.; Erickson, G. M.; Hutchinson, J. R.; Balanoff, A. M.; Bever, G. S.; Choiniere, J. N.; Makovicky, P. J.; Xu, X.",
+          "year": 2010,
+          "title": "Tyrannosaur paleobiology: new research on ancient exemplar organisms",
+          "journal": "Science",
+          "volume": "329",
+          "issue": "5998",
+          "pages": "1481-1485",
+          "doi": "10.1126/science.1193304",
+          "notes": "Modern multi-author review of tyrannosaur paleobiology; summarizes growth rate, bite force, ontogenetic skull change and locomotor modeling for T. rex."
+        },
+        {
+          "id": "molina-pérez2019a",
+          "authors": "Molina-Pérez, R.; Larramendi, A.",
+          "year": 2019,
+          "title": "Dinosaur Facts and Figures: The Theropods and Other Dinosauriformes",
+          "publisher": "Princeton University Press",
+          "isbn": "978-0-691-18031-1",
+          "notes": "Source of the hip height estimate."
+        },
+        {
+          "id": "paul2024b",
+          "authors": "Paul, G. S.",
+          "year": 2024,
+          "title": "The Princeton Field Guide to Predatory Dinosaurs",
+          "publisher": "Princeton University Press",
+          "notes": "Source of the appearance features."
+        },
+        {
+          "id": "currie2003a",
+          "authors": "Currie, P. J.; Hurum, J. H.; Sabath, K.",
+          "year": 2003,
+          "title": "Skull structure and evolution in tyrannosaurid dinosaurs",
+          "journal": "Acta Palaeontologica Polonica",
+          "volume": "48",
+          "issue": "2",
+          "pages": "227-234",
+          "url": "https://app.pan.pl/article/item/app48-227.html",
+          "notes": "Judges the material of Albertosaurus megagracilis, renamed Dinotyrannus megagracilis, probably a juvenile Tyrannosaurus rex."
+        },
+        {
+          "id": "cope1892a",
+          "authors": "Cope, E. D.",
+          "year": 1892,
+          "title": "Fourth note on the Dinosauria of the Laramie",
+          "journal": "The American Naturalist",
+          "publisher": "University of Chicago Press",
+          "volume": "26",
+          "issue": "310",
+          "pages": "756-758",
+          "doi": "10.1086/275585",
+          "notes": "Named Manospondylus gigas, later declared a nomen oblitum relative to Tyrannosaurus."
+        },
+        {
+          "id": "longrich2024d",
+          "authors": "Longrich, N. R.; Saitta, E. T.",
+          "year": 2024,
+          "title": "Taxonomic Status of Nanotyrannus lancensis (Dinosauria: Tyrannosauroidea) — A Distinct Taxon of Small-Bodied Tyrannosaur",
+          "journal": "Fossil Studies",
+          "volume": "2",
+          "issue": "1",
+          "pages": "1-65",
+          "doi": "10.3390/fossils2010001"
+        },
+        {
+          "id": "olshevsky1995a",
+          "authors": "Olshevsky, G.; Ford, T. L.; Yamamoto, S.",
+          "year": 1995,
+          "title": "The origin and evolution of the tyrannosaurids (Part 1)",
+          "journal": "Kyoryugaku Saizensen",
+          "volume": "9",
+          "pages": "92-119"
+        }
+      ],
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Coelurosauria",
+        "Tyrannosauroidea",
+        "Eutyrannosauria",
+        "Tyrannosauridae",
+        "Tyrannosaurinae"
+      ],
+      "authors": "Osborn, H. F.",
+      "described": 1905
+    }
+  }
+}

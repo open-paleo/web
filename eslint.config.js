@@ -172,6 +172,6 @@ export default defineConfig(
         },
     },
     {
-        ignores: ["dist/**", "public/**", "node_modules/**", "scratch/**", ".astro/**"],
+        ignores: ["dist/**", "public/**", "node_modules/**", "scratch/**", ".astro/**", "data/**", "src/data/bindings/open-paleo.d.ts"],
     },
 );
