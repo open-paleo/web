@@ -2,6 +2,7 @@ import type { GeologicTimeline } from "./age-figure.ts";
 import { createGeologicTimeline } from "./age-figure.ts";
 import type { Clade, Genus, Metadata, OpenPaleoDataset, Reference, TreeNode } from "./dataset.ts";
 import { loadDataset } from "./load-dataset.ts";
+import { getTypeSpecies } from "./records.ts";
 import { createSlug } from "./slugs.ts";
 import type { TaxonNameIndex } from "./taxon-names.ts";
 import { createTaxonNameIndex } from "./taxon-names.ts";
@@ -120,6 +121,47 @@ export type ReferenceEntry = {
      * Records that cite the work, genera first, each group sorted by name.
      */
     citations: Array<Citation>;
+
+    /**
+     * Names first published in the work: genera, species and clades, in that order.
+     */
+    namedTaxa: Array<NamedTaxon>;
+};
+
+/**
+ * The rank of a name established in a published work.
+ */
+export type NamedTaxonKind = "genus" | "species" | "clade";
+
+/**
+ * A name first published in a work, with the page that describes it.
+ */
+export type NamedTaxon = {
+    /**
+     * Whether the name is a genus, a species or a clade.
+     */
+    kind: NamedTaxonKind;
+
+    /**
+     * The name: "Tyrannosaurus", "Tyrannosaurus rex", "Tyrannosauridae".
+     */
+    name: string;
+
+    /**
+     * The binomial as first published, when a species was named in another genus.
+     */
+    publishedAs: string | undefined;
+
+    /**
+     * The section and slug of the page that describes it: a genus page for a genus or
+     * species, a clade page for a clade.
+     */
+    pageSlug: string;
+
+    /**
+     * Fragment of the page to link to: the species' section, or empty for the page itself.
+     */
+    anchor: string;
 };
 
 /**
@@ -260,11 +302,46 @@ function addCitations(
                 slug: createSlug(reference.id),
                 reference: createBibliographicReference(reference),
                 citations: new Array<Citation>(),
+                namedTaxa: new Array<NamedTaxon>(),
             };
             referenceById.set(reference.id, entry);
         }
 
         entry.citations.push({ kind, name, notes: reference.notes });
+    }
+}
+
+/**
+ * Record the works a genus and each of its species were first published in.
+ *
+ * A genus was erected in its own `erected_in` when the dataset gives one, and otherwise in the
+ * work that named its type species.
+ *
+ * @param genus - The genus.
+ * @param referenceById - Cited works by key; their named-taxa lists are added to.
+ */
+function addNamedGenus(genus: GenusEntry, referenceById: Map<string, ReferenceEntry>): void
+{
+    const record = genus.record;
+    const genusAuthority = record.erected_in ?? getTypeSpecies(record).erected_in;
+
+    referenceById.get(genusAuthority)?.namedTaxa.push({
+        kind: "genus",
+        name: genus.name,
+        publishedAs: undefined,
+        pageSlug: genus.slug,
+        anchor: "",
+    });
+
+    for (const species of record.species)
+    {
+        referenceById.get(species.erected_in)?.namedTaxa.push({
+            kind: "species",
+            name: species.name,
+            publishedAs: species.erected_as,
+            pageSlug: genus.slug,
+            anchor: createSlug(species.name),
+        });
     }
 }
 
@@ -382,6 +459,26 @@ export function createSiteData(dataset: OpenPaleoDataset): SiteData
         if (record)
         {
             addCitations(record.references, "clade", name, referenceById);
+        }
+    }
+
+    // Names established in each work: genera and their species, then clades.
+    for (const genus of genera)
+    {
+        addNamedGenus(genus, referenceById);
+    }
+
+    for (const clade of clades)
+    {
+        if (clade.record?.erected_in)
+        {
+            referenceById.get(clade.record.erected_in)?.namedTaxa.push({
+                kind: "clade",
+                name: clade.name,
+                publishedAs: undefined,
+                pageSlug: clade.slug,
+                anchor: "",
+            });
         }
     }
 

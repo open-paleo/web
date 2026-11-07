@@ -10,8 +10,9 @@ which is backed by published literature.
 
 The site is built with [Astro](https://astro.build/) as a fully static site.
 
-**Status:** the repository has its infrastructure, style guide, theme and Astro setup, with a
-placeholder home page. Pages generated from the dataset come next.
+**Status:** the site generates a page for every genus (1,428), every clade with a record (188)
+and every cited work (2,553). The home page is a placeholder, and the browse pages (genera
+table, tree, timeline) and the data page come next.
 
 ## Planned site
 

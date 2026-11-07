@@ -4,6 +4,12 @@
 
 ### Added
 
+- Reference pages (`reference/{slug}/`, one for each of the 2,553 cited works): kind of work,
+  title, authors and year, the full citation, the names first published in the work (genera,
+  species and clades, linking to their pages or species sections), and every genus and clade
+  that cites it with that record's note, each linking to the work in the record's reference
+  list. Every internal link on the site now resolves
+- Components: `CitingRecordList`, `NamedTaxonList`
 - Clade pages (`clade/{slug}/`, one for each of the 188 clades with a record): classification
   trail, authority and type genus, an age figure spanning every genus in the clade (with the
   stage row only when the span covers at most two epochs), description, dispute note,

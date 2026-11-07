@@ -187,3 +187,43 @@ test("two genera with the same slug are an error", () =>
     broken.genera["tyrannosaurus"] = broken.genera.Tyrannosaurus;
     assert.throws(() => createSiteData(broken), /same URL slug|both have the URL slug/);
 });
+
+test("a reference lists the names first published in it", () =>
+{
+    const named = new Array<string>();
+
+    for (const taxon of getReference("osborn1905a").namedTaxa)
+    {
+        named.push(taxon.kind + ":" + taxon.name);
+    }
+
+    assert.ok(named.includes("genus:Tyrannosaurus"));
+    assert.ok(named.includes("species:Tyrannosaurus rex"));
+});
+
+test("a named species links to its section of the genus page", () =>
+{
+    for (const taxon of getReference("osborn1905a").namedTaxa)
+    {
+        if (taxon.kind === "species" && taxon.name === "Tyrannosaurus rex")
+        {
+            assert.equal(taxon.pageSlug, "tyrannosaurus");
+            assert.equal(taxon.anchor, "tyrannosaurus-rex");
+        }
+    }
+});
+
+test("a clade is listed under the work that erected it", () =>
+{
+    let found = false;
+
+    for (const taxon of getReference("osborn1906a").namedTaxa)
+    {
+        if (taxon.kind === "clade" && taxon.name === "Tyrannosauridae")
+        {
+            found = true;
+        }
+    }
+
+    assert.ok(found);
+});

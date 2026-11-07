@@ -560,3 +560,36 @@ export function formatGenusCount(count: number): string
 {
     return integerFormat.format(count) + (count === 1 ? " genus" : " genera");
 }
+
+/**
+ * Name the kind of a published work from the fields its reference has.
+ *
+ * @param reference - The reference.
+ * @returns "Journal article", "Book chapter", "Book", "Doctoral thesis" and so on, or an empty
+ * string when the fields do not say.
+ */
+export function describeWorkKind(reference: Reference): string
+{
+    if (reference.thesis === "dissertation-abstract")
+    {
+        return "Dissertation abstract";
+    }
+    else if (reference.thesis)
+    {
+        return capitalizeFirstLetter(reference.thesis) + " thesis";
+    }
+    else if (reference.journal)
+    {
+        return "Journal article";
+    }
+    else if (reference.book)
+    {
+        return "Book chapter";
+    }
+    else if (reference.publisher)
+    {
+        return "Book";
+    }
+
+    return "";
+}

@@ -1,0 +1,70 @@
+---
+import type { NamedTaxon } from "../data/site-data.ts";
+import { createPagePath } from "../data/urls.ts";
+
+/**
+ * Properties of the list of names first published in a work.
+ */
+type Props = {
+    /**
+     * The names, genera and species first, then clades.
+     */
+    taxa: Array<NamedTaxon>;
+};
+
+const { taxa } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+
+/**
+ * Create the link to the page, or page section, that describes a name.
+ *
+ * @param taxon - The name.
+ * @returns The link target.
+ */
+function createTaxonLink(taxon: NamedTaxon): string
+{
+    const path = createPagePath(baseUrl, taxon.kind === "clade" ? "clade" : "genus", taxon.pageSlug);
+
+    return taxon.anchor ? path + "#" + taxon.anchor : path;
+}
+---
+
+<ul class="named-taxa">
+    {taxa.map((taxon) => (
+        <li>
+            <a class:list={{ taxon: taxon.kind !== "clade" }} href={createTaxonLink(taxon)}>{taxon.name}</a>
+            <span class="named-kind">{taxon.kind}</span>
+            {taxon.publishedAs && <span class="named-as">as <i class="taxon">{taxon.publishedAs}</i></span>}
+        </li>
+    ))}
+</ul>
+
+<style>
+    .named-taxa
+    {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+        gap: 0 var(--space-6);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0 var(--space-3);
+        padding-block: var(--space-2);
+        border-top: 1px solid var(--color-line);
+    }
+
+    .named-kind,
+    .named-as
+    {
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+</style>

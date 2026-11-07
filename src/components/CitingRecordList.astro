@@ -1,0 +1,75 @@
+---
+import type { Citation } from "../data/site-data.ts";
+import { getSiteData } from "../data/site-data.ts";
+import { createPagePath, createReferenceAnchor } from "../data/urls.ts";
+import Prose from "./Prose.astro";
+
+/**
+ * Properties of the list of records that cite a work.
+ */
+type Props = {
+    /**
+     * The citations, all of one kind (genera or clades).
+     */
+    citations: Array<Citation>;
+
+    /**
+     * Slug of the cited work, so each link lands on the work in the citing page's list.
+     */
+    referenceSlug: string;
+};
+
+const { citations, referenceSlug } = Astro.props;
+const siteData = getSiteData();
+const baseUrl = import.meta.env.BASE_URL;
+const anchor = "#" + createReferenceAnchor(referenceSlug);
+
+/**
+ * Create the link to a citing record's entry for this work.
+ *
+ * @param citation - The citation.
+ * @returns The link target: the record's page, at the work in its reference list.
+ */
+function createCitationLink(citation: Citation): string
+{
+    const slug = citation.kind === "genus"
+        ? siteData.genusByName.get(citation.name)?.slug ?? ""
+        : siteData.cladeByName.get(citation.name)?.slug ?? "";
+
+    return createPagePath(baseUrl, citation.kind, slug) + anchor;
+}
+---
+
+<ul class="citing-records">
+    {citations.map((citation) => (
+        <li>
+            <a class:list={{ taxon: citation.kind === "genus" }} href={createCitationLink(citation)}>{citation.name}</a>
+            {citation.notes && <p class="citation-notes"><Prose text={citation.notes.trim()} /></p>}
+        </li>
+    ))}
+</ul>
+
+<style>
+    .citing-records
+    {
+        display: grid;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li
+    {
+        display: grid;
+        gap: var(--space-1);
+        max-width: var(--measure);
+        padding-block: var(--space-3);
+        border-top: 1px solid var(--color-line);
+    }
+
+    .citation-notes
+    {
+        color: var(--color-muted);
+        font-size: var(--text-interface);
+    }
+</style>

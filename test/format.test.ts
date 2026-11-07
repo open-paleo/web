@@ -4,6 +4,7 @@ import { test } from "node:test";
 import {
     createCitationParts,
     describeAgeResolution,
+    describeWorkKind,
     formatAgeRange,
     formatAuthority,
     formatAuthorNames,
@@ -177,4 +178,14 @@ test("formatGenusCount uses the singular for one", () =>
     assert.equal(formatGenusCount(1), "1 genus");
     assert.equal(formatGenusCount(1428), "1,428 genera");
     assert.equal(formatGenusCount(0), "0 genera");
+});
+
+test("describeWorkKind names the kind of work from its fields", () =>
+{
+    assert.equal(describeWorkKind({ id: "a", journal: "Science" }), "Journal article");
+    assert.equal(describeWorkKind({ id: "b", book: "Mesozoic Vertebrate Life", publisher: "Indiana University Press" }), "Book chapter");
+    assert.equal(describeWorkKind({ id: "c", publisher: "Princeton University Press" }), "Book");
+    assert.equal(describeWorkKind({ id: "d", thesis: "doctoral", school: "University of Kansas" }), "Doctoral thesis");
+    assert.equal(describeWorkKind({ id: "e", thesis: "dissertation-abstract" }), "Dissertation abstract");
+    assert.equal(describeWorkKind({ id: "f", title: "Sinopsis" }), "");
 });
