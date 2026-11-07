@@ -1,0 +1,27 @@
+{
+  "name": "open-paleo-web",
+  "version": "0.1.0",
+  "description": "Static website for the Open Paleo phylogenetic dataset",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "lint": "eslint --no-error-on-unmatched-pattern scripts/ src/ test/",
+    "lint:fix": "eslint --no-error-on-unmatched-pattern scripts/ src/ test/ --fix",
+    "typecheck": "node node_modules/typescript7/bin/tsc --noEmit",
+    "spellcheck": "cspell \"**/*.md\" \"scripts/**/*.ts\" \"src/**/*.{ts,css,html}\" --no-progress"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@stylistic/eslint-plugin": "5.10.0",
+    "@types/node": "24.19.2",
+    "cspell": "10.4.0",
+    "eslint": "10.13.0",
+    "typescript": "npm:@typescript/typescript6@6.0.2",
+    "typescript-eslint": "8.72.1",
+    "typescript7": "npm:typescript@7.0.2"
+  }
+}

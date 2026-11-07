@@ -1,0 +1,173 @@
+/*
+ * Strata theme tokens. Every color, font, size and space on the site comes from this file; no
+ * other stylesheet writes a literal color.
+ *
+ * Structure (see docs/theme.md):
+ *   - bare :root holds every token with its light value
+ *   - the prefers-color-scheme block and the [data-theme="dark"] block redefine only the
+ *     tokens that change in dark mode, with identical values in both blocks
+ *   - geologic time colors are the same in both themes and are defined once
+ */
+
+:root
+{
+    color-scheme: light;
+
+    /* Surfaces and text. Cool limestone neutrals, biased slightly green toward the accent. */
+    --color-background: #eceeea;
+    --color-surface: #f7f8f5;
+    --color-ink: #1d2329;
+    --color-muted: #59625d;
+    --color-line: #cdd3cc;
+
+    /* Links, focus, selection. Glauconite green. */
+    --color-accent: #2c6655;
+    --color-accent-soft: #dce9e3;
+
+    /* Disputes and the "disputed" status. Ochre. Semantic, not a second accent. */
+    --color-caution: #8a5a0b;
+    --color-caution-soft: #f3e6c8;
+
+    /* Text drawn on top of geologic time colors. The time colors do not change with the theme,
+       so neither do these. */
+    --color-on-period: #1b1f22;
+    --color-on-period-dark: #ffffff;
+
+    /*
+     * Geologic time colors from the International Commission on Stratigraphy chart. Used only
+     * for age graphics. Named after the values in the data's schema.yml (so "early-permian",
+     * not "cisuralian"). Covers every period and stage the schema allows.
+     */
+    --period-permian: #f04028;
+    --epoch-early-permian: #ef5845;
+    --stage-asselian: #e36350;
+    --stage-sakmarian: #e36f5c;
+    --stage-artinskian: #e37b68;
+    --stage-kungurian: #e38776;
+    --epoch-middle-permian: #fb745c;
+    --stage-roadian: #fb8069;
+    --stage-wordian: #fb8d76;
+    --stage-capitanian: #fb9a85;
+    --epoch-late-permian: #fba794;
+    --stage-wuchiapingian: #fcb4a2;
+    --stage-changhsingian: #fcc0b2;
+
+    --period-triassic: #812b92;
+    --epoch-early-triassic: #983999;
+    --stage-induan: #a4469f;
+    --stage-olenekian: #b051a5;
+    --epoch-middle-triassic: #b168b1;
+    --stage-anisian: #bc75b7;
+    --stage-ladinian: #c983bf;
+    --epoch-late-triassic: #bd8cc3;
+    --stage-carnian: #c99bcb;
+    --stage-norian: #d6aad3;
+    --stage-rhaetian: #e3b9db;
+
+    --period-jurassic: #34b2c9;
+    --epoch-early-jurassic: #42aed0;
+    --stage-hettangian: #4eb3d3;
+    --stage-sinemurian: #67bcd8;
+    --stage-pliensbachian: #80c5dd;
+    --stage-toarcian: #99cee3;
+    --epoch-middle-jurassic: #80cfd8;
+    --stage-aalenian: #9ad9dd;
+    --stage-bajocian: #a6dde0;
+    --stage-bathonian: #b3e2e3;
+    --stage-callovian: #bfe7e5;
+    --epoch-late-jurassic: #b3e3ee;
+    --stage-oxfordian: #bfe7f1;
+    --stage-kimmeridgian: #ccecf4;
+    --stage-tithonian: #d9f1f7;
+
+    --period-cretaceous: #7fc64e;
+    --epoch-early-cretaceous: #8ccd57;
+    --stage-berriasian: #8ccd60;
+    --stage-valanginian: #99d36a;
+    --stage-hauterivian: #a6d975;
+    --stage-barremian: #b3df7f;
+    --stage-aptian: #bfe48a;
+    --stage-albian: #ccea97;
+    --epoch-late-cretaceous: #a6d84a;
+    --stage-cenomanian: #b3de53;
+    --stage-turonian: #bfe35d;
+    --stage-coniacian: #cce968;
+    --stage-santonian: #d9ef74;
+    --stage-campanian: #e6f47f;
+    --stage-maastrichtian: #f2fa8c;
+
+    --period-paleogene: #fd9a52;
+    --epoch-paleocene: #fda75f;
+    --stage-danian: #fdb462;
+    --stage-selandian: #febf65;
+    --stage-thanetian: #fdbf6f;
+    --epoch-eocene: #fdb46c;
+    --stage-ypresian: #fca773;
+
+    /* Typefaces. Alegreya carries headings, taxon names and prose; Alegreya Sans carries the
+       interface: navigation, tables, labels and figures. */
+    --font-serif: "Alegreya", "Iowan Old Style", Georgia, serif;
+    --font-sans: "Alegreya Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    /* Type scale, in rem against a 16px root. Body text is 17px. */
+    --text-caption: 0.8125rem;
+    --text-small: 0.875rem;
+    --text-interface: 0.9375rem;
+    --text-body: 1.0625rem;
+    --text-lede: 1.1875rem;
+    --text-heading-3: 1.1875rem;
+    --text-heading-2: 1.5rem;
+    --text-heading-1: 1.75rem;
+    --text-display: clamp(2.75rem, 7vw, 4rem);
+
+    --leading-body: 1.6;
+    --leading-heading: 1.15;
+
+    /* Spacing scale. */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+    --space-8: 4rem;
+
+    /* Shape and measure. */
+    --radius-small: 2px;
+    --radius: 4px;
+    --measure: 42rem;
+    --page-width: 72rem;
+    --sidebar-width: 19rem;
+}
+
+@media (prefers-color-scheme: dark)
+{
+    :root:not([data-theme="light"])
+    {
+        --color-background: #151a19;
+        --color-surface: #1d2321;
+        --color-ink: #e2e6e0;
+        --color-muted: #9aa49e;
+        --color-line: #323a37;
+        --color-accent: #80c4ab;
+        --color-accent-soft: #213731;
+        --color-caution: #e2b562;
+        --color-caution-soft: #3a2f19;
+        color-scheme: dark;
+    }
+}
+
+:root[data-theme="dark"]
+{
+    --color-background: #151a19;
+    --color-surface: #1d2321;
+    --color-ink: #e2e6e0;
+    --color-muted: #9aa49e;
+    --color-line: #323a37;
+    --color-accent: #80c4ab;
+    --color-accent-soft: #213731;
+    --color-caution: #e2b562;
+    --color-caution-soft: #3a2f19;
+    color-scheme: dark;
+}

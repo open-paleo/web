@@ -1,0 +1,37 @@
+{
+  "version": "0.2",
+  "language": "en-US",
+  "words": [
+    "Alegreya",
+    "Allman",
+    "clade",
+    "clades",
+    "Dinosauria",
+    "dubium",
+    "Fiorillo",
+    "Fontsource",
+    "glauconite",
+    "ICZN",
+    "lede",
+    "Loewen",
+    "Maastrichtian",
+    "Maryańska",
+    "Newick",
+    "nums",
+    "paleo",
+    "stratigraphic",
+    "taxon",
+    "Tykoski",
+    "Tyrannosaurinae",
+    "Tyrannosaurus",
+    "wght"
+  ],
+  "ignorePaths": [
+    "node_modules/**",
+    "public/**",
+    "scratch/**",
+    "package-lock.json",
+    "src/theme/fonts/**",
+    "src/theme/tokens.css"
+  ]
+}

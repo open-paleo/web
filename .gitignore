@@ -1,0 +1,23 @@
+# NodeJS
+node_modules/
+
+# The generated site. Built from ../data/dist/open-paleo.json and published by CI; never
+# committed.
+/public/
+
+# A local copy of the dataset, when OPEN_PALEO_DATA or ../data is not used.
+/data/
+
+# Generated reports and working files. Nothing here is ever committed; anything worth keeping
+# belongs in a GitHub issue.
+scratch/
+
+# Local working plans
+.claude/plans/
+
+# Local environment / secrets
+.env
+.env.*
+
+# MacOS
+.DS_Store

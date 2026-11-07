@@ -1,0 +1,146 @@
+/*
+ * Element defaults for the Strata theme. Components (the age figure, specimen label, status
+ * badges, dispute note) get their own stylesheets as the templates that use them are written.
+ */
+
+*,
+*::before,
+*::after
+{
+    box-sizing: border-box;
+}
+
+html
+{
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body
+{
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-ink);
+    font-family: var(--font-serif);
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+}
+
+h1,
+h2,
+h3
+{
+    margin: 0;
+    font-family: var(--font-serif);
+    line-height: var(--leading-heading);
+    text-wrap: balance;
+}
+
+h1
+{
+    font-size: var(--text-heading-1);
+    font-weight: 700;
+}
+
+h2
+{
+    font-size: var(--text-heading-2);
+    font-weight: 700;
+}
+
+h3
+{
+    font-size: var(--text-heading-3);
+    font-weight: 700;
+}
+
+p
+{
+    margin: 0;
+}
+
+a
+{
+    color: var(--color-accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+}
+
+a:hover
+{
+    text-decoration-thickness: 2px;
+}
+
+:focus-visible
+{
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+::selection
+{
+    background: var(--color-accent-soft);
+}
+
+img
+{
+    max-width: 100%;
+    height: auto;
+}
+
+/* Genus and species names are italic wherever they appear: a nomenclature convention, not
+   emphasis. Templates mark every taxon name with this class. */
+.taxon
+{
+    font-style: italic;
+}
+
+/* Digits that line up in columns or sit beside units. */
+.figures
+{
+    font-variant-numeric: tabular-nums lining-nums;
+}
+
+table
+{
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-sans);
+    font-size: var(--text-interface);
+}
+
+th
+{
+    padding: var(--space-2) var(--space-3) var(--space-1) 0;
+    border-bottom: 1px solid var(--color-ink);
+    color: var(--color-muted);
+    font-weight: 500;
+    text-align: left;
+    white-space: nowrap;
+}
+
+td
+{
+    padding: var(--space-2) var(--space-3) var(--space-2) 0;
+    border-bottom: 1px solid var(--color-line);
+    vertical-align: top;
+}
+
+button,
+input,
+select
+{
+    font: inherit;
+    color: inherit;
+}
+
+@media (prefers-reduced-motion: reduce)
+{
+    *,
+    *::before,
+    *::after
+    {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

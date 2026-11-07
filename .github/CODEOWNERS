@@ -1,0 +1,6 @@
+# Default: maintainers review everything
+*                       @open-paleo/maintainers
+
+# Critical files: require explicit review
+.github/                @open-paleo/maintainers
+src/theme/              @open-paleo/maintainers
