@@ -8,8 +8,10 @@ page for every genus, clade and cited reference, and adds search, filtering, a t
 and a timeline. It changes only the presentation: every value on it comes from the dataset,
 which is backed by published literature.
 
-**Status:** the repository has its infrastructure, style guide and theme. The site generator
-has not been written yet.
+The site is built with [Astro](https://astro.build/) as a fully static site.
+
+**Status:** the repository has its infrastructure, style guide, theme and Astro setup, with a
+placeholder home page. Pages generated from the dataset come next.
 
 ## Planned site
 
@@ -41,9 +43,13 @@ git clone https://github.com/open-paleo/web.git
 cd web
 npm install
 
-npm run typecheck   # TypeScript type checking
+npm run dev         # local server with live reload at http://localhost:4321/
+npm run build       # write the site to dist/
+npm run preview     # serve dist/ as it will be published
+
+npm run typecheck   # TypeScript and astro check
 npm run lint        # ESLint (style and correctness)
-npm run spellcheck  # cspell over Markdown, TypeScript, CSS and HTML
+npm run spellcheck  # cspell over Markdown, TypeScript, Astro and CSS
 ```
 
 The build will read the dataset from `../data/dist/open-paleo.json`, so clone

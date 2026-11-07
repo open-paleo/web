@@ -1,31 +1,10 @@
 {
+    "extends": "astro/tsconfigs/strict",
     "compilerOptions": {
-        "target": "ES2024",
-        "module": "NodeNext",
-        "moduleResolution": "NodeNext",
-        "lib": [
-            "ES2024",
-            "DOM",
-            "DOM.Iterable"
-        ],
-        "types": [
-            "node"
-        ],
-        "strict": true,
-        "noEmit": true,
-        "skipLibCheck": true,
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "resolveJsonModule": true,
-        "allowImportingTsExtensions": true,
-        "verbatimModuleSyntax": true,
-        "allowJs": true,
+        "lib": ["ESNext", "DOM", "DOM.Iterable"],
+        "types": ["node"],
         "checkJs": true
     },
-    "include": [
-        "eslint.config.js",
-        "scripts/**/*.ts",
-        "src/**/*.ts",
-        "test/**/*.ts"
-    ]
+    "include": [".astro/types.d.ts", "**/*"],
+    "exclude": ["dist", "node_modules", "scratch", "data"]
 }

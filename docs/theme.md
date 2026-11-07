@@ -9,7 +9,7 @@ The theme lives in [`src/theme/`](../src/theme/):
 
 | File | Contents |
 |------|----------|
-| `theme.css` | Entry point; pages link only this file |
+| `theme.css` | Entry point; `BaseLayout.astro` imports it, so every page gets it |
 | `fonts.css` | `@font-face` rules for the self-hosted fonts |
 | `tokens.css` | Every color, font, size and space as a custom property |
 | `base.css` | Element defaults (body, headings, links, tables, focus) |
@@ -107,7 +107,9 @@ Running text is limited to `--measure` (42rem, about 70 characters of Alegreya a
 
 ## Components
 
-These were settled in the theme mockup and will be built with the templates that use them:
+These were settled in the theme mockup. Each becomes an Astro component in `src/components/`
+with its styles in its own scoped `<style>` block, built along with the first page that uses
+it:
 
 | Component | Description |
 |-----------|-------------|

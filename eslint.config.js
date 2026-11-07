@@ -1,6 +1,8 @@
 import eslint from "@eslint/js";
+import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 import stylistic from "@stylistic/eslint-plugin";
+import astro from "eslint-plugin-astro";
 
 // Formatting rules shared with open-paleo/data and open-paleo/tree-extractor, so all three
 // repositories read the same way.
@@ -66,8 +68,6 @@ const sharedStylisticRules = {
 
 /** @type {import("eslint").Linter.RulesRecord} */
 const typeScriptRules = {
-    ...sharedStylisticRules,
-
     // Require node: protocol for Node.js built-in modules
     "no-restricted-imports": ["error", {
         paths: [
@@ -97,6 +97,11 @@ const typeScriptRules = {
         {
             selector: "typeLike",
             format: ["PascalCase"],
+        },
+        {
+            // Astro components are imported under PascalCase names (BaseLayout).
+            selector: "import",
+            format: ["camelCase", "PascalCase"],
         },
         {
             selector: "parameter",
@@ -131,18 +136,42 @@ const typeScriptRules = {
     "@typescript-eslint/array-type": ["error", { default: "generic" }],
 };
 
-export default tseslint.config(
+export default defineConfig(
     eslint.configs.recommended,
     {
-        // Build tooling (Node) and browser code (src/site)
-        files: ["scripts/**/*.ts", "src/**/*.ts", "test/**/*.ts"],
+        // Build tooling, data modules and browser scripts
+        files: ["*.ts", "scripts/**/*.ts", "src/**/*.ts", "test/**/*.ts"],
         extends: [...tseslint.configs.recommended],
         plugins: {
             "@stylistic": stylistic,
         },
-        rules: typeScriptRules,
+        rules: {
+            ...sharedStylisticRules,
+            ...typeScriptRules,
+        },
+    },
+    ...astro.configs["flat/recommended"],
+    {
+        // The TypeScript at the top of each component (its frontmatter) follows the same rules
+        // as any other TypeScript. ESLint does not check the template markup or <style> blocks;
+        // CONTRIBUTING.md covers those.
+        files: ["**/*.astro"],
+        languageOptions: {
+            parserOptions: {
+                parser: tseslint.parser,
+                extraFileExtensions: [".astro"],
+            },
+        },
+        plugins: {
+            "@stylistic": stylistic,
+            "@typescript-eslint": tseslint.plugin,
+        },
+        rules: {
+            ...sharedStylisticRules,
+            ...typeScriptRules,
+        },
     },
     {
-        ignores: ["public/**", "node_modules/**", "scratch/**"],
+        ignores: ["dist/**", "public/**", "node_modules/**", "scratch/**", ".astro/**"],
     },
 );

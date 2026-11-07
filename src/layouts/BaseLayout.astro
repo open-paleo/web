@@ -1,0 +1,94 @@
+---
+import "../theme/theme.css";
+
+/**
+ * Properties of the base layout, which every page uses.
+ */
+type Props = {
+    /**
+     * Page title without the site name. Omit it on the home page, whose title is the site name.
+     */
+    title?: string;
+
+    /**
+     * One sentence describing the page, for search engines and link previews.
+     */
+    description: string;
+};
+
+const { title, description } = Astro.props;
+const siteName = "Open Paleo";
+const documentTitle = title ? title + " | " + siteName : siteName;
+const homeUrl = import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content={description}>
+        <title>{documentTitle}</title>
+    </head>
+    <body>
+        <header class="site-header">
+            <a class="wordmark" href={homeUrl}>{siteName}</a>
+        </header>
+        <main class="site-main">
+            <slot />
+        </main>
+        <footer class="site-footer">
+            <p>
+                Data by Open Paleo contributors, licensed under
+                <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+                Site code licensed under the
+                <a href="https://github.com/open-paleo/web/blob/main/LICENSE">MIT License</a>.
+            </p>
+        </footer>
+    </body>
+</html>
+
+<style>
+    .site-header,
+    .site-main,
+    .site-footer
+    {
+        max-width: var(--page-width);
+        margin-inline: auto;
+        padding-inline: max(var(--space-4), env(safe-area-inset-left, 0px)) max(var(--space-4), env(safe-area-inset-right, 0px));
+    }
+
+    .site-header
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-3) var(--space-6);
+        padding-block: var(--space-5) var(--space-4);
+        border-bottom: 1px solid var(--color-line);
+        font-family: var(--font-sans);
+    }
+
+    .wordmark
+    {
+        color: var(--color-ink);
+        font-family: var(--font-serif);
+        font-size: var(--text-heading-2);
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    .site-main
+    {
+        padding-block: var(--space-6) var(--space-8);
+    }
+
+    .site-footer
+    {
+        padding-block: var(--space-5) var(--space-7);
+        border-top: 1px solid var(--color-line);
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+</style>

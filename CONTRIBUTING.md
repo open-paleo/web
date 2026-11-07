@@ -7,13 +7,15 @@ site rebuilds from the dataset, so a data fix there appears here on the next dep
 
 ## Technology
 
-- **TypeScript** for the build scripts (`scripts/`) and the browser code (`src/site/`)
-- **Node.js 24**, running TypeScript directly with `--experimental-strip-types`; no build step
-  for the scripts
-- **TypeScript 7** for `npm run typecheck`; `typescript` itself is aliased to TypeScript 6
-  because typescript-eslint needs its JavaScript API (the same arrangement as open-paleo/data)
-- **Plain CSS and HTML.** No framework, no CSS preprocessor, no runtime dependencies in the
-  browser
+- **[Astro](https://astro.build/)** as the static site generator. Every page is generated at
+  build time from the dataset; pages ship no JavaScript unless a component opts in
+- **TypeScript** for data modules, component logic, scripts and browser code
+- **Node.js 24**. Standalone scripts run directly with `--experimental-strip-types`
+- **TypeScript 7** checks `.ts` files; `astro check` checks `.astro` files with TypeScript 6.
+  `typescript` is aliased to TypeScript 6 because typescript-eslint and Astro's checker need its
+  JavaScript API (the same arrangement as open-paleo/data)
+- **Plain CSS.** Global theme files plus component-scoped `<style>` blocks; no CSS framework
+  or preprocessor
 
 ## Setup
 
@@ -21,6 +23,10 @@ site rebuilds from the dataset, so a data fix there appears here on the next dep
 git clone https://github.com/open-paleo/web.git
 cd web
 npm install
+
+npm run dev       # local server with live reload at http://localhost:4321/
+npm run build     # write the site to dist/
+npm run preview   # serve dist/ as it will be published
 ```
 
 The build reads the dataset from `../data/dist/open-paleo.json`, so clone
@@ -32,20 +38,27 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 - **Pin every dependency to an exact version**: `"eslint": "10.13.0"`, never `"^10.13.0"`. The
   repository's `.npmrc` sets `save-exact=true`, so `npm install <package>` writes an exact
   version. Upgrades are deliberate edits to `package.json`
+- **Choose a release at least two weeks old** when adding or upgrading a package, so a broken
+  or compromised release has time to be noticed and pulled
 - **No runtime dependencies in the browser.** Pages must work with JavaScript off; scripts add
   search, filters and interactive views on top
-- Keep development dependencies on the same versions as open-paleo/data, so the three
-  repositories lint and type-check alike
+- Keep the shared development dependencies (ESLint, typescript-eslint, TypeScript, cspell) on
+  the same versions as open-paleo/data, so the repositories lint and type-check alike
 
 ## Where things go
 
 | Path | Contents |
 |------|----------|
-| `scripts/` | Build tooling run by Node: reading the dataset, rendering pages, writing indexes |
-| `src/site/` | Browser TypeScript: search, filters, the tree and timeline views |
+| `src/pages/` | One `.astro` file per page type; Astro turns each into one or more pages |
+| `src/layouts/` | Page shells shared by the pages (`BaseLayout.astro`) |
+| `src/components/` | Reusable components: dispute note, age figure, reference list and so on |
+| `src/data/` | TypeScript that loads the dataset and prepares lookup tables for the pages |
+| `src/scripts/` | Browser TypeScript: search, filters, the tree and timeline views |
 | `src/theme/` | The Strata theme: tokens, fonts, element defaults. See [docs/theme.md](docs/theme.md) |
+| `public/` | Static files copied to the site unchanged (favicon, robots.txt) |
+| `scripts/` | Standalone Node tooling that is not part of the Astro build |
 | `docs/` | Design and architecture notes |
-| `public/` | Generated site output. Gitignored, never committed |
+| `dist/` | Generated site output. Gitignored, never committed |
 | `scratch/` | Generated reports and working files. Gitignored, never committed |
 
 ## The dataset is the only data source
@@ -106,7 +119,7 @@ follows tree-extractor.
   matches a declared type is fine
 - **No `any`.** Use real types, or `unknown` with a type guard
 - **Omit inferable annotations on variables**; keep them on parameters and return types
-- **Declare globals with types**, in a `.d.ts` (`src/site/globals.d.ts`), never with
+- **Declare globals with types**, in a `.d.ts` (`src/scripts/globals.d.ts`), never with
   `globalThis as { ... }` casts
 
 ### Naming
@@ -184,8 +197,69 @@ function countDisputedGenera(genera: Record<string, Genus>): number
 }
 ```
 
+## Astro components
+
+A component is an `.astro` file with three parts: TypeScript between `---` fences at the top
+(the frontmatter), template markup, and a `<style>` block.
+
+```astro
+---
+import type { Dispute } from "../data/dataset.ts";
+
+/**
+ * Properties of the dispute note.
+ */
+type Props = {
+    /**
+     * The record's dispute block.
+     */
+    dispute: Dispute;
+
+    /**
+     * What is disputed, as a question.
+     */
+    question: string;
+};
+
+const { dispute, question } = Astro.props;
+---
+
+<aside class="dispute-note">
+    <p class="dispute-title">Disputed: {question}</p>
+    <p>{dispute.summary}</p>
+</aside>
+
+<style>
+    .dispute-note
+    {
+        padding: var(--space-4) var(--space-5);
+        background: var(--color-caution-soft);
+        border-radius: var(--radius);
+    }
+</style>
+```
+
+- **The frontmatter follows every TypeScript rule in this guide**, and ESLint checks it
+- **Every component declares a `Props` type** with JSDoc on each field
+- **Component file names are PascalCase nouns** (`DisputeNote.astro`), because a component is
+  a thing on the page; page files under `src/pages/` are named for their URL
+- **Keep data work out of components.** Sorting, grouping, look-ups and formatting belong in
+  `src/data/` as tested functions; the frontmatter calls them and the template displays the
+  result
+- **`map` in template markup is allowed**, as the one exception to the rule on callbacks:
+  `{species.map((item) => <SpeciesSection species={item} />)}` is how Astro repeats elements,
+  and there is no loop form in a template. Keep the arrow to a single element; anything more
+  belongs in the frontmatter or in `src/data/`
+- **Astro escapes every `{value}` in the template.** Never use `set:html` on dataset text;
+  components that add markup to prose (italic taxon names) build it from escaped parts
+- ESLint does not check template markup or `<style>` blocks, so reviewers do: 4-space
+  indentation, double-quoted attributes, Allman braces in CSS
+
 ## CSS
 
+- **Styles live with their component.** Each component's `<style>` block is scoped to that
+  component by Astro. The global files in `src/theme/` hold only tokens, fonts and element
+  defaults
 - **Colors, fonts, sizes and spacing come from tokens** in `src/theme/tokens.css`. No literal
   color appears in any other stylesheet. A new color is a new token, with a dark value if it
   changes in dark mode. See [docs/theme.md](docs/theme.md)
@@ -227,9 +301,10 @@ function countDisputedGenera(genera: Record<string, Genus>): number
 npm run typecheck
 npm run lint
 npm run spellcheck
+npm run build
 ```
 
-All three run in CI on every pull request. Add words that the spell checker rejects but are
+All four run in CI on every pull request. Add words that the spell checker rejects but are
 correct (taxon names, font names) to `cspell.json`.
 
 ## AI and LLM use

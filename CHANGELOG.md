@@ -4,6 +4,10 @@
 
 ### Added
 
+- Astro 7 as the static site generator: configuration for directory-style URLs and a
+  configurable base path, a base layout that loads the theme, a placeholder home page, ESLint
+  rules for component code, `astro check` in type checking, and a build step in CI
+
 - Repository infrastructure: README, contributor and style guide, Claude Code instructions,
   MIT license, code of conduct, ESLint, TypeScript and cspell configuration, and a CI workflow
   that runs type checking, linting and spell checking

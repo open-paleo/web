@@ -19,10 +19,20 @@ Rules that are easy to miss:
 - **No abbreviated names**: `element`, `reference`, `index`, `event`, `initialize`
 - **American English** in code, comments, docs and site copy
 - **Multi-line JSDoc** on every function, type and type field
-- **Exact dependency versions**; no `^` or `~` in `package.json`
+- **Exact dependency versions**; no `^` or `~` in `package.json`, and pick releases at least
+  two weeks old
 
-Run `npm run typecheck`, `npm run lint` and `npm run spellcheck` before considering code
-complete.
+Astro components (see "Astro components" in CONTRIBUTING.md):
+
+- The frontmatter follows every TypeScript rule; every component declares a `Props` type
+- `map` with an arrow is allowed only in template markup, and only to output one element
+- Data work (sorting, grouping, look-ups, formatting) goes in `src/data/`, not in components
+- Never `set:html` on dataset text
+- Styles go in the component's own `<style>` block; `src/theme/` is for global tokens and
+  element defaults only
+
+Run `npm run typecheck`, `npm run lint`, `npm run spellcheck` and `npm run build` before
+considering code complete.
 
 ## Theme
 
@@ -50,5 +60,6 @@ say to commit or push.
 
 ## Generated output
 
-The generated site goes in `public/`, and reports and working files go in `scratch/`. Neither is
+The generated site goes in `dist/` (`public/` is Astro's folder of static files copied as-is),
+and reports and working files go in `scratch/`. Neither is
 ever committed. Anything in `scratch/` worth keeping belongs in a GitHub issue.

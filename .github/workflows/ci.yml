@@ -9,6 +9,9 @@ on:
 permissions:
   contents: read
 
+env:
+  ASTRO_TELEMETRY_DISABLED: 1
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -33,3 +36,6 @@ jobs:
 
       - name: Spell check
         run: npm run spellcheck
+
+      - name: Build
+        run: npm run build
