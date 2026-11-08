@@ -1,5 +1,6 @@
 ---
 import type { Synonym } from "../data/dataset.ts";
+import { sortSynonyms } from "../data/records.ts";
 import Prose from "./Prose.astro";
 
 /**
@@ -8,16 +9,16 @@ import Prose from "./Prose.astro";
  */
 type Props = {
     /**
-     * The synonyms.
+     * The synonyms. They are shown sorted by name.
      */
     synonyms: Array<Synonym>;
 };
 
-const { synonyms } = Astro.props;
+const sorted = sortSynonyms(Astro.props.synonyms);
 ---
 
 <ul class="synonym-list">
-    {synonyms.map((synonym) => (
+    {sorted.map((synonym) => (
         <li>
             <p class="synonym-heading"><i class="taxon">{synonym.name}</i> <span class="synonym-type">{synonym.type}</span></p>
             {synonym.reason && <p class="synonym-reason"><Prose text={synonym.reason.trim()} /></p>}
@@ -29,6 +30,7 @@ const { synonyms } = Astro.props;
     .synonym-list
     {
         display: grid;
+        max-width: var(--measure);
         margin: 0;
         padding: 0;
         list-style: none;

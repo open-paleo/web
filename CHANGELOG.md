@@ -16,6 +16,17 @@
 
 ### Changed
 
+- Section headings' rules span the content column; prose inside keeps to the reading measure
+- Synonyms are sorted by name in genus, species and clade lists
+- Diagnosis numbers sit in their own right-aligned column at body size
+- Features in the fact panel are a plain list rather than pills
+- The age figure's range marker sits behind the bands, showing as tabs above and below the
+  row, so it no longer crosses a band's label; bands in the range have bold labels. A range
+  that starts on a band boundary lines up with the band's color, past its separator
+- The footer is a full-width dark band, like the header, with links and the data release
+- Classification trail separators follow their item, so wrapped lines no longer start with one
+- An abbreviated genus stays on the line with its epithet ("P. sibiricus" never breaks after
+  "P.")
 - HTML compression is off, so template whitespace renders as written; it had run neighboring
   elements together in search excerpts and dropped spaces before links
 

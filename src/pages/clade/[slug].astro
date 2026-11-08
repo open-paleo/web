@@ -147,13 +147,13 @@ const placedDirectly = entry.genusNames.length;
             )}
 
             {genusRows.length > 0 && (
-                <PageSection title={"Genera placed directly in " + entry.name} isWide>
+                <PageSection title={"Genera placed directly in " + entry.name}>
                     <CladeGenusTable rows={genusRows} rangeHeading={rangeHeading} />
                 </PageSection>
             )}
 
             {record.synonyms && record.synonyms.length > 0 && (
-                <PageSection title="Synonyms" isWide>
+                <PageSection title="Synonyms">
                     <SynonymTable synonyms={record.synonyms} />
                 </PageSection>
             )}

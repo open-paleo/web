@@ -117,14 +117,14 @@ const pronunciation = genus.pronunciation;
                 </PageSection>
             )}
 
-            <PageSection title={genus.species.length === 1 ? "Species" : "Species (" + genus.species.length + ")"} isWide={genus.species.length > 1}>
+            <PageSection title={genus.species.length === 1 ? "Species" : "Species (" + genus.species.length + ")"}>
                 <div class="species-grid">
                     {genus.species.map((species) => <SpeciesSection species={species} />)}
                 </div>
             </PageSection>
 
             {genus.synonyms && genus.synonyms.length > 0 && (
-                <PageSection title="Synonyms of the genus" isWide>
+                <PageSection title="Synonyms of the genus">
                     <SynonymTable synonyms={genus.synonyms} />
                 </PageSection>
             )}

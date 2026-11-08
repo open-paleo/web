@@ -79,6 +79,11 @@ export type AgeBand = {
      * Width of the band as a percentage of the row.
      */
     widthPercent: number;
+
+    /**
+     * True when the record's age range overlaps the band; its label is emphasized.
+     */
+    isInRange: boolean;
 };
 
 /**
@@ -94,6 +99,13 @@ export type AgeMarker = {
      * Width as a percentage of the row.
      */
     widthPercent: number;
+
+    /**
+     * True when the marker starts on a boundary between two bands, rather than at the row's
+     * start or inside a band. Each band draws its separator on its first pixel, so the marker
+     * then starts one pixel later to line up with the band's color.
+     */
+    startsAtBandBoundary: boolean;
 };
 
 /**
@@ -305,11 +317,21 @@ function createAgeRow(label: string, units: Array<TimeUnit>, tokenPrefix: string
             colorToken: "--" + tokenPrefix + "-" + createSlug(unit.name),
             hasDarkColor: hasDarkChartColor(unit.name),
             widthPercent: (unit.fromMa - unit.toMa) / span * 100,
+            isInRange: overlapsRange(unit, fromMa, toMa),
         });
     }
 
     const markerFrom = Math.min(fromMa, rowFrom);
     const markerTo = Math.max(toMa, rowTo);
+    let startsAtBandBoundary = false;
+
+    for (let index = 1; index < units.length; index++)
+    {
+        if (units[index].fromMa === markerFrom)
+        {
+            startsAtBandBoundary = true;
+        }
+    }
 
     return {
         label,
@@ -319,6 +341,7 @@ function createAgeRow(label: string, units: Array<TimeUnit>, tokenPrefix: string
         marker: {
             leftPercent: (rowFrom - markerFrom) / span * 100,
             widthPercent: Math.max(markerFrom - markerTo, 0) / span * 100,
+            startsAtBandBoundary,
         },
     };
 }

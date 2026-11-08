@@ -286,6 +286,9 @@ const { dispute, question } = Astro.props;
   "underCC BY") and ran neighboring elements together in the text Pagefind indexes for search.
   Output of a `map` has no whitespace between items, so a list of inline items needs explicit
   separators or a flex container
+- **Wrap prose in one element before placing it in a grid or flex container.** Every text run and
+  inline element directly inside a grid or flex container becomes an item of its own, so a
+  sentence containing an italic name would split into separate cells
 - **Astro escapes every `{value}` in the template.** Never use `set:html` on dataset text;
   components that add markup to prose (italic taxon names) build it from escaped parts
 - ESLint does not check template markup or `<style>` blocks, so reviewers do: 4-space

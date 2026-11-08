@@ -4,7 +4,7 @@ import { test } from "node:test";
 import * as url from "node:url";
 
 import { readDataset } from "../src/data/load-dataset.ts";
-import { getTypeSpecies, listSizeMeasurements } from "../src/data/records.ts";
+import { getTypeSpecies, listSizeMeasurements, sortSynonyms } from "../src/data/records.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
 const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.3.0");
@@ -28,4 +28,26 @@ test("listSizeMeasurements orders and formats the recorded sizes", () =>
 test("listSizeMeasurements returns nothing for a species without sizes", () =>
 {
     assert.deepEqual(listSizeMeasurements(undefined), []);
+});
+
+test("sortSynonyms orders by name and leaves the given list unchanged", () =>
+{
+    // Tyrannosaurus rex's synonyms, reversed so the sort has work to do.
+    const synonyms = [...(getTypeSpecies(dataset.genera.Tyrannosaurus).synonyms ?? [])].reverse();
+    const before = new Array<string>();
+    const sorted = new Array<string>();
+
+    for (const synonym of synonyms)
+    {
+        before.push(synonym.name);
+    }
+
+    for (const synonym of sortSynonyms(synonyms))
+    {
+        sorted.push(synonym.name);
+    }
+
+    assert.deepEqual(before, ["Manospondylus gigas", "Dynamosaurus imperiosus", "Dinotyrannus megagracilis"]);
+    assert.deepEqual(sorted, ["Dinotyrannus megagracilis", "Dynamosaurus imperiosus", "Manospondylus gigas"]);
+    assert.equal(synonyms[0].name, "Manospondylus gigas", "the given list keeps its order");
 });

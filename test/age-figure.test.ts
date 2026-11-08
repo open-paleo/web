@@ -245,3 +245,34 @@ test("every age band label reaches 4.5:1 against its chart color", () =>
         assert.ok(contrast >= 4.5, name + " label contrast is " + contrast.toFixed(2) + ":1");
     }
 });
+
+test("bands the record's range overlaps are marked in range", () =>
+{
+    const model = createAgeFigureModel({ from_ma: 72.2, to_ma: 66 }, getTimeline());
+
+    assert.ok(model?.stageRow);
+    const inRange = new Array<string>();
+
+    for (const band of [...model.periodRow.bands, ...model.stageRow.bands])
+    {
+        if (band.isInRange)
+        {
+            inRange.push(band.name);
+        }
+    }
+
+    assert.deepEqual(inRange, ["Cretaceous", "Maastrichtian"]);
+});
+
+test("a marker starting on a band boundary is flagged, one starting inside a band or at the row start is not", () =>
+{
+    const timeline = getTimeline();
+    const earlyJurassic = createAgeFigureModel({ from_ma: 201.4, to_ma: 192.9 }, timeline);
+    const insideBands = createAgeFigureModel({ from_ma: 70, to_ma: 66 }, timeline);
+
+    assert.ok(earlyJurassic?.stageRow);
+    assert.equal(earlyJurassic.periodRow.marker.startsAtBandBoundary, true, "the Jurassic starts at 201.4 Ma");
+    assert.equal(earlyJurassic.stageRow.marker.startsAtBandBoundary, false, "the stage row itself starts at 201.4 Ma");
+    assert.ok(insideBands?.stageRow);
+    assert.equal(insideBands.stageRow.marker.startsAtBandBoundary, false);
+});

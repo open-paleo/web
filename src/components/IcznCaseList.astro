@@ -27,7 +27,7 @@ const { cases, references } = Astro.props;
     {cases.map((icznCase) => (
         <li>
             <p class="case-heading">
-                {capitalizeFirstLetter(formatVocabularyValue(icznCase.type))}
+                <span class="case-type">{capitalizeFirstLetter(formatVocabularyValue(icznCase.type))}</span>
                 {icznCase.case && <span class="case-number">Case {icznCase.case}</span>}
                 <span class="case-status">{icznCase.status === "opinion" ? "Ruled" : capitalizeFirstLetter(icznCase.status)}</span>
             </p>

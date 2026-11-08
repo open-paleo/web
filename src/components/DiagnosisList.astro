@@ -14,24 +14,42 @@ type Props = {
 const { features } = Astro.props;
 ---
 
-<ol class="diagnosis-list">
-    {features.map((feature) => <li><Prose text={feature.trim()} /></li>)}
+{/* role="list" keeps the list announced as one where list-style: none would remove it (Safari).
+   Each item is a two-column grid (number, text), so the text is wrapped in one span: unwrapped,
+   every text run and italic name would become a grid cell of its own. */}
+<ol class="diagnosis-list" role="list">
+    {features.map((feature) => <li><span class="feature-text"><Prose text={feature.trim()} /></span></li>)}
 </ol>
 
 <style>
+    /* Numbers sit in their own column, right-aligned so 9 and 10 line up, with a clear gap
+       before the text. The list starts flush with the text around it. */
     .diagnosis-list
     {
         display: grid;
-        gap: var(--space-2);
+        gap: var(--space-3);
         max-width: var(--measure);
         margin: 0;
-        padding-left: var(--space-5);
+        padding: 0;
+        list-style: none;
+        counter-reset: feature;
     }
 
-    li::marker
+    li
     {
+        display: grid;
+        grid-template-columns: 1.75rem minmax(0, 1fr);
+        gap: var(--space-3);
+        counter-increment: feature;
+    }
+
+    li::before
+    {
+        content: counter(feature) ".";
         color: var(--color-muted);
         font-family: var(--font-sans);
-        font-size: var(--text-small);
+        font-weight: 500;
+        font-variant-numeric: tabular-nums;
+        text-align: right;
     }
 </style>

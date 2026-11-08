@@ -663,3 +663,20 @@ export function formatDistinctShortCitations(references: Array<Reference>): Map<
 
     return labels;
 }
+
+/**
+ * A non-breaking space, built from its code so the source shows what it is.
+ */
+const nonBreakingSpace = String.fromCharCode(160);
+
+/**
+ * Keep an abbreviated genus on the same line as its epithet: "P. sibiricus" never breaks after
+ * "P.". Other names are returned unchanged.
+ *
+ * @param name - A genus or species name as it appears in prose.
+ * @returns The name, with a non-breaking space after a genus initial.
+ */
+export function bindAbbreviatedGenus(name: string): string
+{
+    return /^\p{Lu}\. /u.test(name) ? name.replace(" ", nonBreakingSpace) : name;
+}

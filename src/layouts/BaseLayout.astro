@@ -1,5 +1,6 @@
 ---
 import "../theme/theme.css";
+import { getSiteData } from "../data/site-data.ts";
 
 /**
  * The sections of the site that have a link in the header.
@@ -56,6 +57,7 @@ const { title, description, section, searchQuery = "" } = Astro.props;
 const siteName = "Open Paleo";
 const documentTitle = title ? title + " | " + siteName : siteName;
 const homeUrl = import.meta.env.BASE_URL;
+const release = getSiteData().metadata;
 const navigationItems: Array<NavigationItem> = [
     { section: "genera", label: "Genera", path: "genera/" },
     { section: "tree", label: "Tree", path: "tree/" },
@@ -104,10 +106,22 @@ const navigationItems: Array<NavigationItem> = [
             <slot />
         </main>
         <footer class="site-footer">
-            <p>
-                Data by Open Paleo contributors, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
-                Site code licensed under the <a href="https://github.com/open-paleo/web/blob/main/LICENSE">MIT License</a>.
-            </p>
+            <div class="site-footer-inner">
+                <div class="footer-about">
+                    <a class="footer-wordmark" href={homeUrl}>{siteName}</a>
+                    <p>A community-maintained phylogenetic dataset for paleontology, backed by published literature.</p>
+                </div>
+                <ul class="footer-links">
+                    <li><a href={homeUrl + "data/"}>Download and cite the data</a></li>
+                    <li><a href="https://github.com/open-paleo/data">Dataset on GitHub</a></li>
+                    <li><a href="https://github.com/open-paleo/web">Site source on GitHub</a></li>
+                </ul>
+                <p class="footer-license">
+                    Data by Open Paleo contributors, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+                    Site code licensed under the <a href="https://github.com/open-paleo/web/blob/main/LICENSE">MIT License</a>.
+                    Built from release {release.version}.
+                </p>
+            </div>
         </footer>
     </body>
 </html>
@@ -142,13 +156,75 @@ const navigationItems: Array<NavigationItem> = [
         font-family: var(--font-sans);
     }
 
+    /* The header, main content and footer share one column width and side gutter. */
     .site-header-inner,
     .site-main,
-    .site-footer
+    .site-footer-inner
     {
         max-width: var(--page-width);
         margin-inline: auto;
         padding-inline: max(var(--space-4), env(safe-area-inset-left, 0px)) max(var(--space-4), env(safe-area-inset-right, 0px));
+    }
+
+    /* The footer repeats the header's dark band, so the two frame the page. */
+    .site-footer
+    {
+        color: var(--color-header-muted);
+        background: var(--color-header-background);
+        border-top: 1px solid var(--color-header-edge);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+
+    .site-footer-inner
+    {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        gap: var(--space-5) var(--space-7);
+        padding-block: var(--space-6) var(--space-7);
+    }
+
+    .footer-about
+    {
+        display: grid;
+        gap: var(--space-2);
+        max-width: 28rem;
+    }
+
+    .footer-wordmark
+    {
+        color: var(--color-header-ink);
+        font-family: var(--font-serif);
+        font-size: var(--text-heading-3);
+        font-weight: 800;
+        text-decoration: none;
+    }
+
+    .footer-links
+    {
+        display: grid;
+        gap: var(--space-2);
+        align-content: start;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .site-footer a
+    {
+        color: var(--color-header-ink);
+    }
+
+    .footer-license
+    {
+        grid-column: 1 / -1;
+        padding-top: var(--space-4);
+        border-top: 1px solid var(--color-header-border);
+    }
+
+    .site-footer :focus-visible
+    {
+        outline-color: var(--color-header-accent);
     }
 
     .site-header-inner
@@ -255,17 +331,13 @@ const navigationItems: Array<NavigationItem> = [
         outline: none;
     }
 
-    .site-footer
-    {
-        padding-block: var(--space-5) var(--space-7);
-        border-top: 1px solid var(--color-line);
-        color: var(--color-muted);
-        font-family: var(--font-sans);
-        font-size: var(--text-small);
-    }
-
     @media (max-width: 40rem)
     {
+        .site-footer-inner
+        {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
         .site-search
         {
             flex-basis: 100%;

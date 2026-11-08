@@ -9,38 +9,26 @@ type Props = {
      * The section heading.
      */
     title: string;
-
-    /**
-     * True for sections holding a table, which may use the full width of their column rather
-     * than the reading measure.
-     */
-    isWide?: boolean;
 };
 
-const { title, isWide = false } = Astro.props;
+const { title } = Astro.props;
 const headingId = "section-" + createSlug(title);
 ---
 
-<section class:list={["page-section", { "is-wide": isWide }]} aria-labelledby={headingId}>
+<section class="page-section" aria-labelledby={headingId}>
     <h2 id={headingId}>{title}</h2>
     <slot />
 </section>
 
 <style>
-    /* Each heading is underlined by a rule in the text color that spans the section: the
-       reading measure for prose, the full column for tables. The space between sections does
+    /* Each heading is underlined by a rule in the text color that spans the content column.
+       Prose inside keeps to the reading measure on its own. The space between sections does
        the separating; the rule ties each heading to what follows it. */
     .page-section
     {
         display: grid;
         gap: var(--space-5);
-        max-width: var(--measure);
         min-width: 0;
-    }
-
-    .page-section.is-wide
-    {
-        max-width: none;
     }
 
     h2

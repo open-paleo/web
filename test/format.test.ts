@@ -2,6 +2,7 @@ import * as assert from "node:assert/strict";
 import { test } from "node:test";
 
 import {
+    bindAbbreviatedGenus,
     createCitationParts,
     describeAgeResolution,
     describeWorkKind,
@@ -218,4 +219,11 @@ test("formatDistinctShortCitations adds the key's letter only where two citation
     assert.equal(labels.get("oconnor2025a"), "O'Connor et al. (2025a)");
     assert.equal(labels.get("oconnor2025b"), "O'Connor et al. (2025b)");
     assert.equal(labels.get("mayr2005a"), "Mayr et al. (2005)");
+});
+
+test("bindAbbreviatedGenus keeps an initial with its epithet", () =>
+{
+    assert.equal(bindAbbreviatedGenus("P. sibiricus"), "P." + String.fromCharCode(160) + "sibiricus");
+    assert.equal(bindAbbreviatedGenus("Psittacosaurus sibiricus"), "Psittacosaurus sibiricus");
+    assert.equal(bindAbbreviatedGenus("Tyrannosaurus"), "Tyrannosaurus");
 });

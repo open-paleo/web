@@ -1,4 +1,5 @@
 ---
+import { bindAbbreviatedGenus } from "../data/format.ts";
 import { getSiteData } from "../data/site-data.ts";
 
 /**
@@ -15,4 +16,4 @@ const { text } = Astro.props;
 const segments = getSiteData().taxonNames.splitProse(text);
 ---
 
-{segments.map((segment) => segment.isTaxon ? <i class="taxon">{segment.text}</i> : segment.text)}
+{segments.map((segment) => segment.isTaxon ? <i class="taxon">{bindAbbreviatedGenus(segment.text)}</i> : segment.text)}

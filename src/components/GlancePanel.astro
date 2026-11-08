@@ -57,7 +57,7 @@ const sizeNote = genus.species.length > 1 ? "Size and place are those of the typ
     {appearance?.features && appearance.features.length > 0 && (
         <>
             <dt>Features</dt>
-            <dd class="chips">{appearance.features.map((feature) => <span class="chip">{feature}</span>)}</dd>
+            <dd>{capitalizeFirstLetter(appearance.features.join(", "))}</dd>
         </>
     )}
     {genus.paleoenvironment && genus.paleoenvironment.length > 0 && (
@@ -104,25 +104,10 @@ const sizeNote = genus.species.length > 1 ? "Size and place are those of the typ
         font-size: var(--text-small);
     }
 
-    .chips,
     .identifiers
     {
         display: flex;
         flex-wrap: wrap;
         gap: var(--space-1) var(--space-3);
-    }
-
-    .chips
-    {
-        gap: var(--space-1);
-    }
-
-    .chip
-    {
-        padding: 0 var(--space-2);
-        border: 1px solid var(--color-line);
-        border-radius: 999px;
-        font-size: var(--text-small);
-        white-space: nowrap;
     }
 </style>

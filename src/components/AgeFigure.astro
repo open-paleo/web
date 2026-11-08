@@ -1,5 +1,5 @@
 ---
-import type { AgeRow } from "../data/age-figure.ts";
+import type { AgeMarker, AgeRow } from "../data/age-figure.ts";
 import { createAgeFigureModel } from "../data/age-figure.ts";
 import type { Period } from "../data/dataset.ts";
 import { formatAgeRange, formatGeologicAge } from "../data/format.ts";
@@ -37,6 +37,23 @@ const labelledBandPercent = 9;
  * a phone.
  */
 const labelledBandPercentWhenNarrow = 20;
+/**
+ * Create the marker's position and width. A marker that starts on a band boundary moves one
+ * pixel right, past the separator each band draws on its first pixel.
+ *
+ * @param marker - The marker's geometry.
+ * @returns The inline style.
+ */
+function createMarkerStyle(marker: AgeMarker): string
+{
+    if (marker.startsAtBandBoundary)
+    {
+        return "left: calc(" + marker.leftPercent + "% + 1px); width: calc(" + marker.widthPercent + "% - 1px)";
+    }
+
+    return "left: " + marker.leftPercent + "%; width: " + marker.widthPercent + "%";
+}
+
 const rows = new Array<AgeRow>();
 
 if (model)
@@ -59,21 +76,26 @@ if (model)
         {rows.map((row, rowIndex) => (
             <div class="age-row-group">
                 {rowIndex > 0 && <div class="age-row-label" data-pagefind-ignore>{row.label}</div>}
-                <div class="age-row" aria-hidden="true" data-pagefind-ignore>
-                    {row.bands.map((band) => (
-                        <span
-                            class:list={[
-                                "age-band",
-                                {
-                                    "has-dark-color": band.hasDarkColor,
-                                    "is-small": band.widthPercent < labelledBandPercentWhenNarrow,
-                                },
-                            ]}
-                            style={"flex-basis: " + band.widthPercent + "%; background: var(" + band.colorToken + ")"}
-                            title={band.name}
-                        >{band.widthPercent >= labelledBandPercent && <span class="age-band-label">{band.name}</span>}</span>
-                    ))}
-                    <span class="age-marker" style={"left: " + row.marker.leftPercent + "%; width: " + row.marker.widthPercent + "%"}></span>
+                {/* The marker sits behind the bands and reaches past them, so the range shows as tabs
+                   above and below the row and never crosses a band's label. */}
+                <div class="age-track" aria-hidden="true" data-pagefind-ignore>
+                    <span class="age-marker" style={createMarkerStyle(row.marker)}></span>
+                    <div class="age-row">
+                        {row.bands.map((band) => (
+                            <span
+                                class:list={[
+                                    "age-band",
+                                    {
+                                        "has-dark-color": band.hasDarkColor,
+                                        "is-in-range": band.isInRange,
+                                        "is-small": band.widthPercent < labelledBandPercentWhenNarrow,
+                                    },
+                                ]}
+                                style={"flex-basis: " + band.widthPercent + "%; background: var(" + band.colorToken + ")"}
+                                title={band.name}
+                            >{band.widthPercent >= labelledBandPercent && <span class="age-band-label">{band.name}</span>}</span>
+                        ))}
+                    </div>
                 </div>
                 <div class="age-scale figures" aria-hidden="true" data-pagefind-ignore>
                     <span>{row.fromMa.toFixed(1)} Ma</span>
@@ -162,16 +184,20 @@ if (model)
         box-shadow: inset 1px 0 0 var(--color-surface);
     }
 
+    /* Bands the record's range falls in have bold labels, so the range reads in the text as well
+       as in the tabs. */
+    .age-band.is-in-range
+    {
+        font-weight: 700;
+    }
+
     .age-band.has-dark-color
     {
         color: var(--color-on-period-dark);
     }
 
-    /* Labels sit above the range marker, so the marker never covers them. */
     .age-band-label
     {
-        position: relative;
-        z-index: 1;
         overflow: hidden;
         text-overflow: ellipsis;
     }
@@ -184,17 +210,22 @@ if (model)
         }
     }
 
-    /* The bands keep their chart colors in both themes, so the marker is drawn in the fixed
-       band text colors: a near-black ring with a white ring inside it, which stands out on
-       light and dark chart colors alike. */
+    /* The track holds the marker behind the row of bands. Its padding is how far the marker
+       reaches past the bands: the tabs above and below that show the record's range. */
+    .age-track
+    {
+        position: relative;
+        padding-block: 6px;
+    }
+
     .age-marker
     {
         position: absolute;
         top: 0;
         bottom: 0;
         min-width: 6px;
-        border: 3px solid var(--color-on-period);
-        box-shadow: inset 0 0 0 2px var(--color-on-period-dark);
+        background: var(--color-ink);
+        border-radius: var(--radius-small);
     }
 
     .age-scale

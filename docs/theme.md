@@ -136,13 +136,15 @@ it:
 
 | Component | Description |
 |-----------|-------------|
-| Classification trail | Ranks from Dinosauria down to the parent clade; middle ranks collapse behind a "6 more" button |
-| Age figure | Two rows of ICS bands: the Mesozoic periods, then the stages of the record's epoch (omitted when a span covers more than two epochs). The record's range is marked by a near-black ring with a white ring inside it, which shows on light and dark chart colors alike. Labels sit above the marker. Boundary ages beneath each row |
+| Classification trail | Ranks from Dinosauria down to the parent clade; middle ranks collapse behind a "6 more" button. Each separator follows its item, so a wrapped line ends with one rather than starting with one |
+| Age figure | Two rows of ICS bands: the Mesozoic periods, then the stages of the record's epoch (omitted when a span covers more than two epochs). The record's range is a marker in `--color-ink` drawn behind the bands and 6px taller, so it shows as tabs above and below the row and never crosses a label; the bands the range overlaps have bold labels. Boundary ages beneath each row |
 | Species box | `SpeciesSection.astro`: a bordered surface box per species with its heading, etymology, and labeled rows (`SpeciesFacts.astro`): type specimen, material, horizon, locality and diagnosis. Its synonyms follow as a stacked list (`SynonymList.astro`), since a table does not fit at half width |
-| Fact panel | `FactList.astro`: a titled box on `--color-surface` with a firm border, holding a definition list. The genus page's "At a glance" (diet, locomotion, integument, features, size, location, identifiers), the clade page's genus counts, and the reference page's "About this work" |
+| Fact panel | `FactList.astro`: a titled box on `--color-surface` with a firm border, holding a definition list. Values are plain text (features read "Elongate snout, sickle claw"). The genus page's "At a glance" (diet, locomotion, integument, features, size, location, identifiers), the clade page's genus counts, and the reference page's "About this work" |
 | Status badge | "Disputed" (caution, solid border) and "Nomen dubium" (muted, dashed border) |
-| Page section | `PageSection.astro`: a `heading-2` heading underlined by a rule in `--color-ink` that spans the section (the reading measure, or the full column for tables), then the content, with `--space-8` between sections. Every major part of a genus, clade or reference page is one |
+| Page section | `PageSection.astro`: a `heading-2` heading underlined by a rule in `--color-ink` across the content column, then the content, with `--space-8` between sections. Prose inside keeps to the reading measure. Every major part of a genus, clade or reference page is one |
 | Dispute note | A lightly tinted panel with a caution border, inside a section headed "Under dispute" |
 | Range bar | Small age bar in clade tables, drawn on the same scale as the age figure |
 | Notable specimen | Name as a `heading-3`, then the catalog number, institution, discovery and category, the significance, and short citations. Nicknames are set in typographic quotation marks (“Sue”); descriptive names built on a generic word (Berlin specimen, Felch Quarry skull) are not. A specimen without a name is headed by its catalog number in Alegreya Sans |
 | Category chip | Accent-soft label for a notable specimen's category |
+| Diagnosis list | Numbered features with the numbers in their own right-aligned column (Alegreya Sans, muted), flush with the text around the list |
+| Site footer | The header's dark band repeated at the foot of every page: wordmark, a one-line description, links to the Data page and both repositories, and the license line with the data release the page was built from |

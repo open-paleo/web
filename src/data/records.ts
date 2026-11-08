@@ -1,4 +1,4 @@
-import type { Genus, Size, Species } from "./dataset.ts";
+import type { Genus, Size, Species, Synonym } from "./dataset.ts";
 import { formatSizeRange } from "./format.ts";
 
 /**
@@ -66,4 +66,20 @@ export function listSizeMeasurements(size: Size | undefined): Array<SizeMeasurem
     }
 
     return measurements;
+}
+
+/**
+ * Orders names the way an index does: letters compared without regard to case or accents.
+ */
+const nameCollator = new Intl.Collator("en", { sensitivity: "base" });
+
+/**
+ * Sort synonyms alphabetically by name, leaving the record's own list untouched.
+ *
+ * @param synonyms - The synonyms of a genus, species or clade.
+ * @returns A sorted copy.
+ */
+export function sortSynonyms(synonyms: Array<Synonym>): Array<Synonym>
+{
+    return [...synonyms].sort((first, second) => nameCollator.compare(first.name, second.name));
 }

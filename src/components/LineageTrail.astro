@@ -107,8 +107,15 @@ const hiddenCount = ranks.length > visibleAtEachEnd * 2 + 1 ? ranks.length - vis
         list-style: none;
     }
 
-    li + li::before,
-    :global(.lineage-expand-item)::before
+    /* The separator follows each item rather than preceding the next, so a wrapped line ends
+       with one instead of starting with one, and an item never splits from it. */
+    li
+    {
+        white-space: nowrap;
+    }
+
+    li:not(:last-child)::after,
+    :global(.lineage-expand-item)::after
     {
         content: "›";
         padding-inline: var(--space-2);
