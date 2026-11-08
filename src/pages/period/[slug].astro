@@ -1,0 +1,143 @@
+---
+import GeneraThroughTime from "../../components/GeneraThroughTime.astro";
+import GenusIndex from "../../components/GenusIndex.astro";
+import PageSection from "../../components/PageSection.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatAgeRange, formatGenusCount } from "../../data/format.ts";
+import type { StageCount } from "../../data/home.ts";
+import { countGeneraByStage } from "../../data/home.ts";
+import { getSiteData } from "../../data/site-data.ts";
+import type { PeriodPage } from "../../data/time-pages.ts";
+import { getTimePages } from "../../data/time-pages.ts";
+
+/**
+ * Properties of a period page.
+ */
+type Props = {
+    /**
+     * The period the page describes.
+     */
+    period: PeriodPage;
+};
+
+/**
+ * One generated period page: its URL parameter and its properties.
+ */
+type PeriodPath = {
+    /**
+     * URL parameters: the period slug.
+     */
+    params: PeriodPathParameters;
+
+    /**
+     * Properties passed to the page.
+     */
+    props: Props;
+};
+
+/**
+ * URL parameters of a period page.
+ */
+type PeriodPathParameters = {
+    /**
+     * The period slug, as in period/{slug}/.
+     */
+    slug: string;
+};
+
+/**
+ * List one page per period with genera.
+ *
+ * @returns The path and properties of every period page.
+ */
+export function getStaticPaths(): Array<PeriodPath>
+{
+    const paths = new Array<PeriodPath>();
+
+    for (const period of getTimePages().periods)
+    {
+        paths.push({ params: { slug: period.slug }, props: { period } });
+    }
+
+    return paths;
+}
+
+const { period } = Astro.props;
+const siteData = getSiteData();
+const stageCounts = new Array<StageCount>();
+
+if (siteData.timeline)
+{
+    for (const stage of countGeneraByStage(siteData, siteData.timeline))
+    {
+        if (stage.periodName === period.name)
+        {
+            stageCounts.push(stage);
+        }
+    }
+}
+
+---
+
+<BaseLayout title={period.name} description={"The " + formatGenusCount(period.genera.length) + " known from the " + period.name + ", " + formatAgeRange(period.fromMa, period.toMa) + "."}>
+    <article class="period-page">
+        <header class="period-header">
+            <h1>{period.name}</h1>
+            <p class="period-meta">
+                <span class="figures">{formatAgeRange(period.fromMa, period.toMa)}</span>
+                <span class="figures">{formatGenusCount(period.genera.length)}</span>
+            </p>
+            <p class="period-intro">
+                The genera whose type species is known from any stage of the {period.name}. The dates
+                span the stages the dataset has genera from, so they can be narrower than the whole
+                period.
+            </p>
+        </header>
+
+        {stageCounts.length > 0 && (
+            <PageSection title={"Stages of the " + period.name}>
+                <GeneraThroughTime stages={stageCounts} label={"Genera known from each stage of the " + period.name} axisGrouping="epoch" />
+            </PageSection>
+        )}
+
+        <PageSection title={"Genera of the " + period.name}>
+            <GenusIndex genera={period.genera} label={"Genera of the " + period.name} headingLevel={3} />
+        </PageSection>
+    </article>
+</BaseLayout>
+
+<style>
+    .period-page
+    {
+        display: grid;
+        gap: var(--space-8);
+    }
+
+    .period-header
+    {
+        display: grid;
+        gap: var(--space-3);
+    }
+
+    h1
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .period-meta
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-1) var(--space-5);
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
+    }
+
+    .period-intro
+    {
+        max-width: var(--measure);
+        color: var(--color-muted);
+    }
+</style>

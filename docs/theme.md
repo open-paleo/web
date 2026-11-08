@@ -47,6 +47,16 @@ section and the search button. On the band, text reaches 12.7:1, muted text 8.1:
 8.9:1, and the search field's border 4.2:1 (non-text needs 3:1). In dark mode the band is darker
 than the page, with `--color-header-edge` as a visible bottom border.
 
+### Chart colors
+
+Marks in charts (the bars of the home page's "Genera through time") use `--color-chart-mark`
+(`#288463` light, `#32a67d` dark), not `--color-accent`. The accent is too muted to read as a
+color at bar size: the dataviz palette validator measures its chroma at 0.067, below its 0.10
+floor. The chart color keeps the accent's hue with more chroma, and passes the validator's
+lightness, chroma and 3:1 contrast checks against each theme's background. A single-series chart
+uses this one color for every mark; time is shown by the stage strip under the axis, in the
+chart colors of the time scale, never by coloring the bars.
+
 ## Geologic time colors
 
 `tokens.css` defines a color for every period, epoch and stage that the data's `schema.yml`
@@ -144,7 +154,9 @@ it:
 | Page section | `PageSection.astro`: a `heading-2` heading underlined by a rule in `--color-ink` across the content column, then the content, with `--space-8` between sections. Prose inside keeps to the reading measure. Every major part of a genus, clade or reference page is one |
 | Dispute note | A lightly tinted panel with a caution border, inside a section headed "Under dispute" |
 | Range bar | Small age bar in clade tables, drawn on the same scale as the age figure |
+| Site header GitHub link | GitHub's mark (Primer Octicons, MIT License) linking to the organization, left of the search field, in `--color-header-muted` |
 | Notable specimen | Name as a `heading-3`, then the catalog number, institution, discovery and category, the significance, and short citations. Nicknames are set in typographic quotation marks (“Sue”); descriptive names built on a generic word (Berlin specimen, Felch Quarry skull) are not. A specimen without a name is headed by its catalog number in Alegreya Sans |
 | Category chip | Accent-soft label for a notable specimen's category |
+| Genera through time | `GeneraThroughTime.astro`: one column per stage (at most 24px wide, rounded at the top), hairline gridlines at round values, the tallest column labeled, a stage strip under the axis, and periods (home page, linked) or epochs (period page) beneath it. Each column is a link to its stage page whose accessible name gives the stage and its count, so the values reach keyboard and screen-reader users without a separate table; hovering or focusing a column shows the same in a tooltip |
 | Diagnosis list | Numbered features with the numbers in their own right-aligned column (Alegreya Sans, muted), flush with the text around the list |
 | Site footer | The header's dark band repeated at the foot of every page: wordmark, a one-line description, links to the Data page and both repositories, and the license line with the data release the page was built from |

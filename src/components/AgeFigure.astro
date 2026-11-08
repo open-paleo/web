@@ -2,7 +2,9 @@
 import type { AgeMarker, AgeRow } from "../data/age-figure.ts";
 import { createAgeFigureModel } from "../data/age-figure.ts";
 import type { Period } from "../data/dataset.ts";
-import { formatAgeRange, formatGeologicAge } from "../data/format.ts";
+import { formatAgeRange } from "../data/format.ts";
+import { getTimePages, listAgeCaptionParts } from "../data/time-pages.ts";
+import { createPagePath } from "../data/urls.ts";
 import { getSiteData } from "../data/site-data.ts";
 
 /**
@@ -25,7 +27,9 @@ const { period, rangeIntroduction } = Astro.props;
 const timeline = getSiteData().timeline;
 const model = timeline ? createAgeFigureModel(period, timeline) : undefined;
 const ageRange = period.from_ma !== undefined && period.to_ma !== undefined ? formatAgeRange(period.from_ma, period.to_ma) : "";
-const geologicAge = formatGeologicAge(period);
+// The stage and epoch names link to their stage and period pages, where those exist.
+const captionParts = listAgeCaptionParts(period, getTimePages());
+const baseUrl = import.meta.env.BASE_URL;
 
 /**
  * Bands narrower than this share of the row carry no label; their name shows on hover.
@@ -71,7 +75,7 @@ if (model)
     <figure class="age-figure">
         <figcaption class="age-caption">
             <span class="age-range figures">{rangeIntroduction && <span class="age-introduction">{rangeIntroduction} </span>}{ageRange}</span>
-            <span class="age-context">{geologicAge}</span>
+            <span class="age-context">{captionParts.map((part) => part.section ? <a href={createPagePath(baseUrl, part.section, part.slug)}>{part.text}</a> : part.text)}</span>
         </figcaption>
         {rows.map((row, rowIndex) => (
             <div class="age-row-group">

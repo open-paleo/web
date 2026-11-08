@@ -1,40 +1,308 @@
 ---
+import GeneraThroughTime from "../components/GeneraThroughTime.astro";
+import PageSection from "../components/PageSection.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { formatGenusCount } from "../data/format.ts";
+import { countGeneraByStage, describeRecentYears, findRecentNames, listMajorGroups } from "../data/home.ts";
 import { getSiteData } from "../data/site-data.ts";
+import { createPagePath } from "../data/urls.ts";
 
 const siteData = getSiteData();
+const baseUrl = import.meta.env.BASE_URL;
+const metadata = siteData.metadata;
 const numberFormat = new Intl.NumberFormat("en-US");
-const genusCount = numberFormat.format(siteData.genera.length);
-const cladeCount = numberFormat.format(siteData.metadata.clade_count);
-const referenceCount = numberFormat.format(siteData.references.length);
+let speciesCount = 0;
+
+for (const genus of siteData.genera)
+{
+    speciesCount += genus.record.species.length;
+}
+
+const stages = siteData.timeline ? countGeneraByStage(siteData, siteData.timeline) : [];
+// At least a dozen names, so the section stays full early in a new year.
+const recent = findRecentNames(siteData, 12);
+const groups = listMajorGroups(siteData);
+const dataRepository = "https://github.com/open-paleo/data";
+const firstStage = stages[0];
+const lastStage = stages[stages.length - 1];
 ---
 
-<BaseLayout description="A community-maintained, version-controlled phylogenetic dataset for paleontology.">
-    <section class="introduction">
-        <h1>Open Paleo</h1>
-        <p>
-            A community-maintained phylogenetic dataset for paleontology, backed by published
-            literature. Release {siteData.metadata.version} holds {genusCount} genera
-            in {cladeCount} clades, citing {referenceCount} published works.
-        </p>
-        <p>
-            The website is under construction; until it is ready, the dataset is available from
-            the <a href="https://github.com/open-paleo/data">open-paleo/data repository</a>.
-        </p>
-    </section>
+<BaseLayout description="Open Paleo is a community-maintained phylogenetic dataset for paleontology, backed by published literature: browse every genus, clade and cited work.">
+    <div class="home">
+        <section class="home-opening" aria-labelledby="home-title">
+            <h1 id="home-title">Open Paleo</h1>
+            <p class="home-lede">
+                A community-maintained phylogenetic dataset for paleontology. Every genus, clade
+                and value in it is backed by published literature.
+            </p>
+            <form class="home-search" role="search" action={baseUrl + "search/"} method="get">
+                <label for="home-search-field">Search the dataset</label>
+                <div class="home-search-row">
+                    <input id="home-search-field" name="q" type="search" placeholder="Tyrannosaurus, Hell Creek, Sue, Osborn…" autocomplete="off">
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+            <dl class="home-figures">
+                <div>
+                    <dt>Genera</dt>
+                    <dd><a href={baseUrl + "genera/"}>{numberFormat.format(siteData.genera.length)}</a></dd>
+                </div>
+                <div>
+                    <dt>Species</dt>
+                    <dd>{numberFormat.format(speciesCount)}</dd>
+                </div>
+                <div>
+                    <dt>Clades</dt>
+                    <dd><a href={baseUrl + "tree/"}>{numberFormat.format(metadata.clade_count)}</a></dd>
+                </div>
+                <div>
+                    <dt>Cited works</dt>
+                    <dd><a href={baseUrl + "references/"}>{numberFormat.format(siteData.references.length)}</a></dd>
+                </div>
+                <div>
+                    <dt>Release</dt>
+                    <dd><a href={baseUrl + "data/"}>{metadata.version}</a></dd>
+                </div>
+            </dl>
+        </section>
+
+        {stages.length > 0 && firstStage && lastStage && (
+            <PageSection title="Genera through time">
+                <p class="section-intro">
+                    How many genera the dataset holds from each stage, from the {firstStage.name} to
+                    the {lastStage.name}. A genus whose type species spans several stages counts in each,
+                    and long stages such as the Campanian hold more genera partly because they last longer.
+                    Select a stage or period to see its genera.
+                </p>
+                <GeneraThroughTime stages={stages} label="Genera known from each stage" axisGrouping="period" />
+            </PageSection>
+        )}
+
+        <PageSection title="Major groups">
+            <ul class="group-list">
+                {groups.map((group) => (
+                    <li>
+                        <p class="group-heading">
+                            <a href={createPagePath(baseUrl, "clade", group.clade.slug)}>{group.clade.name}</a>
+                            <span class="group-count figures">{formatGenusCount(group.clade.totalGenusCount)}</span>
+                        </p>
+                        {group.summary && <p class="group-summary">{group.summary}</p>}
+                    </li>
+                ))}
+            </ul>
+            <p class="section-note">See every clade in the <a href={baseUrl + "tree/"}>tree</a>.</p>
+        </PageSection>
+
+        {recent && (
+            <PageSection title={"Named in " + describeRecentYears(recent)}>
+                <p class="section-intro">
+                    The dataset adds newly named genera as they are published. These {recent.genera.length} were
+                    named in {describeRecentYears(recent)}.
+                </p>
+                <ul class="name-list">
+                    {recent.genera.map((genus) => <li><a class="taxon" href={createPagePath(baseUrl, "genus", genus.slug)}>{genus.name}</a></li>)}
+                </ul>
+            </PageSection>
+        )}
+
+        <PageSection title="Use the data">
+            <ul class="use-list">
+                <li>
+                    <h3><a href={baseUrl + "data/"}>Download and cite</a></h3>
+                    <p>The dataset as JSON, YAML, Newick, NEXUS and BibTeX, free to use under CC BY 4.0, and how to cite the release you used.</p>
+                </li>
+                <li>
+                    <h3><a href={dataRepository + "/blob/main/CONTRIBUTING.md"}>Contribute</a></h3>
+                    <p>Add a genus or correct a record with a pull request to the data repository. Every change needs a published source.</p>
+                </li>
+                <li>
+                    <h3><a href={dataRepository + "/issues/new"}>Report an error</a></h3>
+                    <p>Found a value that does not match its source? Open an issue in the data repository.</p>
+                </li>
+            </ul>
+        </PageSection>
+    </div>
 </BaseLayout>
 
 <style>
-    .introduction
+    .home
     {
         display: grid;
-        gap: var(--space-4);
-        max-width: var(--measure);
+        gap: var(--space-8);
+    }
+
+    .home-opening
+    {
+        display: grid;
+        gap: var(--space-5);
+        padding-block: var(--space-4) 0;
     }
 
     h1
     {
-        font-size: var(--text-display);
+        font-size: clamp(3.5rem, 10vw, 6rem);
         font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.015em;
+    }
+
+    .home-lede
+    {
+        max-width: 36rem;
+        font-size: var(--text-lede);
+    }
+
+    .home-search
+    {
+        display: grid;
+        gap: var(--space-2);
+        max-width: 40rem;
+        font-family: var(--font-sans);
+    }
+
+    .home-search label
+    {
+        color: var(--color-muted);
+    }
+
+    .home-search-row
+    {
+        display: flex;
+        gap: var(--space-2);
+    }
+
+    .home-search input
+    {
+        flex: 1 1 auto;
+        min-width: 0;
+        padding: var(--space-3) var(--space-4);
+        background: var(--color-surface);
+        border: 1px solid color-mix(in srgb, var(--color-line) 40%, var(--color-muted));
+        border-radius: var(--radius);
+        font-size: var(--text-lede);
+    }
+
+    .home-search input::placeholder
+    {
+        color: var(--color-muted);
+    }
+
+    .home-search button
+    {
+        padding: var(--space-3) var(--space-5);
+        color: var(--color-surface);
+        background: var(--color-accent);
+        border: 1px solid var(--color-accent);
+        border-radius: var(--radius);
+        font-size: var(--text-interface);
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .home-figures
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-4) var(--space-7);
+        margin: 0;
+        font-family: var(--font-sans);
+    }
+
+    .home-figures dt
+    {
+        color: var(--color-muted);
+        font-size: var(--text-small);
+    }
+
+    .home-figures dd
+    {
+        margin: 0;
+        font-size: var(--text-heading-3);
+        font-weight: 700;
+    }
+
+    .home-figures a
+    {
+        color: var(--color-ink);
+        text-decoration-color: var(--color-line);
+    }
+
+    .section-intro,
+    .section-note
+    {
+        max-width: var(--measure);
+        color: var(--color-muted);
+    }
+
+    .group-list,
+    .use-list
+    {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+        gap: var(--space-5) var(--space-6);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    /* Each item ends with a hairline, as lists elsewhere on the site do, so the first row sits
+       directly under the heading's rule. Items in a row stretch to the same height, so the
+       hairlines across a row line up. */
+    .group-list li,
+    .use-list li
+    {
+        display: grid;
+        gap: var(--space-2);
+        align-content: start;
+        padding-bottom: var(--space-4);
+        border-bottom: 1px solid var(--color-line);
+    }
+
+    .group-heading
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0 var(--space-3);
+        font-family: var(--font-serif);
+        font-size: var(--text-heading-3);
+        font-weight: 700;
+    }
+
+    .group-count
+    {
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+        font-weight: 400;
+    }
+
+    .group-summary,
+    .use-list p
+    {
+        color: var(--color-muted);
+        font-size: var(--text-interface);
+    }
+
+    .use-list h3
+    {
+        font-size: var(--text-heading-3);
+    }
+
+    /* Names flow in columns, like the Genera index. */
+    .name-list
+    {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        columns: 12rem auto;
+        column-gap: var(--space-6);
+    }
+
+    .name-list li
+    {
+        padding-block: var(--space-1);
+        break-inside: avoid;
     }
 </style>

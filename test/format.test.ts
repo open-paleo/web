@@ -174,6 +174,10 @@ test("getFirstSentence stops at the first sentence end, not at an abbreviation",
         "The species T. rex is the type.",
     );
     assert.equal(getFirstSentence("Only one sentence"), "Only one sentence");
+    assert.equal(
+        getFirstSentence('Its basal forms were traditionally grouped as "prosauropods." The clade first appeared later.'),
+        'Its basal forms were traditionally grouped as "prosauropods."',
+    );
 });
 
 test("formatGenusCount uses the singular for one", () =>

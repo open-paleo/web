@@ -510,8 +510,8 @@ export function joinNonEmpty(parts: Array<string>): string
 /**
  * Get the first sentence of a passage, for a page's search-engine description.
  *
- * A sentence ends at a period, question mark or exclamation mark followed by a space and a
- * capital letter. A period after a single capital letter is taken as an initial or an
+ * A sentence ends at a period, question mark or exclamation mark, optionally followed by a
+ * closing quotation mark or parenthesis, then a space and a capital letter. A period after a single capital letter is taken as an initial or an
  * abbreviated genus ("T. rex"), not the end of a sentence.
  *
  * @param text - The passage.
@@ -519,9 +519,9 @@ export function joinNonEmpty(parts: Array<string>): string
  */
 export function getFirstSentence(text: string): string
 {
-    const sentenceEnd = /(?<!(?:^|\s)\p{Lu})[.?!](?=\s+\p{Lu})/u.exec(text);
+    const sentenceEnd = /(?<!(?:^|\s)\p{Lu})[.?!]["'\u201d\u2019)]?(?=\s+\p{Lu})/u.exec(text);
 
-    return sentenceEnd ? text.slice(0, sentenceEnd.index + 1).trim() : text.trim();
+    return sentenceEnd ? text.slice(0, sentenceEnd.index + sentenceEnd[0].length).trim() : text.trim();
 }
 
 /**

@@ -1,0 +1,290 @@
+---
+import type { AxisGrouping, StageCount } from "../data/home.ts";
+import { findAxisMaximum, groupStagesForAxis } from "../data/home.ts";
+import { formatGenusCount } from "../data/format.ts";
+import { createPagePath } from "../data/urls.ts";
+
+/**
+ * Properties of the column chart of genera per stage.
+ */
+type Props = {
+    /**
+     * Genera known from each stage, oldest first.
+     */
+    stages: Array<StageCount>;
+
+    /**
+     * Accessible name of the list of stage links: "Genera known from each stage".
+     */
+    label: string;
+
+    /**
+     * What the labels under the axis name: periods, which link to their pages, or epochs.
+     */
+    axisGrouping: AxisGrouping;
+};
+
+const { stages, label, axisGrouping } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+const tickStep = 100;
+const axisMaximum = findAxisMaximum(stages, tickStep);
+const ticks = new Array<number>();
+
+for (let tick = 0; tick <= axisMaximum; tick += tickStep)
+{
+    ticks.push(tick);
+}
+
+let largest = stages[0];
+
+for (const stage of stages)
+{
+    if (stage.count > largest.count)
+    {
+        largest = stage;
+    }
+}
+
+const axisSpans = groupStagesForAxis(stages, axisGrouping);
+const columnTemplate = "grid-template-columns: repeat(" + stages.length + ", minmax(0, 1fr))";
+---
+
+{/* Each column is a link to its stage's page, named with the stage and its count, so the
+   values reach keyboard and screen-reader users without a separate table. The axis, gridlines
+   and color strip are drawing only and are hidden from them. */}
+<figure class="time-chart">
+    <div class="chart-scroll">
+        <div class="chart">
+            <div class="chart-axis" aria-hidden="true">
+                {ticks.map((tick) => <span class="tick-label figures" style={"bottom: " + (tick / axisMaximum * 100) + "%"}>{tick}</span>)}
+            </div>
+            <div class="chart-plot">
+                {ticks.map((tick) => <span class="gridline" aria-hidden="true" style={"bottom: " + (tick / axisMaximum * 100) + "%"}></span>)}
+                <ol class="chart-columns" style={columnTemplate} aria-label={label}>
+                    {stages.map((stage, index) => (
+                        <li class:list={["chart-column", { "is-early": index < 3, "is-late": index >= stages.length - 3 }]}>
+                            {stage.count > 0
+                                ? (
+                                    <a class="chart-link" href={createPagePath(baseUrl, "stage", stage.slug)} aria-label={stage.name + ", " + formatGenusCount(stage.count)}>
+                                        <span class="bar" style={"height: " + (stage.count / axisMaximum * 100) + "%"}>
+                                            {stage === largest && <span class="bar-value figures" aria-hidden="true">{stage.count}</span>}
+                                            <span class="chart-tooltip" aria-hidden="true">
+                                                <strong class="figures">{formatGenusCount(stage.count)}</strong>
+                                                <span>{stage.name}, {stage.epochName}</span>
+                                            </span>
+                                        </span>
+                                    </a>
+                                )
+                                : <span class="chart-link"><span class="visually-hidden">{stage.name}, no genera</span></span>}
+                        </li>
+                    ))}
+                </ol>
+            </div>
+            <div class="chart-strip" style={columnTemplate} aria-hidden="true">
+                {stages.map((stage) => <span style={"background: var(" + stage.colorToken + ")"}></span>)}
+            </div>
+            <div class="chart-periods" style={columnTemplate}>
+                {axisSpans.map((span) => axisGrouping === "period"
+                    ? <a href={createPagePath(baseUrl, "period", span.slug)} style={"grid-column: span " + span.stageCount}>{span.name}</a>
+                    : <span style={"grid-column: span " + span.stageCount}>{span.name}</span>)}
+            </div>
+        </div>
+    </div>
+</figure>
+
+<style>
+    .time-chart
+    {
+        margin: 0;
+    }
+
+    /* Below about 36rem the columns get too narrow to read, so the chart keeps that width and
+       scrolls sideways. Its links are focusable, so keyboard users can reach every column. */
+    .chart-scroll
+    {
+        overflow-x: auto;
+        padding-top: var(--space-6);
+    }
+
+    .chart
+    {
+        display: grid;
+        grid-template-columns: 2.5rem minmax(0, 1fr);
+        grid-template-areas:
+            "axis plot"
+            ". strip"
+            ". periods";
+        row-gap: var(--space-2);
+        min-width: 36rem;
+        font-family: var(--font-sans);
+        font-size: var(--text-caption);
+    }
+
+    .chart-axis
+    {
+        grid-area: axis;
+        position: relative;
+        color: var(--color-muted);
+    }
+
+    .tick-label
+    {
+        position: absolute;
+        right: var(--space-2);
+        transform: translateY(50%);
+    }
+
+    .chart-plot
+    {
+        grid-area: plot;
+        position: relative;
+        height: 14rem;
+    }
+
+    /* Hairline gridlines, one step off the background, behind the bars. */
+    .gridline
+    {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--color-line);
+    }
+
+    .chart-columns
+    {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .chart-column
+    {
+        position: relative;
+        height: 100%;
+    }
+
+    /* Each link fills its column, so the whole column is the click and hover target. */
+    .chart-link
+    {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        height: 100%;
+        text-decoration: none;
+        border-radius: var(--radius-small);
+    }
+
+    .chart-link:focus-visible
+    {
+        outline-offset: 0;
+    }
+
+    /* Columns at most 24px wide, rounded at the top and square at the baseline. */
+    .bar
+    {
+        position: relative;
+        width: min(24px, 70%);
+        min-height: 1px;
+        background: var(--color-chart-mark);
+        border-radius: 4px 4px 0 0;
+    }
+
+    .chart-link:hover .bar,
+    .chart-link:focus-visible .bar
+    {
+        filter: brightness(1.15);
+    }
+
+    .bar-value
+    {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        padding-bottom: var(--space-1);
+        color: var(--color-ink);
+        font-weight: 700;
+        transform: translateX(-50%);
+    }
+
+    /* The tooltip sits just above its bar, inside the plot, so the chart's scroll region never
+       clips it. */
+    .chart-tooltip
+    {
+        position: absolute;
+        bottom: calc(100% + var(--space-2));
+        left: 50%;
+        z-index: 2;
+        display: none;
+        gap: 0.1rem;
+        padding: var(--space-2) var(--space-3);
+        color: var(--color-ink);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+        white-space: nowrap;
+        transform: translateX(-50%);
+    }
+
+    .chart-tooltip strong
+    {
+        font-size: var(--text-interface);
+    }
+
+    .chart-tooltip span
+    {
+        color: var(--color-muted);
+    }
+
+    .chart-column.is-early .chart-tooltip
+    {
+        left: 0;
+        transform: none;
+    }
+
+    .chart-column.is-late .chart-tooltip
+    {
+        right: 0;
+        left: auto;
+        transform: none;
+    }
+
+    .chart-link:hover .chart-tooltip,
+    .chart-link:focus-visible .chart-tooltip
+    {
+        display: grid;
+    }
+
+    /* The time scale under the bars: one band per stage in its chart color, then the periods. */
+    .chart-strip
+    {
+        grid-area: strip;
+        display: grid;
+        gap: 0 2px;
+        height: 0.5rem;
+    }
+
+    .chart-strip span
+    {
+        border-radius: var(--radius-small);
+    }
+
+    .chart-periods
+    {
+        grid-area: periods;
+        display: grid;
+        color: var(--color-muted);
+        font-size: var(--text-small);
+    }
+
+    .chart-periods a,
+    .chart-periods span
+    {
+        padding-top: var(--space-1);
+        padding-left: var(--space-2);
+        border-left: 1px solid var(--color-line);
+    }
+</style>

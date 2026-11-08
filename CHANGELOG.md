@@ -4,6 +4,15 @@
 
 ### Added
 
+- The home page: search, the release and its counts, "Genera through time" (genera known from
+  each stage, Carnian to Maastrichtian, each column linking to its stage page), the major groups
+  with their sizes and one-sentence summaries, the most recently named genera (at least a dozen,
+  reaching back a year when the newest year has few), and how to download, cite and contribute
+- Stage pages (`stage/{slug}/`, 26) listing the genera known from each stage with their clades,
+  and period pages (`period/{slug}/`, 3) with the period's stages as a chart and its genera A to
+  Z. Stage and epoch names in every age figure's caption link to them
+- A GitHub link in the header, to the open-paleo organization
+
 - Deployment to GitHub Pages at https://open-paleo.org (`.github/workflows/deploy.yml`): on
   pushes to `main`, on a `data-updated` notification from the data repository (building against
   the data commit it names), by hand, and nightly. The deployed build has canonical addresses, a
@@ -82,7 +91,7 @@
   clade: authority, age, a range bar on the clade's span, and country, in ruled columns that
   keep to one line (narrow screens scroll the table). The ranks above Dinosauria have no record
   and get no page; classification trails show them without a link
-- Components: `CladeGenusTable`, `RangeBar`, `SubcladeList`, and `FactList`, which the genus
+- Components: `GenusTable` (formerly `CladeGenusTable`), `RangeBar`, `SubcladeList`, and `FactList`, which the genus
   page's "at a glance" panel now uses too
 - Genus pages (`genus/{slug}/`, one per genus): classification trail, name, authority and
   pronunciation, description with genus and species names set in italics, dispute note,

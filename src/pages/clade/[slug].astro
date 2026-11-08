@@ -1,6 +1,6 @@
 ---
 import AgeFigure from "../../components/AgeFigure.astro";
-import CladeGenusTable from "../../components/CladeGenusTable.astro";
+import GenusTable from "../../components/GenusTable.astro";
 import DiagnosisList from "../../components/DiagnosisList.astro";
 import DisputeNote from "../../components/DisputeNote.astro";
 import FactList from "../../components/FactList.astro";
@@ -148,7 +148,7 @@ const placedDirectly = entry.genusNames.length;
 
             {genusRows.length > 0 && (
                 <PageSection title={"Genera placed directly in " + entry.name}>
-                    <CladeGenusTable rows={genusRows} rangeHeading={rangeHeading} />
+                    <GenusTable rows={genusRows} rangeHeading={rangeHeading} context="clade" />
                 </PageSection>
             )}
 

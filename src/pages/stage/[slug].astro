@@ -1,0 +1,195 @@
+---
+import AgeFigure from "../../components/AgeFigure.astro";
+import FactList from "../../components/FactList.astro";
+import GenusTable from "../../components/GenusTable.astro";
+import PageSection from "../../components/PageSection.astro";
+import RecordMain from "../../components/RecordMain.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { createAgeSpan, createGenusRows } from "../../data/clades.ts";
+import { formatAgeNumbers, formatAgeRange, formatDecimal, formatGenusCount } from "../../data/format.ts";
+import { getSiteData } from "../../data/site-data.ts";
+import type { StagePage } from "../../data/time-pages.ts";
+import { getTimePages } from "../../data/time-pages.ts";
+import { createPagePath } from "../../data/urls.ts";
+
+/**
+ * Properties of a stage page.
+ */
+type Props = {
+    /**
+     * The stage the page describes.
+     */
+    stage: StagePage;
+
+    /**
+     * The stage before it, if it has a page.
+     */
+    older: StagePage | undefined;
+
+    /**
+     * The stage after it, if it has a page.
+     */
+    younger: StagePage | undefined;
+};
+
+/**
+ * One generated stage page: its URL parameter and its properties.
+ */
+type StagePath = {
+    /**
+     * URL parameters: the stage slug.
+     */
+    params: StagePathParameters;
+
+    /**
+     * Properties passed to the page.
+     */
+    props: Props;
+};
+
+/**
+ * URL parameters of a stage page.
+ */
+type StagePathParameters = {
+    /**
+     * The stage slug, as in stage/{slug}/.
+     */
+    slug: string;
+};
+
+/**
+ * List one page per stage with genera, each knowing its neighbors.
+ *
+ * @returns The path and properties of every stage page.
+ */
+export function getStaticPaths(): Array<StagePath>
+{
+    const stages = getTimePages().stages;
+    const paths = new Array<StagePath>();
+
+    for (let index = 0; index < stages.length; index++)
+    {
+        paths.push({
+            params: { slug: stages[index].slug },
+            props: { stage: stages[index], older: stages[index - 1], younger: stages[index + 1] },
+        });
+    }
+
+    return paths;
+}
+
+const { stage, older, younger } = Astro.props;
+const siteData = getSiteData();
+const baseUrl = import.meta.env.BASE_URL;
+const period = getTimePages().periodByName.get(stage.periodName);
+const ageSpan = createAgeSpan(stage.genera, siteData.timeline);
+const rows = createGenusRows(stage.genera, siteData, ageSpan);
+const rangeHeading = ageSpan?.from_ma !== undefined && ageSpan.to_ma !== undefined
+    ? "Range, " + formatAgeNumbers(ageSpan.from_ma, ageSpan.to_ma) + " Ma"
+    : "Range";
+const duration = formatDecimal(stage.fromMa - stage.toMa);
+---
+
+<BaseLayout title={stage.name} description={"The " + formatGenusCount(stage.genera.length) + " known from the " + stage.name + " stage, " + formatAgeRange(stage.fromMa, stage.toMa) + "."}>
+    <article class="stage-page">
+        <nav class="time-trail" aria-label="Geologic time">
+            {period ? <a href={createPagePath(baseUrl, "period", period.slug)}>{stage.periodName}</a> : stage.periodName}
+            <span aria-hidden="true">›</span>
+            <span>{stage.epochName}</span>
+        </nav>
+
+        <header class="stage-header">
+            <h1>{stage.name}</h1>
+            <p class="stage-meta">
+                <span class="figures">{formatAgeRange(stage.fromMa, stage.toMa)}</span>
+                <span>{stage.epochName}</span>
+            </p>
+        </header>
+
+        <AgeFigure period={{ from_ma: stage.fromMa, to_ma: stage.toMa }} />
+
+        <RecordMain>
+            <FactList label="At a glance">
+                <dt>Genera</dt>
+                <dd class="figures">{formatGenusCount(stage.genera.length)}</dd>
+                <dt>Epoch</dt>
+                <dd>{stage.epochName}</dd>
+                <dt>Period</dt>
+                <dd>{period ? <a href={createPagePath(baseUrl, "period", period.slug)}>{stage.periodName}</a> : stage.periodName}</dd>
+                <dt>Duration</dt>
+                <dd class="figures">{duration} million years</dd>
+            </FactList>
+
+            <p class="stage-intro">
+                The genera whose type species is known from the {stage.name}. A genus known from
+                several stages appears on the page of each.
+            </p>
+
+            {(older || younger) && (
+                <nav class="stage-neighbors" aria-label="Neighboring stages">
+                    {older && <a href={createPagePath(baseUrl, "stage", older.slug)}>Older: {older.name}</a>}
+                    {younger && <a href={createPagePath(baseUrl, "stage", younger.slug)}>Younger: {younger.name}</a>}
+                </nav>
+            )}
+
+            <PageSection title={"Genera known from the " + stage.name}>
+                <GenusTable rows={rows} rangeHeading={rangeHeading} context="time" />
+            </PageSection>
+        </RecordMain>
+    </article>
+</BaseLayout>
+
+<style>
+    .stage-page
+    {
+        display: grid;
+        gap: var(--space-5);
+    }
+
+    .time-trail
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+
+    .stage-header
+    {
+        display: grid;
+        gap: var(--space-2);
+    }
+
+    h1
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .stage-meta
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-1) var(--space-5);
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
+    }
+
+    .stage-intro
+    {
+        max-width: var(--measure);
+        color: var(--color-muted);
+    }
+
+    .stage-neighbors
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2) var(--space-6);
+        margin-top: var(--space-4);
+        font-family: var(--font-sans);
+    }
+</style>

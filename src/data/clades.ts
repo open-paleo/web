@@ -35,6 +35,16 @@ export type CladeGenusRow = {
     entry: GenusEntry;
 
     /**
+     * The clade the genus is placed in.
+     */
+    parentName: string;
+
+    /**
+     * URL path segment of the parent clade's page, or an empty string when it has none.
+     */
+    parentSlug: string;
+
+    /**
      * Authority: "Osborn, 1905".
      */
     authority: string;
@@ -196,6 +206,53 @@ export function createRangeBarGeometry(fromMa: number, toMa: number, scale: Peri
 }
 
 /**
+ * Format the rows of a table of genera.
+ *
+ * @param genera - The genera, in the order the table lists them.
+ * @param siteData - The lookup tables, for each genus's parent clade.
+ * @param scale - The span the range bars are drawn on.
+ * @returns One row per genus.
+ */
+export function createGenusRows(genera: Array<GenusEntry>, siteData: SiteData, scale: Period | undefined): Array<CladeGenusRow>
+{
+    const rows = new Array<CladeGenusRow>();
+
+    for (const entry of genera)
+    {
+        const genus = entry.record;
+        const species = getTypeSpecies(genus);
+        const period = species.period;
+        const fromMa = period.from_ma;
+        const toMa = period.to_ma;
+        const parent = siteData.cladeByName.get(genus.parent);
+        let ageNumbers = "";
+        let rangeBar: RangeBarGeometry | undefined;
+
+        if (fromMa !== undefined && toMa !== undefined)
+        {
+            ageNumbers = formatAgeNumbers(fromMa, toMa);
+            rangeBar = scale ? createRangeBarGeometry(fromMa, toMa, scale) : undefined;
+        }
+
+        rows.push({
+            entry,
+            parentName: genus.parent,
+            parentSlug: parent?.record ? parent.slug : "",
+            authority: formatAuthority(genus.authors, genus.described, false),
+            age: formatShortAge(period),
+            ageNumbers,
+            rangeBar,
+            country: species.location?.country ? formatCountry(species.location.country) : "",
+            status: species.status,
+            isIncertaeSedis: genus.placement === "incertae sedis",
+            isDisputed: genus.dispute !== undefined,
+        });
+    }
+
+    return rows;
+}
+
+/**
  * Format the rows of the table of genera placed directly in a clade.
  *
  * @param clade - The clade.
@@ -205,7 +262,7 @@ export function createRangeBarGeometry(fromMa: number, toMa: number, scale: Peri
  */
 export function createCladeGenusRows(clade: CladeEntry, siteData: SiteData, scale: Period | undefined): Array<CladeGenusRow>
 {
-    const rows = new Array<CladeGenusRow>();
+    const genera = new Array<GenusEntry>();
 
     for (const name of clade.genusNames)
     {
@@ -213,33 +270,9 @@ export function createCladeGenusRows(clade: CladeEntry, siteData: SiteData, scal
 
         if (entry)
         {
-            const genus = entry.record;
-            const species = getTypeSpecies(genus);
-            const period = species.period;
-            const fromMa = period.from_ma;
-            const toMa = period.to_ma;
-            let ageNumbers = "";
-            let rangeBar: RangeBarGeometry | undefined;
-
-            if (fromMa !== undefined && toMa !== undefined)
-            {
-                ageNumbers = formatAgeNumbers(fromMa, toMa);
-                rangeBar = scale ? createRangeBarGeometry(fromMa, toMa, scale) : undefined;
-            }
-
-            rows.push({
-                entry,
-                authority: formatAuthority(genus.authors, genus.described, false),
-                age: formatShortAge(period),
-                ageNumbers,
-                rangeBar,
-                country: species.location?.country ? formatCountry(species.location.country) : "",
-                status: species.status,
-                isIncertaeSedis: genus.placement === "incertae sedis",
-                isDisputed: genus.dispute !== undefined,
-            });
+            genera.push(entry);
         }
     }
 
-    return rows;
+    return createGenusRows(genera, siteData, scale);
 }

@@ -28,6 +28,11 @@
     --color-caution: #8a5a0b;
     --color-caution-soft: #f3e6c8;
 
+    /* Chart marks: the accent's hue with enough chroma to read as a color rather than gray at bar
+       size, which the muted accent does not. Checked with the dataviz palette validator against
+       each theme's background (lightness band, chroma floor, 3:1 contrast). */
+    --color-chart-mark: #288463;
+
     /* The site header: a dark shale band in both themes. Contrast on it: text 12.7:1, muted
        text 8.1:1, links 8.9:1, and the search field's border 4.2:1 (non-text needs 3:1). */
     --color-header-background: #1f2d29;
@@ -179,6 +184,7 @@
         --color-header-accent: #80c4ab;
         --color-header-border: #66726d;
         --color-header-edge: #323a37;
+        --color-chart-mark: #32a67d;
         color-scheme: dark;
     }
 }
@@ -201,5 +207,6 @@
     --color-header-accent: #80c4ab;
     --color-header-border: #66726d;
     --color-header-edge: #323a37;
+    --color-chart-mark: #32a67d;
     color-scheme: dark;
 }

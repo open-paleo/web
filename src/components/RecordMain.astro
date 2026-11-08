@@ -29,6 +29,12 @@
         margin-top: var(--space-8);
     }
 
+    /* A section holding a table starts below the panel, so the table gets the full width. */
+    .record-main > :global(.page-section:has(table))
+    {
+        clear: both;
+    }
+
     .record-main > :global(.page-section:first-child),
     .record-main > :global(.fact-list + .page-section)
     {

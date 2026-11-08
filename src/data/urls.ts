@@ -1,7 +1,7 @@
 /**
  * The sections of the site that have one page per record.
  */
-export type PageSection = "genus" | "clade" | "reference";
+export type PageSection = "genus" | "clade" | "reference" | "stage" | "period";
 
 /**
  * Create the path of a record's page: "/genus/tyrannosaurus/", or "/web/genus/tyrannosaurus/"
