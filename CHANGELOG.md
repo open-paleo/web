@@ -4,6 +4,12 @@
 
 ### Added
 
+- Filters on the Genera page: time (period or epoch), major group, diet, locomotion, integument,
+  status and a range of years named. Each option shows how many genera it would leave, the
+  filters are kept in the page address, and the matches are listed together without letter
+  headings. Without JavaScript the page lists every genus
+- Each genus in the Genera and period indexes gets a line with its group, epochs and country,
+  and a badge when its type species is a nomen dubium or disputed
 - `npm run check-site`, run in CI and before every deployment: every internal link in the built
   site resolves, and a sample of 17 pages passes WCAG 2.2 AA in axe (light and dark), has no grid
   or flex container that splits loose text, and fits a 320px window
@@ -48,6 +54,8 @@
   "P.")
 - HTML compression is off, so template whitespace renders as written; it had run neighboring
   elements together in search excerpts and dropped spaces before links
+- Period pages include genera whose type species is dated to an epoch but no stage (16 in
+  release 2026.11), which had been left out
 - Pages fit a 320px window: the stage row of the age figure, the home page's search field and
   the time chart (which scrolls inside its own box) no longer widen the page
 

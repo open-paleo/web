@@ -1,9 +1,10 @@
 ---
-import { formatAuthority } from "../data/format.ts";
-import { createLetterAnchor, getGenusIndexName, groupByLetter } from "../data/indexes.ts";
-import type { GenusEntry } from "../data/site-data.ts";
+import { createFilterAttributes } from "../data/genus-filters.ts";
+import type { GenusIndexRow } from "../data/genus-index.ts";
+import { createLetterAnchor, groupByLetter } from "../data/indexes.ts";
 import { createPagePath } from "../data/urls.ts";
 import LetterJumpList from "./LetterJumpList.astro";
+import StatusBadge from "./StatusBadge.astro";
 
 /**
  * The heading level of the letter headings, so the index fits under a page title (2) or under
@@ -13,13 +14,13 @@ type LetterHeadingLevel = 2 | 3;
 
 /**
  * Properties of an A–Z index of genera: a row of letter links, then the genera under each
- * letter in columns, each with its authority.
+ * letter in columns, each with its authority and a line of details.
  */
 type Props = {
     /**
-     * The genera, sorted by name.
+     * The genera's rows, sorted by name.
      */
-    genera: Array<GenusEntry>;
+    rows: Array<GenusIndexRow>;
 
     /**
      * What the index lists, for the letter navigation's accessible name: "Genera".
@@ -30,11 +31,16 @@ type Props = {
      * Heading level of the letter headings.
      */
     headingLevel: LetterHeadingLevel;
+
+    /**
+     * Whether each genus carries the data attributes the Genera page's filters read.
+     */
+    isFilterable: boolean;
 };
 
-const { genera, label, headingLevel } = Astro.props;
+const { rows, label, headingLevel, isFilterable } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL;
-const groups = groupByLetter(genera, getGenusIndexName);
+const groups = groupByLetter(rows, getRowIndexName);
 const letters = new Array<string>();
 
 for (const group of groups)
@@ -42,20 +48,38 @@ for (const group of groups)
     letters.push(group.letter);
 }
 
+/**
+ * Get the name a row is sorted and grouped under.
+ *
+ * @param row - The row.
+ * @returns The genus name.
+ */
+function getRowIndexName(row: GenusIndexRow): string
+{
+    return row.entry.name;
+}
 ---
 
 <div class="genus-index">
     <LetterJumpList letters={letters} label={label} />
+    {/* While a filter is on, the filter script moves the matching genera into this list, in
+       name order, and hides the letter groups, so a short result is not spread thinly over
+       many letters. */}
+    {isFilterable && <ul class="genus-columns" id="genus-results" aria-label={"Matching " + label.toLowerCase()} hidden></ul>}
     {groups.map((group) => (
         <section class="letter-group" aria-labelledby={createLetterAnchor(group.letter)}>
             {headingLevel === 2
                 ? <h2 class="letter-heading" id={createLetterAnchor(group.letter)}>{group.letter}</h2>
                 : <h3 class="letter-heading" id={createLetterAnchor(group.letter)}>{group.letter}</h3>}
             <ul class="genus-columns">
-                {group.entries.map((genus) => (
-                    <li>
-                        <a class="taxon" href={createPagePath(baseUrl, "genus", genus.slug)}>{genus.name}</a>
-                        <span class="genus-authority">{formatAuthority(genus.record.authors, genus.record.described, false)}</span>
+                {group.entries.map((row) => (
+                    <li {...(isFilterable ? createFilterAttributes(row.filterValues) : {})}>
+                        <span class="genus-heading">
+                            <a class="taxon" href={createPagePath(baseUrl, "genus", row.entry.slug)}>{row.entry.name}</a>
+                            <StatusBadge status={row.status} />
+                            <span class="genus-authority">{row.authority}</span>
+                        </span>
+                        <span class="genus-details">{row.details}</span>
                     </li>
                 ))}
             </ul>
@@ -77,6 +101,14 @@ for (const group of groups)
         scroll-margin-top: var(--space-5);
     }
 
+    /* The Genera page's filters hide the letter groups, or the list of matches, with the hidden
+       attribute, which the display rules here would otherwise override. */
+    .letter-group[hidden],
+    .genus-columns[hidden]
+    {
+        display: none;
+    }
+
     .letter-heading
     {
         padding-bottom: var(--space-2);
@@ -84,27 +116,33 @@ for (const group of groups)
         font-size: var(--text-heading-3);
     }
 
-    /* Names flow down columns, as in a printed index. */
+    /* Genera flow down columns, as in a printed index. */
     .genus-columns
     {
         margin: 0;
         padding: 0;
         list-style: none;
-        columns: 16rem auto;
+        columns: 20rem auto;
         column-gap: var(--space-7);
     }
 
     li
     {
+        display: grid;
+        padding-block: var(--space-2);
+        break-inside: avoid;
+    }
+
+    .genus-heading
+    {
         display: flex;
         flex-wrap: wrap;
         align-items: baseline;
         gap: 0 var(--space-2);
-        padding-block: var(--space-1);
-        break-inside: avoid;
     }
 
-    .genus-authority
+    .genus-authority,
+    .genus-details
     {
         color: var(--color-muted);
         font-family: var(--font-sans);

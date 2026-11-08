@@ -1,9 +1,9 @@
 {
   "_metadata": {
     "attribution": "Open Paleo contributors",
-    "built_at": "2026-11-07T04:49:34.132Z",
-    "clade_count": 27,
-    "genus_count": 8,
+    "built_at": "2026-11-07T04:50:56.054Z",
+    "clade_count": 32,
+    "genus_count": 9,
     "license": "CC-BY-4.0",
     "schema_version": "3.3.0",
     "version": "2026.11"
@@ -270,7 +270,16 @@
                           "Bagualosauria": {
                             "Plateosauria": {
                               "Massopoda": {
-                                "Massospondylidae": {}
+                                "Massospondylidae": {},
+                                "Sauropodiformes": {
+                                  "Sauropoda": {
+                                    "Gravisauria": {
+                                      "Eusauropoda": {
+                                        "Mamenchisauridae": {}
+                                      }
+                                    }
+                                  }
+                                }
                               }
                             }
                           }
@@ -930,6 +939,88 @@
         }
       ]
     },
+    "Eusauropoda": {
+      "description": "Eusauropoda (\"true lizard foot\") is a derived clade of sauropod dinosaurs that encompasses the great majority of sauropod diversity. Upchurch (1995) erected it for all sauropods except the vulcanodontids, including Shunosaurus and Neosauropoda; Wilson and Sereno (1998) define it as sauropods closer to Saltasaurus than to Vulcanodon, whereas Salgado and colleagues (1997) applied the name to the node of Barapasaurus and Neosauropoda. Its members were strictly herbivorous, long-necked quadrupeds that grew to enormous size, and their remains have been found on every major continent, ranging in time from the Early Jurassic to the latest Cretaceous. The group includes the largely Asian family Mamenchisauridae, the clades Turiasauria and Cetiosauridae, and Neosauropoda, which in turn contains the widespread diplodocoids and titanosaurs. Eusauropods are set apart by skeletal specializations for bulk browsing, including broad, U-shaped jaws and lateral plates along the tooth rows, together with retracted nostrils, a further-elongated neck built from additional cervical vertebrae, and a semi-digitigrade, weight-bearing foot posture.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda",
+        "Gravisauria",
+        "Eusauropoda"
+      ],
+      "described": 1995,
+      "authors": "Upchurch, P.",
+      "erected_in": "upchurch1995a",
+      "described_in": "wilson2002a",
+      "diagnostic_features": [
+        "Broad, spatulate teeth arranged in a transversely broadened tooth row",
+        "External nares retracted to a position level with or behind the antorbital fenestra",
+        "Twelve or more cervical vertebrae",
+        "Forked anterior chevrons",
+        "Reduced manual and pedal phalangeal formulae",
+        "Pronounced lateral pneumatic excavation of the presacral vertebrae"
+      ],
+      "references": [
+        {
+          "id": "upchurch1995a",
+          "authors": "Upchurch, P.",
+          "year": 1995,
+          "title": "The evolutionary history of sauropod dinosaurs",
+          "journal": "Philosophical Transactions of the Royal Society of London B",
+          "volume": "349",
+          "issue": "1330",
+          "pages": "365-390",
+          "doi": "10.1098/rstb.1995.0125",
+          "notes": "Erected Eusauropoda for all sauropods except the vulcanodontids."
+        },
+        {
+          "id": "wilson2002a",
+          "authors": "Wilson, J. A.",
+          "year": 2002,
+          "title": "Sauropod dinosaur phylogeny: critique and cladistic analysis",
+          "journal": "Zoological Journal of the Linnean Society",
+          "volume": "136",
+          "issue": "2",
+          "pages": "215-275",
+          "doi": "10.1046/j.1096-3642.2002.00029.x",
+          "notes": "Comprehensive cladistic analysis diagnosing Eusauropoda."
+        },
+        {
+          "id": "wilson1998a",
+          "authors": "Wilson, J. A.; Sereno, P. C.",
+          "year": 1998,
+          "title": "Early evolution and higher-level phylogeny of sauropod dinosaurs",
+          "journal": "Memoir (Society of Vertebrate Paleontology)",
+          "volume": "5",
+          "pages": "1-68",
+          "doi": "10.2307/3889325",
+          "notes": "Defined Eusauropoda as sauropods closer to Saltasaurus than to Vulcanodon, and diagnosed it."
+        },
+        {
+          "id": "salgado1997a",
+          "authors": "Salgado, L.; Coria, R. A.; Calvo, J. O.",
+          "year": 1997,
+          "title": "Evolution of titanosaurid sauropods. I: phylogenetic analysis based on the postcranial evidence",
+          "journal": "Ameghiniana",
+          "volume": "34",
+          "pages": "3-32",
+          "notes": "Applied the name Eusauropoda to the node of Barapasaurus and Neosauropoda."
+        }
+      ]
+    },
     "Eutyrannosauria": {
       "description": "Eutyrannosauria is a clade of large-bodied tyrannosauroid theropod dinosaurs of the Northern Hemisphere, encompassing the family Tyrannosauridae together with its closest non-tyrannosaurid relatives, such as the eastern North American genera Dryptosaurus and Appalachiosaurus (Voris and colleagues, 2025). The southwestern North American Bistahieversor is the sister of Tyrannosauridae in the analysis of Delcourt and Grillo (2018) but falls within Tyrannosaurinae in that of Voris and colleagues (2025). It was defined to set these advanced, often gigantic northern forms apart from the more basal, globally distributed tyrannosauroids. Members are distinguished by their great size and by prominent cranial ornamentation, including roughened, ridge-bearing nasal bones. Powers and colleagues (2026) instead recover a family Dryptosauridae, including Dryptosaurus, in all their implied-weights analyses.\n",
       "taxonomy": [
@@ -1047,6 +1138,145 @@
           "pages": "e12362",
           "doi": "10.7717/peerj.12362",
           "notes": "Provides the modern phylogenetic definition of Genasauria."
+        }
+      ]
+    },
+    "Gravisauria": {
+      "description": "Gravisauria is a clade of sauropod dinosaurs that unites the vulcanodontid grade, including Vulcanodon and Tazoudasaurus, with the more derived Eusauropoda. Antetonitrus, Gongxianosaurus and Isanosaurus fall outside it as successively closer relatives (Allain and Aquesbi, 2008). It encompasses essentially the full radiation of the massive, fully graviportal sauropods. Members share dorsal vertebrae that are broader from side to side than front to back and asymmetrical condyles at the lower end of the femur. The clade is thought to have originated in the Early Jurassic, around the Pliensbachian and Toarcian roughly 183 million years ago, as part of a broader faunal turnover that saw the decline of the prosauropods, coelophysoids, and basal thyreophorans.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda",
+        "Gravisauria"
+      ],
+      "described": 2008,
+      "authors": "Allain, R.; Aquesbi, N.",
+      "erected_in": "allain2008a",
+      "diagnostic_features": [
+        "Dorsal neural spines broader transversely than anteroposteriorly",
+        "Asymmetry of the femoral distal condyles, with a transversely broader tibial condyle",
+        "Fully columnar, graviportal forelimbs and hindlimbs",
+        "Four or more sacral vertebrae"
+      ],
+      "references": [
+        {
+          "id": "allain2008a",
+          "authors": "Allain, R.; Aquesbi, N.",
+          "year": 2008,
+          "title": "Anatomy and phylogenetic relationships of Tazoudasaurus naimi (Dinosauria, Sauropoda) from the late Early Jurassic of Morocco",
+          "journal": "Geodiversitas",
+          "volume": "30",
+          "issue": "2",
+          "pages": "345-424",
+          "notes": "Erected Gravisauria and provided the osteological basis for its diagnosis."
+        },
+        {
+          "id": "yates2007a",
+          "authors": "Yates, A. M.",
+          "year": 2007,
+          "title": "Solving a dinosaurian puzzle: the identity of Aliwalia rex Galton",
+          "journal": "Historical Biology",
+          "volume": "19",
+          "issue": "1",
+          "pages": "93-123",
+          "doi": "10.1080/08912960600866953",
+          "notes": "Coined Massopoda and argued that Sauropoda, as then defined, had expanded far beyond its traditional content and needed redefinition."
+        }
+      ]
+    },
+    "Mamenchisauridae": {
+      "description": "Mamenchisauridae is a family of eusauropod dinosaurs known from the Jurassic and Early Cretaceous of Asia and Africa, best known for their proportionately extremely long necks. The group was predominantly a Chinese radiation, including such genera as Mamenchisaurus, Omeisaurus, Chuanjiesaurus, Eomamenchisaurus, and Tonganosaurus, but its range extended to the Tanzanian outlier Wamweracaudia and, based on fragmentary remains, into Siberia. Some members reached gigantic sizes, ranking among the largest of all sauropods. The family has historically been confused with the somphospondylan Euhelopus and its relatives, and some phylogenetic analyses have again recovered Euhelopus within the mamenchisaurid lineage, which then takes the name Euhelopodidae (Moore and colleagues, 2020).\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda",
+        "Gravisauria",
+        "Eusauropoda",
+        "Mamenchisauridae"
+      ],
+      "type_genus": "Mamenchisaurus",
+      "described": 1972,
+      "authors": "Young, C. C.; Zhao, X.",
+      "erected_in": "young1972a",
+      "described_in": "naish2007a",
+      "diagnostic_features": [
+        "Exceptionally elongate cervical vertebrae yielding necks approaching half the total body length",
+        "High cervical count, commonly 17 to 19 cervical vertebrae",
+        "Vertically oriented, often unbifurcated cervical neural spines",
+        "Forked anterior chevrons and, in derived forms, accessory processes on the humerus",
+        "Procoelous anterior caudal centra in derived members"
+      ],
+      "references": [
+        {
+          "id": "young1972a",
+          "authors": "Young, C. C.; Zhao, X.",
+          "year": 1972,
+          "title": "Mamenchisaurus hochuanensis sp. nov.",
+          "journal": "Institute of Vertebrate Palaeontology and Palaeoanthropology Monographs, Series A",
+          "volume": "8",
+          "pages": "1-30",
+          "notes": "Erected Mamenchisauridae for Mamenchisaurus hochuanensis."
+        },
+        {
+          "id": "naish2007a",
+          "authors": "Naish, D.; Martill, D. M.",
+          "year": 2007,
+          "title": "Dinosaurs of Great Britain and the role of the Geological Society of London in their discovery: basal Dinosauria and Saurischia",
+          "journal": "Journal of the Geological Society",
+          "volume": "164",
+          "issue": "3",
+          "pages": "493-510",
+          "doi": "10.1144/0016-76492006-032",
+          "notes": "Defined Mamenchisauridae as all sauropods closer to Mamenchisaurus constructus than to Saltasaurus loricatus."
+        },
+        {
+          "id": "moore2020a",
+          "authors": "Moore, A. J.; Upchurch, P.; Barrett, P. M.; Clark, J. M.; Xu, X.",
+          "year": 2020,
+          "title": "Osteology of Klamelisaurus gobiensis (Dinosauria, Eusauropoda) and the evolutionary history of Middle-Late Jurassic Chinese sauropods",
+          "journal": "Journal of Systematic Palaeontology",
+          "volume": "18",
+          "issue": "16",
+          "pages": "1299-1393",
+          "doi": "10.1080/14772019.2020.1759706",
+          "notes": "Phylogeny of Chinese eusauropods in an osteology of Klamelisaurus; their clade is Mamenchisauridae in one analysis and, with Euhelopus inside it, Euhelopodidae in the others."
+        },
+        {
+          "id": "moore2023a",
+          "authors": "Moore, A. J.; Barrett, P. M.; Upchurch, P.; Liao, C. C.; Ye, Y.; Hao, B.; Xu, X.",
+          "year": 2023,
+          "title": "Re-assessment of the Late Jurassic eusauropod Mamenchisaurus sinocanadorum Russell and Zheng, 1993, and the evolution of exceptionally long necks in mamenchisaurids",
+          "journal": "Journal of Systematic Palaeontology",
+          "volume": "21",
+          "issue": "1",
+          "doi": "10.1080/14772019.2023.2171818",
+          "notes": "Reviewed the published definitions of Mamenchisauridae and adopted that of Naish and Martill (2007)."
         }
       ]
     },
@@ -1543,6 +1773,107 @@
           "volume": "8",
           "pages": "1-55",
           "notes": "Defined Saurischia as birds and all dinosaurs closer to birds than to Ornithischia."
+        }
+      ]
+    },
+    "Sauropoda": {
+      "description": "Sauropoda is a clade of saurischian, or lizard-hipped, dinosaurs, whose members are known as sauropods. They are the largest animals ever to have lived on land, with very long necks, long tails, small heads relative to the body, and four thick, pillar-like legs supporting massive bodies. Air-filled, hollow bones are a characteristic feature of the group, lightening the enormous skeleton and aiding a bird-like system of air sacs. Well-known members include Diplodocus, Apatosaurus, Brachiosaurus, Camarasaurus, and the giant titanosaurs such as Argentinosaurus. The oldest unequivocal sauropods appear in the Early Jurassic; by the Late Jurassic groups like the diplodocids and brachiosaurids had become widespread, and by the Late Cretaceous the titanosaurs had replaced all other sauropods and achieved a near-global distribution. Their fossils have been found on every continent, including Antarctica.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda"
+      ],
+      "described": 1878,
+      "authors": "Marsh, O. C.",
+      "erected_in": "marsh1878b",
+      "diagnostic_features": [
+        "Gigantic body size with columnar, graviportal limbs",
+        "Extremely elongated neck with 12 or more opisthocoelous cervical vertebrae",
+        "Extensive postcranial skeletal pneumaticity",
+        "Spatulate or peg-like teeth",
+        "Obligate quadrupedal posture",
+        "Reduced or absent manual phalanges on lateral digits"
+      ],
+      "references": [
+        {
+          "id": "marsh1878b",
+          "authors": "Marsh, O. C.",
+          "year": 1878,
+          "title": "Principal characters of American Jurassic dinosaurs, Part I",
+          "journal": "American Journal of Science",
+          "publisher": "American Journal of Science",
+          "volume": "16",
+          "issue": "95",
+          "pages": "411-416",
+          "doi": "10.2475/ajs.s3-16.95.411",
+          "notes": "Erected the clade Sauropoda."
+        }
+      ]
+    },
+    "Sauropodiformes": {
+      "description": "Sauropodiformes is a clade of sauropodomorph dinosaurs that gathers the true sauropods together with their closest non-sauropod relatives. As a stem-based group, it embraces every taxon on the sauropod side of the split from Massospondylus, running from the \"near-sauropod\" grade of animals such as Anchisaurus, Melanorosaurus, Aardonyx, and Mussaurus, through the lessemsaurids, and on to the sauropods themselves. Its members chart one of the defining transitions in dinosaur evolution: the shift from a mostly bipedal posture to quadrupedal walking, in which McPhee and colleagues (2014) place Antetonitrus as a transitional form, accompanied by the march toward enormous body size on the line leading to Sauropoda.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes"
+      ],
+      "described": 2007,
+      "authors": "Sereno, P. C.",
+      "erected_in": "sereno2007a",
+      "described_in": "mcphee2014a",
+      "diagnostic_features": [
+        "Trend toward obligate quadrupedality with a shortened, weight-bearing manus",
+        "Robust, columnar limb bones with reduced shaft torsion",
+        "Broadened, weight-bearing pes with a reduced pollex",
+        "Massive scapular blade in derived members"
+      ],
+      "references": [
+        {
+          "id": "sereno2007a",
+          "authors": "Sereno, P. C.",
+          "year": 2007,
+          "title": "Basal Sauropodomorpha: historical and recent phylogenetic hypotheses, with comments on Ammosaurus major (Marsh, 1889)",
+          "journal": "Special Papers in Palaeontology",
+          "volume": "77",
+          "pages": "261-289",
+          "notes": "Published Sauropodiformes, credited to Sereno's online database of 2005, as the least inclusive clade containing Mussaurus patagonicus and Saltasaurus loricatus."
+        },
+        {
+          "id": "mcphee2014a",
+          "authors": "McPhee, B. W.; Yates, A. M.; Choiniere, J. N.; Abdala, F.",
+          "year": 2014,
+          "title": "The complete anatomy and phylogenetic relationships of Antetonitrus ingenipes (Sauropodiformes, Dinosauria): implications for the origins of Sauropoda",
+          "journal": "Zoological Journal of the Linnean Society",
+          "volume": "171",
+          "issue": "1",
+          "pages": "151-205",
+          "doi": "10.1111/zoj.12127",
+          "notes": "Provides the stem-based redefinition of Sauropodiformes used for the clade."
         }
       ]
     },
@@ -2929,6 +3260,109 @@
       ],
       "authors": "Marsh, O. C.",
       "described": 1877
+    },
+    "Anhuilong": {
+      "genus": "Anhuilong",
+      "parent": "Mamenchisauridae",
+      "pronunciation": {
+        "phonetic": "ahn-HWAY-long"
+      },
+      "etymology": "Named after Anhui province in China combined with Chinese 'long' meaning 'dragon'; meaning 'Anhui dragon'",
+      "description": "Anhuilong is a genus of mamenchisaurid dinosaur known from the Hongqin Formation of Anhui province, China. The genus contains a single species, Anhuilong diboensis.",
+      "diet": "herbivore",
+      "locomotion": "quadrupedal",
+      "paleoenvironment": [
+        "fluvial"
+      ],
+      "diagnostic_features": [
+        "Lateral edge of deltopectoral crest turns caudolaterally (differs from other mamenchisaurids).",
+        "Lateral accessory process of humerus more robust than medial one (reversed from other Mamenchisauridae).",
+        "Ratio of total length of radius to humerus is 0.50, the lowest value among mamenchisaurids.",
+        "Ratio of total length of ulna to humerus is 0.56, the lowest value among mamenchisaurids.",
+        "Elliptical cross-sectional shape of ulna at mid-shaft with highest transverse-to-craniocaudal diameter ratio among mamenchisaurids.",
+        "Nearly perpendicular orientation of proximal end of ulna relative to long axis of ulnar shaft."
+      ],
+      "appearance": {
+        "integument": "scaled",
+        "evidence": "inferred"
+      },
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "376757"
+        }
+      ],
+      "species": [
+        {
+          "name": "Anhuilong diboensis",
+          "etymology": "Named for the locality where the holotype is reposited.",
+          "status": "valid",
+          "type_species": true,
+          "period": {
+            "name": [
+              "Middle Jurassic"
+            ]
+          },
+          "location": {
+            "country": "CN",
+            "locality": "Jimushan",
+            "region": "Anhui",
+            "formation": "Hongqin",
+            "part": "lower",
+            "region_code": "CN-AH",
+            "part_of": "formation"
+          },
+          "type_specimen": {
+            "specimen_id": [
+              "AGB 5822"
+            ],
+            "specimen_type": "holotype",
+            "institution": "Geological and Paleontological Museum of Anhui",
+            "material": "Associated and complete left humerus, ulna and radius of an individual.",
+            "completeness": "fragmentary"
+          },
+          "erected_in": "ren2020b",
+          "authors": "Ren, X. X.; Huang, J. D.; You, H. L.",
+          "described": 2020
+        }
+      ],
+      "references": [
+        {
+          "id": "ren2020b",
+          "authors": "Ren, X. X.; Huang, J. D.; You, H. L.",
+          "year": 2020,
+          "title": "The second mamenchisaurid dinosaur from the Middle Jurassic of Eastern China",
+          "journal": "Historical Biology",
+          "publisher": "Informa UK Limited",
+          "volume": "32",
+          "issue": "5",
+          "pages": "602-610",
+          "doi": "10.1080/08912963.2018.1515935"
+        }
+      ],
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda",
+        "Gravisauria",
+        "Eusauropoda",
+        "Mamenchisauridae"
+      ],
+      "authors": "Ren, X. X.; Huang, J. D.; You, H. L.",
+      "described": 2020
     },
     "Daspletosaurus": {
       "genus": "Daspletosaurus",

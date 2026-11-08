@@ -1,21 +1,30 @@
 ---
+import GenusFilterForm from "../../components/GenusFilterForm.astro";
 import GenusIndex from "../../components/GenusIndex.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatGenusCount } from "../../data/format.ts";
+import { createGenusIndexRows, listGenusFilterOptions } from "../../data/genus-index.ts";
 import { getSiteData } from "../../data/site-data.ts";
 
 const siteData = getSiteData();
+const rows = createGenusIndexRows(siteData.genera, siteData, siteData.timeline);
+const filterOptions = listGenusFilterOptions(rows, siteData.timeline);
 ---
 
-<BaseLayout title="Genera" description={"An A–Z index of the " + formatGenusCount(siteData.genera.length) + " in Open Paleo."} section="genera">
+<BaseLayout title="Genera" description={"An A–Z index of the " + formatGenusCount(siteData.genera.length) + " in Open Paleo, filterable by time, group, diet, locomotion, integument, status and year named."} section="genera">
     <div class="index-page">
         <header class="index-header">
             <h1>Genera</h1>
             <p class="index-summary">{formatGenusCount(siteData.genera.length)} in release {siteData.metadata.version}, from A to Z.</p>
         </header>
-        <GenusIndex genera={siteData.genera} label="Genera" headingLevel={2} />
+        <GenusFilterForm options={filterOptions} total={rows.length} />
+        <GenusIndex rows={rows} label="Genera" headingLevel={2} isFilterable={true} />
     </div>
 </BaseLayout>
+
+<script>
+    import "../../scripts/genus-filters.ts";
+</script>
 
 <style>
     .index-page

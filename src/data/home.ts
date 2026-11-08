@@ -105,10 +105,10 @@ export type MajorGroup = {
 };
 
 /**
- * The groups the home page offers as ways into the tree, in tree order. Together they hold
- * most of the dataset's genera.
+ * The groups the home page offers as ways into the tree, in tree order, which the Genera page
+ * also filters by. Together they hold most of the dataset's genera.
  */
-const majorGroupNames = ["Theropoda", "Sauropodomorpha", "Thyreophora", "Ornithopoda", "Ceratopsia", "Pachycephalosauria"];
+export const majorGroupNames = ["Theropoda", "Sauropodomorpha", "Thyreophora", "Ornithopoda", "Ceratopsia", "Pachycephalosauria"];
 
 /**
  * Count the genera known from each stage, from the stages listed for each genus's type species.

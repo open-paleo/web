@@ -21,7 +21,7 @@ with JavaScript off; scripts add search and the tree's open and close buttons. I
 | Genus (1,428) | Description, an age figure in the chart colors of the geologic time scale, diagnosis, each species with its type specimen, horizon and locality, synonyms, notable specimens, ICZN cases and references, beside an "at a glance" panel |
 | Clade (188) | Description, the span of time its genera cover, diagnosis, the clades within it, and a table of the genera placed directly in it |
 | Reference (2,553) | One page per cited work: the full citation, the names first published in it, and every genus and clade that cites it |
-| Genera | Every genus, A to Z |
+| Genera | Every genus, A to Z, with its group, epochs and country, and filters for time, group, diet, locomotion, integument, status and year named that are kept in the page address |
 | Tree | The classification as an outline you can open and close, with genus counts |
 | References | Every cited work, by first author |
 | Data | Downloads of the dataset's output files, how to cite a release, and the versioning policy |

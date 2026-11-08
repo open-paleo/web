@@ -6,6 +6,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatAgeRange, formatGenusCount } from "../../data/format.ts";
 import type { StageCount } from "../../data/home.ts";
 import { countGeneraByStage } from "../../data/home.ts";
+import { createGenusIndexRows } from "../../data/genus-index.ts";
 import { getSiteData } from "../../data/site-data.ts";
 import type { PeriodPage } from "../../data/time-pages.ts";
 import { getTimePages } from "../../data/time-pages.ts";
@@ -64,6 +65,7 @@ export function getStaticPaths(): Array<PeriodPath>
 
 const { period } = Astro.props;
 const siteData = getSiteData();
+const rows = createGenusIndexRows(period.genera, siteData, siteData.timeline);
 const stageCounts = new Array<StageCount>();
 
 if (siteData.timeline)
@@ -101,7 +103,7 @@ if (siteData.timeline)
         )}
 
         <PageSection title={"Genera of the " + period.name}>
-            <GenusIndex genera={period.genera} label={"Genera of the " + period.name} headingLevel={3} />
+            <GenusIndex rows={rows} label={"Genera of the " + period.name} headingLevel={3} isFilterable={false} />
         </PageSection>
     </article>
 </BaseLayout>

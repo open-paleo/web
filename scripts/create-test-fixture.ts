@@ -38,6 +38,26 @@ function hasSpeciesWithStatus(genus: Genus, status: string): boolean
 }
 
 /**
+ * Report whether a genus's type species names an epoch but no stage, so its period comes from
+ * the epoch alone.
+ *
+ * @param genus - The genus record.
+ * @returns True if the type species has epoch names and no stages.
+ */
+function hasEpochWithoutStage(genus: Genus): boolean
+{
+    for (const species of genus.species)
+    {
+        if (species.type_species)
+        {
+            return (species.period.name ?? []).length > 0 && (species.period.stage ?? []).length === 0;
+        }
+    }
+
+    return false;
+}
+
+/**
  * Report whether a genus cites a reference whose key matches a pattern.
  *
  * @param genus - The genus record.
@@ -105,6 +125,7 @@ chosen.add(findFirstGenus(chosen, (genus) => hasSpeciesWithStatus(genus, "nomen 
 chosen.add(findFirstGenus(chosen, (genus) => (genus.iczn_cases ?? []).length > 0));
 chosen.add(findFirstGenus(chosen, (genus) => hasReferenceKeyMatching(genus, /'/)));
 chosen.add(findFirstGenus(chosen, (genus) => hasReferenceKeyMatching(genus, /\P{ASCII}/u)));
+chosen.add(findFirstGenus(chosen, (genus) => hasEpochWithoutStage(genus)));
 
 const genera: Record<string, Genus> = {};
 const keptClades = new Set<string>();

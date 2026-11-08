@@ -89,3 +89,13 @@ test("an age caption leaves names without a page unlinked", () =>
     assert.equal(parts.map((part) => part.text).join(""), "Asselian, Early Permian");
     assert.ok(parts.every((part) => part.section === undefined));
 });
+
+test("a genus dated to an epoch but no stage appears on its period's page", () =>
+{
+    const anhuilong = siteData.genusByName.get("Anhuilong");
+    const jurassic = pages.periodByName.get("Jurassic");
+
+    assert.ok(anhuilong && jurassic);
+    assert.equal(anhuilong.record.species[0].period.stage, undefined, "the fixture's case has no stage");
+    assert.ok(jurassic.genera.includes(anhuilong));
+});

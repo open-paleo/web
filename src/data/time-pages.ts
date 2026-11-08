@@ -1,5 +1,5 @@
-import type { GeologicTimeline } from "./age-figure.ts";
-import type { Period } from "./dataset.ts";
+import type { Epoch, GeologicTimeline } from "./age-figure.ts";
+import type { Genus, Period } from "./dataset.ts";
 import { getPeriodName } from "./age-figure.ts";
 import { getTypeSpecies } from "./records.ts";
 import type { GenusEntry, SiteData } from "./site-data.ts";
@@ -122,9 +122,46 @@ export type TimePages = {
 };
 
 /**
+ * List the epochs a genus's type species is known from: the epochs of its stages, and any
+ * epoch it names directly. Some type species name an epoch but no stage.
+ *
+ * @param genus - The genus record.
+ * @param timeline - The arranged timescale.
+ * @returns The epochs, oldest first.
+ */
+export function listGenusEpochs(genus: Genus, timeline: GeologicTimeline): Array<Epoch>
+{
+    const period = getTypeSpecies(genus).period;
+    const stageNames = new Set<string>(period.stage ?? []);
+    const epochNames = new Set<string>(period.name ?? []);
+    const epochs = new Array<Epoch>();
+
+    for (const epoch of timeline.epochs)
+    {
+        let isKnown = epochNames.has(epoch.name);
+
+        for (const stage of epoch.stages)
+        {
+            if (stageNames.has(stage.name))
+            {
+                isKnown = true;
+            }
+        }
+
+        if (isKnown)
+        {
+            epochs.push(epoch);
+        }
+    }
+
+    return epochs;
+}
+
+/**
  * Arrange the genera by the stages and periods of their type species, for the time pages. A
  * genus whose type species spans several stages appears on each of their pages, the same rule
- * the home page's chart counts by.
+ * the home page's chart counts by. A period lists the genera of all its epochs (see
+ * listGenusEpochs), so a genus dated only to an epoch still appears on its period's page.
  *
  * @param siteData - The lookup tables.
  * @param timeline - The arranged timescale.
@@ -151,6 +188,20 @@ export function createTimePages(siteData: SiteData, timeline: GeologicTimeline):
     const periodByName = new Map<string, PeriodPage>();
     const generaInPeriod = new Map<string, Set<GenusEntry>>();
 
+    // A period lists every genus known from any of its epochs, including those whose type
+    // species names an epoch but no stage.
+    for (const genus of siteData.genera)
+    {
+        for (const epoch of listGenusEpochs(genus.record, timeline))
+        {
+            const periodName = getPeriodName(epoch.name);
+            const periodGenera = generaInPeriod.get(periodName) ?? new Set<GenusEntry>();
+
+            periodGenera.add(genus);
+            generaInPeriod.set(periodName, periodGenera);
+        }
+    }
+
     for (const epoch of timeline.epochs)
     {
         const periodName = getPeriodName(epoch.name);
@@ -171,14 +222,6 @@ export function createTimePages(siteData: SiteData, timeline: GeologicTimeline):
                     toMa: stage.toMa,
                     genera,
                 };
-                const periodGenera = generaInPeriod.get(periodName) ?? new Set<GenusEntry>();
-
-                for (const genus of genera)
-                {
-                    periodGenera.add(genus);
-                }
-
-                generaInPeriod.set(periodName, periodGenera);
                 epochStages.push(page);
                 stages.push(page);
                 stageByName.set(stage.name, page);

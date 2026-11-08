@@ -1,0 +1,202 @@
+---
+import type { GenusFilterOptions } from "../data/genus-index.ts";
+import { formatGenusCount } from "../data/format.ts";
+
+/**
+ * Properties of the Genera page's filter form.
+ */
+type Props = {
+    /**
+     * The filters and their options.
+     */
+    options: GenusFilterOptions;
+
+    /**
+     * Number of genera on the page.
+     */
+    total: number;
+};
+
+const { options, total } = Astro.props;
+---
+
+{/* The form is hidden until the script starts, so a reader without JavaScript sees the full
+   list and no controls that do nothing. The script reads the filters from the page address
+   and writes them back to it, so a filtered list can be shared. */}
+<form class="genus-filters" id="genus-filters" data-total={total} aria-label="Filter genera" hidden>
+    <div class="filter-fields">
+        {options.choices.map((choice) => (
+            <label class="filter-field">
+                <span class="filter-label">{choice.label}</span>
+                <span class="select-box">
+                    <select name={choice.name}>
+                        <option value="">{choice.anyLabel}</option>
+                        {choice.options.map((option) => <option value={option.value} data-label={option.label}>{option.label} ({option.count})</option>)}
+                        {choice.groups.map((group) => (
+                            <optgroup label={group.label}>
+                                {group.options.map((option) => <option value={option.value} data-label={option.label}>{option.label} ({option.count})</option>)}
+                            </optgroup>
+                        ))}
+                    </select>
+                </span>
+            </label>
+        ))}
+        {/* A group rather than a fieldset: a legend is laid out apart from the fieldset's other
+           content, which put these fields out of line with the lists beside them. */}
+        <div class="filter-field filter-years" role="group" aria-labelledby="genus-filter-years">
+            <span class="filter-label" id="genus-filter-years">Named</span>
+            <span class="year-fields">
+                <label>
+                    <span class="visually-hidden">Named from</span>
+                    <input name="from" type="number" inputmode="numeric" min={options.firstYear} max={options.lastYear} step="1" placeholder={String(options.firstYear)} />
+                </label>
+                <span aria-hidden="true">to</span>
+                <label>
+                    <span class="visually-hidden">Named up to</span>
+                    <input name="to" type="number" inputmode="numeric" min={options.firstYear} max={options.lastYear} step="1" placeholder={String(options.lastYear)} />
+                </label>
+            </span>
+        </div>
+    </div>
+    <div class="filter-summary">
+        <p class="filter-status" id="genus-filter-status" role="status">Showing all {formatGenusCount(total)}.</p>
+        <button class="filter-clear" type="button" id="genus-filter-clear" hidden>Clear filters</button>
+    </div>
+</form>
+
+<style>
+    .genus-filters
+    {
+        display: grid;
+        gap: var(--space-4);
+        padding: var(--space-5);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+        font-family: var(--font-sans);
+    }
+
+    .genus-filters[hidden],
+    .filter-clear[hidden]
+    {
+        display: none;
+    }
+
+    .filter-fields
+    {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
+        gap: var(--space-4);
+    }
+
+    .filter-field
+    {
+        display: grid;
+        gap: var(--space-1);
+        align-content: start;
+        min-width: 0;
+    }
+
+    .filter-label
+    {
+        color: var(--color-muted);
+        font-size: var(--text-small);
+    }
+
+    /* The lists draw their own chevron, inset from the right edge as far as the text is from the
+       left; the browser's arrow sits against the edge and ignores padding. */
+    .select-box
+    {
+        position: relative;
+        display: grid;
+    }
+
+    .select-box::after
+    {
+        position: absolute;
+        top: 50%;
+        right: var(--space-3);
+        width: 0.45rem;
+        height: 0.45rem;
+        border-right: 2px solid var(--color-muted);
+        border-bottom: 2px solid var(--color-muted);
+        content: "";
+        pointer-events: none;
+        transform: translateY(-70%) rotate(45deg);
+    }
+
+    select,
+    input
+    {
+        width: 100%;
+        min-width: 0;
+        min-height: 2.5rem;
+        padding: var(--space-1) var(--space-3);
+        color: var(--color-ink);
+        background: var(--color-background);
+        border: 1px solid color-mix(in srgb, var(--color-line) 40%, var(--color-muted));
+        border-radius: var(--radius-small);
+        font-size: var(--text-interface);
+    }
+
+    select
+    {
+        padding-right: var(--space-6);
+        appearance: none;
+    }
+
+    .year-fields
+    {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: var(--space-2);
+        color: var(--color-muted);
+    }
+
+    /* On a phone the fields go two to a row, so the form takes half a screen rather than all of
+       it; the year range gets a row of its own. */
+    @media (max-width: 40rem)
+    {
+        .genus-filters
+        {
+            padding: var(--space-4);
+        }
+
+        .filter-fields
+        {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: var(--space-3);
+        }
+
+        .filter-years
+        {
+            grid-column: 1 / -1;
+        }
+    }
+
+    .filter-summary
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-2) var(--space-5);
+    }
+
+    .filter-status
+    {
+        font-size: var(--text-interface);
+    }
+
+    .filter-clear
+    {
+        padding: var(--space-1) var(--space-4);
+        color: var(--color-accent);
+        background: var(--color-surface);
+        border: 1px solid var(--color-accent);
+        border-radius: var(--radius);
+        font-size: var(--text-interface);
+        cursor: pointer;
+    }
+</style>
