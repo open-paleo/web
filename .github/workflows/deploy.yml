@@ -1,0 +1,87 @@
+name: Deploy
+
+# Builds the site against open-paleo/data and publishes it to GitHub Pages at
+# https://open-paleo.org.
+#
+# - push to main: the site changed; build against the data repository's main.
+# - repository_dispatch (data-updated): the data repository's build published new output;
+#   build against the exact data commit in the payload, since main can be served stale for a
+#   few minutes after a push.
+# - workflow_dispatch: run by hand from the Actions tab.
+# - schedule: nightly, in case a data-updated notification was missed.
+on:
+  push:
+    branches: [main]
+  repository_dispatch:
+    types: [data-updated]
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * *"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time. A deployment already running finishes rather than being
+# cancelled, so the published site is never left half updated.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  ASTRO_TELEMETRY_DISABLED: 1
+  SITE_URL: https://open-paleo.org
+  SITE_BASE: /
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      # Only dist/ is checked out: the site reads nothing else from the data repository.
+      - name: Checkout dataset
+        uses: actions/checkout@v6
+        with:
+          repository: open-paleo/data
+          ref: ${{ github.event.client_payload.sha || 'main' }}
+          path: data
+          sparse-checkout: dist
+          sparse-checkout-cone-mode: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # A deployment never publishes a build that fails its tests.
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

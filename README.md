@@ -59,6 +59,12 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 [open-paleo/data](https://github.com/open-paleo/data) beside this repository, or set
 `OPEN_PALEO_DATA` to the directory that holds `open-paleo.json`.
 
+## Deployment
+
+The site is published to GitHub Pages at https://open-paleo.org by a GitHub Actions workflow,
+on every push to `main`, when the data repository publishes new output, and nightly. See
+[docs/deployment.md](docs/deployment.md) for the triggers and the one-time domain setup.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the code style and conventions. To fix or add data,

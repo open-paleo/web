@@ -4,6 +4,13 @@
 
 ### Added
 
+- Deployment to GitHub Pages at https://open-paleo.org (`.github/workflows/deploy.yml`): on
+  pushes to `main`, on a `data-updated` notification from the data repository (building against
+  the data commit it names), by hand, and nightly. The deployed build has canonical addresses, a
+  sitemap and a `robots.txt` naming it; local builds leave them out. `docs/deployment.md` records
+  the one-time domain setup
+- A "Page not found" page with links to search and the indexes
+
 - A full-width header on every page: a dark band with the wordmark, navigation (Genera, Tree,
   References, Data) marking the current section, and a search field; plus a "Skip to content"
   link

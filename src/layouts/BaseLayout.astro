@@ -58,6 +58,9 @@ const siteName = "Open Paleo";
 const documentTitle = title ? title + " | " + siteName : siteName;
 const homeUrl = import.meta.env.BASE_URL;
 const release = getSiteData().metadata;
+// The canonical address and the sitemap link need the site's address, which local builds lack.
+const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const sitemapUrl = Astro.site ? new URL(homeUrl + "sitemap-index.xml", Astro.site).href : undefined;
 const navigationItems: Array<NavigationItem> = [
     { section: "genera", label: "Genera", path: "genera/" },
     { section: "tree", label: "Tree", path: "tree/" },
@@ -73,6 +76,8 @@ const navigationItems: Array<NavigationItem> = [
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content={description}>
         <title>{documentTitle}</title>
+        {canonicalUrl && <link rel="canonical" href={canonicalUrl}>}
+        {sitemapUrl && <link rel="sitemap" href={sitemapUrl}>}
     </head>
     <body>
         <a class="skip-link" href="#content">Skip to content</a>

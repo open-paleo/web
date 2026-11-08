@@ -66,6 +66,43 @@ const sharedStylisticRules = {
     "no-var": "error",
 };
 
+// Naming conventions for TypeScript, shared by every TypeScript file and the page-file override
+// below.
+/** @type {Array<unknown>} */
+const namingConventionOptions = [
+    {
+        selector: "default",
+        format: ["camelCase"],
+        leadingUnderscore: "forbid",
+        trailingUnderscore: "forbid",
+    },
+    {
+        selector: "typeLike",
+        format: ["PascalCase"],
+    },
+    {
+        // Astro components are imported under PascalCase names (BaseLayout).
+        selector: "import",
+        format: ["camelCase", "PascalCase"],
+    },
+    {
+        selector: "parameter",
+        modifiers: ["unused"],
+        format: ["camelCase"],
+        leadingUnderscore: "allow",
+        filter: { regex: "^_$", match: true },
+    },
+    {
+        // Property names mirror the dataset's snake_case fields (type_specimen, from_ma).
+        selector: "objectLiteralProperty",
+        format: null,
+    },
+    {
+        selector: "typeProperty",
+        format: null,
+    },
+];
+
 /** @type {import("eslint").Linter.RulesRecord} */
 const typeScriptRules = {
     // Require node: protocol for Node.js built-in modules
@@ -87,39 +124,7 @@ const typeScriptRules = {
     // Naming conventions
     camelcase: "off",
     "no-underscore-dangle": "off",
-    "@typescript-eslint/naming-convention": ["error",
-        {
-            selector: "default",
-            format: ["camelCase"],
-            leadingUnderscore: "forbid",
-            trailingUnderscore: "forbid",
-        },
-        {
-            selector: "typeLike",
-            format: ["PascalCase"],
-        },
-        {
-            // Astro components are imported under PascalCase names (BaseLayout).
-            selector: "import",
-            format: ["camelCase", "PascalCase"],
-        },
-        {
-            selector: "parameter",
-            modifiers: ["unused"],
-            format: ["camelCase"],
-            leadingUnderscore: "allow",
-            filter: { regex: "^_$", match: true },
-        },
-        {
-            // Property names mirror the dataset's snake_case fields (type_specimen, from_ma).
-            selector: "objectLiteralProperty",
-            format: null,
-        },
-        {
-            selector: "typeProperty",
-            format: null,
-        },
-    ],
+    "@typescript-eslint/naming-convention": ["error", ...namingConventionOptions],
 
     // No unused variables
     "@typescript-eslint/no-unused-vars": ["error", {
@@ -148,6 +153,22 @@ export default defineConfig(
         rules: {
             ...sharedStylisticRules,
             ...typeScriptRules,
+        },
+    },
+    {
+        // Astro endpoints (src/pages/robots.txt.ts) must export functions named after the HTTP
+        // method they answer, such as GET. Allow those names there and nowhere else.
+        files: ["src/pages/**/*.ts"],
+        rules: {
+            "@typescript-eslint/naming-convention": [
+                "error",
+                {
+                    selector: "function",
+                    filter: { regex: "^(GET|POST|PUT|PATCH|DELETE|ALL)$", match: true },
+                    format: null,
+                },
+                ...namingConventionOptions,
+            ],
         },
     },
     ...astro.configs["flat/recommended"],
