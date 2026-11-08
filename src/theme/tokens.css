@@ -53,7 +53,8 @@
     /*
      * Geologic time colors from the International Commission on Stratigraphy chart. Used only
      * for age graphics. Named after the values in the data's schema.yml (so "early-permian",
-     * not "cisuralian"). Covers every period and stage the schema allows.
+     * not "cisuralian"). Covers every period and stage the schema allows. Checked against the
+     * ICS chart data (github.com/i-c-stratigraphy/chart) in November 2026; see docs/theme.md.
      */
     --period-permian: #f04028;
     --epoch-early-permian: #ef5845;

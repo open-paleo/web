@@ -47,6 +47,20 @@ section and the search button. On the band, text reaches 12.7:1, muted text 8.1:
 8.9:1, and the search field's border 4.2:1 (non-text needs 3:1). In dark mode the band is darker
 than the page, with `--color-header-edge` as a visible bottom border.
 
+### Geologic time colors
+
+The `--period-*`, `--epoch-*` and `--stage-*` tokens are the International Commission on
+Stratigraphy's chart colors, which follow the Commission for the Geological Map of the World. They
+are the same in both themes, as on the printed chart, and are used only in age graphics.
+
+In November 2026 all 61 were checked against ICS's own chart data, the `schema:color` values in
+`chart.ttl` from [i-c-stratigraphy/chart](https://github.com/i-c-stratigraphy/chart), for the
+2026/06 edition (`main`) and the `v2023/09` tag. Every token matched both, and no color changed
+between the two editions, so the 2024/12 edition the dataset follows has the same colors. ICS
+names some epochs differently from the dataset: "Early Permian" is Cisuralian, "Middle Permian"
+Guadalupian, "Late Permian" Lopingian, and "Early" and "Late" epochs are "Lower" and "Upper"
+series. Repeat the check when the dataset moves to a new chart edition.
+
 ### Chart colors
 
 Marks in charts (the bars of the home page's "Genera through time") use `--color-chart-mark`
