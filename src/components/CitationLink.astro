@@ -1,6 +1,6 @@
 ---
 import type { Reference } from "../data/dataset.ts";
-import { formatShortCitation } from "../data/format.ts";
+import { formatDistinctShortCitations } from "../data/format.ts";
 import { getSiteData } from "../data/site-data.ts";
 import { createReferenceAnchor } from "../data/urls.ts";
 
@@ -14,22 +14,15 @@ type Props = {
     id: string;
 
     /**
-     * The record's references, which the key resolves against.
+     * The record's references, which the key resolves against. Two that would read alike get
+     * the letter from their key: "O'Connor et al. (2025a)".
      */
     references: Array<Reference>;
 };
 
 const { id, references } = Astro.props;
 const entry = getSiteData().referenceById.get(id);
-let label = id;
-
-for (const reference of references)
-{
-    if (reference.id === id)
-    {
-        label = formatShortCitation(reference);
-    }
-}
+const label = formatDistinctShortCitations(references).get(id) ?? id;
 ---
 
 <a class="citation-link" href={"#" + createReferenceAnchor(entry?.slug ?? id)}>{label}</a>

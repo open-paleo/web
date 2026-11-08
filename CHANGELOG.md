@@ -2,6 +2,34 @@
 
 ## Unreleased
 
+### Changed
+
+- Accessibility and readability pass. The age figure no longer dims time outside a record's
+  range, which had dropped band labels to 1.15:1; the range is marked by a double ring
+  instead, band text is near-black (`#0c0e0f`) or white by measured contrast, and a test checks
+  every band reaches 4.5:1. The type scale is larger (body 18px, nothing below 14px). Genus,
+  clade and reference pages are divided into sections whose larger headings are underlined by a
+  rule spanning the section; species sit
+  under one Species section; a genus's etymology moves into the header; the dispute is its own
+  section with a quieter panel. axe-core reports no WCAG 2.2 AA violations on the audited pages
+  in either theme
+- The fact panel beside genus, clade and reference pages ("At a glance", "About this work") is
+  a titled box on the surface color with a firm border, and the side column is 21rem wide
+- Record pages float the fact panel at the top right instead of reserving a right-hand column
+  for the whole page, so sections below it use the full width (`RecordMain.astro`)
+- Each species is a box holding its type specimen, horizon, locality and diagnosis as labeled
+  rows, with its synonyms as a stacked list; a genus's species boxes sit two side by side where
+  they fit
+- Scrollable tables are keyboard-focusable, labeled regions
+- A notable specimen's name sits above its details. Nicknames are quoted (“Fighting
+  Dinosaurs”), descriptive names are not (Berlin specimen), and an unnamed specimen is headed by
+  its catalog number
+- Short citations that would read alike within a record get the letter from their reference
+  key: "O'Connor et al. (2025a)" and "(2025b)"
+- The Paleocene and Eocene belong to the Paleogene in the age figure, which has a chart color
+  for it
+
+
 ### Added
 
 - Reference pages (`reference/{slug}/`, one for each of the 2,553 cited works): kind of work,

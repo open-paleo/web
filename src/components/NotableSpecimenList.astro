@@ -1,6 +1,6 @@
 ---
 import type { NotableSpecimen, Reference } from "../data/dataset.ts";
-import { formatVocabularyValue } from "../data/format.ts";
+import { formatSpecimenName, formatVocabularyValue } from "../data/format.ts";
 import CitationLink from "./CitationLink.astro";
 import Prose from "./Prose.astro";
 
@@ -25,23 +25,23 @@ const { specimens, references } = Astro.props;
 <ul class="notable-specimens">
     {specimens.map((specimen) => (
         <li>
-            <span class="specimen-name">{specimen.nickname ?? specimen.specimen_id?.[0] ?? "Unnamed specimen"}</span>
-            <div class="specimen-body">
-                <p class="specimen-facts">
-                    {specimen.specimen_id && specimen.specimen_id.length > 0 && <span class="catalog-number">{specimen.specimen_id.join(", ")}</span>}
-                    {specimen.institution && <span>{specimen.institution}</span>}
-                    {specimen.discovered?.year && (
-                        <span>Found {specimen.discovered.year}{specimen.discovered.by ? " by " + specimen.discovered.by : ""}</span>
-                    )}
-                    {specimen.category && <span class="specimen-category">{formatVocabularyValue(specimen.category)}</span>}
-                </p>
-                <p><Prose text={specimen.significance.trim()} /></p>
-                {specimen.references && specimen.references.length > 0 && (
-                    <p class="specimen-sources">
-                        {specimen.references.map((id) => <CitationLink id={id} references={references} />)}
-                    </p>
+            {specimen.nickname
+                ? <h3 class="specimen-name">{formatSpecimenName(specimen.nickname)}</h3>
+                : <h3 class="specimen-name catalog-heading">{specimen.specimen_id?.join(", ") ?? "Unnamed specimen"}</h3>}
+            <p class="specimen-facts">
+                {specimen.nickname && specimen.specimen_id && specimen.specimen_id.length > 0 && <span class="catalog-number">{specimen.specimen_id.join(", ")}</span>}
+                {specimen.institution && <span>{specimen.institution}</span>}
+                {specimen.discovered?.year && (
+                    <span>Found {specimen.discovered.year}{specimen.discovered.by ? " by " + specimen.discovered.by : ""}</span>
                 )}
-            </div>
+                {specimen.category && <span class="specimen-category">{formatVocabularyValue(specimen.category)}</span>}
+            </p>
+            <p><Prose text={specimen.significance.trim()} /></p>
+            {specimen.references && specimen.references.length > 0 && (
+                <p class="specimen-sources">
+                    {specimen.references.map((id) => <CitationLink id={id} references={references} />)}
+                </p>
+            )}
         </li>
     ))}
 </ul>
@@ -56,29 +56,26 @@ const { specimens, references } = Astro.props;
         list-style: none;
     }
 
+    /* The name heads each specimen, with its details, significance and sources beneath. */
     li
     {
         display: grid;
-        grid-template-columns: 8rem minmax(0, 1fr);
-        gap: var(--space-1) var(--space-5);
-        padding-top: var(--space-4);
-        border-top: 1px solid var(--color-line);
+        gap: var(--space-2);
+        padding-bottom: var(--space-5);
+        border-bottom: 1px solid var(--color-line);
     }
 
     .specimen-name
     {
-        font-family: var(--font-serif);
-        font-size: var(--text-heading-2);
-        font-weight: 700;
-        line-height: var(--leading-heading);
-        overflow-wrap: anywhere;
+        font-size: var(--text-heading-3);
     }
 
-    .specimen-body
+    /* A specimen without a name is headed by its catalog number, set as catalog numbers are. */
+    .catalog-heading
     {
-        display: grid;
-        gap: var(--space-2);
-        min-width: 0;
+        font-family: var(--font-sans);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
     }
 
     .specimen-facts,
@@ -86,10 +83,16 @@ const { specimens, references } = Astro.props;
     {
         display: flex;
         flex-wrap: wrap;
+        align-items: baseline;
         gap: var(--space-1) var(--space-4);
         color: var(--color-muted);
         font-family: var(--font-sans);
         font-size: var(--text-small);
+    }
+
+    .specimen-facts:empty
+    {
+        display: none;
     }
 
     .catalog-number
@@ -105,13 +108,5 @@ const { specimens, references } = Astro.props;
         background: var(--color-accent-soft);
         border-radius: var(--radius-small);
         white-space: nowrap;
-    }
-
-    @media (max-width: 30rem)
-    {
-        li
-        {
-            grid-template-columns: minmax(0, 1fr);
-        }
     }
 </style>

@@ -28,7 +28,8 @@ body
 
 h1,
 h2,
-h3
+h3,
+h4
 {
     margin: 0;
     font-family: var(--font-serif);
@@ -51,6 +52,12 @@ h2
 h3
 {
     font-size: var(--text-heading-3);
+    font-weight: 700;
+}
+
+h4
+{
+    font-size: var(--text-heading-4);
     font-weight: 700;
 }
 

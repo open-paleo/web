@@ -1,0 +1,52 @@
+---
+import { createSlug } from "../data/slugs.ts";
+
+/**
+ * Properties of a major section of a record page: a rule, a heading, and the content.
+ */
+type Props = {
+    /**
+     * The section heading.
+     */
+    title: string;
+
+    /**
+     * True for sections holding a table, which may use the full width of their column rather
+     * than the reading measure.
+     */
+    isWide?: boolean;
+};
+
+const { title, isWide = false } = Astro.props;
+const headingId = "section-" + createSlug(title);
+---
+
+<section class:list={["page-section", { "is-wide": isWide }]} aria-labelledby={headingId}>
+    <h2 id={headingId}>{title}</h2>
+    <slot />
+</section>
+
+<style>
+    /* Each heading is underlined by a rule in the text color that spans the section: the
+       reading measure for prose, the full column for tables. The space between sections does
+       the separating; the rule ties each heading to what follows it. */
+    .page-section
+    {
+        display: grid;
+        gap: var(--space-5);
+        max-width: var(--measure);
+        min-width: 0;
+    }
+
+    .page-section.is-wide
+    {
+        max-width: none;
+    }
+
+    h2
+    {
+        padding-bottom: var(--space-2);
+        border-bottom: 1px solid var(--color-ink);
+        font-size: var(--text-heading-2);
+    }
+</style>

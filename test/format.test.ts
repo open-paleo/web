@@ -9,11 +9,13 @@ import {
     formatAuthority,
     formatAuthorNames,
     formatCountry,
+    formatDistinctShortCitations,
     formatGenusCount,
     formatGeologicAge,
     formatPlace,
     formatShortCitation,
     formatSizeRange,
+    formatSpecimenName,
     formatSpecimenType,
     formatStratigraphicUnits,
     getFirstSentence,
@@ -188,4 +190,32 @@ test("describeWorkKind names the kind of work from its fields", () =>
     assert.equal(describeWorkKind({ id: "d", thesis: "doctoral", school: "University of Kansas" }), "Doctoral thesis");
     assert.equal(describeWorkKind({ id: "e", thesis: "dissertation-abstract" }), "Dissertation abstract");
     assert.equal(describeWorkKind({ id: "f", title: "Sinopsis" }), "");
+});
+
+test("formatSpecimenName quotes nicknames and leaves descriptive names alone", () =>
+{
+    assert.equal(formatSpecimenName("Sue"), "“Sue”");
+    assert.equal(formatSpecimenName("Fighting Dinosaurs"), "“Fighting Dinosaurs”");
+    assert.equal(formatSpecimenName("Big Al II"), "“Big Al II”");
+    assert.equal(formatSpecimenName("E.T."), "“E.T.”");
+    assert.equal(formatSpecimenName("Berlin specimen"), "Berlin specimen");
+    assert.equal(formatSpecimenName("Felch Quarry skull"), "Felch Quarry skull");
+    assert.equal(formatSpecimenName("Dunluce Skull"), "Dunluce Skull");
+    assert.equal(formatSpecimenName("AMNH mummy"), "AMNH mummy");
+    assert.equal(formatSpecimenName("Mafeteng hatchling"), "Mafeteng hatchling");
+    assert.equal(formatSpecimenName("Exemplar b"), "Exemplar b");
+    assert.equal(formatSpecimenName("Rutland Dinosaur"), "Rutland Dinosaur");
+});
+
+test("formatDistinctShortCitations adds the key's letter only where two citations would match", () =>
+{
+    const labels = formatDistinctShortCitations([
+        { id: "oconnor2025a", authors: "O'Connor, J.; Clark, A.; Kuo, P.-C.", year: 2025 },
+        { id: "oconnor2025b", authors: "O'Connor, J.; Kuo, P.-C.; Clark, A.", year: 2025 },
+        { id: "mayr2005a", authors: "Mayr, G.; Pohl, B.; Peters, D. S.", year: 2005 },
+    ]);
+
+    assert.equal(labels.get("oconnor2025a"), "O'Connor et al. (2025a)");
+    assert.equal(labels.get("oconnor2025b"), "O'Connor et al. (2025b)");
+    assert.equal(labels.get("mayr2005a"), "Mayr et al. (2005)");
 });

@@ -94,11 +94,6 @@ export type AgeMarker = {
      * Width as a percentage of the row.
      */
     widthPercent: number;
-
-    /**
-     * Share of the row after the marker, toward the young end, as a percentage.
-     */
-    remainingPercent: number;
 };
 
 /**
@@ -159,21 +154,41 @@ const maximumStageRowEpochs = 2;
 const alwaysShownPeriods = new Set(["Triassic", "Jurassic", "Cretaceous"]);
 
 /**
- * Units whose chart color is dark enough to need light text.
+ * Units whose chart color gives white text more contrast than near-black text. The rest take
+ * --color-on-period. A test checks that every band reaches 4.5:1 with the color it is given.
  */
-const darkColoredUnits = new Set(["Permian", "Early Permian", "Triassic", "Early Triassic", "Induan", "Olenekian"]);
+const darkColoredUnits = new Set(["Triassic", "Early Triassic", "Induan", "Olenekian"]);
 
 /**
- * Get the period an epoch belongs to from its name: "Late Cretaceous" gives "Cretaceous".
- * Epochs named without Early, Middle or Late (Paleocene, Eocene) are their own period here,
- * since the dataset's timescale does not name the Paleogene.
+ * Report whether a time unit's chart color needs light text.
+ *
+ * @param name - Name of the period, epoch or stage.
+ * @returns True if its label is drawn in white.
+ */
+export function hasDarkChartColor(name: string): boolean
+{
+    return darkColoredUnits.has(name);
+}
+
+/**
+ * Epochs named without Early, Middle or Late, with the period each belongs to.
+ */
+const periodByEpochName = new Map([
+    ["Paleocene", "Paleogene"],
+    ["Eocene", "Paleogene"],
+    ["Oligocene", "Paleogene"],
+]);
+
+/**
+ * Get the period an epoch belongs to: "Late Cretaceous" gives "Cretaceous", and the Paleocene
+ * and Eocene give the Paleogene, which the dataset's timescale does not name.
  *
  * @param epochName - The epoch name.
  * @returns The period name.
  */
 export function getPeriodName(epochName: string): string
 {
-    return epochName.replace(/^(Early|Middle|Late) /, "");
+    return periodByEpochName.get(epochName) ?? epochName.replace(/^(Early|Middle|Late) /, "");
 }
 
 /**
@@ -288,15 +303,13 @@ function createAgeRow(label: string, units: Array<TimeUnit>, tokenPrefix: string
         bands.push({
             name: unit.name,
             colorToken: "--" + tokenPrefix + "-" + createSlug(unit.name),
-            hasDarkColor: darkColoredUnits.has(unit.name),
+            hasDarkColor: hasDarkChartColor(unit.name),
             widthPercent: (unit.fromMa - unit.toMa) / span * 100,
         });
     }
 
     const markerFrom = Math.min(fromMa, rowFrom);
     const markerTo = Math.max(toMa, rowTo);
-    const leftPercent = (rowFrom - markerFrom) / span * 100;
-    const widthPercent = Math.max(markerFrom - markerTo, 0) / span * 100;
 
     return {
         label,
@@ -304,9 +317,8 @@ function createAgeRow(label: string, units: Array<TimeUnit>, tokenPrefix: string
         toMa: rowTo,
         bands,
         marker: {
-            leftPercent,
-            widthPercent,
-            remainingPercent: Math.max(100 - leftPercent - widthPercent, 0),
+            leftPercent: (rowFrom - markerFrom) / span * 100,
+            widthPercent: Math.max(markerFrom - markerTo, 0) / span * 100,
         },
     };
 }

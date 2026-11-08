@@ -3,7 +3,9 @@ import Citation from "../../components/Citation.astro";
 import CitingRecordList from "../../components/CitingRecordList.astro";
 import FactList from "../../components/FactList.astro";
 import NamedTaxonList from "../../components/NamedTaxonList.astro";
+import PageSection from "../../components/PageSection.astro";
 import Prose from "../../components/Prose.astro";
+import RecordMain from "../../components/RecordMain.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { createCitationParts, describeWorkKind, formatShortCitation } from "../../data/format.ts";
 import type { Citation as CitationRecord, ReferenceEntry } from "../../data/site-data.ts";
@@ -94,66 +96,62 @@ const pageDescription = shortCitation + ". " + (parts.title ? parts.title + ". "
             <p class="work-authors">{parts.authors} ({parts.year})</p>
         </header>
 
-        <div class="reference-main">
-            <section class="reference-section">
-                <h2>Citation</h2>
+        <RecordMain>
+            <FactList label="About this work">
+                {workKind && (
+                    <>
+                        <dt>Kind</dt>
+                        <dd>{workKind}</dd>
+                    </>
+                )}
+                <dt>Year</dt>
+                <dd class="figures">{parts.year}</dd>
+                {parts.container && (
+                    <>
+                        <dt>{reference.journal ? "Journal" : reference.book ? "In" : "Series"}</dt>
+                        <dd><i>{parts.container}</i></dd>
+                    </>
+                )}
+                {parts.doi && (
+                    <>
+                        <dt>DOI</dt>
+                        <dd class="break-anywhere"><a href={"https://doi.org/" + parts.doi}>{parts.doi}</a></dd>
+                    </>
+                )}
+                {reference.isbn && (
+                    <>
+                        <dt>ISBN</dt>
+                        <dd class="figures">{reference.isbn}</dd>
+                    </>
+                )}
+                <dt>Cited by</dt>
+                <dd class="figures">{citingCount === 1 ? "1 record" : citingCount + " records"}</dd>
+                <dt>Key</dt>
+                <dd class="break-anywhere">{entry.id}</dd>
+            </FactList>
+
+            <PageSection title="Citation">
                 <p class="full-citation"><Citation reference={reference} /></p>
-            </section>
+            </PageSection>
 
             {entry.namedTaxa.length > 0 && (
-                <section class="reference-section">
-                    <h2>Names first published here</h2>
+                <PageSection title="Names first published here">
                     <NamedTaxonList taxa={entry.namedTaxa} />
-                </section>
+                </PageSection>
             )}
 
             {genusCitations.length > 0 && (
-                <section class="reference-section">
-                    <h2>Cited by genera</h2>
+                <PageSection title="Cited by genera">
                     <CitingRecordList citations={genusCitations} referenceSlug={entry.slug} />
-                </section>
+                </PageSection>
             )}
 
             {cladeCitations.length > 0 && (
-                <section class="reference-section">
-                    <h2>Cited by clades</h2>
+                <PageSection title="Cited by clades">
                     <CitingRecordList citations={cladeCitations} referenceSlug={entry.slug} />
-                </section>
+                </PageSection>
             )}
-        </div>
-
-        <FactList label="About this work">
-            {workKind && (
-                <>
-                    <dt>Kind</dt>
-                    <dd>{workKind}</dd>
-                </>
-            )}
-            <dt>Year</dt>
-            <dd class="figures">{parts.year}</dd>
-            {parts.container && (
-                <>
-                    <dt>{reference.journal ? "Journal" : reference.book ? "In" : "Series"}</dt>
-                    <dd><i>{parts.container}</i></dd>
-                </>
-            )}
-            {parts.doi && (
-                <>
-                    <dt>DOI</dt>
-                    <dd class="break-anywhere"><a href={"https://doi.org/" + parts.doi}>{parts.doi}</a></dd>
-                </>
-            )}
-            {reference.isbn && (
-                <>
-                    <dt>ISBN</dt>
-                    <dd class="figures">{reference.isbn}</dd>
-                </>
-            )}
-            <dt>Cited by</dt>
-            <dd class="figures">{citingCount === 1 ? "1 record" : citingCount + " records"}</dd>
-            <dt>Key</dt>
-            <dd class="break-anywhere">{entry.id}</dd>
-        </FactList>
+        </RecordMain>
     </article>
 </BaseLayout>
 
@@ -161,17 +159,11 @@ const pageDescription = shortCitation + ". " + (parts.title ? parts.title + ". "
     .reference-page
     {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) var(--sidebar-width);
-        grid-template-areas:
-            "header header"
-            "main facts";
-        gap: var(--space-6) var(--space-7);
-        align-items: start;
+        gap: var(--space-6);
     }
 
     .reference-header
     {
-        grid-area: header;
         display: grid;
         gap: var(--space-2);
         max-width: 52rem;
@@ -190,25 +182,6 @@ const pageDescription = shortCitation + ". " + (parts.title ? parts.title + ". "
         line-height: 1.25;
     }
 
-    .reference-main
-    {
-        grid-area: main;
-        display: grid;
-        gap: var(--space-7);
-        min-width: 0;
-    }
-
-    .reference-page > :global(.fact-list)
-    {
-        grid-area: facts;
-    }
-
-    .reference-section
-    {
-        display: grid;
-        gap: var(--space-4);
-    }
-
     .full-citation
     {
         max-width: var(--measure);
@@ -221,17 +194,5 @@ const pageDescription = shortCitation + ". " + (parts.title ? parts.title + ". "
     .break-anywhere
     {
         overflow-wrap: anywhere;
-    }
-
-    @media (max-width: 52rem)
-    {
-        .reference-page
-        {
-            grid-template-columns: minmax(0, 1fr);
-            grid-template-areas:
-                "header"
-                "facts"
-                "main";
-        }
     }
 </style>

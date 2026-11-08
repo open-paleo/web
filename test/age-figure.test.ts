@@ -1,10 +1,18 @@
 import * as assert from "node:assert/strict";
+import * as fs from "node:fs";
 import * as path from "node:path";
 import { test } from "node:test";
 import * as url from "node:url";
 
 import type { AgeRow, GeologicTimeline } from "../src/data/age-figure.ts";
-import { createAgeFigureModel, createGeologicTimeline, findEpochAt, getPeriodName } from "../src/data/age-figure.ts";
+import {
+    createAgeFigureModel,
+    createGeologicTimeline,
+    findEpochAt,
+    getPeriodName,
+    hasDarkChartColor,
+} from "../src/data/age-figure.ts";
+import { createSlug } from "../src/data/slugs.ts";
 import { readDataset } from "../src/data/load-dataset.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
@@ -62,7 +70,8 @@ test("getPeriodName strips the epoch prefix", () =>
 {
     assert.equal(getPeriodName("Late Cretaceous"), "Cretaceous");
     assert.equal(getPeriodName("Middle Jurassic"), "Jurassic");
-    assert.equal(getPeriodName("Paleocene"), "Paleocene");
+    assert.equal(getPeriodName("Paleocene"), "Paleogene");
+    assert.equal(getPeriodName("Eocene"), "Paleogene");
 });
 
 test("the timeline orders periods, epochs and stages oldest first", () =>
@@ -130,20 +139,6 @@ test("a record without a numeric age gets no figure", () =>
     assert.equal(createAgeFigureModel({ name: ["Late Cretaceous"] }, getTimeline()), undefined);
 });
 
-test("the marker and the time either side of it fill the row", () =>
-{
-    const model = createAgeFigureModel({ from_ma: 154.8, to_ma: 143.1 }, getTimeline());
-
-    assert.ok(model?.stageRow);
-
-    for (const row of [model.periodRow, model.stageRow])
-    {
-        const total = row.marker.leftPercent + row.marker.widthPercent + row.marker.remainingPercent;
-
-        assert.ok(Math.abs(total - 100) < 1e-9, row.label);
-    }
-});
-
 test("a range across more than two epochs gets no stage row", () =>
 {
     const model = createAgeFigureModel({ from_ma: 233, to_ma: 66 }, getTimeline());
@@ -164,4 +159,89 @@ test("findEpochAt puts a boundary on the side of the range it belongs to", () =>
     assert.equal(findEpochAt(timeline, 100.5, "start")?.name, "Late Cretaceous");
     assert.equal(findEpochAt(timeline, 100.5, "end")?.name, "Early Cretaceous");
     assert.equal(findEpochAt(timeline, 400, "start"), undefined);
+});
+
+/**
+ * Read a color token's light value from the theme.
+ *
+ * @param tokens - The text of tokens.css.
+ * @param name - Token name without the leading dashes.
+ * @returns The hex color.
+ */
+function readToken(tokens: string, name: string): string
+{
+    const match = new RegExp("--" + name + ":\\s*(#[0-9a-f]{6})").exec(tokens);
+
+    assert.ok(match, name + " should be defined in tokens.css");
+
+    return match[1];
+}
+
+/**
+ * Compute the relative luminance of a color, as WCAG defines it.
+ *
+ * @param hex - The color as #rrggbb.
+ * @returns The luminance, 0 to 1.
+ */
+function computeLuminance(hex: string): number
+{
+    let luminance = 0;
+    const weights = [0.2126, 0.7152, 0.0722];
+
+    for (let index = 0; index < 3; index++)
+    {
+        const channel = parseInt(hex.slice(1 + index * 2, 3 + index * 2), 16) / 255;
+        const linear = channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
+
+        luminance += weights[index] * linear;
+    }
+
+    return luminance;
+}
+
+/**
+ * Compute the WCAG contrast ratio of two colors.
+ *
+ * @param first - One color as #rrggbb.
+ * @param second - The other color.
+ * @returns The ratio, 1 to 21.
+ */
+function computeContrast(first: string, second: string): number
+{
+    const lighter = Math.max(computeLuminance(first), computeLuminance(second));
+    const darker = Math.min(computeLuminance(first), computeLuminance(second));
+
+    return (lighter + 0.05) / (darker + 0.05);
+}
+
+test("every age band label reaches 4.5:1 against its chart color", () =>
+{
+    const tokens = fs.readFileSync(path.join(testDirectory, "..", "src", "theme", "tokens.css"), "utf8");
+    const darkText = readToken(tokens, "color-on-period");
+    const lightText = readToken(tokens, "color-on-period-dark");
+    const timeline = getTimeline();
+    const bands = new Array<string>();
+
+    for (const period of timeline.periods)
+    {
+        bands.push("period-" + createSlug(period.name) + "|" + period.name);
+    }
+
+    for (const epoch of timeline.epochs)
+    {
+        for (const stage of epoch.stages)
+        {
+            bands.push("stage-" + createSlug(stage.name) + "|" + stage.name);
+        }
+    }
+
+    for (const band of bands)
+    {
+        const [token, name] = band.split("|");
+        const background = readToken(tokens, token);
+        const text = hasDarkChartColor(name) ? lightText : darkText;
+        const contrast = computeContrast(text, background);
+
+        assert.ok(contrast >= 4.5, name + " label contrast is " + contrast.toFixed(2) + ":1");
+    }
 });

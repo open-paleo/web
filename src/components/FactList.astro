@@ -1,18 +1,23 @@
 ---
+import { createSlug } from "../data/slugs.ts";
+
 /**
- * Properties of a list of labeled facts. The facts are the slotted `dt` and `dd` pairs.
+ * Properties of a boxed panel of labeled facts beside a page's main text. The facts are the
+ * slotted `dt` and `dd` pairs; a `note` slot holds a remark under the list.
  */
 type Props = {
     /**
-     * Accessible name of the panel the list sits in.
+     * Title of the panel, shown at its top and used as its accessible name: "At a glance".
      */
     label: string;
 };
 
 const { label } = Astro.props;
+const titleId = "facts-" + createSlug(label);
 ---
 
-<aside class="fact-list" aria-label={label}>
+<aside class="fact-list" aria-labelledby={titleId}>
+    <h2 class="fact-list-title" id={titleId}>{label}</h2>
     <dl>
         <slot />
     </dl>
@@ -20,12 +25,24 @@ const { label } = Astro.props;
 </aside>
 
 <style>
+    /* A box on the surface color sets the panel apart from the running text beside it. */
     .fact-list
     {
         display: grid;
         gap: var(--space-3);
+        padding: var(--space-4) var(--space-5) var(--space-5);
+        background: var(--color-surface);
+        border: 1px solid color-mix(in srgb, var(--color-line) 55%, var(--color-muted));
+        border-radius: var(--radius);
         font-family: var(--font-sans);
         font-size: var(--text-interface);
+    }
+
+    .fact-list-title
+    {
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
+        font-weight: 700;
     }
 
     dl
@@ -33,7 +50,6 @@ const { label } = Astro.props;
         display: grid;
         grid-template-columns: max-content minmax(0, 1fr);
         margin: 0;
-        border-bottom: 1px solid var(--color-line);
     }
 
     .fact-list :global(dt),

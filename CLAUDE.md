@@ -24,7 +24,8 @@ Rules that are easy to miss:
 
 Astro components (see "Astro components" in CONTRIBUTING.md):
 
-- The frontmatter follows every TypeScript rule; every component declares a `Props` type
+- The frontmatter follows every TypeScript rule; every component that takes properties
+  declares a `Props` type
 - `map` with an arrow is allowed only in template markup, and only to output one element
 - Data work (sorting, grouping, look-ups, formatting) goes in `src/data/`, not in components
 - Never `set:html` on dataset text

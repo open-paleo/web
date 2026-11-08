@@ -593,3 +593,73 @@ export function describeWorkKind(reference: Reference): string
 
     return "";
 }
+
+/**
+ * Generic words that make a specimen name a description ("Berlin specimen", "Felch Quarry
+ * skull", "AMNH mummy") rather than a nickname ("Sue", "Big Al"). The dataset stores both kinds
+ * in the same field, so the site tells them apart by these words.
+ */
+const descriptiveSpecimenWordPattern = /\b(specimen|skull|skeleton|mummy|hatchling|exemplar|dinosaur)\b/i;
+
+/**
+ * Report whether a notable specimen's name is a description built on a generic word, as
+ * opposed to a nickname.
+ *
+ * @param name - The specimen's name from the dataset.
+ * @returns True for names like "Thermopolis specimen"; false for nicknames like "Sue".
+ */
+export function isDescriptiveSpecimenName(name: string): boolean
+{
+    return descriptiveSpecimenWordPattern.test(name);
+}
+
+/**
+ * Format a notable specimen's name for display: a nickname in quotation marks ("Sue",
+ * "Fighting Dinosaurs"), a descriptive name as it is ("Berlin specimen").
+ *
+ * @param name - The specimen's name from the dataset.
+ * @returns The name to display.
+ */
+export function formatSpecimenName(name: string): string
+{
+    return isDescriptiveSpecimenName(name) ? name : "“" + name + "”";
+}
+
+/**
+ * Format the short citations for a record's references, so that no two read the same. Two works
+ * that would both read "O'Connor et al. (2025)" get the letter from their reference key, as in
+ * "O'Connor et al. (2025a)" and "O'Connor et al. (2025b)".
+ *
+ * @param references - The record's references.
+ * @returns The short citation for each reference key.
+ */
+export function formatDistinctShortCitations(references: Array<Reference>): Map<string, string>
+{
+    const countByLabel = new Map<string, number>();
+
+    for (const reference of references)
+    {
+        const label = formatShortCitation(reference);
+
+        countByLabel.set(label, (countByLabel.get(label) ?? 0) + 1);
+    }
+
+    const labels = new Map<string, string>();
+
+    for (const reference of references)
+    {
+        const label = formatShortCitation(reference);
+        const keySuffix = /(\d{4})([a-z])$/.exec(reference.id);
+
+        if ((countByLabel.get(label) ?? 0) > 1 && keySuffix && reference.year !== undefined)
+        {
+            labels.set(reference.id, formatAuthorNames(reference.authors ?? reference.id) + " (" + reference.year + keySuffix[2] + ")");
+        }
+        else
+        {
+            labels.set(reference.id, label);
+        }
+    }
+
+    return labels;
+}

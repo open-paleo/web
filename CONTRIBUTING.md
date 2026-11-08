@@ -268,7 +268,8 @@ const { dispute, question } = Astro.props;
 ```
 
 - **The frontmatter follows every TypeScript rule in this guide**, and ESLint checks it
-- **Every component declares a `Props` type** with JSDoc on each field
+- **Every component that takes properties declares a `Props` type** with JSDoc on each field.
+  A component that only wraps slotted content declares none, and says so in a comment
 - **Component file names are PascalCase nouns** (`DisputeNote.astro`), because a component is
   a thing on the page; page files under `src/pages/` are named for their URL
 - **Keep data work out of components.** Sorting, grouping, look-ups and formatting belong in
@@ -298,7 +299,7 @@ const { dispute, question } = Astro.props;
   changes in dark mode. See [docs/theme.md](docs/theme.md)
 - 4-space indentation and Allman braces, matching the TypeScript: selector on its own line,
   opening brace on the next
-- **Class names are full words** describing what the element is: `.specimen-label`,
+- **Class names are full words** describing what the element is: `.species-box`,
   `.age-figure`, `.status-badge`. No abbreviations (`.ns-card`), no utility classes
   (`.mt-4`), no presentational names (`.green-text`)
 - Keep specificity flat: one class per selector where possible, no IDs, no `!important`

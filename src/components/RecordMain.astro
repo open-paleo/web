@@ -1,0 +1,47 @@
+---
+// The main content of a record page (genus, clade, reference). It takes no properties: the
+// content is slotted, a FactList first, then the description and the PageSections.
+---
+
+<div class="record-main">
+    <slot />
+</div>
+
+<style>
+    /* The fact panel floats at the top right. The description and the first sections run beside
+       it; once past it, sections use the full width. Sections are grid containers, so they sit
+       beside the float, narrowed, rather than running underneath it. */
+    .record-main
+    {
+        display: flow-root;
+        min-width: 0;
+    }
+
+    .record-main > :global(.fact-list)
+    {
+        float: right;
+        width: var(--sidebar-width);
+        margin: 0 0 var(--space-6) var(--space-7);
+    }
+
+    .record-main > :global(.page-section)
+    {
+        margin-top: var(--space-8);
+    }
+
+    .record-main > :global(.page-section:first-child),
+    .record-main > :global(.fact-list + .page-section)
+    {
+        margin-top: 0;
+    }
+
+    @media (max-width: 52rem)
+    {
+        .record-main > :global(.fact-list)
+        {
+            float: none;
+            width: auto;
+            margin: 0 0 var(--space-6);
+        }
+    }
+</style>

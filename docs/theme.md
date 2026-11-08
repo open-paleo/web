@@ -20,7 +20,7 @@ The theme lives in [`src/theme/`](../src/theme/):
 | Token | Light | Dark | Use |
 |-------|-------|------|-----|
 | `--color-background` | `#eceeea` | `#151a19` | Page |
-| `--color-surface` | `#f7f8f5` | `#1d2321` | Specimen labels, inputs, raised panels |
+| `--color-surface` | `#f7f8f5` | `#1d2321` | Fact panels, species boxes, the full citation, inputs |
 | `--color-ink` | `#1d2329` | `#e2e6e0` | Text, table header rules |
 | `--color-muted` | `#59625d` | `#9aa49e` | Authorities, metadata, labels |
 | `--color-line` | `#cdd3cc` | `#323a37` | Dividers and table rows |
@@ -46,10 +46,18 @@ allows, from the Permian to the Eocene, using the ICS chart values. They are nam
 schema's values (`--epoch-early-permian`, `--stage-maastrichtian`), so a template can build the
 token name from the record.
 
-They are used only in age graphics: the age figure on genus pages, range bars in clade tables
-and the timeline. They do not change between light and dark. Text drawn on them uses
-`--color-on-period`, or `--color-on-period-dark` on the darker bands (Permian, Triassic,
-Early and Middle Triassic).
+They are used only in age graphics: the age figure on genus and clade pages, and the timeline.
+They do not change between light and dark. Text drawn on them uses `--color-on-period`
+(near-black), or `--color-on-period-dark` (white) on the Triassic, Early Triassic, Induan and
+Olenekian. `test/age-figure.test.ts` checks that every band label reaches 4.5:1; the closest are
+the Permian and Middle Triassic at 5.0:1. Never lay a translucent layer over the bands: it
+breaks that contrast.
+
+## Accessibility
+
+The site targets WCAG 2.2 AA. Text contrast is at least 4.5:1 for every token pair in both
+themes; the tightest is `--color-caution` on `--color-caution-soft`, at 4.8:1 in light mode.
+Check a change that touches color or layout with axe-core in a browser, in both themes.
 
 The hex values must match the current ICS chart. Check them against the published chart
 before the first release and whenever the ICS revises it.
@@ -67,21 +75,23 @@ distinctive, which matters because taxon names are italic in running text.
 There is no monospace face. Catalog numbers (`CM 9380`) are set in Alegreya Sans 500 with
 tabular figures.
 
-Type scale (`--text-*`), against a 16px root:
+Type scale (`--text-*`), against a 16px root. Nothing is set below 14px: both families have
+small x-heights and read smaller than their nominal size.
 
 | Token | Size | Use |
 |-------|------|-----|
-| `caption` | 13px | Age-figure scale labels, reference keys |
-| `small` | 14px | Classification trail, specimen facts |
-| `interface` | 15px | Navigation, tables, side panel |
-| `body` | 17px | Prose |
-| `lede` | 19px | Opening paragraph of a description |
-| `heading-3` | 19px | Subsections such as Synonyms |
-| `heading-2` | 24px | Page sections such as Diagnosis |
-| `heading-1` | 28px | Page titles other than taxa |
-| `display` | 44–64px | Genus name, the only display size |
+| `caption` | 14px | Age-figure labels and scales, badges, reference keys |
+| `small` | 15px | Classification trail, specimen facts |
+| `interface` | 16px | Navigation, tables, side panel |
+| `body` | 18px | Prose |
+| `lede` | 20px | Reserved for short introductory text |
+| `heading-4` | 18px | Subsections inside a species (Diagnosis, Synonyms) |
+| `heading-3` | 21px | A species within the Species section |
+| `heading-2` | 28px | Page sections (Diagnosis, Species, References) |
+| `heading-1` | 32px | Page titles other than taxa, such as a reference's title |
+| `display` | 48–72px | Genus and clade names |
 
-Running text is limited to `--measure` (42rem, about 70 characters of Alegreya at 17px).
+Running text is limited to `--measure` (40rem, about 75 characters of Alegreya at 18px).
 
 ### Typographic conventions
 
@@ -98,11 +108,15 @@ Running text is limited to `--measure` (42rem, about 70 characters of Alegreya a
 ## Layout
 
 - Page content is centered at `--page-width` (72rem) with a side gutter of at least 16px.
-- Genus pages use two columns: the main text, and a `--sidebar-width` (19rem) "at a glance"
-  panel. The age figure spans both columns, under the genus name. Below 52rem everything
-  stacks: classification, name, age, at a glance, then the text.
+- Record pages (genus, clade, reference) put the classification trail, header and age figure
+  across the full width. Below them, `RecordMain.astro` floats the fact panel
+  (`--sidebar-width`, 21rem) at the top right; the description and the first sections run
+  beside it at the reading measure, and once past it, sections use the full width. Below
+  52rem the panel stops floating and sits above the text.
+- A genus's species are boxes in a grid: two side by side where they fit, one per row
+  otherwise.
 - Surfaces are flat. Borders and fills mark the few elements that are separate objects (the
-  specimen label, the dispute note); sections are separated by space and headings, not boxes.
+  fact panel, species boxes, the dispute note); sections are separated by space and headings, not boxes.
   Radius is 4px on panels and 2px on bars and badges.
 
 ## Components
@@ -114,10 +128,12 @@ it:
 | Component | Description |
 |-----------|-------------|
 | Classification trail | Ranks from Dinosauria down to the parent clade; middle ranks collapse behind a "6 more" button |
-| Age figure | Two rows of ICS bands: the Mesozoic periods, then the stages of the record's epoch. The record's range is outlined in `--color-on-period` and the time outside it is dimmed toward the page background, so the range stands out in both themes. Boundary ages beneath each row |
-| Specimen label | Bordered surface panel for a type specimen: catalog number, institution, material, horizon, locality |
-| At a glance | Definition list of diet, locomotion, integument, appearance features, size, location and identifiers |
+| Age figure | Two rows of ICS bands: the Mesozoic periods, then the stages of the record's epoch (omitted when a span covers more than two epochs). The record's range is marked by a near-black ring with a white ring inside it, which shows on light and dark chart colors alike. Labels sit above the marker. Boundary ages beneath each row |
+| Species box | `SpeciesSection.astro`: a bordered surface box per species with its heading, etymology, and labeled rows (`SpeciesFacts.astro`): type specimen, material, horizon, locality and diagnosis. Its synonyms follow as a stacked list (`SynonymList.astro`), since a table does not fit at half width |
+| Fact panel | `FactList.astro`: a titled box on `--color-surface` with a firm border, holding a definition list. The genus page's "At a glance" (diet, locomotion, integument, features, size, location, identifiers), the clade page's genus counts, and the reference page's "About this work" |
 | Status badge | "Disputed" (caution, solid border) and "Nomen dubium" (muted, dashed border) |
-| Dispute note | Caution-soft panel with a caution-colored title, for a record's `dispute.summary` |
+| Page section | `PageSection.astro`: a `heading-2` heading underlined by a rule in `--color-ink` that spans the section (the reading measure, or the full column for tables), then the content, with `--space-8` between sections. Every major part of a genus, clade or reference page is one |
+| Dispute note | A lightly tinted panel with a caution border, inside a section headed "Under dispute" |
 | Range bar | Small age bar in clade tables, drawn on the same scale as the age figure |
+| Notable specimen | Name as a `heading-3`, then the catalog number, institution, discovery and category, the significance, and short citations. Nicknames are set in typographic quotation marks (“Sue”); descriptive names built on a generic word (Berlin specimen, Felch Quarry skull) are not. A specimen without a name is headed by its catalog number in Alegreya Sans |
 | Category chip | Accent-soft label for a notable specimen's category |

@@ -5,7 +5,9 @@ import DiagnosisList from "../../components/DiagnosisList.astro";
 import DisputeNote from "../../components/DisputeNote.astro";
 import FactList from "../../components/FactList.astro";
 import LineageTrail from "../../components/LineageTrail.astro";
+import PageSection from "../../components/PageSection.astro";
 import Prose from "../../components/Prose.astro";
+import RecordMain from "../../components/RecordMain.astro";
 import ReferenceList from "../../components/ReferenceList.astro";
 import SubcladeList from "../../components/SubcladeList.astro";
 import SynonymTable from "../../components/SynonymTable.astro";
@@ -110,63 +112,58 @@ const placedDirectly = entry.genusNames.length;
 
         <div class="clade-age">{ageSpan && <AgeFigure period={ageSpan} rangeIntroduction="Its genera lived" />}</div>
 
-        <div class="clade-main">
-            <section class="clade-introduction">
-                {record.description && <p class="lede"><Prose text={record.description.trim()} /></p>}
-                {record.dispute && <DisputeNote dispute={record.dispute} />}
-            </section>
+        <RecordMain>
+            <FactList label="At a glance">
+                <dt>Genera</dt>
+                <dd class="figures">{formatGenusCount(entry.totalGenusCount)}</dd>
+                <dt>Placed directly</dt>
+                <dd class="figures">{formatGenusCount(placedDirectly)}</dd>
+                {entry.childCladeNames.length > 0 && (
+                    <>
+                        <dt>Subclades</dt>
+                        <dd class="figures">{entry.childCladeNames.length}</dd>
+                    </>
+                )}
+            </FactList>
+
+            {record.description && <p class="description"><Prose text={record.description.trim()} /></p>}
+
+            {record.dispute && (
+                <PageSection title="Under dispute">
+                    <DisputeNote dispute={record.dispute} />
+                </PageSection>
+            )}
 
             {record.diagnostic_features && record.diagnostic_features.length > 0 && (
-                <section class="clade-section">
-                    <h2>Diagnosis</h2>
+                <PageSection title="Diagnosis">
                     <DiagnosisList features={record.diagnostic_features} />
-                </section>
+                </PageSection>
             )}
 
             {entry.childCladeNames.length > 0 && (
-                <section class="clade-section">
-                    <h2>Clades within {entry.name}</h2>
+                <PageSection title={"Clades within " + entry.name}>
                     <SubcladeList names={entry.childCladeNames} />
-                </section>
+                </PageSection>
             )}
 
-        </div>
+            {genusRows.length > 0 && (
+                <PageSection title={"Genera placed directly in " + entry.name} isWide>
+                    <CladeGenusTable rows={genusRows} rangeHeading={rangeHeading} />
+                </PageSection>
+            )}
 
-        {genusRows.length > 0 && (
-            <section class="clade-section clade-genera">
-                <h2>Genera placed directly in {entry.name}</h2>
-                <CladeGenusTable rows={genusRows} rangeHeading={rangeHeading} />
-            </section>
-        )}
-
-        <div class="clade-after">
             {record.synonyms && record.synonyms.length > 0 && (
-                <section class="clade-section">
-                    <h2>Synonyms</h2>
+                <PageSection title="Synonyms" isWide>
                     <SynonymTable synonyms={record.synonyms} />
-                </section>
+                </PageSection>
             )}
 
             {references.length > 0 && (
-                <section class="clade-section">
-                    <h2>References</h2>
+                <PageSection title="References">
                     <ReferenceList references={references} />
-                </section>
+                </PageSection>
             )}
-        </div>
-
-        <FactList label="At a glance">
-            <dt>Genera</dt>
-            <dd class="figures">{formatGenusCount(entry.totalGenusCount)}</dd>
-            <dt>Placed directly</dt>
-            <dd class="figures">{formatGenusCount(placedDirectly)}</dd>
-            {entry.childCladeNames.length > 0 && (
-                <>
-                    <dt>Subclades</dt>
-                    <dd class="figures">{entry.childCladeNames.length}</dd>
-                </>
-            )}
-        </FactList>
+        </RecordMain>
     </article>
 </BaseLayout>
 
@@ -174,76 +171,18 @@ const placedDirectly = entry.genusNames.length;
     .clade-page
     {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) var(--sidebar-width);
-        grid-template-areas:
-            "lineage lineage"
-            "header header"
-            "age age"
-            "main facts"
-            "genera genera"
-            "after after";
-        gap: var(--space-5) var(--space-7);
-        align-items: start;
-    }
-
-    .clade-page > :global(.lineage-trail)
-    {
-        grid-area: lineage;
+        gap: var(--space-5);
     }
 
     .clade-header
     {
-        grid-area: header;
         display: grid;
         gap: var(--space-2);
-    }
-
-    .clade-age
-    {
-        grid-area: age;
     }
 
     .clade-age:empty
     {
         display: none;
-    }
-
-    .clade-main,
-    .clade-after
-    {
-        display: grid;
-        gap: var(--space-7);
-        min-width: 0;
-    }
-
-    .clade-main
-    {
-        grid-area: main;
-    }
-
-    /* The genus table spans the full page width: it needs the room, and the facts panel beside
-       the text is short. */
-    .clade-genera
-    {
-        grid-area: genera;
-        min-width: 0;
-        margin-top: var(--space-5);
-    }
-
-    .clade-after
-    {
-        grid-area: after;
-        margin-top: var(--space-5);
-    }
-
-    .clade-after:empty
-    {
-        display: none;
-    }
-
-    .clade-page > :global(.fact-list)
-    {
-        grid-area: facts;
     }
 
     .clade-name
@@ -261,6 +200,7 @@ const placedDirectly = entry.genusNames.length;
         gap: var(--space-1) var(--space-5);
         color: var(--color-muted);
         font-family: var(--font-sans);
+        font-size: var(--text-interface);
     }
 
     .authority
@@ -275,39 +215,8 @@ const placedDirectly = entry.genusNames.length;
         text-decoration: underline;
     }
 
-    .clade-introduction,
-    .clade-section
+    .description
     {
-        display: grid;
-        gap: var(--space-4);
         max-width: var(--measure);
-    }
-
-    .clade-genera,
-    .clade-section:has(table)
-    {
-        max-width: none;
-    }
-
-    .lede
-    {
-        font-size: var(--text-lede);
-        line-height: 1.55;
-    }
-
-    @media (max-width: 52rem)
-    {
-        .clade-page
-        {
-            grid-template-columns: minmax(0, 1fr);
-            grid-template-areas:
-                "lineage"
-                "header"
-                "age"
-                "facts"
-                "main"
-                "genera"
-                "after";
-        }
     }
 </style>

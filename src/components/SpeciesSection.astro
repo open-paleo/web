@@ -4,14 +4,13 @@ import { formatAuthority } from "../data/format.ts";
 import { getSiteData } from "../data/site-data.ts";
 import { createSlug } from "../data/slugs.ts";
 import { createReferenceAnchor } from "../data/urls.ts";
-import DiagnosisList from "./DiagnosisList.astro";
 import Prose from "./Prose.astro";
-import SpecimenLabel from "./SpecimenLabel.astro";
+import SpeciesFacts from "./SpeciesFacts.astro";
 import StatusBadge from "./StatusBadge.astro";
-import SynonymTable from "./SynonymTable.astro";
+import SynonymList from "./SynonymList.astro";
 
 /**
- * Properties of the section describing one species of a genus.
+ * Properties of the box describing one species of a genus.
  */
 type Props = {
     /**
@@ -27,40 +26,49 @@ const authorityAnchor = "#" + createReferenceAnchor(siteData.referenceById.get(s
 const headingId = createSlug(species.name);
 ---
 
-<section class="species-section" aria-labelledby={headingId}>
-    <h2 id={headingId}>
-        <i class="taxon">{species.name}</i>
-        {authority && <a class="authority" href={authorityAnchor}>{authority}</a>}
-        <StatusBadge status={species.status} />
-    </h2>
-    {species.type_species && <p class="species-role">Type species</p>}
-    {species.erected_as && <p class="species-role">First named as <i class="taxon">{species.erected_as}</i></p>}
-    {species.etymology && <p><strong>Etymology.</strong> <Prose text={species.etymology.trim()} /></p>}
+<section class="species-box" aria-labelledby={headingId}>
+    <header class="species-header">
+        <h3 id={headingId}>
+            <i class="taxon">{species.name}</i>
+            {authority && <a class="authority" href={authorityAnchor}>{authority}</a>}
+            <StatusBadge status={species.status} />
+        </h3>
+        {species.type_species && <p class="species-role">Type species</p>}
+        {species.erected_as && <p class="species-role">First named as <i class="taxon">{species.erected_as}</i></p>}
+    </header>
+    {species.etymology && <p class="species-etymology"><Prose text={species.etymology.trim()} /></p>}
     {species.description && <p><Prose text={species.description.trim()} /></p>}
-    <SpecimenLabel species={species} />
-    {species.diagnostic_features && species.diagnostic_features.length > 0 && (
-        <>
-            <h3>Diagnosis</h3>
-            <DiagnosisList features={species.diagnostic_features} />
-        </>
-    )}
+    <SpeciesFacts species={species} />
     {species.synonyms && species.synonyms.length > 0 && (
-        <>
-            <h3>Synonyms</h3>
-            <SynonymTable synonyms={species.synonyms} />
-        </>
+        <div class="species-synonyms">
+            <h4>Synonyms</h4>
+            <SynonymList synonyms={species.synonyms} />
+        </div>
     )}
 </section>
 
 <style>
-    .species-section
+    /* Each species is a box holding everything recorded for it, so a genus with several species
+       reads as a set of comparable boxes. */
+    .species-box
     {
         display: grid;
-        gap: var(--space-3);
-        max-width: var(--measure);
+        gap: var(--space-4);
+        align-content: start;
+        min-width: 0;
+        padding: var(--space-5);
+        background: var(--color-surface);
+        border: 1px solid color-mix(in srgb, var(--color-line) 55%, var(--color-muted));
+        border-radius: var(--radius);
     }
 
-    h2
+    .species-header
+    {
+        display: grid;
+        gap: var(--space-1);
+    }
+
+    h3
     {
         display: flex;
         flex-wrap: wrap;
@@ -72,7 +80,7 @@ const headingId = createSlug(species.name);
     {
         color: var(--color-muted);
         font-family: var(--font-sans);
-        font-size: var(--text-body);
+        font-size: var(--text-interface);
         font-weight: 400;
         text-decoration: none;
     }
@@ -88,5 +96,25 @@ const headingId = createSlug(species.name);
         color: var(--color-muted);
         font-family: var(--font-sans);
         font-size: var(--text-small);
+    }
+
+    .species-etymology
+    {
+        color: var(--color-muted);
+    }
+
+    .species-synonyms
+    {
+        display: grid;
+        gap: var(--space-2);
+        min-width: 0;
+    }
+
+    @media (max-width: 30rem)
+    {
+        .species-box
+        {
+            padding: var(--space-4);
+        }
     }
 </style>
