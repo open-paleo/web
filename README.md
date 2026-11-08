@@ -16,10 +16,10 @@ with JavaScript off; scripts add search and the tree's open and close buttons. I
 | Page | Contents |
 |------|----------|
 | Home | Search, the release and its counts, a chart of genera through time whose stages and periods link to their pages, the major groups, the most recently named genera, and how to download, cite and contribute |
-| Stage (26) | The genera known from one stage, with its place in the time scale and links to the stages before and after |
+| Stage (26) | The genera known from one stage with their clades, ages and countries, the stage's place in the time scale, and links to the stages before and after |
 | Period (3) | The period's stages as a chart, and its genera from A to Z |
 | Genus (1,428) | Description, an age figure in the chart colors of the geologic time scale, diagnosis, each species with its type specimen, horizon and locality, synonyms, notable specimens, ICZN cases and references, beside an "at a glance" panel |
-| Clade (188) | Description, the span of time its genera cover, diagnosis, the clades within it, and a table of the genera placed directly in it |
+| Clade (188) | Description, the span of time its genera cover, diagnosis, the clades within it, and a list of the genera placed directly in it with their ages and countries |
 | Reference (2,553) | One page per cited work: the full citation, the names first published in it, and every genus and clade that cites it |
 | Genera | Every genus, A to Z, with its group, epochs and country, and filters for time, group, diet, locomotion, integument, status and year named that are kept in the page address |
 | Tree | The classification as an outline you can open and close, with genus counts |

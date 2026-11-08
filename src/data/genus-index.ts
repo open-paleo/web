@@ -1,7 +1,7 @@
 import type { GeologicTimeline } from "./age-figure.ts";
 import { getPeriodName } from "./age-figure.ts";
 import type { Status } from "./dataset.ts";
-import { capitalizeFirstLetter, formatAuthority, formatCountry, formatVocabularyValue, joinNonEmpty } from "./format.ts";
+import { capitalizeFirstLetter, formatAgeNumbers, formatAuthority, formatCountry, formatShortAge, formatVocabularyValue } from "./format.ts";
 import type { ChoiceFilterName, GenusFilterValues } from "./genus-filters.ts";
 import { otherGroupValue } from "./genus-filters.ts";
 import { majorGroupNames } from "./home.ts";
@@ -11,7 +11,61 @@ import { createSlug } from "./slugs.ts";
 import { listGenusEpochs } from "./time-pages.ts";
 
 /**
- * One genus in an A–Z index: its name and authority, a line of details, and the values the
+ * The page a list of genera is on, which decides the details each genus shows:
+ *
+ * - "index": the Genera and period pages. Group, epochs and country.
+ * - "stage": a stage page. Parent clade, stages with their dates, country, and whether the genus
+ *   is under dispute.
+ * - "clade": a clade page, listing the genera placed directly in it. Stages with their dates,
+ *   country, whether its placement is incertae sedis, and whether it is under dispute.
+ */
+export type GenusListContext = "index" | "stage" | "clade";
+
+/**
+ * What one item of a genus's details line is, which sets how it is shown.
+ */
+export type GenusDetailKind = "text" | "clade" | "incertae-sedis" | "dispute";
+
+/**
+ * One item of a genus's details line.
+ */
+export type GenusDetail = {
+    /**
+     * What the item is: plain text, a link to a clade, the incertae sedis note (italic) or the
+     * dispute note (in the caution color).
+     */
+    kind: GenusDetailKind;
+
+    /**
+     * The text: "Theropoda", "Bathonian–Callovian (168.2–161.5 Ma)", "Morocco".
+     */
+    text: string;
+
+    /**
+     * The clade's URL path segment when the item links to a clade; otherwise an empty string.
+     */
+    slug: string;
+};
+
+/**
+ * Lists longer than this get letter headings and a row of letter links; shorter ones are a
+ * single run of columns.
+ */
+const letterGroupingThreshold = 100;
+
+/**
+ * Decide whether a list of genera is long enough to group under letter headings.
+ *
+ * @param count - Number of genera in the list.
+ * @returns True for lists of more than 100 genera.
+ */
+export function shouldGroupByLetter(count: number): boolean
+{
+    return count > letterGroupingThreshold;
+}
+
+/**
+ * One genus in a list of genera: its name and authority, a line of details, and the values the
  * Genera page filters it on.
  */
 export type GenusIndexRow = {
@@ -26,9 +80,10 @@ export type GenusIndexRow = {
     authority: string;
 
     /**
-     * Its group, epochs and country: "Theropoda, Late Cretaceous, United States".
+     * Its details line, shown with commas between items: "Theropoda, Late Cretaceous, United
+     * States" on the Genera page.
      */
-    details: string;
+    details: Array<GenusDetail>;
 
     /**
      * Status of the type species, for its badge.
@@ -195,14 +250,110 @@ function joinEpochSpan(names: Array<string>): string
 }
 
 /**
- * Create the rows of an A–Z index of genera.
+ * Add a plain item to a details line, unless its text is empty.
+ *
+ * @param details - The details line.
+ * @param text - The item's text.
+ */
+function addTextDetail(details: Array<GenusDetail>, text: string): void
+{
+    if (text !== "")
+    {
+        details.push({ kind: "text", text, slug: "" });
+    }
+}
+
+/**
+ * Format a type species' stages with their dates: "Bathonian–Callovian (168.2–161.5 Ma)".
+ *
+ * @param genus - The genus.
+ * @returns The stages, or the epochs when no stage is recorded, with the dates when known.
+ */
+function formatStagesWithDates(genus: GenusEntry): string
+{
+    const period = getTypeSpecies(genus.record).period;
+    const age = formatShortAge(period);
+
+    if (period.from_ma === undefined || period.to_ma === undefined)
+    {
+        return age;
+    }
+
+    const dates = formatAgeNumbers(period.from_ma, period.to_ma) + " Ma";
+
+    return age === "" ? dates : age + " (" + dates + ")";
+}
+
+/**
+ * Create the details line of one genus for the page it is listed on.
+ *
+ * @param entry - The genus.
+ * @param siteData - The lookup tables.
+ * @param context - The page the list is on.
+ * @param group - The genus's major group, if any.
+ * @param epochNames - The epochs of its type species, oldest first.
+ * @returns The details, in order.
+ */
+function createGenusDetails(
+    entry: GenusEntry,
+    siteData: SiteData,
+    context: GenusListContext,
+    group: string | undefined,
+    epochNames: Array<string>,
+): Array<GenusDetail>
+{
+    const genus = entry.record;
+    const country = getTypeSpecies(genus).location?.country;
+    const details = new Array<GenusDetail>();
+
+    if (context === "index")
+    {
+        addTextDetail(details, group ?? genus.parent);
+        addTextDetail(details, joinEpochSpan(epochNames));
+    }
+    else
+    {
+        if (context === "stage")
+        {
+            const parent = siteData.cladeByName.get(genus.parent);
+
+            details.push(parent?.record ? { kind: "clade", text: genus.parent, slug: parent.slug } : { kind: "text", text: genus.parent, slug: "" });
+        }
+
+        addTextDetail(details, formatStagesWithDates(entry));
+    }
+
+    addTextDetail(details, country ? formatCountry(country) : "");
+
+    if (context === "clade" && genus.placement === "incertae sedis")
+    {
+        details.push({ kind: "incertae-sedis", text: "incertae sedis", slug: "" });
+    }
+
+    // A disputed type species already has a "Disputed" badge, so the note would repeat it.
+    if (context !== "index" && genus.dispute !== undefined && getTypeSpecies(genus).status !== "disputed")
+    {
+        details.push({ kind: "dispute", text: "under dispute", slug: "" });
+    }
+
+    return details;
+}
+
+/**
+ * Create the rows of a list of genera.
  *
  * @param genera - The genera, sorted by name.
  * @param siteData - The lookup tables.
  * @param timeline - The arranged timescale, if the dataset has one.
+ * @param context - The page the list is on, which decides each genus's details.
  * @returns One row per genus, in the same order.
  */
-export function createGenusIndexRows(genera: Array<GenusEntry>, siteData: SiteData, timeline: GeologicTimeline | undefined): Array<GenusIndexRow>
+export function createGenusIndexRows(
+    genera: Array<GenusEntry>,
+    siteData: SiteData,
+    timeline: GeologicTimeline | undefined,
+    context: GenusListContext,
+): Array<GenusIndexRow>
 {
     const rows = new Array<GenusIndexRow>();
 
@@ -231,11 +382,7 @@ export function createGenusIndexRows(genera: Array<GenusEntry>, siteData: SiteDa
         rows.push({
             entry,
             authority: formatAuthority(genus.authors, genus.described, false),
-            details: joinNonEmpty([
-                group ?? genus.parent,
-                joinEpochSpan(epochNames),
-                species.location?.country ? formatCountry(species.location.country) : "",
-            ]),
+            details: createGenusDetails(entry, siteData, context, group, epochNames),
             status: species.status,
             filterValues: {
                 time,

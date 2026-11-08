@@ -1,10 +1,8 @@
 ---
-import { createFilterAttributes } from "../data/genus-filters.ts";
 import type { GenusIndexRow } from "../data/genus-index.ts";
 import { createLetterAnchor, groupByLetter } from "../data/indexes.ts";
-import { createPagePath } from "../data/urls.ts";
 import LetterJumpList from "./LetterJumpList.astro";
-import StatusBadge from "./StatusBadge.astro";
+import GenusListItem from "./GenusListItem.astro";
 
 /**
  * The heading level of the letter headings, so the index fits under a page title (2) or under
@@ -13,8 +11,8 @@ import StatusBadge from "./StatusBadge.astro";
 type LetterHeadingLevel = 2 | 3;
 
 /**
- * Properties of an A–Z index of genera: a row of letter links, then the genera under each
- * letter in columns, each with its authority and a line of details.
+ * Properties of a list of genera in columns, each with its authority and a line of details. A
+ * long list is grouped under letter headings, with a row of letter links above.
  */
 type Props = {
     /**
@@ -36,10 +34,15 @@ type Props = {
      * Whether each genus carries the data attributes the Genera page's filters read.
      */
     isFilterable: boolean;
+
+    /**
+     * Whether to group the genera under letter headings. When false the list is one run of
+     * columns and the label and heading level are unused.
+     */
+    isGroupedByLetter: boolean;
 };
 
-const { rows, label, headingLevel, isFilterable } = Astro.props;
-const baseUrl = import.meta.env.BASE_URL;
+const { rows, label, headingLevel, isFilterable, isGroupedByLetter } = Astro.props;
 const groups = groupByLetter(rows, getRowIndexName);
 const letters = new Array<string>();
 
@@ -61,30 +64,27 @@ function getRowIndexName(row: GenusIndexRow): string
 ---
 
 <div class="genus-index">
-    <LetterJumpList letters={letters} label={label} />
+    {isGroupedByLetter && <LetterJumpList letters={letters} label={label} />}
     {/* While a filter is on, the filter script moves the matching genera into this list, in
        name order, and hides the letter groups, so a short result is not spread thinly over
        many letters. */}
     {isFilterable && <ul class="genus-columns" id="genus-results" aria-label={"Matching " + label.toLowerCase()} hidden></ul>}
-    {groups.map((group) => (
-        <section class="letter-group" aria-labelledby={createLetterAnchor(group.letter)}>
-            {headingLevel === 2
-                ? <h2 class="letter-heading" id={createLetterAnchor(group.letter)}>{group.letter}</h2>
-                : <h3 class="letter-heading" id={createLetterAnchor(group.letter)}>{group.letter}</h3>}
+    {isGroupedByLetter
+        ? groups.map((group) => (
+            <section class="letter-group" aria-labelledby={createLetterAnchor(group.letter)}>
+                {headingLevel === 2
+                    ? <h2 class="letter-heading" id={createLetterAnchor(group.letter)}>{group.letter}</h2>
+                    : <h3 class="letter-heading" id={createLetterAnchor(group.letter)}>{group.letter}</h3>}
+                <ul class="genus-columns">
+                    {group.entries.map((row) => <GenusListItem row={row} isFilterable={isFilterable} />)}
+                </ul>
+            </section>
+        ))
+        : (
             <ul class="genus-columns">
-                {group.entries.map((row) => (
-                    <li {...(isFilterable ? createFilterAttributes(row.filterValues) : {})}>
-                        <span class="genus-heading">
-                            <a class="taxon" href={createPagePath(baseUrl, "genus", row.entry.slug)}>{row.entry.name}</a>
-                            <StatusBadge status={row.status} />
-                            <span class="genus-authority">{row.authority}</span>
-                        </span>
-                        <span class="genus-details">{row.details}</span>
-                    </li>
-                ))}
+                {rows.map((row) => <GenusListItem row={row} isFilterable={isFilterable} />)}
             </ul>
-        </section>
-    ))}
+        )}
 </div>
 
 <style>
@@ -124,28 +124,5 @@ function getRowIndexName(row: GenusIndexRow): string
         list-style: none;
         columns: 20rem auto;
         column-gap: var(--space-7);
-    }
-
-    li
-    {
-        display: grid;
-        padding-block: var(--space-2);
-        break-inside: avoid;
-    }
-
-    .genus-heading
-    {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: baseline;
-        gap: 0 var(--space-2);
-    }
-
-    .genus-authority,
-    .genus-details
-    {
-        color: var(--color-muted);
-        font-family: var(--font-sans);
-        font-size: var(--text-small);
     }
 </style>

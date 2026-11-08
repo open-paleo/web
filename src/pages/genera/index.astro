@@ -7,7 +7,7 @@ import { createGenusIndexRows, listGenusFilterOptions } from "../../data/genus-i
 import { getSiteData } from "../../data/site-data.ts";
 
 const siteData = getSiteData();
-const rows = createGenusIndexRows(siteData.genera, siteData, siteData.timeline);
+const rows = createGenusIndexRows(siteData.genera, siteData, siteData.timeline, "index");
 const filterOptions = listGenusFilterOptions(rows, siteData.timeline);
 ---
 
@@ -18,7 +18,7 @@ const filterOptions = listGenusFilterOptions(rows, siteData.timeline);
             <p class="index-summary">{formatGenusCount(siteData.genera.length)} in release {siteData.metadata.version}, from A to Z.</p>
         </header>
         <GenusFilterForm options={filterOptions} total={rows.length} />
-        <GenusIndex rows={rows} label="Genera" headingLevel={2} isFilterable={true} />
+        <GenusIndex rows={rows} label="Genera" headingLevel={2} isFilterable={true} isGroupedByLetter={true} />
     </div>
 </BaseLayout>
 

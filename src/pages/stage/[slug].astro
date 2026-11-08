@@ -1,12 +1,12 @@
 ---
 import AgeFigure from "../../components/AgeFigure.astro";
 import FactList from "../../components/FactList.astro";
-import GenusTable from "../../components/GenusTable.astro";
+import GenusIndex from "../../components/GenusIndex.astro";
 import PageSection from "../../components/PageSection.astro";
 import RecordMain from "../../components/RecordMain.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { createAgeSpan, createGenusRows } from "../../data/clades.ts";
-import { formatAgeNumbers, formatAgeRange, formatDecimal, formatGenusCount } from "../../data/format.ts";
+import { formatAgeRange, formatDecimal, formatGenusCount } from "../../data/format.ts";
+import { createGenusIndexRows, shouldGroupByLetter } from "../../data/genus-index.ts";
 import { getSiteData } from "../../data/site-data.ts";
 import type { StagePage } from "../../data/time-pages.ts";
 import { getTimePages } from "../../data/time-pages.ts";
@@ -82,11 +82,7 @@ const { stage, older, younger } = Astro.props;
 const siteData = getSiteData();
 const baseUrl = import.meta.env.BASE_URL;
 const period = getTimePages().periodByName.get(stage.periodName);
-const ageSpan = createAgeSpan(stage.genera, siteData.timeline);
-const rows = createGenusRows(stage.genera, siteData, ageSpan);
-const rangeHeading = ageSpan?.from_ma !== undefined && ageSpan.to_ma !== undefined
-    ? "Range, " + formatAgeNumbers(ageSpan.from_ma, ageSpan.to_ma) + " Ma"
-    : "Range";
+const rows = createGenusIndexRows(stage.genera, siteData, siteData.timeline, "stage");
 const duration = formatDecimal(stage.fromMa - stage.toMa);
 ---
 
@@ -133,7 +129,7 @@ const duration = formatDecimal(stage.fromMa - stage.toMa);
             )}
 
             <PageSection title={"Genera known from the " + stage.name}>
-                <GenusTable rows={rows} rangeHeading={rangeHeading} context="time" />
+                <GenusIndex rows={rows} label={"Genera of the " + stage.name} headingLevel={3} isFilterable={false} isGroupedByLetter={shouldGroupByLetter(rows.length)} />
             </PageSection>
         </RecordMain>
     </article>

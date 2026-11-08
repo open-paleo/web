@@ -1,6 +1,6 @@
 ---
 import AgeFigure from "../../components/AgeFigure.astro";
-import GenusTable from "../../components/GenusTable.astro";
+import GenusIndex from "../../components/GenusIndex.astro";
 import DiagnosisList from "../../components/DiagnosisList.astro";
 import DisputeNote from "../../components/DisputeNote.astro";
 import FactList from "../../components/FactList.astro";
@@ -12,9 +12,10 @@ import ReferenceList from "../../components/ReferenceList.astro";
 import SubcladeList from "../../components/SubcladeList.astro";
 import SynonymTable from "../../components/SynonymTable.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { createAgeSpan, createCladeGenusRows, listDescendantGenera } from "../../data/clades.ts";
+import { createAgeSpan, listDescendantGenera, listPlacedGenera } from "../../data/clades.ts";
+import { createGenusIndexRows } from "../../data/genus-index.ts";
 import type { Clade } from "../../data/dataset.ts";
-import { formatAgeNumbers, formatAuthority, formatGenusCount, getFirstSentence } from "../../data/format.ts";
+import { formatAuthority, formatGenusCount, getFirstSentence } from "../../data/format.ts";
 import type { CladeEntry } from "../../data/site-data.ts";
 import { getSiteData } from "../../data/site-data.ts";
 import { createPagePath, createReferenceAnchor } from "../../data/urls.ts";
@@ -89,10 +90,7 @@ const authorityAnchor = "#" + createReferenceAnchor(siteData.referenceById.get(a
 const typeGenus = record.type_genus ? siteData.genusByName.get(record.type_genus) : undefined;
 const descendantGenera = listDescendantGenera(entry, siteData);
 const ageSpan = createAgeSpan(descendantGenera, siteData.timeline);
-const genusRows = createCladeGenusRows(entry, siteData, ageSpan);
-const rangeHeading = ageSpan?.from_ma !== undefined && ageSpan.to_ma !== undefined
-    ? "Range, " + formatAgeNumbers(ageSpan.from_ma, ageSpan.to_ma) + " Ma"
-    : "Range";
+const genusRows = createGenusIndexRows(listPlacedGenera(entry, siteData), siteData, siteData.timeline, "clade");
 const ancestors = record.taxonomy.slice(0, -1);
 const references = record.references ?? [];
 const placedDirectly = entry.genusNames.length;
@@ -148,7 +146,7 @@ const placedDirectly = entry.genusNames.length;
 
             {genusRows.length > 0 && (
                 <PageSection title={"Genera placed directly in " + entry.name}>
-                    <GenusTable rows={genusRows} rangeHeading={rangeHeading} context="clade" />
+                    <GenusIndex rows={genusRows} label={"Genera placed directly in " + entry.name} headingLevel={3} isFilterable={false} isGroupedByLetter={false} />
                 </PageSection>
             )}
 

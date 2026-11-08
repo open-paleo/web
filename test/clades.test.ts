@@ -3,12 +3,7 @@ import * as path from "node:path";
 import { test } from "node:test";
 import * as url from "node:url";
 
-import {
-    createAgeSpan,
-    createCladeGenusRows,
-    createRangeBarGeometry,
-    listDescendantGenera,
-} from "../src/data/clades.ts";
+import { createAgeSpan, listDescendantGenera, listPlacedGenera } from "../src/data/clades.ts";
 import { readDataset } from "../src/data/load-dataset.ts";
 import type { CladeEntry, GenusEntry } from "../src/data/site-data.ts";
 import { createSiteData } from "../src/data/site-data.ts";
@@ -77,28 +72,17 @@ test("createAgeSpan names both epochs when a span crosses periods", () =>
     assert.equal(span.name?.[1], "Late Cretaceous");
 });
 
-test("createRangeBarGeometry places a range on its scale", () =>
-{
-    assert.deepEqual(createRangeBarGeometry(83.6, 72.2, { from_ma: 83.6, to_ma: 66 }), {
-        leftPercent: 0,
-        widthPercent: (83.6 - 72.2) / (83.6 - 66) * 100,
-    });
-    assert.deepEqual(createRangeBarGeometry(70, 70, { from_ma: 70, to_ma: 70 }), { leftPercent: 0, widthPercent: 100 });
-});
-
-test("createCladeGenusRows formats each directly placed genus", () =>
+test("listPlacedGenera lists only the genera placed directly in a clade", () =>
 {
     const clade = getClade("Tyrannosaurinae");
-    const rows = createCladeGenusRows(clade, siteData, { from_ma: 83.6, to_ma: 66 });
-    const tyrannosaurus = rows[rows.length - 1];
+    const genera = listPlacedGenera(clade, siteData);
+    const names = new Array<string>();
 
-    assert.equal(rows.length, clade.genusNames.length);
-    assert.equal(tyrannosaurus.entry.name, "Tyrannosaurus");
-    assert.equal(tyrannosaurus.authority, "Osborn, 1905");
-    assert.equal(tyrannosaurus.age, "Maastrichtian");
-    assert.equal(tyrannosaurus.ageNumbers, "72.2–66.0");
-    assert.equal(tyrannosaurus.country, "United States");
-    assert.equal(tyrannosaurus.status, "valid");
-    assert.equal(rows[1].entry.name, "Tarbosaurus");
-    assert.equal(rows[1].isDisputed, true);
+    for (const genus of genera)
+    {
+        names.push(genus.name);
+    }
+
+    assert.deepEqual(names, clade.genusNames);
+    assert.ok(names.includes("Tyrannosaurus"));
 });

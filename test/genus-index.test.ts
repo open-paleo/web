@@ -5,7 +5,8 @@ import * as url from "node:url";
 
 import { createGeologicTimeline } from "../src/data/age-figure.ts";
 import type { GenusIndexRow } from "../src/data/genus-index.ts";
-import { createGenusIndexRows, findMajorGroup, listGenusFilterOptions } from "../src/data/genus-index.ts";
+import type { GenusDetail } from "../src/data/genus-index.ts";
+import { createGenusIndexRows, findMajorGroup, listGenusFilterOptions, shouldGroupByLetter } from "../src/data/genus-index.ts";
 import { readDataset } from "../src/data/load-dataset.ts";
 import { createSiteData } from "../src/data/site-data.ts";
 
@@ -16,7 +17,7 @@ const siteData = createSiteData(dataset);
 assert.ok(dataset.timescale, "the fixture should carry the timescale");
 
 const timeline = createGeologicTimeline(dataset.timescale);
-const rows = createGenusIndexRows(siteData.genera, siteData, timeline);
+const rows = createGenusIndexRows(siteData.genera, siteData, timeline, "index");
 
 /**
  * Find a genus's row.
@@ -44,9 +45,60 @@ test("a genus belongs to the major group above it in the tree", () =>
     assert.equal(findMajorGroup(findRow("Adeopapposaurus").entry, siteData), "Sauropodomorpha");
 });
 
-test("a row's details give its group, epochs and country", () =>
+/**
+ * Write a details line as text, marking each item's kind when it is not plain text.
+ *
+ * @param details - The details.
+ * @returns The items joined with commas: "Tyrannosaurinae [clade], Maastrichtian (72.2–66.0 Ma)".
+ */
+function describeDetails(details: Array<GenusDetail>): string
 {
-    assert.equal(findRow("Tyrannosaurus").details, "Theropoda, Late Cretaceous, United States");
+    const items = new Array<string>();
+
+    for (const detail of details)
+    {
+        items.push(detail.kind === "text" ? detail.text : detail.text + " [" + detail.kind + "]");
+    }
+
+    return items.join(", ");
+}
+
+/**
+ * Find a genus's row in a list made for another page.
+ *
+ * @param name - The genus name.
+ * @param context - The page the list is on.
+ * @returns The row.
+ */
+function findContextRow(name: string, context: "stage" | "clade"): GenusIndexRow
+{
+    const entry = siteData.genusByName.get(name);
+
+    assert.ok(entry);
+
+    return createGenusIndexRows([entry], siteData, timeline, context)[0];
+}
+
+test("on the Genera page a row's details give its group, epochs and country", () =>
+{
+    assert.equal(describeDetails(findRow("Tyrannosaurus").details), "Theropoda, Late Cretaceous, United States");
+});
+
+test("on a stage page a row's details link its clade and give its dated stages", () =>
+{
+    assert.equal(describeDetails(findContextRow("Tyrannosaurus", "stage").details), "Tyrannosaurinae [clade], Maastrichtian (72.2–66.0 Ma), United States");
+    assert.ok(describeDetails(findContextRow("Tarbosaurus", "stage").details).endsWith("under dispute [dispute]"));
+});
+
+test("on a clade page a row's details leave out the clade", () =>
+{
+    assert.equal(describeDetails(findContextRow("Tyrannosaurus", "clade").details), "Maastrichtian (72.2–66.0 Ma), United States");
+});
+
+test("only lists of more than 100 genera are grouped by letter", () =>
+{
+    assert.equal(shouldGroupByLetter(100), false);
+    assert.equal(shouldGroupByLetter(101), true);
 });
 
 test("a row's filter values hold its period and epochs, traits, status and year", () =>

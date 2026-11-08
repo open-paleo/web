@@ -1,89 +1,8 @@
 import type { GeologicTimeline } from "./age-figure.ts";
 import { findEpochAt } from "./age-figure.ts";
-import type { Period, Status } from "./dataset.ts";
-import {
-    formatAgeNumbers,
-    formatAuthority,
-    formatCountry,
-    formatShortAge,
-} from "./format.ts";
+import type { Period } from "./dataset.ts";
 import { getTypeSpecies } from "./records.ts";
 import type { CladeEntry, GenusEntry, SiteData } from "./site-data.ts";
-
-/**
- * Where an age range sits on a horizontal scale, for a small range bar.
- */
-export type RangeBarGeometry = {
-    /**
-     * Distance from the scale's older (left) end, as a percentage of the scale.
-     */
-    leftPercent: number;
-
-    /**
-     * Width as a percentage of the scale.
-     */
-    widthPercent: number;
-};
-
-/**
- * One row of a clade's genus table, with every cell formatted.
- */
-export type CladeGenusRow = {
-    /**
-     * The genus.
-     */
-    entry: GenusEntry;
-
-    /**
-     * The clade the genus is placed in.
-     */
-    parentName: string;
-
-    /**
-     * URL path segment of the parent clade's page, or an empty string when it has none.
-     */
-    parentSlug: string;
-
-    /**
-     * Authority: "Osborn, 1905".
-     */
-    authority: string;
-
-    /**
-     * Stages or periods of the type species: "Maastrichtian".
-     */
-    age: string;
-
-    /**
-     * Age range in millions of years: "72.2–66.0". Empty when not recorded.
-     */
-    ageNumbers: string;
-
-    /**
-     * The range drawn on the clade's age span. Absent when the age is not recorded.
-     */
-    rangeBar: RangeBarGeometry | undefined;
-
-    /**
-     * Country of the type specimen: "United States". Empty when not recorded.
-     */
-    country: string;
-
-    /**
-     * Status of the type species.
-     */
-    status: Status;
-
-    /**
-     * True when the genus cannot be placed below this clade.
-     */
-    isIncertaeSedis: boolean;
-
-    /**
-     * True when the genus record summarizes a live dispute.
-     */
-    isDisputed: boolean;
-};
 
 /**
  * List every genus placed in a clade or in any clade below it, sorted by name.
@@ -181,86 +100,13 @@ export function createAgeSpan(genera: Array<GenusEntry>, timeline: GeologicTimel
 }
 
 /**
- * Place an age range on a scale.
- *
- * @param fromMa - Older end of the range.
- * @param toMa - Younger end of the range.
- * @param scale - The scale's span; its from_ma is the left end.
- * @returns The bar's position and width, in percent of the scale.
- */
-export function createRangeBarGeometry(fromMa: number, toMa: number, scale: Period): RangeBarGeometry
-{
-    const scaleFrom = scale.from_ma ?? fromMa;
-    const scaleTo = scale.to_ma ?? toMa;
-    const span = scaleFrom - scaleTo;
-
-    if (span <= 0)
-    {
-        return { leftPercent: 0, widthPercent: 100 };
-    }
-
-    return {
-        leftPercent: (scaleFrom - fromMa) / span * 100,
-        widthPercent: (fromMa - toMa) / span * 100,
-    };
-}
-
-/**
- * Format the rows of a table of genera.
- *
- * @param genera - The genera, in the order the table lists them.
- * @param siteData - The lookup tables, for each genus's parent clade.
- * @param scale - The span the range bars are drawn on.
- * @returns One row per genus.
- */
-export function createGenusRows(genera: Array<GenusEntry>, siteData: SiteData, scale: Period | undefined): Array<CladeGenusRow>
-{
-    const rows = new Array<CladeGenusRow>();
-
-    for (const entry of genera)
-    {
-        const genus = entry.record;
-        const species = getTypeSpecies(genus);
-        const period = species.period;
-        const fromMa = period.from_ma;
-        const toMa = period.to_ma;
-        const parent = siteData.cladeByName.get(genus.parent);
-        let ageNumbers = "";
-        let rangeBar: RangeBarGeometry | undefined;
-
-        if (fromMa !== undefined && toMa !== undefined)
-        {
-            ageNumbers = formatAgeNumbers(fromMa, toMa);
-            rangeBar = scale ? createRangeBarGeometry(fromMa, toMa, scale) : undefined;
-        }
-
-        rows.push({
-            entry,
-            parentName: genus.parent,
-            parentSlug: parent?.record ? parent.slug : "",
-            authority: formatAuthority(genus.authors, genus.described, false),
-            age: formatShortAge(period),
-            ageNumbers,
-            rangeBar,
-            country: species.location?.country ? formatCountry(species.location.country) : "",
-            status: species.status,
-            isIncertaeSedis: genus.placement === "incertae sedis",
-            isDisputed: genus.dispute !== undefined,
-        });
-    }
-
-    return rows;
-}
-
-/**
- * Format the rows of the table of genera placed directly in a clade.
+ * List the genera placed directly in a clade, in the clade's order (by name).
  *
  * @param clade - The clade.
  * @param siteData - The lookup tables.
- * @param scale - The span the range bars are drawn on, normally the clade's age span.
- * @returns One row per genus, in the clade's genus order.
+ * @returns The genera.
  */
-export function createCladeGenusRows(clade: CladeEntry, siteData: SiteData, scale: Period | undefined): Array<CladeGenusRow>
+export function listPlacedGenera(clade: CladeEntry, siteData: SiteData): Array<GenusEntry>
 {
     const genera = new Array<GenusEntry>();
 
@@ -274,5 +120,5 @@ export function createCladeGenusRows(clade: CladeEntry, siteData: SiteData, scal
         }
     }
 
-    return createGenusRows(genera, siteData, scale);
+    return genera;
 }

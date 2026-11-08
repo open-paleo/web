@@ -1,0 +1,83 @@
+---
+import { createFilterAttributes } from "../data/genus-filters.ts";
+import type { GenusIndexRow } from "../data/genus-index.ts";
+import { createPagePath } from "../data/urls.ts";
+import StatusBadge from "./StatusBadge.astro";
+
+/**
+ * Properties of one genus in a list of genera.
+ */
+type Props = {
+    /**
+     * The genus's row.
+     */
+    row: GenusIndexRow;
+
+    /**
+     * Whether the item carries the data attributes the Genera page's filters read.
+     */
+    isFilterable: boolean;
+};
+
+const { row, isFilterable } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+{/* The name, any status badge and the authority, then a line of details with commas between
+   its items. The commas are drawn by CSS, so each item stays one element. */}
+<li class="genus-item" {...(isFilterable ? createFilterAttributes(row.filterValues) : {})}>
+    <span class="genus-heading">
+        <a class="taxon" href={createPagePath(baseUrl, "genus", row.entry.slug)}>{row.entry.name}</a>
+        <StatusBadge status={row.status} />
+        <span class="genus-authority">{row.authority}</span>
+    </span>
+    {row.details.length > 0 && (
+        <span class="genus-details">
+            {row.details.map((detail) => (
+                <span class:list={["genus-detail", "is-" + detail.kind]}>{detail.kind === "clade" ? <a href={createPagePath(baseUrl, "clade", detail.slug)}>{detail.text}</a> : detail.text}</span>
+            ))}
+        </span>
+    )}
+</li>
+
+<style>
+    .genus-item
+    {
+        display: grid;
+        padding-block: var(--space-2);
+        break-inside: avoid;
+    }
+
+    .genus-heading
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0 var(--space-2);
+    }
+
+    .genus-authority,
+    .genus-details
+    {
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+
+    .genus-detail + .genus-detail::before
+    {
+        color: var(--color-muted);
+        font-style: normal;
+        content: ", ";
+    }
+
+    .is-incertae-sedis
+    {
+        font-style: italic;
+    }
+
+    .is-dispute
+    {
+        color: var(--color-caution);
+    }
+</style>

@@ -41,6 +41,10 @@
 
 ### Changed
 
+- Clade and stage pages list their genera like the Genera page, in columns with a line of
+  details for each, instead of a table: stages with their dates and country, plus the clade on
+  stage pages and *incertae sedis* on clade pages. Lists of more than 100 genera are grouped by
+  letter. The range bars are gone; the clade's age figure still shows its span
 - Section headings' rules span the content column; prose inside keeps to the reading measure
 - Synonyms are sorted by name in genus, species and clade lists
 - Diagnosis numbers sit in their own right-aligned column at body size
@@ -100,11 +104,10 @@
   trail, authority and type genus, an age figure spanning every genus in the clade (with the
   stage row only when the span covers at most two epochs), description, dispute note,
   diagnosis, the clades directly below with their genus counts, synonyms, references, and a
-  facts panel with genus counts. A full-width table lists the genera placed directly in the
-  clade: authority, age, a range bar on the clade's span, and country, in ruled columns that
-  keep to one line (narrow screens scroll the table). The ranks above Dinosauria have no record
+  facts panel with genus counts, then the genera placed directly in the clade (see Changed).
+  The ranks above Dinosauria have no record
   and get no page; classification trails show them without a link
-- Components: `GenusTable` (formerly `CladeGenusTable`), `RangeBar`, `SubcladeList`, and `FactList`, which the genus
+- Components: `SubcladeList`, and `FactList`, which the genus
   page's "at a glance" panel now uses too
 - Genus pages (`genus/{slug}/`, one per genus): classification trail, name, authority and
   pronunciation, description with genus and species names set in italics, dispute note,
