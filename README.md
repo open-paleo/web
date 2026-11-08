@@ -11,8 +11,9 @@ which is backed by published literature.
 The site is built with [Astro](https://astro.build/) as a fully static site.
 
 **Status:** the site generates a page for every genus (1,428), every clade with a record (188)
-and every cited work (2,553). The home page is a placeholder, and the browse pages (genera
-table, tree, timeline) and the data page come next.
+and every cited work (2,553), A–Z indexes of genera and references, the clade tree as an
+outline, a Data page with downloads and citation, and full-text search with Pagefind. The home
+page is a placeholder; filters on the genera index and the timeline come next.
 
 ## Planned site
 

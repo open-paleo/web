@@ -28,6 +28,16 @@
     --color-caution: #8a5a0b;
     --color-caution-soft: #f3e6c8;
 
+    /* The site header: a dark shale band in both themes. Contrast on it: text 12.7:1, muted
+       text 8.1:1, links 8.9:1, and the search field's border 4.2:1 (non-text needs 3:1). */
+    --color-header-background: #1f2d29;
+    --color-header-surface: #2b3b36;
+    --color-header-ink: #eef2ef;
+    --color-header-muted: #b9c6bf;
+    --color-header-accent: #9fd8c3;
+    --color-header-border: #7b8f87;
+    --color-header-edge: #1f2d29;
+
     /* Text drawn on top of geologic time colors. The time colors do not change with the theme,
        so neither do these. --color-on-period is dark enough to reach 4.5:1 on every chart color
        that does not take white text (the closest are the Permian and Middle Triassic, at 5.0:1);
@@ -111,6 +121,10 @@
     --font-serif: "Alegreya", "Iowan Old Style", Georgia, serif;
     --font-sans: "Alegreya Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 
+    /* Code only (the BibTeX on the Data page), where alignment depends on equal-width
+       characters. Never for labels, catalog numbers or figures. */
+    --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
     /* Type scale, in rem against a 16px root. Body text is 18px; nothing is set below 14px.
        Alegreya and Alegreya Sans have small x-heights, so they read smaller than their size. */
     --text-caption: 0.875rem;
@@ -158,6 +172,13 @@
         --color-accent-soft: #213731;
         --color-caution: #e2b562;
         --color-caution-soft: #3a2f19;
+        --color-header-background: #0b0f0e;
+        --color-header-surface: #1a2120;
+        --color-header-ink: #e2e6e0;
+        --color-header-muted: #a9b3ad;
+        --color-header-accent: #80c4ab;
+        --color-header-border: #66726d;
+        --color-header-edge: #323a37;
         color-scheme: dark;
     }
 }
@@ -173,5 +194,12 @@
     --color-accent-soft: #213731;
     --color-caution: #e2b562;
     --color-caution-soft: #3a2f19;
+    --color-header-background: #0b0f0e;
+    --color-header-surface: #1a2120;
+    --color-header-ink: #e2e6e0;
+    --color-header-muted: #a9b3ad;
+    --color-header-accent: #80c4ab;
+    --color-header-border: #66726d;
+    --color-header-edge: #323a37;
     color-scheme: dark;
 }

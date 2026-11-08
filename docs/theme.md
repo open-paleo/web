@@ -39,6 +39,14 @@ Rules:
 - **Valid names get no badge.** "Disputed" and "nomen dubium" are written out in the badge, so
   the status never depends on color alone.
 
+### Header colors
+
+The site header is a dark band in both themes, with its own tokens (`--color-header-*`): the
+band, the search field's fill and border, text, muted text, and the accent for the current
+section and the search button. On the band, text reaches 12.7:1, muted text 8.1:1 and links
+8.9:1, and the search field's border 4.2:1 (non-text needs 3:1). In dark mode the band is darker
+than the page, with `--color-header-edge` as a visible bottom border.
+
 ## Geologic time colors
 
 `tokens.css` defines a color for every period, epoch and stage that the data's `schema.yml`
@@ -72,8 +80,9 @@ before the first release and whenever the ICS revises it.
 The two families were drawn as a pair, so they share proportions and rhythm. Alegreya's italic is
 distinctive, which matters because taxon names are italic in running text.
 
-There is no monospace face. Catalog numbers (`CM 9380`) are set in Alegreya Sans 500 with
-tabular figures.
+There is no monospace face for text. Catalog numbers (`CM 9380`) are set in Alegreya Sans 500
+with tabular figures. `--font-mono` (the system's monospace) is for code only, such as the
+BibTeX on the Data page, whose alignment depends on equal-width characters.
 
 Type scale (`--text-*`), against a 16px root. Nothing is set below 14px: both families have
 small x-heights and read smaller than their nominal size.

@@ -1,0 +1,119 @@
+---
+import LetterJumpList from "../../components/LetterJumpList.astro";
+import Prose from "../../components/Prose.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatShortCitation } from "../../data/format.ts";
+import { createLetterAnchor, getReferenceIndexName, groupByLetter } from "../../data/indexes.ts";
+import { getSiteData } from "../../data/site-data.ts";
+import { createPagePath } from "../../data/urls.ts";
+
+const siteData = getSiteData();
+const baseUrl = import.meta.env.BASE_URL;
+const numberFormat = new Intl.NumberFormat("en-US");
+const referenceCount = numberFormat.format(siteData.references.length);
+const groups = groupByLetter(siteData.references, getReferenceIndexName);
+const letters = new Array<string>();
+
+for (const group of groups)
+{
+    letters.push(group.letter);
+}
+---
+
+<BaseLayout title="References" description={"The " + referenceCount + " published works cited in Open Paleo, by first author."} section="references">
+    <div class="index-page">
+        <header class="index-header">
+            <h1>References</h1>
+            <p class="index-summary">{referenceCount} published works cited in release {siteData.metadata.version}, by first author.</p>
+            <LetterJumpList letters={letters} label="References" />
+        </header>
+
+        {groups.map((group) => (
+            <section class="letter-group" aria-labelledby={createLetterAnchor(group.letter)}>
+                <h2 id={createLetterAnchor(group.letter)}>{group.letter}</h2>
+                <ul class="reference-index">
+                    {group.entries.map((entry) => (
+                        <li>
+                            <a href={createPagePath(baseUrl, "reference", entry.slug)}>{formatShortCitation(entry.reference)}</a>
+                            {entry.reference.title && <span class="reference-title"><Prose text={entry.reference.title} /></span>}
+                        </li>
+                    ))}
+                </ul>
+            </section>
+        ))}
+    </div>
+</BaseLayout>
+
+<style>
+    .index-page
+    {
+        display: grid;
+        gap: var(--space-7);
+    }
+
+    .index-header
+    {
+        display: grid;
+        gap: var(--space-4);
+    }
+
+    h1
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .index-summary
+    {
+        color: var(--color-muted);
+    }
+
+    .letter-group
+    {
+        display: grid;
+        gap: var(--space-3);
+        scroll-margin-top: var(--space-5);
+    }
+
+    h2
+    {
+        padding-bottom: var(--space-2);
+        border-bottom: 1px solid var(--color-ink);
+    }
+
+    .reference-index
+    {
+        display: grid;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li
+    {
+        display: grid;
+        grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr);
+        gap: var(--space-1) var(--space-5);
+        padding-block: var(--space-2);
+        border-bottom: 1px solid var(--color-line);
+    }
+
+    a
+    {
+        font-family: var(--font-sans);
+    }
+
+    .reference-title
+    {
+        color: var(--color-muted);
+        max-width: var(--measure);
+    }
+
+    @media (max-width: 40rem)
+    {
+        li
+        {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+</style>

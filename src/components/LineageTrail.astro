@@ -39,7 +39,7 @@ const visibleAtEachEnd = 3;
 const hiddenCount = ranks.length > visibleAtEachEnd * 2 + 1 ? ranks.length - visibleAtEachEnd * 2 : 0;
 ---
 
-<nav class="lineage-trail" aria-label="Classification" data-hidden-count={hiddenCount}>
+<nav class="lineage-trail" aria-label="Classification" data-hidden-count={hiddenCount} data-pagefind-ignore>
     <ol>
         {ranks.map((name, index) => (
             <li class:list={{ "lineage-middle": hiddenCount > 0 && index >= visibleAtEachEnd && index < ranks.length - visibleAtEachEnd }}>

@@ -20,7 +20,7 @@ const siteData = getSiteData();
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
-<ol class="reference-list">
+<ol class="reference-list" data-pagefind-ignore>
     {references.map((reference) => (
         <li id={createReferenceAnchor(siteData.referenceById.get(reference.id)?.slug ?? reference.id)}>
             <Citation reference={reference} />

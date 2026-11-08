@@ -1,0 +1,60 @@
+---
+import { createLetterAnchor } from "../data/indexes.ts";
+
+/**
+ * Properties of the row of letters at the top of an A–Z index, each linking to its group.
+ */
+type Props = {
+    /**
+     * The letters that have entries, in order.
+     */
+    letters: Array<string>;
+
+    /**
+     * What the index lists, for the navigation's accessible name: "Genera".
+     */
+    label: string;
+};
+
+const { letters, label } = Astro.props;
+---
+
+<nav class="letter-jump-list" aria-label={label + " by first letter"}>
+    <ul>
+        {letters.map((letter) => <li><a href={"#" + createLetterAnchor(letter)}>{letter}</a></li>)}
+    </ul>
+</nav>
+
+<style>
+    ul
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-1);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-family: var(--font-sans);
+    }
+
+    /* Each letter is a target at least 2.25rem square, comfortable to tap. */
+    a
+    {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 2.25rem;
+        min-height: 2.25rem;
+        color: var(--color-accent);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-small);
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    a:hover
+    {
+        background: var(--color-accent-soft);
+    }
+</style>

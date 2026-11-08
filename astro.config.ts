@@ -12,6 +12,10 @@ export default defineConfig({
     output: "static",
     outDir: "dist",
     trailingSlash: "always",
+    // Keep the whitespace between elements as the templates write it. Compression removes it
+    // between neighboring inline elements, which runs words together in text that Pagefind
+    // extracts for search ("Found 1971iconic") and has dropped spaces before links and values.
+    compressHTML: false,
     build: {
         format: "directory",
     },

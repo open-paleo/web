@@ -83,12 +83,12 @@ const authorityAnchor = "#" + createReferenceAnchor(siteData.referenceById.get(a
 const pronunciation = genus.pronunciation;
 ---
 
-<BaseLayout title={genus.genus} description={getFirstSentence(genus.description)}>
-    <article class="genus-page">
+<BaseLayout title={genus.genus} description={getFirstSentence(genus.description)} section="genera">
+    <article class="genus-page" data-pagefind-body data-pagefind-filter="kind:Genus">
         <LineageTrail taxonomy={genus.taxonomy} placement={genus.placement} />
 
         <header class="genus-header">
-            <h1 class="genus-name taxon">{genus.genus}</h1>
+            <h1 class="genus-name taxon" data-pagefind-weight="10">{genus.genus}</h1>
             <p class="genus-meta">
                 {authority && <a class="authority" href={authorityAnchor}>{authority}</a>}
                 {pronunciation?.phonetic && <span>{pronunciation.phonetic}</span>}

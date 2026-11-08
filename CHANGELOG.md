@@ -2,6 +2,24 @@
 
 ## Unreleased
 
+### Added
+
+- A full-width header on every page: a dark band with the wordmark, navigation (Genera, Tree,
+  References, Data) marking the current section, and a search field; plus a "Skip to content"
+  link
+- Index pages: Genera (A–Z with letter links), Tree (the clade hierarchy as a collapsible
+  outline with genus counts), References (by first author), and Data (release details,
+  downloads with sizes, how to cite)
+- Full-text search with Pagefind 1.5.2 over the genus, clade and reference pages, with filters
+  by kind, highlighted excerpts, and ranking tuned so a record ranks above pages that only
+  mention it
+
+### Changed
+
+- HTML compression is off, so template whitespace renders as written; it had run neighboring
+  elements together in search excerpts and dropped spaces before links
+
+
 ### Changed
 
 - Accessibility and readability pass. The age figure no longer dims time outside a record's

@@ -2,6 +2,31 @@
 import "../theme/theme.css";
 
 /**
+ * The sections of the site that have a link in the header.
+ */
+type NavigationSection = "genera" | "tree" | "references" | "data";
+
+/**
+ * One link in the header's navigation.
+ */
+type NavigationItem = {
+    /**
+     * The section the link leads to.
+     */
+    section: NavigationSection;
+
+    /**
+     * The link text.
+     */
+    label: string;
+
+    /**
+     * Path of the section's index page, relative to the site's base.
+     */
+    path: string;
+};
+
+/**
  * Properties of the base layout, which every page uses.
  */
 type Props = {
@@ -14,12 +39,29 @@ type Props = {
      * One sentence describing the page, for search engines and link previews.
      */
     description: string;
+
+    /**
+     * The section the page belongs to, whose header link is marked as current. Genus pages
+     * belong to Genera, clade pages to Tree, and reference pages to References.
+     */
+    section?: NavigationSection;
+
+    /**
+     * Text already in the search field, on the search page.
+     */
+    searchQuery?: string;
 };
 
-const { title, description } = Astro.props;
+const { title, description, section, searchQuery = "" } = Astro.props;
 const siteName = "Open Paleo";
 const documentTitle = title ? title + " | " + siteName : siteName;
 const homeUrl = import.meta.env.BASE_URL;
+const navigationItems: Array<NavigationItem> = [
+    { section: "genera", label: "Genera", path: "genera/" },
+    { section: "tree", label: "Tree", path: "tree/" },
+    { section: "references", label: "References", path: "references/" },
+    { section: "data", label: "Data", path: "data/" },
+];
 ---
 
 <!doctype html>
@@ -31,10 +73,34 @@ const homeUrl = import.meta.env.BASE_URL;
         <title>{documentTitle}</title>
     </head>
     <body>
+        <a class="skip-link" href="#content">Skip to content</a>
         <header class="site-header">
-            <a class="wordmark" href={homeUrl}>{siteName}</a>
+            <div class="site-header-inner">
+                <a class="wordmark" href={homeUrl}>{siteName}</a>
+                <nav class="site-navigation" aria-label="Main">
+                    <ul>
+                        {navigationItems.map((item) => (
+                            <li>
+                                <a href={homeUrl + item.path} aria-current={item.section === section ? "page" : undefined}>{item.label}</a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+                <form class="site-search" role="search" action={homeUrl + "search/"} method="get">
+                    <label class="visually-hidden" for="site-search-field">Search the dataset</label>
+                    <input
+                        id="site-search-field"
+                        name="q"
+                        type="search"
+                        value={searchQuery}
+                        placeholder="Search genera, clades, references"
+                        autocomplete="off"
+                        >
+                    <button type="submit">Search</button>
+                </form>
+            </div>
         </header>
-        <main class="site-main">
+        <main class="site-main" id="content" tabindex="-1">
             <slot />
         </main>
         <footer class="site-footer">
@@ -47,7 +113,36 @@ const homeUrl = import.meta.env.BASE_URL;
 </html>
 
 <style>
-    .site-header,
+    .skip-link
+    {
+        position: absolute;
+        top: var(--space-2);
+        left: var(--space-2);
+        z-index: 10;
+        padding: var(--space-2) var(--space-4);
+        color: var(--color-ink);
+        background: var(--color-surface);
+        border: 2px solid var(--color-accent);
+        border-radius: var(--radius);
+        font-family: var(--font-sans);
+        transform: translateY(-200%);
+    }
+
+    .skip-link:focus
+    {
+        transform: none;
+    }
+
+    /* A full-width dark band. Its contents line up with the page content below. */
+    .site-header
+    {
+        color: var(--color-header-ink);
+        background: var(--color-header-background);
+        border-bottom: 1px solid var(--color-header-edge);
+        font-family: var(--font-sans);
+    }
+
+    .site-header-inner,
     .site-main,
     .site-footer
     {
@@ -56,29 +151,108 @@ const homeUrl = import.meta.env.BASE_URL;
         padding-inline: max(var(--space-4), env(safe-area-inset-left, 0px)) max(var(--space-4), env(safe-area-inset-right, 0px));
     }
 
-    .site-header
+    .site-header-inner
     {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         gap: var(--space-3) var(--space-6);
-        padding-block: var(--space-5) var(--space-4);
-        border-bottom: 1px solid var(--color-line);
-        font-family: var(--font-sans);
+        padding-block: var(--space-4);
     }
 
     .wordmark
     {
-        color: var(--color-ink);
+        color: var(--color-header-ink);
         font-family: var(--font-serif);
         font-size: var(--text-heading-2);
-        font-weight: 700;
+        font-weight: 800;
+        line-height: 1;
         text-decoration: none;
+    }
+
+    .site-navigation ul
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-1) var(--space-5);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .site-navigation a
+    {
+        display: inline-block;
+        padding-block: var(--space-1);
+        color: var(--color-header-muted);
+        font-size: var(--text-interface);
+        text-decoration: none;
+        border-bottom: 2px solid transparent;
+    }
+
+    .site-navigation a:hover
+    {
+        color: var(--color-header-ink);
+    }
+
+    .site-navigation a[aria-current="page"]
+    {
+        color: var(--color-header-ink);
+        border-bottom-color: var(--color-header-accent);
+    }
+
+    .site-search
+    {
+        display: flex;
+        flex: 1 1 18rem;
+        justify-content: flex-end;
+        gap: var(--space-2);
+        max-width: 28rem;
+        margin-left: auto;
+    }
+
+    .site-search input
+    {
+        flex: 1 1 auto;
+        min-width: 0;
+        padding: var(--space-2) var(--space-3);
+        color: var(--color-header-ink);
+        background: var(--color-header-surface);
+        border: 1px solid var(--color-header-border);
+        border-radius: var(--radius);
+        font-size: var(--text-interface);
+    }
+
+    .site-search input::placeholder
+    {
+        color: var(--color-header-muted);
+    }
+
+    .site-search button
+    {
+        padding: var(--space-2) var(--space-4);
+        color: var(--color-header-background);
+        background: var(--color-header-accent);
+        border: 1px solid var(--color-header-accent);
+        border-radius: var(--radius);
+        font-size: var(--text-interface);
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .site-header :focus-visible
+    {
+        outline-color: var(--color-header-accent);
     }
 
     .site-main
     {
         padding-block: var(--space-6) var(--space-8);
+    }
+
+    .site-main:focus
+    {
+        outline: none;
     }
 
     .site-footer
@@ -88,5 +262,15 @@ const homeUrl = import.meta.env.BASE_URL;
         color: var(--color-muted);
         font-family: var(--font-sans);
         font-size: var(--text-small);
+    }
+
+    @media (max-width: 40rem)
+    {
+        .site-search
+        {
+            flex-basis: 100%;
+            max-width: none;
+            margin-left: 0;
+        }
     }
 </style>

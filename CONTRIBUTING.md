@@ -25,8 +25,8 @@ cd web
 npm install
 
 npm run dev       # local server with live reload at http://localhost:4321/
-npm run build     # write the site to dist/
-npm run preview   # serve dist/ as it will be published
+npm run build     # write the site to dist/, then index it for search with Pagefind
+npm run preview   # serve dist/ as it will be published, search included
 ```
 
 The build reads the dataset from `../data/dist/open-paleo.json`, so clone
@@ -53,7 +53,7 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 | `src/layouts/` | Page shells shared by the pages (`BaseLayout.astro`) |
 | `src/components/` | Reusable components: dispute note, age figure, reference list and so on |
 | `src/data/` | TypeScript that loads the dataset and prepares lookup tables for the pages |
-| `src/scripts/` | Browser TypeScript: search, filters, the tree and timeline views |
+| `src/scripts/` | Browser TypeScript, such as the search page (`search.ts`) |
 | `src/theme/` | The Strata theme: tokens, fonts, element defaults. See [docs/theme.md](docs/theme.md) |
 | `public/` | Static files copied to the site unchanged (favicon, robots.txt) |
 | `scripts/` | Standalone Node tooling that is not part of the Astro build |
@@ -279,15 +279,40 @@ const { dispute, question } = Astro.props;
   `{species.map((item) => <SpeciesSection species={item} />)}` is how Astro repeats elements,
   and there is no loop form in a template. Keep the arrow to a single element; anything more
   belongs in the frontmatter or in `src/data/`
-- **Keep a `{value}` or an inline element on the same line as the text before it.** Astro's
-  HTML compression drops a line break that falls directly before an expression or a tag, so
-  `genera in` at the end of one line and `{count} clades` on the next renders as "in188
-  clades", and `licensed under` followed by `<a>` on the next line renders as "underCC BY".
-  Where parts must be joined by expressions, write the space out as `{" "}`
+- **Whitespace in templates is kept as written.** HTML compression is off
+  (`compressHTML: false` in `astro.config.ts`), so a line break between two inline parts
+  renders as a space, and two parts that must touch go on the same line with nothing between
+  them. Compression used to drop line breaks before expressions and tags ("in188 clades",
+  "underCC BY") and ran neighboring elements together in the text Pagefind indexes for search.
+  Output of a `map` has no whitespace between items, so a list of inline items needs explicit
+  separators or a flex container
 - **Astro escapes every `{value}` in the template.** Never use `set:html` on dataset text;
   components that add markup to prose (italic taxon names) build it from escaped parts
 - ESLint does not check template markup or `<style>` blocks, so reviewers do: 4-space
   indentation, double-quoted attributes, Allman braces in CSS
+
+## Search
+
+[Pagefind](https://pagefind.app/) indexes the built site after `astro build` (part of
+`npm run build`), and the search page (`src/pages/search/index.astro` with
+`src/scripts/search.ts`) queries that index in the browser. There is no index under
+`npm run dev`; use `npm run build` and `npm run preview` to try search.
+
+- **Only record pages are indexed.** Genus, clade and reference pages mark their `<article>` with
+  `data-pagefind-body` and a `kind` filter (`Genus`, `Clade`, `Reference`). Pages without
+  `data-pagefind-body` (the index pages, the home page) are left out
+- **Parts that would add noise are excluded** with `data-pagefind-ignore`: the classification
+  trail (every theropod page would match "Theropoda"), the age-figure bands, the reference list
+  on genus and clade pages (the reference pages carry those citations), and the external
+  database links
+- **Names are weighted** with `data-pagefind-weight`: genus and clade names 10, specimen nicknames
+  8
+- **Ranking is tuned** in `search.ts` (`pageLength: 0.1`, `termFrequency: 0`) against queries with
+  a known best page. With Pagefind's defaults, "Tyrannosaurus" ranked the Tyrannosaurus page
+  14th, below short reference pages that mention it. Check a ranking change against such
+  queries before making it
+- **Excerpts are built as text nodes.** Pagefind returns excerpts as HTML with `<mark>` around
+  matched words; the script keeps only those marks and inserts everything else as text
 
 ## CSS
 

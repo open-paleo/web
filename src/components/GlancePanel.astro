@@ -81,7 +81,7 @@ const sizeNote = genus.species.length > 1 ? "Size and place are those of the typ
     {identifiers.length > 0 && (
         <>
             <dt>Elsewhere</dt>
-            <dd class="identifiers">
+            <dd class="identifiers" data-pagefind-ignore>
                 {identifiers.map((identifier) => (
                     <a href={getIdentifierUrl(identifier.source ?? "", identifier.id ?? "")}>{getIdentifierSourceName(identifier.source ?? "")}</a>
                 ))}

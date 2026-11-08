@@ -1,0 +1,177 @@
+---
+import TreeOutline from "../../components/TreeOutline.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatGenusCount } from "../../data/format.ts";
+import type { CladeEntry } from "../../data/site-data.ts";
+import { getSiteData } from "../../data/site-data.ts";
+
+const siteData = getSiteData();
+
+// The outline starts at the first clade with a record of its own (Dinosauria): the ranks above
+// it carry no record and have no page.
+let top: CladeEntry | undefined;
+
+for (const clade of siteData.clades)
+{
+    if (!top && clade.record)
+    {
+        top = clade;
+    }
+}
+
+const cladeCount = siteData.metadata.clade_count;
+---
+
+<BaseLayout title="Tree" description={"The Open Paleo classification as an outline of " + cladeCount + " clades."} section="tree">
+    <div class="tree-page">
+        <header class="tree-header">
+            <h1>Tree</h1>
+            <p class="tree-summary">
+                The classification as an outline: {cladeCount} clades holding {formatGenusCount(siteData.genera.length)}.
+                Each count includes every genus below the clade. Open a clade to see the clades within it.
+            </p>
+            <p class="tree-controls" hidden>
+                <button type="button" data-tree-action="open">Open all</button>
+                <button type="button" data-tree-action="close">Close all</button>
+            </p>
+        </header>
+
+        {top && (
+            <ul class="tree-outline">
+                <TreeOutline clade={top} level={0} />
+            </ul>
+        )}
+    </div>
+</BaseLayout>
+
+<script>
+    /**
+     * Find the list of clades a toggle button opens and closes.
+     *
+     * @param button - The toggle.
+     * @returns The branch element, or null if the page lacks it.
+     */
+    function findBranch(button: HTMLButtonElement): HTMLElement | null
+    {
+        return document.getElementById(button.getAttribute("aria-controls") ?? "");
+    }
+
+    /**
+     * Open or close one clade's branch and update its toggle to match.
+     *
+     * @param button - The clade's toggle.
+     * @param isOpen - True to show the clades within it.
+     */
+    function setBranch(button: HTMLButtonElement, isOpen: boolean): void
+    {
+        const branch = findBranch(button);
+
+        button.setAttribute("aria-expanded", String(isOpen));
+
+        if (branch)
+        {
+            branch.hidden = !isOpen;
+        }
+    }
+
+    /**
+     * Turn on the tree's toggles: reveal them, close every branch below the second level, and
+     * wire the toggles and the open-all and close-all buttons.
+     */
+    function enableTree(): void
+    {
+        const toggles = document.querySelectorAll<HTMLButtonElement>(".tree-outline .tree-toggle");
+        const controls = document.querySelector<HTMLElement>(".tree-controls");
+
+        for (const button of toggles)
+        {
+            const level = Number(button.closest<HTMLElement>(".tree-node")?.dataset.level ?? "0");
+
+            button.hidden = false;
+            setBranch(button, level < 2);
+            button.addEventListener("click", () => setBranch(button, button.getAttribute("aria-expanded") !== "true"));
+        }
+
+        if (controls)
+        {
+            controls.hidden = false;
+
+            for (const control of controls.querySelectorAll<HTMLButtonElement>("button[data-tree-action]"))
+            {
+                control.addEventListener("click", () => setAllBranches(toggles, control.dataset.treeAction === "open"));
+            }
+        }
+    }
+
+    /**
+     * Open or close every branch in the outline.
+     *
+     * @param toggles - Every toggle in the outline.
+     * @param isOpen - True to open them all, false to close them all.
+     */
+    function setAllBranches(toggles: NodeListOf<HTMLButtonElement>, isOpen: boolean): void
+    {
+        for (const button of toggles)
+        {
+            setBranch(button, isOpen);
+        }
+    }
+
+    enableTree();
+</script>
+
+<style>
+    .tree-page
+    {
+        display: grid;
+        gap: var(--space-6);
+    }
+
+    .tree-header
+    {
+        display: grid;
+        gap: var(--space-4);
+        max-width: var(--measure);
+    }
+
+    h1
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .tree-summary
+    {
+        color: var(--color-muted);
+    }
+
+    .tree-controls
+    {
+        display: flex;
+        gap: var(--space-3);
+    }
+
+    .tree-controls[hidden]
+    {
+        display: none;
+    }
+
+    .tree-controls button
+    {
+        padding: var(--space-1) var(--space-4);
+        color: var(--color-accent);
+        background: var(--color-surface);
+        border: 1px solid var(--color-accent);
+        border-radius: var(--radius);
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
+        cursor: pointer;
+    }
+
+    .tree-outline
+    {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+</style>

@@ -1,0 +1,153 @@
+---
+import { formatGenusCount } from "../data/format.ts";
+import type { CladeEntry } from "../data/site-data.ts";
+import { getSiteData } from "../data/site-data.ts";
+import { createPagePath } from "../data/urls.ts";
+
+/**
+ * Properties of one clade in the tree outline, with everything below it.
+ */
+type Props = {
+    /**
+     * The clade.
+     */
+    clade: CladeEntry;
+
+    /**
+     * Levels below the outline's top clade. The script starts levels 0 and 1 open.
+     */
+    level: number;
+};
+
+const { clade, level } = Astro.props;
+const siteData = getSiteData();
+const baseUrl = import.meta.env.BASE_URL;
+const children = new Array<CladeEntry>();
+
+for (const name of clade.childCladeNames)
+{
+    const child = siteData.cladeByName.get(name);
+
+    if (child)
+    {
+        children.push(child);
+    }
+}
+
+const childListId = "tree-children-" + clade.slug;
+const directCount = clade.genusNames.length;
+---
+
+{/* Each clade with clades below it gets a toggle button beside its link, which the script
+   reveals; without JavaScript the outline shows fully expanded and has no buttons. A link inside
+   a <summary> would put one control inside another, which assistive technology cannot
+   operate reliably. */}
+<li class="tree-node" data-level={level}>
+    <div class="tree-row">
+        {children.length > 0
+            ? <button type="button" class="tree-toggle" aria-expanded="true" aria-controls={childListId} hidden><span class="visually-hidden">Show clades within {clade.name}</span></button>
+            : <span class="tree-toggle-space" aria-hidden="true"></span>}
+        <a href={createPagePath(baseUrl, "clade", clade.slug)}>{clade.name}</a>
+        <span class="genus-count figures">{formatGenusCount(clade.totalGenusCount)}</span>
+    </div>
+    {children.length > 0 && (
+        <div class="tree-branch" id={childListId}>
+            <ul class="tree-children">
+                {children.map((child) => <Astro.self clade={child} level={level + 1} />)}
+            </ul>
+            {directCount > 0 && <p class="direct-genera figures">{formatGenusCount(directCount)} placed directly in {clade.name}</p>}
+        </div>
+    )}
+</li>
+
+<style>
+    .tree-node
+    {
+        font-family: var(--font-sans);
+    }
+
+    .tree-row
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0 var(--space-2);
+        min-height: 2.25rem;
+    }
+
+    /* The toggle is a 1.75rem square with a triangle that turns when the clade is open. */
+    .tree-toggle,
+    .tree-toggle-space
+    {
+        flex: 0 0 auto;
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+
+    .tree-toggle
+    {
+        position: relative;
+        padding: 0;
+        color: var(--color-muted);
+        background: transparent;
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-small);
+        cursor: pointer;
+    }
+
+    .tree-toggle[hidden]
+    {
+        display: none;
+    }
+
+    .tree-toggle::before
+    {
+        content: "";
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        width: 0;
+        height: 0;
+        border-top: 0.3rem solid transparent;
+        border-bottom: 0.3rem solid transparent;
+        border-left: 0.45rem solid currentColor;
+        transition: transform 0.15s ease;
+    }
+
+    .tree-toggle[aria-expanded="true"]::before
+    {
+        transform: rotate(90deg);
+    }
+
+    .tree-toggle:hover
+    {
+        color: var(--color-ink);
+        background: var(--color-surface);
+    }
+
+    .tree-branch[hidden]
+    {
+        display: none;
+    }
+
+    .tree-children
+    {
+        margin: 0 0 0 0.85rem;
+        padding: 0 0 0 var(--space-4);
+        list-style: none;
+        border-left: 1px solid var(--color-line);
+    }
+
+    .genus-count,
+    .direct-genera
+    {
+        color: var(--color-muted);
+        font-size: var(--text-small);
+    }
+
+    .direct-genera
+    {
+        margin-left: calc(0.85rem + var(--space-4) + 1.75rem + var(--space-2));
+        padding-block: var(--space-1);
+    }
+</style>

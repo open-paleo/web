@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "test": "node --experimental-strip-types --test test/*.test.ts",
     "typecheck": "node node_modules/typescript7/bin/tsc --noEmit && astro check",
@@ -29,6 +29,7 @@
     "cspell": "10.4.0",
     "eslint": "10.13.0",
     "eslint-plugin-astro": "3.2.1",
+    "pagefind": "1.5.2",
     "typescript": "npm:@typescript/typescript6@6.0.2",
     "typescript-eslint": "8.72.1",
     "typescript7": "npm:typescript@7.0.2"

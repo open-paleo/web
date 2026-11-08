@@ -1,0 +1,107 @@
+---
+import LetterJumpList from "../../components/LetterJumpList.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatAuthority, formatGenusCount } from "../../data/format.ts";
+import { createLetterAnchor, getGenusIndexName, groupByLetter } from "../../data/indexes.ts";
+import { getSiteData } from "../../data/site-data.ts";
+import { createPagePath } from "../../data/urls.ts";
+
+const siteData = getSiteData();
+const baseUrl = import.meta.env.BASE_URL;
+const groups = groupByLetter(siteData.genera, getGenusIndexName);
+const letters = new Array<string>();
+
+for (const group of groups)
+{
+    letters.push(group.letter);
+}
+---
+
+<BaseLayout title="Genera" description={"An A–Z index of the " + formatGenusCount(siteData.genera.length) + " in Open Paleo."} section="genera">
+    <div class="index-page">
+        <header class="index-header">
+            <h1>Genera</h1>
+            <p class="index-summary">{formatGenusCount(siteData.genera.length)} in release {siteData.metadata.version}, from A to Z.</p>
+            <LetterJumpList letters={letters} label="Genera" />
+        </header>
+
+        {groups.map((group) => (
+            <section class="letter-group" aria-labelledby={createLetterAnchor(group.letter)}>
+                <h2 id={createLetterAnchor(group.letter)}>{group.letter}</h2>
+                <ul class="genus-index">
+                    {group.entries.map((genus) => (
+                        <li>
+                            <a class="taxon" href={createPagePath(baseUrl, "genus", genus.slug)}>{genus.name}</a>
+                            <span class="genus-authority">{formatAuthority(genus.record.authors, genus.record.described, false)}</span>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+        ))}
+    </div>
+</BaseLayout>
+
+<style>
+    .index-page
+    {
+        display: grid;
+        gap: var(--space-7);
+    }
+
+    .index-header
+    {
+        display: grid;
+        gap: var(--space-4);
+    }
+
+    h1
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .index-summary
+    {
+        color: var(--color-muted);
+    }
+
+    .letter-group
+    {
+        display: grid;
+        gap: var(--space-4);
+        scroll-margin-top: var(--space-5);
+    }
+
+    h2
+    {
+        padding-bottom: var(--space-2);
+        border-bottom: 1px solid var(--color-ink);
+    }
+
+    /* Names flow down columns, as in a printed index. */
+    .genus-index
+    {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        columns: 16rem auto;
+        column-gap: var(--space-7);
+    }
+
+    li
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0 var(--space-2);
+        padding-block: var(--space-1);
+        break-inside: avoid;
+    }
+
+    .genus-authority
+    {
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+</style>

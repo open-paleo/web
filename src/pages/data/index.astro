@@ -1,0 +1,189 @@
+---
+import PageSection from "../../components/PageSection.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatGenusCount } from "../../data/format.ts";
+import { formatFileSize, getDatasetFiles } from "../../data/indexes.ts";
+import { getSiteData } from "../../data/site-data.ts";
+
+const siteData = getSiteData();
+const metadata = siteData.metadata;
+const files = getDatasetFiles();
+const dataRepository = "https://github.com/open-paleo/data";
+const fileBaseUrl = dataRepository + "/blob/main/dist/";
+const builtDate = new Date(metadata.built_at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+
+// The citation follows the form the data repository's README recommends for a specific
+// version; the year is the release's.
+const releaseYear = metadata.version.split(".")[0];
+const citation = "Open Paleo contributors. (" + releaseYear + "). Open Paleo (Version " + metadata.version + ") [Dataset]. " + dataRepository;
+const bibtex = [
+    "@misc{openpaleo,",
+    "  author    = {{Open Paleo contributors}},",
+    "  title     = {Open Paleo: A community-maintained phylogenetic dataset for paleontology},",
+    "  year      = {" + releaseYear + "},",
+    "  publisher = {GitHub},",
+    "  url       = {" + dataRepository + "},",
+    "  note      = {Version " + metadata.version + "}",
+    "}",
+].join("\n");
+---
+
+<BaseLayout title="Data" description="Download the Open Paleo dataset, and how to cite it." section="data">
+    <div class="data-page">
+        <header class="data-header">
+            <h1>Data</h1>
+            <p class="data-summary">
+                Everything on this site comes from the Open Paleo dataset, which is free to use under
+                <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> with attribution to Open Paleo
+                contributors. The files below are the dataset's built output, maintained in the
+                <a href={dataRepository}>open-paleo/data repository</a>.
+            </p>
+        </header>
+
+        <dl class="release-facts">
+            <div>
+                <dt>Release</dt>
+                <dd class="figures">{metadata.version}</dd>
+            </div>
+            <div>
+                <dt>Output schema</dt>
+                <dd class="figures">{metadata.schema_version}</dd>
+            </div>
+            <div>
+                <dt>Built</dt>
+                <dd>{builtDate}</dd>
+            </div>
+            <div>
+                <dt>Contents</dt>
+                <dd>{formatGenusCount(metadata.genus_count)}, {metadata.clade_count} clades</dd>
+            </div>
+        </dl>
+
+        <PageSection title="Downloads" isWide>
+            <div class="table-scroll" tabindex="0" role="region" aria-label="Downloads">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">File</th>
+                            <th scope="col">Contents</th>
+                            <th scope="col" class="numeric">Size</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {files.map((file) => (
+                            <tr>
+                                <td class="file-name"><a href={fileBaseUrl + file.name}>{file.name}</a></td>
+                                <td>{file.description}</td>
+                                <td class="numeric figures">{file.sizeBytes === undefined ? "" : formatFileSize(file.sizeBytes)}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <p class="section-note">
+                Build against the JSON or YAML output and validate it with the schema: the files under <code>dist/</code> are the
+                dataset's stable, versioned contract, and its <a href={dataRepository + "/blob/main/docs/VERSIONING.md"}>versioning policy</a>
+                explains what each version number promises.
+            </p>
+        </PageSection>
+
+        <PageSection title="How to cite">
+            <p>Cite the release you used, so others can reproduce your work:</p>
+            <p class="citation-text">{citation}</p>
+            <pre class="bibtex" tabindex="0" role="region" aria-label="BibTeX entry"><code>{bibtex}</code></pre>
+            <p class="section-note">
+                The dataset rests on published literature. If your work draws on it, consider citing the original papers too:
+                <a href={fileBaseUrl + "references.bib"}>references.bib</a> lists every one.
+            </p>
+        </PageSection>
+    </div>
+</BaseLayout>
+
+<style>
+    .data-page
+    {
+        display: grid;
+        gap: var(--space-7);
+    }
+
+    .data-header
+    {
+        display: grid;
+        gap: var(--space-4);
+        max-width: var(--measure);
+    }
+
+    h1
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .release-facts
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-4) var(--space-7);
+        margin: 0;
+        font-family: var(--font-sans);
+    }
+
+    .release-facts dt
+    {
+        color: var(--color-muted);
+        font-size: var(--text-small);
+    }
+
+    .release-facts dd
+    {
+        margin: 0;
+        font-size: var(--text-lede);
+        font-weight: 700;
+    }
+
+    .table-scroll
+    {
+        overflow-x: auto;
+    }
+
+    .file-name
+    {
+        font-family: var(--font-sans);
+        white-space: nowrap;
+    }
+
+    .numeric
+    {
+        text-align: right;
+        white-space: nowrap;
+    }
+
+    .section-note
+    {
+        max-width: var(--measure);
+        color: var(--color-muted);
+        font-size: var(--text-interface);
+    }
+
+    .citation-text
+    {
+        max-width: var(--measure);
+        padding: var(--space-4) var(--space-5);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+    }
+
+    /* BibTeX is code: its alignment matters, so it is the one place a monospace face is used. */
+    .bibtex
+    {
+        margin: 0;
+        padding: var(--space-4) var(--space-5);
+        overflow-x: auto;
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+        font-family: var(--font-mono);
+        font-size: var(--text-small);
+    }
+</style>

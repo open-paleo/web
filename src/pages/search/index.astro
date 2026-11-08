@@ -1,0 +1,124 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Search" description="Search the genera, clades and references of Open Paleo.">
+    <div class="search-page">
+        <h1>Search</h1>
+        <p class="search-status" id="search-status" role="status">Loading search…</p>
+        <noscript>
+            <p class="search-status">Search needs JavaScript. You can browse the <a href="../genera/">genera</a>, the <a href="../tree/">tree</a> or the <a href="../references/">references</a> instead.</p>
+        </noscript>
+        <div class="search-kinds" id="search-kinds" role="group" aria-label="Show results of one kind" hidden></div>
+        <ol class="search-results" id="search-results"></ol>
+        <button class="search-more" id="search-more" type="button" hidden>Show more results</button>
+    </div>
+</BaseLayout>
+
+<script>
+    import "../../scripts/search.ts";
+</script>
+
+<style>
+    .search-page
+    {
+        display: grid;
+        gap: var(--space-5);
+        max-width: 48rem;
+    }
+
+    h1
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .search-status
+    {
+        color: var(--color-muted);
+    }
+
+    .search-kinds
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+    }
+
+    .search-kinds[hidden],
+    .search-more[hidden]
+    {
+        display: none;
+    }
+
+    /* The buttons and results are created by the script, so these rules reach them as globals
+       inside the page's own containers. */
+    .search-kinds :global(button),
+    .search-more
+    {
+        padding: var(--space-1) var(--space-4);
+        color: var(--color-accent);
+        background: var(--color-surface);
+        border: 1px solid var(--color-accent);
+        border-radius: var(--radius);
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
+        cursor: pointer;
+    }
+
+    .search-kinds :global(button[aria-pressed="true"])
+    {
+        color: var(--color-surface);
+        background: var(--color-accent);
+    }
+
+    .search-more
+    {
+        justify-self: start;
+    }
+
+    .search-results
+    {
+        display: grid;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .search-results :global(li)
+    {
+        display: grid;
+        gap: var(--space-1);
+        padding-block: var(--space-4);
+        border-bottom: 1px solid var(--color-line);
+    }
+
+    .search-results :global(.result-heading)
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0 var(--space-3);
+        font-size: var(--text-lede);
+    }
+
+    .search-results :global(.result-kind)
+    {
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+
+    .search-results :global(.result-excerpt)
+    {
+        color: var(--color-muted);
+        font-size: var(--text-interface);
+    }
+
+    .search-results :global(mark)
+    {
+        color: var(--color-ink);
+        background: var(--color-accent-soft);
+        font-weight: 700;
+    }
+</style>

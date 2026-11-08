@@ -58,8 +58,8 @@ if (model)
         </figcaption>
         {rows.map((row, rowIndex) => (
             <div class="age-row-group">
-                {rowIndex > 0 && <div class="age-row-label">{row.label}</div>}
-                <div class="age-row" aria-hidden="true">
+                {rowIndex > 0 && <div class="age-row-label" data-pagefind-ignore>{row.label}</div>}
+                <div class="age-row" aria-hidden="true" data-pagefind-ignore>
                     {row.bands.map((band) => (
                         <span
                             class:list={[
@@ -75,7 +75,7 @@ if (model)
                     ))}
                     <span class="age-marker" style={"left: " + row.marker.leftPercent + "%; width: " + row.marker.widthPercent + "%"}></span>
                 </div>
-                <div class="age-scale figures" aria-hidden="true">
+                <div class="age-scale figures" aria-hidden="true" data-pagefind-ignore>
                     <span>{row.fromMa.toFixed(1)} Ma</span>
                     <span>{row.toMa.toFixed(1)} Ma</span>
                 </div>

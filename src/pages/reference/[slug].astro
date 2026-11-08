@@ -88,8 +88,8 @@ const pageDescription = shortCitation + ". " + (parts.title ? parts.title + ". "
     (citingCount === 1 ? " record" : " records") + " in Open Paleo.";
 ---
 
-<BaseLayout title={shortCitation} description={pageDescription}>
-    <article class="reference-page">
+<BaseLayout title={shortCitation} description={pageDescription} section="references">
+    <article class="reference-page" data-pagefind-body data-pagefind-filter="kind:Reference">
         <header class="reference-header">
             {workKind && <p class="work-kind">{workKind}</p>}
             <h1 class="work-title">{parts.title ? <Prose text={parts.title} /> : entry.id}</h1>
