@@ -70,8 +70,10 @@ working.
 The data repository's build workflow sends a `data-updated` notification to this repository after
 it publishes new output, the same way it notifies open-paleo/corpus when the bibliography
 changes. GitHub's built-in token cannot notify another repository, so the step uses a
-fine-grained personal access token stored in the data repository as a secret, set up like the
-existing `CORPUS_DISPATCH_TOKEN` but scoped to `open-paleo/web`. The permission it needs is the
+fine-grained personal access token stored in the data repository as the secret
+`WEB_DISPATCH_TOKEN`, set up like the existing `CORPUS_DISPATCH_TOKEN` but scoped to
+`open-paleo/web`. The step notifies only when the build changed `dist/`, not when it changed
+only the spell-check dictionaries. The permission it needs is the
 one GitHub's REST documentation lists for
 [creating a repository dispatch event](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event).
 Until that step exists, the nightly run picks up data changes within a day.
