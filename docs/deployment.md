@@ -73,10 +73,20 @@ changes. GitHub's built-in token cannot notify another repository, so the step u
 fine-grained personal access token stored in the data repository as the secret
 `WEB_DISPATCH_TOKEN`, set up like the existing `CORPUS_DISPATCH_TOKEN` but scoped to
 `open-paleo/web`. The step notifies only when the build changed `dist/`, not when it changed
-only the spell-check dictionaries. The permission it needs is the
-one GitHub's REST documentation lists for
-[creating a repository dispatch event](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event).
-Until that step exists, the nightly run picks up data changes within a day.
+only the spell-check dictionaries. The step is on the data repository's `main` (commit
+`bc9fb9105`).
+
+The token needs **Contents: Read and write** on `open-paleo/web` and nothing else: GitHub's
+[permissions reference for fine-grained tokens](https://docs.github.com/en/rest/authentication/permissions-required-for-fine-grained-personal-access-tokens)
+lists that permission for `POST /repos/{owner}/{repo}/dispatches`, and Metadata: Read is added
+automatically. To create it, under the token owner's **Settings → Developer settings →
+Fine-grained tokens**, choose `open-paleo` as the resource owner, **Only select repositories**
+with `open-paleo/web`, and that one permission. Store it in the data repository with
+`gh secret set WEB_DISPATCH_TOKEN -R open-paleo/data`, or under the data repository's
+**Settings → Secrets and variables → Actions**.
+
+Without the secret, or once the token expires, the step fails without failing the data build,
+and the site falls back to its nightly rebuild, so data changes appear within a day.
 
 ## Checking a deployment
 
