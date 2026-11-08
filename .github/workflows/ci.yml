@@ -52,3 +52,11 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      # The site checks run the built site in a browser. Only Chromium's headless shell is
+      # needed.
+      - name: Install Chromium
+        run: npx playwright install --with-deps --only-shell chromium
+
+      - name: Check the built site
+        run: npm run check-site

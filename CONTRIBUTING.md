@@ -365,9 +365,19 @@ npm run lint
 npm run spellcheck
 npm test
 npm run build
+npm run check-site
 ```
 
-All five run in CI on every pull request, against the current `main` of open-paleo/data. Add words that the spell checker rejects but are
+`npm run check-site` checks the built site: every internal link resolves, and a sample of
+pages (one of each kind, plus the records with the most unusual content) passes WCAG 2.2 AA in
+axe in light and dark mode, has no grid or flex container that splits loose text into columns,
+and does not scroll sideways in a 320px window. It needs Chromium once:
+`npx playwright install --only-shell chromium`. The sample is listed in
+`scripts/check-site.ts`; if a record in it leaves the dataset, replace it with one that shows the
+same thing.
+
+All six run in CI on every pull request, against the current `main` of open-paleo/data, and
+every deployment runs the site check before publishing. Add words that the spell checker rejects but are
 correct (taxon names, font names) to `cspell.json`.
 
 ## AI and LLM use

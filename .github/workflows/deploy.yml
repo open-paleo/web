@@ -67,6 +67,14 @@ jobs:
       - name: Build
         run: npm run build
 
+      # New data can break a page as easily as new code, so every deployment runs the site
+      # checks. When they fail, the live site stays at the last version that passed.
+      - name: Install Chromium
+        run: npx playwright install --with-deps --only-shell chromium
+
+      - name: Check the built site
+        run: npm run check-site
+
       - name: Configure Pages
         uses: actions/configure-pages@v6
 

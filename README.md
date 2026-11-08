@@ -52,7 +52,10 @@ npm test            # unit tests against a fixture cut from the real dataset
 npm run typecheck   # TypeScript and astro check
 npm run lint        # ESLint (style and correctness)
 npm run spellcheck  # cspell over Markdown, TypeScript, Astro and CSS
+npm run check-site  # after a build: links, axe (WCAG 2.2 AA) and 320px reflow on dist/
 ```
+
+`check-site` needs Chromium once: `npx playwright install --only-shell chromium`.
 
 The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 [open-paleo/data](https://github.com/open-paleo/data) beside this repository, or set

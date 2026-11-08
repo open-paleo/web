@@ -14,7 +14,8 @@ The site is published to GitHub Pages at **https://open-paleo.org** by
 
 Each run installs dependencies, runs the tests, builds the site with `SITE_URL=https://open-paleo.org`
 and `SITE_BASE=/` (which turn on canonical addresses, the sitemap and the sitemap line in
-`robots.txt`), indexes it with Pagefind, and publishes it. A run whose tests fail publishes
+`robots.txt`), indexes it with Pagefind, runs the site checks (`npm run check-site`: links,
+accessibility and reflow), and publishes it. A run whose tests or site checks fail publishes
 nothing, so the live site keeps its last good build. Only one deployment runs at a time.
 
 ## One-time setup

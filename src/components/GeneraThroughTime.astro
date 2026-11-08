@@ -99,9 +99,11 @@ const columnTemplate = "grid-template-columns: repeat(" + stages.length + ", min
     }
 
     /* Below about 36rem the columns get too narrow to read, so the chart keeps that width and
-       scrolls sideways. Its links are focusable, so keyboard users can reach every column. */
+       scrolls sideways. Its links are focusable, so keyboard users can reach every column. The
+       containment keeps the chart's minimum width from widening the page around it. */
     .chart-scroll
     {
+        contain: inline-size;
         overflow-x: auto;
         padding-top: var(--space-6);
     }

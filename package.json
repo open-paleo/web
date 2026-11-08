@@ -17,6 +17,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "spellcheck": "cspell \"**/*.md\" \"*.ts\" \"scripts/**/*.ts\" \"src/**/*.{ts,astro,css}\" --no-progress",
+    "check-site": "node --experimental-strip-types scripts/check-site.ts",
     "update-bindings": "node --experimental-strip-types scripts/update-bindings.ts",
     "create-test-fixture": "node --experimental-strip-types scripts/create-test-fixture.ts"
   },
@@ -26,10 +27,12 @@
     "@stylistic/eslint-plugin": "5.10.0",
     "@types/node": "24.19.2",
     "astro-eslint-parser": "3.2.0",
+    "axe-core": "4.14.0",
     "cspell": "10.4.0",
     "eslint": "10.13.0",
     "eslint-plugin-astro": "3.2.1",
     "pagefind": "1.5.2",
+    "playwright": "1.64.1",
     "typescript": "npm:@typescript/typescript6@6.0.2",
     "typescript-eslint": "8.72.1",
     "typescript7": "npm:typescript@7.0.2"

@@ -32,9 +32,9 @@ Astro components (see "Astro components" in CONTRIBUTING.md):
 - Styles go in the component's own `<style>` block; `src/theme/` is for global tokens and
   element defaults only
 
-Run `npm run typecheck`, `npm run lint`, `npm run spellcheck`, `npm test` and `npm run build`
-before considering code complete. Don't pipe them through `tail` when checking the result: the
-pipe hides the exit code.
+Run `npm run typecheck`, `npm run lint`, `npm run spellcheck`, `npm test`, `npm run build` and
+`npm run check-site` before considering code complete. Don't pipe them through `tail` when
+checking the result: the pipe hides the exit code.
 
 ## Theme
 

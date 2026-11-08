@@ -148,9 +148,12 @@ if (model)
         color: var(--color-muted);
     }
 
+    /* The column may shrink below the width of the stage names, so the figure fits a 320px
+       window; band labels that no longer fit end in an ellipsis. */
     .age-row-group
     {
         display: grid;
+        grid-template-columns: minmax(0, 1fr);
         gap: var(--space-1);
         container-type: inline-size;
     }

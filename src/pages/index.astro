@@ -171,9 +171,12 @@ const lastStage = stages[stages.length - 1];
         gap: var(--space-2);
     }
 
+    /* A zero width keeps the field's default size (about 20 characters) out of the row's
+       minimum width, so the row fits a 320px window; flex-grow sets the real width. */
     .home-search input
     {
         flex: 1 1 auto;
+        width: 0;
         min-width: 0;
         padding: var(--space-3) var(--space-4);
         background: var(--color-surface);

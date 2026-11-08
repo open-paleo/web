@@ -4,6 +4,9 @@
 
 ### Added
 
+- `npm run check-site`, run in CI and before every deployment: every internal link in the built
+  site resolves, and a sample of 17 pages passes WCAG 2.2 AA in axe (light and dark), has no grid
+  or flex container that splits loose text, and fits a 320px window
 - The home page: search, the release and its counts, "Genera through time" (genera known from
   each stage, Carnian to Maastrichtian, each column linking to its stage page), the major groups
   with their sizes and one-sentence summaries, the most recently named genera (at least a dozen,
@@ -45,6 +48,8 @@
   "P.")
 - HTML compression is off, so template whitespace renders as written; it had run neighboring
   elements together in search excerpts and dropped spaces before links
+- Pages fit a 320px window: the stage row of the age figure, the home page's search field and
+  the time chart (which scrolls inside its own box) no longer widen the page
 
 
 ### Changed
