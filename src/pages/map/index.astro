@@ -1,0 +1,399 @@
+---
+import GenusFilterForm from "../../components/GenusFilterForm.astro";
+import PageSection from "../../components/PageSection.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatGenusCount } from "../../data/format.ts";
+import { createGenusIndexRows, listGenusFilterOptions } from "../../data/genus-index.ts";
+import { groupGeneraByPlace, listPlaceIndexRows } from "../../data/site-map.ts";
+import { getSiteData } from "../../data/site-data.ts";
+import { createPagePath } from "../../data/urls.ts";
+
+const siteData = getSiteData();
+const baseUrl = import.meta.env.BASE_URL;
+const countries = groupGeneraByPlace(createGenusIndexRows(siteData.genera, siteData, siteData.timeline, "place"));
+const placedRows = listPlaceIndexRows(countries);
+const placedCount = placedRows.length;
+const filterOptions = listGenusFilterOptions(placedRows, siteData.timeline);
+const legendSteps = ["1", "2–4", "5–9", "10–24", "25 or more"];
+---
+
+<BaseLayout title="Map" description={"Where the type species of " + formatGenusCount(placedCount) + " in Open Paleo were found, on today's map, by region and country."} section="map">
+    <div class="map-page">
+        <header class="map-header">
+            <h1>Map</h1>
+            <p class="map-summary">
+                Where the type species of {formatGenusCount(placedCount)} were found, on today's map. Each
+                region is shaded by how many genera come from it; a dot marks a genus with published
+                coordinates.
+            </p>
+        </header>
+
+        <GenusFilterForm options={filterOptions} total={placedCount} />
+
+        {/* The map and its panel are hidden until the map script runs; without it, the index of
+           genera by place below says the same. */}
+        <div class="map-layout" id="site-map-layout" hidden>
+            <div class="site-map" id="site-map" data-places={baseUrl + "map/places.json"} data-base={baseUrl} role="region" aria-label="Map of where the genera were found"></div>
+            <aside class="map-panel" aria-label="Map legend and selected place">
+                <div class="map-legend">
+                    <p class="legend-title">Genera per region</p>
+                    <ol class="legend-steps">
+                        {legendSteps.map((step, index) => <li><span class="legend-swatch" style={"background: var(--color-map-count-" + (index + 1) + ")"}></span><span>{step}</span></li>)}
+                    </ol>
+                    <ul class="legend-marks">
+                        <li><span class="legend-dot"></span><span>A genus with published coordinates</span></li>
+                        <li><span class="legend-country"></span><span>A whole country, where the region is not known</span></li>
+                    </ul>
+                </div>
+                <div class="map-selection" id="map-selection" aria-live="polite">
+                    <p class="selection-prompt">Select a shaded region or a dot to list its genera.</p>
+                </div>
+            </aside>
+        </div>
+
+        <PageSection title="Genera by place">
+            <div class="place-index" id="place-index">
+                {countries.map((country) => (
+                    <details class="place-country" data-place-group>
+                        <summary>{country.name} <span class="place-count" data-total={country.count}>({country.count})</span></summary>
+                        <ul class="place-regions">
+                            {country.regions.map((region) => (
+                                <li class="place-region" data-place-group>
+                                    <span class="region-name">{region.name}</span> <span class="place-count" data-total={region.rows.length}>({region.rows.length})</span>
+                                    <ul class="region-genera">
+                                        {region.rows.map((row) => <li data-genus={row.entry.slug}><a class="taxon" href={createPagePath(baseUrl, "genus", row.entry.slug)}>{row.entry.name}</a></li>)}
+                                    </ul>
+                                </li>
+                            ))}
+                        </ul>
+                    </details>
+                ))}
+            </div>
+        </PageSection>
+    </div>
+</BaseLayout>
+
+<script>
+    import "../../scripts/site-map.ts";
+</script>
+
+<style>
+    .map-page
+    {
+        display: grid;
+        gap: var(--space-5);
+    }
+
+    .map-header
+    {
+        display: grid;
+        gap: var(--space-3);
+    }
+
+    h1
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .map-summary
+    {
+        max-width: var(--measure);
+        color: var(--color-muted);
+    }
+
+    /* The map takes the width; the legend and the selected place's genera sit beside it on wide
+       screens and under it on narrow ones. */
+    .map-layout
+    {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) var(--sidebar-width);
+        gap: var(--space-4);
+        height: 36rem;
+    }
+
+    .map-layout[hidden]
+    {
+        display: none;
+    }
+
+    .site-map
+    {
+        min-height: 0;
+        background: var(--color-map-land);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+    }
+
+    .map-panel
+    {
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr);
+        gap: var(--space-4);
+        min-height: 0;
+        padding: var(--space-4);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+        font-family: var(--font-sans);
+    }
+
+    .legend-title
+    {
+        margin-bottom: var(--space-2);
+        font-weight: 700;
+    }
+
+    .legend-steps,
+    .legend-marks
+    {
+        display: grid;
+        gap: var(--space-1);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: var(--text-small);
+    }
+
+    .legend-steps
+    {
+        grid-template-columns: repeat(5, auto);
+        justify-content: start;
+        column-gap: var(--space-3);
+        margin-bottom: var(--space-3);
+    }
+
+    .legend-steps li
+    {
+        display: grid;
+        gap: var(--space-1);
+    }
+
+    .legend-marks li
+    {
+        display: grid;
+        grid-template-columns: 1rem minmax(0, 1fr);
+        align-items: center;
+        gap: var(--space-2);
+        color: var(--color-muted);
+    }
+
+    .legend-swatch
+    {
+        width: 2rem;
+        height: 0.75rem;
+        border-radius: var(--radius-small);
+    }
+
+    .legend-dot
+    {
+        width: 0.6rem;
+        height: 0.6rem;
+        margin-inline: auto;
+        background: var(--color-map-place-label);
+        border-radius: 50%;
+        box-shadow: 0 0 0 1.5px var(--color-map-place-ring);
+    }
+
+    .legend-country
+    {
+        width: 0.9rem;
+        height: 0.9rem;
+        border: 1.5px dashed var(--color-map-place-label);
+        border-radius: var(--radius-small);
+    }
+
+    .map-selection
+    {
+        min-height: 0;
+        overflow-y: auto;
+        border-top: 1px solid var(--color-line);
+        padding-top: var(--space-3);
+    }
+
+    .selection-prompt
+    {
+        color: var(--color-muted);
+        font-size: var(--text-small);
+    }
+
+    /* The selected place's list is written by the map script, so these rules reach it as
+       globals inside the panel. */
+    .map-selection :global(h2)
+    {
+        font-size: var(--text-heading-4);
+    }
+
+    .map-selection :global(.selection-count)
+    {
+        margin-bottom: var(--space-2);
+        color: var(--color-muted);
+        font-size: var(--text-small);
+    }
+
+    .map-selection :global(ul)
+    {
+        display: grid;
+        gap: var(--space-2);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .map-selection :global(li)
+    {
+        display: grid;
+    }
+
+    .map-selection :global(.selection-heading)
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0 var(--space-2);
+        font-family: var(--font-serif);
+        font-size: var(--text-body);
+    }
+
+    .map-selection :global(.selection-authority),
+    .map-selection :global(.selection-details)
+    {
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+
+    .map-layout :global(.maplibregl-ctrl-group),
+    .map-layout :global(.maplibregl-ctrl-attrib.maplibregl-compact)
+    {
+        color: var(--color-ink);
+        background-color: var(--color-surface);
+    }
+
+    .map-layout :global(.maplibregl-ctrl-group)
+    {
+        border: 1px solid var(--color-line);
+        box-shadow: none;
+    }
+
+    .map-layout :global(.maplibregl-ctrl-group button + button)
+    {
+        border-top-color: var(--color-line);
+    }
+
+    .map-layout :global(.maplibregl-ctrl-attrib a)
+    {
+        color: var(--color-accent);
+    }
+
+    .map-layout :global(.maplibregl-ctrl-attrib-button)
+    {
+        background-color: transparent;
+    }
+
+    .map-layout :global(.maplibregl-ctrl-icon),
+    .map-layout :global(.maplibregl-ctrl-attrib-button)
+    {
+        filter: var(--map-control-icon-filter);
+    }
+
+    .map-layout :global(.maplibregl-ctrl-attrib),
+    .map-layout :global(.maplibregl-cooperative-gesture-screen)
+    {
+        font-family: var(--font-sans);
+    }
+
+    .map-layout :global(.map-unavailable)
+    {
+        padding: var(--space-4);
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+    }
+
+    @media (max-width: 48rem)
+    {
+        .map-layout
+        {
+            grid-template-columns: minmax(0, 1fr);
+            grid-template-rows: 24rem auto;
+            height: auto;
+        }
+
+        .map-selection
+        {
+            max-height: 24rem;
+        }
+    }
+
+    /* The index lists every country, opened one at a time; its regions list their genera as a
+       run of names. */
+    .place-index
+    {
+        display: grid;
+        gap: var(--space-2);
+        font-family: var(--font-sans);
+    }
+
+    .place-country
+    {
+        border-bottom: 1px solid var(--color-line);
+        padding-bottom: var(--space-2);
+    }
+
+    .place-country summary
+    {
+        cursor: pointer;
+        font-size: var(--text-interface);
+        font-weight: 700;
+    }
+
+    .place-count
+    {
+        color: var(--color-muted);
+        font-weight: 400;
+    }
+
+    .place-regions
+    {
+        display: grid;
+        gap: var(--space-3);
+        margin: var(--space-3) 0 var(--space-2);
+        padding: 0;
+        list-style: none;
+    }
+
+    .region-name
+    {
+        font-weight: 700;
+    }
+
+    .region-genera
+    {
+        display: inline;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .region-genera li
+    {
+        display: inline;
+        font-family: var(--font-serif);
+    }
+
+    .region-genera li:not(:first-child)::before
+    {
+        color: var(--color-muted);
+        content: ", ";
+    }
+
+    .region-genera li:first-child::before
+    {
+        content: " ";
+    }
+
+    .place-index [hidden]
+    {
+        display: none;
+    }
+</style>

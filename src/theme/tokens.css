@@ -47,6 +47,14 @@
     /* Species labels on the map: darker than the place green so they keep 4.5:1 on land and on
        the most strongly shaded region (with their halo, more). */
     --color-map-place-label: #1d5c46;
+    /* The Map page's genera per region, fewest to most: one green ramp, light to dark, checked
+       with the dataviz validator's ordinal test against --color-map-land (lightest step 2.05:1).
+       Dark mode runs the other way, dark to light. */
+    --color-map-count-1: #65bc98;
+    --color-map-count-2: #38a37c;
+    --color-map-count-3: #0d8963;
+    --color-map-count-4: #006a4b;
+    --color-map-count-5: #004d35;
     /* MapLibre draws its control icons dark; inverted in dark mode so they show on the dark
        buttons. Not a color, but it changes with the theme like one. */
     --map-control-icon-filter: none;
@@ -213,6 +221,11 @@
         --color-map-place: #32a67d;
         --color-map-place-ring: #151a19;
         --color-map-place-label: #8fd3b6;
+        --color-map-count-1: #22664d;
+        --color-map-count-2: #2c8766;
+        --color-map-count-3: #36a980;
+        --color-map-count-4: #69cba3;
+        --color-map-count-5: #a5e9ca;
         --map-control-icon-filter: invert(1);
         color-scheme: dark;
     }
@@ -246,6 +259,11 @@
     --color-map-place: #32a67d;
     --color-map-place-ring: #151a19;
     --color-map-place-label: #8fd3b6;
+    --color-map-count-1: #22664d;
+    --color-map-count-2: #2c8766;
+    --color-map-count-3: #36a980;
+    --color-map-count-4: #69cba3;
+    --color-map-count-5: #a5e9ca;
     --map-control-icon-filter: invert(1);
     color-scheme: dark;
 }

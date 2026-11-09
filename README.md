@@ -22,6 +22,7 @@ with JavaScript off; scripts add search and the tree's open and close buttons. I
 | Clade (188) | Description, the span of time its genera cover, diagnosis, the clades within it, and a list of the genera placed directly in it with their ages and countries |
 | Reference (2,553) | One page per cited work: the full citation, the names first published in it, and every genus and clade that cites it |
 | Genera | Every genus, A to Z, with its group, epochs and country, and filters for time, group, diet, locomotion, integument, status and year named that are kept in the page address |
+| Map | Where every genus's type species was found, on a world map: regions shaded by how many genera come from them, dots for published coordinates, the genera of a selected region, the Genera page's filters, and an index of genera by country and region that works without JavaScript |
 | Tree | The classification as an outline you can open and close, with genus counts |
 | References | Every cited work, by first author |
 | Data | Downloads of the dataset's output files, how to cite a release, and the versioning policy |
@@ -65,7 +66,7 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 
 ## Maps
 
-Genus pages show where each species was found on an interactive map: MapLibre GL JS over
+Genus pages and the Map page show where species were found on interactive maps: MapLibre GL JS over
 [OpenFreeMap](https://openfreemap.org)'s vector tiles of
 [OpenStreetMap](https://www.openstreetmap.org/copyright) data (© OpenStreetMap contributors,
 ODbL), restyled in the site's colors. Readers' browsers fetch the tiles from openfreemap.org; no

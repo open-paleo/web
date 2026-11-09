@@ -42,8 +42,8 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
   or compromised release has time to be noticed and pulled
 - **No runtime dependencies in the browser.** Pages must work with JavaScript off; scripts add
   search, filters and interactive views on top. The one exception is the map: MapLibre GL JS,
-  loaded only on pages with a map and only when the map scrolls into view, drawing
-  OpenStreetMap tiles from OpenFreeMap. Without JavaScript the page lists the same places in
+  loaded only on genus pages (when the map scrolls into view) and the Map page, drawing
+  OpenStreetMap tiles from OpenFreeMap. Without JavaScript those pages list the same places in
   words, and no other page loads it
 - Keep the shared development dependencies (ESLint, typescript-eslint, TypeScript, cspell) on
   the same versions as open-paleo/data, so the repositories lint and type-check alike

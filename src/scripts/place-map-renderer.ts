@@ -1,64 +1,13 @@
-// Draws a place map with MapLibre over OpenFreeMap's OpenStreetMap tiles. Loaded by
-// place-map.ts only when a map comes near the viewport. The base map is styled from the
-// --color-map-* tokens, so it matches the page in light and dark mode, and the places come
-// from the container's data attributes, written at build time by GenusMap.astro.
+// Draws a genus page's map with MapLibre, over the shared base map (map-style.ts). Loaded by
+// place-map.ts only when a map comes near the viewport. The places come from the container's
+// data attributes, written at build time by GenusMap.astro.
 
-import "maplibre-gl/dist/maplibre-gl.css";
 import type { ExpressionSpecification, GeoJSONSourceSpecification, LayerSpecification, MapLayerMouseEvent, StyleSpecification } from "maplibre-gl";
-import { Map as MapLibreMap, NavigationControl, Popup, setWorkerUrl } from "maplibre-gl";
-import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
+import { Map as MapLibreMap, NavigationControl, Popup } from "maplibre-gl";
 
 import type { GenusMapFeatureCollection, MapBounds } from "../data/genus-map.ts";
-
-/**
- * The map's colors, read from the theme's tokens.
- */
-type MapColors = {
-    /**
-     * Land: --color-map-land.
-     */
-    land: string;
-
-    /**
-     * Seas, lakes and rivers: --color-map-water.
-     */
-    water: string;
-
-    /**
-     * Country borders: --color-map-border.
-     */
-    border: string;
-
-    /**
-     * Region borders: --color-map-region-border.
-     */
-    regionBorder: string;
-
-    /**
-     * Place names: --color-map-label.
-     */
-    label: string;
-
-    /**
-     * The outline that keeps place names readable: --color-map-label-halo.
-     */
-    labelHalo: string;
-
-    /**
-     * Places where a species was found: --color-map-place.
-     */
-    place: string;
-
-    /**
-     * The ring around a dot: --color-map-place-ring.
-     */
-    placeRing: string;
-
-    /**
-     * Species labels: --color-map-place-label.
-     */
-    placeLabel: string;
-};
+import type { MapColors } from "./map-style.ts";
+import { createGroundLayers, createNameLayers, glyphSource, italicLabelFont, readMapColors, tileSource, zoomLimit } from "./map-style.ts";
 
 /**
  * The part of a mark's properties the popup shows.
@@ -71,18 +20,9 @@ type PlaceProperties = {
     details: string;
 };
 
-// OpenFreeMap's OpenStreetMap tiles (OpenMapTiles schema) and the fonts for their labels.
-const tileSource = "https://tiles.openfreemap.org/planet";
-const glyphSource = "https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf";
-const labelFont = ["Noto Sans Regular"];
-const regionLabelFont = ["Noto Sans Italic"];
-
-// How far the map zooms in when it opens on a place, and how far a reader can zoom.
+// How far the map zooms in when it opens on a place.
 const openingZoomLimit = 6;
-const zoomLimit = 12;
 
-// The place name in English where OpenStreetMap has one.
-const englishName: ExpressionSpecification = ["coalesce", ["get", "name:en"], ["get", "name:latin"], ["get", "name"]];
 const isArea: ExpressionSpecification = ["==", ["get", "kind"], "area"];
 const isCountryArea: ExpressionSpecification = ["all", isArea, ["==", ["get", "precision"], "country"]];
 
@@ -91,102 +31,6 @@ const labelPriority: ExpressionSpecification = ["case", ["get", "isTypeSpecies"]
 
 // The layers a reader can select to see which species a mark stands for.
 const selectableLayers = ["place-areas", "place-points", "place-point-labels", "place-area-labels"];
-
-setWorkerUrl(workerUrl);
-
-/**
- * Read one color token from the page.
- *
- * @param name - The token: "--color-map-land".
- * @returns The color.
- */
-function readToken(name: string): string
-{
-    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-}
-
-/**
- * Read the map's colors from the theme, which differ in light and dark mode.
- *
- * @returns The colors.
- */
-function readMapColors(): MapColors
-{
-    return {
-        land: readToken("--color-map-land"),
-        water: readToken("--color-map-water"),
-        border: readToken("--color-map-border"),
-        regionBorder: readToken("--color-map-region-border"),
-        label: readToken("--color-map-label"),
-        labelHalo: readToken("--color-map-label-halo"),
-        place: readToken("--color-map-place"),
-        placeRing: readToken("--color-map-place-ring"),
-        placeLabel: readToken("--color-map-place-label"),
-    };
-}
-
-/**
- * Create the base map's layers: land, water, borders and place names, with nothing else, so the
- * places stand out.
- *
- * @param colors - The map's colors.
- * @returns The layers, bottom first.
- */
-function createBaseLayers(colors: MapColors): Array<LayerSpecification>
-{
-    return [
-        { id: "land", type: "background", paint: { "background-color": colors.land } },
-        { id: "water", type: "fill", source: "base", "source-layer": "water", paint: { "fill-color": colors.water } },
-        {
-            id: "region-borders",
-            type: "line",
-            source: "base",
-            "source-layer": "boundary",
-            minzoom: 3,
-            filter: ["all", ["==", ["get", "admin_level"], 4], ["!=", ["get", "maritime"], 1]],
-            paint: { "line-color": colors.regionBorder, "line-width": 0.75, "line-dasharray": [3, 2] },
-        },
-        {
-            id: "country-borders",
-            type: "line",
-            source: "base",
-            "source-layer": "boundary",
-            filter: ["all", ["==", ["get", "admin_level"], 2], ["!=", ["get", "maritime"], 1]],
-            paint: { "line-color": colors.border, "line-width": 1 },
-        },
-        {
-            id: "country-names",
-            type: "symbol",
-            source: "base",
-            "source-layer": "place",
-            maxzoom: 7,
-            filter: ["==", ["get", "class"], "country"],
-            layout: { "text-field": englishName, "text-font": labelFont, "text-size": 13, "text-max-width": 8 },
-            paint: { "text-color": colors.label, "text-halo-color": colors.labelHalo, "text-halo-width": 1.5 },
-        },
-        {
-            id: "region-names",
-            type: "symbol",
-            source: "base",
-            "source-layer": "place",
-            minzoom: 4,
-            maxzoom: 9,
-            filter: ["==", ["get", "class"], "state"],
-            layout: { "text-field": englishName, "text-font": regionLabelFont, "text-size": 12, "text-max-width": 8 },
-            paint: { "text-color": colors.label, "text-halo-color": colors.labelHalo, "text-halo-width": 1.5 },
-        },
-        {
-            id: "town-names",
-            type: "symbol",
-            source: "base",
-            "source-layer": "place",
-            minzoom: 6,
-            filter: ["in", ["get", "class"], ["literal", ["city", "town"]]],
-            layout: { "text-field": englishName, "text-font": labelFont, "text-size": 12 },
-            paint: { "text-color": colors.label, "text-halo-color": colors.labelHalo, "text-halo-width": 1.5 },
-        },
-    ];
-}
 
 /**
  * Create the layers that draw the places: shaded regions and countries (a country lighter and
@@ -243,7 +87,7 @@ function createPlaceLayers(colors: MapColors): Array<LayerSpecification>
             filter: ["==", ["get", "kind"], "label"],
             layout: {
                 "text-field": ["get", "label"],
-                "text-font": regionLabelFont,
+                "text-font": italicLabelFont,
                 "text-size": 14,
                 "text-max-width": 10,
                 "symbol-sort-key": labelPriority,
@@ -257,7 +101,7 @@ function createPlaceLayers(colors: MapColors): Array<LayerSpecification>
             filter: ["==", ["get", "kind"], "point"],
             layout: {
                 "text-field": ["get", "label"],
-                "text-font": regionLabelFont,
+                "text-font": italicLabelFont,
                 "text-size": 14,
                 "text-max-width": 10,
                 "text-variable-anchor": ["left", "right", "top", "bottom"],
@@ -285,7 +129,7 @@ function createMapStyle(colors: MapColors, features: GenusMapFeatureCollection):
             base: { type: "vector", url: tileSource },
             places: { type: "geojson", data: features as unknown as GeoJSONSourceSpecification["data"] },
         },
-        layers: [...createBaseLayers(colors), ...createPlaceLayers(colors)],
+        layers: [...createGroundLayers(colors), ...createNameLayers(colors), ...createPlaceLayers(colors)],
     };
 }
 

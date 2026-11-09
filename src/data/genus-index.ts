@@ -18,8 +18,10 @@ import { listGenusEpochs } from "./time-pages.ts";
  *   is under dispute.
  * - "clade": a clade page, listing the genera placed directly in it. Stages with their dates,
  *   country, whether its placement is incertae sedis, and whether it is under dispute.
+ * - "place": the Map page's list for one region or country, which names the place itself. Group
+ *   and epochs.
  */
-export type GenusListContext = "index" | "stage" | "clade";
+export type GenusListContext = "index" | "stage" | "clade" | "place";
 
 /**
  * What one item of a genus's details line is, which sets how it is shown.
@@ -306,7 +308,7 @@ function createGenusDetails(
     const country = getTypeSpecies(genus).location?.country;
     const details = new Array<GenusDetail>();
 
-    if (context === "index")
+    if (context === "index" || context === "place")
     {
         addTextDetail(details, group ?? genus.parent);
         addTextDetail(details, joinEpochSpan(epochNames));
@@ -323,7 +325,10 @@ function createGenusDetails(
         addTextDetail(details, formatStagesWithDates(entry));
     }
 
-    addTextDetail(details, country ? formatCountry(country) : "");
+    if (context !== "place")
+    {
+        addTextDetail(details, country ? formatCountry(country) : "");
+    }
 
     if (context === "clade" && genus.placement === "incertae sedis")
     {
@@ -331,7 +336,7 @@ function createGenusDetails(
     }
 
     // A disputed type species already has a "Disputed" badge, so the note would repeat it.
-    if (context !== "index" && genus.dispute !== undefined && getTypeSpecies(genus).status !== "disputed")
+    if ((context === "stage" || context === "clade") && genus.dispute !== undefined && getTypeSpecies(genus).status !== "disputed")
     {
         details.push({ kind: "dispute", text: "under dispute", slug: "" });
     }

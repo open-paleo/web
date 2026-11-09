@@ -4,6 +4,11 @@
 
 ### Added
 
+- A Map page (`map/`, in the header): where every genus's type species was found, with each
+  region shaded by how many genera come from it and a dot for each genus with published
+  coordinates. Selecting a region lists its genera; the Genera page's filters apply to the map,
+  the list and an index of genera by country and region, which also serves readers without
+  JavaScript
 - A map on every genus page of where each species was found, on today's map: a dot for
   published coordinates, the region shaded when only the region is known, and the country shaded
   more lightly when only the country is. Each place is labeled with its species; species found

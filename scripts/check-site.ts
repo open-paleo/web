@@ -70,6 +70,7 @@ const samplePages: Array<SamplePage> = [
     { path: "tree/", reason: "tree outline with toggle buttons" },
     { path: "references/", reason: "reference index" },
     { path: "data/", reason: "download and citation" },
+    { path: "map/", reason: "world map, its panel, and the index of genera by place" },
     { path: "search/?q=Tyrannosaurus", reason: "search results and filters" },
     { path: "404.html", reason: "page not found" },
     { path: "genus/tyrannosaurus/", reason: "genus with notable specimens and synonyms" },

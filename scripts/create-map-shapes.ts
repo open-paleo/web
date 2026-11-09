@@ -4,6 +4,7 @@ import * as url from "node:url";
 
 import type { OpenPaleoDataset } from "../src/data/dataset.ts";
 import { datasetFileName, findDatasetDirectory } from "../src/data/locate-dataset.ts";
+import { simplifyRing } from "../src/data/map-geometry.ts";
 import type { MapPolygon, MapPosition, MapShapes } from "../src/data/map-shapes.ts";
 
 // Builds src/data/map-shapes.json: the outlines the maps shade when a species' place is known
@@ -113,82 +114,6 @@ async function readNaturalEarthFile(name: string): Promise<NaturalEarthCollectio
 }
 
 /**
- * Measure how far a point lies from the line through two others.
- *
- * @param point - The point.
- * @param start - One end of the line.
- * @param end - The other end.
- * @returns The distance, in degrees.
- */
-function measureDistanceFromLine(point: MapPosition, start: MapPosition, end: MapPosition): number
-{
-    const deltaX = end[0] - start[0];
-    const deltaY = end[1] - start[1];
-    const length = Math.hypot(deltaX, deltaY);
-
-    if (length === 0)
-    {
-        return Math.hypot(point[0] - start[0], point[1] - start[1]);
-    }
-
-    return Math.abs(deltaY * point[0] - deltaX * point[1] + end[0] * start[1] - end[1] * start[0]) / length;
-}
-
-/**
- * Simplify a ring with the Douglas–Peucker algorithm: keep the points that lie farther than the
- * tolerance from the simplified line, and round what is kept.
- *
- * @param ring - The ring's points, first and last equal.
- * @param tolerance - The largest distance a dropped point may lie from the result, in degrees.
- * @returns The simplified ring, or an empty array when too few points remain to enclose an area.
- */
-function simplifyRing(ring: Array<MapPosition>, tolerance: number): Array<MapPosition>
-{
-    const isKept = new Array<boolean>(ring.length).fill(false);
-    const spans: Array<Array<number>> = [[0, ring.length - 1]];
-
-    isKept[0] = true;
-    isKept[ring.length - 1] = true;
-
-    while (spans.length > 0)
-    {
-        const [first, last] = spans.pop() as Array<number>;
-        let farthest = -1;
-        let farthestDistance = 0;
-
-        for (let index = first + 1; index < last; index++)
-        {
-            const distance = measureDistanceFromLine(ring[index], ring[first], ring[last]);
-
-            if (distance > farthestDistance)
-            {
-                farthest = index;
-                farthestDistance = distance;
-            }
-        }
-
-        if (farthest !== -1 && farthestDistance > tolerance)
-        {
-            isKept[farthest] = true;
-            spans.push([first, farthest], [farthest, last]);
-        }
-    }
-
-    const factor = 10 ** coordinateDigits;
-    const simplified = new Array<MapPosition>();
-
-    for (let index = 0; index < ring.length; index++)
-    {
-        if (isKept[index])
-        {
-            simplified.push([Math.round(ring[index][0] * factor) / factor, Math.round(ring[index][1] * factor) / factor]);
-        }
-    }
-
-    return simplified.length >= 4 ? simplified : [];
-}
-
-/**
  * Simplify a Natural Earth outline into polygons, dropping rings too small to keep.
  *
  * @param geometry - The outline.
@@ -204,7 +129,7 @@ function simplifyGeometry(geometry: NaturalEarthGeometry, tolerance: number): Ar
 
     for (const sourcePolygon of sourcePolygons)
     {
-        const outer = simplifyRing(sourcePolygon[0], tolerance);
+        const outer = simplifyRing(sourcePolygon[0], tolerance, coordinateDigits);
 
         if (outer.length === 0)
         {
@@ -215,7 +140,7 @@ function simplifyGeometry(geometry: NaturalEarthGeometry, tolerance: number): Ar
 
         for (const hole of sourcePolygon.slice(1))
         {
-            const simplifiedHole = simplifyRing(hole, tolerance);
+            const simplifiedHole = simplifyRing(hole, tolerance, coordinateDigits);
 
             if (simplifiedHole.length > 0)
             {

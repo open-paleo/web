@@ -5,7 +5,7 @@ import { getSiteData } from "../data/site-data.ts";
 /**
  * The sections of the site that have a link in the header.
  */
-type NavigationSection = "genera" | "tree" | "references" | "data";
+type NavigationSection = "genera" | "tree" | "map" | "references" | "data";
 
 /**
  * One link in the header's navigation.
@@ -64,6 +64,7 @@ const sitemapUrl = Astro.site ? new URL(homeUrl + "sitemap-index.xml", Astro.sit
 const navigationItems: Array<NavigationItem> = [
     { section: "genera", label: "Genera", path: "genera/" },
     { section: "tree", label: "Tree", path: "tree/" },
+    { section: "map", label: "Map", path: "map/" },
     { section: "references", label: "References", path: "references/" },
     { section: "data", label: "Data", path: "data/" },
 ];

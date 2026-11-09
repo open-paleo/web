@@ -65,6 +65,7 @@ towns from zoom 6).
 | `--color-map-place` | `#288463` | `#32a67d` | Where a species was found |
 | `--color-map-place-ring` | `#f7f8f5` | `#151a19` | Ring around a dot |
 | `--color-map-place-label` | `#1d5c46` | `#8fd3b6` | Species labels; 4.5:1 on land and on the most strongly shaded region |
+| `--color-map-count-1` to `-5` | `#65bc98` to `#004d35` | `#22664d` to `#a5e9ca` | The Map page's genera per region: 1, 2–4, 5–9, 10–24, 25 or more |
 
 A place is drawn at the precision it is known to: a dot for published coordinates, the region
 shaded with a solid outline, or the country shaded more lightly with a dashed outline. Each
@@ -75,6 +76,14 @@ than there are distinguishable colors, and species sharing a region would blend.
 collide, MapLibre shows the type species' first and the rest as the reader zooms in. The type
 species is drawn more strongly than the others. `--map-control-icon-filter` (`none`, or
 `invert(1)` in dark mode) keeps MapLibre's control icons visible on the themed buttons.
+
+The Map page shades each region by how many genera's type species come from it, in five bins
+of one green ramp: light to dark in light mode, dark to light in dark mode, so more genera
+always reads as more contrast with the land. Both ramps pass the dataviz validator's ordinal
+checks against `--color-map-land` (one hue, lightness rising or falling steadily, visible gaps
+between steps, and the faintest step at least 2:1 against the land). Place names are drawn over
+the shading so they stay readable; dots for published coordinates and the selected region's
+outline sit on top.
 
 ### Geologic time colors
 
@@ -203,5 +212,6 @@ it:
 | Genus list | `GenusIndex.astro` and `GenusListItem.astro`: genera in columns; each entry is the name, any status badge and the authority, then a `small` muted line of details separated by commas drawn in CSS. The details depend on the page: group, epochs and country on the Genera and period pages; linked clade, stages with dates, and country on stage pages; stages with dates and country on clade pages. *Incertae sedis* is italic and "under dispute" is in `--color-caution`. Lists of more than 100 genera are grouped under letter headings with a row of letter links |
 | Genus filters | `GenusFilterForm.astro`: a surface box of labeled lists, each option followed by how many genera it would show given the other filters (options that would show none are disabled), a year range, the number shown and "Clear filters". The lists draw their own chevron, inset by `--space-3`. Five lists to a row on wide screens, two on phones. While a filter is on, the matches move into one list without letter headings. Hidden until its script runs, so without JavaScript the page is the plain index |
 | Genus map | `GenusMap.astro`: a 24rem map (18rem on phones) with a hairline border, then a list of the places, each with its mark (dot, solid square or dashed square), species and place, and a muted note of how the map shows it ("region shaded; no coordinates published"). The list is the map's legend and its text equivalent. Selecting a mark or label shows each species found there and its place |
+| Map page | The filter form, then the map (36rem) beside a `--color-surface` panel holding the legend (the five count steps, the dot and the dashed country mark) and the selected place's genera; on narrow screens the panel goes under the map. Below, "Genera by place": one disclosure per country, each region's genera as a run of names |
 | Diagnosis list | Numbered features with the numbers in their own right-aligned column (Alegreya Sans, muted), flush with the text around the list |
 | Site footer | The header's dark band repeated at the foot of every page: wordmark, a one-line description, links to the Data page and both repositories, and the license line with the data release the page was built from |
