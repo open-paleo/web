@@ -56,6 +56,7 @@ npm run spellcheck  # cspell over Markdown, TypeScript, Astro and CSS
 npm run check-site  # after a build: links, axe (WCAG 2.2 AA) and 320px reflow on dist/
 
 npm run create-map-shapes  # rebuild the map's region outlines from Natural Earth
+npm run create-social-image  # redraw public/social-preview.png, the link preview image
 ```
 
 `check-site` needs Chromium once: `npx playwright install --only-shell chromium`.

@@ -20,7 +20,8 @@
     "check-site": "node --experimental-strip-types scripts/check-site.ts",
     "update-bindings": "node --experimental-strip-types scripts/update-bindings.ts",
     "create-test-fixture": "node --experimental-strip-types scripts/create-test-fixture.ts",
-    "create-map-shapes": "node --experimental-strip-types scripts/create-map-shapes.ts"
+    "create-map-shapes": "node --experimental-strip-types scripts/create-map-shapes.ts",
+    "create-social-image": "node --experimental-strip-types scripts/create-social-image.ts"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",

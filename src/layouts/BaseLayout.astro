@@ -61,6 +61,12 @@ const release = getSiteData().metadata;
 // The canonical address and the sitemap link need the site's address, which local builds lack.
 const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 const sitemapUrl = Astro.site ? new URL(homeUrl + "sitemap-index.xml", Astro.site).href : undefined;
+// Link previews (Open Graph, read by Slack, Mastodon, iMessage and others, and Twitter cards)
+// show the page's title and description over one site-wide image, drawn by
+// scripts/create-social-image.ts. Their image and address must be absolute, so like the
+// canonical link they appear only where the site's address is known.
+const previewImageUrl = Astro.site ? new URL(homeUrl + "social-preview.png", Astro.site).href : undefined;
+const previewImageDescription = siteName + ": a community-maintained phylogenetic dataset for paleontology, over the Triassic, Jurassic and Cretaceous periods in the colors of the geologic time scale.";
 const navigationItems: Array<NavigationItem> = [
     { section: "genera", label: "Genera", path: "genera/" },
     { section: "tree", label: "Tree", path: "tree/" },
@@ -79,6 +85,16 @@ const navigationItems: Array<NavigationItem> = [
         <title>{documentTitle}</title>
         {canonicalUrl && <link rel="canonical" href={canonicalUrl}>}
         {sitemapUrl && <link rel="sitemap" href={sitemapUrl}>}
+        <meta property="og:site_name" content={siteName}>
+        <meta property="og:type" content="website">
+        <meta property="og:title" content={title ?? siteName}>
+        <meta property="og:description" content={description}>
+        {canonicalUrl && <meta property="og:url" content={canonicalUrl}>}
+        {previewImageUrl && <meta property="og:image" content={previewImageUrl}>}
+        {previewImageUrl && <meta property="og:image:width" content="1200">}
+        {previewImageUrl && <meta property="og:image:height" content="630">}
+        {previewImageUrl && <meta property="og:image:alt" content={previewImageDescription}>}
+        <meta name="twitter:card" content={previewImageUrl ? "summary_large_image" : "summary"}>
     </head>
     <body>
         <a class="skip-link" href="#content">Skip to content</a>

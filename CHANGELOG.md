@@ -4,6 +4,10 @@
 
 ### Added
 
+- Link previews: every page has Open Graph and Twitter card tags with its title and
+  description, and a site-wide preview image (`public/social-preview.png`, drawn by
+  `npm run create-social-image`), so links shared in Slack, Mastodon, iMessage and elsewhere
+  show a card instead of a bare address
 - A Map page (`map/`, in the header): where every genus's type species was found, with each
   region shaded by how many genera come from it and a dot for each genus with published
   coordinates. Selecting a region lists its genera; the Genera page's filters apply to the map,
