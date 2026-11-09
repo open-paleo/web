@@ -140,8 +140,17 @@ test("filter options count every genus once per filter", () =>
         assert.equal(choice.groups.length, 0, choice.name);
     }
 
-    assert.equal(options.firstYear, 1867);
-    assert.equal(options.lastYear, 2020);
+    let firstYear = Number.POSITIVE_INFINITY;
+    let lastYear = Number.NEGATIVE_INFINITY;
+
+    for (const row of rows)
+    {
+        firstYear = Math.min(firstYear, row.filterValues.year ?? firstYear);
+        lastYear = Math.max(lastYear, row.filterValues.year ?? lastYear);
+    }
+
+    assert.equal(options.firstYear, firstYear);
+    assert.equal(options.lastYear, lastYear);
 });
 
 test("the time filter lists periods oldest first, each followed by its epochs", () =>

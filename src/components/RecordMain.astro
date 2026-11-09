@@ -29,9 +29,9 @@
         margin-top: var(--space-8);
     }
 
-    /* A section holding a table or a list of genera in columns starts below the panel, so it
-       gets the full width. */
-    .record-main > :global(.page-section:has(table, .genus-index))
+    /* A section holding a table, a list of genera in columns or a map starts below the panel,
+       so it gets the full width. */
+    .record-main > :global(.page-section:has(table, .genus-index, .genus-map))
     {
         clear: both;
     }

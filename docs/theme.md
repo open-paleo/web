@@ -47,6 +47,35 @@ section and the search button. On the band, text reaches 12.7:1, muted text 8.1:
 8.9:1, and the search field's border 4.2:1 (non-text needs 3:1). In dark mode the band is darker
 than the page, with `--color-header-edge` as a visible bottom border.
 
+### Map colors
+
+The genus maps style OpenFreeMap's OpenStreetMap tiles from tokens, so the base map sits in
+the page's neutrals and the places stand out in the chart green. The base map shows only land,
+water, country and region borders, and place names (countries, then regions from zoom 4, then
+towns from zoom 6).
+
+| Token | Light | Dark | Use |
+|---|---|---|---|
+| `--color-map-land` | `#f2f3ef` | `#1f2624` | Land |
+| `--color-map-water` | `#cbd9da` | `#12191c` | Seas, lakes and rivers |
+| `--color-map-border` | `#a3aba5` | `#56605b` | Country borders |
+| `--color-map-region-border` | `#c8cec8` | `#39423e` | Region borders, dashed |
+| `--color-map-label` | `#59625d` | `#9aa49e` | Place names |
+| `--color-map-label-halo` | `#f2f3ef` | `#1f2624` | Outline behind place names |
+| `--color-map-place` | `#288463` | `#32a67d` | Where a species was found |
+| `--color-map-place-ring` | `#f7f8f5` | `#151a19` | Ring around a dot |
+| `--color-map-place-label` | `#1d5c46` | `#8fd3b6` | Species labels; 4.5:1 on land and on the most strongly shaded region |
+
+A place is drawn at the precision it is known to: a dot for published coordinates, the region
+shaded with a solid outline, or the country shaded more lightly with a dashed outline. Each
+place is labeled on the map with its species in italic, abbreviated ("*P. mongoliensis*");
+species found at the same place share one mark and one label ("*D. horneri*, *D. wilsoni*").
+Labels name the species rather than colors standing for them: a genus can have more species
+than there are distinguishable colors, and species sharing a region would blend. Where labels
+collide, MapLibre shows the type species' first and the rest as the reader zooms in. The type
+species is drawn more strongly than the others. `--map-control-icon-filter` (`none`, or
+`invert(1)` in dark mode) keeps MapLibre's control icons visible on the themed buttons.
+
 ### Geologic time colors
 
 The `--period-*`, `--epoch-*` and `--stage-*` tokens are the International Commission on
@@ -173,5 +202,6 @@ it:
 | Genera through time | `GeneraThroughTime.astro`: one column per stage (at most 24px wide, rounded at the top), hairline gridlines at round values, the tallest column labeled, a stage strip under the axis, and periods (home page, linked) or epochs (period page) beneath it. Each column is a link to its stage page whose accessible name gives the stage and its count, so the values reach keyboard and screen-reader users without a separate table; hovering or focusing a column shows the same in a tooltip |
 | Genus list | `GenusIndex.astro` and `GenusListItem.astro`: genera in columns; each entry is the name, any status badge and the authority, then a `small` muted line of details separated by commas drawn in CSS. The details depend on the page: group, epochs and country on the Genera and period pages; linked clade, stages with dates, and country on stage pages; stages with dates and country on clade pages. *Incertae sedis* is italic and "under dispute" is in `--color-caution`. Lists of more than 100 genera are grouped under letter headings with a row of letter links |
 | Genus filters | `GenusFilterForm.astro`: a surface box of labeled lists, each option followed by how many genera it would show given the other filters (options that would show none are disabled), a year range, the number shown and "Clear filters". The lists draw their own chevron, inset by `--space-3`. Five lists to a row on wide screens, two on phones. While a filter is on, the matches move into one list without letter headings. Hidden until its script runs, so without JavaScript the page is the plain index |
+| Genus map | `GenusMap.astro`: a 24rem map (18rem on phones) with a hairline border, then a list of the places, each with its mark (dot, solid square or dashed square), species and place, and a muted note of how the map shows it ("region shaded; no coordinates published"). The list is the map's legend and its text equivalent. Selecting a mark or label shows each species found there and its place |
 | Diagnosis list | Numbered features with the numbers in their own right-aligned column (Alegreya Sans, muted), flush with the text around the list |
 | Site footer | The header's dark band repeated at the foot of every page: wordmark, a one-line description, links to the Data page and both repositories, and the license line with the data release the page was built from |

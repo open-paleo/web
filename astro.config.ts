@@ -21,6 +21,13 @@ export default defineConfig({
     build: {
         format: "directory",
     },
+    // MapLibre is one 1.1 MB chunk, loaded only when a map scrolls into view, so the default
+    // 500 kB warning would fire on every build without pointing at a problem.
+    vite: {
+        build: {
+            chunkSizeWarningLimit: 1200,
+        },
+    },
     // The sitemap lists every page for search engines. It needs the site's address, so local
     // builds without SITE_URL leave it out.
     integrations: process.env.SITE_URL ? [sitemap()] : [],

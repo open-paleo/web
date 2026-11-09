@@ -38,9 +38,19 @@ test("groupByLetter keeps the given order within and across letters", () =>
         letters.push(group.letter);
     }
 
-    assert.deepEqual(letters, ["A", "D", "N", "T"]);
-    assert.equal(groups[0].entries[0].name, "Acanthopholis");
-    assert.equal(groups[groups.length - 1].entries[1].name, "Tyrannosaurus");
+    const names = new Array<string>();
+
+    for (const group of groups)
+    {
+        for (const entry of group.entries)
+        {
+            assert.equal(getIndexLetter(entry.name), group.letter);
+            names.push(entry.name);
+        }
+    }
+
+    assert.deepEqual(letters, [...new Set(letters)].sort(), "each letter once, in order");
+    assert.deepEqual(names, siteData.genera.map((genus) => genus.name), "the given order is kept");
 });
 
 test("references are indexed under the first author's surname", () =>

@@ -1,0 +1,195 @@
+---
+import type { GenusMap } from "../data/genus-map.ts";
+import { createGenusMapFeatures } from "../data/genus-map.ts";
+
+/**
+ * Properties of a genus page's map.
+ */
+type Props = {
+    /**
+     * What the map draws.
+     */
+    map: GenusMap;
+
+    /**
+     * The genus name, for the map's accessible name.
+     */
+    genusName: string;
+};
+
+const { map, genusName } = Astro.props;
+const features = JSON.stringify(createGenusMapFeatures(map));
+const bounds = JSON.stringify(map.bounds);
+---
+
+{/* The map is drawn by src/scripts/place-map.ts, which loads MapLibre only when the map scrolls
+   into view, so it stays hidden until the script runs. The list of places below it says the
+   same in words, works without JavaScript, and serves as the map's legend: each place's mark
+   matches its mark on the map. */}
+<div class="genus-map">
+    <div class="place-map" data-features={features} data-bounds={bounds} role="region" aria-label={"Map of where " + genusName + " was found"} hidden></div>
+    <ul class="map-places">
+        {map.places.map((place) => (
+            <li>
+                <span class:list={["place-mark", "is-" + place.precision]} aria-hidden="true"></span>
+                <span class="place-text"><span class="taxon">{place.speciesName}</span>: {place.description}<span class="place-precision"> ({place.precisionNote})</span></span>
+            </li>
+        ))}
+    </ul>
+    <p class="map-note">Places are shown on today's map.</p>
+</div>
+
+<style>
+    .genus-map
+    {
+        display: grid;
+        gap: var(--space-3);
+    }
+
+    .place-map
+    {
+        height: 24rem;
+        background: var(--color-map-land);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+    }
+
+    .place-map[hidden]
+    {
+        display: none;
+    }
+
+    .map-places
+    {
+        display: grid;
+        gap: var(--space-2);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
+    }
+
+    li
+    {
+        display: grid;
+        grid-template-columns: 1rem minmax(0, 1fr);
+        align-items: baseline;
+        gap: var(--space-2);
+    }
+
+    .place-precision,
+    .map-note
+    {
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+
+    /* The marks repeat the map's: a dot for published coordinates, a shaded square for a region,
+       and a lighter dashed square for a country. */
+    .place-mark
+    {
+        width: 0.8rem;
+        height: 0.8rem;
+        border-radius: var(--radius-small);
+    }
+
+    .place-mark.is-point
+    {
+        background: var(--color-map-place);
+        border-radius: 50%;
+        box-shadow: 0 0 0 2px var(--color-map-place-ring);
+    }
+
+    .place-mark.is-region
+    {
+        background: color-mix(in srgb, var(--color-map-place) 35%, transparent);
+        border: 1.5px solid var(--color-map-place);
+    }
+
+    .place-mark.is-country
+    {
+        background: color-mix(in srgb, var(--color-map-place) 15%, transparent);
+        border: 1.5px dashed var(--color-map-place);
+    }
+
+    @media (max-width: 40rem)
+    {
+        .place-map
+        {
+            height: 18rem;
+        }
+    }
+
+    /* MapLibre's controls and popups, in the site's type and colors. */
+    .genus-map :global(.maplibregl-popup-content)
+    {
+        padding: var(--space-2) var(--space-3);
+        color: var(--color-ink);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+        box-shadow: none;
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+
+    .genus-map :global(.maplibregl-popup-content p + p)
+    {
+        margin-top: var(--space-1);
+    }
+
+    .genus-map :global(.maplibregl-popup-tip)
+    {
+        display: none;
+    }
+
+    .genus-map :global(.map-unavailable)
+    {
+        padding: var(--space-4);
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+    }
+
+    .genus-map :global(.maplibregl-ctrl-attrib),
+    .genus-map :global(.maplibregl-cooperative-gesture-screen)
+    {
+        font-family: var(--font-sans);
+    }
+
+    .genus-map :global(.maplibregl-ctrl-group),
+    .genus-map :global(.maplibregl-ctrl-attrib.maplibregl-compact)
+    {
+        color: var(--color-ink);
+        background-color: var(--color-surface);
+    }
+
+    /* The filter below inverts the whole button, so it keeps a transparent background. */
+    .genus-map :global(.maplibregl-ctrl-attrib-button)
+    {
+        background-color: transparent;
+    }
+
+    .genus-map :global(.maplibregl-ctrl-group)
+    {
+        border: 1px solid var(--color-line);
+        box-shadow: none;
+    }
+
+    .genus-map :global(.maplibregl-ctrl-group button + button)
+    {
+        border-top-color: var(--color-line);
+    }
+
+    .genus-map :global(.maplibregl-ctrl-attrib a)
+    {
+        color: var(--color-accent);
+    }
+
+    .genus-map :global(.maplibregl-ctrl-icon),
+    .genus-map :global(.maplibregl-ctrl-attrib-button)
+    {
+        filter: var(--map-control-icon-filter);
+    }
+</style>

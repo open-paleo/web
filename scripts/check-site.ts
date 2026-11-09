@@ -13,7 +13,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 
-import type { Browser } from "playwright";
+import type { Browser, BrowserContextOptions, Page } from "playwright";
 import { chromium } from "playwright";
 
 import { checkLinks, readSitePages } from "./site-checks/links.ts";
@@ -120,6 +120,24 @@ function checkSiteLinks(siteDirectory: string, basePath: string, problems: Array
 }
 
 /**
+ * Open a page in the browser with requests outside the local site blocked. The maps fetch tiles
+ * and fonts from OpenFreeMap; the checks do not need them, and blocking them keeps the checks
+ * independent of that service and off its servers.
+ *
+ * @param browser - The browser.
+ * @param options - The page's viewport and color scheme.
+ * @returns The page.
+ */
+async function openLocalPage(browser: Browser, options: BrowserContextOptions): Promise<Page>
+{
+    const page = await browser.newPage(options);
+
+    await page.route(/^https?:\/\/(?!127\.0\.0\.1[:/])/, (route) => route.abort());
+
+    return page;
+}
+
+/**
  * Run the browser checks on one sample page: axe in each color scheme, the loose-text scan,
  * and reflow at 320px.
  *
@@ -132,7 +150,7 @@ async function checkSamplePage(browser: Browser, siteUrl: string, sample: Sample
 {
     for (const colorScheme of colorSchemes)
     {
-        const page = await browser.newPage({ viewport: { width: 1280, height: 900 }, colorScheme });
+        const page = await openLocalPage(browser, { viewport: { width: 1280, height: 900 }, colorScheme });
         const response = await page.goto(siteUrl + sample.path, { waitUntil: "networkidle" });
         const location = "/" + sample.path + " (" + colorScheme + ")";
 
@@ -167,7 +185,7 @@ async function checkSamplePage(browser: Browser, siteUrl: string, sample: Sample
         await page.close();
     }
 
-    const narrowPage = await browser.newPage({ viewport: { width: 320, height: 800 } });
+    const narrowPage = await openLocalPage(browser, { viewport: { width: 320, height: 800 } });
 
     await narrowPage.goto(siteUrl + sample.path, { waitUntil: "networkidle" });
     const overflow = await measureOverflow(narrowPage);

@@ -4,6 +4,13 @@
 
 ### Added
 
+- A map on every genus page of where each species was found, on today's map: a dot for
+  published coordinates, the region shaded when only the region is known, and the country shaded
+  more lightly when only the country is. Each place is labeled with its species; species found
+at the same place share one mark. MapLibre GL JS over OpenFreeMap's OpenStreetMap tiles,
+  styled in the site's colors and loaded only when the map scrolls into view; a list of the
+  places under the map says the same in words. Region outlines are Natural Earth's, built by
+  `npm run create-map-shapes`
 - Filters on the Genera page: time (period or epoch), major group, diet, locomotion, integument,
   status and a range of years named. Each option shows how many genera it would leave, the
   filters are kept in the page address, and the matches are listed together without letter

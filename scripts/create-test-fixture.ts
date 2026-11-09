@@ -38,6 +38,37 @@ function hasSpeciesWithStatus(genus: Genus, status: string): boolean
 }
 
 /**
+ * The precision of a type species' location a test needs: published coordinates, or only a
+ * country.
+ */
+type LocationCase = "coordinates" | "country";
+
+/**
+ * Report whether a genus's type species has a location of the given precision.
+ *
+ * @param genus - The genus record.
+ * @param locationCase - "coordinates" for published coordinates, "country" for a country with
+ * no region.
+ * @returns True if the type species' location matches.
+ */
+function hasTypeSpeciesLocation(genus: Genus, locationCase: LocationCase): boolean
+{
+    for (const species of genus.species)
+    {
+        if (species.type_species)
+        {
+            const location = species.location;
+
+            return locationCase === "coordinates"
+                ? location?.coordinates !== undefined
+                : location?.country !== undefined && location.region_code === undefined && location.coordinates === undefined;
+        }
+    }
+
+    return false;
+}
+
+/**
  * Report whether a genus's type species names an epoch but no stage, so its period comes from
  * the epoch alone.
  *
@@ -126,6 +157,8 @@ chosen.add(findFirstGenus(chosen, (genus) => (genus.iczn_cases ?? []).length > 0
 chosen.add(findFirstGenus(chosen, (genus) => hasReferenceKeyMatching(genus, /'/)));
 chosen.add(findFirstGenus(chosen, (genus) => hasReferenceKeyMatching(genus, /\P{ASCII}/u)));
 chosen.add(findFirstGenus(chosen, (genus) => hasEpochWithoutStage(genus)));
+chosen.add(findFirstGenus(chosen, (genus) => hasTypeSpeciesLocation(genus, "coordinates")));
+chosen.add(findFirstGenus(chosen, (genus) => hasTypeSpeciesLocation(genus, "country")));
 
 const genera: Record<string, Genus> = {};
 const keptClades = new Set<string>();

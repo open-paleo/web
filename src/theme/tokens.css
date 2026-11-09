@@ -33,6 +33,24 @@
        each theme's background (lightness band, chroma floor, 3:1 contrast). */
     --color-chart-mark: #288463;
 
+    /* Maps (genus pages and the Map page): a quiet base map in the page's neutrals, so the
+       places stand out in the chart green. Places are shaded with this green at partial
+       opacity, set in the map script; the ring separates a dot from what it sits on. */
+    --color-map-land: #f2f3ef;
+    --color-map-water: #cbd9da;
+    --color-map-border: #a3aba5;
+    --color-map-region-border: #c8cec8;
+    --color-map-label: #59625d;
+    --color-map-label-halo: #f2f3ef;
+    --color-map-place: #288463;
+    --color-map-place-ring: #f7f8f5;
+    /* Species labels on the map: darker than the place green so they keep 4.5:1 on land and on
+       the most strongly shaded region (with their halo, more). */
+    --color-map-place-label: #1d5c46;
+    /* MapLibre draws its control icons dark; inverted in dark mode so they show on the dark
+       buttons. Not a color, but it changes with the theme like one. */
+    --map-control-icon-filter: none;
+
     /* The site header: a dark shale band in both themes. Contrast on it: text 12.7:1, muted
        text 8.1:1, links 8.9:1, and the search field's border 4.2:1 (non-text needs 3:1). */
     --color-header-background: #1f2d29;
@@ -186,6 +204,16 @@
         --color-header-border: #66726d;
         --color-header-edge: #323a37;
         --color-chart-mark: #32a67d;
+        --color-map-land: #1f2624;
+        --color-map-water: #12191c;
+        --color-map-border: #56605b;
+        --color-map-region-border: #39423e;
+        --color-map-label: #9aa49e;
+        --color-map-label-halo: #1f2624;
+        --color-map-place: #32a67d;
+        --color-map-place-ring: #151a19;
+        --color-map-place-label: #8fd3b6;
+        --map-control-icon-filter: invert(1);
         color-scheme: dark;
     }
 }
@@ -209,5 +237,15 @@
     --color-header-border: #66726d;
     --color-header-edge: #323a37;
     --color-chart-mark: #32a67d;
+    --color-map-land: #1f2624;
+    --color-map-water: #12191c;
+    --color-map-border: #56605b;
+    --color-map-region-border: #39423e;
+    --color-map-label: #9aa49e;
+    --color-map-label-halo: #1f2624;
+    --color-map-place: #32a67d;
+    --color-map-place-ring: #151a19;
+    --color-map-place-label: #8fd3b6;
+    --map-control-icon-filter: invert(1);
     color-scheme: dark;
 }

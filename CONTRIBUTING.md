@@ -41,7 +41,10 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 - **Choose a release at least two weeks old** when adding or upgrading a package, so a broken
   or compromised release has time to be noticed and pulled
 - **No runtime dependencies in the browser.** Pages must work with JavaScript off; scripts add
-  search, filters and interactive views on top
+  search, filters and interactive views on top. The one exception is the map: MapLibre GL JS,
+  loaded only on pages with a map and only when the map scrolls into view, drawing
+  OpenStreetMap tiles from OpenFreeMap. Without JavaScript the page lists the same places in
+  words, and no other page loads it
 - Keep the shared development dependencies (ESLint, typescript-eslint, TypeScript, cspell) on
   the same versions as open-paleo/data, so the repositories lint and type-check alike
 
@@ -99,8 +102,19 @@ the file and later calls reuse the result.
 `npm test` runs `node:test` over `test/*.test.ts`. Tests read `test/fixtures/open-paleo.json`,
 a small dataset cut from the real one by `npm run create-test-fixture`: a few named genera,
 plus the first genus that shows each case the tests need (a nomen dubium, an ICZN case,
-reference keys with accents and apostrophes). Regenerate it after a schema change and review
-the diff. Tests never use invented records.
+reference keys with accents and apostrophes, a type species dated to an epoch but no stage, one
+with published coordinates and one known only to its country). Regenerate it after a schema
+change and review the diff. Tests never use invented records.
+
+### Map outlines
+
+`src/data/map-shapes.json` holds the region and country outlines the maps shade when a place is
+known only to its region or country: Natural Earth 5.1.2 (public domain), simplified, and only
+the regions and countries the dataset uses. `npm run create-map-shapes` rebuilds it, downloading
+Natural Earth into `scratch/` the first time. Rerun it when the build warns that a region has no
+outline. Region codes Natural Earth records under an older code are mapped in the script; codes
+it has no outline for at all are listed in the file, and their species are shaded at country
+level.
 
 ## Code style
 

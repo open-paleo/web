@@ -2,6 +2,7 @@
 import AgeFigure from "../../components/AgeFigure.astro";
 import DiagnosisList from "../../components/DiagnosisList.astro";
 import DisputeNote from "../../components/DisputeNote.astro";
+import GenusMap from "../../components/GenusMap.astro";
 import GlancePanel from "../../components/GlancePanel.astro";
 import IcznCaseList from "../../components/IcznCaseList.astro";
 import LineageTrail from "../../components/LineageTrail.astro";
@@ -15,6 +16,7 @@ import StatusBadge from "../../components/StatusBadge.astro";
 import SynonymTable from "../../components/SynonymTable.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatAuthority, getFirstSentence } from "../../data/format.ts";
+import { createGenusMap, getMapShapes, warnAboutMissingOutlines } from "../../data/genus-map.ts";
 import { getTypeSpecies } from "../../data/records.ts";
 import type { GenusEntry } from "../../data/site-data.ts";
 import { getSiteData } from "../../data/site-data.ts";
@@ -77,6 +79,9 @@ const genus = entry.record;
 const siteData = getSiteData();
 const typeSpecies = getTypeSpecies(genus);
 const references = genus.references ?? [];
+const genusMap = createGenusMap(genus, getMapShapes());
+
+warnAboutMissingOutlines(genus, getMapShapes());
 const authority = formatAuthority(genus.authors, genus.described, false);
 const authorityReferenceId = genus.erected_in ?? typeSpecies.erected_in;
 const authorityAnchor = "#" + createReferenceAnchor(siteData.referenceById.get(authorityReferenceId)?.slug ?? authorityReferenceId);
@@ -108,6 +113,12 @@ const pronunciation = genus.pronunciation;
             {genus.dispute && (
                 <PageSection title="Under dispute">
                     <DisputeNote dispute={genus.dispute} />
+                </PageSection>
+            )}
+
+            {genusMap && (
+                <PageSection title="Where it was found">
+                    <GenusMap map={genusMap} genusName={genus.genus} />
                 </PageSection>
             )}
 
@@ -149,6 +160,10 @@ const pronunciation = genus.pronunciation;
         </RecordMain>
     </article>
 </BaseLayout>
+
+<script>
+    import "../../scripts/place-map.ts";
+</script>
 
 <style>
     .genus-page

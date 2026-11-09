@@ -2,8 +2,8 @@
   "_metadata": {
     "attribution": "Open Paleo contributors",
     "built_at": "2026-11-07T04:50:56.054Z",
-    "clade_count": 32,
-    "genus_count": 9,
+    "clade_count": 43,
+    "genus_count": 11,
     "license": "CC-BY-4.0",
     "schema_version": "3.3.0",
     "version": "2026.11"
@@ -275,7 +275,26 @@
                                   "Sauropoda": {
                                     "Gravisauria": {
                                       "Eusauropoda": {
-                                        "Mamenchisauridae": {}
+                                        "Mamenchisauridae": {},
+                                        "Neosauropoda": {
+                                          "Macronaria": {
+                                            "Camarasauromorpha": {
+                                              "Titanosauriformes": {
+                                                "Somphospondyli": {
+                                                  "Titanosauria": {
+                                                    "Lithostrotia": {
+                                                      "Eutitanosauria": {
+                                                        "Saltasauroidea": {
+                                                          "Saltasauridae": {}
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
                                       }
                                     }
                                   }
@@ -289,7 +308,8 @@
                         "Genasauria": {
                           "Thyreophora": {
                             "Ankylosauria": {
-                              "Nodosauridae": {}
+                              "Nodosauridae": {},
+                              "Parankylosauria": {}
                             }
                           }
                         }
@@ -732,6 +752,90 @@
         }
       ]
     },
+    "Camarasauromorpha": {
+      "description": "Camarasauromorpha is a node-based clade of macronarian sauropod dinosaurs comprising the most recent common ancestor of Camarasauridae and Titanosauriformes, together with all of its descendants (Salgado and colleagues, 1997). It may be synonymous with Macronaria (Canudo and colleagues, 2008), and it includes a handful of basal forms, such as Europasaurus, whose finer placement within Macronaria remains unresolved. Fragmentary Middle Jurassic remains from Khadir Island, western India, were once assigned to the clade, but Mannion and Moore (2025) find no neosauropod features in them. Camarasaurus itself is distinguished from Diplodocus by an abbreviated face and large spoon-shaped teeth (Gilmore, 1925).\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda",
+        "Gravisauria",
+        "Eusauropoda",
+        "Neosauropoda",
+        "Macronaria",
+        "Camarasauromorpha"
+      ],
+      "described": 1997,
+      "authors": "Salgado, L.; Coria, R. A.; Calvo, J. O.",
+      "erected_in": "salgado1997a",
+      "diagnostic_features": [
+        "Opisthocoelous dorsal vertebral centra",
+        "Reduced or absent posterior centroparapophyseal lamina in the middle and posterior dorsal vertebrae",
+        "Proximal end of the radius subtriangular in outline",
+        "Expanded, plate-like sternal elements"
+      ],
+      "references": [
+        {
+          "id": "salgado1997a",
+          "authors": "Salgado, L.; Coria, R. A.; Calvo, J. O.",
+          "year": 1997,
+          "title": "Evolution of titanosaurid sauropods. I: phylogenetic analysis based on the postcranial evidence",
+          "journal": "Ameghiniana",
+          "volume": "34",
+          "pages": "3-32",
+          "notes": "Named Camarasauromorpha as a new taxon, defined as the most recent common ancestor of Camarasauridae and Titanosauriformes and all its descendants, and diagnosed it."
+        },
+        {
+          "id": "canudo2008a",
+          "authors": "Canudo, J. I.; Royo-Torres, R.; Cuenca-Bescós, G.",
+          "year": 2008,
+          "title": "A new sauropod:Tastavinsaurus sanzi gen. et sp. nov. from the Early Cretaceous (Aptian) of Spain",
+          "journal": "Journal of Vertebrate Paleontology",
+          "publisher": "Informa UK Limited",
+          "volume": "28",
+          "issue": "3",
+          "pages": "712-731",
+          "doi": "10.1671/0272-4634(2008)28[712:anstsg]2.0.co;2",
+          "notes": "Noted that Camarasauromorpha may be synonymous with Macronaria."
+        },
+        {
+          "id": "mannion2025a",
+          "authors": "Mannion, P. D.; Moore, A. J.",
+          "year": 2025,
+          "title": "Critical reappraisal of a putative dicraeosaurid sauropod dinosaur from the Middle Jurassic of Gondwana and a revised view of diplodocoid evolutionary relationships and biogeography",
+          "journal": "Journal of Systematic Palaeontology",
+          "publisher": "Informa UK Limited",
+          "volume": "23",
+          "issue": "1",
+          "pages": "2550760",
+          "doi": "10.1080/14772019.2025.2550760",
+          "notes": "Rejected the camarasauromorph assignment of Middle Jurassic sauropod remains from Khadir Island, India."
+        },
+        {
+          "id": "gilmore1925a",
+          "authors": "Gilmore, C. W.",
+          "year": 1925,
+          "title": "A nearly complete articulated skeleton of Camarasaurus, a saurischian dinosaur from the Dinosaur National Monument",
+          "journal": "Memoirs of the Carnegie Museum",
+          "volume": "10",
+          "pages": "347-384",
+          "doi": "10.5962/p.217807",
+          "notes": "Distinguished the skull of Camarasaurus from that of Diplodocus by its abbreviated face and spoon-shaped teeth."
+        }
+      ]
+    },
     "Carcharodontosauria": {
       "description": "Carcharodontosauria is a clade of allosauroid theropods comprising Carcharodontosauridae and their closest relatives, encompassing many of the largest terrestrial predators of the Cretaceous across both Gondwana and Laurasia. Its basal members are medium-sized forms that grade into the giant carcharodontosaurids. The carcharodontosaurids underwent a worldwide dispersal during the Early Cretaceous before the family died out in the Turonian, roughly 90 million years ago, after which other large theropods took over the apex-predator role.\n",
       "taxonomy": [
@@ -1021,6 +1125,74 @@
         }
       ]
     },
+    "Eutitanosauria": {
+      "description": "Eutitanosauria is a clade of titanosaurs that gathers together the more derived members of the group. Under its current node-based definition it spans the smallest grouping that contains both Patagotitan and Saltasaurus, making it the immediate parent of two major branches: Colossosauria, which includes the enormous lognkosaurs and the comparatively small-bodied rinconsaurs, and Saltasauroidea, which includes the smaller, heavily armored saltasaurids. Members are distinguished by the loss of the hyposphene-hypantrum articulation between the vertebrae, and many bore bony osteoderms embedded in the skin. Because the definition has shifted repeatedly and often overlaps with the broader Lithostrotia, the label is frequently left unused or unlabeled on phylogenetic trees.\n",
+      "dispute": {
+        "summary": "The content and rank of Eutitanosauria, and its position relative to Lithostrotia, vary among analyses. Sanz and colleagues (1999) introduced the name for a clade of advanced titanosaurs, and Carballido and colleagues (2022) redefined it as the node of Patagotitan and Saltasaurus, whose two stems are Colossosauria and Saltasauroidea. Whether that node lies within Lithostrotia depends on the position of Malawisaurus: in most analyses Lithostrotia includes nearly all titanosaurs, but in others it is the sister of Colossosauria and so falls within Eutitanosauria (Carballido and colleagues, 2022). Its content is highly labile among analyses, and many studies neither define nor label it (Carballido and colleagues, 2022). It is placed within Lithostrotia, following the majority topology.\n"
+      },
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda",
+        "Gravisauria",
+        "Eusauropoda",
+        "Neosauropoda",
+        "Macronaria",
+        "Camarasauromorpha",
+        "Titanosauriformes",
+        "Somphospondyli",
+        "Titanosauria",
+        "Lithostrotia",
+        "Eutitanosauria"
+      ],
+      "described": 1999,
+      "authors": "Sanz, J. L.; Powell, J. E.; Le Loeuff, J.; Martínez, R.; Pereda-Suberbiola, X.",
+      "erected_in": "sanz1999a",
+      "described_in": "carballido2022a",
+      "diagnostic_features": [
+        "Loss of the hyposphene-hypantrum articulation in the posterior dorsal vertebrae",
+        "Reduced fourth trochanter of the femur",
+        "Dermal osteoderms present"
+      ],
+      "references": [
+        {
+          "id": "sanz1999a",
+          "authors": "Sanz, J. L.; Powell, J. E.; Le Loeuff, J.; Martínez, R.; Pereda-Suberbiola, X.",
+          "year": 1999,
+          "title": "Sauropod remains from the Upper Cretaceous of Laño (northcentral Spain). Titanosaur phylogenetic relationships",
+          "journal": "Estudios del Museo de Ciencias Naturales de Alava",
+          "volume": "14",
+          "issue": "especial 1",
+          "pages": "235-255",
+          "notes": "Introduced the name Eutitanosauria."
+        },
+        {
+          "id": "carballido2022a",
+          "authors": "Carballido, J. L.; Otero, A.; Mannion, P. D.; Salgado, L.; Pérez Moreno, A. P.",
+          "year": 2022,
+          "title": "Titanosauria: a critical reappraisal of its systematics and the relevance of the South American record",
+          "book": "South American Sauropodomorph Dinosaurs: Record, Diversity and Evolution",
+          "series": "Springer Earth System Sciences",
+          "publisher": "Springer International Publishing",
+          "pages": "269-298",
+          "doi": "10.1007/978-3-030-95959-3_8",
+          "notes": "Redefined Eutitanosauria as the node of Patagotitan and Saltasaurus, with Colossosauria and Saltasauroidea as its two stems."
+        }
+      ]
+    },
     "Eutyrannosauria": {
       "description": "Eutyrannosauria is a clade of large-bodied tyrannosauroid theropod dinosaurs of the Northern Hemisphere, encompassing the family Tyrannosauridae together with its closest non-tyrannosaurid relatives, such as the eastern North American genera Dryptosaurus and Appalachiosaurus (Voris and colleagues, 2025). The southwestern North American Bistahieversor is the sister of Tyrannosauridae in the analysis of Delcourt and Grillo (2018) but falls within Tyrannosaurinae in that of Voris and colleagues (2025). It was defined to set these advanced, often gigantic northern forms apart from the more basal, globally distributed tyrannosauroids. Members are distinguished by their great size and by prominent cranial ornamentation, including roughened, ridge-bearing nasal bones. Powers and colleagues (2026) instead recover a family Dryptosauridae, including Dryptosaurus, in all their implied-weights analyses.\n",
       "taxonomy": [
@@ -1194,6 +1366,125 @@
           "pages": "93-123",
           "doi": "10.1080/08912960600866953",
           "notes": "Coined Massopoda and argued that Sauropoda, as then defined, had expanded far beyond its traditional content and needed redefinition."
+        }
+      ]
+    },
+    "Lithostrotia": {
+      "description": "Lithostrotia is a clade of derived titanosaur sauropods that lived through the Early and Late Cretaceous, encompassing much of the group's diversity from Malawisaurus through the more derived saltasauroids and colossosaurians. Its name means \"inlaid with stones,\" referring to the bony osteoderms preserved in many of its members, though those osteoderms are not actually diagnostic of the clade: they appear sporadically inside and outside it and may have evolved more than once. The trait that truly sets it apart is its tail, with caudal vertebrae whose front faces are strongly concave, so that they socketed together, except for the most distal ones. The clade excludes more basal titanosaurs such as Andesaurus, Argentinosaurus, and Phuwiangosaurus, which retain flatter or only weakly hollowed tail vertebrae. Its boundaries remain unsettled, because the anchoring genus Malawisaurus may be a mix of unrelated remains, and different analyses have recovered Lithostrotia as anything from a small group to one taking in nearly all titanosaurs (Carballido and colleagues, 2022).\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda",
+        "Gravisauria",
+        "Eusauropoda",
+        "Neosauropoda",
+        "Macronaria",
+        "Camarasauromorpha",
+        "Titanosauriformes",
+        "Somphospondyli",
+        "Titanosauria",
+        "Lithostrotia"
+      ],
+      "described": 2004,
+      "authors": "Upchurch, P.; Barrett, P. M.; Dodson, P.",
+      "erected_in": "upchurch2004a",
+      "diagnostic_features": [
+        "Strongly procoelous anterior and middle caudal vertebrae with prominent distal condyles",
+        "Osteoderms present in many members",
+        "Sharply angled, anterolaterally directed preacetabular process of the ilium",
+        "Six sacral vertebrae"
+      ],
+      "references": [
+        {
+          "id": "upchurch2004a",
+          "authors": "Upchurch, P.; Barrett, P. M.; Dodson, P.",
+          "year": 2004,
+          "title": "Sauropoda",
+          "book": "The Dinosauria, Second Edition (Weishampel, D. B.; Dodson, P.; Osmólska, H., eds.)",
+          "publisher": "University of California Press, Berkeley",
+          "pages": "259-322",
+          "notes": "Erected Lithostrotia for the osteoderm-bearing derived titanosaurs."
+        },
+        {
+          "id": "carballido2022a",
+          "authors": "Carballido, J. L.; Otero, A.; Mannion, P. D.; Salgado, L.; Pérez Moreno, A. P.",
+          "year": 2022,
+          "title": "Titanosauria: a critical reappraisal of its systematics and the relevance of the South American record",
+          "book": "South American Sauropodomorph Dinosaurs: Record, Diversity and Evolution",
+          "series": "Springer Earth System Sciences",
+          "publisher": "Springer International Publishing",
+          "pages": "269-298",
+          "doi": "10.1007/978-3-030-95959-3_8",
+          "notes": "Reviewed Lithostrotia, whose content ranges from nearly all titanosaurs to a small group depending on where Malawisaurus falls, noting after Gorscak (2016) that Malawisaurus may be a chimera."
+        },
+        {
+          "id": "gorscak2016a",
+          "authors": "Gorscak, E.",
+          "year": 2016,
+          "title": "Descriptive and comparative morphology of African titanosaurian sauropods: new information on the evolution of Cretaceous African continental faunas",
+          "thesis": "doctoral",
+          "school": "Ohio University",
+          "notes": "Found that the Malawi material referred to Malawisaurus represents at least two distinct morphs."
+        }
+      ]
+    },
+    "Macronaria": {
+      "description": "Macronaria is a clade of sauropod dinosaurs that takes its name from the enlarged nasal opening of the skull, which exceeds the size of the eye socket. Nested within Neosauropoda as the sister group to Diplodocoidea, it encompasses Camarasauridae and Titanosauriformes, and so includes such animals as Camarasaurus, Brachiosaurus, and the titanosaurs, with camarasauromorphs forming its most basal branch. Macronarians lived from the Middle Jurassic through the end of the Cretaceous and have been found across the globe, from Argentina and the United States to Portugal, China, and Tanzania. In addition to their large nostrils, they are distinguished by box-like skulls bearing broad, spoon-shaped teeth, unlike the elongate skulls and peg-like teeth of the diplodocoids. Their body sizes diverged dramatically: some titanosaurs such as Argentinosaurus rank among the largest land animals ever to have existed, while others, including Saltasaurus and Magyarosaurus, dwindled to just a few metric tons.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda",
+        "Gravisauria",
+        "Eusauropoda",
+        "Neosauropoda",
+        "Macronaria"
+      ],
+      "described": 1998,
+      "authors": "Wilson, J. A.; Sereno, P. C.",
+      "erected_in": "wilson1998a",
+      "diagnostic_features": [
+        "Enlarged external nares, typically larger than the orbit",
+        "Spatulate (spoon-shaped) teeth",
+        "Box-like, dorsoventrally deep skull",
+        "Opisthocoelous anterior caudal vertebrae",
+        "Metacarpals arranged in a tubular, U-shaped colonnade"
+      ],
+      "references": [
+        {
+          "id": "wilson1998a",
+          "authors": "Wilson, J. A.; Sereno, P. C.",
+          "year": 1998,
+          "title": "Early evolution and higher-level phylogeny of sauropod dinosaurs",
+          "journal": "Memoir (Society of Vertebrate Paleontology)",
+          "volume": "5",
+          "pages": "1-68",
+          "doi": "10.2307/3889325"
         }
       ]
     },
@@ -1470,6 +1761,65 @@
         }
       ]
     },
+    "Neosauropoda": {
+      "description": "Neosauropoda is a clade of sauropod dinosaurs that contains the majority of sauropod genera and is divided into two major subgroups, Diplodocoidea and Macronaria. Its members include familiar long-necked giants such as Apatosaurus, Brachiosaurus, and Diplodocus, as well as some of the largest land animals ever to have lived, among them Argentinosaurus, Patagotitan, and Sauroposeidon. Neosauropods arose in the Early Jurassic, quickly becoming the dominant large herbivores, and persisted until the Cretaceous–Paleogene extinction; diplodocids and brachiosaurids made up much of the group during the Jurassic before being widely replaced by titanosaurs through the Cretaceous. Like all sauropods they shared the basic body plan of great size, long necks, and columnar legs, but they are set apart by a suite of derived features of the skull, teeth, hand, and hindlimb, including the loss of tooth denticles and a hand reduced to two or fewer wrist bones.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda",
+        "Gravisauria",
+        "Eusauropoda",
+        "Neosauropoda"
+      ],
+      "described": 1986,
+      "authors": "Bonaparte, J. F.",
+      "erected_in": "bonaparte1986b",
+      "described_in": "wilson2002a",
+      "diagnostic_features": [
+        "Tooth crowns lacking marginal denticles",
+        "Carpus reduced to two or fewer ossifications",
+        "Reduction of the manual phalanges",
+        "External nares retracted and dorsally positioned"
+      ],
+      "references": [
+        {
+          "id": "bonaparte1986b",
+          "authors": "Bonaparte, J. F.",
+          "year": 1986,
+          "title": "Les Dinosaures (Carnosaures, Allosaurides, Sauropodes, Cetiosaurides) du Jurassique moyen de Cerro Cóndor (Chubut, Argentine) [The Dinosaurs (Carnosaurs, Allosaurids, Sauropods, Cetiosaurids) of the Middle Jurassic of Cerro Cóndor (Chubut, Argentina)]",
+          "journal": "Annales de paléontologie",
+          "volume": "72",
+          "issue": "4",
+          "pages": "325-386",
+          "notes": "Coined the name Neosauropoda."
+        },
+        {
+          "id": "wilson2002a",
+          "authors": "Wilson, J. A.",
+          "year": 2002,
+          "title": "Sauropod dinosaur phylogeny: critique and cladistic analysis",
+          "journal": "Zoological Journal of the Linnean Society",
+          "volume": "136",
+          "issue": "2",
+          "pages": "215-275",
+          "doi": "10.1046/j.1096-3642.2002.00029.x",
+          "notes": "Provided the cladistic diagnosis and synapomorphies of Neosauropoda."
+        }
+      ]
+    },
     "Neotheropoda": {
       "description": "Neotheropoda, meaning \"new theropods,\" is a clade that encompasses nearly all theropod dinosaurs, from the small, lightly built coelophysoids of the Late Triassic to the more advanced ceratosaurs and tetanurans, the latter of which ultimately gave rise to modern birds. Its members are distinguished by a reduction of several foot bones, which left the characteristic three-toed (tridactyl) footprints associated with theropods. It is the only group of theropods to survive the Triassic-Jurassic extinction event, after which it radiated into the dominant terrestrial predators of the Jurassic and Cretaceous. The more derived members form the clade Averostra, which unites the ceratosaurs and the tetanurans; by the Early Jurassic the non-averostran lineages had died out.\n",
       "taxonomy": [
@@ -1646,6 +1996,74 @@
         }
       ]
     },
+    "Parankylosauria": {
+      "description": "Parankylosauria is an early-diverging clade of armored dinosaurs that lived across the former southern supercontinent of Gondwana — in what are now South America, Antarctica, and Australia — during the Cretaceous. It is recovered as the first lineage to branch off from the rest of the ankylosaurs, making it the sister group to Euankylosauria, the ankylosaurids and nodosaurids that dominate the Northern Hemisphere. Its members, including Stegouros, Antarctopelta, and Kunbarrasaurus, were relatively small, roughly 1.5 to 4 meters long, and retained a number of primitive traits shared with early armored dinosaurs and stegosaurs but lost in other ankylosaurs, such as longer, more slender limbs and simple, narrow hips. Their skulls bear elongate snouts with distinctive narrow nasal bones and lack the elaborate horns and bosses seen in other ankylosaurs. Rather than a knob-like tail club, several parankylosaurs carried a frond-like tail weapon known as a macuahuitl, formed from flattened osteoderms arranged along both sides of the tail.\n",
+      "dispute": {
+        "summary": "The monophyly of Parankylosauria is contested. Soto-Acuña and colleagues (2021) erected it for Stegouros, Antarctopelta, and Kunbarrasaurus and recovered it across five matrices, with support from Soto-Acuña and colleagues (2024). Using a different matrix, Maidment and colleagues (2025) did not recover the clade and instead dispersed its putative members across Ankylosauria and Thyreophora. Whether it is a genuine clade sister to Euankylosauria or a convergent Gondwanan grade remains open; Patagopelta and Minmi are contested members placed elsewhere.\n"
+      },
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Ornithischia",
+        "Genasauria",
+        "Thyreophora",
+        "Ankylosauria",
+        "Parankylosauria"
+      ],
+      "described": 2021,
+      "authors": "Soto-Acuña, S.; Vargas, A. O.; Kaluza, J.; Leppe, M. A.; Botelho, J. F.; Palma-Liberona, J.; Simon-Gutstein, C.; Fernández, R. A.; Ortiz, H.; Milla, V.; Aravena, B.; Manríquez, L. M. E.; Alarcón-Muñoz, J.; Pino, J. P.; Trevisan, C.; Mansilla, H.; Hinojosa, L. F.; Muñoz-Walther, V.; Rubilar-Rogers, D.",
+      "erected_in": "soto-acuña2021a",
+      "diagnostic_features": [
+        "Slender, gracile limbs relative to other ankylosaurs",
+        "Thin dermal sacral shield",
+        "Dorsoventrally flattened distal caudal osteoderms (in the Stegouros tail weapon)",
+        "Teeth with denticles confluent with enamel ridges and an asymmetric bulged cingulum"
+      ],
+      "references": [
+        {
+          "id": "soto-acuña2021a",
+          "authors": "Soto-Acuña, S.; Vargas, A. O.; Kaluza, J.; Leppe, M. A.; Botelho, J. F.; Palma-Liberona, J.; Simon-Gutstein, C.; Fernández, R. A.; Ortiz, H.; Milla, V.; Aravena, B.; Manríquez, L. M. E.; Alarcón-Muñoz, J.; Pino, J. P.; Trevisan, C.; Mansilla, H.; Hinojosa, L. F.; Muñoz-Walther, V.; Rubilar-Rogers, D.",
+          "year": 2021,
+          "title": "Bizarre tail weaponry in a transitional ankylosaur from subantarctic Chile",
+          "journal": "Nature",
+          "publisher": "Springer Science and Business Media LLC",
+          "volume": "600",
+          "issue": "7888",
+          "pages": "259-263",
+          "doi": "10.1038/s41586-021-04147-1",
+          "notes": "Described Stegouros and named Parankylosauria for the first ancestor of Stegouros but not Ankylosaurus and all its descendants."
+        },
+        {
+          "id": "soto-acuña2024a",
+          "authors": "Soto-Acuña, S.; Vargas, A. O.; Kaluza, J.",
+          "year": 2024,
+          "title": "A new look at the first dinosaur discovered in Antarctica: reappraisal of Antarctopelta oliveroi (Ankylosauria: Parankylosauria)",
+          "journal": "Advances in Polar Science",
+          "volume": "35",
+          "issue": "1",
+          "pages": "78-107",
+          "doi": "10.12429/j.advps.2023.0036",
+          "notes": "Redescribed Antarctopelta and recovered it in Parankylosauria with Kunbarrasaurus, Patagopelta and Stegouros."
+        },
+        {
+          "id": "maidment2025b",
+          "authors": "Maidment, S. C. R.; Ouarhache, D.; Ech-charay, K.; Oussou, A.; Boumir, K.; El Khanchoufi, A.; Park, A.; Meade, L. E.; Woodruff, D. C.; Wills, S.; Smith, M.; Barrett, P. M.; Butler, R. J.",
+          "year": 2025,
+          "title": "Extreme armour in the world's oldest ankylosaur",
+          "journal": "Nature",
+          "pages": "1-6",
+          "doi": "10.1038/s41586-025-09453-6",
+          "notes": "New Spicomellus phylogeny dispersed putative Parankylosauria members across Ankylosauria and Thyreophora"
+        }
+      ]
+    },
     "Plateosauria": {
       "description": "Plateosauria is a large, node-based clade within Sauropodomorpha, conventionally defined as the last common ancestor of Plateosaurus and Massospondylus (Sereno, 2007), or of Plateosaurus and Jingshanosaurus (Galton and Upchurch, 2004), together with all of that ancestor's descendants. So defined, it unites the Plateosauridae with the more inclusive Massopoda and takes in Late Triassic and Early Jurassic sauropodomorphs such as Coloradisaurus, Euskelosaurus, Jingshanosaurus, Massospondylus, Mussaurus, Sellosaurus, and Yunnanosaurus, while its descendant lineages also encompass the giant, long-necked true sauropods. It groups the more derived, generally herbivorous members of the lineage, spanning the transition from largely bipedal early forms toward larger-bodied, increasingly quadrupedal ones. In all, it accounts for the bulk of sauropodomorph diversity above the earliest, most basal grade.\n",
       "taxonomy": [
@@ -1716,6 +2134,164 @@
           "publisher": "University of California Press, Berkeley",
           "pages": "232-258",
           "notes": "Defined Plateosauria as Jingshanosaurus, Plateosaurus, their most recent common ancestor and all its descendants."
+        }
+      ]
+    },
+    "Saltasauridae": {
+      "description": "Saltasauridae is a family of armored, herbivorous titanosaurian sauropods from the Late Cretaceous, known from fossils across South America, North America, Africa, Asia, and Europe. It splits into two subfamilies: the Saltasaurinae, which includes the often small and armored Saltasaurus, Neuquensaurus, and Rocasaurus, and the Opisthocoelicaudiinae, which includes larger forms such as Opisthocoelicaudia and the giant Alamosaurus. As sauropods they were quadrupeds with small heads, peg-like teeth, long necks, and counterbalancing tails, and were among the last of their kind, persisting until the very end of the Cretaceous. They are recognized by convexities in certain tail vertebrae and by distinctive markings on the coracoid bones of the shoulder. Many members bore bony scutes, or osteoderms, embedded in the skin of their backs, though such armor has not been found in every genus and its distribution across the group remains uncertain.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda",
+        "Gravisauria",
+        "Eusauropoda",
+        "Neosauropoda",
+        "Macronaria",
+        "Camarasauromorpha",
+        "Titanosauriformes",
+        "Somphospondyli",
+        "Titanosauria",
+        "Lithostrotia",
+        "Eutitanosauria",
+        "Saltasauroidea",
+        "Saltasauridae"
+      ],
+      "type_genus": "Saltasaurus",
+      "described": 1992,
+      "authors": "Powell, J. E.",
+      "erected_in": "powell1992a",
+      "described_in": "wilson2003b",
+      "diagnostic_features": [
+        "Six co-ossified sacral vertebrae",
+        "Strongly procoelous caudal vertebrae with prominent distal condyles",
+        "Osteoderms present, including large and small morphotypes",
+        "Posterior dorsal vertebrae with reduced neural spines"
+      ],
+      "references": [
+        {
+          "id": "powell1992a",
+          "authors": "Powell, J. E.",
+          "year": 1992,
+          "title": "Osteologia de Saltasaurus loricatus (Sauropoda - Titanosauridae) del Cretácico Superior del noroeste Argentino [Osteology of Saltasaurus loricatus (Sauropoda - Titanosauridae) from the Upper Cretaceous of northwest Argentina]",
+          "book": "Los Dinosaurios y su Entorno Biótico: Actas del Segundo Curso de Paleontología en Cuenca (Sanz, J. L.; Buscalioni, A. D., eds.)",
+          "publisher": "Instituto \"Juan de Valdés\", Cuenca",
+          "pages": "165-230",
+          "notes": "Named the subfamily Saltasaurinae as new, from which the family name takes its authorship by coordination."
+        },
+        {
+          "id": "sereno1998a",
+          "authors": "Sereno, P. C.",
+          "year": 1998,
+          "title": "A rationale for phylogenetic definitions, with application to the higher-level taxonomy of Dinosauria",
+          "journal": "Neues Jahrbuch für Geologie und Paläontologie, Abhandlungen",
+          "volume": "210",
+          "pages": "41-83",
+          "doi": "10.1127/njgpa/210/1998/41",
+          "notes": "Defined Saltasauridae as the node of Opisthocoelicaudia and Saltasaurus, with Saltasaurinae and Opisthocoelicaudiinae as its two stems."
+        },
+        {
+          "id": "wilson2003b",
+          "authors": "Wilson, J. A.; Upchurch, P.",
+          "year": 2003,
+          "title": "A revision of Titanosaurus Lydekker (Dinosauria - Sauropoda), the first dinosaur genus with a 'Gondwanan' distribution",
+          "journal": "Journal of Systematic Palaeontology",
+          "publisher": "Informa UK Limited",
+          "volume": "1",
+          "issue": "3",
+          "pages": "125-160",
+          "doi": "10.1017/S1477201903001044",
+          "notes": "Defined Saltasauridae as the most recent common ancestor of Opisthocoelicaudia skarzynskii and Saltasaurus loricatus and all its descendants, adopting Sereno's node-stem triplet."
+        }
+      ]
+    },
+    "Saltasauroidea": {
+      "description": "Saltasauroidea is a superfamily of titanosaurian sauropod dinosaurs, defined by Carballido and colleagues (2022) as all taxa closer to Saltasaurus than to Patagotitan. This definition splits the derived titanosaur group Eutitanosauria roughly in half, making Saltasauroidea the sister branch to the inversely defined Colossosauria. França and colleagues (2016), who introduced the name, applied it to a clade uniting the aeolosaurins and the heavily armored, often dwarfed saltasaurids, along with intermediate genera such as Baurutitan, Diamantinasaurus, and Isisaurus, and defined it as the most inclusive clade containing Saltasaurus but not Nemegtosaurus. Its members account for much of the terminal-Cretaceous titanosaur diversity across both Gondwana and Laurasia.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda",
+        "Gravisauria",
+        "Eusauropoda",
+        "Neosauropoda",
+        "Macronaria",
+        "Camarasauromorpha",
+        "Titanosauriformes",
+        "Somphospondyli",
+        "Titanosauria",
+        "Lithostrotia",
+        "Eutitanosauria",
+        "Saltasauroidea"
+      ],
+      "type_genus": "Saltasaurus",
+      "described": 1992,
+      "authors": "Powell, J. E.",
+      "erected_in": "powell1992a",
+      "described_in": "carballido2022a",
+      "diagnostic_features": [
+        "Strongly procoelous caudal vertebrae throughout the tail",
+        "Osteoderms present in many members",
+        "Posterior dorsal vertebrae with well-developed lateral pneumatic foramina",
+        "Reduced and block-like carpus and manus"
+      ],
+      "references": [
+        {
+          "id": "powell1992a",
+          "authors": "Powell, J. E.",
+          "year": 1992,
+          "title": "Osteologia de Saltasaurus loricatus (Sauropoda - Titanosauridae) del Cretácico Superior del noroeste Argentino [Osteology of Saltasaurus loricatus (Sauropoda - Titanosauridae) from the Upper Cretaceous of northwest Argentina]",
+          "book": "Los Dinosaurios y su Entorno Biótico: Actas del Segundo Curso de Paleontología en Cuenca (Sanz, J. L.; Buscalioni, A. D., eds.)",
+          "publisher": "Instituto \"Juan de Valdés\", Cuenca",
+          "pages": "165-230",
+          "notes": "Origin of the family-group name (Saltasaurinae), and by coordination the superfamily Saltasauroidea."
+        },
+        {
+          "id": "frança2016a",
+          "authors": "França, M. A. G.; Marsola, J. C. de A.; Riff, D.; Hsiou, A. S.; Langer, M. C.",
+          "year": 2016,
+          "title": "New lower jaw and teeth referred to Maxakalisaurus topai (Titanosauria: Aeolosaurini) and their implications for the phylogeny of titanosaurid sauropods",
+          "journal": "PeerJ",
+          "volume": "4",
+          "pages": "e2054",
+          "doi": "10.7717/peerj.2054",
+          "notes": "Introduced the name Saltasauroidea and its branch-based definition."
+        },
+        {
+          "id": "carballido2022a",
+          "authors": "Carballido, J. L.; Otero, A.; Mannion, P. D.; Salgado, L.; Pérez Moreno, A. P.",
+          "year": 2022,
+          "title": "Titanosauria: a critical reappraisal of its systematics and the relevance of the South American record",
+          "book": "South American Sauropodomorph Dinosaurs: Record, Diversity and Evolution",
+          "series": "Springer Earth System Sciences",
+          "publisher": "Springer International Publishing",
+          "pages": "269-298",
+          "doi": "10.1007/978-3-030-95959-3_8",
+          "notes": "Defined Saltasauroidea as all taxa closer to Saltasaurus than to Patagotitan, the Saltasaurus-line stem of Eutitanosauria."
         }
       ]
     },
@@ -1928,6 +2504,56 @@
         }
       ]
     },
+    "Somphospondyli": {
+      "description": "Somphospondyli is a clade of titanosauriform sauropod dinosaurs that lived from the Late Jurassic to the end of the Cretaceous, with remains found on every continent. It embraces all titanosauriforms more closely related to the giant, largely Cretaceous titanosaurs than to the brachiosaurids, and so unites the diverse Titanosauria with the East Asian euhelopodids and an assortment of more basal, non-titanosaurian forms. Members are distinguished by details of their vertebrae, including a long neck and internal bone tissue riddled with a sponge-like network of air-filled chambers. It is this spongy, camellate texture pervading the backbone that gives the group its name.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda",
+        "Gravisauria",
+        "Eusauropoda",
+        "Neosauropoda",
+        "Macronaria",
+        "Camarasauromorpha",
+        "Titanosauriformes",
+        "Somphospondyli"
+      ],
+      "described": 1998,
+      "authors": "Wilson, J. A.; Sereno, P. C.",
+      "erected_in": "wilson1998a",
+      "diagnostic_features": [
+        "Spongy (somphospondylous) camellate internal tissue throughout the presacral vertebrae",
+        "Six sacral vertebrae",
+        "Convex anterior articular surfaces on at least the proximal caudal centra",
+        "Cervical vertebrae with reduced or absent pleurocoel-dividing laminae",
+        "Sternal plates with a crescentic (reniform) outline in many members"
+      ],
+      "references": [
+        {
+          "id": "wilson1998a",
+          "authors": "Wilson, J. A.; Sereno, P. C.",
+          "year": 1998,
+          "title": "Early evolution and higher-level phylogeny of sauropod dinosaurs",
+          "journal": "Memoir (Society of Vertebrate Paleontology)",
+          "volume": "5",
+          "pages": "1-68",
+          "doi": "10.2307/3889325"
+        }
+      ]
+    },
     "Tetanurae": {
       "description": "Tetanurae, meaning \"stiff tails,\" is a large clade of theropod dinosaurs that includes most predatory dinosaur diversity, encompassing the megalosauroids, the allosauroids, and the coelurosaurs, the last of which contains tyrannosauroids, ornithomimosaurs, compsognathids, and the maniraptorans, including living birds. The group is defined as all theropods more closely related to modern birds than to Ceratosauria (Gauthier, 1986), its sister lineage, from which it diverged during the Late Triassic according to Sereno and colleagues (1994). Tetanurans appear in the fossil record by the Early Jurassic and had become globally distributed by the Middle Jurassic. Their evolution was marked by the parallel diversification of several lineages that repeatedly attained large body size and similar locomotor forms; basal members were the first theropods to reach truly giant sizes, with some megalosauroids and allosauroids exceeding a ton. Distinctive features of the group include stiffened tails, the loss of the fourth finger to leave a three-fingered hand, maxillary teeth restricted to the front of the snout, and, in more advanced forms, an air-sac-ventilated lung system resembling that of modern birds. Birds are the only living survivors of the clade.\n",
       "taxonomy": [
@@ -2068,6 +2694,131 @@
           "pages": "e12362",
           "doi": "10.7717/peerj.12362",
           "notes": "Provides the modern phylogenetic definition of Thyreophora."
+        }
+      ]
+    },
+    "Titanosauria": {
+      "description": "Titanosauria is a diverse clade of sauropod dinosaurs known from every continent, including Antarctica, and the last group of long-necked sauropods to survive up to the mass extinction at the end of the Cretaceous. It spans the widest range of body size of any sauropod group, encompassing some of the largest land animals ever to have lived, such as Patagotitan, Argentinosaurus, and Puertasaurus, alongside dwarf forms like the island-dwelling Magyarosaurus. Titanosaurs had small, wide heads and whip-like tails, and the skin of many was studded with a mosaic of small bead-like scales. Together with the brachiosaurids and their relatives, they make up the larger clade Titanosauriformes, and most members apart from a few basal genera fall within a subgroup called Lithostrotia. Their fossil record is the least complete of any major sauropod group, and the relationships among the species remain poorly resolved.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda",
+        "Gravisauria",
+        "Eusauropoda",
+        "Neosauropoda",
+        "Macronaria",
+        "Camarasauromorpha",
+        "Titanosauriformes",
+        "Somphospondyli",
+        "Titanosauria"
+      ],
+      "described": 1993,
+      "authors": "Bonaparte, J. F.; Coria, R. A.",
+      "erected_in": "bonaparte1993a",
+      "described_in": "salgado1997a",
+      "diagnostic_features": [
+        "Procoelous caudal vertebrae (concave anteriorly, convex posteriorly)",
+        "Osteoderms (bony dermal armor) present in many taxa",
+        "Wide-gauge (laterally splayed) limb posture",
+        "Loss of manual phalanges in derived forms",
+        "Strongly opisthocoelous dorsal vertebrae",
+        "Expanded iliac blade with a preacetabular process directed laterally"
+      ],
+      "references": [
+        {
+          "id": "bonaparte1993a",
+          "authors": "Bonaparte, J. F.; Coria, R. A.",
+          "year": 1993,
+          "title": "Un nuevo y gigantesco saurópodo titanosaurio de la Formación Rio Limay (Albanio-Cenomaniano) de la Provincia del Neuquén, Argentina [A new and huge titanosaur sauropod from the Rio Limay Formation (Albian-Cenomanian) of Neuquén Province, Argentina]",
+          "journal": "Ameghiniana",
+          "volume": "30",
+          "issue": "3",
+          "pages": "271-282",
+          "notes": "Coined the name Titanosauria."
+        },
+        {
+          "id": "salgado1997a",
+          "authors": "Salgado, L.; Coria, R. A.; Calvo, J. O.",
+          "year": 1997,
+          "title": "Evolution of titanosaurid sauropods. I: phylogenetic analysis based on the postcranial evidence",
+          "journal": "Ameghiniana",
+          "volume": "34",
+          "pages": "3-32",
+          "notes": "Provided the first phylogenetic definition of Titanosauria."
+        }
+      ]
+    },
+    "Titanosauriformes": {
+      "description": "Titanosauriformes is a clade of macronarian sauropods defined as the least inclusive group containing Brachiosaurus and Saltasaurus (Wilson and Sereno, 1998), comprising the two sister lineages Brachiosauridae and Somphospondyli. The clade is known from the fossil record beginning in the Late Jurassic and persisted to the end of the Cretaceous, achieving a global distribution across most continents. Titanosauriforms include some of the largest known terrestrial animals, among them the giant titanosaurs of the Late Cretaceous.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda",
+        "Gravisauria",
+        "Eusauropoda",
+        "Neosauropoda",
+        "Macronaria",
+        "Camarasauromorpha",
+        "Titanosauriformes"
+      ],
+      "described": 1997,
+      "authors": "Salgado, L.; Coria, R. A.; Calvo, J. O.",
+      "erected_in": "salgado1997a",
+      "described_in": "wilson1998a",
+      "diagnostic_features": [
+        "Camellate (somphospondylous) internal tissue in the presacral vertebrae",
+        "Anterior caudal vertebrae with the neural arch placed on the anterior half of the centrum",
+        "Biconvex or procoelous distalmost caudal vertebrae in many members",
+        "Reduced olecranon process of the ulna",
+        "Femur with a prominent lateral bulge below the greater trochanter"
+      ],
+      "references": [
+        {
+          "id": "salgado1997a",
+          "authors": "Salgado, L.; Coria, R. A.; Calvo, J. O.",
+          "year": 1997,
+          "title": "Evolution of titanosaurid sauropods. I: phylogenetic analysis based on the postcranial evidence",
+          "journal": "Ameghiniana",
+          "volume": "34",
+          "pages": "3-32",
+          "notes": "Named Titanosauriformes as a new taxon for the most recent common ancestor of Brachiosaurus brancai, Chubutisaurus insignis and Titanosauria and all its descendants."
+        },
+        {
+          "id": "wilson1998a",
+          "authors": "Wilson, J. A.; Sereno, P. C.",
+          "year": 1998,
+          "title": "Early evolution and higher-level phylogeny of sauropod dinosaurs",
+          "journal": "Memoir (Society of Vertebrate Paleontology)",
+          "volume": "5",
+          "pages": "1-68",
+          "doi": "10.2307/3889325",
+          "notes": "Redefined Titanosauriformes as Brachiosaurus, Saltasaurus, their common ancestor and all its descendants, and diagnosed it."
         }
       ]
     },
@@ -2253,6 +3004,197 @@
     }
   },
   "genera": {
+    "Abditosaurus": {
+      "genus": "Abditosaurus",
+      "parent": "Saltasauridae",
+      "placement": "incertae sedis",
+      "etymology": "From Latin 'abditus' meaning 'forgotten' or 'hidden' and Greek 'sauros' meaning 'lizard'; meaning 'forgotten lizard'",
+      "pronunciation": {
+        "phonetic": "ab-DEE-toe-SOR-us"
+      },
+      "description": "Abditosaurus is an extinct genus of titanosaurian sauropod dinosaur from the Late Cretaceous (Maastrichtian) Conques Formation (Tremp Group) of Catalonia, Spain. The genus contains a single species, Abditosaurus kuehnei, known from a partial specimen representing the most complete titanosaur skeleton found in Europe. Phylogenetic analyses recover it within a clade of South American and African saltasaurines, distinct from other insular dwarf sauropods from the European archipelago. Abditosaurus inhabited the Ibero-Armorican Island, a prehistoric island made up of what is now Spain, Portugal, and southern France, and would have been the largest titanosaur species in its environment.",
+      "dispute": {
+        "summary": "Placed within Saltasauridae as incertae sedis. The describing analysis (Vila and colleagues, 2022) recovered Abditosaurus more precisely as a saltasaurine, within a clade of South American and African saltasaurines (sister to Paralititan) distinct from the lirainosaurine titanosaurs of the European archipelago. Because that saltasaurine topology rests on a single analysis whose recovered neighbors (Paralititan, Maxakalisaurus) are atypical relative to most studies, it is placed conservatively at Saltasauridae rather than within Saltasaurinae.\n"
+      },
+      "diet": "herbivore",
+      "locomotion": "quadrupedal",
+      "paleoenvironment": [
+        "fluvial"
+      ],
+      "diagnostic_features": [
+        "Anterior dorsal vertebrae with anterior centrodiapophyseal lamina not reaching centrum but intersecting centroprezygapophyseal lamina; diapophyses ventral to postzygapophyses; absence of centroprezygapophyseal lamina.",
+        "Middle dorsal vertebrae with oblique posterodorsally oriented accessory lamina dividing parapophyseal centrodiapophyseal fossa and secondary prezygodiapophyseal lamina dividing prezygapophyseal paradiapophyseal fossa.",
+        "Abundant pneumatic foramina in spinopostzygapophyseal, centropostzygapophyseal, and postzygapophyseal centrodiapophyseal fossae of dorsal vertebrae.",
+        "Anterior dorsal ribs lacking pneumatic foramina on anterolateral and posteromedial surfaces; second dorsal ribs with anteroposterior thickening or bulge on posterior margin of distal end.",
+        "Scapula with co-occurrence of posteroventral process on medial margin of acromial plate, subtle anteroventral process, prominent dorsomedial blade bulge, and two oval lateral fossae on posterior blade end.",
+        "Coracoid foramen elliptical and twisting its orientation from lateral through to medial surface; fibula distal end bevelled posteriorly 20° relative to long axis of shaft."
+      ],
+      "appearance": {
+        "integument": "scaled",
+        "evidence": "inferred"
+      },
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "450821"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q110852461"
+        }
+      ],
+      "species": [
+        {
+          "name": "Abditosaurus kuehnei",
+          "etymology": "Named for Walter Georg Kühne, the German paleontologist who discovered the type specimen in 1954.",
+          "status": "valid",
+          "type_species": true,
+          "period": {
+            "name": [
+              "Late Cretaceous"
+            ],
+            "stage": [
+              "Maastrichtian"
+            ],
+            "from_ma": 72.2,
+            "to_ma": 66
+          },
+          "location": {
+            "country": "ES",
+            "locality": "Orcau-1",
+            "region": "Lleida",
+            "formation": "Conques",
+            "part": "lower",
+            "coordinates": [
+              42.159484,
+              0.972953
+            ],
+            "region_code": "ES-L",
+            "part_of": "formation"
+          },
+          "size": {
+            "hip_height_m": {
+              "min": 3.5,
+              "max": 3.5
+            },
+            "length_m": {
+              "min": 17.5,
+              "max": 17.5
+            },
+            "weight_kg": {
+              "min": 14000,
+              "max": 14000
+            }
+          },
+          "erected_in": "vila2022a",
+          "type_specimen": {
+            "specimen_id": [
+              "MCD 6715",
+              "MCD 6716",
+              "MCD 6717",
+              "MCD 6718",
+              "MCD 6719",
+              "MCD 6720",
+              "MCD 6721",
+              "MCD 6722",
+              "MCD 6723",
+              "MCD 6724",
+              "MCD 6725",
+              "MCD 6728",
+              "MCD 6729",
+              "MCD 6730",
+              "MCD 6731",
+              "MCD 6732",
+              "MCD 6733",
+              "MCD 6734",
+              "MCD 6735",
+              "MCD 6736",
+              "MCD 6738",
+              "MCD 6742",
+              "MCD 6744",
+              "MCD 6745",
+              "MCD 6746",
+              "MCD 6747",
+              "MCD 6748",
+              "MCD 6749",
+              "MCD 6750",
+              "MCD 6751",
+              "MCD 6985",
+              "MCD 6986",
+              "MCD 6987",
+              "MCD 6988",
+              "MCD 9882",
+              "MNCN 59301",
+              "MNCN 79837",
+              "MNCN 79838",
+              "MNCN 79847",
+              "MNCN 79848"
+            ],
+            "specimen_type": "holotype",
+            "institution": "Museu de la Conca Dellà",
+            "material": "Associated, semi-articulated partial skeleton: isolated teeth, 12 articulated cervical vertebrae, cervical ribs, 7 dorsal vertebrae, 6 dorsal ribs, 3 chevrons, right scapula, right coracoid, left sternal plate, sternal rib, humeri, partial right radius, fragment of left ilium, partial right femur, right tibia, right and left fibula with adhered calcaneum.",
+            "completeness": "partial"
+          },
+          "authors": "Vila, B.; Sellés, A.; Moreno-Azanza, M.; Razzolini, N. L.; Gil-Delgado, A.; Canudo, J. I.; Galobart, À.",
+          "described": 2022
+        }
+      ],
+      "references": [
+        {
+          "id": "vila2022a",
+          "authors": "Vila, B.; Sellés, A.; Moreno-Azanza, M.; Razzolini, N. L.; Gil-Delgado, A.; Canudo, J. I.; Galobart, À.",
+          "year": 2022,
+          "title": "A titanosaurian sauropod with Gondwanan affinities in the latest Cretaceous of Europe",
+          "journal": "Nature Ecology & Evolution",
+          "publisher": "Springer Science and Business Media LLC",
+          "volume": "6",
+          "issue": "3",
+          "pages": "288-296",
+          "doi": "10.1038/s41559-021-01651-5"
+        },
+        {
+          "id": "jones2026b",
+          "authors": "Jones, B.",
+          "year": 2026,
+          "title": "The Princeton Encyclopedia of Dinosaurs: Sauropods",
+          "publisher": "Princeton University Press",
+          "isbn": "978-0-691-25023-6",
+          "notes": "Source of the hip height estimate."
+        }
+      ],
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda",
+        "Gravisauria",
+        "Eusauropoda",
+        "Neosauropoda",
+        "Macronaria",
+        "Camarasauromorpha",
+        "Titanosauriformes",
+        "Somphospondyli",
+        "Titanosauria",
+        "Lithostrotia",
+        "Eutitanosauria",
+        "Saltasauroidea",
+        "Saltasauridae"
+      ],
+      "authors": "Vila, B.; Sellés, A.; Moreno-Azanza, M.; Razzolini, N. L.; Gil-Delgado, A.; Canudo, J. I.; Galobart, À.",
+      "described": 2022
+    },
     "Acanthopholis": {
       "genus": "Acanthopholis",
       "parent": "Nodosauridae",
@@ -3363,6 +4305,170 @@
       ],
       "authors": "Ren, X. X.; Huang, J. D.; You, H. L.",
       "described": 2020
+    },
+    "Antarctopelta": {
+      "genus": "Antarctopelta",
+      "parent": "Parankylosauria",
+      "pronunciation": {
+        "phonetic": "ann-TARK-toh-PEL-tuh"
+      },
+      "etymology": "From 'Antarctica' and Greek 'pelta' meaning 'shield', meaning 'Antarctic shield', reflecting its discovery in Antarctica.",
+      "description": "Antarctopelta is a genus of ankylosaurian dinosaur, a group of large, quadrupedal herbivores, that lived during the late Campanian age of the Late Cretaceous period on what is now James Ross Island, Antarctica. Antarctopelta is the only known ankylosaur from Antarctica and a member of Parankylosauria. The only described specimen was found in 1986, the first dinosaur to be found on the continent, by Argentine geologists Eduardo Olivero and Robert Scasso. The fossils were later described in 2006 by paleontologists Leonardo Salgado and Zulma Gasparini, who named the type species A. oliveroi after Olivero. A 2024 reappraisal by Soto Acuña, Vargas, and Kaluza redescribed the holotype, placed the genus within Parankylosauria, and reinterpreted its caudal osteoderms as a Stegouros-like bony tail weapon.",
+      "diet": "herbivore",
+      "locomotion": "quadrupedal",
+      "paleoenvironment": [
+        "marine"
+      ],
+      "diagnostic_features": [
+        "Asymmetrical cheek teeth with at least seven denticles on the mesial border, marked vertical ridges confluent with the denticles on the lingual side, and an ornamented cingulum with fine striations.",
+        "Scapular girdle unfused (scapula and coracoid not coossified).",
+        "Metatarsal IV with a proximal epiphysis noticeably wider than those of the other metatarsals.",
+        "Well-marked striations on the supracetabular shelf of the ilium.",
+        "Sacral shield filling the space between both ilia and covering the sacral neural spines, ornamented with several irregular sulci and pits.",
+        "Intradermal ossicles approximately 8 mm in diameter."
+      ],
+      "appearance": {
+        "features": [
+          "body armor",
+          "osteoderms"
+        ],
+        "integument": "armored",
+        "evidence": "direct"
+      },
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "77202"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q134176"
+        },
+        {
+          "source": "gbif",
+          "id": "6141931"
+        },
+        {
+          "source": "eol",
+          "id": "42418567"
+        }
+      ],
+      "species": [
+        {
+          "name": "Antarctopelta oliveroi",
+          "etymology": "Named for Eduardo Olivero, the Argentine geologist who discovered the holotype in 1986 and has worked in Antarctica for decades.",
+          "status": "valid",
+          "type_species": true,
+          "period": {
+            "name": [
+              "Late Cretaceous"
+            ],
+            "stage": [
+              "Campanian"
+            ],
+            "from_ma": 83.6,
+            "to_ma": 72.2
+          },
+          "location": {
+            "country": "AQ",
+            "locality": "D6-1, Santa Marta Cove",
+            "formation": "Snow Hill Island",
+            "member": "Gamma",
+            "part": "lower",
+            "part_of": "member"
+          },
+          "size": {
+            "hip_height_m": {
+              "min": 1.2,
+              "max": 1.2
+            },
+            "length_m": {
+              "min": 4,
+              "max": 4
+            },
+            "weight_kg": {
+              "min": 350,
+              "max": 350
+            }
+          },
+          "type_specimen": {
+            "specimen_id": [
+              "MLP 86-X-28-1"
+            ],
+            "specimen_type": "holotype",
+            "institution": "Museo de La Plata",
+            "material": "Partial skeleton: left dentary fragment with an erupting tooth and at least five isolated cheek teeth; anterior, mid (cast), and posterior cervical vertebrae; two fused dorsosacral and three sacral centra; ~eight caudal vertebrae; rib fragments; left scapular girdle; distal radius; ilium fragments; metatarsal epiphyses; two pedal phalanges; dorsal and costal osteoderms; sacral-shield fragments; caudal-weapon osteoderms; and ossicles.",
+            "completeness": "partial"
+          },
+          "erected_in": "salgado2006a",
+          "described_in": "soto-acuña2024a",
+          "authors": "Salgado, L.; Gasparini, Z.",
+          "described": 2006
+        }
+      ],
+      "references": [
+        {
+          "id": "salgado2006a",
+          "authors": "Salgado, L.; Gasparini, Z.",
+          "year": 2006,
+          "title": "Reappraisal of an ankylosaurian dinosaur from the Upper Cretaceous of James Ross Island (Antarctica)",
+          "journal": "Geodiversitas",
+          "volume": "28",
+          "issue": "1",
+          "pages": "119-135",
+          "doi": "10.5281/zenodo.5376155"
+        },
+        {
+          "id": "soto-acuña2024a",
+          "authors": "Soto-Acuña, S.; Vargas, A. O.; Kaluza, J.",
+          "year": 2024,
+          "title": "A new look at the first dinosaur discovered in Antarctica: reappraisal of Antarctopelta oliveroi (Ankylosauria: Parankylosauria)",
+          "journal": "Advances in Polar Science",
+          "volume": "35",
+          "issue": "1",
+          "pages": "78-107",
+          "doi": "10.12429/j.advps.2023.0036",
+          "notes": "Full redescription of the holotype; recovers Antarctopelta within Parankylosauria, confirms an upper Campanian age, and reinterprets the caudal osteoderms as a Stegouros-like tail weapon."
+        },
+        {
+          "id": "jones2026a",
+          "authors": "Jones, B.",
+          "year": 2026,
+          "title": "The Princeton Encyclopedia of Dinosaurs: Ornithischians",
+          "publisher": "Princeton University Press",
+          "isbn": "978-0-691-25025-0",
+          "notes": "Source of the hip height estimate, and the appearance features."
+        },
+        {
+          "id": "coria2011a",
+          "authors": "Coria, R. A.; Salgado, L.; Gasparini, Z.; Moly, J. J.",
+          "year": 2011,
+          "title": "Nuevos materiales del ejemplar holotipo de Antarctopelta oliveroi Salgado y Gasparini (Dinosauria, Ornithischia, Ankylosauria) del Cretácico superior de Antártida [New materials from the holotype specimen of Antarctopelta oliveroi Salgado and Gasparini (Dinosauria, Ornithischia, Ankylosauria) from the Upper Cretaceous of Antarctica]",
+          "journal": "Ameghiniana",
+          "volume": "48",
+          "issue": "4",
+          "pages": "R10",
+          "notes": "Reports the 2009 relocation of the holotype site and the first GPS fix for it, and refers further material from the site to the holotype individual."
+        }
+      ],
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Ornithischia",
+        "Genasauria",
+        "Thyreophora",
+        "Ankylosauria",
+        "Parankylosauria"
+      ],
+      "authors": "Salgado, L.; Gasparini, Z.",
+      "described": 2006
     },
     "Daspletosaurus": {
       "genus": "Daspletosaurus",

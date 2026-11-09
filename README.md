@@ -18,7 +18,7 @@ with JavaScript off; scripts add search and the tree's open and close buttons. I
 | Home | Search, the release and its counts, a chart of genera through time whose stages and periods link to their pages, the major groups, the most recently named genera, and how to download, cite and contribute |
 | Stage (26) | The genera known from one stage with their clades, ages and countries, the stage's place in the time scale, and links to the stages before and after |
 | Period (3) | The period's stages as a chart, and its genera from A to Z |
-| Genus (1,428) | Description, an age figure in the chart colors of the geologic time scale, diagnosis, each species with its type specimen, horizon and locality, synonyms, notable specimens, ICZN cases and references, beside an "at a glance" panel |
+| Genus (1,428) | Description, an age figure in the chart colors of the geologic time scale, a map of where each species was found (a dot for published coordinates, the region or country shaded otherwise), diagnosis, each species with its type specimen, horizon and locality, synonyms, notable specimens, ICZN cases and references, beside an "at a glance" panel |
 | Clade (188) | Description, the span of time its genera cover, diagnosis, the clades within it, and a list of the genera placed directly in it with their ages and countries |
 | Reference (2,553) | One page per cited work: the full citation, the names first published in it, and every genus and clade that cites it |
 | Genera | Every genus, A to Z, with its group, epochs and country, and filters for time, group, diet, locomotion, integument, status and year named that are kept in the page address |
@@ -53,6 +53,8 @@ npm run typecheck   # TypeScript and astro check
 npm run lint        # ESLint (style and correctness)
 npm run spellcheck  # cspell over Markdown, TypeScript, Astro and CSS
 npm run check-site  # after a build: links, axe (WCAG 2.2 AA) and 320px reflow on dist/
+
+npm run create-map-shapes  # rebuild the map's region outlines from Natural Earth
 ```
 
 `check-site` needs Chromium once: `npx playwright install --only-shell chromium`.
@@ -60,6 +62,15 @@ npm run check-site  # after a build: links, axe (WCAG 2.2 AA) and 320px reflow o
 The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 [open-paleo/data](https://github.com/open-paleo/data) beside this repository, or set
 `OPEN_PALEO_DATA` to the directory that holds `open-paleo.json`.
+
+## Maps
+
+Genus pages show where each species was found on an interactive map: MapLibre GL JS over
+[OpenFreeMap](https://openfreemap.org)'s vector tiles of
+[OpenStreetMap](https://www.openstreetmap.org/copyright) data (© OpenStreetMap contributors,
+ODbL), restyled in the site's colors. Readers' browsers fetch the tiles from openfreemap.org; no
+other page makes a request outside the site. Region and country outlines are from
+[Natural Earth](https://www.naturalearthdata.com) (public domain).
 
 ## Deployment
 

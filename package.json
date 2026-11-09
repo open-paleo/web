@@ -19,7 +19,8 @@
     "spellcheck": "cspell \"**/*.md\" \"*.ts\" \"scripts/**/*.ts\" \"src/**/*.{ts,astro,css}\" --no-progress",
     "check-site": "node --experimental-strip-types scripts/check-site.ts",
     "update-bindings": "node --experimental-strip-types scripts/update-bindings.ts",
-    "create-test-fixture": "node --experimental-strip-types scripts/create-test-fixture.ts"
+    "create-test-fixture": "node --experimental-strip-types scripts/create-test-fixture.ts",
+    "create-map-shapes": "node --experimental-strip-types scripts/create-map-shapes.ts"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",
@@ -39,6 +40,7 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.4",
-    "astro": "7.4.2"
+    "astro": "7.4.2",
+    "maplibre-gl": "6.16.0"
   }
 }
