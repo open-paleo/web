@@ -142,6 +142,25 @@ export function hasActiveFilter(criteria: GenusFilterCriteria): boolean
 }
 
 /**
+ * Count the filters that are on, for the folded form's button: each list chosen, and the year
+ * range as one.
+ *
+ * @param criteria - The chosen filters.
+ * @returns How many filters are on.
+ */
+export function countActiveFilters(criteria: GenusFilterCriteria): number
+{
+    let count = 0;
+
+    for (const name of choiceFilterNames)
+    {
+        count += criteria[name] !== "" ? 1 : 0;
+    }
+
+    return count + (criteria.fromYear !== undefined || criteria.toYear !== undefined ? 1 : 0);
+}
+
+/**
  * Write a genus's filter values as data attributes for its list item.
  *
  * @param values - The genus's filter values.

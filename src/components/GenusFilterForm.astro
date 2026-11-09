@@ -3,7 +3,7 @@ import type { GenusFilterOptions } from "../data/genus-index.ts";
 import { formatGenusCount } from "../data/format.ts";
 
 /**
- * Properties of the Genera page's filter form.
+ * Properties of the genus filter form, on the Genera and Map pages.
  */
 type Props = {
     /**
@@ -15,16 +15,22 @@ type Props = {
      * Number of genera on the page.
      */
     total: number;
+
+    /**
+     * Whether the fields fold away behind a "Filters" button, leaving one line: the button, the
+     * summary and "Clear filters". The Map page folds them so the map fits the first screen.
+     */
+    isCollapsible: boolean;
 };
 
-const { options, total } = Astro.props;
+const { options, total, isCollapsible } = Astro.props;
 ---
 
 {/* The form is hidden until the script starts, so a reader without JavaScript sees the full
    list and no controls that do nothing. The script reads the filters from the page address
    and writes them back to it, so a filtered list can be shared. */}
-<form class="genus-filters" id="genus-filters" data-total={total} aria-label="Filter genera" hidden>
-    <div class="filter-fields">
+<form class:list={["genus-filters", { "is-collapsible": isCollapsible }]} id="genus-filters" data-total={total} aria-label="Filter genera" hidden>
+    <div class="filter-fields" id="genus-filter-fields" hidden={isCollapsible}>
         {options.choices.map((choice) => (
             <label class="filter-field">
                 <span class="filter-label">{choice.label}</span>
@@ -59,6 +65,7 @@ const { options, total } = Astro.props;
         </div>
     </div>
     <div class="filter-summary">
+        {isCollapsible && <button class="filter-toggle" type="button" id="genus-filter-toggle" aria-expanded="false" aria-controls="genus-filter-fields">Filters</button>}
         <p class="filter-status" id="genus-filter-status" role="status">Showing all {formatGenusCount(total)}.</p>
         <button class="filter-clear" type="button" id="genus-filter-clear" hidden>Clear filters</button>
     </div>
@@ -77,6 +84,7 @@ const { options, total } = Astro.props;
     }
 
     .genus-filters[hidden],
+    .filter-fields[hidden],
     .filter-clear[hidden]
     {
         display: none;
@@ -173,6 +181,54 @@ const { options, total } = Astro.props;
         {
             grid-column: 1 / -1;
         }
+    }
+
+    /* Folded, the form is one line; the summary leads, and the fields open under it. */
+    .genus-filters.is-collapsible
+    {
+        padding: var(--space-3) var(--space-4);
+    }
+
+    .genus-filters.is-collapsible .filter-summary
+    {
+        order: -1;
+        justify-content: flex-start;
+    }
+
+    .genus-filters.is-collapsible .filter-clear
+    {
+        margin-left: auto;
+    }
+
+    .filter-toggle
+    {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-1) var(--space-4);
+        color: var(--color-surface);
+        background: var(--color-accent);
+        border: 1px solid var(--color-accent);
+        border-radius: var(--radius);
+        font-size: var(--text-interface);
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    /* The chevron turns up when the fields are open. */
+    .filter-toggle::after
+    {
+        width: 0.4rem;
+        height: 0.4rem;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        content: "";
+        transform: translateY(-25%) rotate(45deg);
+    }
+
+    .filter-toggle[aria-expanded="true"]::after
+    {
+        transform: translateY(25%) rotate(225deg);
     }
 
     .filter-summary

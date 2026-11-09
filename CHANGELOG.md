@@ -57,6 +57,9 @@ at the same place share one mark. MapLibre GL JS over OpenFreeMap's OpenStreetMa
 
 ### Changed
 
+- The Map page's filters fold into one line, with a "Filters" button that shows how many are
+  on, and the map is sized to the window, so on a laptop the whole map is in view without
+  scrolling
 - Clade and stage pages list their genera like the Genera page, in columns with a line of
   details for each, instead of a table: stages with their dates and country, plus the clade on
   stage pages and *incertae sedis* on clade pages. Lists of more than 100 genera are grouped by

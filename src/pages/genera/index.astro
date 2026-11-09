@@ -17,7 +17,7 @@ const filterOptions = listGenusFilterOptions(rows, siteData.timeline);
             <h1>Genera</h1>
             <p class="index-summary">{formatGenusCount(siteData.genera.length)} in release {siteData.metadata.version}, from A to Z.</p>
         </header>
-        <GenusFilterForm options={filterOptions} total={rows.length} />
+        <GenusFilterForm options={filterOptions} total={rows.length} isCollapsible={false} />
         <GenusIndex rows={rows} label="Genera" headingLevel={2} isFilterable={true} isGroupedByLetter={true} />
     </div>
 </BaseLayout>

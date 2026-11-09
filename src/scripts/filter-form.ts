@@ -6,6 +6,7 @@ import { formatGenusCount } from "../data/format.ts";
 import type { ChoiceFilterName, GenusFilterCriteria, GenusFilterValues } from "../data/genus-filters.ts";
 import {
     choiceFilterNames,
+    countActiveFilters,
     createEmptyCriteria,
     createFilterQuery,
     hasActiveFilter,
@@ -48,6 +49,16 @@ export type FilterForm = {
      * The button that turns every filter off.
      */
     clearButton: HTMLButtonElement;
+
+    /**
+     * The button that opens and closes the fields, on a page where they fold away.
+     */
+    toggle: HTMLButtonElement | null;
+
+    /**
+     * The fields.
+     */
+    fields: HTMLElement | null;
 };
 
 /**
@@ -80,7 +91,10 @@ export function findFilterForm(): FilterForm | undefined
         }
     }
 
-    return { form, selects, fromField, toField, status, clearButton };
+    const toggle = document.querySelector<HTMLButtonElement>("#genus-filter-toggle");
+    const fields = document.querySelector<HTMLElement>("#genus-filter-fields");
+
+    return { form, selects, fromField, toField, status, clearButton, toggle, fields };
 }
 
 /**
@@ -217,10 +231,35 @@ export function updateFilterForm(controls: FilterForm, genera: Array<GenusFilter
     controls.status.textContent = describeShownGenera(shown, genera.length);
     controls.clearButton.hidden = !hasActiveFilter(criteria);
 
+    if (controls.toggle)
+    {
+        const activeCount = countActiveFilters(criteria);
+
+        controls.toggle.textContent = activeCount === 0 ? "Filters" : "Filters (" + activeCount + " on)";
+    }
+
     const address = new URL(window.location.href);
 
     address.search = createFilterQuery(criteria).toString();
     window.history.replaceState(null, "", address);
+}
+
+/**
+ * Open or close the fields of a form that folds away.
+ *
+ * @param controls - The form's parts.
+ */
+function toggleFilterFields(controls: FilterForm): void
+{
+    if (!controls.toggle || !controls.fields)
+    {
+        return;
+    }
+
+    const isOpening = controls.fields.hidden;
+
+    controls.fields.hidden = !isOpening;
+    controls.toggle.setAttribute("aria-expanded", String(isOpening));
 }
 
 /**
@@ -237,6 +276,7 @@ export function connectFilterForm(controls: FilterForm, applyFilters: () => void
     controls.form.addEventListener("change", applyFilters);
     controls.form.addEventListener("input", applyFilters);
     controls.form.addEventListener("submit", (event) => event.preventDefault());
+    controls.toggle?.addEventListener("click", () => toggleFilterFields(controls));
     controls.clearButton.addEventListener("click", () =>
     {
         writeFormCriteria(controls, createEmptyCriteria());

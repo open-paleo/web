@@ -21,14 +21,10 @@ const legendSteps = ["1", "2–4", "5–9", "10–24", "25 or more"];
     <div class="map-page">
         <header class="map-header">
             <h1>Map</h1>
-            <p class="map-summary">
-                Where the type species of {formatGenusCount(placedCount)} were found, on today's map. Each
-                region is shaded by how many genera come from it; a dot marks a genus with published
-                coordinates.
-            </p>
+            <p class="map-summary">Where the type species of {formatGenusCount(placedCount)} were found, on today's map.</p>
         </header>
 
-        <GenusFilterForm options={filterOptions} total={placedCount} />
+        <GenusFilterForm options={filterOptions} total={placedCount} isCollapsible={true} />
 
         {/* The map and its panel are hidden until the map script runs; without it, the index of
            genera by place below says the same. */}
@@ -87,7 +83,7 @@ const legendSteps = ["1", "2–4", "5–9", "10–24", "25 or more"];
     .map-header
     {
         display: grid;
-        gap: var(--space-3);
+        gap: var(--space-2);
     }
 
     h1
@@ -104,12 +100,14 @@ const legendSteps = ["1", "2–4", "5–9", "10–24", "25 or more"];
 
     /* The map takes the width; the legend and the selected place's genera sit beside it on wide
        screens and under it on narrow ones. */
+    /* The map fills the window below the header, title and folded filters (about 22rem), so on a
+       laptop the whole map is in view without scrolling; taller screens stop at 40rem. */
     .map-layout
     {
         display: grid;
         grid-template-columns: minmax(0, 1fr) var(--sidebar-width);
         gap: var(--space-4);
-        height: 36rem;
+        height: clamp(24rem, calc(100svh - 22rem), 40rem);
     }
 
     .map-layout[hidden]

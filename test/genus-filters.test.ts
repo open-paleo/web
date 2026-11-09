@@ -3,6 +3,7 @@ import { test } from "node:test";
 
 import type { GenusFilterCriteria, GenusFilterValues } from "../src/data/genus-filters.ts";
 import {
+    countActiveFilters,
     createEmptyCriteria,
     createFilterAttributes,
     createFilterQuery,
@@ -134,4 +135,16 @@ test("parseYear accepts whole numbers only", () =>
     assert.equal(parseYear("19o5"), undefined);
     assert.equal(parseYear("-5"), undefined);
     assert.equal(parseYear(null), undefined);
+});
+
+test("countActiveFilters counts each list and the year range once", () =>
+{
+    const criteria = createEmptyCriteria();
+
+    assert.equal(countActiveFilters(criteria), 0);
+    criteria.time = "jurassic";
+    criteria.diet = "carnivore";
+    criteria.fromYear = 1900;
+    criteria.toYear = 1950;
+    assert.equal(countActiveFilters(criteria), 3);
 });
