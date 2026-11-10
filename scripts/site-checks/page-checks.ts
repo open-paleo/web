@@ -118,15 +118,18 @@ export async function checkAccessibility(page: Page): Promise<AccessibilityRepor
 }
 
 /**
- * Find grid and flex containers that hold both loose text and elements. Each loose run of text
- * becomes its own grid or flex item, so a sentence with a link in it splits into columns. Runs
- * in the browser, so it uses nothing from this module.
+ * Find grid and flex containers that split prose: loose text beside a text-level element (a link,
+ * an italic name, a span) or more than one loose text run. Each becomes its own grid or flex
+ * item, so a sentence with a link in it would break into columns. A form control or image beside
+ * one run of text, such as a checkbox and its label, cannot split a sentence and is not reported.
+ * Runs in the browser, so it uses nothing from this module.
  *
  * @returns A description of each such container: its tag, class and opening text.
  */
 function findLooseTextInPage(): Array<string>
 {
     const containers = new Array<string>();
+    const controls = ["INPUT", "SELECT", "TEXTAREA", "BUTTON", "IMG", "SVG", "CANVAS", "VIDEO", "PICTURE"];
 
     for (const element of document.querySelectorAll("body *"))
     {
@@ -137,22 +140,22 @@ function findLooseTextInPage(): Array<string>
             continue;
         }
 
-        let hasLooseText = false;
-        let hasElement = false;
+        let looseTextRuns = 0;
+        let hasTextElement = false;
 
         for (const node of element.childNodes)
         {
             if (node.nodeType === Node.TEXT_NODE && (node.textContent ?? "").trim() !== "")
             {
-                hasLooseText = true;
+                looseTextRuns++;
             }
-            else if (node.nodeType === Node.ELEMENT_NODE)
+            else if (node.nodeType === Node.ELEMENT_NODE && !controls.includes((node as Element).tagName.toUpperCase()))
             {
-                hasElement = true;
+                hasTextElement = true;
             }
         }
 
-        if (hasLooseText && hasElement)
+        if (looseTextRuns >= 2 || (looseTextRuns === 1 && hasTextElement))
         {
             const className = element.getAttribute("class") ?? "";
             const text = (element.textContent ?? "").replace(/\s+/g, " ").trim().slice(0, 60);

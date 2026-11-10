@@ -408,7 +408,8 @@ npm run check-site
 
 `npm run check-site` checks the built site: every internal link resolves, and a sample of
 pages (one of each kind, plus the records with the most unusual content) passes WCAG 2.2 AA in
-axe in light and dark mode, has no grid or flex container that splits loose text into columns,
+axe in light and dark mode, has no grid or flex container that splits prose into columns (loose
+text beside a link, italic name or span; a checkbox beside its label text is fine),
 and does not scroll sideways in a 320px window. It needs Chromium once:
 `npx playwright install --only-shell chromium`. The sample is listed in
 `scripts/check-site.ts`; if a record in it leaves the dataset, replace it with one that shows the
