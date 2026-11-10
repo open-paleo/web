@@ -110,7 +110,9 @@ change and review the diff. Tests never use invented records.
 
 `src/data/map-shapes.json` holds the region and country outlines the maps shade when a place is
 known only to its region or country: Natural Earth 5.1.2 (public domain), simplified, and only
-the regions and countries the dataset uses. `npm run create-map-shapes` rebuilds it, downloading
+the regions and countries the dataset uses. Country outlines, used only as a coarse fallback, are
+simplified in proportion to the country's size and lose islands under 0.5% of its largest
+polygon, and every outline stops at 85° north and south, where the map's tiles end. `npm run create-map-shapes` rebuilds it, downloading
 Natural Earth into `scratch/` the first time. Rerun it when the build warns that a region has no
 outline. Region codes Natural Earth records under an older code are mapped in the script; codes
 it has no outline for at all are listed in the file, and their species are shaded at country

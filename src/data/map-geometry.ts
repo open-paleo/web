@@ -119,3 +119,78 @@ export function simplifyPolygons(polygons: Array<MapPolygon>, tolerance: number,
 
     return simplified;
 }
+
+/**
+ * Measure a ring's area with the shoelace formula, in square degrees.
+ *
+ * @param ring - The ring.
+ * @returns The area, positive whichever way the ring runs.
+ */
+export function measureRingArea(ring: Array<MapPosition>): number
+{
+    let doubledArea = 0;
+
+    for (let index = 0; index < ring.length - 1; index++)
+    {
+        doubledArea += ring[index][0] * ring[index + 1][1] - ring[index + 1][0] * ring[index][1];
+    }
+
+    return Math.abs(doubledArea) / 2;
+}
+
+/**
+ * Drop the polygons that are tiny next to the largest, such as the many small islands off a
+ * country's coast, which only clutter an outline drawn as a coarse fallback.
+ *
+ * @param polygons - The polygons.
+ * @param minimumShare - The smallest area to keep, as a share of the largest polygon's area.
+ * @returns The polygons kept, in the same order.
+ */
+export function dropSmallPolygons(polygons: Array<MapPolygon>, minimumShare: number): Array<MapPolygon>
+{
+    let largestArea = 0;
+
+    for (const polygon of polygons)
+    {
+        largestArea = Math.max(largestArea, measureRingArea(polygon[0]));
+    }
+
+    const kept = new Array<MapPolygon>();
+
+    for (const polygon of polygons)
+    {
+        if (measureRingArea(polygon[0]) >= largestArea * minimumShare)
+        {
+            kept.push(polygon);
+        }
+    }
+
+    return kept;
+}
+
+/**
+ * Measure the diagonal of the box around some polygons, in degrees, as a gauge of their size.
+ *
+ * @param polygons - The polygons.
+ * @returns The diagonal.
+ */
+export function measureExtent(polygons: Array<MapPolygon>): number
+{
+    let west = Number.POSITIVE_INFINITY;
+    let east = Number.NEGATIVE_INFINITY;
+    let south = Number.POSITIVE_INFINITY;
+    let north = Number.NEGATIVE_INFINITY;
+
+    for (const polygon of polygons)
+    {
+        for (const [longitude, latitude] of polygon[0])
+        {
+            west = Math.min(west, longitude);
+            east = Math.max(east, longitude);
+            south = Math.min(south, latitude);
+            north = Math.max(north, latitude);
+        }
+    }
+
+    return Math.hypot(east - west, north - south);
+}

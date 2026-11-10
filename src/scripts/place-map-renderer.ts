@@ -5,7 +5,7 @@
 import type { ExpressionSpecification, GeoJSONSourceSpecification, LayerSpecification, MapLayerMouseEvent, StyleSpecification } from "maplibre-gl";
 import { Map as MapLibreMap, NavigationControl, Popup } from "maplibre-gl";
 
-import type { GenusMapFeatureCollection, MapBounds } from "../data/genus-map.ts";
+import type { GenusMapFeatureCollection, GenusMapView, MapBounds } from "../data/genus-map.ts";
 import type { MapColors } from "./map-style.ts";
 import { createGroundLayers, createNameLayers, glyphSource, italicLabelFont, readMapColors, tileSource, zoomLimit } from "./map-style.ts";
 
@@ -23,8 +23,15 @@ type PlaceProperties = {
 // How far the map zooms in when it opens on a place.
 const openingZoomLimit = 6;
 
+// The zoom a map opens at when its places are too wide to fit. Over a pole it is negative: the
+// globe matches the flat map's scale at the center latitude, which near a pole is many times
+// enlarged, so only a zoom below 0 shows the whole of Antarctica.
+const wideOpeningZoom = -1.5;
+
 const isArea: ExpressionSpecification = ["==", ["get", "kind"], "area"];
-const isCountryArea: ExpressionSpecification = ["all", isArea, ["==", ["get", "precision"], "country"]];
+// A country-level area's dashed outline is drawn from its own lines, which leave out the
+// artificial edges Natural Earth closes Antarctica with.
+const isCountryOutline: ExpressionSpecification = ["==", ["get", "kind"], "outline"];
 
 // The type species' label is placed first, so it is the one kept when labels collide.
 const labelPriority: ExpressionSpecification = ["case", ["get", "isTypeSpecies"], 0, 1];
@@ -65,7 +72,7 @@ function createPlaceLayers(colors: MapColors): Array<LayerSpecification>
             id: "place-country-outlines",
             type: "line",
             source: "places",
-            filter: isCountryArea,
+            filter: isCountryOutline,
             paint: { "line-color": colors.place, "line-width": 1.25, "line-dasharray": [2, 2] },
         },
         {
@@ -118,12 +125,14 @@ function createPlaceLayers(colors: MapColors): Array<LayerSpecification>
  *
  * @param colors - The map's colors.
  * @param features - The places.
+ * @param view - How the map opens, which sets its projection.
  * @returns The style.
  */
-function createMapStyle(colors: MapColors, features: GenusMapFeatureCollection): StyleSpecification
+function createMapStyle(colors: MapColors, features: GenusMapFeatureCollection, view: GenusMapView): StyleSpecification
 {
     return {
         version: 8,
+        projection: { type: view.projection },
         glyphs: glyphSource,
         sources: {
             base: { type: "vector", url: tileSource },
@@ -188,15 +197,18 @@ export function renderPlaceMap(container: HTMLElement): void
 {
     const features = JSON.parse(container.dataset.features ?? "{}") as GenusMapFeatureCollection;
     const bounds = JSON.parse(container.dataset.bounds ?? "[]") as MapBounds;
+    const view = JSON.parse(container.dataset.view ?? "{}") as GenusMapView;
     let map: MapLibreMap;
 
     try
     {
         map = new MapLibreMap({
             container,
-            style: createMapStyle(readMapColors(), features),
-            bounds,
-            fitBoundsOptions: { padding: 48, maxZoom: openingZoomLimit },
+            style: createMapStyle(readMapColors(), features, view),
+            // Places spanning more than half the world cannot be fitted; the map opens on their
+            // middle, far enough out to show them.
+            ...(view.isWide ? { center: view.center, zoom: wideOpeningZoom } : { bounds, fitBoundsOptions: { padding: 48, maxZoom: openingZoomLimit } }),
+            minZoom: -2,
             maxZoom: zoomLimit,
             attributionControl: { compact: true },
             cooperativeGestures: true,
@@ -219,5 +231,5 @@ export function renderPlaceMap(container: HTMLElement): void
     map.on("mouseleave", selectableLayers, () => map.getCanvas().style.removeProperty("cursor"));
 
     // Follow the reader's light or dark setting: the tokens change, so the style is rebuilt.
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => map.setStyle(createMapStyle(readMapColors(), features)));
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => map.setStyle(createMapStyle(readMapColors(), features, view)));
 }

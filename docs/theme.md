@@ -77,6 +77,13 @@ collide, MapLibre shows the type species' first and the rest as the reader zooms
 species is drawn more strongly than the others. `--map-control-icon-filter` (`none`, or
 `invert(1)` in dark mode) keeps MapLibre's control icons visible on the themed buttons.
 
+A genus map whose places reach beyond 60°S or 66°N is drawn on a globe rather than the flat web
+map, which stretches land that far from the equator out of shape and cannot show Antarctica's
+interior. Places spanning more than half the world's longitudes (Antarctica) open over the
+middle, or the pole; a band that crosses the 180° meridian (Alaska's Aleutians) is measured
+across it. The base map has no tiles beyond 85°, so outlines stop there and a small unshaded disc
+shows at the South Pole.
+
 The Map page shades each region by how many genera's type species come from it, in five bins
 of one green ramp: light to dark in light mode, dark to light in dark mode, so more genera
 always reads as more contrast with the land. Both ramps pass the dataviz validator's ordinal

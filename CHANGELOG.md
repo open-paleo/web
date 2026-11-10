@@ -68,6 +68,11 @@ at the same place share one mark. MapLibre GL JS over OpenFreeMap's OpenStreetMa
 
 ### Changed
 
+- Genus maps reaching toward a pole are drawn on a globe: the Antarctic genera show the whole
+  continent from over the South Pole instead of a stretched band, and Alaskan genera open on
+  Alaska rather than the whole world, since their outlines cross the 180° meridian. Country
+  outlines are simpler (Antarctica's went from 176 polygons and 7,020 points to one outline of
+  182) and no longer draw the artificial edges along the meridian and the pole
 - The Map page's filters fold into one line, with a "Filters" button that shows how many are
   on, and the map is sized to the window, so on a laptop the whole map is in view without
   scrolling

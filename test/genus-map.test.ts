@@ -8,7 +8,9 @@ import {
     abbreviateSpeciesName,
     createGenusMap,
     createGenusMapFeatures,
+    createOutlineLines,
     findLabelPosition,
+    findLongitudeBand,
     findMissingOutline,
     getMapShapes,
 } from "../src/data/genus-map.ts";
@@ -187,6 +189,52 @@ test("every region the fixture uses has an outline or is listed as lacking one",
         for (const species of genus.species)
         {
             assert.equal(species.location ? findMissingOutline(species.location, shapes) : "", "", species.name);
+        }
+    }
+});
+
+test("a longitude band can cross the 180° meridian instead of spanning the world", () =>
+{
+    assert.deepEqual(findLongitudeBand([-10, 5, 20]), [-10, 20]);
+    assert.deepEqual(findLongitudeBand([172, 179, -179, -140]), [172, 220], "Alaska's Aleutians to its east");
+    assert.deepEqual(findLongitudeBand([42]), [42, 42]);
+});
+
+test("a map reaching toward a pole is drawn on a globe; others stay flat", () =>
+{
+    const antarctopelta = createGenusMap(getGenus("Antarctopelta"), shapes);
+    const tyrannosaurus = createGenusMap(getGenus("Tyrannosaurus"), shapes);
+
+    assert.equal(antarctopelta?.projection, "globe");
+    assert.equal(antarctopelta?.isWide, true, "Antarctica spans every longitude");
+    assert.equal(antarctopelta?.center[1], -85, "it opens over the South Pole");
+    assert.equal(tyrannosaurus?.projection, "mercator");
+    assert.equal(tyrannosaurus?.isWide, false);
+});
+
+test("outline lines leave out edges along the 180° meridian and the 85° cut", () =>
+{
+    const lines = createOutlineLines([[[[170, -80], [180, -84], [180, -85], [-180, -85], [-180, -84], [-170, -80], [170, -80]]]]);
+
+    assert.deepEqual(lines, [[[170, -80], [180, -84]], [[-180, -84], [-170, -80], [170, -80]]]);
+});
+
+test("no outline point lies beyond the 85° the map can show", () =>
+{
+    for (const table of [shapes.regions, shapes.countries])
+    {
+        for (const [code, polygons] of Object.entries(table))
+        {
+            for (const polygon of polygons)
+            {
+                for (const ring of polygon)
+                {
+                    for (const point of ring)
+                    {
+                        assert.ok(Math.abs(point[1]) <= 85, code);
+                    }
+                }
+            }
         }
     }
 });

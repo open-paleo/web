@@ -1,6 +1,6 @@
 ---
 import type { GenusMap } from "../data/genus-map.ts";
-import { createGenusMapFeatures } from "../data/genus-map.ts";
+import { createGenusMapFeatures, createGenusMapView } from "../data/genus-map.ts";
 
 /**
  * Properties of a genus page's map.
@@ -20,6 +20,7 @@ type Props = {
 const { map, genusName } = Astro.props;
 const features = JSON.stringify(createGenusMapFeatures(map));
 const bounds = JSON.stringify(map.bounds);
+const view = JSON.stringify(createGenusMapView(map));
 ---
 
 {/* The map is drawn by src/scripts/place-map.ts, which loads MapLibre only when the map scrolls
@@ -27,7 +28,7 @@ const bounds = JSON.stringify(map.bounds);
    same in words, works without JavaScript, and serves as the map's legend: each place's mark
    matches its mark on the map. */}
 <div class="genus-map">
-    <div class="place-map" data-features={features} data-bounds={bounds} role="region" aria-label={"Map of where " + genusName + " was found"} hidden></div>
+    <div class="place-map" data-features={features} data-bounds={bounds} data-view={view} role="region" aria-label={"Map of where " + genusName + " was found"} hidden></div>
     <ul class="map-places">
         {map.places.map((place) => (
             <li>

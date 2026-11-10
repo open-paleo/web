@@ -4,7 +4,7 @@ import * as url from "node:url";
 
 import type { OpenPaleoDataset } from "../src/data/dataset.ts";
 import { datasetFileName, findDatasetDirectory } from "../src/data/locate-dataset.ts";
-import { simplifyRing } from "../src/data/map-geometry.ts";
+import { dropSmallPolygons, measureExtent, simplifyPolygons, simplifyRing } from "../src/data/map-geometry.ts";
 import type { MapPolygon, MapPosition, MapShapes } from "../src/data/map-shapes.ts";
 
 // Builds src/data/map-shapes.json: the outlines the maps shade when a species' place is known
@@ -64,6 +64,16 @@ const countryFile = "ne_10m_admin_0_countries";
 // about 11 km; at the zoom levels the maps open at, these keep outlines recognizable.
 const regionTolerance = 0.01;
 const countryTolerance = 0.02;
+
+// A country outline is only shaded as a coarse fallback, so large countries are simplified
+// further, in proportion to their size (their extent's diagonal divided by this), and islands
+// smaller than this share of the largest polygon are dropped. Without this, Antarctica's
+// outline alone had 176 polygons and 7,020 points of ice shelf and island.
+const countryToleranceDivisor = 600;
+const countryIslandShare = 0.005;
+
+// The latitude web map tiles stop at, rounded down; outlines are cut to it.
+const mapLatitudeLimit = 85;
 const coordinateDigits = 3;
 
 // Region codes the dataset uses (current ISO 3166-2) that Natural Earth 5.1.2 records under an
@@ -174,6 +184,40 @@ function addShape(shapes: Record<string, Array<MapPolygon>>, code: string, featu
 }
 
 /**
+ * Cut an outline's latitudes to the band web maps can show (85° north and south). Antarctica's
+ * outline runs to the South Pole itself, which the globe view renders as a dark wedge; beyond
+ * 85° the base map has no tiles anyway.
+ *
+ * @param polygons - The outline.
+ * @returns The outline with every latitude within ±85°.
+ */
+function clampLatitudes(polygons: Array<MapPolygon>): Array<MapPolygon>
+{
+    const clamped = new Array<MapPolygon>();
+
+    for (const polygon of polygons)
+    {
+        const rings: MapPolygon = [];
+
+        for (const ring of polygon)
+        {
+            const points = new Array<MapPosition>();
+
+            for (const [longitude, latitude] of ring)
+            {
+                points.push([longitude, Math.min(Math.max(latitude, -mapLatitudeLimit), mapLatitudeLimit)]);
+            }
+
+            rings.push(points);
+        }
+
+        clamped.push(rings);
+    }
+
+    return clamped;
+}
+
+/**
  * Read a text attribute of a feature.
  *
  * @param feature - The feature.
@@ -276,6 +320,18 @@ async function createMapShapes(): Promise<void>
         {
             addShape(countries, code, feature, countryTolerance);
         }
+    }
+
+    for (const code of Object.keys(countries))
+    {
+        const tolerance = Math.max(countryTolerance, measureExtent(countries[code]) / countryToleranceDivisor);
+
+        countries[code] = clampLatitudes(dropSmallPolygons(simplifyPolygons(countries[code], tolerance, coordinateDigits), countryIslandShare));
+    }
+
+    for (const code of Object.keys(regions))
+    {
+        regions[code] = clampLatitudes(regions[code]);
     }
 
     const shapes: MapShapes = {

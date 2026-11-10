@@ -3,6 +3,7 @@ import * as path from "node:path";
 
 import type { Genus, Location } from "./dataset.ts";
 import { formatPlace, formatStratigraphicUnits, joinNonEmpty } from "./format.ts";
+import { measureRingArea } from "./map-geometry.ts";
 import type { MapPolygon, MapPosition, MapShapes } from "./map-shapes.ts";
 
 /**
@@ -73,9 +74,76 @@ export type GenusMap = {
     places: Array<GenusMapPlace>;
 
     /**
+     * The area covering every place, within the latitudes a flat map can show.
+     */
+    bounds: MapBounds;
+
+    /**
+     * How the map is drawn: flat, or as a globe when the places reach toward a pole, where the
+     * flat web map stretches the land out of shape.
+     */
+    projection: MapProjectionKind;
+
+    /**
+     * The middle of the places, which the map opens on when they are too wide to fit.
+     */
+    center: MapPosition;
+
+    /**
+     * Whether the places span more than half the world's longitudes (Antarctica, or species on
+     * opposite sides of the world), so the map opens on their middle rather than fitting them.
+     */
+    isWide: boolean;
+};
+
+/**
+ * Where a map opens, worked out from its places.
+ */
+type PlaceExtent = {
+    /**
      * The area covering every place.
      */
     bounds: MapBounds;
+
+    /**
+     * The middle of the places.
+     */
+    center: MapPosition;
+
+    /**
+     * Flat or globe.
+     */
+    projection: MapProjectionKind;
+
+    /**
+     * Whether the places span more than half the world's longitudes.
+     */
+    isWide: boolean;
+};
+
+/**
+ * How a map is drawn: on the flat web map (Mercator), or as a globe.
+ */
+export type MapProjectionKind = "mercator" | "globe";
+
+/**
+ * How a genus map opens, as its script reads it from the page.
+ */
+export type GenusMapView = {
+    /**
+     * Flat or globe.
+     */
+    projection: MapProjectionKind;
+
+    /**
+     * The middle of the places.
+     */
+    center: MapPosition;
+
+    /**
+     * Whether the places are too wide to fit, so the map opens on their middle.
+     */
+    isWide: boolean;
 };
 
 /**
@@ -99,9 +167,10 @@ export type GenusMapFeature = {
 };
 
 /**
- * What a feature draws: a shaded area, a dot, or the label of a shaded area.
+ * What a feature draws: a shaded area, a dot, the label of a shaded area, or the dashed outline of
+ * a country-level area.
  */
-export type GenusMapFeatureKind = "area" | "point" | "label";
+export type GenusMapFeatureKind = "area" | "point" | "label" | "outline";
 
 /**
  * The properties the map styles and labels a mark by.
@@ -165,14 +234,14 @@ type SharedPlace = {
  */
 export type GenusMapGeometry = {
     /**
-     * "Point" or "MultiPolygon".
+     * "Point", "MultiPolygon" or "MultiLineString".
      */
-    type: "Point" | "MultiPolygon";
+    type: "Point" | "MultiPolygon" | "MultiLineString";
 
     /**
-     * A position for a point; polygons for a multipolygon.
+     * A position for a point; polygons for a multipolygon; lines for a multiline.
      */
-    coordinates: MapPosition | Array<MapPolygon>;
+    coordinates: MapPosition | Array<MapPolygon> | Array<Array<MapPosition>>;
 };
 
 /**
@@ -189,6 +258,14 @@ export type GenusMapFeatureCollection = {
      */
     features: Array<GenusMapFeature>;
 };
+
+// Places beyond these latitudes are drawn on a globe: the flat web map stretches land this far
+// from the equator out of shape, and cannot show Antarctica's interior at all.
+const southernGlobeLatitude = -60;
+const northernGlobeLatitude = 66;
+
+// The latitude a map over a pole opens at: as close to the pole as the map can be centered.
+const poleViewLatitude = 85;
 
 // The latitudes the map can show. Web maps cannot reach the poles, so an outline such as
 // Antarctica's is cut to these for opening the map.
@@ -302,25 +379,84 @@ export function warnAboutMissingOutlines(genus: Genus, shapes: MapShapes): void
 }
 
 /**
- * Widen bounds to take in a point.
+ * Find the narrowest band of longitudes covering every point: the circle of longitudes less its
+ * largest empty stretch. Alaska's islands reach across the 180° meridian, so a plain west-to-east
+ * range would span the whole world; the band instead runs from the Aleutians east, with its east
+ * edge past 180°.
  *
- * @param bounds - The bounds so far, or undefined for none.
- * @param position - The point.
- * @returns The widened bounds.
+ * @param longitudes - The points' longitudes.
+ * @returns [west, east], where east may exceed 180 when the band crosses the meridian.
  */
-function extendBounds(bounds: MapBounds | undefined, position: MapPosition): MapBounds
+export function findLongitudeBand(longitudes: Array<number>): [number, number]
 {
-    const latitude = Math.min(Math.max(position[1], southernmostLatitude), northernmostLatitude);
+    const sorted = [...longitudes].sort((first, second) => first - second);
+    let gapStart = sorted.length - 1;
+    let largestGap = sorted[0] + 360 - sorted[sorted.length - 1];
 
-    if (!bounds)
+    for (let index = 0; index + 1 < sorted.length; index++)
     {
-        return [[position[0], latitude], [position[0], latitude]];
+        if (sorted[index + 1] - sorted[index] > largestGap)
+        {
+            largestGap = sorted[index + 1] - sorted[index];
+            gapStart = index;
+        }
     }
 
-    return [
-        [Math.min(bounds[0][0], position[0]), Math.min(bounds[0][1], latitude)],
-        [Math.max(bounds[1][0], position[0]), Math.max(bounds[1][1], latitude)],
-    ];
+    // The widest gap wraps around the meridian: the band does not cross it.
+    if (gapStart === sorted.length - 1)
+    {
+        return [sorted[0], sorted[sorted.length - 1]];
+    }
+
+    return [sorted[gapStart + 1], sorted[gapStart] + 360];
+}
+
+/**
+ * Work out where a map opens from every point of its places: the bounds, the middle, the
+ * projection, and whether the places are too wide to fit.
+ *
+ * @param points - Every dot and outline point, as [longitude, latitude].
+ * @returns The bounds, middle, projection and width.
+ */
+function measurePlaceExtent(points: Array<MapPosition>): PlaceExtent
+{
+    const longitudes = new Array<number>();
+    let south = Number.POSITIVE_INFINITY;
+    let north = Number.NEGATIVE_INFINITY;
+
+    for (const [longitude, latitude] of points)
+    {
+        longitudes.push(longitude);
+        south = Math.min(south, latitude);
+        north = Math.max(north, latitude);
+    }
+
+    const [west, east] = findLongitudeBand(longitudes);
+    const isWide = east - west > 180;
+    const isSouthern = south < southernGlobeLatitude;
+    const isNorthern = north > northernGlobeLatitude;
+    const middleLongitude = (west + east) / 2 > 180 ? (west + east) / 2 - 360 : (west + east) / 2;
+    let middleLatitude = (south + north) / 2;
+
+    // A polar continent wider than half the world is seen best from over its pole.
+    if (isWide && isSouthern)
+    {
+        middleLatitude = -poleViewLatitude;
+    }
+    else if (isWide && isNorthern)
+    {
+        middleLatitude = poleViewLatitude;
+    }
+
+    return {
+        bounds: [
+            [west, Math.max(south, southernmostLatitude)],
+            [east, Math.min(north, northernmostLatitude)],
+        ],
+        center: [middleLongitude, middleLatitude],
+        projection: isSouthern || isNorthern ? "globe" : "mercator",
+        isWide,
+    };
 }
 
 /**
@@ -334,7 +470,7 @@ function extendBounds(bounds: MapBounds | undefined, position: MapPosition): Map
 export function createGenusMap(genus: Genus, shapes: MapShapes): GenusMap | undefined
 {
     const places = new Array<GenusMapPlace>();
-    let bounds: MapBounds | undefined;
+    const points = new Array<MapPosition>();
 
     for (const species of genus.species)
     {
@@ -375,19 +511,21 @@ export function createGenusMap(genus: Genus, shapes: MapShapes): GenusMap | unde
 
         if (position)
         {
-            bounds = extendBounds(bounds, position);
+            points.push(position);
         }
 
         for (const polygon of polygons)
         {
-            for (const point of polygon[0])
-            {
-                bounds = extendBounds(bounds, point);
-            }
+            points.push(...polygon[0]);
         }
     }
 
-    return bounds ? { places, bounds } : undefined;
+    if (points.length === 0)
+    {
+        return undefined;
+    }
+
+    return { places, ...measurePlaceExtent(points) };
 }
 
 /**
@@ -402,24 +540,6 @@ export function abbreviateSpeciesName(name: string): string
     const space = name.indexOf(" ");
 
     return space === -1 ? name : name.charAt(0) + "." + name.slice(space);
-}
-
-/**
- * Measure a ring's area with the shoelace formula, in square degrees.
- *
- * @param ring - The ring.
- * @returns The area, positive whichever way the ring runs.
- */
-function measureRingArea(ring: Array<MapPosition>): number
-{
-    let doubledArea = 0;
-
-    for (let index = 0; index < ring.length - 1; index++)
-    {
-        doubledArea += ring[index][0] * ring[index + 1][1] - ring[index + 1][0] * ring[index][1];
-    }
-
-    return Math.abs(doubledArea) / 2;
 }
 
 /**
@@ -500,6 +620,67 @@ export function findLabelPosition(polygons: Array<MapPolygon>): MapPosition
 }
 
 /**
+ * Report whether an outline segment is an artificial edge rather than a coastline or border:
+ * Natural Earth closes Antarctica's outline along the 180° meridian and the South Pole (cut to
+ * 85°S, the edge of the map's tiles), which a globe would draw as a line toward the pole and a
+ * ring around it.
+ *
+ * @param start - One end.
+ * @param end - The other.
+ * @returns True for a segment along the 180° meridian or the 85° edge.
+ */
+function isArtificialEdge(start: MapPosition, end: MapPosition): boolean
+{
+    const isOnMeridian = Math.abs(start[0]) >= 179.9 && Math.abs(end[0]) >= 179.9;
+    const isOnPole = Math.abs(start[1]) >= 84.99 && Math.abs(end[1]) >= 84.99;
+
+    return isOnMeridian || isOnPole;
+}
+
+/**
+ * Turn an outline's rings into lines for drawing, leaving out its artificial edges.
+ *
+ * @param polygons - The outline.
+ * @returns The lines: each ring, split where an artificial edge was left out.
+ */
+export function createOutlineLines(polygons: Array<MapPolygon>): Array<Array<MapPosition>>
+{
+    const lines = new Array<Array<MapPosition>>();
+
+    for (const polygon of polygons)
+    {
+        for (const ring of polygon)
+        {
+            let line: Array<MapPosition> = [ring[0]];
+
+            for (let index = 1; index < ring.length; index++)
+            {
+                if (isArtificialEdge(ring[index - 1], ring[index]))
+                {
+                    if (line.length > 1)
+                    {
+                        lines.push(line);
+                    }
+
+                    line = [ring[index]];
+                }
+                else
+                {
+                    line.push(ring[index]);
+                }
+            }
+
+            if (line.length > 1)
+            {
+                lines.push(line);
+            }
+        }
+    }
+
+    return lines;
+}
+
+/**
  * Gather the species found at the same place, so they share one mark and one label.
  *
  * @param map - The genus map.
@@ -553,9 +734,26 @@ export function createGenusMapFeatures(map: GenusMap): GenusMapFeatureCollection
         else
         {
             areas.push({ type: "Feature", properties, geometry: { type: "MultiPolygon", coordinates: place.polygons } });
+
+            if (place.precision === "country")
+            {
+                areas.push({ type: "Feature", properties: { ...properties, kind: "outline" }, geometry: { type: "MultiLineString", coordinates: createOutlineLines(place.polygons) } });
+            }
+
             marks.push({ type: "Feature", properties: { ...properties, kind: "label" }, geometry: { type: "Point", coordinates: findLabelPosition(place.polygons) } });
         }
     }
 
     return { type: "FeatureCollection", features: [...areas, ...marks] };
+}
+
+/**
+ * Take the settings a genus map opens with, for its script.
+ *
+ * @param map - The genus map.
+ * @returns The projection, middle, and whether the places are too wide to fit.
+ */
+export function createGenusMapView(map: GenusMap): GenusMapView
+{
+    return { projection: map.projection, center: map.center, isWide: map.isWide };
 }
