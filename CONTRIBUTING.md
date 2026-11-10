@@ -46,10 +46,15 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
   or compromised release has time to be noticed and pulled. Open Paleo's own packages (such as
   the tree extractor) are exempt: the project builds and reviews them itself
 - **No runtime dependencies in the browser.** Pages must work with JavaScript off; scripts add
-  search, filters and interactive views on top. The one exception is the map: MapLibre GL JS,
-  loaded only on genus pages (when the map scrolls into view) and the Map page, drawing
-  OpenStreetMap tiles from OpenFreeMap. Without JavaScript those pages list the same places in
-  words, and no other page loads it
+  search, filters and interactive views on top. Two exceptions, each loaded only where it is
+  used:
+  - MapLibre GL JS draws the maps, on genus pages (when the map scrolls into view) and the Map
+    page, over OpenStreetMap tiles from OpenFreeMap. Without JavaScript those pages list the
+    same places in words
+  - The tree extractor (`@open-paleo/tree-extractor`) and Tesseract.js, its text recognition,
+    run the tool at `tools/tree-extractor/`, which is a tool and needs JavaScript. Tesseract's
+    core and language data are served from the site (`src/integrations/tesseract-files.ts`) at
+    the versions the tree extractor's README names
 - Keep the shared development dependencies (ESLint, typescript-eslint, TypeScript, cspell) on
   the same versions as open-paleo/data, so the repositories lint and type-check alike
 
@@ -61,7 +66,8 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 | `src/layouts/` | Page shells shared by the pages (`BaseLayout.astro`) |
 | `src/components/` | Reusable components: dispute note, age figure, reference list and so on |
 | `src/data/` | TypeScript that loads the dataset and prepares lookup tables for the pages |
-| `src/scripts/` | Browser TypeScript: search, filters, maps and copy buttons |
+| `src/scripts/` | Browser TypeScript: search, filters, maps, copy buttons and the tree extractor |
+| `src/integrations/` | Astro integrations: serving the tree extractor's Tesseract files |
 | `src/theme/` | The Strata theme: tokens, fonts, element defaults. See [docs/theme.md](docs/theme.md) |
 | `public/` | Static files copied to the site unchanged: the site icon and the link preview image |
 | `scripts/` | Standalone Node tooling that is not part of the Astro build |
@@ -104,6 +110,7 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 | `genus-index.ts`, `genus-filters.ts` | Lists of genera with their details, and the filters (shared with the browser) |
 | `genus-map.ts`, `site-map.ts`, `map-shapes.ts`, `map-geometry.ts` | The genus maps, the Map page, and the region and country outlines |
 | `citations.ts`, `feed.ts` | Citations of the dataset and its records, and the feed of new genera |
+| `known-names.ts` | The taxon names the tree extractor matches labels against |
 
 Pages call `getSiteData()` from their frontmatter or `getStaticPaths()`; the first call loads
 the file and later calls reuse the result.

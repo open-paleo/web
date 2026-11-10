@@ -1,0 +1,116 @@
+---
+import BetaBadge from "../../../components/BetaBadge.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { tesseractSitePaths } from "../../../integrations/tesseract-files.ts";
+
+const baseUrl = import.meta.env.BASE_URL;
+const sourceUrl = "https://github.com/open-paleo/tree-extractor";
+---
+
+<BaseLayout title="Tree extractor" description="Read a phylogenetic tree from a published figure and save it as Newick or Nexus, in your browser." section="tools">
+    <div class="tool-page">
+        <header class="tool-header">
+            <h1><span>Tree extractor</span> <BetaBadge /></h1>
+            <p class="tool-summary">
+                Reads a phylogenetic tree from a published figure and turns it into Newick and Nexus. Open an
+                image of a cladogram; the tool traces its branches, reads the tip labels and matches them to the
+                names in Open Paleo, and you correct what it got wrong before saving the tree.
+            </p>
+            <ul class="tool-notes">
+                <li>It runs entirely in your browser: the figure is never uploaded.</li>
+                <li>The first time it reads labels it downloads about 10 MB of text-recognition data from this site, which your browser keeps.</li>
+                <li>It is a beta. Check every tree against its figure before you use it; <a href={sourceUrl + "#status"}>its documentation</a> says which kinds of figure it handles well.</li>
+            </ul>
+        </header>
+
+        <noscript>
+            <p class="tool-unavailable">The tree extractor needs JavaScript. The command-line version is described in <a href={sourceUrl}>its repository</a>.</p>
+        </noscript>
+
+        <tree-extractor
+            known-names-url={baseUrl + "tools/tree-extractor/known-names.txt"}
+            tesseract-worker-path={baseUrl + tesseractSitePaths.worker}
+            tesseract-core-path={baseUrl + tesseractSitePaths.core + "/"}
+            tesseract-lang-path={baseUrl + tesseractSitePaths.language}
+        ></tree-extractor>
+
+        <p class="tool-source">
+            The tree extractor is open source, at <a href={sourceUrl}>open-paleo/tree-extractor</a>, where it also runs from the
+            command line on whole folders of figures.
+        </p>
+    </div>
+</BaseLayout>
+
+<script>
+    import "../../../scripts/tree-extractor.ts";
+</script>
+
+<style>
+    .tool-page
+    {
+        display: grid;
+        gap: var(--space-5);
+    }
+
+    .tool-header
+    {
+        display: grid;
+        gap: var(--space-3);
+    }
+
+    h1
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-2) var(--space-4);
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .tool-summary,
+    .tool-notes,
+    .tool-source
+    {
+        max-width: var(--measure);
+    }
+
+    .tool-notes
+    {
+        display: grid;
+        gap: var(--space-1);
+        margin: 0;
+        padding-left: var(--space-5);
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
+    }
+
+    .tool-source,
+    .tool-unavailable
+    {
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
+    }
+
+    /* The tool reads its colors, fonts and corners from these, so it follows the site's theme in
+       light and dark mode. */
+    tree-extractor
+    {
+        --te-background: var(--color-background);
+        --te-surface: var(--color-surface);
+        --te-ink: var(--color-ink);
+        --te-muted: var(--color-muted);
+        --te-line: var(--color-line);
+        --te-accent: var(--color-accent);
+        --te-accent-soft: var(--color-accent-soft);
+        --te-on-accent: var(--color-surface);
+        --te-caution: var(--color-caution);
+        --te-danger: var(--color-danger);
+        --te-font-sans: var(--font-sans);
+        --te-font-mono: var(--font-mono);
+        --te-radius: var(--radius);
+        --te-canvas-height: clamp(24rem, calc(100svh - 16rem), 44rem);
+    }
+</style>

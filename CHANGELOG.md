@@ -8,6 +8,13 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ### Added
 
+- A "Tools" item in the header and a Tools page listing the site's tools
+- The tree extractor at `tools/tree-extractor/` (beta), linked from the Tools page, the footer
+  and the Data page: open-paleo/tree-extractor in the site's theme, reading a tree from a figure in the
+  browser and matching its labels against the dataset's names (built from each release). Its
+  text recognition is served from the site, so nothing leaves the reader's computer. The site
+  check runs it on a figure. A workflow opens a pull request when the tree extractor releases
+- A `--color-danger` token for destructive actions and errors
 - "Cite this record" on genus and clade pages: a citation in the dataset's own form, naming the
   record, the release and the page (the genus in italic), with a BibTeX entry. It and the Data
   page's dataset citation have "Copy citation" and "Copy BibTeX" buttons
@@ -38,6 +45,11 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   tiles, styled in the site's colors and loaded only when the map scrolls into view; a list of
   the places under the map says the same in words. Region outlines are Natural Earth's, built by
   `npm run create-map-shapes`. Maps reaching toward a pole are drawn on a globe
+
+### Changed
+
+- The header's search field is compact on wide screens (18rem rather than up to 28rem), with a
+  shorter placeholder ("Genus, clade, author"); on phones it keeps its own full-width row
 
 ### Fixed
 

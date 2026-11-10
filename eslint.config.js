@@ -101,6 +101,13 @@ const namingConventionOptions = [
         selector: "typeProperty",
         format: null,
     },
+    {
+        // Method names an API defines and that need quotes, such as Astro's integration hooks
+        // ("astro:build:done").
+        selector: "objectLiteralMethod",
+        modifiers: ["requiresQuotes"],
+        format: null,
+    },
 ];
 
 /** @type {import("eslint").Linter.RulesRecord} */

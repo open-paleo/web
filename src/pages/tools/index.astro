@@ -1,0 +1,79 @@
+---
+import BetaBadge from "../../components/BetaBadge.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Tools" description="Tools for working with the Open Paleo dataset and the literature behind it, in your browser." section="tools">
+    <div class="tools-page">
+        <header class="tools-header">
+            <h1>Tools</h1>
+            <p class="tools-summary">Tools for working with the dataset and the literature behind it. They run in your browser.</p>
+        </header>
+
+        <ul class="tool-list">
+            <li>
+                <h2><a href={baseUrl + "tools/tree-extractor/"}>Tree extractor</a> <BetaBadge /></h2>
+                <p>
+                    Reads a phylogenetic tree from a published figure and saves it as Newick or Nexus. It traces the
+                    branches, reads the tip labels and matches them to the names in Open Paleo; you correct what it got
+                    wrong. The figure never leaves your computer.
+                </p>
+            </li>
+        </ul>
+    </div>
+</BaseLayout>
+
+<style>
+    .tools-page
+    {
+        display: grid;
+        gap: var(--space-6);
+    }
+
+    .tools-header
+    {
+        display: grid;
+        gap: var(--space-3);
+    }
+
+    h1
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .tools-summary
+    {
+        max-width: var(--measure);
+        color: var(--color-muted);
+    }
+
+    .tool-list
+    {
+        display: grid;
+        gap: var(--space-5);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .tool-list li
+    {
+        display: grid;
+        gap: var(--space-2);
+        max-width: var(--measure);
+        padding-bottom: var(--space-5);
+        border-bottom: 1px solid var(--color-line);
+    }
+
+    h2
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-2) var(--space-3);
+        font-size: var(--text-heading-2);
+    }
+</style>

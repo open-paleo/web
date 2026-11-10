@@ -1,7 +1,7 @@
 /**
- * Check the built site in dist/: every internal link resolves, and a sample of pages passes
- * WCAG 2.2 AA in axe (light and dark), has no grid or flex container that splits loose text,
- * and does not scroll sideways at 320px.
+ * Check the built site in dist/: every internal link resolves, a sample of pages passes WCAG 2.2
+ * AA in axe (light and dark), has no grid or flex container that splits loose text, and does not
+ * scroll sideways at 320px, and the tree extractor reads a figure using only the site's files.
  *
  * Run after `npm run build`:
  *
@@ -12,6 +12,7 @@
  */
 import * as fs from "node:fs";
 import * as path from "node:path";
+import * as url from "node:url";
 
 import type { Browser, BrowserContextOptions, Page } from "playwright";
 import { chromium } from "playwright";
@@ -56,6 +57,16 @@ type SiteProblem = {
 };
 
 /**
+ * The part of the tree extractor element the check reads.
+ */
+type TreeExtractorNewick = {
+    /**
+     * The tree it found, as Newick, or null.
+     */
+    getNewick(): string | null;
+};
+
+/**
  * The color schemes axe runs in, since each has its own colors to check.
  */
 type ColorScheme = "light" | "dark";
@@ -71,6 +82,8 @@ const samplePages: Array<SamplePage> = [
     { path: "references/", reason: "reference index" },
     { path: "data/", reason: "download and citation" },
     { path: "map/", reason: "world map, its panel, and the index of genera by place" },
+    { path: "tools/", reason: "the list of tools" },
+    { path: "tools/tree-extractor/", reason: "the tree extractor, before a figure is loaded" },
     { path: "search/?q=Tyrannosaurus", reason: "search results and filters" },
     { path: "404.html", reason: "page not found" },
     { path: "genus/tyrannosaurus/", reason: "genus with notable specimens and synonyms" },
@@ -86,6 +99,8 @@ const samplePages: Array<SamplePage> = [
 ];
 
 const colorSchemes: Array<ColorScheme> = ["light", "dark"];
+
+const treeFigurePath = path.join(path.dirname(url.fileURLToPath(import.meta.url)), "site-checks", "tree-figure.png");
 
 /**
  * Read the base path the site was built for, as the build does.
@@ -200,6 +215,71 @@ async function checkSamplePage(browser: Browser, siteUrl: string, sample: Sample
 }
 
 /**
+ * Run the tree extractor on a small synthetic figure (made by the tree extractor's own
+ * benchmark, with invented names): it must trace a tree and read its labels with nothing but the
+ * site's own files, since every request off the site is blocked.
+ *
+ * @param browser - The browser.
+ * @param siteUrl - The site's local address.
+ * @param problems - The list to add a failure to.
+ */
+async function checkTreeExtractor(browser: Browser, siteUrl: string, problems: Array<SiteProblem>): Promise<void>
+{
+    const page = await openLocalPage(browser, { viewport: { width: 1280, height: 900 } });
+    const errors = new Array<string>();
+    const location = "/tools/tree-extractor/ (running a figure)";
+
+    page.on("pageerror", (error) => errors.push(error.message));
+    await page.goto(siteUrl + "tools/tree-extractor/");
+    await page.locator("#te-file").setInputFiles(treeFigurePath);
+    await page.click("#te-run");
+
+    try
+    {
+        await page.waitForFunction(isTreeExtracted, null, { timeout: 120000 });
+        const newick = await page.evaluate(readExtractedNewick);
+
+        if (!newick || !newick.includes(","))
+        {
+            problems.push({ location, check: "tool", message: "no tree came out" });
+        }
+    }
+    catch
+    {
+        problems.push({ location, check: "tool", message: "did not finish: " + (await page.locator("#te-status").textContent()) });
+    }
+
+    for (const error of errors)
+    {
+        problems.push({ location, check: "tool", message: error });
+    }
+
+    await page.close();
+}
+
+/**
+ * Report whether the tree extractor has finished a run. Runs in the browser.
+ *
+ * @returns True once the status reports the tips found.
+ */
+function isTreeExtracted(): boolean
+{
+    return /\d+ tips/.test(document.querySelector("#te-status")?.textContent ?? "");
+}
+
+/**
+ * Read the tree the tree extractor found. Runs in the browser.
+ *
+ * @returns The tree as Newick, or null.
+ */
+function readExtractedNewick(): string | null
+{
+    const element = document.querySelector("tree-extractor") as (HTMLElement & TreeExtractorNewick) | null;
+
+    return element ? element.getNewick() : null;
+}
+
+/**
  * Print the problems, as GitHub annotations when running in GitHub Actions.
  *
  * @param problems - Every failed check.
@@ -244,6 +324,8 @@ async function checkSite(): Promise<void>
         {
             await checkSamplePage(browser, server.url, sample, problems);
         }
+
+        await checkTreeExtractor(browser, server.url, problems);
     }
     finally
     {
@@ -251,7 +333,7 @@ async function checkSite(): Promise<void>
         server.server.close();
     }
 
-    console.log("Pages: " + samplePages.length + " checked with axe (light and dark), for loose text, and at 320px wide");
+    console.log("Pages: " + samplePages.length + " checked with axe (light and dark), for loose text, and at 320px wide; the tree extractor run on a figure");
 
     if (problems.length > 0)
     {

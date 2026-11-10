@@ -1,0 +1,106 @@
+name: Update the tree extractor
+
+# When open-paleo/tree-extractor publishes a release, it sends a tree-extractor-released
+# notification with client_payload { version, tag, tarball_url, integrity }. This workflow pins
+# the new release, runs every check against it, and opens a pull request; nothing deploys until
+# a maintainer merges it. Pull requests opened with GitHub's built-in token do not start other
+# workflows, so the checks run here, and the pull request links to this run.
+#
+# The payload is read through environment variables and checked before use, never pasted into
+# a command, so a malformed notification cannot inject one.
+on:
+  repository_dispatch:
+    types: [tree-extractor-released]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  ASTRO_TELEMETRY_DISABLED: 1
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Checkout dataset
+        uses: actions/checkout@v6
+        with:
+          repository: open-paleo/data
+          path: data
+          sparse-checkout: dist
+          sparse-checkout-cone-mode: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Pin the release
+        env:
+          VERSION: ${{ github.event.client_payload.version }}
+          TARBALL_URL: ${{ github.event.client_payload.tarball_url }}
+          INTEGRITY: ${{ github.event.client_payload.integrity }}
+        run: |
+          if ! printf '%s' "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$'; then
+            echo "Not a version: $VERSION" >&2
+            exit 1
+          fi
+          case "$TARBALL_URL" in
+            "https://github.com/open-paleo/tree-extractor/releases/download/"*) ;;
+            *) echo "Not a tree-extractor release asset: $TARBALL_URL" >&2; exit 1 ;;
+          esac
+          npm install --save-exact "$TARBALL_URL"
+          locked=$(node -p 'require("./package-lock.json").packages["node_modules/@open-paleo/tree-extractor"].integrity')
+          if [ -n "$INTEGRITY" ] && [ "$locked" != "$INTEGRITY" ]; then
+            echo "The downloaded tarball's integrity ($locked) is not the one the release announced ($INTEGRITY)" >&2
+            exit 1
+          fi
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps --only-shell chromium
+
+      - name: Check the built site
+        run: npm run check-site
+
+      - name: Open a pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ github.event.client_payload.version }}
+          TAG: ${{ github.event.client_payload.tag }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          branch="tree-extractor-$VERSION"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add package.json package-lock.json
+          git commit -m "Update the tree extractor to $VERSION"
+          git push origin "$branch"
+          {
+            echo "Pins @open-paleo/tree-extractor $VERSION ([release notes](https://github.com/open-paleo/tree-extractor/releases/tag/$TAG))."
+            echo
+            echo "Type check, lint, tests, build and the site check (which runs the tool on a figure) passed in [this run]($RUN_URL)."
+            echo
+            echo "Before merging, check the release's README for the Tesseract files it is tested against. If tesseract.js, tesseract.js-core or @tesseract.js-data/eng changed, update their pins in package.json in this pull request."
+          } > pull-request-body.md
+          gh pr create --base main --head "$branch" --title "Update the tree extractor to $VERSION" --body-file pull-request-body.md

@@ -21,7 +21,8 @@ Rules that are easy to miss:
 - **Multi-line JSDoc** on every function, type and type field
 - **Exact dependency versions**; no `^` or `~` in `package.json`, and pick releases at least
   two weeks old (Open Paleo's own packages, such as the tree extractor, are exempt)
-- **No browser dependencies** other than MapLibre GL JS, loaded only by the maps; every page
+- **No browser dependencies** other than MapLibre GL JS (the maps) and the tree extractor with
+  Tesseract.js (the tool page), each loaded only where it is used; every page but the tool
   works with JavaScript off
 
 Astro components (see "Astro components" in CONTRIBUTING.md):

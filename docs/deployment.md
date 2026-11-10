@@ -102,6 +102,18 @@ with `open-paleo/web`, and that one permission. Store it in the data repository 
 Without the secret, or once the token expires, the step fails without failing the data build,
 and the site falls back to its nightly rebuild, so data changes appear within a day.
 
+### 7. Update the tree extractor when it releases
+
+The tool page depends on a pinned release of open-paleo/tree-extractor. When that repository
+publishes a release, it sends a `tree-extractor-released` notification
+(`client_payload: { version, tag, tarball_url, integrity }`) to this repository, the same way
+the data repository sends `data-updated`, with a token of its own scoped to `open-paleo/web`
+(Contents: Read and write). `.github/workflows/tree-extractor-update.yml` then pins the release,
+checks that the tarball's integrity is the one announced, runs the type check, lint, tests,
+build and site check (which runs the tool on a figure), and opens a pull request. Nothing
+deploys until it is merged. The repository's **Settings → Actions → General** must allow GitHub
+Actions to create pull requests; it does.
+
 ## Checking a deployment
 
 - The run's summary in the Actions tab links to the published site.

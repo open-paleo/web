@@ -28,6 +28,7 @@ The theme lives in [`src/theme/`](../src/theme/):
 | `--color-accent-soft` | `#dce9e3` | `#213731` | Selection, category chips |
 | `--color-caution` | `#8a5a0b` | `#e2b562` | Dispute notes, the "disputed" status |
 | `--color-caution-soft` | `#f3e6c8` | `#3a2f19` | Dispute note background |
+| `--color-danger` | `#a8322b` | `#f2918a` | Destructive actions and errors (the tree extractor's delete control); 5.7:1 on the page, 6.2:1 on surfaces |
 
 Rules:
 
@@ -217,5 +218,7 @@ block:
 | Link preview image | `public/social-preview.png`, 1200 by 630, drawn by `npm run create-social-image` from the site's fonts and tokens: the header's dark band, the wordmark in Alegreya 800, the one-line description in Alegreya Sans, and the Triassic, Jurassic and Cretaceous with their stages, each as wide as it lasted, in the ICS colors. Every page's Open Graph and Twitter card tags point to it, with the page's own title and description |
 | Citation block | `HowToCite.astro`, on the Data page and as "Cite this record" on genus and clade pages: the citation in a `--color-surface` box (a genus name in italic), the BibTeX entry below it in the one monospace block on the site, and "Copy citation" and "Copy BibTeX" buttons, shown only where the clipboard works, with a short confirmation beside them |
 | Correction note | `CorrectionLink.astro`: one muted line at the end of genus, clade and reference pages, above a hairline rule, linking to the data repository's correction form with the record filled in |
+| Tree extractor | The tool page sets the tool's `--te-*` custom properties from Strata's tokens (background, surface, ink, muted, line, accent, accent-soft, caution and danger; the surface color as text on the accent; the sans and mono faces; the radius), so it follows the site's light and dark mode. The page heading carries a "Beta" badge in the caution colors |
+| Beta badge | `BetaBadge.astro`: "Beta" in Alegreya Sans 700 on `--color-caution-soft` in `--color-caution`, beside the name of a tool that is usable but still being improved (the Tools page and the tool's own heading) |
 | Diagnosis list | Numbered features with the numbers in their own right-aligned column (Alegreya Sans, muted), flush with the text around the list |
 | Site footer | The header's dark band repeated at the foot of every page: wordmark, a one-line description, links to the Data page and both repositories, and the license line with the data release the page was built from |

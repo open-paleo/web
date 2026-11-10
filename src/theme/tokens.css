@@ -27,6 +27,9 @@
     /* Disputes and the "disputed" status. Ochre. Semantic, not a second accent. */
     --color-caution: #8a5a0b;
     --color-caution-soft: #f3e6c8;
+    /* Destructive actions and errors, so far only in the tree extractor (its delete control and
+       error checks): 5.7:1 on the page, 6.2:1 on surfaces. */
+    --color-danger: #a8322b;
 
     /* Chart marks: the accent's hue with enough chroma to read as a color rather than gray at bar
        size, which the muted accent does not. Checked with the dataviz palette validator against
@@ -204,6 +207,7 @@
         --color-accent-soft: #213731;
         --color-caution: #e2b562;
         --color-caution-soft: #3a2f19;
+        --color-danger: #f2918a;
         --color-header-background: #0b0f0e;
         --color-header-surface: #1a2120;
         --color-header-ink: #e2e6e0;
@@ -242,6 +246,7 @@
     --color-accent-soft: #213731;
     --color-caution: #e2b562;
     --color-caution-soft: #3a2f19;
+    --color-danger: #f2918a;
     --color-header-background: #0b0f0e;
     --color-header-surface: #1a2120;
     --color-header-ink: #e2e6e0;

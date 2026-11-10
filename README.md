@@ -27,7 +27,9 @@ AA, checked on every deployment.
 | Feed | `feed.xml`, an Atom feed of the 50 most recently named genera, linked from every page's head and the home page |
 | Tree | The classification as an outline you can open and close, with genus counts |
 | References | Every cited work, by first author |
-| Data | Downloads of the dataset's output files, how to cite a release, and the versioning policy |
+| Data | Downloads of the dataset's output files, how to cite a release, the versioning policy, and the tools |
+| Tools | The site's tools, from the header's "Tools" item: for now the tree extractor |
+| Tree extractor (beta) | `tools/tree-extractor/`: [open-paleo/tree-extractor](https://github.com/open-paleo/tree-extractor) in the site's theme, reading a tree from a figure into Newick or Nexus in the browser, with labels matched against the dataset's names. Its text recognition (Tesseract.js) is served from the site, so nothing leaves the reader's computer |
 | Search | Full-text search of the genus, clade, reference, stage and period pages with [Pagefind](https://pagefind.app/), filtered by kind |
 
 Every page also has link-preview tags (Open Graph and Twitter cards) and a sitemap entry.
@@ -77,6 +79,13 @@ Genus pages and the Map page show where species were found on interactive maps: 
 ODbL), restyled in the site's colors. Readers' browsers fetch the tiles from openfreemap.org; no
 other page makes a request outside the site. Region and country outlines are from
 [Natural Earth](https://www.naturalearthdata.com) (public domain).
+
+## Tree extractor
+
+The tool page uses a pinned release of `@open-paleo/tree-extractor` (a tarball from its GitHub
+releases) and serves Tesseract.js's worker, core and English language data from the site. When
+the tree extractor publishes a release, `.github/workflows/tree-extractor-update.yml` pins it,
+runs every check, and opens a pull request.
 
 ## Icon
 
