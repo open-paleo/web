@@ -90,7 +90,9 @@ always reads as more contrast with the land. Both ramps pass the dataviz validat
 checks against `--color-map-land` (one hue, lightness rising or falling steadily, visible gaps
 between steps, and the faintest step at least 2:1 against the land). Place names are drawn over
 the shading so they stay readable; dots for published coordinates and the selected region's
-outline sit on top.
+outline sit on top. A place known only to its country is shaded at 35% rather than 85% and
+drawn under the regions, as a backdrop its regions stand out from; a click selects a dot first,
+then a region, and the country only where no region is shaded.
 
 ### Geologic time colors
 

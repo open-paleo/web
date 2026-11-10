@@ -68,6 +68,10 @@ at the same place share one mark. MapLibre GL JS over OpenFreeMap's OpenStreetMa
 
 ### Changed
 
+- On the Map page a click selects the state or region under it rather than the whole country:
+  countries holding genera known only to the country (the United States, Mongolia) are drawn
+  under their regions and shaded lightly, and a click prefers a dot, then a region, then the
+  country
 - Genus maps reaching toward a pole are drawn on a globe: the Antarctic genera show the whole
   continent from over the South Pole instead of a stretched band, and Alaskan genera open on
   Alaska rather than the whole world, since their outlines cross the 180° meridian. Country

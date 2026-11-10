@@ -3,7 +3,15 @@
 // dot for each matching genus with published coordinates. Loaded by site-map.ts, which decides
 // what matches and shows the selected place's genera.
 
-import type { ExpressionSpecification, GeoJSONSource, GeoJSONSourceSpecification, LayerSpecification, MapLayerMouseEvent, StyleSpecification } from "maplibre-gl";
+import type {
+    ExpressionSpecification,
+    GeoJSONSource,
+    GeoJSONSourceSpecification,
+    LayerSpecification,
+    MapGeoJSONFeature,
+    MapLayerMouseEvent,
+    StyleSpecification,
+} from "maplibre-gl";
 import { Map as MapLibreMap, NavigationControl } from "maplibre-gl";
 
 import type { MapPosition } from "../data/map-shapes.ts";
@@ -144,19 +152,65 @@ const isCountry: ExpressionSpecification = ["==", ["get", "kind"], "country"];
  */
 function createPlaceFeatures(places: Array<SiteMapPlace>, counts: Map<string, number>): SiteMapFeatureCollection
 {
-    const features = new Array<SiteMapFeature>();
+    const countries = new Array<SiteMapFeature>();
+    const regions = new Array<SiteMapFeature>();
 
     for (const place of places)
     {
         const count = counts.get(place.key) ?? 0;
+        const feature: SiteMapFeature = { type: "Feature", properties: { key: place.key, kind: place.kind, count }, geometry: { type: "MultiPolygon", coordinates: place.polygons } };
 
-        if (count > 0)
+        if (count === 0)
         {
-            features.push({ type: "Feature", properties: { key: place.key, kind: place.kind, count }, geometry: { type: "MultiPolygon", coordinates: place.polygons } });
+            continue;
+        }
+        else if (place.kind === "country")
+        {
+            countries.push(feature);
+        }
+        else
+        {
+            regions.push(feature);
         }
     }
 
-    return { type: "FeatureCollection", features };
+    // Countries are drawn first, under their regions: the United States holds two genera known
+    // only to the country, and drawn on top it covered the states.
+    return { type: "FeatureCollection", features: [...countries, ...regions] };
+}
+
+/**
+ * Choose the place a click selects from everything under the pointer: a dot first, then a
+ * region, and a whole country only where no region is shaded.
+ *
+ * @param features - The features under the pointer, top first.
+ * @returns The selected place's key, or an empty string.
+ */
+function choosePlaceKey(features: Array<MapGeoJSONFeature>): string
+{
+    let regionKey = "";
+    let countryKey = "";
+
+    for (const feature of features)
+    {
+        const kind = String(feature.properties.kind);
+        const key = String(feature.properties.key);
+
+        if (kind === "point")
+        {
+            return key;
+        }
+        else if (kind === "region" && regionKey === "")
+        {
+            regionKey = key;
+        }
+        else if (kind === "country" && countryKey === "")
+        {
+            countryKey = key;
+        }
+    }
+
+    return regionKey !== "" ? regionKey : countryKey;
 }
 
 /**
@@ -199,7 +253,9 @@ function createPlaceLayers(colors: MapColors, selectedKey: string): Array<LayerS
     }
 
     return [
-        { id: "place-fills", type: "fill", source: "places", paint: { "fill-color": fillColor, "fill-opacity": 0.85 } },
+        // A whole country is shaded lightly, as a backdrop its regions stand out from: its genera
+        // could be from anywhere in it.
+        { id: "place-fills", type: "fill", source: "places", paint: { "fill-color": fillColor, "fill-opacity": ["case", isCountry, 0.35, 0.85] } },
         {
             id: "place-country-outlines",
             type: "line",
@@ -310,7 +366,7 @@ export function renderSiteMap(container: HTMLElement, places: Array<SiteMapPlace
     const view: SiteMapView = { map, places, state };
 
     map.addControl(new NavigationControl({ showCompass: false }), "top-right");
-    map.on("click", ["place-fills", "place-points"], (event: MapLayerMouseEvent) => selectPlace(String(event.features?.[0]?.properties.key ?? "")));
+    map.on("click", ["place-fills", "place-points"], (event: MapLayerMouseEvent) => selectPlace(choosePlaceKey(event.features ?? [])));
     map.on("mouseenter", ["place-fills", "place-points"], () => map.getCanvas().style.setProperty("cursor", "pointer"));
     map.on("mouseleave", ["place-fills", "place-points"], () => map.getCanvas().style.removeProperty("cursor"));
 
