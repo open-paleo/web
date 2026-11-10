@@ -74,6 +74,14 @@ ODbL), restyled in the site's colors. Readers' browsers fetch the tiles from ope
 other page makes a request outside the site. Region and country outlines are from
 [Natural Earth](https://www.naturalearthdata.com) (public domain).
 
+## Icon
+
+The site icon (`public/favicon.ico`, `public/apple-touch-icon.png`) is a stand-in until the
+project has its own logo: the "rock" fossil icon by Smashicons from
+[Flaticon](https://www.flaticon.com/free-icons/fossil), redrawn in light strokes on the header's
+dark green. Its free license requires the attribution in every page's footer; remove that line
+when the icon is replaced.
+
 ## Deployment
 
 The site is published to GitHub Pages at https://open-paleo.org by a GitHub Actions workflow:

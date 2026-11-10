@@ -4,6 +4,9 @@
 
 ### Added
 
+- A site icon for browser tabs, bookmarks and search results (`favicon.ico` at 16, 32 and 48
+  pixels, and an Apple touch icon): a stand-in fossil icon by Smashicons from Flaticon, in the
+  header's colors, credited in the footer as its license requires
 - Link previews: every page has Open Graph and Twitter card tags with its title and
   description, and a site-wide preview image (`public/social-preview.png`, drawn by
   `npm run create-social-image`), so links shared in Slack, Mastodon, iMessage and elsewhere

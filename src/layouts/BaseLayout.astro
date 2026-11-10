@@ -83,6 +83,8 @@ const navigationItems: Array<NavigationItem> = [
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content={description}>
         <title>{documentTitle}</title>
+        <link rel="icon" href={homeUrl + "favicon.ico"} sizes="16x16 32x32 48x48">
+        <link rel="apple-touch-icon" href={homeUrl + "apple-touch-icon.png"}>
         {canonicalUrl && <link rel="canonical" href={canonicalUrl}>}
         {sitemapUrl && <link rel="sitemap" href={sitemapUrl}>}
         <meta property="og:site_name" content={siteName}>
@@ -146,6 +148,7 @@ const navigationItems: Array<NavigationItem> = [
                     Data by Open Paleo contributors, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
                     Site code licensed under the <a href="https://github.com/open-paleo/web/blob/main/LICENSE">MIT License</a>.
                     Built from release {release.version}.
+                    Site icon: <a href="https://www.flaticon.com/free-icons/fossil" title="fossil icons">Fossil icons created by Smashicons - Flaticon</a>.
                 </p>
             </div>
         </footer>
