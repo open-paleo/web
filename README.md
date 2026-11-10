@@ -8,28 +8,31 @@ genus, clade and cited work, indexes to browse them, and full-text search. It ch
 presentation. Every value on it comes from the dataset, which is backed by published literature.
 
 The site is static, built with [Astro](https://astro.build/). Every page is plain HTML that works
-with JavaScript off; scripts add search and the tree's open and close buttons. It targets WCAG
-2.2 AA.
+with JavaScript off; scripts add search, filters, the tree's open and close buttons, copy
+buttons and the interactive maps, whose places are also listed in words. It targets WCAG 2.2
+AA, checked on every deployment.
 
 ## What is on the site
 
 | Page | Contents |
 |------|----------|
 | Home | Search, the release and its counts, a chart of genera through time whose stages and periods link to their pages, the major groups, the most recently named genera, and how to download, cite and contribute |
-| Stage (26) | The genera known from one stage with their clades, ages and countries, the stage's place in the time scale, and links to the stages before and after |
-| Period (3) | The period's stages as a chart, and its genera from A to Z |
-| Genus (1,428) | Description, an age figure in the chart colors of the geologic time scale, a map of where each species was found (a dot for published coordinates, the region or country shaded otherwise), diagnosis, each species with its type specimen, horizon and locality, synonyms, notable specimens, ICZN cases and references, beside an "at a glance" panel |
-| Clade (188) | Description, the span of time its genera cover, diagnosis, the clades within it, and a list of the genera placed directly in it with their ages and countries |
-| Reference (2,553) | One page per cited work: the full citation, the names first published in it, and every genus and clade that cites it |
+| Stage | One per stage with genera: the genera known from it with their clades, ages and countries, the stage's place in the time scale, and links to the stages before and after |
+| Period | One per period with genera: its stages as a chart, and its genera from A to Z |
+| Genus | One per genus: description, an age figure in the chart colors of the geologic time scale, a map of where each species was found (a dot for published coordinates, the region or country shaded otherwise), diagnosis, each species with its type specimen, horizon and locality, synonyms, notable specimens, ICZN cases and references, beside an "At a glance" panel; then how to cite the record and a link to suggest a correction |
+| Clade | One per clade with a record: description, the span of time its genera cover, diagnosis, the clades within it, the genera placed directly in it with their ages and countries, how to cite the record, and a link to suggest a correction |
+| Reference | One per cited work: the full citation, the names first published in it, every genus and clade that cites it, and a link to suggest a correction |
 | Genera | Every genus, A to Z, with its group, epochs and country, and filters for time, group, diet, locomotion, integument, status and year named that are kept in the page address |
 | Map | Where every genus's type species was found, on a world map: regions shaded by how many genera come from them, dots for published coordinates, the genera of a selected region, the Genera page's filters, and an index of genera by country and region that works without JavaScript |
 | Feed | `feed.xml`, an Atom feed of the 50 most recently named genera, linked from every page's head and the home page |
 | Tree | The classification as an outline you can open and close, with genus counts |
 | References | Every cited work, by first author |
 | Data | Downloads of the dataset's output files, how to cite a release, and the versioning policy |
-| Search | Full-text search of the genus, clade and reference pages with [Pagefind](https://pagefind.app/), filtered by kind |
+| Search | Full-text search of the genus, clade, reference, stage and period pages with [Pagefind](https://pagefind.app/), filtered by kind |
 
-Still to come: filters on the Genera index, and a timeline of genera against the stage scale.
+Every page also has link-preview tags (Open Graph and Twitter cards) and a sitemap entry.
+Corrections go to the data repository through its correction form, and citations follow the
+form the data repository recommends.
 
 ## Theme
 

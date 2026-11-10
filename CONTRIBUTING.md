@@ -24,10 +24,14 @@ git clone https://github.com/open-paleo/web.git
 cd web
 npm install
 
-npm run dev       # local server with live reload at http://localhost:4321/
+npm run dev       # local server with live reload at http://localhost:4321/ (no search)
 npm run build     # write the site to dist/, then index it for search with Pagefind
 npm run preview   # serve dist/ as it will be published, search included
 ```
+
+Two scripts regenerate committed files, and are run by hand when their inputs change:
+`npm run create-map-shapes` (the map outlines, see below) and `npm run create-social-image`
+(the link preview image, after a theme change).
 
 The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 [open-paleo/data](https://github.com/open-paleo/data) next to this repository, or set
@@ -56,9 +60,9 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 | `src/layouts/` | Page shells shared by the pages (`BaseLayout.astro`) |
 | `src/components/` | Reusable components: dispute note, age figure, reference list and so on |
 | `src/data/` | TypeScript that loads the dataset and prepares lookup tables for the pages |
-| `src/scripts/` | Browser TypeScript, such as the search page (`search.ts`) |
+| `src/scripts/` | Browser TypeScript: search, filters, maps and copy buttons |
 | `src/theme/` | The Strata theme: tokens, fonts, element defaults. See [docs/theme.md](docs/theme.md) |
-| `public/` | Static files copied to the site unchanged (favicon, robots.txt) |
+| `public/` | Static files copied to the site unchanged: the site icon and the link preview image |
 | `scripts/` | Standalone Node tooling that is not part of the Astro build |
 | `docs/` | Design and architecture notes |
 | `dist/` | Generated site output. Gitignored, never committed |
@@ -91,8 +95,14 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 | `locate-dataset.ts` | Finds `open-paleo.json`: `OPEN_PALEO_DATA`, then `./data/dist/`, then `../data/dist/` |
 | `load-dataset.ts` | Reads and parses it, and checks the schema version |
 | `site-data.ts` | `getSiteData()`: sorted genera, the clade tree with children and genus counts, every reference with the records that cite it, and URL slugs |
-| `slugs.ts` | `createSlug()`: the URL form of a name or reference key |
 | `dataset.ts` | The dataset's types |
+| `slugs.ts`, `urls.ts` | URL slugs and page paths, and the correction links |
+| `format.ts`, `records.ts`, `taxon-names.ts` | Formatting values for display, reading records, and finding taxon names in prose |
+| `age-figure.ts`, `time-pages.ts`, `home.ts` | The geologic timeline, the age figure, the stage and period pages, and the home page's chart and lists |
+| `clades.ts`, `indexes.ts` | Clade spans and genera, and the A–Z indexes |
+| `genus-index.ts`, `genus-filters.ts` | Lists of genera with their details, and the filters (shared with the browser) |
+| `genus-map.ts`, `site-map.ts`, `map-shapes.ts`, `map-geometry.ts` | The genus maps, the Map page, and the region and country outlines |
+| `citations.ts`, `feed.ts` | Citations of the dataset and its records, and the feed of new genera |
 
 Pages call `getSiteData()` from their frontmatter or `getStaticPaths()`; the first call loads
 the file and later calls reuse the result.
@@ -110,10 +120,11 @@ change and review the diff. Tests never use invented records.
 
 `src/data/map-shapes.json` holds the region and country outlines the maps shade when a place is
 known only to its region or country: Natural Earth 5.1.2 (public domain), simplified, and only
-the regions and countries the dataset uses. Country outlines, used only as a coarse fallback, are
-simplified in proportion to the country's size and lose islands under 0.5% of its largest
-polygon, and every outline stops at 85° north and south, where the map's tiles end. `npm run create-map-shapes` rebuilds it, downloading
-Natural Earth into `scratch/` the first time. Rerun it when the build warns that a region has no
+the regions and countries the dataset uses. Country outlines, used only as a coarse fallback,
+are simplified in proportion to the country's size and lose islands under 0.5% of its largest
+polygon, and every outline stops at 85° north and south, where the map's tiles end.
+`npm run create-map-shapes` rebuilds it, downloading Natural Earth into `scratch/` the first
+time. Rerun it when the build warns that a region has no
 outline. Region codes Natural Earth records under an older code are mapped in the script; codes
 it has no outline for at all are listed in the file, and their species are shaded at country
 level.
@@ -163,8 +174,7 @@ follows tree-extractor.
   matches a declared type is fine
 - **No `any`.** Use real types, or `unknown` with a type guard
 - **Omit inferable annotations on variables**; keep them on parameters and return types
-- **Declare globals with types**, in a `.d.ts` (`src/scripts/globals.d.ts`), never with
-  `globalThis as { ... }` casts
+- **Declare globals with types**, in a `.d.ts` file, never with `globalThis as { ... }` casts
 
 ### Naming
 
@@ -317,19 +327,23 @@ const { dispute, question } = Astro.props;
 `src/scripts/search.ts`) queries that index in the browser. There is no index under
 `npm run dev`; use `npm run build` and `npm run preview` to try search.
 
-- **Only record pages are indexed.** Genus, clade and reference pages mark their `<article>` with
-  `data-pagefind-body` and a `kind` filter (`Genus`, `Clade`, `Reference`). Pages without
-  `data-pagefind-body` (the index pages, the home page) are left out
+- **Only record and time pages are indexed.** Genus, clade, reference, stage and period pages
+  mark their `<article>` with `data-pagefind-body` and a `kind` filter (`Genus`, `Clade`,
+  `Reference`, `Stage`, `Period`). Pages without `data-pagefind-body` (the index pages, the home
+  page, the Map page) are left out
 - **Parts that would add noise are excluded** with `data-pagefind-ignore`: the classification
   trail (every theropod page would match "Theropoda"), the age-figure bands, the reference list
-  on genus and clade pages (the reference pages carry those citations), and the external
-  database links
-- **Names are weighted** with `data-pagefind-weight`: genus and clade names 10, specimen nicknames
-  8
+  on genus and clade pages (the reference pages carry those citations), the external database
+  links, the genus lists and charts on stage and period pages (every stage would match each of
+  its genera), and the correction note
+- **Names are weighted** with `data-pagefind-weight`: genus, clade, stage and period names 10,
+  specimen nicknames 8
 - **Ranking is tuned** in `search.ts` (`pageLength: 0.1`, `termFrequency: 0`) against queries with
   a known best page. With Pagefind's defaults, "Tyrannosaurus" ranked the Tyrannosaurus page
   14th, below short reference pages that mention it. Check a ranking change against such
   queries before making it
+- **A query that is exactly a stage or period name puts its page first.** Weighting cannot do
+  it: hundreds of reference titles contain "Jurassic", which ranked the Jurassic page 15th
 - **Excerpts are built as text nodes.** Pagefind returns excerpts as HTML with `<mark>` around
   matched words; the script keeps only those marks and inserts everything else as text
 
@@ -351,8 +365,8 @@ const { dispute, question } = Astro.props;
 - Lay out sibling groups with flex or grid and `gap`, not margins on each child
 - Respect `prefers-reduced-motion`; give every focusable element a visible `:focus-visible`
   state
-- Every page works at 400px wide with no horizontal scroll; only tables and diagrams scroll
-  sideways, inside their own `overflow-x: auto` container
+- Every page works at 320px wide with no horizontal scroll (`npm run check-site` checks it); only
+  tables, charts and code scroll sideways, inside their own `overflow-x: auto` container
 
 ## HTML
 
@@ -368,9 +382,9 @@ const { dispute, question } = Astro.props;
 - Plain, specific English from the reader's side: "Show 6 more ranks", not "Expand"
 - Sentence case for headings, buttons and navigation
 - A button says what it does, and the result uses the same word ("Copy citation", then
-  "Copied")
+  "Citation copied.")
 - Paleontological terms (holotype, nomen dubium, junior subjective synonym) are used as they
-  are and explained in the glossary, not replaced with paraphrases
+  are, not replaced with paraphrases
 - Never state a fact about a taxon in copy; facts come from the dataset
 
 ## Before opening a pull request
@@ -393,8 +407,9 @@ and does not scroll sideways in a 320px window. It needs Chromium once:
 same thing.
 
 All six run in CI on every pull request, against the current `main` of open-paleo/data, and
-every deployment runs the site check before publishing. Add words that the spell checker rejects but are
-correct (taxon names, font names) to `cspell.json`.
+every deployment runs the site check before publishing. Add words that the spell checker
+rejects but are correct (taxon names, font names) to `cspell.json`. Note the change in
+`CHANGELOG.md`, under today's date.
 
 ## AI and LLM use
 

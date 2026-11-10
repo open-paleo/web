@@ -97,8 +97,17 @@ then a region, and the country only where no region is shaded.
 ### Geologic time colors
 
 The `--period-*`, `--epoch-*` and `--stage-*` tokens are the International Commission on
-Stratigraphy's chart colors, which follow the Commission for the Geological Map of the World. They
-are the same in both themes, as on the printed chart, and are used only in age graphics.
+Stratigraphy's chart colors, which follow the Commission for the Geological Map of the World.
+`tokens.css` defines one for every period, epoch and stage the data's `schema.yml` allows, from
+the Permian to the Eocene, named after the schema's values (`--epoch-early-permian`,
+`--stage-maastrichtian`) so a template can build the token name from the record. They are the
+same in both themes, as on the printed chart, and are used only in age graphics: the age figure,
+the stage strip under the time charts, and the link preview image.
+
+Text drawn on them uses `--color-on-period` (near-black), or `--color-on-period-dark` (white) on
+the Triassic, Early Triassic, Induan and Olenekian. `test/age-figure.test.ts` checks that every
+band label reaches 4.5:1; the closest are the Permian and Middle Triassic at 5.0:1. Never lay a
+translucent layer over the bands: it breaks that contrast.
 
 In November 2026 all 61 were checked against ICS's own chart data, the `schema:color` values in
 `chart.ttl` from [i-c-stratigraphy/chart](https://github.com/i-c-stratigraphy/chart), for the
@@ -118,28 +127,12 @@ lightness, chroma and 3:1 contrast checks against each theme's background. A sin
 uses this one color for every mark; time is shown by the stage strip under the axis, in the
 chart colors of the time scale, never by coloring the bars.
 
-## Geologic time colors
-
-`tokens.css` defines a color for every period, epoch and stage that the data's `schema.yml`
-allows, from the Permian to the Eocene, using the ICS chart values. They are named after the
-schema's values (`--epoch-early-permian`, `--stage-maastrichtian`), so a template can build the
-token name from the record.
-
-They are used only in age graphics: the age figure on genus and clade pages, and the timeline.
-They do not change between light and dark. Text drawn on them uses `--color-on-period`
-(near-black), or `--color-on-period-dark` (white) on the Triassic, Early Triassic, Induan and
-Olenekian. `test/age-figure.test.ts` checks that every band label reaches 4.5:1; the closest are
-the Permian and Middle Triassic at 5.0:1. Never lay a translucent layer over the bands: it
-breaks that contrast.
-
 ## Accessibility
 
 The site targets WCAG 2.2 AA. Text contrast is at least 4.5:1 for every token pair in both
 themes; the tightest is `--color-caution` on `--color-caution-soft`, at 4.8:1 in light mode.
-Check a change that touches color or layout with axe-core in a browser, in both themes.
-
-The hex values must match the current ICS chart. Check them against the published chart
-before the first release and whenever the ICS revises it.
+`npm run check-site` runs axe-core on a sample of pages in both themes, in CI and before every
+deployment; a change that touches color or layout should also be looked at in both themes.
 
 ## Typography
 
@@ -152,8 +145,8 @@ The two families were drawn as a pair, so they share proportions and rhythm. Ale
 distinctive, which matters because taxon names are italic in running text.
 
 There is no monospace face for text. Catalog numbers (`CM 9380`) are set in Alegreya Sans 500
-with tabular figures. `--font-mono` (the system's monospace) is for code only, such as the
-BibTeX on the Data page, whose alignment depends on equal-width characters.
+with tabular figures. `--font-mono` (the system's monospace) is for code only: the BibTeX
+entries in the citation blocks, whose alignment depends on equal-width characters.
 
 Type scale (`--text-*`), against a 16px root. Nothing is set below 14px: both families have
 small x-heights and read smaller than their nominal size.
@@ -201,9 +194,8 @@ Running text is limited to `--measure` (40rem, about 75 characters of Alegreya a
 
 ## Components
 
-These were settled in the theme mockup. Each becomes an Astro component in `src/components/`
-with its styles in its own scoped `<style>` block, built along with the first page that uses
-it:
+The theme's components, in `src/components/`, each with its styles in its own scoped `<style>`
+block:
 
 | Component | Description |
 |-----------|-------------|
@@ -224,5 +216,6 @@ it:
 | Map page | The filter form folded to one line ("Filters" button, which shows how many filters are on, the summary and "Clear filters"), then the map, sized to end at the bottom of the window (24rem to 40rem), beside a `--color-surface` panel holding the legend (the five count steps, the dot and the dashed country mark) and the selected place's genera; on narrow screens the panel goes under the map. Below, "Genera by place": one disclosure per country, each region's genera as a run of names |
 | Link preview image | `public/social-preview.png`, 1200 by 630, drawn by `npm run create-social-image` from the site's fonts and tokens: the header's dark band, the wordmark in Alegreya 800, the one-line description in Alegreya Sans, and the Triassic, Jurassic and Cretaceous with their stages, each as wide as it lasted, in the ICS colors. Every page's Open Graph and Twitter card tags point to it, with the page's own title and description |
 | Citation block | `HowToCite.astro`, on the Data page and as "Cite this record" on genus and clade pages: the citation in a `--color-surface` box (a genus name in italic), the BibTeX entry below it in the one monospace block on the site, and "Copy citation" and "Copy BibTeX" buttons, shown only where the clipboard works, with a short confirmation beside them |
+| Correction note | `CorrectionLink.astro`: one muted line at the end of genus, clade and reference pages, above a hairline rule, linking to the data repository's correction form with the record filled in |
 | Diagnosis list | Numbered features with the numbers in their own right-aligned column (Alegreya Sans, muted), flush with the text around the list |
 | Site footer | The header's dark band repeated at the foot of every page: wordmark, a one-line description, links to the Data page and both repositories, and the license line with the data release the page was built from |

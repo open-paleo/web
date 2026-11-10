@@ -57,14 +57,27 @@ DNS check to pass, then turn on **Enforce HTTPS**. GitHub redirects `www.open-pa
 ### 5. Redirect openpaleo.org
 
 A GitHub Pages site takes a single custom domain (with its `www` form), so `openpaleo.org` cannot
-be attached to it. Redirect it instead, at its DNS provider or registrar, with a permanent (301)
-redirect to `https://open-paleo.org`, keeping the path (`openpaleo.org/genus/tyrannosaurus/` to
-`open-paleo.org/genus/tyrannosaurus/`). Most registrars offer this as "URL forwarding"; on
-Cloudflare it is a redirect rule.
+be attached to it. It should redirect permanently (301) to `https://open-paleo.org`, keeping the
+path (`openpaleo.org/genus/tyrannosaurus/` to `open-paleo.org/genus/tyrannosaurus/`), over both
+HTTP and HTTPS.
 
-Leave the domain's mail records (`MX`, and any `TXT` records for mail) as they are: the redirect
-is for the web only. The code of conduct's contact address, `codeofconduct@openpaleo.org`, keeps
-working.
+**Current state (November 2026):** the registrar's forwarding redirects `http://openpaleo.org`
+and `http://www.openpaleo.org` to the home page with a temporary (302) redirect, dropping the
+path, and `https://openpaleo.org` does not connect. The registrar's forwarding cannot do better.
+
+**Planned:** move `openpaleo.org`'s DNS to Cloudflare's free plan (the registrar stays the
+registrar; only the nameservers change) and redirect there:
+
+1. Add `openpaleo.org` as a site in Cloudflare and change its nameservers at the registrar to the
+   two Cloudflare gives. Turn off the registrar's forwarding.
+2. Add proxied (orange-cloud) records for `openpaleo.org` and `www`. The target is never reached,
+   so an `A` record to `192.0.2.1` serves.
+3. Under **Rules → Redirect Rules**, match all incoming requests and redirect to the dynamic URL
+   `concat("https://open-paleo.org", http.request.uri.path)`, status 301, preserving the query
+   string.
+
+Keep the domain's mail records (`MX`, and any `TXT` records for mail) when moving the DNS: the
+code of conduct's contact address, `codeofconduct@openpaleo.org`, is on this domain.
 
 ### 6. Rebuild when the data changes
 

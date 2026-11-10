@@ -21,6 +21,8 @@ Rules that are easy to miss:
 - **Multi-line JSDoc** on every function, type and type field
 - **Exact dependency versions**; no `^` or `~` in `package.json`, and pick releases at least
   two weeks old
+- **No browser dependencies** other than MapLibre GL JS, loaded only by the maps; every page
+  works with JavaScript off
 
 Astro components (see "Astro components" in CONTRIBUTING.md):
 
@@ -33,8 +35,9 @@ Astro components (see "Astro components" in CONTRIBUTING.md):
   element defaults only
 
 Run `npm run typecheck`, `npm run lint`, `npm run spellcheck`, `npm test`, `npm run build` and
-`npm run check-site` before considering code complete. Don't pipe them through `tail` when
-checking the result: the pipe hides the exit code.
+`npm run check-site` before considering code complete (`check-site` needs Chromium once:
+`npx playwright install --only-shell chromium`). Don't pipe them through `tail` when checking the
+result: the pipe hides the exit code.
 
 ## Theme
 
@@ -44,7 +47,8 @@ The site uses the Strata theme, documented in [docs/theme.md](docs/theme.md).
   `:root` and, if it changes in dark mode, redefined identically in both dark blocks
 - Geologic time colors are used only in age graphics
 - Every genus and species name gets `class="taxon"` (italic); clade names stay roman
-- No all-caps labels, no monospace, no decorative numbering
+- No all-caps labels, no decorative numbering, and no monospace except for code (the BibTeX
+  entries)
 
 ## Data
 
@@ -58,6 +62,9 @@ The site uses the Strata theme, documented in [docs/theme.md](docs/theme.md).
   repository's build; do not work around the contract
 - Never write a fact about a taxon into a template or into copy. Every value comes from the
   dataset
+- **Never edit, commit or push in open-paleo/data from this repository.** Raise what the site
+  needs with that repository's maintainers (or its own Claude Code session), and let them make
+  the change there
 
 ## Git workflow
 
@@ -67,5 +74,5 @@ say to commit or push.
 ## Generated output
 
 The generated site goes in `dist/` (`public/` is Astro's folder of static files copied as-is),
-and reports and working files go in `scratch/`. Neither is
-ever committed. Anything in `scratch/` worth keeping belongs in a GitHub issue.
+and reports and working files go in `scratch/`. Neither `dist/` nor `scratch/` is ever
+committed. Anything in `scratch/` worth keeping belongs in a GitHub issue.
