@@ -4,6 +4,9 @@
 
 ### Added
 
+- "Cite this record" on genus and clade pages: a citation in the dataset's own form, naming the
+  record, the release and the page (the genus in italic), with a BibTeX entry. It and the Data
+  page's dataset citation have "Copy citation" and "Copy BibTeX" buttons
 - "Suggest a correction" at the end of every genus, clade and reference page: a link to a new
   issue in open-paleo/data with its correction form, the record and page filled in
 - Stage and period pages in search, with "Stages" and "Periods" filters; their genus lists are

@@ -1,6 +1,8 @@
 ---
+import HowToCite from "../../components/HowToCite.astro";
 import PageSection from "../../components/PageSection.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { createDatasetCitation, dataRepositoryUrl } from "../../data/citations.ts";
 import { formatGenusCount } from "../../data/format.ts";
 import { formatFileSize, getDatasetFiles } from "../../data/indexes.ts";
 import { getSiteData } from "../../data/site-data.ts";
@@ -8,24 +10,11 @@ import { getSiteData } from "../../data/site-data.ts";
 const siteData = getSiteData();
 const metadata = siteData.metadata;
 const files = getDatasetFiles();
-const dataRepository = "https://github.com/open-paleo/data";
+const dataRepository = dataRepositoryUrl;
 const fileBaseUrl = dataRepository + "/blob/main/dist/";
 const builtDate = new Date(metadata.built_at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
 
-// The citation follows the form the data repository's README recommends for a specific
-// version; the year is the release's.
-const releaseYear = metadata.version.split(".")[0];
-const citation = "Open Paleo contributors. (" + releaseYear + "). Open Paleo (Version " + metadata.version + ") [Dataset]. " + dataRepository;
-const bibtex = [
-    "@misc{openpaleo,",
-    "  author    = {{Open Paleo contributors}},",
-    "  title     = {Open Paleo: A community-maintained phylogenetic dataset for paleontology},",
-    "  year      = {" + releaseYear + "},",
-    "  publisher = {GitHub},",
-    "  url       = {" + dataRepository + "},",
-    "  note      = {Version " + metadata.version + "}",
-    "}",
-].join("\n");
+const citation = createDatasetCitation(metadata);
 ---
 
 <BaseLayout title="Data" description="Download the Open Paleo dataset, and how to cite it." section="data">
@@ -89,8 +78,7 @@ const bibtex = [
 
         <PageSection title="How to cite">
             <p>Cite the release you used, so others can reproduce your work:</p>
-            <p class="citation-text">{citation}</p>
-            <pre class="bibtex" tabindex="0" role="region" aria-label="BibTeX entry"><code>{bibtex}</code></pre>
+            <HowToCite citation={citation} subject="the dataset" />
             <p class="section-note">
                 The dataset rests on published literature. If your work draws on it, consider citing the original papers too:
                 <a href={fileBaseUrl + "references.bib"}>references.bib</a> lists every one.
@@ -98,6 +86,10 @@ const bibtex = [
         </PageSection>
     </div>
 </BaseLayout>
+
+<script>
+    import "../../scripts/copy-buttons.ts";
+</script>
 
 <style>
     .data-page
@@ -163,27 +155,5 @@ const bibtex = [
         max-width: var(--measure);
         color: var(--color-muted);
         font-size: var(--text-interface);
-    }
-
-    .citation-text
-    {
-        max-width: var(--measure);
-        padding: var(--space-4) var(--space-5);
-        background: var(--color-surface);
-        border: 1px solid var(--color-line);
-        border-radius: var(--radius);
-    }
-
-    /* BibTeX is code: its alignment matters, so it is the one place a monospace face is used. */
-    .bibtex
-    {
-        margin: 0;
-        padding: var(--space-4) var(--space-5);
-        overflow-x: auto;
-        background: var(--color-surface);
-        border: 1px solid var(--color-line);
-        border-radius: var(--radius);
-        font-family: var(--font-mono);
-        font-size: var(--text-small);
     }
 </style>

@@ -1,0 +1,98 @@
+---
+import type { HowToCite } from "../data/citations.ts";
+
+/**
+ * Properties of a citation block: the citation, its BibTeX entry, and buttons that copy each.
+ */
+type Props = {
+    /**
+     * The citation.
+     */
+    citation: HowToCite;
+
+    /**
+     * What is cited, for the BibTeX block's accessible name: "the dataset", "Tyrannosaurus".
+     */
+    subject: string;
+};
+
+const { citation, subject } = Astro.props;
+---
+
+{/* The copy buttons are hidden until src/scripts/copy-buttons.ts shows them, since they need it;
+   without JavaScript the text can still be selected and copied. */}
+<div class="how-to-cite">
+    <p class="citation-text">{citation.before}{citation.italic && <i class="taxon">{citation.italic}</i>}{citation.after}</p>
+    <pre class="bibtex" tabindex="0" role="region" aria-label={"BibTeX entry for " + subject}><code>{citation.bibtex}</code></pre>
+    <p class="copy-actions" hidden>
+        <button class="copy-button" type="button" data-copy-text={citation.text}>Copy citation</button>
+        <button class="copy-button" type="button" data-copy-text={citation.bibtex}>Copy BibTeX</button>
+        <span class="copy-status" role="status"></span>
+    </p>
+</div>
+
+<style>
+    /* One column that may shrink below the BibTeX block's longest line, which scrolls inside its
+       box instead; the citation's address may break anywhere. Both keep a 320px window from
+       scrolling sideways. */
+    .how-to-cite
+    {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-3);
+        max-width: var(--measure);
+    }
+
+    .citation-text
+    {
+        overflow-wrap: anywhere;
+        padding: var(--space-4) var(--space-5);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+    }
+
+    /* BibTeX is code: its alignment matters, so it is the one place a monospace face is used. */
+    .bibtex
+    {
+        margin: 0;
+        padding: var(--space-4) var(--space-5);
+        overflow-x: auto;
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+        font-family: var(--font-mono);
+        font-size: var(--text-small);
+    }
+
+    .copy-actions
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-2) var(--space-3);
+        font-family: var(--font-sans);
+    }
+
+    .copy-actions[hidden]
+    {
+        display: none;
+    }
+
+    .copy-button
+    {
+        padding: var(--space-1) var(--space-4);
+        color: var(--color-accent);
+        background: var(--color-surface);
+        border: 1px solid var(--color-accent);
+        border-radius: var(--radius);
+        font-size: var(--text-interface);
+        cursor: pointer;
+    }
+
+    .copy-status
+    {
+        color: var(--color-muted);
+        font-size: var(--text-small);
+    }
+</style>

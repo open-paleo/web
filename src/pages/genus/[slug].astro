@@ -5,6 +5,7 @@ import DiagnosisList from "../../components/DiagnosisList.astro";
 import DisputeNote from "../../components/DisputeNote.astro";
 import GenusMap from "../../components/GenusMap.astro";
 import GlancePanel from "../../components/GlancePanel.astro";
+import HowToCite from "../../components/HowToCite.astro";
 import IcznCaseList from "../../components/IcznCaseList.astro";
 import LineageTrail from "../../components/LineageTrail.astro";
 import NotableSpecimenList from "../../components/NotableSpecimenList.astro";
@@ -16,6 +17,7 @@ import SpeciesSection from "../../components/SpeciesSection.astro";
 import StatusBadge from "../../components/StatusBadge.astro";
 import SynonymTable from "../../components/SynonymTable.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { createRecordCitation } from "../../data/citations.ts";
 import { formatAuthority, getFirstSentence } from "../../data/format.ts";
 import { createGenusMap, getMapShapes, warnAboutMissingOutlines } from "../../data/genus-map.ts";
 import { getTypeSpecies } from "../../data/records.ts";
@@ -76,6 +78,9 @@ export function getStaticPaths(): Array<GenusPath>
 }
 
 const { entry } = Astro.props;
+
+// The page's address for its citation; local builds without SITE_URL cite the preview server's.
+const citationUrl = new URL(Astro.url.pathname, Astro.site ?? "http://localhost:4321").href;
 const genus = entry.record;
 const siteData = getSiteData();
 const typeSpecies = getTypeSpecies(genus);
@@ -87,6 +92,7 @@ const authority = formatAuthority(genus.authors, genus.described, false);
 const authorityReferenceId = genus.erected_in ?? typeSpecies.erected_in;
 const authorityAnchor = "#" + createReferenceAnchor(siteData.referenceById.get(authorityReferenceId)?.slug ?? authorityReferenceId);
 const pronunciation = genus.pronunciation;
+const citation = createRecordCitation("Genus", genus.genus, entry.slug, citationUrl, getSiteData().metadata);
 ---
 
 <BaseLayout title={genus.genus} description={getFirstSentence(genus.description)} section="genera">
@@ -159,10 +165,18 @@ const pronunciation = genus.pronunciation;
                 </PageSection>
             )}
 
+            <PageSection title="Cite this record">
+                <HowToCite citation={citation} subject={genus.genus} />
+            </PageSection>
+
             <CorrectionLink kind="Genus" name={genus.genus} />
         </RecordMain>
     </article>
 </BaseLayout>
+
+<script>
+    import "../../scripts/copy-buttons.ts";
+</script>
 
 <script>
     import "../../scripts/place-map.ts";
