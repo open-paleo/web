@@ -1,5 +1,6 @@
 ---
 import AgeFigure from "../../components/AgeFigure.astro";
+import CorrectionLink from "../../components/CorrectionLink.astro";
 import DiagnosisList from "../../components/DiagnosisList.astro";
 import DisputeNote from "../../components/DisputeNote.astro";
 import GenusMap from "../../components/GenusMap.astro";
@@ -157,6 +158,8 @@ const pronunciation = genus.pronunciation;
                     <ReferenceList references={references} />
                 </PageSection>
             )}
+
+            <CorrectionLink kind="Genus" name={genus.genus} />
         </RecordMain>
     </article>
 </BaseLayout>

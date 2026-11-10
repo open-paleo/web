@@ -85,6 +85,7 @@ const navigationItems: Array<NavigationItem> = [
         <title>{documentTitle}</title>
         <link rel="icon" href={homeUrl + "favicon.ico"} sizes="16x16 32x32 48x48">
         <link rel="apple-touch-icon" href={homeUrl + "apple-touch-icon.png"}>
+        <link rel="alternate" type="application/atom+xml" title="Open Paleo: newly named genera" href={homeUrl + "feed.xml"}>
         {canonicalUrl && <link rel="canonical" href={canonicalUrl}>}
         {sitemapUrl && <link rel="sitemap" href={sitemapUrl}>}
         <meta property="og:site_name" content={siteName}>

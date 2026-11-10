@@ -23,6 +23,7 @@ with JavaScript off; scripts add search and the tree's open and close buttons. I
 | Reference (2,553) | One page per cited work: the full citation, the names first published in it, and every genus and clade that cites it |
 | Genera | Every genus, A to Z, with its group, epochs and country, and filters for time, group, diet, locomotion, integument, status and year named that are kept in the page address |
 | Map | Where every genus's type species was found, on a world map: regions shaded by how many genera come from them, dots for published coordinates, the genera of a selected region, the Genera page's filters, and an index of genera by country and region that works without JavaScript |
+| Feed | `feed.xml`, an Atom feed of the 50 most recently named genera, linked from every page's head and the home page |
 | Tree | The classification as an outline you can open and close, with genus counts |
 | References | Every cited work, by first author |
 | Data | Downloads of the dataset's output files, how to cite a release, and the versioning policy |

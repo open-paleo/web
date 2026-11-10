@@ -4,6 +4,14 @@
 
 ### Added
 
+- "Suggest a correction" at the end of every genus, clade and reference page: a link to a new
+  issue in open-paleo/data with its correction form, the record and page filled in
+- Stage and period pages in search, with "Stages" and "Periods" filters; their genus lists are
+  left out of the index so they do not turn up for every genus. A query that is exactly a stage
+  or period name puts its page first, above references with the name in their titles. Kinds
+  with no results for a query no longer show a filter button
+- An Atom feed of the 50 most recently named genera (`feed.xml`), linked from every page's
+  head and from the home page
 - A site icon for browser tabs, bookmarks and search results (`favicon.ico` at 16, 32 and 48
   pixels, and an Apple touch icon): a stand-in fossil icon by Smashicons from Flaticon, in the
   header's colors, credited in the footer as its license requires

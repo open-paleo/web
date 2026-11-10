@@ -82,9 +82,9 @@ if (siteData.timeline)
 ---
 
 <BaseLayout title={period.name} description={"The " + formatGenusCount(period.genera.length) + " known from the " + period.name + ", " + formatAgeRange(period.fromMa, period.toMa) + "."}>
-    <article class="period-page">
+    <article class="period-page" data-pagefind-body data-pagefind-filter="kind:Period">
         <header class="period-header">
-            <h1>{period.name}</h1>
+            <h1 data-pagefind-weight="10">{period.name}</h1>
             <p class="period-meta">
                 <span class="figures">{formatAgeRange(period.fromMa, period.toMa)}</span>
                 <span class="figures">{formatGenusCount(period.genera.length)}</span>
@@ -98,12 +98,18 @@ if (siteData.timeline)
 
         {stageCounts.length > 0 && (
             <PageSection title={"Stages of the " + period.name}>
-                <GeneraThroughTime stages={stageCounts} label={"Genera known from each stage of the " + period.name} axisGrouping="epoch" />
+                <div data-pagefind-ignore>
+                    <GeneraThroughTime stages={stageCounts} label={"Genera known from each stage of the " + period.name} axisGrouping="epoch" />
+                </div>
             </PageSection>
         )}
 
         <PageSection title={"Genera of the " + period.name}>
-            <GenusIndex rows={rows} label={"Genera of the " + period.name} headingLevel={3} isFilterable={false} isGroupedByLetter={shouldGroupByLetter(rows.length)} />
+            {/* The genera have their own pages in the search index; listing them here too would
+               make the period a result for each of its genera. */}
+            <div data-pagefind-ignore>
+                <GenusIndex rows={rows} label={"Genera of the " + period.name} headingLevel={3} isFilterable={false} isGroupedByLetter={shouldGroupByLetter(rows.length)} />
+            </div>
         </PageSection>
     </article>
 </BaseLayout>

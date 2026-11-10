@@ -1,6 +1,7 @@
 ---
 import Citation from "../../components/Citation.astro";
 import CitingRecordList from "../../components/CitingRecordList.astro";
+import CorrectionLink from "../../components/CorrectionLink.astro";
 import FactList from "../../components/FactList.astro";
 import NamedTaxonList from "../../components/NamedTaxonList.astro";
 import PageSection from "../../components/PageSection.astro";
@@ -151,6 +152,8 @@ const pageDescription = shortCitation + ". " + (parts.title ? parts.title + ". "
                     <CitingRecordList citations={cladeCitations} referenceSlug={entry.slug} />
                 </PageSection>
             )}
+
+            <CorrectionLink kind="Reference" name={entry.id + ", " + shortCitation} />
         </RecordMain>
     </article>
 </BaseLayout>

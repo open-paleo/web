@@ -87,7 +87,7 @@ const duration = formatDecimal(stage.fromMa - stage.toMa);
 ---
 
 <BaseLayout title={stage.name} description={"The " + formatGenusCount(stage.genera.length) + " known from the " + stage.name + " stage, " + formatAgeRange(stage.fromMa, stage.toMa) + "."}>
-    <article class="stage-page">
+    <article class="stage-page" data-pagefind-body data-pagefind-filter="kind:Stage">
         <nav class="time-trail" aria-label="Geologic time">
             {period ? <a href={createPagePath(baseUrl, "period", period.slug)}>{stage.periodName}</a> : stage.periodName}
             <span aria-hidden="true">›</span>
@@ -95,7 +95,7 @@ const duration = formatDecimal(stage.fromMa - stage.toMa);
         </nav>
 
         <header class="stage-header">
-            <h1>{stage.name}</h1>
+            <h1 data-pagefind-weight="10">{stage.name}</h1>
             <p class="stage-meta">
                 <span class="figures">{formatAgeRange(stage.fromMa, stage.toMa)}</span>
                 <span>{stage.epochName}</span>
@@ -129,7 +129,11 @@ const duration = formatDecimal(stage.fromMa - stage.toMa);
             )}
 
             <PageSection title={"Genera known from the " + stage.name}>
-                <GenusIndex rows={rows} label={"Genera of the " + stage.name} headingLevel={3} isFilterable={false} isGroupedByLetter={shouldGroupByLetter(rows.length)} />
+                {/* The genera have their own pages in the search index; listing them here too would
+                   make every stage a result for each of its genera. */}
+                <div data-pagefind-ignore>
+                    <GenusIndex rows={rows} label={"Genera of the " + stage.name} headingLevel={3} isFilterable={false} isGroupedByLetter={shouldGroupByLetter(rows.length)} />
+                </div>
             </PageSection>
         </RecordMain>
     </article>

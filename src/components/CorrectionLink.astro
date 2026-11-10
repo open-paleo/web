@@ -1,0 +1,46 @@
+---
+import type { CorrectionRecordKind } from "../data/urls.ts";
+import { createCorrectionUrl } from "../data/urls.ts";
+
+/**
+ * Properties of the "Suggest a correction" note at the end of a record's page.
+ */
+type Props = {
+    /**
+     * The kind of record.
+     */
+    kind: CorrectionRecordKind;
+
+    /**
+     * The record's name, as the issue's title and record field give it.
+     */
+    name: string;
+};
+
+const { kind, name } = Astro.props;
+
+// The page's own address goes into the report when the site's address is known (the deployed
+// build); local builds leave it out.
+const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : "";
+---
+
+{/* Left out of the search index, since it is the same on every page. */}
+<p class="correction-note" data-pagefind-ignore>
+    <span>Found a value that does not match its source?</span>
+    <a href={createCorrectionUrl(kind, name, pageUrl)}>Suggest a correction</a>
+    <span class="correction-where">on GitHub, with the published source that supports it.</span>
+</p>
+
+<style>
+    /* Below the fact panel and every section, across the full width. */
+    .correction-note
+    {
+        clear: both;
+        margin-top: var(--space-6);
+        padding-top: var(--space-4);
+        color: var(--color-muted);
+        border-top: 1px solid var(--color-line);
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
+    }
+</style>

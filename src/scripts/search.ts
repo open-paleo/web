@@ -25,6 +25,11 @@ type PagefindModule = {
      * Search the index. Resolves to null when a newer search has superseded this one.
      */
     debouncedSearch(term: string, options: PagefindSearchOptions, delay: number): Promise<PagefindResponse | null>;
+
+    /**
+     * Search the index at once, without waiting for typing to pause.
+     */
+    search(term: string, options: PagefindSearchOptions): Promise<PagefindResponse>;
 };
 
 /**
@@ -69,9 +74,19 @@ type PagefindRanking = {
  */
 type PagefindSearchOptions = {
     /**
-     * Filter values the results must have, by filter name.
+     * Filter values the results must have, by filter name: one value, or any of several.
      */
-    filters: Record<string, string>;
+    filters: Record<string, string | PagefindAnyFilter>;
+};
+
+/**
+ * A filter that any of several values satisfies.
+ */
+type PagefindAnyFilter = {
+    /**
+     * The values.
+     */
+    any: Array<string>;
 };
 
 /**
@@ -93,6 +108,11 @@ type PagefindResponse = {
  * One matching page, whose data loads on request.
  */
 type PagefindResult = {
+    /**
+     * The page's id in the index.
+     */
+    id: string;
+
     /**
      * Load the page's URL, title and excerpt.
      */
@@ -119,7 +139,7 @@ type PagefindResultData = {
     meta: Record<string, string>;
 
     /**
-     * The page's filter values; "kind" is Genus, Clade or Reference.
+     * The page's filter values; "kind" is Genus, Clade, Reference, Stage or Period.
      */
     filters: Record<string, Array<string>>;
 };
@@ -176,10 +196,15 @@ const kindChoices: Array<KindChoice> = [
     { value: "Genus", label: "Genera" },
     { value: "Clade", label: "Clades" },
     { value: "Reference", label: "References" },
+    { value: "Stage", label: "Stages" },
+    { value: "Period", label: "Periods" },
 ];
 
 let pagefind: PagefindModule | undefined;
 let activeKind = "";
+// How many of the best stage and period matches to check for an exact name.
+const timePageCandidates = 3;
+
 let currentResults = new Array<PagefindResult>();
 let shownCount = 0;
 
@@ -318,6 +343,58 @@ async function showMoreResults(elements: SearchElements): Promise<void>
 }
 
 /**
+ * Find the stage or period page whose name is exactly the query. A period's name appears in the
+ * titles of hundreds of references, which can outrank its own page; a reader typing "Jurassic"
+ * most likely wants the page about the Jurassic.
+ *
+ * @param term - The query.
+ * @returns The page's result, or undefined when no stage or period has that name.
+ */
+async function findTimePageNamed(term: string): Promise<PagefindResult | undefined>
+{
+    if (!pagefind || (activeKind !== "" && activeKind !== "Stage" && activeKind !== "Period"))
+    {
+        return undefined;
+    }
+
+    const response = await pagefind.search(term, { filters: { kind: { any: ["Stage", "Period"] } } });
+
+    for (const result of response.results.slice(0, timePageCandidates))
+    {
+        const data = await result.data();
+
+        if ((data.meta.title ?? "").toLowerCase() === term.toLowerCase())
+        {
+            return result;
+        }
+    }
+
+    return undefined;
+}
+
+/**
+ * Move a result to the top of the results, taking it out of its place lower down.
+ *
+ * @param results - The results, best first.
+ * @param first - The result to put first.
+ * @returns The reordered results.
+ */
+function moveResultFirst(results: Array<PagefindResult>, first: PagefindResult): Array<PagefindResult>
+{
+    const reordered = [first];
+
+    for (const result of results)
+    {
+        if (result.id !== first.id)
+        {
+            reordered.push(result);
+        }
+    }
+
+    return reordered;
+}
+
+/**
  * Draw the kind filter buttons with their counts for the current query.
  *
  * @param elements - The page elements.
@@ -330,8 +407,15 @@ function renderKindChoices(elements: SearchElements, counts: Record<string, numb
 
     for (const choice of kindChoices)
     {
-        const button = document.createElement("button");
         const count = choice.value === "" ? total : counts[choice.value] ?? 0;
+
+        // A kind with no results for this query is left out, unless it is the one selected.
+        if (count === 0 && choice.value !== "" && choice.value !== activeKind)
+        {
+            continue;
+        }
+
+        const button = document.createElement("button");
 
         button.type = "button";
         button.textContent = choice.label + " (" + count + ")";
@@ -403,7 +487,9 @@ async function runSearch(elements: SearchElements): Promise<void>
     const kindCounts = response.totalFilters.kind ?? {};
     const total = sumCounts(kindCounts);
 
-    currentResults = response.results;
+    const timePage = await findTimePageNamed(term);
+
+    currentResults = timePage ? moveResultFirst(response.results, timePage) : response.results;
     shownCount = 0;
     elements.list.replaceChildren();
     renderKindChoices(elements, kindCounts, total);

@@ -102,6 +102,7 @@ const lastStage = stages[stages.length - 1];
                 <ul class="name-list">
                     {recent.genera.map((genus) => <li><a class="taxon" href={createPagePath(baseUrl, "genus", genus.slug)}>{genus.name}</a></li>)}
                 </ul>
+                <p class="section-note">Follow newly named genera in a feed reader with the <a href={baseUrl + "feed.xml"}>Atom feed</a>.</p>
             </PageSection>
         )}
 
@@ -116,8 +117,8 @@ const lastStage = stages[stages.length - 1];
                     <p>Add a genus or correct a record with a pull request to the data repository. Every change needs a published source.</p>
                 </li>
                 <li>
-                    <h3><a href={dataRepository + "/issues/new"}>Report an error</a></h3>
-                    <p>Found a value that does not match its source? Open an issue in the data repository.</p>
+                    <h3><a href={dataRepository + "/issues/new?template=correction.yml"}>Report an error</a></h3>
+                    <p>Found a value that does not match its source? Report it with the published source that supports the correction. Every genus, clade and reference page also has a link that names the record for you.</p>
                 </li>
             </ul>
         </PageSection>

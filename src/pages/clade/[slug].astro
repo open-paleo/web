@@ -1,5 +1,6 @@
 ---
 import AgeFigure from "../../components/AgeFigure.astro";
+import CorrectionLink from "../../components/CorrectionLink.astro";
 import GenusIndex from "../../components/GenusIndex.astro";
 import DiagnosisList from "../../components/DiagnosisList.astro";
 import DisputeNote from "../../components/DisputeNote.astro";
@@ -161,6 +162,8 @@ const placedDirectly = entry.genusNames.length;
                     <ReferenceList references={references} />
                 </PageSection>
             )}
+
+            <CorrectionLink kind="Clade" name={entry.name} />
         </RecordMain>
     </article>
 </BaseLayout>
