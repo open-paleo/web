@@ -24,10 +24,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Checkout dataset
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: open-paleo/data
           path: data
@@ -35,12 +35,23 @@ jobs:
           sparse-checkout-cone-mode: false
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
 
+      # node_modules is restored from the cache CI and Deploy keep, but never saved here: the next
+      # step changes it, and saving that under the old lockfile's key would hand the new release
+      # to runs that expect the old one.
+      - name: Restore node_modules
+        id: node-modules
+        uses: actions/cache/restore@v6
+        with:
+          path: node_modules
+          key: node-modules-${{ runner.os }}-node24-${{ hashFiles('package-lock.json') }}
+
       - name: Install dependencies
+        if: steps.node-modules.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Pin the release
@@ -76,8 +87,22 @@ jobs:
       - name: Build
         run: npm run build
 
+      # Chromium's headless shell is cached, keyed by the lockfile (which pins Playwright); its
+      # system libraries are not part of the cache, so they are installed on every run.
+      - name: Restore Chromium
+        id: chromium
+        uses: actions/cache/restore@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
       - name: Install Chromium
+        if: steps.chromium.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps --only-shell chromium
+
+      - name: Install Chromium's system libraries
+        if: steps.chromium.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
 
       - name: Check the built site
         run: npm run check-site

@@ -12,11 +12,20 @@ The site is published to GitHub Pages at **https://open-paleo.org** by
 | Manual run (Actions tab, "Run workflow") | `main` of open-paleo/data | Any time |
 | Nightly at 06:17 UTC | `main` of open-paleo/data | Catches a missed `data-updated` notification |
 
-Each run installs dependencies, runs the tests, builds the site with `SITE_URL=https://open-paleo.org`
-and `SITE_BASE=/` (which turn on canonical addresses, the sitemap and the sitemap line in
+Each run installs dependencies, builds the site with `SITE_URL=https://open-paleo.org` and
+`SITE_BASE=/` (which turn on canonical addresses, the sitemap and the sitemap line in
 `robots.txt`), indexes it with Pagefind, runs the site checks (`npm run check-site`: links,
-accessibility and reflow), and publishes it. A run whose tests or site checks fail publishes
-nothing, so the live site keeps its last good build. Only one deployment runs at a time.
+accessibility, reflow and the tree extractor), and publishes it. A run whose site checks fail
+publishes nothing, so the live site keeps its last good build. Only one deployment runs at a
+time.
+
+The site checks stay in every deployment because most deployments never pass through a pull
+request: data updates and the nightly rebuild build against new data, and a push to `main`
+deploys alongside CI rather than after it. The unit tests are left to CI: they run against the
+test fixture, so new data cannot change their result.
+
+`node_modules` and Chromium are cached between runs, keyed by `package-lock.json`, so a run
+whose dependencies are unchanged skips `npm ci` and the browser download.
 
 ## One-time setup
 

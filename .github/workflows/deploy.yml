@@ -39,11 +39,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       # Only dist/ is checked out: the site reads nothing else from the data repository.
       - name: Checkout dataset
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: open-paleo/data
           ref: ${{ github.event.client_payload.sha || 'main' }}
@@ -52,25 +52,46 @@ jobs:
           sparse-checkout-cone-mode: false
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
 
-      - name: Install dependencies
-        run: npm ci
+      # node_modules is cached whole, keyed by the lockfile, so a run whose dependencies have not
+      # changed skips npm ci, most of its install time; any change to package-lock.json misses.
+      # Caches written by a pull request stay with that pull request, so they never reach main.
+      - name: Restore node_modules
+        id: node-modules
+        uses: actions/cache@v6
+        with:
+          path: node_modules
+          key: node-modules-${{ runner.os }}-node24-${{ hashFiles('package-lock.json') }}
 
-      # A deployment never publishes a build that fails its tests.
-      - name: Test
-        run: npm test
+      - name: Install dependencies
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: npm ci
 
       - name: Build
         run: npm run build
 
       # New data can break a page as easily as new code, so every deployment runs the site
       # checks. When they fail, the live site stays at the last version that passed.
+      # Chromium's headless shell is cached, keyed by the lockfile (which pins Playwright); its
+      # system libraries are not part of the cache, so they are installed on every run.
+      - name: Restore Chromium
+        id: chromium
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
       - name: Install Chromium
+        if: steps.chromium.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps --only-shell chromium
+
+      - name: Install Chromium's system libraries
+        if: steps.chromium.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
 
       - name: Check the built site
         run: npm run check-site
