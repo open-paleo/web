@@ -20,7 +20,7 @@ Rules that are easy to miss:
 - **American English** in code, comments, docs and site copy
 - **Multi-line JSDoc** on every function, type and type field
 - **Exact dependency versions**; no `^` or `~` in `package.json`, and pick releases at least
-  two weeks old
+  two weeks old (Open Paleo's own packages, such as the tree extractor, are exempt)
 - **No browser dependencies** other than MapLibre GL JS, loaded only by the maps; every page
   works with JavaScript off
 

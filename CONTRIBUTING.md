@@ -43,7 +43,8 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
   repository's `.npmrc` sets `save-exact=true`, so `npm install <package>` writes an exact
   version. Upgrades are deliberate edits to `package.json`
 - **Choose a release at least two weeks old** when adding or upgrading a package, so a broken
-  or compromised release has time to be noticed and pulled
+  or compromised release has time to be noticed and pulled. Open Paleo's own packages (such as
+  the tree extractor) are exempt: the project builds and reviews them itself
 - **No runtime dependencies in the browser.** Pages must work with JavaScript off; scripts add
   search, filters and interactive views on top. The one exception is the map: MapLibre GL JS,
   loaded only on genus pages (when the map scrolls into view) and the Map page, drawing
