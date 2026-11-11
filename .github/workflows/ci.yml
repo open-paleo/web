@@ -75,11 +75,27 @@ jobs:
 
       - name: Install Chromium
         if: steps.chromium.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps --only-shell chromium
+        # Retried: installing the system libraries downloads packages from Ubuntu's servers, and a
+        # brief network failure there (as on the 2026-11-11 nightly run) should not fail the run.
+        run: |
+          for attempt in 1 2 3; do
+            npx playwright install --with-deps --only-shell chromium && exit 0
+            echo "Attempt $attempt failed; retrying in 30 seconds" >&2
+            sleep 30
+          done
+          exit 1
 
       - name: Install Chromium's system libraries
         if: steps.chromium.outputs.cache-hit == 'true'
-        run: npx playwright install-deps chromium
+        # Retried: installing the system libraries downloads packages from Ubuntu's servers, and a
+        # brief network failure there (as on the 2026-11-11 nightly run) should not fail the run.
+        run: |
+          for attempt in 1 2 3; do
+            npx playwright install-deps chromium && exit 0
+            echo "Attempt $attempt failed; retrying in 30 seconds" >&2
+            sleep 30
+          done
+          exit 1
 
       - name: Check the built site
         run: npm run check-site
