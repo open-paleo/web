@@ -30,7 +30,7 @@ AA, checked on every deployment.
 | Data | Downloads of the dataset's output files, how to cite a release, the versioning policy, and the tools |
 | Tools | The site's tools, from the header's "Tools" item: for now the tree extractor |
 | Tree extractor (beta) | `tools/tree-extractor/`: [open-paleo/tree-extractor](https://github.com/open-paleo/tree-extractor) in the site's theme, reading a tree from a figure into Newick or Nexus in the browser, with labels matched against the dataset's names. Its text recognition (Tesseract.js) is served from the site, so nothing leaves the reader's computer |
-| Search | Full-text search of the genus, clade, reference, stage and period pages with [Pagefind](https://pagefind.app/), filtered by kind |
+| Search | Full-text search of the genus, clade, reference, stage and period pages with [Pagefind](https://pagefind.app/), filtered by kind. The header and home page search fields also suggest genus, species, clade and synonym names as you type |
 
 Every page also has link-preview tags (Open Graph and Twitter cards) and a sitemap entry.
 Corrections go to the data repository through its correction form, and citations follow the

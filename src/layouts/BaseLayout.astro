@@ -51,9 +51,15 @@ type Props = {
      * Text already in the search field, on the search page.
      */
     searchQuery?: string;
+
+    /**
+     * Whether the header's search field suggests names as the reader types. The search page
+     * turns it off, since its results already follow the field.
+     */
+    hasSearchSuggestions?: boolean;
 };
 
-const { title, description, section, searchQuery = "" } = Astro.props;
+const { title, description, section, searchQuery = "", hasSearchSuggestions = true } = Astro.props;
 const siteName = "Open Paleo";
 const documentTitle = title ? title + " | " + siteName : siteName;
 const homeUrl = import.meta.env.BASE_URL;
@@ -78,7 +84,7 @@ const navigationItems: Array<NavigationItem> = [
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-base-url={homeUrl}>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -127,6 +133,7 @@ const navigationItems: Array<NavigationItem> = [
                         value={searchQuery}
                         placeholder="Genus, clade, author"
                         autocomplete="off"
+                        data-suggestions={hasSearchSuggestions ? "" : undefined}
                         >
                     <button type="submit">Search</button>
                 </form>
@@ -155,6 +162,9 @@ const navigationItems: Array<NavigationItem> = [
                 </p>
             </div>
         </footer>
+        <script>
+            import "../scripts/search-suggestions.ts";
+        </script>
     </body>
 </html>
 
@@ -353,6 +363,83 @@ const navigationItems: Array<NavigationItem> = [
     .site-search input::placeholder
     {
         color: var(--color-header-muted);
+    }
+
+    /* The name suggestions under a search field (src/scripts/search-suggestions.ts), on the
+       header's field and the home page's. The script creates them, so they are global here. */
+    .site-search,
+    :global(.home-search-row)
+    {
+        position: relative;
+    }
+
+    :global(.search-suggestions)
+    {
+        position: absolute;
+        top: calc(100% + var(--space-1));
+        left: 0;
+        z-index: 10;
+        width: max(100%, 24rem);
+        max-width: calc(100vw - 2 * var(--space-4));
+        max-height: min(28rem, 70vh);
+        margin: 0;
+        padding: var(--space-1) 0;
+        overflow-y: auto;
+        color: var(--color-ink);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+        list-style: none;
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
+        text-align: left;
+    }
+
+    /* The header's field sits at the right, so its list opens toward the left. */
+    .site-search :global(.search-suggestions)
+    {
+        right: 0;
+        left: auto;
+    }
+
+    :global(.search-suggestions[hidden])
+    {
+        display: none;
+    }
+
+    :global(.search-suggestions li)
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0 var(--space-3);
+        padding: var(--space-2) var(--space-3);
+        cursor: pointer;
+    }
+
+    :global(.search-suggestions li[aria-selected="true"]),
+    :global(.search-suggestions li:hover)
+    {
+        background: var(--color-accent-soft);
+    }
+
+    :global(.search-suggestions .suggestion-name)
+    {
+        font-family: var(--font-serif);
+        font-size: var(--text-body);
+    }
+
+    :global(.search-suggestions .suggestion-note)
+    {
+        color: var(--color-muted);
+        font-size: var(--text-small);
+    }
+
+    :global(.search-suggestions .suggestion-search)
+    {
+        color: var(--color-accent);
+        border-top: 1px solid var(--color-line);
     }
 
     .site-search button

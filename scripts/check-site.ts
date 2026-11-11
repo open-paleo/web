@@ -258,6 +258,63 @@ async function checkTreeExtractor(browser: Browser, siteUrl: string, problems: A
 }
 
 /**
+ * Type part of a genus name into the header's search field: the suggestion list must open with
+ * that genus in it and pass axe while open, and choosing it from the keyboard must open its page.
+ *
+ * @param browser - The browser.
+ * @param siteUrl - The site's local address.
+ * @param problems - The list to add failures to.
+ */
+async function checkSearchSuggestions(browser: Browser, siteUrl: string, problems: Array<SiteProblem>): Promise<void>
+{
+    const page = await openLocalPage(browser, { viewport: { width: 1280, height: 900 } });
+    const location = "/genus/tyrannosaurus/ (search suggestions)";
+    const option = page.locator("#site-search-field-suggestions li", { hasText: "Velociraptor" }).first();
+
+    await page.goto(siteUrl + "genus/tyrannosaurus/", { waitUntil: "networkidle" });
+    await page.locator("#site-search-field").click();
+    await page.keyboard.type("veloci");
+
+    try
+    {
+        await option.waitFor({ timeout: 10000 });
+    }
+    catch
+    {
+        problems.push({ location, check: "suggestions", message: "typing \"veloci\" did not suggest Velociraptor" });
+        await page.close();
+
+        return;
+    }
+
+    for (const finding of (await checkAccessibility(page)).violations)
+    {
+        problems.push({ location, check: "axe", message: finding.rule + " at " + finding.target + ": " + finding.summary });
+    }
+
+    const options = await page.locator("#site-search-field-suggestions li").allTextContents();
+    const index = options.findIndex((text) => text.startsWith("Velociraptor") && text.includes("Genus"));
+
+    for (let press = 0; press <= index; press++)
+    {
+        await page.keyboard.press("ArrowDown");
+    }
+
+    await page.keyboard.press("Enter");
+
+    try
+    {
+        await page.waitForURL(/genus\/velociraptor\/$/, { timeout: 10000 });
+    }
+    catch
+    {
+        problems.push({ location, check: "suggestions", message: "choosing Velociraptor opened " + page.url() });
+    }
+
+    await page.close();
+}
+
+/**
  * Report whether the tree extractor has finished a run. Runs in the browser.
  *
  * @returns True once the status reports the tips found.
@@ -326,6 +383,7 @@ async function checkSite(): Promise<void>
         }
 
         await checkTreeExtractor(browser, server.url, problems);
+        await checkSearchSuggestions(browser, server.url, problems);
     }
     finally
     {
@@ -333,7 +391,7 @@ async function checkSite(): Promise<void>
         server.server.close();
     }
 
-    console.log("Pages: " + samplePages.length + " checked with axe (light and dark), for loose text, and at 320px wide; the tree extractor run on a figure");
+    console.log("Pages: " + samplePages.length + " checked with axe (light and dark), for loose text, and at 320px wide; the tree extractor run on a figure; search suggestions tried");
 
     if (problems.length > 0)
     {

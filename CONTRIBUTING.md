@@ -352,6 +352,13 @@ const { dispute, question } = Astro.props;
   queries before making it
 - **A query that is exactly a stage or period name puts its page first.** Weighting cannot do
   it: hundreds of reference titles contain "Jurassic", which ranked the Jurassic page 15th
+- **The header and home page search fields suggest names as the reader types**
+  (`src/scripts/search-suggestions.ts`), from `search/suggestions.json`: every genus, species,
+  clade and synonym with its page, built by `src/data/search-suggestions.ts` and matched by
+  `src/data/suggestion-matching.ts` (case and accents ignored; a whole name, then the start of the
+  name, then the start of a later word, then anywhere). The list loads the first time a field is
+  used. The fields follow the WAI-ARIA combobox pattern; without JavaScript they submit to the
+  search page as before. The search page's own field has no list, since its results follow it
 - **Excerpts are built as text nodes.** Pagefind returns excerpts as HTML with `<mark>` around
   matched words; the script keeps only those marks and inserts everything else as text
 
