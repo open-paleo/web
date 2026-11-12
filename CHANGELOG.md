@@ -12,9 +12,14 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   Colorado opens with the West Coast and the Plains in view rather than filling the map. Places
   that already fill a continent-scale view, such as Alaska, open as before. Region names on all
   maps appear from zoom 3 rather than 4, so they show at a phone's opening zoom
+- A clade's type genus is the first row of its "At a glance" panel, linked to the genus page,
+  rather than a line under the clade's name
 
 ### Fixed
 
+- The tree extractor's known names include the name each species was first published under
+  ("Zalmoxes shqiperorum" for *Ferenceratops shqiperorum*), so the tool recognizes an older
+  figure's names
 - Long genus and clade names ("Haplocanthosaurus", "Micropachycephalosaurus") shrink to fit
   the line on phones instead of widening the page and pushing the content below them off
   screen. The site check now includes the longest genus and clade names
