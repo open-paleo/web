@@ -108,7 +108,7 @@ const citation = createRecordCitation("Clade", entry.name, entry.slug, citationU
         <LineageTrail taxonomy={ancestors} />
 
         <header class="clade-header">
-            <h1 class="clade-name" data-pagefind-weight="10">{entry.name}</h1>
+            <h1 class="clade-name" data-pagefind-weight="10" style={"--name-length: " + entry.name.length}>{entry.name}</h1>
             <p class="clade-meta">
                 {authority && <a class="authority" href={authorityAnchor}>{authority}</a>}
                 {typeGenus && <span>Type genus <a class="taxon" href={createPagePath(baseUrl, "genus", typeGenus.slug)}>{typeGenus.name}</a></span>}
@@ -189,10 +189,13 @@ const citation = createRecordCitation("Clade", entry.name, entry.slug, citationU
         gap: var(--space-5);
     }
 
+    /* The header is a size container, so the name below can be sized to its width, and its
+       width comes from the page rather than from the name. */
     .clade-header
     {
         display: grid;
         gap: var(--space-2);
+        container-type: inline-size;
     }
 
     .clade-age:empty
@@ -200,9 +203,14 @@ const citation = createRecordCitation("Clade", entry.name, entry.slug, citationU
         display: none;
     }
 
+    /* A long name ("Micropachycephalosaurus") shrinks to fit the line on a phone rather than
+       widening the page: at 800 weight a letter is under half an em wide, so a name of n
+       letters fits at 1 / (n × 0.5) of the header's width. Should the estimate fall short (a
+       fallback font before Alegreya loads), the name wraps rather than overflowing. */
     .clade-name
     {
-        font-size: var(--text-display);
+        font-size: min(var(--text-display), 100cqi / (var(--name-length) * 0.5));
+        overflow-wrap: anywhere;
         font-weight: 800;
         letter-spacing: -0.01em;
     }

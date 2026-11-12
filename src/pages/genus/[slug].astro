@@ -100,7 +100,7 @@ const citation = createRecordCitation("Genus", genus.genus, entry.slug, citation
         <LineageTrail taxonomy={genus.taxonomy} placement={genus.placement} />
 
         <header class="genus-header">
-            <h1 class="genus-name taxon" data-pagefind-weight="10">{genus.genus}</h1>
+            <h1 class="genus-name taxon" data-pagefind-weight="10" style={"--name-length: " + genus.genus.length}>{genus.genus}</h1>
             <p class="genus-meta">
                 {authority && <a class="authority" href={authorityAnchor}>{authority}</a>}
                 {pronunciation?.phonetic && <span>{pronunciation.phonetic}</span>}
@@ -189,10 +189,13 @@ const citation = createRecordCitation("Genus", genus.genus, entry.slug, citation
         gap: var(--space-5);
     }
 
+    /* The header is a size container, so the name below can be sized to its width, and its
+       width comes from the page rather than from the name. */
     .genus-header
     {
         display: grid;
         gap: var(--space-3);
+        container-type: inline-size;
     }
 
     .genus-age:empty
@@ -200,9 +203,14 @@ const citation = createRecordCitation("Genus", genus.genus, entry.slug, citation
         display: none;
     }
 
+    /* A long name ("Micropachycephalosaurus") shrinks to fit the line on a phone rather than
+       widening the page: at 800 weight a letter is under half an em wide, so a name of n
+       letters fits at 1 / (n × 0.5) of the header's width. Should the estimate fall short (a
+       fallback font before Alegreya loads), the name wraps rather than overflowing. */
     .genus-name
     {
-        font-size: var(--text-display);
+        font-size: min(var(--text-display), 100cqi / (var(--name-length) * 0.5));
+        overflow-wrap: anywhere;
         font-weight: 800;
         letter-spacing: -0.01em;
     }

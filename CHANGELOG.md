@@ -4,6 +4,14 @@ The site is published continuously from `main`, so changes are grouped by the da
 live, newest first. Add to today's section, creating it if needed. The data the site shows has
 its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
+## 2026-11-12
+
+### Fixed
+
+- Long genus and clade names ("Haplocanthosaurus", "Micropachycephalosaurus") shrink to fit
+  the line on phones instead of widening the page and pushing the content below them off
+  screen. The site check now includes the longest genus and clade names
+
 ## 2026-11-11
 
 ### Added
