@@ -52,7 +52,7 @@ than the page, with `--color-header-edge` as a visible bottom border.
 
 The genus maps style OpenFreeMap's OpenStreetMap tiles from tokens, so the base map sits in
 the page's neutrals and the places stand out in the chart green. The base map shows only land,
-water, country and region borders, and place names (countries, then regions from zoom 4, then
+water, country and region borders, and place names (countries, then regions from zoom 3, then
 towns from zoom 6).
 
 | Token | Light | Dark | Use |
@@ -75,7 +75,10 @@ species found at the same place share one mark and one label ("*D. horneri*, *D.
 Labels name the species rather than colors standing for them: a genus can have more species
 than there are distinguishable colors, and species sharing a region would blend. Where labels
 collide, MapLibre shows the type species' first and the rest as the reader zooms in. The type
-species is drawn more strongly than the others. `--map-control-icon-filter` (`none`, or
+species is drawn more strongly than the others. The map opens one zoom level further out than a
+tight fit of its places, so they are seen among their neighbors (Colorado with the West Coast
+and the Plains), but no further out than zoom 3, where region names begin; a place that already
+fits at zoom 3, such as Alaska, opens fitted. `--map-control-icon-filter` (`none`, or
 `invert(1)` in dark mode) keeps MapLibre's control icons visible on the themed buttons.
 
 A genus map whose places reach beyond 60°S or 66°N is drawn on a globe rather than the flat web

@@ -147,7 +147,7 @@ export function createGroundLayers(colors: MapColors): Array<LayerSpecification>
 }
 
 /**
- * Create the base map's place names: countries, then regions from zoom 4, then towns from zoom 6.
+ * Create the base map's place names: countries, then regions from zoom 3, then towns from zoom 6.
  * The Map page draws these over its shaded regions, so the names stay readable.
  *
  * @param colors - The map's colors.
@@ -171,7 +171,7 @@ export function createNameLayers(colors: MapColors): Array<LayerSpecification>
             type: "symbol",
             source: "base",
             "source-layer": "place",
-            minzoom: 4,
+            minzoom: 3,
             maxzoom: 9,
             filter: ["==", ["get", "class"], "state"],
             layout: { "text-field": englishName, "text-font": italicLabelFont, "text-size": 12, "text-max-width": 8 },

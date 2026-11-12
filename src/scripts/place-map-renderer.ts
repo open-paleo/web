@@ -23,6 +23,18 @@ type PlaceProperties = {
 // How far the map zooms in when it opens on a place.
 const openingZoomLimit = 6;
 
+// How many zoom levels the map opens beyond a tight fit of its places, so they are seen among
+// their neighbors: one level doubles the area shown each way, so Colorado opens with the West
+// Coast and the Great Plains in view rather than filling the map.
+const contextZoomLevels = 1;
+
+// The zoom the map never zooms out past for context: below it, region names are not drawn, and
+// a place large enough to fit there (Alaska, on a globe) is its own context.
+const contextZoomFloor = 3;
+
+// The space around the places in a tight fit, in pixels.
+const fitPadding = 48;
+
 // The zoom a map opens at when its places are too wide to fit. Over a pole it is negative: the
 // globe matches the flat map's scale at the center latitude, which near a pole is many times
 // enlarged, so only a zoom below 0 shows the whole of Antarctica.
@@ -189,6 +201,24 @@ function showMapUnavailable(container: HTMLElement): void
 }
 
 /**
+ * Zoom a map that opened fitted to its places out by contextZoomLevels, so the reader sees where
+ * they are, but not past contextZoomFloor. Called before the first frame is drawn, so the reader
+ * never sees the tight fit.
+ *
+ * @param map - The map, just created.
+ * @param bounds - The places' bounds.
+ */
+function showSurroundings(map: MapLibreMap, bounds: MapBounds): void
+{
+    const camera = map.cameraForBounds(bounds, { padding: fitPadding, maxZoom: openingZoomLimit });
+
+    if (camera?.zoom !== undefined && camera.zoom > contextZoomFloor)
+    {
+        map.jumpTo({ ...camera, zoom: Math.max(camera.zoom - contextZoomLevels, contextZoomFloor) });
+    }
+}
+
+/**
  * Draw a place map in its container.
  *
  * @param container - The container, with data-features and data-bounds written at build time.
@@ -207,7 +237,7 @@ export function renderPlaceMap(container: HTMLElement): void
             style: createMapStyle(readMapColors(), features, view),
             // Places spanning more than half the world cannot be fitted; the map opens on their
             // middle, far enough out to show them.
-            ...(view.isWide ? { center: view.center, zoom: wideOpeningZoom } : { bounds, fitBoundsOptions: { padding: 48, maxZoom: openingZoomLimit } }),
+            ...(view.isWide ? { center: view.center, zoom: wideOpeningZoom } : { bounds, fitBoundsOptions: { padding: fitPadding, maxZoom: openingZoomLimit } }),
             minZoom: -2,
             maxZoom: zoomLimit,
             attributionControl: { compact: true },
@@ -222,6 +252,11 @@ export function renderPlaceMap(container: HTMLElement): void
         showMapUnavailable(container);
 
         return;
+    }
+
+    if (!view.isWide)
+    {
+        showSurroundings(map, bounds);
     }
 
     map.addControl(new NavigationControl({ showCompass: false }), "top-right");

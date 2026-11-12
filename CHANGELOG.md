@@ -6,6 +6,13 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ## 2026-11-12
 
+### Changed
+
+- Genus maps open one zoom level further out, so the places are seen among their neighbors:
+  Colorado opens with the West Coast and the Plains in view rather than filling the map. Places
+  that already fill a continent-scale view, such as Alaska, open as before. Region names on all
+  maps appear from zoom 3 rather than 4, so they show at a phone's opening zoom
+
 ### Fixed
 
 - Long genus and clade names ("Haplocanthosaurus", "Micropachycephalosaurus") shrink to fit
