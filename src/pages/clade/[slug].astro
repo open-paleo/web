@@ -109,16 +109,19 @@ const citation = createRecordCitation("Clade", entry.name, entry.slug, citationU
 
         <header class="clade-header">
             <h1 class="clade-name" data-pagefind-weight="10" style={"--name-length: " + entry.name.length}>{entry.name}</h1>
-            <p class="clade-meta">
-                {authority && <a class="authority" href={authorityAnchor}>{authority}</a>}
-                {typeGenus && <span>Type genus <a class="taxon" href={createPagePath(baseUrl, "genus", typeGenus.slug)}>{typeGenus.name}</a></span>}
-            </p>
+            {authority && <p class="clade-meta"><a class="authority" href={authorityAnchor}>{authority}</a></p>}
         </header>
 
         <div class="clade-age">{ageSpan && <AgeFigure period={ageSpan} rangeIntroduction="Its genera lived" />}</div>
 
         <RecordMain>
             <FactList label="At a glance">
+                {typeGenus && (
+                    <>
+                        <dt>Type genus</dt>
+                        <dd><a class="taxon" href={createPagePath(baseUrl, "genus", typeGenus.slug)}>{typeGenus.name}</a></dd>
+                    </>
+                )}
                 <dt>Genera</dt>
                 <dd class="figures">{formatGenusCount(entry.totalGenusCount)}</dd>
                 <dt>Placed directly</dt>
