@@ -2,9 +2,14 @@ name: Update the tree extractor
 
 # When open-paleo/tree-extractor publishes a release, it sends a tree-extractor-released
 # notification with client_payload { version, tag, tarball_url, integrity }. This workflow pins
-# the new release, runs every check against it, and opens a pull request; nothing deploys until
-# a maintainer merges it. Pull requests opened with GitHub's built-in token do not start other
-# workflows, so the checks run here, and the pull request links to this run.
+# the new release, checks the tarball is the one announced, and opens a pull request, on which
+# CI runs every check; nothing deploys until a maintainer merges it.
+#
+# The branch is pushed and the pull request opened with WEB_DISPATCH_TOKEN, the fine-grained
+# token tree-extractor sends the notification with (Contents and Pull requests: read and write
+# on this repository). A pull request opened with GitHub's built-in token would leave its CI run
+# waiting for a maintainer's approval. The token is used only in the last step: the checkout
+# keeps no credentials, so the release's install scripts cannot read it.
 #
 # The payload is read through environment variables and checked before use, never pasted into
 # a command, so a malformed notification cannot inject one.
@@ -13,11 +18,7 @@ on:
     types: [tree-extractor-released]
 
 permissions:
-  contents: write
-  pull-requests: write
-
-env:
-  ASTRO_TELEMETRY_DISABLED: 1
+  contents: read
 
 jobs:
   update:
@@ -25,14 +26,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-
-      - name: Checkout dataset
-        uses: actions/checkout@v7
         with:
-          repository: open-paleo/data
-          path: data
-          sparse-checkout: dist
-          sparse-checkout-cone-mode: false
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v7
@@ -75,57 +70,10 @@ jobs:
             exit 1
           fi
 
-      - name: Type check
-        run: npm run typecheck
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Test
-        run: npm test
-
-      - name: Build
-        run: npm run build
-
-      # Chromium's headless shell is cached, keyed by the lockfile (which pins Playwright); its
-      # system libraries are not part of the cache, so they are installed on every run.
-      - name: Restore Chromium
-        id: chromium
-        uses: actions/cache/restore@v6
-        with:
-          path: ~/.cache/ms-playwright
-          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-
-      - name: Install Chromium
-        if: steps.chromium.outputs.cache-hit != 'true'
-        # Retried: installing the system libraries downloads packages from Ubuntu's servers, and a
-        # brief network failure there (as on the 2026-11-11 nightly run) should not fail the run.
-        run: |
-          for attempt in 1 2 3; do
-            npx playwright install --with-deps --only-shell chromium && exit 0
-            echo "Attempt $attempt failed; retrying in 30 seconds" >&2
-            sleep 30
-          done
-          exit 1
-
-      - name: Install Chromium's system libraries
-        if: steps.chromium.outputs.cache-hit == 'true'
-        # Retried: installing the system libraries downloads packages from Ubuntu's servers, and a
-        # brief network failure there (as on the 2026-11-11 nightly run) should not fail the run.
-        run: |
-          for attempt in 1 2 3; do
-            npx playwright install-deps chromium && exit 0
-            echo "Attempt $attempt failed; retrying in 30 seconds" >&2
-            sleep 30
-          done
-          exit 1
-
-      - name: Check the built site
-        run: npm run check-site
-
       - name: Open a pull request
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.WEB_DISPATCH_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
           VERSION: ${{ github.event.client_payload.version }}
           TAG: ${{ github.event.client_payload.tag }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
@@ -136,11 +84,11 @@ jobs:
           git switch -c "$branch"
           git add package.json package-lock.json
           git commit -m "Update the tree extractor to $VERSION"
-          git push origin "$branch"
+          git push "https://x-access-token:${GH_TOKEN}@github.com/${REPOSITORY}.git" "$branch"
           {
             echo "Pins @open-paleo/tree-extractor $VERSION ([release notes](https://github.com/open-paleo/tree-extractor/releases/tag/$TAG))."
             echo
-            echo "Type check, lint, tests, build and the site check (which runs the tool on a figure) passed in [this run]($RUN_URL)."
+            echo "Pinned, with the tarball's integrity checked against the release, in [this run]($RUN_URL). CI runs the type check, lint, tests, build and site check (which runs the tool on a figure) on this pull request."
             echo
             echo "Before merging, check the release's README for the Tesseract files it is tested against. If tesseract.js, tesseract.js-core or @tesseract.js-data/eng changed, update their pins in package.json in this pull request."
           } > pull-request-body.md

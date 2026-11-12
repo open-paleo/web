@@ -116,12 +116,19 @@ and the site falls back to its nightly rebuild, so data changes appear within a 
 The tool page depends on a pinned release of open-paleo/tree-extractor. When that repository
 publishes a release, it sends a `tree-extractor-released` notification
 (`client_payload: { version, tag, tarball_url, integrity }`) to this repository, the same way
-the data repository sends `data-updated`, with a token of its own scoped to `open-paleo/web`
-(Contents: Read and write). `.github/workflows/tree-extractor-update.yml` then pins the release,
-checks that the tarball's integrity is the one announced, runs the type check, lint, tests,
-build and site check (which runs the tool on a figure), and opens a pull request. Nothing
-deploys until it is merged. The repository's **Settings → Actions → General** must allow GitHub
-Actions to create pull requests; it does.
+the data repository sends `data-updated`. `.github/workflows/tree-extractor-update.yml` then
+pins the release, checks that the tarball's integrity is the one announced, and opens a pull
+request, on which CI runs every check, including the site check that runs the tool on a figure.
+Nothing deploys until it is merged.
+
+Both the notification and the pull request use one fine-grained personal access token, scoped
+to `open-paleo/web` with Contents and Pull requests: read and write. It is stored as
+`WEB_DISPATCH_TOKEN` in both repositories. The pull request is opened with it, not GitHub's
+built-in token, because CI on a pull request opened by the built-in token waits for a
+maintainer's approval. The update pull requests therefore show the token's owner as their
+author. When the token expires, renew it and update the secret in both repositories; until
+then, releases still publish, and a release can be pinned by hand with
+`npm install --save-exact <tarball URL>`.
 
 ## Checking a deployment
 

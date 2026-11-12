@@ -12,6 +12,9 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   Colorado opens with the West Coast and the Plains in view rather than filling the map. Places
   that already fill a continent-scale view, such as Alaska, open as before. Region names on all
   maps appear from zoom 3 rather than 4, so they show at a phone's opening zoom
+- The tree-extractor update workflow opens its pull request with the token tree-extractor's
+  notification uses, so CI runs on it without waiting for a maintainer's approval; the workflow
+  itself now only pins the release and checks its integrity, leaving the checks to CI
 - A clade's type genus is the first row of its "At a glance" panel, linked to the genus page,
   rather than a line under the clade's name
 
