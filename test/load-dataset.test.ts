@@ -3,6 +3,7 @@ import * as path from "node:path";
 import { test } from "node:test";
 import * as url from "node:url";
 
+import { formatSpecimenName } from "../src/data/format.ts";
 import { compareSchemaVersions, parseSemanticVersion, readDataset } from "../src/data/load-dataset.ts";
 import { findDatasetDirectory, listDatasetDirectoryCandidates } from "../src/data/locate-dataset.ts";
 
@@ -34,10 +35,19 @@ test("compareSchemaVersions classifies versions against the supported one", () =
 
 test("readDataset reads a dataset with a supported schema", () =>
 {
-    const dataset = readDataset(fixtureDirectory, "3.3.0");
+    const dataset = readDataset(fixtureDirectory, "3.4.0");
 
-    assert.equal(dataset._metadata.schema_version, "3.3.0");
+    assert.equal(dataset._metadata.schema_version, "3.4.0");
     assert.ok(dataset.genera.Tyrannosaurus);
+});
+
+test("a type specimen's nickname is read, unquoted, and shown in quotation marks", () =>
+{
+    const dataset = readDataset(fixtureDirectory, "3.4.0");
+    const nickname = dataset.genera.Beibeilong.species[0].type_specimen?.nickname;
+
+    assert.equal(nickname, "Baby Louie");
+    assert.equal(formatSpecimenName(nickname ?? ""), "“Baby Louie”");
 });
 
 test("readDataset refuses a different major schema version", () =>

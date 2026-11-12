@@ -1,11 +1,11 @@
 {
   "_metadata": {
     "attribution": "Open Paleo contributors",
-    "built_at": "2026-11-07T04:50:56.054Z",
-    "clade_count": 43,
-    "genus_count": 11,
+    "built_at": "2026-11-12T19:34:19.724Z",
+    "clade_count": 47,
+    "genus_count": 12,
     "license": "CC-BY-4.0",
-    "schema_version": "3.3.0",
+    "schema_version": "3.4.0",
     "version": "2026.11"
   },
   "timescale": {
@@ -257,6 +257,13 @@
                                       "Eutyrannosauria": {
                                         "Tyrannosauridae": {
                                           "Tyrannosaurinae": {}
+                                        }
+                                      }
+                                    },
+                                    "Maniraptora": {
+                                      "Oviraptorosauria": {
+                                        "Caenagnathoidea": {
+                                          "Caenagnathidae": {}
                                         }
                                       }
                                     }
@@ -749,6 +756,160 @@
           "pages": "e0212543",
           "doi": "10.1371/journal.pone.0212543",
           "notes": "Named and phylogenetically defined Bagualosauria."
+        }
+      ]
+    },
+    "Caenagnathidae": {
+      "description": "Caenagnathidae is a family of beaked, feathered oviraptorosaurs known from the Cretaceous of North America and Asia. Its members range enormously in size, from the turkey-sized Caenagnathasia to the giant Beibeilong and Gigantoraptor, which reached roughly 8 meters in length. Like other oviraptorosaurs they had long necks and short tails, but they were more lightly built than their oviraptorid relatives, with slender arms and long, gracile legs. Their toothless lower jaws were relatively long and shallow, hollow and connected to the air-sac system, and lined internally with complex ridges, tooth-like processes, and shelf-like structures. This variation in body size and beak shape suggests that caenagnathids adapted to a range of ecological niches, and the group persisted until the very end of the Cretaceous, vanishing with the other non-avian dinosaurs.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Coelurosauria",
+        "Maniraptora",
+        "Oviraptorosauria",
+        "Caenagnathoidea",
+        "Caenagnathidae"
+      ],
+      "type_genus": "Caenagnathus",
+      "described": 1940,
+      "authors": "Sternberg, R. M.",
+      "erected_in": "sternberg1940a",
+      "described_in": "maryańska2002a",
+      "diagnostic_features": [
+        "Fully fused, edentulous mandibular symphysis with paired lingual ridges",
+        "Deep dentary bearing a prominent lateral fossa and pneumatic foramen",
+        "Elongate, gracile, cursorial hindlimb with a fused tarsometatarsus in some genera",
+        "Preacetabular process of the ilium expanded ventrally"
+      ],
+      "references": [
+        {
+          "id": "sternberg1940a",
+          "authors": "Sternberg, R. M.",
+          "year": 1940,
+          "title": "A toothless bird from the Cretaceous of Alberta",
+          "journal": "Journal of Paleontology",
+          "volume": "14",
+          "issue": "1",
+          "pages": "81-85"
+        },
+        {
+          "id": "maryańska2002a",
+          "authors": "Maryańska, T.; Osmólska, H.; Wolsan, M.",
+          "year": 2002,
+          "title": "Avialan status for Oviraptorosauria",
+          "journal": "Acta Palaeontologica Polonica",
+          "volume": "47",
+          "issue": "1",
+          "pages": "97-116",
+          "notes": "Defined Caenagnathidae as the most inclusive clade containing Caenagnathus collinsi but not Oviraptor philoceratops."
+        },
+        {
+          "id": "funston2020b",
+          "authors": "Funston, G.",
+          "year": 2020,
+          "title": "Caenagnathids of the Dinosaur Park Formation (Campanian) of Alberta, Canada: anatomy, osteohistology, taxonomy, and evolution",
+          "journal": "Vertebrate Anatomy Morphology Palaeontology",
+          "publisher": "University of Alberta Libraries",
+          "volume": "8",
+          "pages": "105-153",
+          "doi": "10.18435/vamp29362",
+          "notes": "Revised the caenagnathid species of the Dinosaur Park Formation, with a phylogenetic analysis."
+        }
+      ]
+    },
+    "Caenagnathoidea": {
+      "description": "Caenagnathoidea is a superfamily of advanced oviraptorosaurs, the feathered, beaked maniraptoran dinosaurs of the Cretaceous Period. It groups the two principal families of that lineage, Caenagnathidae and Oviraptoridae, together with their most recent common ancestor. Its members lived across what are now Asia and North America and share the short, deep, parrot-like skulls typical of oviraptorosaurs, but in a more specialized form: the jaws are entirely toothless and sheathed in a horny beak, and the skull and palate are extensively hollowed by air spaces. The group unites the often crested oviraptorids, best known from Asia, with the toothless, frequently long-legged caenagnathids of both Asia and North America. It is a stable and widely used grouping, standing just apart from close relatives such as the similarly beakless Avimimus, which falls outside it.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Coelurosauria",
+        "Maniraptora",
+        "Oviraptorosauria",
+        "Caenagnathoidea"
+      ],
+      "type_genus": "Caenagnathus",
+      "described": 1940,
+      "authors": "Sternberg, R. M.",
+      "erected_in": "sternberg1940a",
+      "described_in": "osmólska2004a",
+      "diagnostic_features": [
+        "Fully edentulous jaws sheathed in a keratinous rhamphotheca",
+        "Deep, foreshortened skull with a secondarily pneumatized palate",
+        "Dentary with an elongate symphysis bearing lingual occlusal ridges",
+        "Mandibular articular facet for the quadrate formed almost entirely by the articular"
+      ],
+      "references": [
+        {
+          "id": "sternberg1940a",
+          "authors": "Sternberg, R. M.",
+          "year": 1940,
+          "title": "A toothless bird from the Cretaceous of Alberta",
+          "journal": "Journal of Paleontology",
+          "volume": "14",
+          "issue": "1",
+          "pages": "81-85",
+          "notes": "Named the family Caenagnathidae, from which the superfamily Caenagnathoidea takes its authorship by coordination."
+        },
+        {
+          "id": "osmólska2004a",
+          "authors": "Osmólska, H.; Currie, P. J.; Barsbold, R.",
+          "year": 2004,
+          "title": "Oviraptorosauria",
+          "book": "The Dinosauria, Second Edition (Weishampel, D. B.; Dodson, P.; Osmólska, H., eds.)",
+          "publisher": "University of California Press, Berkeley",
+          "pages": "165-183",
+          "doi": "10.1525/california/9780520242098.003.0010",
+          "notes": "Diagnosed Caenagnathoidea by unambiguous synapomorphies, under the definition of Maryańska and colleagues (2002)."
+        },
+        {
+          "id": "maryańska2002a",
+          "authors": "Maryańska, T.; Osmólska, H.; Wolsan, M.",
+          "year": 2002,
+          "title": "Avialan status for Oviraptorosauria",
+          "journal": "Acta Palaeontologica Polonica",
+          "volume": "47",
+          "issue": "1",
+          "pages": "97-116",
+          "notes": "Defined the clade, under the name Oviraptoroidea, as the least inclusive clade containing Oviraptor philoceratops and Caenagnathus collinsi."
+        },
+        {
+          "id": "lamanna2014a",
+          "authors": "Lamanna, M. C.; Sues, H. D.; Schachner, E. R.; Lyson, T. R.",
+          "year": 2014,
+          "title": "A new large-bodied oviraptorosaurian theropod dinosaur from the latest Cretaceous of western North America",
+          "journal": "PLoS ONE",
+          "publisher": "Public Library of Science (PLoS)",
+          "volume": "9",
+          "issue": "3",
+          "pages": "e92022",
+          "doi": "10.1371/journal.pone.0092022",
+          "notes": "Recovered Caenagnathoidea in the analysis describing Anzu, listing its synapomorphies."
         }
       ]
     },
@@ -1571,6 +1732,50 @@
         }
       ]
     },
+    "Maniraptora": {
+      "description": "Maniraptora is a clade of coelurosaurian theropod dinosaurs that includes birds along with the non-avian dinosaurs more closely related to birds than to the ornithomimosaurs. Its major subgroups are the dromaeosaurids, troodontids, oviraptorosaurs, therizinosaurs, and avialans (the bird lineage), with alvarezsauroids and Ornitholestes often included as well; together with its sister group Ornithomimosauria it forms the larger clade Maniraptoriformes. Maniraptorans first appear in the fossil record during the Jurassic and survive today as living birds. They are distinguished by long arms and three-fingered grasping hands, a half-moon-shaped wrist bone that allowed the hand to fold, and, in many lineages, a backward-pointing pubis unlike the forward-pointing hip of most other saurischians. Some form of feathers or downy covering appears to have been present across the group, and Maniraptora is the only dinosaur clade known to include flying members. Once assumed to be strictly meat-eaters, maniraptorans are now thought to have been ancestrally omnivorous, giving rise to several plant-eating groups while only the dromaeosaurids reverted to pure carnivory.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Coelurosauria",
+        "Maniraptora"
+      ],
+      "described": 1986,
+      "authors": "Gauthier, J. A.",
+      "erected_in": "gauthier1986a",
+      "diagnostic_features": [
+        "Elongated forelimbs relative to body size",
+        "Semilunate (half-moon shaped) carpal bone allowing wrist folding",
+        "Pennaceous feathers present in many lineages",
+        "Elongate and mobile manus",
+        "Opisthopubic pelvis (posteriorly directed pubis) in many taxa",
+        "Reduced or absent postorbital bar"
+      ],
+      "references": [
+        {
+          "id": "gauthier1986a",
+          "authors": "Gauthier, J. A.",
+          "year": 1986,
+          "title": "Saurischian monophyly and the origin of birds",
+          "journal": "Memoirs of the California Academy of Sciences",
+          "volume": "8",
+          "pages": "1-55"
+        }
+      ]
+    },
     "Massopoda": {
       "description": "Massopoda is a clade of sauropodomorph dinosaurs that lived from the Late Triassic through the Late Cretaceous. It is defined as all sauropodomorphs more closely related to Saltasaurus than to Plateosaurus (Yates, 2007), and its name is a contraction of Massospondylidae and Sauropoda, two very different groups that both fall within it. Nested inside is the more exclusive Sauropodiformes, the most inclusive group that contains Saltasaurus but excludes Massospondylus (McPhee and colleagues, 2014). Its members range from small, bipedal massospondylids to the gigantic, quadrupedal true sauropods, and together they encompass the great majority of sauropodomorph diversity.\n",
       "taxonomy": [
@@ -1993,6 +2198,85 @@
           "pages": "e12362",
           "doi": "10.7717/peerj.12362",
           "notes": "Provides the modern phylogenetic definition of Ornithischia."
+        }
+      ]
+    },
+    "Oviraptorosauria": {
+      "description": "Oviraptorosauria is a clade of feathered, bipedal maniraptoran theropods from the Cretaceous of what are now Asia and North America, and among the dinosaur groups closest to the ancestry of birds. Its members are distinguished by short, deep, parrot-like skulls, often bearing bony crests, with jaws that carry few or no teeth. The most primitive forms, such as Caudipteryx and Incisivosaurus, retain a few front teeth, in the latter enlarged into prominent bucktoothed incisors, while more derived members are toothless. The group spans a wide size range, from turkey-sized early-diverging species to the eight-meter Gigantoraptor, and its more advanced members are typically divided between the toothless caenagnathids and the crested oviraptorids. Several species are preserved with pennaceous feathers on the wings and tail, and oviraptorids are famously known from specimens frozen in a brooding posture over circular clutches of eggs. Their diet appears to have been generalized, ranging from herbivory to omnivory, with some evidence of small vertebrates and gastroliths.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Coelurosauria",
+        "Maniraptora",
+        "Oviraptorosauria"
+      ],
+      "type_genus": "Oviraptor",
+      "described": 1976,
+      "authors": "Barsbold, R.",
+      "erected_in": "barsbold1976b",
+      "described_in": "maryańska2002a",
+      "diagnostic_features": [
+        "Short, deep skull with a reduced dentition trending toward edentulism",
+        "Downturned, robust dentary with an extensive symphysis",
+        "Pneumatic, tall-spined cervical vertebrae with a long, mobile neck",
+        "Shortened tail, in derived members terminating in coossified distal caudals",
+        "Large, three-fingered grasping hand (reduced in derived oviraptorids)"
+      ],
+      "references": [
+        {
+          "id": "barsbold1976b",
+          "authors": "Barsbold, R.",
+          "year": 1976,
+          "title": "On the evolution and systematics of the late Mesozoic dinosaurs",
+          "journal": "Transactions of the Joint Soviet-Mongolian Paleontological Expedition",
+          "volume": "3",
+          "pages": "68-75",
+          "notes": "Diagnosed the infraorder Oviraptorosauria, with Oviraptoridae as its only family, crediting the name to Barsbold (1974)."
+        },
+        {
+          "id": "barsbold1974a",
+          "authors": "Barsbold, R.",
+          "year": 1974,
+          "title": "Poyedinok dinozavrov [Dueling dinosaurs]",
+          "journal": "Priroda",
+          "volume": "2",
+          "pages": "81-83",
+          "notes": "The 1974 Barsbold paper credited with the name Oviraptorosauria in Barsbold (1976)."
+        },
+        {
+          "id": "maryańska2002a",
+          "authors": "Maryańska, T.; Osmólska, H.; Wolsan, M.",
+          "year": 2002,
+          "title": "Avialan status for Oviraptorosauria",
+          "journal": "Acta Palaeontologica Polonica",
+          "volume": "47",
+          "issue": "1",
+          "pages": "97-116",
+          "notes": "Defined Oviraptorosauria as the most inclusive clade containing Oviraptor philoceratops but not Passer domesticus, and diagnosed it by five unambiguous synapomorphies."
+        },
+        {
+          "id": "funston2018a",
+          "authors": "Funston, G. F.; Mendonca, S. E.; Currie, P. J.; Barsbold, R.",
+          "year": 2018,
+          "title": "Oviraptorosaur anatomy, diversity and ecology in the Nemegt Basin",
+          "journal": "Palaeogeography, Palaeoclimatology, Palaeoecology",
+          "volume": "494",
+          "pages": "101-120",
+          "doi": "10.1016/j.palaeo.2017.10.023",
+          "notes": "Reviewed the anatomy, diversity and ecology of the oviraptorosaurs of the Nemegt Basin."
         }
       ]
     },
@@ -4469,6 +4753,134 @@
       ],
       "authors": "Salgado, L.; Gasparini, Z.",
       "described": 2006
+    },
+    "Beibeilong": {
+      "genus": "Beibeilong",
+      "parent": "Caenagnathidae",
+      "etymology": "From Mandarin Chinese beibei (贝贝) meaning 'baby' and long (龙) meaning 'dragon'. Full meaning: 'baby dragon'.",
+      "pronunciation": {
+        "phonetic": "bay-bay-long"
+      },
+      "description": "Beibeilong is a genus of large caenagnathid dinosaurs that lived in China during the Late Cretaceous epoch, about 96 million to 88 million years ago. The genus contains a single species, Beibeilong sinensis. The species was named and described in 2017 through analysis of an embryonic skeleton (nicknamed Baby Louie) and partial nest with large eggs that were discovered in the Gaogou Formation of China (Henan Province) between 1992 and 1993.",
+      "diet": "omnivore",
+      "locomotion": "bipedal",
+      "paleoenvironment": [
+        "fluvial",
+        "lacustrine"
+      ],
+      "diagnostic_features": [
+        "Antorbital fossa demarcated by sharply defined alveolar and dorsoposterior trending ridges",
+        "Posterodorsal margin of lacrimal overlapped by frontal",
+        "Subantorbital portion of the maxilla is inset medially",
+        "Pronounced retroarticular process with a distinct concave posterior facet, roughly as tall at the base as it is wide",
+        "Preacetabular process of the ilium longer than postacetabular process; posterior end of the postacetabular process truncated or broadly rounded",
+        "Accessory trochanter of the femur weakly developed"
+      ],
+      "appearance": {
+        "integument": "feathered",
+        "evidence": "inferred"
+      },
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "372793"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q29877274"
+        }
+      ],
+      "species": [
+        {
+          "name": "Beibeilong sinensis",
+          "etymology": "Named for its country of discovery, China, derived from the prefix Sino meaning 'Chinese'.",
+          "status": "valid",
+          "type_species": true,
+          "period": {
+            "name": [
+              "Late Cretaceous"
+            ],
+            "stage": [
+              "Cenomanian",
+              "Turonian"
+            ],
+            "from_ma": 100.5,
+            "to_ma": 89.8
+          },
+          "location": {
+            "country": "CN",
+            "locality": "Heimaogou, 2 km east of Zhaoying Village, Yangcheng Township",
+            "region": "Henan",
+            "formation": "Gaogou",
+            "coordinates": [
+              33.258333,
+              111.728056
+            ],
+            "region_code": "CN-HA"
+          },
+          "size": {
+            "length_m": {
+              "min": 7.5,
+              "max": 7.5
+            },
+            "weight_kg": {
+              "min": 1500,
+              "max": 2000
+            }
+          },
+          "type_specimen": {
+            "specimen_id": [
+              "HGM 41HIII-1219"
+            ],
+            "nickname": "Baby Louie",
+            "specimen_type": "holotype",
+            "institution": "Henan Geological Museum",
+            "material": "Small, semi-articulated skeleton associated with a partial nest of 6-8 eggs.",
+            "completeness": "partial"
+          },
+          "erected_in": "pu2017a",
+          "authors": "Pu, H.; Zelenitsky, D. K.; Lü, J.; Currie, P. J.; Carpenter, K.; Xu, L.; Koppelhus, E. B.; Jia, S.; Xiao, L.; Chuang, H.; Li, T.; Kundrát, M.; Shen, C.",
+          "described": 2017
+        }
+      ],
+      "references": [
+        {
+          "id": "pu2017a",
+          "authors": "Pu, H.; Zelenitsky, D. K.; Lü, J.; Currie, P. J.; Carpenter, K.; Xu, L.; Koppelhus, E. B.; Jia, S.; Xiao, L.; Chuang, H.; Li, T.; Kundrát, M.; Shen, C.",
+          "year": 2017,
+          "title": "Perinate and eggs of a giant caenagnathid dinosaur from the Late Cretaceous of central China",
+          "journal": "Nature Communications",
+          "publisher": "Springer Science and Business Media LLC",
+          "volume": "8",
+          "issue": "1",
+          "doi": "10.1038/ncomms14952",
+          "notes": "Source of the holotype's nickname, Baby Louie."
+        }
+      ],
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Theropoda",
+        "Neotheropoda",
+        "Averostra",
+        "Tetanurae",
+        "Avetheropoda",
+        "Coelurosauria",
+        "Maniraptora",
+        "Oviraptorosauria",
+        "Caenagnathoidea",
+        "Caenagnathidae"
+      ],
+      "authors": "Pu, H.; Zelenitsky, D. K.; Lü, J.; Currie, P. J.; Carpenter, K.; Xu, L.; Koppelhus, E. B.; Jia, S.; Xiao, L.; Chuang, H.; Li, T.; Kundrát, M.; Shen, C.",
+      "described": 2017
     },
     "Daspletosaurus": {
       "genus": "Daspletosaurus",

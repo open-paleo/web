@@ -9,7 +9,7 @@ import { createSiteData } from "../src/data/site-data.ts";
 import { findSuggestions, foldText, prepareSuggestions, scoreName } from "../src/data/suggestion-matching.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const siteData = createSiteData(readDataset(path.join(testDirectory, "fixtures"), "3.3.0"));
+const siteData = createSiteData(readDataset(path.join(testDirectory, "fixtures"), "3.4.0"));
 const suggestions = createSearchSuggestions(siteData);
 const prepared = prepareSuggestions(suggestions);
 

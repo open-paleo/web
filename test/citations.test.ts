@@ -7,7 +7,7 @@ import { createDatasetCitation, createRecordCitation } from "../src/data/citatio
 import { readDataset } from "../src/data/load-dataset.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const metadata = readDataset(path.join(testDirectory, "fixtures"), "3.3.0")._metadata;
+const metadata = readDataset(path.join(testDirectory, "fixtures"), "3.4.0")._metadata;
 const year = metadata.version.split(".")[0];
 
 test("a genus citation names the record, the release and the page, with the genus in italic", () =>

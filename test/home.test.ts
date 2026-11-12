@@ -17,7 +17,7 @@ import { getTypeSpecies } from "../src/data/records.ts";
 import { createSiteData } from "../src/data/site-data.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.3.0");
+const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.4.0");
 const siteData = createSiteData(dataset);
 
 assert.ok(dataset.timescale, "the fixture should carry the timescale");

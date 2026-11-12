@@ -8,7 +8,7 @@ import { readDataset } from "../src/data/load-dataset.ts";
 import { createSiteData } from "../src/data/site-data.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const siteData = createSiteData(readDataset(path.join(testDirectory, "fixtures"), "3.3.0"));
+const siteData = createSiteData(readDataset(path.join(testDirectory, "fixtures"), "3.4.0"));
 
 test("the newest genera come first, by year named and then by name", () =>
 {

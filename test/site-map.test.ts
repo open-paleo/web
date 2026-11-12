@@ -12,7 +12,7 @@ import { createSiteData } from "../src/data/site-data.ts";
 import { createSiteMapData, groupGeneraByPlace, listPlaceIndexRows } from "../src/data/site-map.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.3.0");
+const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.4.0");
 const siteData = createSiteData(dataset);
 
 assert.ok(dataset.timescale, "the fixture should carry the timescale");

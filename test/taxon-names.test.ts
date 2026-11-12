@@ -8,7 +8,7 @@ import type { ProseSegment } from "../src/data/taxon-names.ts";
 import { createTaxonNameIndex } from "../src/data/taxon-names.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.3.0");
+const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.4.0");
 const index = createTaxonNameIndex(dataset);
 
 /**

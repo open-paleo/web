@@ -7,7 +7,7 @@ import { readDataset } from "../src/data/load-dataset.ts";
 import { getTypeSpecies, listSizeMeasurements, sortSynonyms } from "../src/data/records.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.3.0");
+const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.4.0");
 
 test("getTypeSpecies finds the marked type species", () =>
 {

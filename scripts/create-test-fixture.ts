@@ -69,6 +69,25 @@ function hasTypeSpeciesLocation(genus: Genus, locationCase: LocationCase): boole
 }
 
 /**
+ * Report whether a genus has a species whose type specimen has a nickname ("Happy").
+ *
+ * @param genus - The genus record.
+ * @returns True if any species' type specimen has a nickname.
+ */
+function hasNicknamedTypeSpecimen(genus: Genus): boolean
+{
+    for (const species of genus.species)
+    {
+        if (species.type_specimen?.nickname)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
  * Report whether a genus's type species names an epoch but no stage, so its period comes from
  * the epoch alone.
  *
@@ -159,6 +178,7 @@ chosen.add(findFirstGenus(chosen, (genus) => hasReferenceKeyMatching(genus, /\P{
 chosen.add(findFirstGenus(chosen, (genus) => hasEpochWithoutStage(genus)));
 chosen.add(findFirstGenus(chosen, (genus) => hasTypeSpeciesLocation(genus, "coordinates")));
 chosen.add(findFirstGenus(chosen, (genus) => hasTypeSpeciesLocation(genus, "country")));
+chosen.add(findFirstGenus(chosen, (genus) => hasNicknamedTypeSpecimen(genus)));
 
 const genera: Record<string, Genus> = {};
 const keptClades = new Set<string>();

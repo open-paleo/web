@@ -3,4 +3,4 @@
 /**
  * Output schema version that open-paleo.d.ts describes.
  */
-export const bindingsSchemaVersion = "3.3.0";
+export const bindingsSchemaVersion = "3.4.0";

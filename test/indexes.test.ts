@@ -17,7 +17,7 @@ import { createSiteData } from "../src/data/site-data.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
 const fixtureDirectory = path.join(testDirectory, "fixtures");
-const siteData = createSiteData(readDataset(fixtureDirectory, "3.3.0"));
+const siteData = createSiteData(readDataset(fixtureDirectory, "3.4.0"));
 
 test("getIndexLetter files names under their first letter without accents", () =>
 {

@@ -8,7 +8,7 @@ import { createSiteData } from "../src/data/site-data.ts";
 import { readDataset } from "../src/data/load-dataset.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.3.0");
+const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.4.0");
 const siteData = createSiteData(dataset);
 
 /**

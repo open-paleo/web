@@ -9,7 +9,7 @@ import type { CladeEntry, GenusEntry } from "../src/data/site-data.ts";
 import { createSiteData } from "../src/data/site-data.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const siteData = createSiteData(readDataset(path.join(testDirectory, "fixtures"), "3.3.0"));
+const siteData = createSiteData(readDataset(path.join(testDirectory, "fixtures"), "3.4.0"));
 
 /**
  * Get a clade entry that the fixture is known to contain.

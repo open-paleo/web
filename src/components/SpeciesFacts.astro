@@ -6,6 +6,7 @@ import {
     formatAgeRange,
     formatGeologicAge,
     formatPlace,
+    formatSpecimenName,
     formatSpecimenType,
     formatStratigraphicUnits,
     joinNonEmpty,
@@ -45,12 +46,17 @@ const locality = location ? joinNonEmpty([location.locality ?? "", place]) : "";
         <>
             <dt>{specimenType}</dt>
             <dd>
+                {/* Written without line breaks between the parts: a break would render as a space before the comma. */}
                 {specimenIds.length > 0
                     ? specimenIds.map((id, index) => <><span class="catalog-number">{id}</span>{index < specimenIds.length - 1 ? ", " : ""}</>)
-                    : "Not catalogued"}
-                {specimen.institution && <>, {specimen.institution}</>}
-                {specimen.status && <span class="specimen-status"> ({specimen.status})</span>}
+                    : "Not catalogued"}{specimen.institution && <>, {specimen.institution}</>}{specimen.status && <span class="specimen-status"> ({specimen.status})</span>}
             </dd>
+        </>
+    )}
+    {specimen?.nickname && (
+        <>
+            <dt>Nickname</dt>
+            <dd data-pagefind-weight="8">{formatSpecimenName(specimen.nickname)}</dd>
         </>
     )}
     {specimen?.former_ids && specimen.former_ids.length > 0 && (
@@ -79,8 +85,7 @@ const locality = location ? joinNonEmpty([location.locality ?? "", place]) : "";
         <>
             <dt>Horizon</dt>
             <dd>
-                {horizon}
-                {ageRange && <span class="age-range figures">, {ageRange}</span>}
+                {horizon}{ageRange && <span class="age-range figures">, {ageRange}</span>}
                 {ageNote && <span class="age-note">{ageNote}</span>}
             </dd>
         </>

@@ -6,6 +6,12 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ## 2026-11-12
 
+### Added
+
+- A type specimen's nickname, new in the dataset's schema 3.4.0, is a "Nickname" row in its
+  species box ("Happy" for the *Haplocanthosaurus delfsi* holotype), in quotation marks like a
+  notable specimen's, and found by search. The bindings and test fixture are updated to 3.4.0
+
 ### Changed
 
 - Genus maps open one zoom level further out, so the places are seen among their neighbors:
@@ -20,6 +26,9 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ### Fixed
 
+- No space before the comma in a species box's type specimen ("CMNH 10380, Cleveland Museum of
+  Natural History") and horizon ("Early Cretaceous, 161.5–137.1 million years ago"), on every
+  genus page
 - The tree extractor's known names include the name each species was first published under
   ("Zalmoxes shqiperorum" for *Ferenceratops shqiperorum*), so the tool recognizes an older
   figure's names

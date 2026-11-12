@@ -18,7 +18,7 @@ import { readDataset } from "../src/data/load-dataset.ts";
 import type { MapPolygon, MapPosition, MapShapes } from "../src/data/map-shapes.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.3.0");
+const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.4.0");
 const shapes = getMapShapes();
 
 /**
