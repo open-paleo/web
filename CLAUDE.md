@@ -21,9 +21,12 @@ Rules that are easy to miss:
 - **Multi-line JSDoc** on every function, type and type field
 - **Exact dependency versions**; no `^` or `~` in `package.json`, and pick releases at least
   two weeks old (Open Paleo's own packages, such as the tree extractor, are exempt)
-- **No browser dependencies** other than MapLibre GL JS (the maps) and the tree extractor with
-  Tesseract.js (the tool page), each loaded only where it is used; every page but the tool
-  works with JavaScript off
+- **No browser dependencies** other than MapLibre GL JS (the maps), the tree extractor with
+  Tesseract.js (the tool page), each loaded only where it is used, and Plausible's counting
+  script (every page, published builds only); every page but the tool works with JavaScript off
+- **Every outside service is declared in `src/data/privacy.ts`**, which the privacy page lists:
+  a new host a page contacts fails `check-site` until it has an entry there, and any change to
+  what the policy says moves `privacyPolicyEffectiveDate`
 
 Astro components (see "Astro components" in CONTRIBUTING.md):
 

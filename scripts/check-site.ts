@@ -14,9 +14,10 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import * as url from "node:url";
 
-import type { Browser, BrowserContextOptions, Page } from "playwright";
+import type { Browser, BrowserContextOptions, Page, Route } from "playwright";
 import { chromium } from "playwright";
 
+import { listDeclaredHosts } from "../src/data/privacy.ts";
 import { checkLinks, readSitePages } from "./site-checks/links.ts";
 import { checkAccessibility, findLooseText, measureOverflow } from "./site-checks/page-checks.ts";
 import { startStaticServer } from "./site-checks/static-server.ts";
@@ -95,6 +96,7 @@ const samplePages: Array<SamplePage> = [
     { path: "clade/dinosauria/", reason: "large clade" },
     { path: "clade/nodosauridae/", reason: "clade with genera of uncertain placement" },
     { path: "clade/carcharodontosauridae/", reason: "clade with one of the longest names" },
+    { path: "privacy/", reason: "privacy page" },
     { path: "reference/osborn1905a/", reason: "reference cited by many records" },
     { path: "stage/bathonian/", reason: "stage page" },
     { path: "period/jurassic/", reason: "period page" },
@@ -137,10 +139,26 @@ function checkSiteLinks(siteDirectory: string, basePath: string, problems: Array
     }
 }
 
+// Every off-site host a checked page asked for. Each must be declared in src/data/privacy.ts,
+// which the privacy page lists, so a new outside service can't go unmentioned there.
+const offSiteHosts = new Set<string>();
+
 /**
- * Open a page in the browser with requests outside the local site blocked. The maps fetch tiles
- * and fonts from OpenFreeMap; the checks do not need them, and blocking them keeps the checks
- * independent of that service and off its servers.
+ * Note an off-site request's host, then block the request.
+ *
+ * @param route - The intercepted request.
+ */
+async function blockOffSiteRequest(route: Route): Promise<void>
+{
+    offSiteHosts.add(new URL(route.request().url()).hostname);
+    await route.abort();
+}
+
+/**
+ * Open a page in the browser with requests outside the local site blocked and their hosts noted.
+ * The maps fetch tiles and fonts from OpenFreeMap, and published builds load Plausible's counting
+ * script; the checks need neither, and blocking them keeps the checks independent of those
+ * services, off their servers, and out of the visit counts.
  *
  * @param browser - The browser.
  * @param options - The page's viewport and color scheme.
@@ -150,9 +168,31 @@ async function openLocalPage(browser: Browser, options: BrowserContextOptions): 
 {
     const page = await browser.newPage(options);
 
-    await page.route(/^https?:\/\/(?!127\.0\.0\.1[:/])/, (route) => route.abort());
+    await page.route(/^https?:\/\/(?!127\.0\.0\.1[:/])/, (route) => blockOffSiteRequest(route));
 
     return page;
+}
+
+/**
+ * Report each off-site host the pages contacted that the privacy data doesn't declare.
+ *
+ * @param problems - The list to add problems to.
+ */
+function checkOffSiteHosts(problems: Array<SiteProblem>): void
+{
+    const declaredHosts = listDeclaredHosts();
+
+    for (const host of offSiteHosts)
+    {
+        if (!declaredHosts.includes(host))
+        {
+            problems.push({
+                location: host,
+                check: "privacy",
+                message: "a page contacts this host, which src/data/privacy.ts doesn't declare; add the service there so the privacy page lists it",
+            });
+        }
+    }
 }
 
 /**
@@ -386,6 +426,7 @@ async function checkSite(): Promise<void>
 
         await checkTreeExtractor(browser, server.url, problems);
         await checkSearchSuggestions(browser, server.url, problems);
+        checkOffSiteHosts(problems);
     }
     finally
     {
@@ -394,6 +435,7 @@ async function checkSite(): Promise<void>
     }
 
     console.log("Pages: " + samplePages.length + " checked with axe (light and dark), for loose text, and at 320px wide; the tree extractor run on a figure; search suggestions tried");
+    console.log("Off-site hosts contacted: " + ([...offSiteHosts].sort().join(", ") || "none") + " (each must be declared in src/data/privacy.ts)");
 
     if (problems.length > 0)
     {

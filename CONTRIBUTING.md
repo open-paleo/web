@@ -46,8 +46,7 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
   or compromised release has time to be noticed and pulled. Open Paleo's own packages (such as
   the tree extractor) are exempt: the project builds and reviews them itself
 - **No runtime dependencies in the browser.** Pages must work with JavaScript off; scripts add
-  search, filters and interactive views on top. Two exceptions, each loaded only where it is
-  used:
+  search, filters and interactive views on top. Three exceptions:
   - MapLibre GL JS draws the maps, on genus pages (when the map scrolls into view) and the Map
     page, over OpenStreetMap tiles from OpenFreeMap. Without JavaScript those pages list the
     same places in words
@@ -55,6 +54,16 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
     run the tool at `tools/tree-extractor/`, which is a tool and needs JavaScript. Tesseract's
     core and language data are served from the site (`src/integrations/tesseract-files.ts`) at
     the versions the tree extractor's README names
+  - Plausible's counting script, on every page of the published site only (builds with
+    `SITE_URL` set), counts page views without cookies; the privacy page (`privacy/`) links to
+    Plausible's data policy for what it records. A page works the same without it
+- **Declare every outside service in `src/data/privacy.ts`**: the host serving the site and
+  every host a page's browser contacts, with who runs it, what the site sends it, and a link to
+  its own policy (the privacy page states what this site sends and links to each service for
+  what it does with it, so the page doesn't go stale when their policies change). The privacy
+  page lists them from there, and `npm run check-site` fails on any off-site
+  host a checked page contacts that isn't declared. A change to what the policy says also moves
+  `privacyPolicyEffectiveDate`
 - Keep the shared development dependencies (ESLint, typescript-eslint, TypeScript, cspell) on
   the same versions as open-paleo/data, so the repositories lint and type-check alike
 

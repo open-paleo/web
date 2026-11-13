@@ -4,6 +4,19 @@ The site is published continuously from `main`, so changes are grouped by the da
 live, newest first. Add to today's section, creating it if needed. The data the site shows has
 its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
+## 2026-11-13
+
+### Added
+
+- Visit counts with [Plausible Analytics](https://plausible.io/): page views, referring sites,
+  browsers, devices and countries, with no cookies and no IP addresses stored. The counting
+  script loads only on the published site, so local and CI builds are never counted
+- A privacy policy (`privacy/`, linked from the footer): who runs the site and how to reach them
+  (privacy@open-paleo.org), what is collected and why, what isn't, each service that handles
+  visitors' requests (GitHub Pages, Plausible, OpenFreeMap) with what it receives and its policy,
+  retention, rights, children, and changes. The services come from `src/data/privacy.ts`, and
+  the site check fails if a page contacts a host not declared there
+
 ## 2026-11-12
 
 ### Added
