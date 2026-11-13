@@ -24,8 +24,8 @@ const view = JSON.stringify(createGenusMapView(map));
 ---
 
 {/* The map is drawn by src/scripts/place-map.ts, which loads MapLibre only when the map scrolls
-   into view, so it stays hidden until the script runs. The list of places below it says the
-   same in words, works without JavaScript, and serves as the map's legend: each place's mark
+   into view, so it stays hidden until the script runs. The list of places below it gives the
+   same information in words, works without JavaScript, and serves as the map's legend: each place's mark
    matches its mark on the map. */}
 <div class="genus-map">
     <div class="place-map" data-features={features} data-bounds={bounds} data-view={view} role="region" aria-label={"Map of where " + genusName + " was found"} hidden></div>

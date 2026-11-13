@@ -26,7 +26,7 @@ Rules that are easy to miss:
   script (every page, published builds only); every page but the tool works with JavaScript off
 - **Every outside service is declared in `src/data/privacy.ts`**, which the privacy page lists:
   a new host a page contacts fails `check-site` until it has an entry there, and any change to
-  what the policy says moves `privacyPolicyEffectiveDate`
+  the policy updates `privacyPolicyEffectiveDate`
 
 Astro components (see "Astro components" in CONTRIBUTING.md):
 

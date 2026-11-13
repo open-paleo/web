@@ -93,7 +93,7 @@ export type Citation = {
     name: string;
 
     /**
-     * What the citing record says the reference supports, if it says.
+     * The citing record's note on what the reference supports, if it has one.
      */
     notes: string | undefined;
 };

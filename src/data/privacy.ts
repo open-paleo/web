@@ -35,7 +35,7 @@ export type ExternalService = {
     receives: string;
 
     /**
-     * Its privacy policy, which says what it does with what it receives.
+     * Its privacy policy, which describes what it does with the data it receives.
      */
     policyUrl: string;
 
@@ -52,8 +52,8 @@ export type ExternalService = {
 };
 
 /**
- * The day the current privacy policy took effect, as the page shows it. Change it with any
- * change to what the policy says.
+ * The day the current privacy policy took effect, as the page shows it. Update it whenever the
+ * policy changes.
  */
 export const privacyPolicyEffectiveDate = "November 13, 2026";
 

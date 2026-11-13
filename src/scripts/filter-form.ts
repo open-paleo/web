@@ -41,7 +41,7 @@ export type FilterForm = {
     toField: HTMLInputElement;
 
     /**
-     * The sentence that says how many genera are shown.
+     * The sentence stating how many genera are shown.
      */
     status: HTMLElement;
 

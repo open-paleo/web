@@ -3,10 +3,10 @@
 // clipboard.
 
 /**
- * Copy a button's text and say so beside it.
+ * Copy a button's text and confirm the copy beside the button.
  *
  * @param button - The button pressed.
- * @param status - Where to say it was copied.
+ * @param status - Where the confirmation appears.
  */
 async function copyButtonText(button: HTMLButtonElement, status: HTMLElement): Promise<void>
 {

@@ -27,7 +27,7 @@ const legendSteps = ["1", "2–4", "5–9", "10–24", "25 or more"];
         <GenusFilterForm options={filterOptions} total={placedCount} isCollapsible={true} />
 
         {/* The map and its panel are hidden until the map script runs; without it, the index of
-           genera by place below says the same. */}
+           genera by place below gives the same information. */}
         <div class="map-layout" id="site-map-layout" hidden>
             <div class="site-map" id="site-map" data-places={baseUrl + "map/places.json"} data-base={baseUrl} role="region" aria-label="Map of where the genera were found"></div>
             <aside class="map-panel" aria-label="Map legend and selected place">

@@ -566,7 +566,7 @@ export function formatGenusCount(count: number): string
  *
  * @param reference - The reference.
  * @returns "Journal article", "Book chapter", "Book", "Doctoral thesis" and so on, or an empty
- * string when the fields do not say.
+ * string when the fields don't identify it.
  */
 export function describeWorkKind(reference: Reference): string
 {

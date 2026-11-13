@@ -6,6 +6,11 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ## 2026-11-13
 
+### Changed
+
+- The tree extractor page refers readers to its documentation for the kinds of figure it
+  handles well
+
 ### Added
 
 - Visit counts with [Plausible Analytics](https://plausible.io/): page views, referring sites,
@@ -97,7 +102,7 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   shaded more lightly when only the country is. Each place is labeled with its species; species
   found at the same place share one mark. MapLibre GL JS over OpenFreeMap's OpenStreetMap
   tiles, styled in the site's colors and loaded only when the map scrolls into view; a list of
-  the places under the map says the same in words. Region outlines are Natural Earth's, built by
+  the places under the map gives the same information in words. Region outlines are Natural Earth's, built by
   `npm run create-map-shapes`. Maps reaching toward a pole are drawn on a globe
 
 ### Changed

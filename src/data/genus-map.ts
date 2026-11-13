@@ -156,7 +156,7 @@ export type GenusMapFeature = {
     type: "Feature";
 
     /**
-     * What the mark says about the place.
+     * The mark's kind, label, popup text, precision and place.
      */
     properties: GenusMapFeatureProperties;
 
@@ -188,7 +188,7 @@ export type GenusMapFeatureProperties = {
     label: string;
 
     /**
-     * What the popup says, one line per species: "Psittacosaurus mongoliensis: Cannonball
+     * The popup's text, one line per species: "Psittacosaurus mongoliensis: Cannonball
      * Member, Öösh Formation, Övörkhangai, Mongolia".
      */
     details: string;

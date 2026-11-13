@@ -187,7 +187,7 @@ function showPlacePopup(map: MapLibreMap, event: MapLayerMouseEvent): void
 }
 
 /**
- * Say in the map's place that it could not be drawn, for browsers without WebGL.
+ * Show a message in the map's place that it couldn't be drawn, for browsers without WebGL.
  *
  * @param container - The map container.
  */

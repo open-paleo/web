@@ -62,7 +62,7 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
   its own policy (the privacy page states what this site sends and links to each service for
   what it does with it, so the page doesn't go stale when their policies change). The privacy
   page lists them from there, and `npm run check-site` fails on any off-site
-  host a checked page contacts that isn't declared. A change to what the policy says also moves
+  host a checked page contacts that isn't declared. Any change to the policy also updates
   `privacyPolicyEffectiveDate`
 - Keep the shared development dependencies (ESLint, typescript-eslint, TypeScript, cspell) on
   the same versions as open-paleo/data, so the repositories lint and type-check alike
@@ -312,7 +312,7 @@ const { dispute, question } = Astro.props;
 
 - **The frontmatter follows every TypeScript rule in this guide**, and ESLint checks it
 - **Every component that takes properties declares a `Props` type** with JSDoc on each field.
-  A component that only wraps slotted content declares none, and says so in a comment
+  A component that only wraps slotted content declares none, and notes this in a comment
 - **Component file names are PascalCase nouns** (`DisputeNote.astro`), because a component is
   a thing on the page; page files under `src/pages/` are named for their URL
 - **Keep data work out of components.** Sorting, grouping, look-ups and formatting belong in
@@ -405,8 +405,8 @@ const { dispute, question } = Astro.props;
 
 - Plain, specific English from the reader's side: "Show 6 more ranks", not "Expand"
 - Sentence case for headings, buttons and navigation
-- A button says what it does, and the result uses the same word ("Copy citation", then
-  "Citation copied.")
+- A button's label describes what it does, and the result uses the same word ("Copy
+  citation", then "Citation copied.")
 - Paleontological terms (holotype, nomen dubium, junior subjective synonym) are used as they
   are, not replaced with paraphrases
 - Never state a fact about a taxon in copy; facts come from the dataset
@@ -440,5 +440,5 @@ rejects but are correct (taxon names, font names) to `cspell.json`. Note the cha
 
 The project policy in the data repository's
 [README](https://github.com/open-paleo/data#ai-and-llm-use) applies here: the person who
-commits a change is responsible for it, and commits drafted with an LLM say so in a
+commits a change is responsible for it, and commits drafted with an LLM note this in a
 `Co-Authored-By` trailer.
