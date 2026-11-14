@@ -8,6 +8,10 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ### Added
 
+- A find field on the References page: typing an author, a year or words from a title lists the
+  matching references with their titles, and choosing one scrolls to it, highlights it and moves
+  the focus to its link. It reads the list already on the page, so nothing extra loads
+
 - A chart of the tree at the top of the Tree page: the classification from Dinosauria down,
   left to right, panned and zoomed like a map (MapLibre, as on the maps). Each major group has
   its own color, chosen to stay distinct with color-vision deficiencies, named in a legend.
@@ -25,6 +29,12 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 - A find field on the Tree page: typing part of a clade or genus lists the matches, and
   choosing one opens every clade above it in the outline, highlights it and moves the focus to
   it. A genus reveals the clade it is placed in, which a line under the field names
+
+### Fixed
+
+- Name suggestions match a query of several words when each word starts a word of the name, in
+  any order, and ignore punctuation ("osborn 1905" finds "Osborn (1905)"). A slow lookup no
+  longer closes the list a newer keystroke opened
 
 ## 2026-11-13
 

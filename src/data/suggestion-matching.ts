@@ -41,17 +41,40 @@ const wordStartScore = 2;
 const containsScore = 1;
 
 // At equal scores, records come before synonyms, and genera first.
-const kindOrder: Array<SuggestionKind> = ["genus", "clade", "species", "genus-synonym", "species-synonym", "clade-synonym"];
+const kindOrder: Array<SuggestionKind> = ["genus", "clade", "species", "genus-synonym", "species-synonym", "clade-synonym", "reference"];
 
 /**
- * Fold text for matching: lowercase and without accents, so "pérez" matches "Perez".
+ * Fold text for matching: lowercase, without accents, and with punctuation other than hyphens
+ * and apostrophes turned into spaces, so "pérez" matches "Perez" and "osborn 1905" matches
+ * "Osborn (1905)".
  *
  * @param text - The text.
  * @returns The folded text.
  */
 export function foldText(text: string): string
 {
-    return text.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().trim();
+    return text.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/[^\p{L}\p{N}'\- ]+/gu, " ").replace(/\s+/g, " ").trim();
+}
+
+/**
+ * Report whether every word of a query starts a word of a name, in any order: "rex osborn"
+ * matches "osborn 1905 tyrannosaurus rex".
+ *
+ * @param foldedName - The name, folded.
+ * @param words - The query's words, folded.
+ * @returns True if each word starts a word of the name.
+ */
+function startsEveryWord(foldedName: string, words: Array<string>): boolean
+{
+    for (const word of words)
+    {
+        if (!foldedName.startsWith(word) && !foldedName.includes(" " + word))
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 /**
@@ -66,7 +89,7 @@ export function prepareSuggestions(suggestions: Array<SearchSuggestion>): Array<
 
     for (const suggestion of suggestions)
     {
-        prepared.push({ suggestion, foldedName: foldText(suggestion.name) });
+        prepared.push({ suggestion, foldedName: foldText(suggestion.keywords ? suggestion.name + " " + suggestion.keywords : suggestion.name) });
     }
 
     return prepared;
@@ -93,7 +116,7 @@ export function scoreName(foldedName: string, foldedQuery: string): number
     {
         return wordStartScore;
     }
-    else if (foldedName.includes(foldedQuery))
+    else if (foldedName.includes(foldedQuery) || (foldedQuery.includes(" ") && startsEveryWord(foldedName, foldedQuery.split(" "))))
     {
         return containsScore;
     }

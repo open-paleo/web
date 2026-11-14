@@ -465,6 +465,12 @@ const navigationItems: Array<NavigationItem> = [
         font-size: var(--text-body);
     }
 
+    /* Long notes, such as a reference's title, always take their own line under the name. */
+    :global(.search-suggestions.has-notes-below .suggestion-note)
+    {
+        flex-basis: 100%;
+    }
+
     :global(.search-suggestions .suggestion-note)
     {
         color: var(--color-muted);

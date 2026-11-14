@@ -25,6 +25,14 @@ for (const group of groups)
         <header class="index-header">
             <h1>References</h1>
             <p class="index-summary">{referenceCount} published works cited in release {siteData.metadata.version}, by first author.</p>
+            {/* Shown by the script, which it needs; it reads the references from the list below. */}
+            <form class="index-find" role="search" aria-label="Find a reference" hidden>
+                <label for="reference-find-field">Find a reference</label>
+                <div class="index-find-field">
+                    <input id="reference-find-field" type="search" autocomplete="off" placeholder="Author, year or words from the title">
+                </div>
+                <p class="index-find-result" role="status"></p>
+            </form>
             <LetterJumpList letters={letters} label="References" />
         </header>
 
@@ -33,7 +41,7 @@ for (const group of groups)
                 <h2 id={createLetterAnchor(group.letter)}>{group.letter}</h2>
                 <ul class="reference-index">
                     {group.entries.map((entry) => (
-                        <li>
+                        <li id={"reference-" + entry.slug} data-authors={entry.reference.authors ?? ""}>
                             <a href={createPagePath(baseUrl, "reference", entry.slug)}>{formatShortCitation(entry.reference)}</a>
                             {entry.reference.title && <span class="reference-title"><Prose text={entry.reference.title} /></span>}
                         </li>
@@ -44,7 +52,202 @@ for (const group of groups)
     </div>
 </BaseLayout>
 
+<script>
+    import type { SearchSuggestion } from "../../data/search-suggestions.ts";
+    import type { PreparedSuggestion } from "../../data/suggestion-matching.ts";
+    import { findSuggestions, prepareSuggestions } from "../../data/suggestion-matching.ts";
+    import { connectNameCombobox } from "../../scripts/name-combobox.ts";
+
+    // How many references the find field lists.
+    const findLimit = 8;
+
+    // Each reference's title, by its list item's id, for the notes beside the citations.
+    const titleById = new Map<string, string>();
+
+    let findNames: Array<PreparedSuggestion> = [];
+
+    /**
+     * Read the references from the list on the page: each citation, found by its authors and the
+     * words of its title as well.
+     *
+     * @returns The references, as suggestions whose path is their list item's id.
+     */
+    function readReferences(): Array<PreparedSuggestion>
+    {
+        const suggestions = new Array<SearchSuggestion>();
+
+        for (const item of document.querySelectorAll<HTMLLIElement>(".reference-index li[id]"))
+        {
+            const citation = item.querySelector("a")?.textContent?.trim() ?? "";
+            const title = item.querySelector(".reference-title")?.textContent?.trim() ?? "";
+
+            titleById.set(item.id, title);
+            suggestions.push({ name: citation, kind: "reference", path: item.id, synonymOf: "", authority: "", keywords: (item.dataset.authors ?? "") + " " + title });
+        }
+
+        return prepareSuggestions(suggestions);
+    }
+
+    /**
+     * Give the combobox the references, which are already on the page.
+     *
+     * @returns The references.
+     */
+    async function loadReferences(): Promise<Array<PreparedSuggestion>>
+    {
+        return await Promise.resolve(findNames);
+    }
+
+    /**
+     * Build the note beside a citation: its title.
+     *
+     * @param suggestion - The reference.
+     * @returns The note.
+     */
+    function createReferenceNote(suggestion: SearchSuggestion): HTMLElement
+    {
+        const note = document.createElement("span");
+
+        note.textContent = titleById.get(suggestion.path) ?? "";
+
+        return note;
+    }
+
+    /**
+     * Scroll to a reference in the list, highlight it and move the focus to its link.
+     *
+     * @param suggestion - The chosen reference.
+     */
+    function revealReference(suggestion: SearchSuggestion): void
+    {
+        const item = document.getElementById(suggestion.path);
+        const input = document.querySelector<HTMLInputElement>("#reference-find-field");
+        const result = document.querySelector<HTMLElement>(".index-find-result");
+        const isMotionReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (input)
+        {
+            input.value = suggestion.name;
+        }
+
+        if (result)
+        {
+            result.textContent = "";
+        }
+
+        for (const found of document.querySelectorAll(".reference-index li.is-found"))
+        {
+            found.classList.remove("is-found");
+        }
+
+        item?.classList.add("is-found");
+        item?.scrollIntoView({ block: "center", behavior: isMotionReduced ? "auto" : "smooth" });
+        item?.querySelector("a")?.focus({ preventScroll: true });
+    }
+
+    /**
+     * On Enter with no row highlighted, reveal the best match, or say there is none.
+     *
+     * @param event - The form's submission.
+     */
+    function handleFindSubmit(event: SubmitEvent): void
+    {
+        const input = document.querySelector<HTMLInputElement>("#reference-find-field");
+        const result = document.querySelector<HTMLElement>(".index-find-result");
+        const query = input?.value.trim() ?? "";
+        const best = findSuggestions(query, findNames, 1);
+
+        event.preventDefault();
+
+        if (best.length > 0)
+        {
+            revealReference(best[0]);
+        }
+        else if (result)
+        {
+            result.textContent = query === "" ? "" : "No reference matches “" + query + "”.";
+        }
+    }
+
+    /**
+     * Turn on the find field.
+     */
+    function enableFind(): void
+    {
+        const form = document.querySelector<HTMLFormElement>(".index-find");
+        const input = document.querySelector<HTMLInputElement>("#reference-find-field");
+
+        if (!form || !input)
+        {
+            return;
+        }
+
+        findNames = readReferences();
+        form.hidden = false;
+        form.addEventListener("submit", handleFindSubmit);
+        connectNameCombobox(input, {
+            listLabel: "Matching references",
+            limit: findLimit,
+            loadNames: loadReferences,
+            createNote: createReferenceNote,
+            chooseName: revealReference,
+            queryRow: undefined,
+            notePlacement: "below",
+        });
+    }
+
+    enableFind();
+</script>
+
 <style>
+    .index-find
+    {
+        display: grid;
+        gap: var(--space-2);
+        font-family: var(--font-sans);
+    }
+
+    .index-find[hidden]
+    {
+        display: none;
+    }
+
+    .index-find label
+    {
+        font-weight: 600;
+    }
+
+    /* The list of matches opens below the field (name-combobox.ts; styled in BaseLayout). */
+    .index-find-field
+    {
+        position: relative;
+        max-width: 28rem;
+    }
+
+    .index-find input
+    {
+        width: 100%;
+        padding: var(--space-2) var(--space-3);
+        color: var(--color-ink);
+        background: var(--color-surface);
+        border: 1px solid color-mix(in srgb, var(--color-line) 40%, var(--color-muted));
+        border-radius: var(--radius);
+        font: inherit;
+    }
+
+    .index-find-result:empty
+    {
+        display: none;
+    }
+
+    /* The reference the find field last revealed: tinted between its dividers, and widened to
+       either side so the text has room, without covering the dividers above and below. */
+    .reference-index li.is-found
+    {
+        background: var(--color-accent-soft);
+        box-shadow: calc(-1 * var(--space-3)) 0 0 var(--color-accent-soft), var(--space-3) 0 0 var(--color-accent-soft);
+    }
+
     .index-page
     {
         display: grid;
@@ -98,8 +301,10 @@ for (const group of groups)
         border-bottom: 1px solid var(--color-line);
     }
 
+    /* As wide as its text, not its column, so its focus ring fits the citation. */
     a
     {
+        justify-self: start;
         font-family: var(--font-sans);
     }
 

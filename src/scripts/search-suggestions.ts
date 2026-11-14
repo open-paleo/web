@@ -104,6 +104,7 @@ function initializeSearchSuggestions(): void
             createNote,
             chooseName: openSuggestion,
             queryRow: { describe: describeSearchRow, choose: openSearch },
+            notePlacement: "beside",
         });
     }
 }

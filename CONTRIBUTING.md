@@ -365,7 +365,7 @@ const { dispute, question } = Astro.props;
   it: hundreds of reference titles contain "Jurassic", which ranked the Jurassic page 15th
 - **The header and home page search fields suggest names as the reader types**
   (`src/scripts/search-suggestions.ts`, on the shared combobox in `src/scripts/name-combobox.ts`,
-  which the Tree page's find field also uses), from `search/suggestions.json`: every genus, species,
+  which the Tree and References pages' find fields also use), from `search/suggestions.json`: every genus, species,
   clade and synonym with its page, built by `src/data/search-suggestions.ts` and matched by
   `src/data/suggestion-matching.ts` (case and accents ignored; a whole name, then the start of the
   name, then the start of a later word, then anywhere). The list loads the first time a field is

@@ -5,7 +5,7 @@
 // page's find field; each supplies its names, the note beside each name, and what choosing one
 // does.
 
-import type { SearchSuggestion } from "../data/search-suggestions.ts";
+import type { SearchSuggestion, SuggestionKind } from "../data/search-suggestions.ts";
 import type { PreparedSuggestion } from "../data/suggestion-matching.ts";
 import { findSuggestions } from "../data/suggestion-matching.ts";
 
@@ -58,6 +58,12 @@ export type NameComboboxSettings = {
      * A last row for the query itself, or undefined for none.
      */
     queryRow: NameComboboxQueryRow | undefined;
+
+    /**
+     * Where each note goes: "beside" the name, right-aligned, for short notes ("Genus (Osborn,
+     * 1905)"), or "below" it, for long ones such as a reference's title.
+     */
+    notePlacement: "beside" | "below";
 };
 
 /**
@@ -100,16 +106,19 @@ type NameCombobox = {
     settings: NameComboboxSettings;
 };
 
+// The kinds of name set in italic: genera and species, and their synonyms.
+const italicKinds: Array<SuggestionKind> = ["genus", "species", "genus-synonym", "species-synonym"];
+
 /**
  * Report whether a suggestion's name is set in italic: genus and species names and their
- * synonyms are; clade names are not.
+ * synonyms are; clade names and references are not.
  *
  * @param suggestion - The suggestion.
  * @returns True for an italic name.
  */
 function isItalicName(suggestion: SearchSuggestion): boolean
 {
-    return !suggestion.kind.startsWith("clade");
+    return italicKinds.includes(suggestion.kind);
 }
 
 /**
@@ -202,8 +211,14 @@ async function showMatches(combobox: NameCombobox): Promise<void>
     const suggestions = findSuggestions(query, await combobox.settings.loadNames(), combobox.settings.limit);
     const queryRow = combobox.settings.queryRow;
 
-    // A slower load can finish after the reader has typed on; only the latest text counts.
-    if (query.length < 2 || combobox.input.value.trim() !== query || (suggestions.length === 0 && !queryRow))
+    // A slower load can finish after the reader has typed on; only the latest text counts, and
+    // the call for it updates the list.
+    if (combobox.input.value.trim() !== query)
+    {
+        return;
+    }
+
+    if (query.length < 2 || (suggestions.length === 0 && !queryRow))
     {
         closeList(combobox);
 
@@ -319,7 +334,7 @@ export function connectNameCombobox(input: HTMLInputElement, settings: NameCombo
     const combobox: NameCombobox = { input, list, announcement, options: [], suggestions: [], activeIndex: -1, settings };
 
     list.id = input.id + "-suggestions";
-    list.className = "search-suggestions";
+    list.className = settings.notePlacement === "below" ? "search-suggestions has-notes-below" : "search-suggestions";
     list.setAttribute("role", "listbox");
     list.setAttribute("aria-label", settings.listLabel);
     list.hidden = true;

@@ -51,9 +51,11 @@ test("suggestions cover genera, species, clades and synonyms, each with its page
     }
 });
 
-test("matching ignores case and accents", () =>
+test("matching ignores case, accents and punctuation", () =>
 {
     assert.equal(foldText("Pérez"), "perez");
+    assert.equal(foldText("Osborn (1905)"), "osborn 1905");
+    assert.equal(foldText("O'Connor et al. (2025a)"), "o'connor et al 2025a");
     assert.equal(scoreName(foldText("Tyrannosaurus"), foldText("TYRANNO")), 3);
 });
 
@@ -63,6 +65,13 @@ test("a whole name beats its start, which beats a later word, which beats the mi
     assert.ok(scoreName("allosaurus fragilis", "allo") > scoreName("allosaurus fragilis", "fragi"));
     assert.ok(scoreName("allosaurus fragilis", "fragi") > scoreName("allosaurus fragilis", "losau"));
     assert.equal(scoreName("allosaurus", "raptor"), 0);
+});
+
+test("a query of several words matches when each word starts a word of the name", () =>
+{
+    assert.equal(scoreName(foldText("Osborn (1905) Tyrannosaurus and other Cretaceous carnivorous dinosaurs"), foldText("rex osborn")), 0);
+    assert.ok(scoreName(foldText("Osborn (1905) Tyrannosaurus and other Cretaceous carnivorous dinosaurs"), foldText("cretaceous osborn")) > 0);
+    assert.ok(scoreName(foldText("Osborn (1905) Tyrannosaurus"), foldText("osborn 1905")) > 0);
 });
 
 test("the genus comes before its species and its synonyms", () =>

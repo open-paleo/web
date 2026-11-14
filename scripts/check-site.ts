@@ -413,6 +413,56 @@ async function checkTreeFind(browser: Browser, siteUrl: string, problems: Array<
 }
 
 /**
+ * Use the References page's find field: typing an author and year must list the reference, pass
+ * axe while the list is open, and choosing it must highlight it in the list.
+ *
+ * @param browser - The browser.
+ * @param siteUrl - The site's local address.
+ * @param problems - The list to add failures to.
+ */
+async function checkReferenceFind(browser: Browser, siteUrl: string, problems: Array<SiteProblem>): Promise<void>
+{
+    const page = await openLocalPage(browser, { viewport: { width: 1280, height: 900 } });
+    const location = "/references/ (find)";
+    const option = page.locator("#reference-find-field-suggestions li", { hasText: "Osborn (1905)" }).first();
+
+    await page.goto(siteUrl + "references/", { waitUntil: "networkidle" });
+    await page.locator("#reference-find-field").click();
+    await page.keyboard.type("osborn 1905");
+
+    try
+    {
+        await option.waitFor({ timeout: 10000 });
+    }
+    catch
+    {
+        problems.push({ location, check: "find", message: "typing \"osborn 1905\" did not list Osborn (1905)" });
+        await page.close();
+
+        return;
+    }
+
+    for (const finding of (await checkAccessibility(page)).violations)
+    {
+        problems.push({ location, check: "axe", message: finding.rule + " at " + finding.target + ": " + finding.summary });
+    }
+
+    await page.keyboard.press("ArrowDown");
+    await page.keyboard.press("Enter");
+
+    try
+    {
+        await page.locator(".reference-index li.is-found").waitFor({ state: "visible", timeout: 10000 });
+    }
+    catch
+    {
+        problems.push({ location, check: "find", message: "choosing Osborn (1905) did not highlight it in the list" });
+    }
+
+    await page.close();
+}
+
+/**
  * Report whether the tree extractor has finished a run. Runs in the browser.
  *
  * @returns True once the status reports the tips found.
@@ -483,6 +533,7 @@ async function checkSite(): Promise<void>
         await checkTreeExtractor(browser, server.url, problems);
         await checkSearchSuggestions(browser, server.url, problems);
         await checkTreeFind(browser, server.url, problems);
+        await checkReferenceFind(browser, server.url, problems);
         checkOffSiteHosts(problems);
     }
     finally
@@ -491,7 +542,7 @@ async function checkSite(): Promise<void>
         server.server.close();
     }
 
-    console.log("Pages: " + samplePages.length + " checked with axe (light and dark), for loose text, and at 320px wide; the tree extractor run on a figure; search suggestions and the Tree page's find tried");
+    console.log("Pages: " + samplePages.length + " checked with axe (light and dark), for loose text, and at 320px wide; the tree extractor run on a figure; search suggestions and the Tree and References pages' find fields tried");
     console.log("Off-site hosts contacted: " + ([...offSiteHosts].sort().join(", ") || "none") + " (each must be declared in src/data/privacy.ts)");
 
     if (problems.length > 0)

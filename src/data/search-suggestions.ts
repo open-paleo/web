@@ -4,9 +4,9 @@ import { createSlug } from "./slugs.ts";
 
 /**
  * What a suggestion names. Genus and species names, and their synonyms, are set in italic;
- * clade names are not.
+ * clade names and references are not.
  */
-export type SuggestionKind = "genus" | "species" | "clade" | "genus-synonym" | "species-synonym" | "clade-synonym";
+export type SuggestionKind = "genus" | "species" | "clade" | "genus-synonym" | "species-synonym" | "clade-synonym" | "reference";
 
 /**
  * One name the search fields suggest as the reader types.
@@ -37,6 +37,12 @@ export type SearchSuggestion = {
      * A genus's authority, to tell like names apart: "Osborn, 1905". Empty for other kinds.
      */
     authority: string;
+
+    /**
+     * More words the suggestion is found by, beyond its name: a reference's authors and title.
+     * Absent for names, which are found by the name alone.
+     */
+    keywords?: string;
 };
 
 /**
