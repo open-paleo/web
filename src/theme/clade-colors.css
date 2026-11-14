@@ -1,0 +1,46 @@
+/* Clade colors: one per clade listed in src/data/clade-colors.ts, and gray for every other
+   branch. The Tree page's chart colors each listed clade's branches with its color. Kept apart
+   from tokens.css because the list follows the dataset: when the tree grows, clades are added
+   or swapped here and in that list together.
+
+   test/clade-colors.test.ts checks them in CI: every pair, gray included, must stay at least 8
+   apart (OKLab x100) under normal vision and simulated protanopia, deuteranopia and tritanopia,
+   and each must reach 3:1 against --color-surface, the chart's background. The current light set
+   reaches 10, the dark set 8. A clade's dark color keeps its light hue. Clades are also named on
+   the chart and in its legend, so color is never the only cue. */
+
+:root
+{
+    --color-clade-theropoda: #c1552c;
+    --color-clade-sauropodomorpha: #2f8adc;
+    --color-clade-thyreophora: #683964;
+    --color-clade-ornithopoda: #2b3cad;
+    --color-clade-ceratopsia: #8d559a;
+    --color-clade-pachycephalosauria: #8d1c11;
+    --color-clade-other: #7d847f;
+}
+
+@media (prefers-color-scheme: dark)
+{
+    :root:not([data-theme="light"])
+    {
+        --color-clade-theropoda: #f68c10;
+        --color-clade-sauropodomorpha: #87d1e8;
+        --color-clade-thyreophora: #a669bf;
+        --color-clade-ornithopoda: #2796f5;
+        --color-clade-ceratopsia: #a9a3da;
+        --color-clade-pachycephalosauria: #bc6f4c;
+        --color-clade-other: #8a918c;
+    }
+}
+
+:root[data-theme="dark"]
+{
+    --color-clade-theropoda: #f68c10;
+    --color-clade-sauropodomorpha: #87d1e8;
+    --color-clade-thyreophora: #a669bf;
+    --color-clade-ornithopoda: #2796f5;
+    --color-clade-ceratopsia: #a9a3da;
+    --color-clade-pachycephalosauria: #bc6f4c;
+    --color-clade-other: #8a918c;
+}

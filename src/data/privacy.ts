@@ -55,7 +55,7 @@ export type ExternalService = {
  * The day the current privacy policy took effect, as the page shows it. Update it whenever the
  * policy changes.
  */
-export const privacyPolicyEffectiveDate = "November 13, 2026";
+export const privacyPolicyEffectiveDate = "November 14, 2026";
 
 /**
  * The address for privacy questions and requests.
@@ -89,9 +89,9 @@ export const externalServices: Array<ExternalService> = [
     {
         name: "OpenFreeMap",
         operator: "Hyperknot Software Kft., Hungary",
-        role: "Serves the map backgrounds",
-        whenContacted: "On pages with a map, when the map loads",
-        receives: "Your IP address, your browser's description of itself, and which part of the map is shown.",
+        role: "Serves the map backgrounds, and the fonts for labels on maps and the tree chart",
+        whenContacted: "On pages with a map or the tree chart, when it loads",
+        receives: "Your IP address, your browser's description of itself, and which part of the map is shown or which letters a label needs.",
         policyUrl: "https://openfreemap.org/privacy/",
         policyName: "OpenFreeMap's privacy policy",
         hosts: ["tiles.openfreemap.org"],

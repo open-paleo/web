@@ -11,7 +11,8 @@ The theme lives in [`src/theme/`](../src/theme/):
 |------|----------|
 | `theme.css` | Entry point; `BaseLayout.astro` imports it, so every page gets it |
 | `fonts.css` | `@font-face` rules for the self-hosted fonts |
-| `tokens.css` | Every color, font, size and space as a custom property |
+| `tokens.css` | Every color, font, size and space as a custom property, except the clade colors |
+| `clade-colors.css` | One color per colored clade (`src/data/clade-colors.ts`), and gray for the rest |
 | `base.css` | Element defaults (body, headings, links, tables, focus) |
 | `fonts/` | WOFF2 files and their SIL Open Font License texts |
 
@@ -32,8 +33,9 @@ The theme lives in [`src/theme/`](../src/theme/):
 
 Rules:
 
-- **No literal colors outside `tokens.css`.** A component that needs a new color gets a new
-  token, defined in the bare `:root` block and redefined in both dark blocks if it changes.
+- **No literal colors outside the token files** (`tokens.css`, `clade-colors.css`). A component
+  that needs a new color gets a new token, defined in the bare `:root` block and redefined in
+  both dark blocks if it changes.
 - **The two dark blocks stay identical.** One applies when the viewer's system is dark and no
   theme is forced; the other applies when `data-theme="dark"` is set on `<html>`.
 - **Caution is semantic.** Use it for disputes and contested status only, never as decoration.
@@ -120,6 +122,23 @@ between the two editions, so the 2024/12 edition the dataset follows has the sam
 names some epochs differently from the dataset: "Early Permian" is Cisuralian, "Middle Permian"
 Guadalupian, "Late Permian" Lopingian, and "Early" and "Late" epochs are "Lower" and "Upper"
 series. Repeat the check when the dataset moves to a new chart edition.
+
+### Clade colors
+
+The Tree page's chart colors the branches of each clade listed in `src/data/clade-colors.ts`, and
+tints the area behind it at 12% opacity, with the tokens in `clade-colors.css`:
+`--color-clade-theropoda`, `-sauropodomorpha`, `-thyreophora`, `-ornithopoda`, `-ceratopsia` and
+`-pachycephalosauria`, with `--color-clade-other` (gray) for every branch outside them. The list
+and the file change together; `test/clade-colors.test.ts` fails if a listed clade lacks a light or
+dark color, the dark blocks differ, or a pair comes closer than 8 or a color below 3:1. A
+color-blind-safe palette holds about 7 or 8 colors, so when the tree grows beyond Dinosauria the
+list should name the top-level groups rather than grow. The light set was chosen by search so that every pair, gray included, stays at least 10
+apart (OKLab ×100) under normal vision and simulated protanopia, deuteranopia and tritanopia,
+each at least 3:1 on the chart's background, `--color-surface`; the dark set keeps each group's
+hue and stays at least 8 apart, each at least 4:1. Labels are in `--color-ink` (summaries in `--color-muted`), never in
+a group's color, and the groups are named on the chart and in the legend above it, so color is
+never the only cue. Clade names are Noto Sans (OpenFreeMap's map fonts, as on the maps), the
+major groups in bold; genus names are Noto Sans Italic.
 
 ### Chart colors
 

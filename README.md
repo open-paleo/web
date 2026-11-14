@@ -25,7 +25,7 @@ AA, checked on every deployment.
 | Genera | Every genus, A to Z, with its group, epochs and country, and filters for time, group, diet, locomotion, integument, status and year named that are kept in the page address |
 | Map | Where every genus's type species was found, on a world map: regions shaded by how many genera come from them, dots for published coordinates, the genera of a selected region, the Genera page's filters, and an index of genera by country and region that works without JavaScript |
 | Feed | `feed.xml`, an Atom feed of the 50 most recently named genera, linked from every page's head and the home page |
-| Tree | The classification as an outline you can open and close, with genus counts |
+| Tree | The classification as a chart you can zoom (left to right, colored by major group, each tip summarizing a clade's genera and opening a list of them) and as an outline you can open and close, with genus counts. A find field shows any clade or genus in either |
 | References | Every cited work, by first author |
 | Data | Downloads of the dataset's output files, how to cite a release, the versioning policy, and the tools |
 | Tools | The site's tools, from the header's "Tools" item: for now the tree extractor |

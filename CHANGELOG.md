@@ -8,6 +8,20 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ### Added
 
+- A chart of the tree at the top of the Tree page: the classification from Dinosauria down,
+  left to right, panned and zoomed like a map (MapLibre, as on the maps). Each major group has
+  its own color, chosen to stay distinct with color-vision deficiencies, named in a legend.
+  Genera are summarized: a clade with no clades below it is a tip ("Ornithomimidae",
+  "*Ornithomimus* and 12 others"), and genera placed directly in a clade with subclades get one
+  tip ("12 genera"). Selecting a tip lists its genera in a panel; selecting a clade opens its
+  page. Clade names appear largest first as there is room. The find field shows its result in
+  the chart, opening the panel for a genus, with a link to show it in the outline instead. The
+  outline stays below as the version without JavaScript
+- Clade colors in their own file (`src/theme/clade-colors.css`), for the clades listed in
+  `src/data/clade-colors.ts`, apart from the home page's major groups; a test checks that every
+  listed clade has light and dark colors that stay distinct under color-vision deficiencies and
+  reach 3:1 on the chart's background
+
 - A find field on the Tree page: typing part of a clade or genus lists the matches, and
   choosing one opens every clade above it in the outline, highlights it and moves the focus to
   it. A genus reveals the clade it is placed in, which a line under the field names

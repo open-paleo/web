@@ -21,9 +21,10 @@ Rules that are easy to miss:
 - **Multi-line JSDoc** on every function, type and type field
 - **Exact dependency versions**; no `^` or `~` in `package.json`, and pick releases at least
   two weeks old (Open Paleo's own packages, such as the tree extractor, are exempt)
-- **No browser dependencies** other than MapLibre GL JS (the maps), the tree extractor with
-  Tesseract.js (the tool page), each loaded only where it is used, and Plausible's counting
-  script (every page, published builds only); every page but the tool works with JavaScript off
+- **No browser dependencies** other than MapLibre GL JS (the maps and the Tree page's chart),
+  the tree extractor with Tesseract.js (the tool page), each loaded only where it is used, and
+  Plausible's counting script (every page, published builds only); every page but the tool works
+  with JavaScript off
 - **Every outside service is declared in `src/data/privacy.ts`**, which the privacy page lists:
   a new host a page contacts fails `check-site` until it has an entry there, and any change to
   the policy updates `privacyPolicyEffectiveDate`
@@ -47,8 +48,9 @@ result: the pipe hides the exit code.
 
 The site uses the Strata theme, documented in [docs/theme.md](docs/theme.md).
 
-- No literal colors outside `src/theme/tokens.css`. A new color is a new token, defined on bare
-  `:root` and, if it changes in dark mode, redefined identically in both dark blocks
+- No literal colors outside the token files in `src/theme/` (`tokens.css`, and `clade-colors.css`
+  for the clades listed in `src/data/clade-colors.ts`). A new color is a new token, defined on
+  bare `:root` and, if it changes in dark mode, redefined identically in both dark blocks
 - Geologic time colors are used only in age graphics
 - Every genus and species name gets `class="taxon"` (italic); clade names stay roman
 - No all-caps labels, no decorative numbering, and no monospace except for code (the BibTeX

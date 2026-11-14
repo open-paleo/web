@@ -82,7 +82,7 @@ setWorkerUrl(workerUrl);
  * @param name - The token: "--color-map-land".
  * @returns The color.
  */
-function readToken(name: string): string
+export function readToken(name: string): string
 {
     return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }

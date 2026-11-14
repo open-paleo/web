@@ -49,7 +49,9 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
   search, filters and interactive views on top. Three exceptions:
   - MapLibre GL JS draws the maps, on genus pages (when the map scrolls into view) and the Map
     page, over OpenStreetMap tiles from OpenFreeMap. Without JavaScript those pages list the
-    same places in words
+    same places in words. It also draws the Tree page's chart (`src/data/tree-chart.ts` lays it
+    out as GeoJSON; `src/scripts/tree-chart-renderer.ts` draws it), with no tiles, only
+    OpenFreeMap's fonts for the labels; without JavaScript the outline lists the same clades
   - The tree extractor (`@open-paleo/tree-extractor`) and Tesseract.js, its text recognition,
     run the tool at `tools/tree-extractor/`, which is a tool and needs JavaScript. Tesseract's
     core and language data are served from the site (`src/integrations/tesseract-files.ts`) at
@@ -377,9 +379,10 @@ const { dispute, question } = Astro.props;
 - **Styles live with their component.** Each component's `<style>` block is scoped to that
   component by Astro. The global files in `src/theme/` hold only tokens, fonts and element
   defaults
-- **Colors, fonts, sizes and spacing come from tokens** in `src/theme/tokens.css`. No literal
-  color appears in any other stylesheet. A new color is a new token, with a dark value if it
-  changes in dark mode. See [docs/theme.md](docs/theme.md)
+- **Colors, fonts, sizes and spacing come from tokens** in `src/theme/tokens.css`, and the clade
+  colors in `src/theme/clade-colors.css` (one per clade in `src/data/clade-colors.ts`, checked by
+  `test/clade-colors.test.ts`). No literal color appears in any other stylesheet. A new color is
+  a new token, with a dark value if it changes in dark mode. See [docs/theme.md](docs/theme.md)
 - 4-space indentation and Allman braces, matching the TypeScript: selector on its own line,
   opening brace on the next
 - **Class names are full words** describing what the element is: `.species-box`,

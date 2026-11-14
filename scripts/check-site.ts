@@ -391,10 +391,14 @@ async function checkTreeFind(browser: Browser, siteUrl: string, problems: Array<
         problems.push({ location, check: "axe", message: finding.rule + " at " + finding.target + ": " + finding.summary });
     }
 
+    // Wait for the chart to be drawn, or to give up (no WebGL), so the find goes where a reader's would.
+    await page.waitForFunction(() => document.querySelector<HTMLElement>("#tree-chart")?.dataset.ready === "true" || document.querySelector(".tree-chart-unavailable") !== null, undefined, { timeout: 15000 }).catch(() => undefined);
     await page.keyboard.press("ArrowDown");
     await page.keyboard.press("Enter");
 
-    const found = page.locator(".tree-row.is-found");
+    // With the chart drawn, the find opens the tip's panel; without it, it reveals the outline row.
+    const isChartShown = await page.evaluate(() => document.querySelector<HTMLElement>("#tree-chart")?.dataset.ready === "true");
+    const found = isChartShown ? page.locator(".tree-chart-panel-heading", { hasText: "Velociraptorinae" }) : page.locator(".tree-row.is-found");
 
     try
     {
@@ -402,7 +406,7 @@ async function checkTreeFind(browser: Browser, siteUrl: string, problems: Array<
     }
     catch
     {
-        problems.push({ location, check: "find", message: "choosing Velociraptor did not reveal its clade in the outline" });
+        problems.push({ location, check: "find", message: "choosing Velociraptor did not show its clade " + (isChartShown ? "in the chart's panel" : "in the outline") });
     }
 
     await page.close();
