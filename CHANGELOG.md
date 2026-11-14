@@ -4,6 +4,14 @@ The site is published continuously from `main`, so changes are grouped by the da
 live, newest first. Add to today's section, creating it if needed. The data the site shows has
 its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
+## 2026-11-14
+
+### Added
+
+- A find field on the Tree page: typing part of a clade or genus lists the matches, and
+  choosing one opens every clade above it in the outline, highlights it and moves the focus to
+  it. A genus reveals the clade it is placed in, which a line under the field names
+
 ## 2026-11-13
 
 ### Changed

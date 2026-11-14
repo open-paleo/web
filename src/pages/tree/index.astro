@@ -4,6 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatGenusCount } from "../../data/format.ts";
 import type { CladeEntry } from "../../data/site-data.ts";
 import { getSiteData } from "../../data/site-data.ts";
+import { createTreeFindNames } from "../../data/tree-find.ts";
 
 const siteData = getSiteData();
 
@@ -20,6 +21,7 @@ for (const clade of siteData.clades)
 }
 
 const cladeCount = siteData.metadata.clade_count;
+const findNames = top ? createTreeFindNames(top, siteData) : [];
 ---
 
 <BaseLayout title="Tree" description={"The Open Paleo classification as an outline of " + cladeCount + " clades."} section="tree">
@@ -30,6 +32,14 @@ const cladeCount = siteData.metadata.clade_count;
                 The classification as an outline: {cladeCount} clades holding {formatGenusCount(siteData.genera.length)}.
                 Each count includes every genus below the clade. Open a clade to see the clades within it.
             </p>
+            {/* Shown by the script, which it needs. */}
+            <form class="tree-find" role="search" aria-label="Find in the tree" hidden>
+                <label for="tree-find-field">Find a clade or genus</label>
+                <div class="tree-find-field">
+                    <input id="tree-find-field" type="search" autocomplete="off" placeholder="Tyrannosauridae, Velociraptor…" data-names={JSON.stringify(findNames)}>
+                </div>
+                <p class="tree-find-result" role="status"></p>
+            </form>
             <p class="tree-controls" hidden>
                 <button type="button" data-tree-action="open">Open all</button>
                 <button type="button" data-tree-action="close">Close all</button>
@@ -45,6 +55,20 @@ const cladeCount = siteData.metadata.clade_count;
 </BaseLayout>
 
 <script>
+    import type { SearchSuggestion } from "../../data/search-suggestions.ts";
+    import type { PreparedSuggestion } from "../../data/suggestion-matching.ts";
+    import { findSuggestions, prepareSuggestions } from "../../data/suggestion-matching.ts";
+    import type { TreeFindName } from "../../data/tree-find.ts";
+    import { connectNameCombobox } from "../../scripts/name-combobox.ts";
+
+    // How many names the find field lists.
+    const findLimit = 8;
+
+    // The clade each find name reveals, by its slug, for the notes beside genera.
+    const cladeNameBySlug = new Map<string, string>();
+
+    let findNames: Array<PreparedSuggestion> = [];
+
     /**
      * Find the list of clades a toggle button opens and closes.
      *
@@ -117,7 +141,176 @@ const cladeCount = siteData.metadata.clade_count;
         }
     }
 
+    /**
+     * Read the find field's names, written at build time, and prepare them for matching.
+     *
+     * @param input - The find field.
+     * @returns The names, as suggestions whose path is the slug of the clade each reveals.
+     */
+    function readFindNames(input: HTMLInputElement): Array<PreparedSuggestion>
+    {
+        const names = JSON.parse(input.dataset.names ?? "[]") as Array<TreeFindName>;
+        const suggestions = new Array<SearchSuggestion>();
+
+        for (const name of names)
+        {
+            cladeNameBySlug.set(name.cladeSlug, name.cladeName);
+            suggestions.push({ name: name.name, kind: name.kind, path: name.cladeSlug, synonymOf: "", authority: "" });
+        }
+
+        return prepareSuggestions(suggestions);
+    }
+
+    /**
+     * Give the combobox the find names, which are already on the page.
+     *
+     * @returns The names.
+     */
+    async function loadFindNames(): Promise<Array<PreparedSuggestion>>
+    {
+        return await Promise.resolve(findNames);
+    }
+
+    /**
+     * Build the note beside a find name: "Clade", or for a genus, the clade it is placed in.
+     *
+     * @param suggestion - The name.
+     * @returns The note.
+     */
+    function createFindNote(suggestion: SearchSuggestion): HTMLElement
+    {
+        const note = document.createElement("span");
+
+        note.textContent = suggestion.kind === "genus" ? "Genus, in " + (cladeNameBySlug.get(suggestion.path) ?? "") : "Clade";
+
+        return note;
+    }
+
+    /**
+     * Open every clade above a clade's row in the outline, highlight the row, scroll to it and
+     * move the focus to its link.
+     *
+     * @param slug - The clade's slug.
+     */
+    function revealClade(slug: string): void
+    {
+        const node = document.getElementById("tree-" + slug);
+
+        if (!node)
+        {
+            return;
+        }
+
+        for (let element = node.parentElement; element; element = element.parentElement)
+        {
+            if (element.classList.contains("tree-branch"))
+            {
+                const toggle = document.querySelector<HTMLButtonElement>(".tree-toggle[aria-controls=\"" + element.id + "\"]");
+
+                if (toggle)
+                {
+                    setBranch(toggle, true);
+                }
+            }
+        }
+
+        for (const row of document.querySelectorAll(".tree-row.is-found"))
+        {
+            row.classList.remove("is-found");
+        }
+
+        const row = node.querySelector<HTMLElement>(".tree-row");
+        const isMotionReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        row?.classList.add("is-found");
+        row?.scrollIntoView({ block: "center", behavior: isMotionReduced ? "auto" : "smooth" });
+        row?.querySelector("a")?.focus({ preventScroll: true });
+    }
+
+    /**
+     * Reveal a chosen name in the outline, and for a genus, say which clade it is placed in.
+     *
+     * @param suggestion - The chosen name.
+     */
+    function revealFindName(suggestion: SearchSuggestion): void
+    {
+        const result = document.querySelector<HTMLElement>(".tree-find-result");
+        const input = document.querySelector<HTMLInputElement>("#tree-find-field");
+
+        if (input)
+        {
+            input.value = suggestion.name;
+        }
+
+        if (result)
+        {
+            result.replaceChildren();
+
+            if (suggestion.kind === "genus")
+            {
+                const genus = document.createElement("i");
+
+                genus.className = "taxon";
+                genus.textContent = suggestion.name;
+                result.append(genus, " is placed in " + (cladeNameBySlug.get(suggestion.path) ?? "") + ".");
+            }
+        }
+
+        revealClade(suggestion.path);
+    }
+
+    /**
+     * On Enter with no row highlighted, reveal the best match, or say there is none.
+     *
+     * @param event - The form's submission.
+     */
+    function handleFindSubmit(event: SubmitEvent): void
+    {
+        const input = document.querySelector<HTMLInputElement>("#tree-find-field");
+        const result = document.querySelector<HTMLElement>(".tree-find-result");
+        const query = input?.value.trim() ?? "";
+        const best = findSuggestions(query, findNames, 1);
+
+        event.preventDefault();
+
+        if (best.length > 0)
+        {
+            revealFindName(best[0]);
+        }
+        else if (result)
+        {
+            result.textContent = query === "" ? "" : "No clade or genus matches “" + query + "”.";
+        }
+    }
+
+    /**
+     * Turn on the find field.
+     */
+    function enableFind(): void
+    {
+        const form = document.querySelector<HTMLFormElement>(".tree-find");
+        const input = document.querySelector<HTMLInputElement>("#tree-find-field");
+
+        if (!form || !input)
+        {
+            return;
+        }
+
+        findNames = readFindNames(input);
+        form.hidden = false;
+        form.addEventListener("submit", handleFindSubmit);
+        connectNameCombobox(input, {
+            listLabel: "Matching clades and genera",
+            limit: findLimit,
+            loadNames: loadFindNames,
+            createNote: createFindNote,
+            chooseName: revealFindName,
+            queryRow: undefined,
+        });
+    }
+
     enableTree();
+    enableFind();
 </script>
 
 <style>
@@ -143,6 +336,46 @@ const cladeCount = siteData.metadata.clade_count;
     .tree-summary
     {
         color: var(--color-muted);
+    }
+
+    .tree-find
+    {
+        display: grid;
+        gap: var(--space-2);
+        font-family: var(--font-sans);
+    }
+
+    .tree-find[hidden]
+    {
+        display: none;
+    }
+
+    .tree-find label
+    {
+        font-weight: 600;
+    }
+
+    /* The list of matches opens below the field (name-combobox.ts; styled in BaseLayout). */
+    .tree-find-field
+    {
+        position: relative;
+        max-width: 28rem;
+    }
+
+    .tree-find input
+    {
+        width: 100%;
+        padding: var(--space-2) var(--space-3);
+        color: var(--color-ink);
+        background: var(--color-surface);
+        border: 1px solid color-mix(in srgb, var(--color-line) 40%, var(--color-muted));
+        border-radius: var(--radius);
+        font: inherit;
+    }
+
+    .tree-find-result:empty
+    {
+        display: none;
     }
 
     .tree-controls

@@ -357,6 +357,58 @@ async function checkSearchSuggestions(browser: Browser, siteUrl: string, problem
 }
 
 /**
+ * Use the Tree page's find field: typing part of a genus must list it, pass axe while the list
+ * is open, and choosing it from the keyboard must reveal and highlight the clade it is placed in.
+ *
+ * @param browser - The browser.
+ * @param siteUrl - The site's local address.
+ * @param problems - The list to add failures to.
+ */
+async function checkTreeFind(browser: Browser, siteUrl: string, problems: Array<SiteProblem>): Promise<void>
+{
+    const page = await openLocalPage(browser, { viewport: { width: 1280, height: 900 } });
+    const location = "/tree/ (find)";
+    const option = page.locator("#tree-find-field-suggestions li", { hasText: "Velociraptor" }).first();
+
+    await page.goto(siteUrl + "tree/", { waitUntil: "networkidle" });
+    await page.locator("#tree-find-field").click();
+    await page.keyboard.type("velocirap");
+
+    try
+    {
+        await option.waitFor({ timeout: 10000 });
+    }
+    catch
+    {
+        problems.push({ location, check: "find", message: "typing \"velocirap\" did not list Velociraptor" });
+        await page.close();
+
+        return;
+    }
+
+    for (const finding of (await checkAccessibility(page)).violations)
+    {
+        problems.push({ location, check: "axe", message: finding.rule + " at " + finding.target + ": " + finding.summary });
+    }
+
+    await page.keyboard.press("ArrowDown");
+    await page.keyboard.press("Enter");
+
+    const found = page.locator(".tree-row.is-found");
+
+    try
+    {
+        await found.waitFor({ state: "visible", timeout: 10000 });
+    }
+    catch
+    {
+        problems.push({ location, check: "find", message: "choosing Velociraptor did not reveal its clade in the outline" });
+    }
+
+    await page.close();
+}
+
+/**
  * Report whether the tree extractor has finished a run. Runs in the browser.
  *
  * @returns True once the status reports the tips found.
@@ -426,6 +478,7 @@ async function checkSite(): Promise<void>
 
         await checkTreeExtractor(browser, server.url, problems);
         await checkSearchSuggestions(browser, server.url, problems);
+        await checkTreeFind(browser, server.url, problems);
         checkOffSiteHosts(problems);
     }
     finally
@@ -434,7 +487,7 @@ async function checkSite(): Promise<void>
         server.server.close();
     }
 
-    console.log("Pages: " + samplePages.length + " checked with axe (light and dark), for loose text, and at 320px wide; the tree extractor run on a figure; search suggestions tried");
+    console.log("Pages: " + samplePages.length + " checked with axe (light and dark), for loose text, and at 320px wide; the tree extractor run on a figure; search suggestions and the Tree page's find tried");
     console.log("Off-site hosts contacted: " + ([...offSiteHosts].sort().join(", ") || "none") + " (each must be declared in src/data/privacy.ts)");
 
     if (problems.length > 0)

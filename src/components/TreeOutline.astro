@@ -42,7 +42,7 @@ const directCount = clade.genusNames.length;
    reveals; without JavaScript the outline shows fully expanded and has no buttons. A link inside
    a <summary> would put one control inside another, which assistive technology cannot
    operate reliably. */}
-<li class="tree-node" data-level={level}>
+<li class="tree-node" id={"tree-" + clade.slug} data-level={level}>
     <div class="tree-row">
         {children.length > 0
             ? <button type="button" class="tree-toggle" aria-expanded="true" aria-controls={childListId} hidden><span class="visually-hidden">Show clades within {clade.name}</span></button>
@@ -117,6 +117,14 @@ const directCount = clade.genusNames.length;
     .tree-toggle[aria-expanded="true"]::before
     {
         transform: rotate(90deg);
+    }
+
+    /* The row the Tree page's find field last revealed. */
+    .tree-row.is-found
+    {
+        background: var(--color-accent-soft);
+        border-radius: var(--radius-small);
+        box-shadow: 0 0 0 var(--space-1) var(--color-accent-soft);
     }
 
     .tree-toggle:hover
