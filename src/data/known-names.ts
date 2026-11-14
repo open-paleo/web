@@ -41,3 +41,27 @@ export function listKnownTaxonNames(siteData: SiteData): Array<string>
 
     return [...names].sort((first, second) => first.localeCompare(second, "en"));
 }
+
+/**
+ * List every clade name the tree extractor should recognize: each clade with a record in the
+ * dataset, sorted. The extractor uses these to mend the spelling of a clade's name read at a
+ * node, on a shaded box, or at a tip that stands for a collapsed clade; it keeps them apart from
+ * the taxon names, so a clade never competes with a genus for a tip.
+ *
+ * @param siteData - The lookup tables.
+ * @returns The names, sorted.
+ */
+export function listKnownCladeNames(siteData: SiteData): Array<string>
+{
+    const names = new Array<string>();
+
+    for (const clade of siteData.clades)
+    {
+        if (clade.record)
+        {
+            names.push(clade.name);
+        }
+    }
+
+    return names.sort((first, second) => first.localeCompare(second, "en"));
+}

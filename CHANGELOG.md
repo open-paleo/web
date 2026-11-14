@@ -8,11 +8,18 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ### Changed
 
+- On a page shorter than the window, the footer sits at the bottom of the window instead of
+  leaving a gap below it. The footer's "Open Paleo" and the line under it stay together
+  instead of spreading to the height of the links beside them
+
 - The tree extractor page refers readers to its documentation for the kinds of figure it
   handles well
 
 ### Added
 
+- `tools/tree-extractor/known-clades.txt`: every clade with a record in the dataset, which the
+  tree extractor (from 0.5.2) uses to correct the clade names it reads at nodes, on shaded boxes
+  and at collapsed clades. Built from each release, like the known names
 - Visit counts with [Plausible Analytics](https://plausible.io/): page views, referring sites,
   browsers, devices and countries, with no cookies and no IP addresses stored. The counting
   script loads only on the published site, so local and CI builds are never counted

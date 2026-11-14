@@ -119,7 +119,7 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 | `genus-index.ts`, `genus-filters.ts` | Lists of genera with their details, and the filters (shared with the browser) |
 | `genus-map.ts`, `site-map.ts`, `map-shapes.ts`, `map-geometry.ts` | The genus maps, the Map page, and the region and country outlines |
 | `citations.ts`, `feed.ts` | Citations of the dataset and its records, and the feed of new genera |
-| `known-names.ts` | The taxon names the tree extractor matches labels against |
+| `known-names.ts` | The taxon and clade names the tree extractor matches labels against |
 
 Pages call `getSiteData()` from their frontmatter or `getStaticPaths()`; the first call loads
 the file and later calls reuse the result.

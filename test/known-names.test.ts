@@ -3,7 +3,7 @@ import * as path from "node:path";
 import { test } from "node:test";
 import * as url from "node:url";
 
-import { listKnownTaxonNames } from "../src/data/known-names.ts";
+import { listKnownCladeNames, listKnownTaxonNames } from "../src/data/known-names.ts";
 import { readDataset } from "../src/data/load-dataset.ts";
 import { createSiteData } from "../src/data/site-data.ts";
 
@@ -27,4 +27,24 @@ test("the known names hold every genus, species, synonym and original combinatio
             assert.ok(names.includes(synonym.name), synonym.name);
         }
     }
+});
+
+test("the known clades hold every clade with a record, once, sorted, and no genera", () =>
+{
+    const names = listKnownCladeNames(siteData);
+    let recordCount = 0;
+
+    for (const clade of siteData.clades)
+    {
+        if (clade.record)
+        {
+            recordCount++;
+        }
+    }
+
+    assert.equal(names.length, recordCount);
+    assert.ok(names.includes("Tyrannosauridae"));
+    assert.ok(!names.includes("Tyrannosaurus"));
+    assert.deepEqual(names, [...new Set(names)], "each name once");
+    assert.deepEqual(names, [...names].sort((first, second) => first.localeCompare(second, "en")));
 });
