@@ -3,7 +3,7 @@ import GeneraThroughTime from "../components/GeneraThroughTime.astro";
 import PageSection from "../components/PageSection.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { formatGenusCount } from "../data/format.ts";
-import { countGeneraByStage, describeRecentYears, findRecentNames, listMajorGroups } from "../data/home.ts";
+import { countGeneraByStage, describeRecentYears, findRecentNames, getMajorGroups } from "../data/home.ts";
 import { getSiteData } from "../data/site-data.ts";
 import { createPagePath } from "../data/urls.ts";
 
@@ -21,7 +21,7 @@ for (const genus of siteData.genera)
 const stages = siteData.timeline ? countGeneraByStage(siteData, siteData.timeline) : [];
 // At least a dozen names, so the section stays full early in a new year.
 const recent = findRecentNames(siteData, 12);
-const groups = listMajorGroups(siteData);
+const groups = getMajorGroups(siteData);
 const dataRepository = "https://github.com/open-paleo/data";
 const firstStage = stages[0];
 const lastStage = stages[stages.length - 1];

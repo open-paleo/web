@@ -55,12 +55,12 @@ const contentTypes = new Map<string, string>([
 ]);
 
 /**
- * List the files of a served directory: the named ones, or every regular file in it.
+ * Get the files of a served directory: the named ones, or every regular file in it.
  *
  * @param directory - The directory.
  * @returns The file names.
  */
-function listServedFiles(directory: ServedDirectory): Array<string>
+function getServedFiles(directory: ServedDirectory): Array<string>
 {
     if (directory.files.length > 0)
     {
@@ -96,7 +96,7 @@ function findServedFile(requestPath: string): string | undefined
         {
             const name = requestPath.slice(prefix.length);
 
-            if (listServedFiles(directory).includes(name))
+            if (getServedFiles(directory).includes(name))
             {
                 return path.join(directory.sourceDirectory, name);
             }
@@ -147,7 +147,7 @@ export function serveTesseractFiles(basePath: string): AstroIntegration
 
                     fs.mkdirSync(target, { recursive: true });
 
-                    for (const name of listServedFiles(directory))
+                    for (const name of getServedFiles(directory))
                     {
                         fs.copyFileSync(path.join(directory.sourceDirectory, name), path.join(target, name));
                     }

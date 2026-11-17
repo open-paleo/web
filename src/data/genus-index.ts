@@ -8,7 +8,7 @@ import { majorGroupNames } from "./home.ts";
 import { getTypeSpecies } from "./records.ts";
 import type { GenusEntry, SiteData } from "./site-data.ts";
 import { createSlug } from "./slugs.ts";
-import { listGenusEpochs } from "./time-pages.ts";
+import { getGenusEpochs } from "./time-pages.ts";
 
 /**
  * The page a list of genera is on, which decides the details each genus shows:
@@ -367,7 +367,7 @@ export function createGenusIndexRows(
         const genus = entry.record;
         const species = getTypeSpecies(genus);
         const group = findMajorGroup(entry, siteData);
-        const epochs = timeline ? listGenusEpochs(genus, timeline) : [];
+        const epochs = timeline ? getGenusEpochs(genus, timeline) : [];
         const epochNames = new Array<string>();
         const time = new Array<string>();
 
@@ -425,12 +425,12 @@ function countValue(counts: Map<string, CountedValue>, value: string, label: str
 }
 
 /**
- * List counted values as options, most common first.
+ * Get counted values as options, most common first.
  *
  * @param counts - Counts by value.
  * @returns The options.
  */
-function listByCount(counts: Map<string, CountedValue>): Array<FilterOption>
+function getOptionsByCount(counts: Map<string, CountedValue>): Array<FilterOption>
 {
     const options = new Array<FilterOption>();
 
@@ -445,14 +445,14 @@ function listByCount(counts: Map<string, CountedValue>): Array<FilterOption>
 }
 
 /**
- * List the time filter's options: each period, then its epochs, oldest first, where they have
+ * Get the time filter's options: each period, then its epochs, oldest first, where they have
  * genera.
  *
  * @param counts - Genera by period and epoch slug.
  * @param timeline - The arranged timescale.
  * @returns One group per period.
  */
-function listTimeOptions(counts: Map<string, CountedValue>, timeline: GeologicTimeline | undefined): Array<FilterOptionGroup>
+function getTimeOptions(counts: Map<string, CountedValue>, timeline: GeologicTimeline | undefined): Array<FilterOptionGroup>
 {
     const groups = new Array<FilterOptionGroup>();
 
@@ -484,12 +484,12 @@ function listTimeOptions(counts: Map<string, CountedValue>, timeline: GeologicTi
 }
 
 /**
- * List the group filter's options: the major groups in tree order, then every other genus.
+ * Get the group filter's options: the major groups in tree order, then every other genus.
  *
  * @param counts - Genera by group slug.
  * @returns The options.
  */
-function listGroupOptions(counts: Map<string, CountedValue>): Array<FilterOption>
+function getGroupOptions(counts: Map<string, CountedValue>): Array<FilterOption>
 {
     const options = new Array<FilterOption>();
 
@@ -514,13 +514,13 @@ function listGroupOptions(counts: Map<string, CountedValue>): Array<FilterOption
 }
 
 /**
- * List what the Genera page's filters offer, with the number of genera for each option.
+ * Get what the Genera page's filters offer, with the number of genera for each option.
  *
  * @param rows - The rows of every genus.
  * @param timeline - The arranged timescale, if the dataset has one.
  * @returns The filters and the range of years named.
  */
-export function listGenusFilterOptions(rows: Array<GenusIndexRow>, timeline: GeologicTimeline | undefined): GenusFilterOptions
+export function getGenusFilterOptions(rows: Array<GenusIndexRow>, timeline: GeologicTimeline | undefined): GenusFilterOptions
 {
     const time = new Map<string, CountedValue>();
     const group = new Map<string, CountedValue>();
@@ -556,12 +556,12 @@ export function listGenusFilterOptions(rows: Array<GenusIndexRow>, timeline: Geo
 
     return {
         choices: [
-            { name: "time", label: "Time", anyLabel: "Any time", options: [], groups: listTimeOptions(time, timeline) },
-            { name: "group", label: "Group", anyLabel: "Any group", options: listGroupOptions(group), groups: [] },
-            { name: "diet", label: "Diet", anyLabel: "Any diet", options: listByCount(diet), groups: [] },
-            { name: "locomotion", label: "Locomotion", anyLabel: "Any locomotion", options: listByCount(locomotion), groups: [] },
-            { name: "integument", label: "Integument", anyLabel: "Any integument", options: listByCount(integument), groups: [] },
-            { name: "status", label: "Status", anyLabel: "Any status", options: listByCount(status), groups: [] },
+            { name: "time", label: "Time", anyLabel: "Any time", options: [], groups: getTimeOptions(time, timeline) },
+            { name: "group", label: "Group", anyLabel: "Any group", options: getGroupOptions(group), groups: [] },
+            { name: "diet", label: "Diet", anyLabel: "Any diet", options: getOptionsByCount(diet), groups: [] },
+            { name: "locomotion", label: "Locomotion", anyLabel: "Any locomotion", options: getOptionsByCount(locomotion), groups: [] },
+            { name: "integument", label: "Integument", anyLabel: "Any integument", options: getOptionsByCount(integument), groups: [] },
+            { name: "status", label: "Status", anyLabel: "Any status", options: getOptionsByCount(status), groups: [] },
         ],
         firstYear,
         lastYear,

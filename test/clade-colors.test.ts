@@ -41,14 +41,14 @@ const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
 const themeDirectory = path.join(testDirectory, "..", "src", "theme");
 const cladeColors = fs.readFileSync(path.join(themeDirectory, "clade-colors.css"), "utf8");
 const tokens = fs.readFileSync(path.join(themeDirectory, "tokens.css"), "utf8");
-const tokenNames = listTokenNames();
+const tokenNames = getTokenNames();
 
 /**
- * List the tokens to check: each colored clade's, then the rest's.
+ * Get the tokens to check: each colored clade's, then the rest's.
  *
  * @returns The token names.
  */
-function listTokenNames(): Array<string>
+function getTokenNames(): Array<string>
 {
     const names = new Array<string>();
 

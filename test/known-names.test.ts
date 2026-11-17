@@ -3,7 +3,7 @@ import * as path from "node:path";
 import { test } from "node:test";
 import * as url from "node:url";
 
-import { listKnownCladeNames, listKnownTaxonNames } from "../src/data/known-names.ts";
+import { getKnownCladeNames, getKnownTaxonNames } from "../src/data/known-names.ts";
 import { readDataset } from "../src/data/load-dataset.ts";
 import { createSiteData } from "../src/data/site-data.ts";
 
@@ -12,7 +12,7 @@ const siteData = createSiteData(readDataset(path.join(testDirectory, "fixtures")
 
 test("the known names hold every genus, species, synonym and original combination once, sorted", () =>
 {
-    const names = listKnownTaxonNames(siteData);
+    const names = getKnownTaxonNames(siteData);
 
     assert.ok(names.includes("Tyrannosaurus"));
     assert.ok(names.includes("Tyrannosaurus rex"));
@@ -31,7 +31,7 @@ test("the known names hold every genus, species, synonym and original combinatio
 
 test("the known clades hold every clade with a record, once, sorted, and no genera", () =>
 {
-    const names = listKnownCladeNames(siteData);
+    const names = getKnownCladeNames(siteData);
     let recordCount = 0;
 
     for (const clade of siteData.clades)

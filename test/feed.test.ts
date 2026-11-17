@@ -3,7 +3,7 @@ import * as path from "node:path";
 import { test } from "node:test";
 import * as url from "node:url";
 
-import { createGenusFeed, escapeXml, listNewestGenera, writeAtomFeed } from "../src/data/feed.ts";
+import { createGenusFeed, escapeXml, getNewestGenera, writeAtomFeed } from "../src/data/feed.ts";
 import { readDataset } from "../src/data/load-dataset.ts";
 import { createSiteData } from "../src/data/site-data.ts";
 
@@ -12,7 +12,7 @@ const siteData = createSiteData(readDataset(path.join(testDirectory, "fixtures")
 
 test("the newest genera come first, by year named and then by name", () =>
 {
-    const genera = listNewestGenera(siteData, siteData.genera.length);
+    const genera = getNewestGenera(siteData, siteData.genera.length);
 
     for (let index = 1; index < genera.length; index++)
     {
@@ -22,7 +22,7 @@ test("the newest genera come first, by year named and then by name", () =>
         assert.ok(previous > current || (previous === current && genera[index - 1].name.localeCompare(genera[index].name, "en") < 0));
     }
 
-    assert.equal(listNewestGenera(siteData, 3).length, 3);
+    assert.equal(getNewestGenera(siteData, 3).length, 3);
 });
 
 test("feed entries link to genus pages under the site's address", () =>

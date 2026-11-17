@@ -8,7 +8,7 @@ import {
     getIdentifierUrl,
     joinNonEmpty,
 } from "../data/format.ts";
-import { getTypeSpecies, listSizeMeasurements } from "../data/records.ts";
+import { getTypeSpecies, getSizeMeasurements } from "../data/records.ts";
 import FactList from "./FactList.astro";
 
 /**
@@ -30,7 +30,7 @@ const integument = appearance?.integument && appearance.integument !== "unknown"
 const foundIn = typeSpecies.location
     ? joinNonEmpty([formatStratigraphicUnits(typeSpecies.location), formatPlace(typeSpecies.location)])
     : "";
-const measurements = listSizeMeasurements(typeSpecies.size);
+const measurements = getSizeMeasurements(typeSpecies.size);
 const identifiers = genus.identifiers ?? [];
 const sizeNote = genus.species.length > 1 ? "Size and place are those of the type species." : "";
 ---

@@ -36,12 +36,12 @@ export function getTypeSpecies(genus: Genus): Species
 }
 
 /**
- * List a species' size measurements in a fixed order: length, mass, hip height, skull length.
+ * Get a species' size measurements in a fixed order: length, mass, hip height, skull length.
  *
  * @param size - The species' size block, if any.
  * @returns The measurements that are recorded.
  */
-export function listSizeMeasurements(size: Size | undefined): Array<SizeMeasurement>
+export function getSizeMeasurements(size: Size | undefined): Array<SizeMeasurement>
 {
     const measurements = new Array<SizeMeasurement>();
 

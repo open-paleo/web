@@ -10,7 +10,7 @@ import {
     getIndexLetter,
     getReferenceIndexName,
     groupByLetter,
-    listDatasetFiles,
+    readDatasetFiles,
 } from "../src/data/indexes.ts";
 import { readDataset } from "../src/data/load-dataset.ts";
 import { createSiteData } from "../src/data/site-data.ts";
@@ -61,9 +61,9 @@ test("references are indexed under the first author's surname", () =>
     assert.equal(getReferenceIndexName(reference), "Osborn");
 });
 
-test("listDatasetFiles reports sizes for files that exist and none for those that do not", () =>
+test("readDatasetFiles reports sizes for files that exist and none for those that do not", () =>
 {
-    const files = listDatasetFiles(fixtureDirectory);
+    const files = readDatasetFiles(fixtureDirectory);
 
     assert.equal(files[0].name, "open-paleo.json");
     assert.ok((files[0].sizeBytes ?? 0) > 0);

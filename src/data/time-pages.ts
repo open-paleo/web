@@ -122,14 +122,14 @@ export type TimePages = {
 };
 
 /**
- * List the epochs a genus's type species is known from: the epochs of its stages, and any
+ * Get the epochs a genus's type species is known from: the epochs of its stages, and any
  * epoch it names directly. Some type species name an epoch but no stage.
  *
  * @param genus - The genus record.
  * @param timeline - The arranged timescale.
  * @returns The epochs, oldest first.
  */
-export function listGenusEpochs(genus: Genus, timeline: GeologicTimeline): Array<Epoch>
+export function getGenusEpochs(genus: Genus, timeline: GeologicTimeline): Array<Epoch>
 {
     const period = getTypeSpecies(genus).period;
     const stageNames = new Set<string>(period.stage ?? []);
@@ -161,7 +161,7 @@ export function listGenusEpochs(genus: Genus, timeline: GeologicTimeline): Array
  * Arrange the genera by the stages and periods of their type species, for the time pages. A
  * genus whose type species spans several stages appears on each of their pages, the same rule
  * the home page's chart counts by. A period lists the genera of all its epochs (see
- * listGenusEpochs), so a genus dated only to an epoch still appears on its period's page.
+ * getGenusEpochs), so a genus dated only to an epoch still appears on its period's page.
  *
  * @param siteData - The lookup tables.
  * @param timeline - The arranged timescale.
@@ -192,7 +192,7 @@ export function createTimePages(siteData: SiteData, timeline: GeologicTimeline):
     // species names an epoch but no stage.
     for (const genus of siteData.genera)
     {
-        for (const epoch of listGenusEpochs(genus.record, timeline))
+        for (const epoch of getGenusEpochs(genus.record, timeline))
         {
             const periodName = getPeriodName(epoch.name);
             const periodGenera = generaInPeriod.get(periodName) ?? new Set<GenusEntry>();
@@ -310,7 +310,7 @@ function createSpanParts(names: Array<string>, createLink: (name: string) => Cap
  * @param pages - The time pages.
  * @returns The caption's parts, in order; empty when the record names no stage or epoch.
  */
-export function listAgeCaptionParts(period: Period, pages: TimePages): Array<CaptionPart>
+export function getAgeCaptionParts(period: Period, pages: TimePages): Array<CaptionPart>
 {
     /**
      * Link a stage name to its page, if it has one.

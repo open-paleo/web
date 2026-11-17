@@ -68,13 +68,13 @@ export type GenusFeed = {
 };
 
 /**
- * List the most recently named genera: by year named, newest first, then by name.
+ * Get the most recently named genera: by year named, newest first, then by name.
  *
  * @param siteData - The lookup tables.
  * @param count - How many to list.
  * @returns The genera.
  */
-export function listNewestGenera(siteData: SiteData, count: number): Array<GenusEntry>
+export function getNewestGenera(siteData: SiteData, count: number): Array<GenusEntry>
 {
     const genera = [...siteData.genera];
 
@@ -95,7 +95,7 @@ export function createGenusFeed(siteData: SiteData, siteUrl: string, count: numb
 {
     const entries = new Array<FeedEntry>();
 
-    for (const genus of listNewestGenera(siteData, count))
+    for (const genus of getNewestGenera(siteData, count))
     {
         const url = new URL("genus/" + genus.slug + "/", siteUrl).href;
         const authority = formatAuthority(genus.record.authors, genus.record.described, false);

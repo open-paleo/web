@@ -3,17 +3,17 @@ import GenusFilterForm from "../../components/GenusFilterForm.astro";
 import PageSection from "../../components/PageSection.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatGenusCount } from "../../data/format.ts";
-import { createGenusIndexRows, listGenusFilterOptions } from "../../data/genus-index.ts";
-import { groupGeneraByPlace, listPlaceIndexRows } from "../../data/site-map.ts";
+import { createGenusIndexRows, getGenusFilterOptions } from "../../data/genus-index.ts";
+import { groupGeneraByPlace, getPlaceIndexRows } from "../../data/site-map.ts";
 import { getSiteData } from "../../data/site-data.ts";
 import { createPagePath } from "../../data/urls.ts";
 
 const siteData = getSiteData();
 const baseUrl = import.meta.env.BASE_URL;
 const countries = groupGeneraByPlace(createGenusIndexRows(siteData.genera, siteData, siteData.timeline, "place"));
-const placedRows = listPlaceIndexRows(countries);
+const placedRows = getPlaceIndexRows(countries);
 const placedCount = placedRows.length;
-const filterOptions = listGenusFilterOptions(placedRows, siteData.timeline);
+const filterOptions = getGenusFilterOptions(placedRows, siteData.timeline);
 const legendSteps = ["1", "2–4", "5–9", "10–24", "25 or more"];
 ---
 

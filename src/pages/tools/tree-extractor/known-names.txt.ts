@@ -1,4 +1,4 @@
-import { listKnownTaxonNames } from "../../../data/known-names.ts";
+import { getKnownTaxonNames } from "../../../data/known-names.ts";
 import { getSiteData } from "../../../data/site-data.ts";
 
 /**
@@ -10,7 +10,7 @@ import { getSiteData } from "../../../data/site-data.ts";
  */
 export function GET(): Response
 {
-    return new Response(listKnownTaxonNames(getSiteData()).join("\n") + "\n", {
+    return new Response(getKnownTaxonNames(getSiteData()).join("\n") + "\n", {
         headers: { "Content-Type": "text/plain; charset=utf-8" },
     });
 }

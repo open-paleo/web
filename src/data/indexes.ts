@@ -124,12 +124,12 @@ export function getReferenceIndexName(reference: ReferenceEntry): string
 }
 
 /**
- * List the dataset files the Data page offers, with their sizes in the local dataset.
+ * Read the dataset files the Data page offers, with their sizes in the local dataset.
  *
  * @param datasetDirectory - The dataset's dist directory.
  * @returns The files, in display order.
  */
-export function listDatasetFiles(datasetDirectory: string): Array<DatasetFile>
+export function readDatasetFiles(datasetDirectory: string): Array<DatasetFile>
 {
     const files = new Array<DatasetFile>();
 
@@ -154,7 +154,7 @@ export function listDatasetFiles(datasetDirectory: string): Array<DatasetFile>
  */
 export function getDatasetFiles(): Array<DatasetFile>
 {
-    return listDatasetFiles(findDatasetDirectory(process.cwd(), process.env.OPEN_PALEO_DATA));
+    return readDatasetFiles(findDatasetDirectory(process.cwd(), process.env.OPEN_PALEO_DATA));
 }
 
 /**

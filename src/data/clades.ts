@@ -5,13 +5,13 @@ import { getTypeSpecies } from "./records.ts";
 import type { CladeEntry, GenusEntry, SiteData } from "./site-data.ts";
 
 /**
- * List every genus placed in a clade or in any clade below it, sorted by name.
+ * Get every genus placed in a clade or in any clade below it, sorted by name.
  *
  * @param clade - The clade.
  * @param siteData - The lookup tables.
  * @returns The genera.
  */
-export function listDescendantGenera(clade: CladeEntry, siteData: SiteData): Array<GenusEntry>
+export function getDescendantGenera(clade: CladeEntry, siteData: SiteData): Array<GenusEntry>
 {
     const names = new Array<string>();
     const pending = [clade];
@@ -100,13 +100,13 @@ export function createAgeSpan(genera: Array<GenusEntry>, timeline: GeologicTimel
 }
 
 /**
- * List the genera placed directly in a clade, in the clade's order (by name).
+ * Get the genera placed directly in a clade, in the clade's order (by name).
  *
  * @param clade - The clade.
  * @param siteData - The lookup tables.
  * @returns The genera.
  */
-export function listPlacedGenera(clade: CladeEntry, siteData: SiteData): Array<GenusEntry>
+export function getPlacedGenera(clade: CladeEntry, siteData: SiteData): Array<GenusEntry>
 {
     const genera = new Array<GenusEntry>();
 

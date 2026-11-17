@@ -4,7 +4,7 @@ import { test } from "node:test";
 import * as url from "node:url";
 
 import { readDataset } from "../src/data/load-dataset.ts";
-import { getTypeSpecies, listSizeMeasurements, sortSynonyms } from "../src/data/records.ts";
+import { getTypeSpecies, getSizeMeasurements, sortSynonyms } from "../src/data/records.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
 const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.4.0");
@@ -14,9 +14,9 @@ test("getTypeSpecies finds the marked type species", () =>
     assert.equal(getTypeSpecies(dataset.genera.Tyrannosaurus).name, "Tyrannosaurus rex");
 });
 
-test("listSizeMeasurements orders and formats the recorded sizes", () =>
+test("getSizeMeasurements orders and formats the recorded sizes", () =>
 {
-    const measurements = listSizeMeasurements(getTypeSpecies(dataset.genera.Tyrannosaurus).size);
+    const measurements = getSizeMeasurements(getTypeSpecies(dataset.genera.Tyrannosaurus).size);
 
     assert.deepEqual(measurements, [
         { label: "Length", value: "11.9–13 m" },
@@ -25,9 +25,9 @@ test("listSizeMeasurements orders and formats the recorded sizes", () =>
     ]);
 });
 
-test("listSizeMeasurements returns nothing for a species without sizes", () =>
+test("getSizeMeasurements returns nothing for a species without sizes", () =>
 {
-    assert.deepEqual(listSizeMeasurements(undefined), []);
+    assert.deepEqual(getSizeMeasurements(undefined), []);
 });
 
 test("sortSynonyms orders by name and leaves the given list unchanged", () =>

@@ -9,7 +9,9 @@ Rules that are easy to miss:
 
 - **Allman braces everywhere**, including single-statement `if` bodies and CSS rules
 - **A blank line before every `return`**
-- **Every function name starts with a verb**: `renderGenusPage`, not `genusPage`
+- **Every function name starts with a verb**: `renderGenusPage`, not `genusPage`. A function
+  that returns something is `get…`, `find…`, `create…` or `read…`; `list…`, `show…` and
+  `print…` are for functions that display or print
 - **Helpers are `function` declarations**, not arrows assigned to a variable; arrows only for
   short callbacks passed to an API
 - **Plain loops over `map`/`filter`/`reduce`** on anything that runs per record; no functions

@@ -10,7 +10,7 @@ import {
     findAxisMaximum,
     findRecentNames,
     groupStagesForAxis,
-    listMajorGroups,
+    getMajorGroups,
 } from "../src/data/home.ts";
 import { readDataset } from "../src/data/load-dataset.ts";
 import { getTypeSpecies } from "../src/data/records.ts";
@@ -105,9 +105,9 @@ test("describeRecentYears names one, two or a range of years", () =>
     assert.equal(describeRecentYears({ fromYear: 2024, toYear: 2027, genera: [] }), "2024 to 2027");
 });
 
-test("listMajorGroups keeps the groups the tree has, with a one-sentence summary", () =>
+test("getMajorGroups keeps the groups the tree has, with a one-sentence summary", () =>
 {
-    const groups = listMajorGroups(siteData);
+    const groups = getMajorGroups(siteData);
 
     assert.equal(groups[0].clade.name, "Theropoda");
     assert.ok(groups[0].summary.endsWith("."));

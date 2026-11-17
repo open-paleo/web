@@ -6,7 +6,7 @@ import * as url from "node:url";
 import { createGeologicTimeline } from "../src/data/age-figure.ts";
 import type { GenusIndexRow } from "../src/data/genus-index.ts";
 import type { GenusDetail } from "../src/data/genus-index.ts";
-import { createGenusIndexRows, findMajorGroup, listGenusFilterOptions, shouldGroupByLetter } from "../src/data/genus-index.ts";
+import { createGenusIndexRows, findMajorGroup, getGenusFilterOptions, shouldGroupByLetter } from "../src/data/genus-index.ts";
 import { readDataset } from "../src/data/load-dataset.ts";
 import { createSiteData } from "../src/data/site-data.ts";
 
@@ -120,7 +120,7 @@ test("a genus dated to an epoch but no stage is still filtered by time", () =>
 
 test("filter options count every genus once per filter", () =>
 {
-    const options = listGenusFilterOptions(rows, timeline);
+    const options = getGenusFilterOptions(rows, timeline);
 
     for (const choice of options.choices)
     {
@@ -155,7 +155,7 @@ test("filter options count every genus once per filter", () =>
 
 test("the time filter lists periods oldest first, each followed by its epochs", () =>
 {
-    const time = listGenusFilterOptions(rows, timeline).choices[0];
+    const time = getGenusFilterOptions(rows, timeline).choices[0];
     const labels = new Array<string>();
 
     for (const group of time.groups)

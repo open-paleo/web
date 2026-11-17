@@ -436,18 +436,18 @@ function placeNode(node: ChartNode, nextRow: number): number
 }
 
 /**
- * List a node and every node below it, parents before children.
+ * Add a node and every node below it, parents before children.
  *
  * @param node - The node.
  * @param nodes - The list to add to.
  */
-function listNodes(node: ChartNode, nodes: Array<ChartNode>): void
+function collectNodes(node: ChartNode, nodes: Array<ChartNode>): void
 {
     nodes.push(node);
 
     for (const child of node.children)
     {
-        listNodes(child, nodes);
+        collectNodes(child, nodes);
     }
 }
 
@@ -654,7 +654,7 @@ export function createTreeChart(top: CladeEntry, siteData: SiteData): TreeChart
         rowHeight: scale.unit,
     };
 
-    listNodes(root, nodes);
+    collectNodes(root, nodes);
 
     for (const node of nodes)
     {
@@ -692,12 +692,12 @@ export type TreeChartLegendEntry = {
 };
 
 /**
- * List the chart's legend: each major group the tree has, with its page and color.
+ * Get the chart's legend: each major group the tree has, with its page and color.
  *
  * @param siteData - The lookup tables.
  * @returns The entries, in the order of coloredCladeNames.
  */
-export function listTreeChartLegend(siteData: SiteData): Array<TreeChartLegendEntry>
+export function getTreeChartLegend(siteData: SiteData): Array<TreeChartLegendEntry>
 {
     const entries = new Array<TreeChartLegendEntry>();
 

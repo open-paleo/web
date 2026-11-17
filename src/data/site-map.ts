@@ -316,13 +316,13 @@ function compareRegions(first: PlaceIndexRegion, second: PlaceIndexRegion): numb
 }
 
 /**
- * List the genera in the "Genera by place" index, country by country, for the filter form's
+ * Get the genera in the "Genera by place" index, country by country, for the filter form's
  * option counts.
  *
  * @param countries - The index.
  * @returns Every genus in it, in index order.
  */
-export function listPlaceIndexRows(countries: Array<PlaceIndexCountry>): Array<GenusIndexRow>
+export function getPlaceIndexRows(countries: Array<PlaceIndexCountry>): Array<GenusIndexRow>
 {
     const rows = new Array<GenusIndexRow>();
 

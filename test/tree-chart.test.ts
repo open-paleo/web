@@ -5,7 +5,7 @@ import * as url from "node:url";
 
 import { readDataset } from "../src/data/load-dataset.ts";
 import { createSiteData } from "../src/data/site-data.ts";
-import { createTreeChart, listTreeChartLegend } from "../src/data/tree-chart.ts";
+import { createTreeChart, getTreeChartLegend } from "../src/data/tree-chart.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
 const siteData = createSiteData(readDataset(path.join(testDirectory, "fixtures"), "3.4.0"));
@@ -81,7 +81,7 @@ test("the chart stays well inside Web Mercator's latitudes", () =>
 
 test("the legend lists the major groups the tree has, each with its color token", () =>
 {
-    const legend = listTreeChartLegend(siteData);
+    const legend = getTreeChartLegend(siteData);
 
     assert.ok(legend.length > 0);
 

@@ -174,6 +174,10 @@ follows tree-extractor.
 - **Every function name starts with a verb**, because a function does something:
   `renderGenusPage`, `createAgeFigure`, `findSynonymMatches`, `formatAuthority`,
   `getStageColor`. Not `genusPage` or `ageFigure`
+- **The verb says what the function does with its result.** `get`, `find`, `create`, `read`
+  and `build` return something; `list`, `show`, `display` and `print` put something in front of
+  the reader. A function that returns the dated stages is `getDatedStages`, not
+  `listDatedStages`, which would print them
 - **Helpers are `function` declarations**, never arrows or function expressions assigned to a
   variable (ESLint's `func-style` enforces this). A bundle of functions sharing state is a class
 - **Arrow functions only for callbacks passed to an API**, such as `addEventListener`, and only

@@ -276,12 +276,12 @@ export function describeRecentYears(names: RecentNames): string
 }
 
 /**
- * List the major groups the home page offers, skipping any the tree does not have.
+ * Get the major groups the home page offers, skipping any the tree does not have.
  *
  * @param siteData - The lookup tables.
  * @returns The groups, in the order the home page lists them.
  */
-export function listMajorGroups(siteData: SiteData): Array<MajorGroup>
+export function getMajorGroups(siteData: SiteData): Array<MajorGroup>
 {
     const groups = new Array<MajorGroup>();
 

@@ -4,7 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatGenusCount } from "../../data/format.ts";
 import { getSiteData } from "../../data/site-data.ts";
 import { otherCladeColorToken } from "../../data/clade-colors.ts";
-import { findTreeTop, listTreeChartLegend } from "../../data/tree-chart.ts";
+import { findTreeTop, getTreeChartLegend } from "../../data/tree-chart.ts";
 import { createTreeFindNames } from "../../data/tree-find.ts";
 import { createPagePath } from "../../data/urls.ts";
 
@@ -16,7 +16,7 @@ const top = findTreeTop(siteData);
 
 const cladeCount = siteData.metadata.clade_count;
 const findNames = top ? createTreeFindNames(top, siteData) : [];
-const legend = listTreeChartLegend(siteData);
+const legend = getTreeChartLegend(siteData);
 const baseUrl = import.meta.env.BASE_URL;
 ---
 

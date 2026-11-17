@@ -7,13 +7,13 @@ import * as path from "node:path";
 export const datasetFileName = "open-paleo.json";
 
 /**
- * List the directories searched for the dataset, in order of preference.
+ * Get the directories searched for the dataset, in order of preference.
  *
  * @param rootDirectory - The web repository's root directory.
  * @param overrideDirectory - The OPEN_PALEO_DATA environment variable, if set.
  * @returns Absolute directory paths, most preferred first.
  */
-export function listDatasetDirectoryCandidates(rootDirectory: string, overrideDirectory: string | undefined): Array<string>
+export function getDatasetDirectoryCandidates(rootDirectory: string, overrideDirectory: string | undefined): Array<string>
 {
     const candidates = new Array<string>();
 
@@ -40,7 +40,7 @@ export function listDatasetDirectoryCandidates(rootDirectory: string, overrideDi
  */
 export function findDatasetDirectory(rootDirectory: string, overrideDirectory: string | undefined): string
 {
-    const candidates = listDatasetDirectoryCandidates(rootDirectory, overrideDirectory);
+    const candidates = getDatasetDirectoryCandidates(rootDirectory, overrideDirectory);
 
     for (const candidate of candidates)
     {

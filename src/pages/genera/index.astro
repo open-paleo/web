@@ -3,12 +3,12 @@ import GenusFilterForm from "../../components/GenusFilterForm.astro";
 import GenusIndex from "../../components/GenusIndex.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatGenusCount } from "../../data/format.ts";
-import { createGenusIndexRows, listGenusFilterOptions } from "../../data/genus-index.ts";
+import { createGenusIndexRows, getGenusFilterOptions } from "../../data/genus-index.ts";
 import { getSiteData } from "../../data/site-data.ts";
 
 const siteData = getSiteData();
 const rows = createGenusIndexRows(siteData.genera, siteData, siteData.timeline, "index");
-const filterOptions = listGenusFilterOptions(rows, siteData.timeline);
+const filterOptions = getGenusFilterOptions(rows, siteData.timeline);
 ---
 
 <BaseLayout title="Genera" description={"An A–Z index of the " + formatGenusCount(siteData.genera.length) + " in Open Paleo, filterable by time, group, diet, locomotion, integument, status and year named."} section="genera">

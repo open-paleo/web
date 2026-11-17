@@ -99,11 +99,11 @@ export const externalServices: Array<ExternalService> = [
 ];
 
 /**
- * List the off-site hosts the services declare.
+ * Get the off-site hosts the services declare.
  *
  * @returns Every declared host.
  */
-export function listDeclaredHosts(): Array<string>
+export function getDeclaredHosts(): Array<string>
 {
     const hosts = new Array<string>();
 

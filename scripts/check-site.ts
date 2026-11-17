@@ -17,7 +17,7 @@ import * as url from "node:url";
 import type { Browser, BrowserContextOptions, Page, Route } from "playwright";
 import { chromium } from "playwright";
 
-import { listDeclaredHosts } from "../src/data/privacy.ts";
+import { getDeclaredHosts } from "../src/data/privacy.ts";
 import { checkLinks, readSitePages } from "./site-checks/links.ts";
 import { checkAccessibility, findLooseText, measureOverflow } from "./site-checks/page-checks.ts";
 import { startStaticServer } from "./site-checks/static-server.ts";
@@ -180,7 +180,7 @@ async function openLocalPage(browser: Browser, options: BrowserContextOptions): 
  */
 function checkOffSiteHosts(problems: Array<SiteProblem>): void
 {
-    const declaredHosts = listDeclaredHosts();
+    const declaredHosts = getDeclaredHosts();
 
     for (const host of offSiteHosts)
     {

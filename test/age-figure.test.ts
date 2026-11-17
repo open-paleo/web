@@ -31,12 +31,12 @@ function getTimeline(): GeologicTimeline
 }
 
 /**
- * List the band names of a row.
+ * Get the band names of a row.
  *
  * @param row - The row.
  * @returns The names, left to right.
  */
-function listBandNames(row: AgeRow): Array<string>
+function getBandNames(row: AgeRow): Array<string>
 {
     const names = new Array<string>();
 
@@ -105,7 +105,7 @@ test("a Maastrichtian record gets the Mesozoic periods and the Late Cretaceous s
     const model = createAgeFigureModel({ from_ma: 72.2, to_ma: 66 }, getTimeline());
 
     assert.ok(model?.stageRow);
-    assert.deepEqual(listBandNames(model.periodRow), ["Triassic", "Jurassic", "Cretaceous"]);
+    assert.deepEqual(getBandNames(model.periodRow), ["Triassic", "Jurassic", "Cretaceous"]);
     assert.equal(model.stageRow.label, "Late Cretaceous stages");
     assert.equal(model.stageRow.bands[model.stageRow.bands.length - 1].name, "Maastrichtian");
     assert.equal(model.stageRow.bands[model.stageRow.bands.length - 1].colorToken, "--stage-maastrichtian");
@@ -130,8 +130,8 @@ test("a range across two epochs shows the stages of both", () =>
 
     assert.ok(model?.stageRow);
     assert.equal(model.stageRow.label, "Late Jurassic and Early Cretaceous stages");
-    assert.ok(listBandNames(model.stageRow).includes("Tithonian"));
-    assert.ok(listBandNames(model.stageRow).includes("Berriasian"));
+    assert.ok(getBandNames(model.stageRow).includes("Tithonian"));
+    assert.ok(getBandNames(model.stageRow).includes("Berriasian"));
 });
 
 test("a record without a numeric age gets no figure", () =>

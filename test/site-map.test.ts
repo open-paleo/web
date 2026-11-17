@@ -9,7 +9,7 @@ import { getMapShapes } from "../src/data/genus-map.ts";
 import { readDataset } from "../src/data/load-dataset.ts";
 import type { MapShapes } from "../src/data/map-shapes.ts";
 import { createSiteData } from "../src/data/site-data.ts";
-import { createSiteMapData, groupGeneraByPlace, listPlaceIndexRows } from "../src/data/site-map.ts";
+import { createSiteMapData, groupGeneraByPlace, getPlaceIndexRows } from "../src/data/site-map.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
 const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.4.0");
@@ -87,6 +87,6 @@ test("the place index groups genera by country and region, sorted, with every ge
     const montana = unitedStates?.regions.find((region) => region.name === "Montana");
 
     assert.ok(montana && montana.rows.some((row) => row.entry.name === "Tyrannosaurus"));
-    assert.equal(listPlaceIndexRows(countries).length, siteData.genera.length);
+    assert.equal(getPlaceIndexRows(countries).length, siteData.genera.length);
     assert.equal(countries.find((country) => country.name === "Antarctica")?.regions[0].name, "Region not recorded");
 });

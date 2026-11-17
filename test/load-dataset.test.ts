@@ -5,7 +5,7 @@ import * as url from "node:url";
 
 import { formatSpecimenName } from "../src/data/format.ts";
 import { compareSchemaVersions, parseSemanticVersion, readDataset } from "../src/data/load-dataset.ts";
-import { findDatasetDirectory, listDatasetDirectoryCandidates } from "../src/data/locate-dataset.ts";
+import { findDatasetDirectory, getDatasetDirectoryCandidates } from "../src/data/locate-dataset.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
 const fixtureDirectory = path.join(testDirectory, "fixtures");
@@ -57,7 +57,7 @@ test("readDataset refuses a different major schema version", () =>
 
 test("the override directory is searched first", () =>
 {
-    const candidates = listDatasetDirectoryCandidates("/repository/web", "/elsewhere/dist");
+    const candidates = getDatasetDirectoryCandidates("/repository/web", "/elsewhere/dist");
 
     assert.deepEqual(candidates, ["/elsewhere/dist", "/repository/web/data/dist", "/repository/data/dist"]);
 });

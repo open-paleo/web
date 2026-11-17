@@ -7,7 +7,7 @@ import { createGeologicTimeline } from "../src/data/age-figure.ts";
 import { countGeneraByStage } from "../src/data/home.ts";
 import { readDataset } from "../src/data/load-dataset.ts";
 import { createSiteData } from "../src/data/site-data.ts";
-import { createTimePages, listAgeCaptionParts } from "../src/data/time-pages.ts";
+import { createTimePages, getAgeCaptionParts } from "../src/data/time-pages.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
 const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.4.0");
@@ -72,7 +72,7 @@ test("a period lists each of its genera once, sorted, and spans its stages", () 
 
 test("an age caption links its stages and its epoch's period", () =>
 {
-    const parts = listAgeCaptionParts({ name: ["Late Cretaceous"], stage: ["Campanian", "Maastrichtian"] }, pages);
+    const parts = getAgeCaptionParts({ name: ["Late Cretaceous"], stage: ["Campanian", "Maastrichtian"] }, pages);
     const text = parts.map((part) => part.text).join("");
 
     assert.equal(text, "Campanian–Maastrichtian, Late Cretaceous");
@@ -84,7 +84,7 @@ test("an age caption links its stages and its epoch's period", () =>
 
 test("an age caption leaves names without a page unlinked", () =>
 {
-    const parts = listAgeCaptionParts({ name: ["Early Permian"], stage: ["Asselian"] }, pages);
+    const parts = getAgeCaptionParts({ name: ["Early Permian"], stage: ["Asselian"] }, pages);
 
     assert.equal(parts.map((part) => part.text).join(""), "Asselian, Early Permian");
     assert.ok(parts.every((part) => part.section === undefined));
