@@ -1,6 +1,8 @@
 ---
 import type { GenusMap } from "../data/genus-map.ts";
 import { createGenusMapFeatures, createGenusMapView } from "../data/genus-map.ts";
+import type { PaleoView } from "../data/paleo-positions.ts";
+import { describePaleoView, formatPaleoViewLabel } from "../data/paleo-positions.ts";
 
 /**
  * Properties of a genus page's map.
@@ -15,9 +17,16 @@ type Props = {
      * The genus name, for the map's accessible name.
      */
     genusName: string;
+
+    /**
+     * Where its species were when they lived, one view per stage; empty when the dataset has no
+     * paleocoordinates for them.
+     */
+    paleoViews: Array<PaleoView>;
 };
 
-const { map, genusName } = Astro.props;
+const { map, genusName, paleoViews } = Astro.props;
+const todayNote = "Places are shown on today's map.";
 const features = JSON.stringify(createGenusMapFeatures(map));
 const bounds = JSON.stringify(map.bounds);
 const view = JSON.stringify(createGenusMapView(map));
@@ -28,7 +37,14 @@ const view = JSON.stringify(createGenusMapView(map));
    same information in words, works without JavaScript, and serves as the map's legend: each place's mark
    matches its mark on the map. */}
 <div class="genus-map">
-    <div class="place-map" data-features={features} data-bounds={bounds} data-view={view} role="region" aria-label={"Map of where " + genusName + " was found"} hidden></div>
+    {/* Switches the map between today and each stage the species lived in; shown by the script. */}
+    {paleoViews.length > 0 && (
+        <div class="map-views" role="group" aria-label="Map shows" hidden>
+            <button type="button" data-map-view="today" data-note={todayNote} aria-pressed="true">Today</button>
+            {paleoViews.map((paleoView, index) => <button type="button" data-map-view={String(index)} data-note={describePaleoView(paleoView)} aria-pressed="false">{formatPaleoViewLabel(paleoView)}</button>)}
+        </div>
+    )}
+    <div class="place-map" data-features={features} data-bounds={bounds} data-view={view} data-paleo={JSON.stringify(paleoViews)} role="region" aria-label={"Map of where " + genusName + " was found"} hidden></div>
     <ul class="map-places">
         {map.places.map((place) => (
             <li>
@@ -37,7 +53,7 @@ const view = JSON.stringify(createGenusMapView(map));
             </li>
         ))}
     </ul>
-    <p class="map-note">Places are shown on today's map.</p>
+    <p class="map-note" aria-live="polite">{todayNote}</p>
 </div>
 
 <style>
@@ -47,12 +63,49 @@ const view = JSON.stringify(createGenusMapView(map));
         gap: var(--space-3);
     }
 
+    .map-views
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+
+    .map-views[hidden]
+    {
+        display: none;
+    }
+
+    .map-views button
+    {
+        padding: var(--space-1) var(--space-3);
+        color: var(--color-accent);
+        background: var(--color-surface);
+        border: 1px solid var(--color-accent);
+        border-radius: var(--radius);
+        font: inherit;
+        cursor: pointer;
+    }
+
+    .map-views button[aria-pressed="true"]
+    {
+        color: var(--color-surface);
+        background: var(--color-accent);
+    }
+
     .place-map
     {
         height: 24rem;
         background: var(--color-map-land);
         border: 1px solid var(--color-line);
         border-radius: var(--radius);
+    }
+
+    /* The ancient view: a dark backdrop, so the globe's edge shows. */
+    .place-map.is-ancient
+    {
+        background: var(--color-map-space);
     }
 
     .place-map[hidden]

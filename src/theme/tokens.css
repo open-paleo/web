@@ -45,6 +45,10 @@
     --color-map-region-border: #c8cec8;
     --color-map-label: #59625d;
     --color-map-label-halo: #f2f3ef;
+    /* The ancient-map globe: the box around it, so the globe's edge shows whatever faces the
+       reader, and its latitude and longitude grid. */
+    --color-map-space: #4a5652;
+    --color-map-graticule: #93a39d;
     --color-map-place: #288463;
     --color-map-place-ring: #f7f8f5;
     /* Species labels on the map: darker than the place green so they keep 4.5:1 on land and on
@@ -222,6 +226,8 @@
         --color-map-region-border: #39423e;
         --color-map-label: #9aa49e;
         --color-map-label-halo: #1f2624;
+        --color-map-space: #3b4541;
+        --color-map-graticule: #3f4b47;
         --color-map-place: #32a67d;
         --color-map-place-ring: #151a19;
         --color-map-place-label: #8fd3b6;
@@ -261,6 +267,8 @@
     --color-map-region-border: #39423e;
     --color-map-label: #9aa49e;
     --color-map-label-halo: #1f2624;
+    --color-map-space: #3b4541;
+    --color-map-graticule: #3f4b47;
     --color-map-place: #32a67d;
     --color-map-place-ring: #151a19;
     --color-map-place-label: #8fd3b6;

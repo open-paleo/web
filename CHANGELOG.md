@@ -4,6 +4,18 @@ The site is published continuously from `main`, so changes are grouped by the da
 live, newest first. Add to today's section, creating it if needed. The data the site shows has
 its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
+## 2026-11-17
+
+### Added
+
+- Genus maps can show where each species was when it lived: a switch between "Today" and each
+  stage the species lived in ("152 million years ago (Kimmeridgian)") turns the map to a globe
+  of that stage's coastlines, with a dot for each published site and a ring for each region's
+  center, a latitude and longitude grid, and the poles marked. Positions come from the
+  dataset's paleocoordinates (plate model of Wright et al. 2013, CC BY 3.0 AU), rotated at build
+  time to the stage's midpoint so they line up with the coastlines. The switch appears once the
+  dataset provides paleocoordinates (schema 3.5.0)
+
 ## 2026-11-14
 
 ### Added

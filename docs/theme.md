@@ -83,6 +83,12 @@ and the Plains), but no further out than zoom 3, where region names begin; a pla
 fits at zoom 3, such as Alaska, opens fitted. `--map-control-icon-filter` (`none`, or
 `invert(1)` in dark mode) keeps MapLibre's control icons visible on the themed buttons.
 
+The ancient view draws a stage's coastlines on a globe: land in `--color-map-land` with no
+outline, sea in `--color-map-water`, and a grid every 30° in `--color-map-graticule` (the equator
+thicker), with parallels and poles labeled. The box around the globe turns
+`--color-map-space`, a dark slate (lighter gray in dark mode), so the globe's edge shows when it
+is mostly land. Published sites are filled dots; region centers are rings.
+
 A genus map whose places reach beyond 60°S or 66°N is drawn on a globe rather than the flat web
 map, which stretches land that far from the equator out of shape and cannot show Antarctica's
 interior. Places spanning more than half the world's longitudes (Antarctica) open over the

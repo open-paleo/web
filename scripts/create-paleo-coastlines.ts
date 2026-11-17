@@ -6,17 +6,12 @@ import type { OpenPaleoDataset } from "../src/data/dataset.ts";
 import { datasetFileName, findDatasetDirectory } from "../src/data/locate-dataset.ts";
 import { measureRingArea, simplifyPolygons } from "../src/data/map-geometry.ts";
 import type { MapPolygon } from "../src/data/map-shapes.ts";
+import { getStageMidpoint } from "../src/data/paleo-positions.ts";
 import { createSlug } from "../src/data/slugs.ts";
 
-// Builds public/paleo-coastlines/{stage}.json: the coastlines of the world at the middle of each
-// stage the dataset's species are dated to, from the plate model of Wright et al. (2013), which
-// the GPlates web service calls GOLONKA. The data repository reconstructs each species' position
-// with the same model, so the positions and these coastlines match. Run by hand when the stages in
-// the dataset change; the files are committed, so building the site needs no network, and readers'
-// browsers never contact GPlates.
-//
-// The model is licensed CC BY 3.0 AU (University of Sydney); every map drawn from these files
-// credits it with the citation below.
+// Writes public/paleo-coastlines/{stage}.json: the coastlines at the midpoint of each stage the
+// dataset uses, from Wright et al. (2013) through the GPlates web service. Run by hand when the
+// dataset gains a stage; the output is committed.
 
 /**
  * One stage's coastlines, as written.
@@ -87,13 +82,12 @@ const model = "GOLONKA";
 const credit = "Wright, N., Zahirovic, S., Müller, R. D., & Seton, M. (2013). Towards community-driven paleogeographic reconstructions: integrating open-access paleogeographic and paleobiology data with plate tectonics. Biogeosciences, 10, 1529–1541. CC BY 3.0 AU.";
 const serviceAddress = "https://gws.gplates.org/reconstruct/coastlines/";
 
-// The largest distance a dropped point may lie from the simplified outline, in degrees, and the
-// decimal places kept. Enough for a world map; a genus page shows the whole ancient world.
+// Simplification tolerance in degrees, and the decimal places kept: enough for a world map.
 const tolerance = 0.12;
 const coordinateDigits = 2;
 
-// Land smaller than this many square degrees (at the equator, about 2,500 km²) is dropped: the
-// service returns over a thousand islets of a few points each.
+// Land below this area (in square degrees; about 2,500 km² at the equator) is dropped, which
+// removes the service's many tiny islets.
 const minimumArea = 0.2;
 
 const scriptDirectory = path.dirname(url.fileURLToPath(import.meta.url));
@@ -129,7 +123,7 @@ function getDatedStages(dataset: OpenPaleoDataset): Array<[string, number]>
 
         if (range)
         {
-            stages.push([name, Math.round((range.from_ma + range.to_ma) / 2 * 10) / 10]);
+            stages.push([name, getStageMidpoint(range.from_ma, range.to_ma)]);
         }
     }
 

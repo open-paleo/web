@@ -37,6 +37,16 @@ export type MapColors = {
     label: string;
 
     /**
+     * The box around the ancient-map globe: --color-map-space.
+     */
+    space: string;
+
+    /**
+     * The ancient-map globe's latitude and longitude grid: --color-map-graticule.
+     */
+    graticule: string;
+
+    /**
      * The outline that keeps place names readable: --color-map-label-halo.
      */
     labelHalo: string;
@@ -101,6 +111,8 @@ export function readMapColors(): MapColors
         regionBorder: readToken("--color-map-region-border"),
         label: readToken("--color-map-label"),
         labelHalo: readToken("--color-map-label-halo"),
+        space: readToken("--color-map-space"),
+        graticule: readToken("--color-map-graticule"),
         place: readToken("--color-map-place"),
         placeRing: readToken("--color-map-place-ring"),
         placeLabel: readToken("--color-map-place-label"),

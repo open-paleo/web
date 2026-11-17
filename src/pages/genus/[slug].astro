@@ -20,6 +20,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { createRecordCitation } from "../../data/citations.ts";
 import { formatAuthority, getFirstSentence } from "../../data/format.ts";
 import { createGenusMap, getMapShapes, warnAboutMissingOutlines } from "../../data/genus-map.ts";
+import { createPaleoViews } from "../../data/paleo-positions.ts";
+import { getWright2013Model } from "../../data/plate-rotation.ts";
 import { getTypeSpecies } from "../../data/records.ts";
 import type { GenusEntry } from "../../data/site-data.ts";
 import { getSiteData } from "../../data/site-data.ts";
@@ -86,6 +88,7 @@ const siteData = getSiteData();
 const typeSpecies = getTypeSpecies(genus);
 const references = genus.references ?? [];
 const genusMap = createGenusMap(genus, getMapShapes());
+const paleoViews = createPaleoViews(genus, getSiteData().timeline, getWright2013Model());
 
 warnAboutMissingOutlines(genus, getMapShapes());
 const authority = formatAuthority(genus.authors, genus.described, false);
@@ -125,7 +128,7 @@ const citation = createRecordCitation("Genus", genus.genus, entry.slug, citation
 
             {genusMap && (
                 <PageSection title="Where it was found">
-                    <GenusMap map={genusMap} genusName={genus.genus} />
+                    <GenusMap map={genusMap} genusName={genus.genus} paleoViews={paleoViews} />
                 </PageSection>
             )}
 

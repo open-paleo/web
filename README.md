@@ -74,6 +74,10 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 
 ## Maps
 
+Genus pages can also show where each species was when it lived, on a globe of that stage's
+coastlines reconstructed with the plate model of Wright et al. (2013) (CC BY 3.0 AU), once the
+dataset provides paleocoordinates.
+
 Genus pages and the Map page show where species were found on interactive maps: MapLibre GL JS over
 [OpenFreeMap](https://openfreemap.org)'s vector tiles of
 [OpenStreetMap](https://www.openstreetmap.org/copyright) data (© OpenStreetMap contributors,

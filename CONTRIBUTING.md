@@ -159,6 +159,14 @@ land under 0.2 square degrees dropped) to about 60 KB compressed, and a map load
 it shows. `npm run create-paleo-coastlines` rebuilds them from the GPlates web service; rerun it
 when the dataset gains a stage. Readers' browsers never contact GPlates.
 
+Genus maps switch between today and each stage the species lived in. The dataset reconstructs
+each species at its own age (`location.paleocoordinates`); the build rotates it again to its
+stage's midpoint (`src/data/paleo-positions.ts`), so it sits on that stage's coastlines.
+`src/data/plate-rotation.ts` does the rotation as GPlates does, with the published rotation file
+of Wright et al. (2013) in `src/data/plate-models/wright-2013.rot`; `test/plate-rotation.test.ts`
+checks it against the dataset's own reconstructions. A genus whose species have no
+paleocoordinates gets no switch.
+
 ## Code style
 
 ESLint enforces the formatting; run `npm run lint:fix` to apply it. The rules below are those of
