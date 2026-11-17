@@ -8,7 +8,7 @@ import { createSiteData } from "../src/data/site-data.ts";
 import { createTreeFindNames } from "../src/data/tree-find.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const siteData = createSiteData(readDataset(path.join(testDirectory, "fixtures"), "3.4.0"));
+const siteData = createSiteData(readDataset(path.join(testDirectory, "fixtures"), "3.5.0"));
 const top = siteData.cladeByName.get("Dinosauria");
 
 test("the find list holds every clade from Dinosauria down and every genus placed in one", () =>

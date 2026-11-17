@@ -1,11 +1,16 @@
 {
   "_metadata": {
     "attribution": "Open Paleo contributors",
-    "built_at": "2026-11-12T19:34:19.724Z",
-    "clade_count": 47,
+    "built_at": "2026-11-17T20:00:57.189Z",
+    "clade_count": 44,
     "genus_count": 12,
     "license": "CC-BY-4.0",
-    "schema_version": "3.4.0",
+    "paleogeography": {
+      "model": "GOLONKA",
+      "citation": "Wright, N.; Zahirovic, S.; Müller, R. D.; Seton, M. (2013). Towards community-driven paleogeographic reconstructions: integrating open-access paleogeographic and paleobiology data with plate tectonics. Biogeosciences 10(3): 1529-1541. doi:10.5194/bg-10-1529-2013",
+      "license": "CC-BY-3.0-AU"
+    },
+    "schema_version": "3.5.0",
     "version": "2026.11"
   },
   "timescale": {
@@ -259,13 +264,6 @@
                                           "Tyrannosaurinae": {}
                                         }
                                       }
-                                    },
-                                    "Maniraptora": {
-                                      "Oviraptorosauria": {
-                                        "Caenagnathoidea": {
-                                          "Caenagnathidae": {}
-                                        }
-                                      }
                                     }
                                   }
                                 }
@@ -296,7 +294,8 @@
                                                         }
                                                       }
                                                     }
-                                                  }
+                                                  },
+                                                  "Diamantinasauria": {}
                                                 }
                                               }
                                             }
@@ -759,160 +758,6 @@
         }
       ]
     },
-    "Caenagnathidae": {
-      "description": "Caenagnathidae is a family of beaked, feathered oviraptorosaurs known from the Cretaceous of North America and Asia. Its members range enormously in size, from the turkey-sized Caenagnathasia to the giant Beibeilong and Gigantoraptor, which reached roughly 8 meters in length. Like other oviraptorosaurs they had long necks and short tails, but they were more lightly built than their oviraptorid relatives, with slender arms and long, gracile legs. Their toothless lower jaws were relatively long and shallow, hollow and connected to the air-sac system, and lined internally with complex ridges, tooth-like processes, and shelf-like structures. This variation in body size and beak shape suggests that caenagnathids adapted to a range of ecological niches, and the group persisted until the very end of the Cretaceous, vanishing with the other non-avian dinosaurs.\n",
-      "taxonomy": [
-        "Life",
-        "Animalia",
-        "Chordata",
-        "Vertebrata",
-        "Sarcopterygii",
-        "Tetrapoda",
-        "Reptilia",
-        "Archosauria",
-        "Dinosauria",
-        "Saurischia",
-        "Theropoda",
-        "Neotheropoda",
-        "Averostra",
-        "Tetanurae",
-        "Avetheropoda",
-        "Coelurosauria",
-        "Maniraptora",
-        "Oviraptorosauria",
-        "Caenagnathoidea",
-        "Caenagnathidae"
-      ],
-      "type_genus": "Caenagnathus",
-      "described": 1940,
-      "authors": "Sternberg, R. M.",
-      "erected_in": "sternberg1940a",
-      "described_in": "maryańska2002a",
-      "diagnostic_features": [
-        "Fully fused, edentulous mandibular symphysis with paired lingual ridges",
-        "Deep dentary bearing a prominent lateral fossa and pneumatic foramen",
-        "Elongate, gracile, cursorial hindlimb with a fused tarsometatarsus in some genera",
-        "Preacetabular process of the ilium expanded ventrally"
-      ],
-      "references": [
-        {
-          "id": "sternberg1940a",
-          "authors": "Sternberg, R. M.",
-          "year": 1940,
-          "title": "A toothless bird from the Cretaceous of Alberta",
-          "journal": "Journal of Paleontology",
-          "volume": "14",
-          "issue": "1",
-          "pages": "81-85"
-        },
-        {
-          "id": "maryańska2002a",
-          "authors": "Maryańska, T.; Osmólska, H.; Wolsan, M.",
-          "year": 2002,
-          "title": "Avialan status for Oviraptorosauria",
-          "journal": "Acta Palaeontologica Polonica",
-          "volume": "47",
-          "issue": "1",
-          "pages": "97-116",
-          "notes": "Defined Caenagnathidae as the most inclusive clade containing Caenagnathus collinsi but not Oviraptor philoceratops."
-        },
-        {
-          "id": "funston2020b",
-          "authors": "Funston, G.",
-          "year": 2020,
-          "title": "Caenagnathids of the Dinosaur Park Formation (Campanian) of Alberta, Canada: anatomy, osteohistology, taxonomy, and evolution",
-          "journal": "Vertebrate Anatomy Morphology Palaeontology",
-          "publisher": "University of Alberta Libraries",
-          "volume": "8",
-          "pages": "105-153",
-          "doi": "10.18435/vamp29362",
-          "notes": "Revised the caenagnathid species of the Dinosaur Park Formation, with a phylogenetic analysis."
-        }
-      ]
-    },
-    "Caenagnathoidea": {
-      "description": "Caenagnathoidea is a superfamily of advanced oviraptorosaurs, the feathered, beaked maniraptoran dinosaurs of the Cretaceous Period. It groups the two principal families of that lineage, Caenagnathidae and Oviraptoridae, together with their most recent common ancestor. Its members lived across what are now Asia and North America and share the short, deep, parrot-like skulls typical of oviraptorosaurs, but in a more specialized form: the jaws are entirely toothless and sheathed in a horny beak, and the skull and palate are extensively hollowed by air spaces. The group unites the often crested oviraptorids, best known from Asia, with the toothless, frequently long-legged caenagnathids of both Asia and North America. It is a stable and widely used grouping, standing just apart from close relatives such as the similarly beakless Avimimus, which falls outside it.\n",
-      "taxonomy": [
-        "Life",
-        "Animalia",
-        "Chordata",
-        "Vertebrata",
-        "Sarcopterygii",
-        "Tetrapoda",
-        "Reptilia",
-        "Archosauria",
-        "Dinosauria",
-        "Saurischia",
-        "Theropoda",
-        "Neotheropoda",
-        "Averostra",
-        "Tetanurae",
-        "Avetheropoda",
-        "Coelurosauria",
-        "Maniraptora",
-        "Oviraptorosauria",
-        "Caenagnathoidea"
-      ],
-      "type_genus": "Caenagnathus",
-      "described": 1940,
-      "authors": "Sternberg, R. M.",
-      "erected_in": "sternberg1940a",
-      "described_in": "osmólska2004a",
-      "diagnostic_features": [
-        "Fully edentulous jaws sheathed in a keratinous rhamphotheca",
-        "Deep, foreshortened skull with a secondarily pneumatized palate",
-        "Dentary with an elongate symphysis bearing lingual occlusal ridges",
-        "Mandibular articular facet for the quadrate formed almost entirely by the articular"
-      ],
-      "references": [
-        {
-          "id": "sternberg1940a",
-          "authors": "Sternberg, R. M.",
-          "year": 1940,
-          "title": "A toothless bird from the Cretaceous of Alberta",
-          "journal": "Journal of Paleontology",
-          "volume": "14",
-          "issue": "1",
-          "pages": "81-85",
-          "notes": "Named the family Caenagnathidae, from which the superfamily Caenagnathoidea takes its authorship by coordination."
-        },
-        {
-          "id": "osmólska2004a",
-          "authors": "Osmólska, H.; Currie, P. J.; Barsbold, R.",
-          "year": 2004,
-          "title": "Oviraptorosauria",
-          "book": "The Dinosauria, Second Edition (Weishampel, D. B.; Dodson, P.; Osmólska, H., eds.)",
-          "publisher": "University of California Press, Berkeley",
-          "pages": "165-183",
-          "doi": "10.1525/california/9780520242098.003.0010",
-          "notes": "Diagnosed Caenagnathoidea by unambiguous synapomorphies, under the definition of Maryańska and colleagues (2002)."
-        },
-        {
-          "id": "maryańska2002a",
-          "authors": "Maryańska, T.; Osmólska, H.; Wolsan, M.",
-          "year": 2002,
-          "title": "Avialan status for Oviraptorosauria",
-          "journal": "Acta Palaeontologica Polonica",
-          "volume": "47",
-          "issue": "1",
-          "pages": "97-116",
-          "notes": "Defined the clade, under the name Oviraptoroidea, as the least inclusive clade containing Oviraptor philoceratops and Caenagnathus collinsi."
-        },
-        {
-          "id": "lamanna2014a",
-          "authors": "Lamanna, M. C.; Sues, H. D.; Schachner, E. R.; Lyson, T. R.",
-          "year": 2014,
-          "title": "A new large-bodied oviraptorosaurian theropod dinosaur from the latest Cretaceous of western North America",
-          "journal": "PLoS ONE",
-          "publisher": "Public Library of Science (PLoS)",
-          "volume": "9",
-          "issue": "3",
-          "pages": "e92022",
-          "doi": "10.1371/journal.pone.0092022",
-          "notes": "Recovered Caenagnathoidea in the analysis describing Anzu, listing its synapomorphies."
-        }
-      ]
-    },
     "Camarasauromorpha": {
       "description": "Camarasauromorpha is a node-based clade of macronarian sauropod dinosaurs comprising the most recent common ancestor of Camarasauridae and Titanosauriformes, together with all of its descendants (Salgado and colleagues, 1997). It may be synonymous with Macronaria (Canudo and colleagues, 2008), and it includes a handful of basal forms, such as Europasaurus, whose finer placement within Macronaria remains unresolved. Fragmentary Middle Jurassic remains from Khadir Island, western India, were once assigned to the clade, but Mannion and Moore (2025) find no neosauropod features in them. Camarasaurus itself is distinguished from Diplodocus by an abbreviated face and large spoon-shaped teeth (Gilmore, 1925).\n",
       "taxonomy": [
@@ -1165,6 +1010,119 @@
           "journal": "Centralblatt für Mineralogie, Geologie und Paläontologie B",
           "volume": "1914",
           "pages": "154-158"
+        }
+      ]
+    },
+    "Diamantinasauria": {
+      "description": "Diamantinasauria is a clade of somphospondylan titanosauriform sauropods with close affinities to Titanosauria, known from the early Late Cretaceous of South America and Australia. It groups the Australian Diamantinasaurus, Savannasaurus, and Australotitan from the Winton Formation of Queensland with the Patagonian Sarmientosaurus of the Bajo Barreal Formation, and may also include Wintonotitan. This shared membership across two continents points to a faunal connection between Australia and South America by way of Antarctica during the Cretaceous. Distinguishing traits are drawn from the sternal plate, braincase, and limb skeleton, and dental microwear suggests these animals were mid-height browsers that fed on vegetation roughly one to ten meters above the ground. While the group is consistently recovered as a coherent clade, its exact position relative to Titanosauria has shifted between analyses.\n",
+      "dispute": {
+        "summary": "The position of Diamantinasauria relative to Titanosauria is unstable. In equal-weights analyses, Poropat and colleagues (2016) recover Diamantinasaurus and Savannasaurus as non-lithostrotian titanosaurs, and Poropat and colleagues (2023) recover the named clade in the same position, whereas the most recent dedicated analyses recover the clade as the sister group to Titanosauria, just outside it (Beeston and colleagues, 2024, under both equal and extended implied weighting; Han and colleagues, 2024). It is placed conservatively as a non-titanosaurian somphospondylan following the most recent dedicated work.\n"
+      },
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Saurischia",
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda",
+        "Gravisauria",
+        "Eusauropoda",
+        "Neosauropoda",
+        "Macronaria",
+        "Camarasauromorpha",
+        "Titanosauriformes",
+        "Somphospondyli",
+        "Diamantinasauria"
+      ],
+      "described": 2021,
+      "authors": "Poropat, S. F.; Kundrát, M.; Mannion, P. D.; Upchurch, P.; Tischler, T. R.; Elliott, D. A.",
+      "erected_in": "poropat2021a",
+      "described_in": "beeston2024a",
+      "diagnostic_features": [
+        "Sternal plate D-shaped rather than reniform",
+        "Absence of hyposphene-hypantrum articulations throughout the dorsal series",
+        "Confluence of the spinopostzygapophyseal and centropostzygapophyseal fossae owing to loss of the intrapostzygapophyseal lamina",
+        "Scapular blade bearing a fossa and a tuberosity on its medial surface near the acromion",
+        "Ulna with a prominent interosseous ridge on the distal anterior surface"
+      ],
+      "references": [
+        {
+          "id": "poropat2021a",
+          "authors": "Poropat, S. F.; Kundrát, M.; Mannion, P. D.; Upchurch, P.; Tischler, T. R.; Elliott, D. A.",
+          "year": 2021,
+          "title": "Second specimen of the Late Cretaceous Australian sauropod dinosaur Diamantinasaurus matildae provides new anatomical information on the skull and neck of early titanosaurs",
+          "journal": "Zoological Journal of the Linnean Society",
+          "volume": "192",
+          "pages": "610-674",
+          "doi": "10.1093/zoolinnean/zlaa173"
+        },
+        {
+          "id": "poropat2016a",
+          "authors": "Poropat, S. F.; Mannion, P. D.; Upchurch, P.; Hocknull, S. A.; Kear, B. P.; Kundrát, M.; Tischler, T. R.; Sloan, T.; Sinapius, G. H. K.; Elliott, J. A.; Elliott, D. A.",
+          "year": 2016,
+          "title": "New Australian sauropods shed light on Cretaceous dinosaur palaeobiogeography",
+          "journal": "Scientific Reports",
+          "publisher": "Springer Science and Business Media LLC",
+          "volume": "6",
+          "issue": "1",
+          "doi": "10.1038/srep34467",
+          "notes": "Described Savannasaurus; recovered it and Diamantinasaurus as non-lithostrotian titanosaurs, and Wintonotitan as a non-titanosaurian somphospondylan."
+        },
+        {
+          "id": "poropat2023a",
+          "authors": "Poropat, S. F.; Mannion, P. D.; Rigby, S. L.; Duncan, R. J.; Pentland, A. H.; Bevitt, J. J.; Sloan, T.; Elliott, D. A.",
+          "year": 2023,
+          "title": "A nearly complete skull of the sauropod dinosaur Diamantinasaurus matildae from the Upper Cretaceous Winton Formation of Australia and implications for the early evolution of titanosaurs",
+          "journal": "Royal Society Open Science",
+          "volume": "10",
+          "issue": "4",
+          "pages": "221618",
+          "doi": "10.1098/rsos.221618",
+          "notes": "Equal-weights analysis recovers Diamantinasauria as a non-lithostrotian titanosaur clade near the base of Titanosauria, but outside Titanosauria under extended implied weighting."
+        },
+        {
+          "id": "han2024a",
+          "authors": "Han, F.; Yang, L.; Lou, F.; Sullivan, C.; Xu, X.; Qiu, W.; Liu, H.; Yu, J.; Wu, R.; Ke, Y.; Xu, M.; Hu, J.; Lu, P.",
+          "year": 2024,
+          "title": "A new titanosaurian sauropod, Gandititan cavocaudatus gen. et sp. nov., from the Late Cretaceous of southern China",
+          "journal": "Journal of Systematic Palaeontology",
+          "publisher": "Informa UK Limited",
+          "volume": "22",
+          "issue": "1",
+          "pages": "2293038",
+          "doi": "10.1080/14772019.2023.2293038",
+          "notes": "Recovers Diamantinasauria as sister taxon to Titanosauria rather than a sub-clade within it"
+        },
+        {
+          "id": "jones2026b",
+          "authors": "Jones, B.",
+          "year": 2026,
+          "title": "The Princeton Encyclopedia of Dinosaurs: Sauropods",
+          "publisher": "Princeton University Press",
+          "isbn": "978-0-691-25023-6",
+          "notes": "Places Diamantinasauria within Titanosauria as a likely early-branching group of Diamantinasaurus, Sarmientosaurus, Savannasaurus and Australotitan, reviewing its varied placements."
+        },
+        {
+          "id": "beeston2024a",
+          "authors": "Beeston, S. L.; Poropat, S. F.; Mannion, P. D.; Pentland, A. H.; Enchelmaier, M. J.; Sloan, T.; Elliott, D. A.",
+          "year": 2024,
+          "title": "Reappraisal of sauropod dinosaur diversity in the Upper Cretaceous Winton Formation of Queensland, Australia, through 3D digitisation and description of new specimens",
+          "journal": "PeerJ",
+          "publisher": "PeerJ",
+          "volume": "12",
+          "pages": "e17180",
+          "doi": "10.7717/peerj.17180",
+          "notes": "Recovered Diamantinasauria as the sister group of Titanosauria under both equal and extended implied weighting, with Sarmientosaurus as its earliest-diverging member."
         }
       ]
     },
@@ -1732,50 +1690,6 @@
         }
       ]
     },
-    "Maniraptora": {
-      "description": "Maniraptora is a clade of coelurosaurian theropod dinosaurs that includes birds along with the non-avian dinosaurs more closely related to birds than to the ornithomimosaurs. Its major subgroups are the dromaeosaurids, troodontids, oviraptorosaurs, therizinosaurs, and avialans (the bird lineage), with alvarezsauroids and Ornitholestes often included as well; together with its sister group Ornithomimosauria it forms the larger clade Maniraptoriformes. Maniraptorans first appear in the fossil record during the Jurassic and survive today as living birds. They are distinguished by long arms and three-fingered grasping hands, a half-moon-shaped wrist bone that allowed the hand to fold, and, in many lineages, a backward-pointing pubis unlike the forward-pointing hip of most other saurischians. Some form of feathers or downy covering appears to have been present across the group, and Maniraptora is the only dinosaur clade known to include flying members. Once assumed to be strictly meat-eaters, maniraptorans are now thought to have been ancestrally omnivorous, giving rise to several plant-eating groups while only the dromaeosaurids reverted to pure carnivory.\n",
-      "taxonomy": [
-        "Life",
-        "Animalia",
-        "Chordata",
-        "Vertebrata",
-        "Sarcopterygii",
-        "Tetrapoda",
-        "Reptilia",
-        "Archosauria",
-        "Dinosauria",
-        "Saurischia",
-        "Theropoda",
-        "Neotheropoda",
-        "Averostra",
-        "Tetanurae",
-        "Avetheropoda",
-        "Coelurosauria",
-        "Maniraptora"
-      ],
-      "described": 1986,
-      "authors": "Gauthier, J. A.",
-      "erected_in": "gauthier1986a",
-      "diagnostic_features": [
-        "Elongated forelimbs relative to body size",
-        "Semilunate (half-moon shaped) carpal bone allowing wrist folding",
-        "Pennaceous feathers present in many lineages",
-        "Elongate and mobile manus",
-        "Opisthopubic pelvis (posteriorly directed pubis) in many taxa",
-        "Reduced or absent postorbital bar"
-      ],
-      "references": [
-        {
-          "id": "gauthier1986a",
-          "authors": "Gauthier, J. A.",
-          "year": 1986,
-          "title": "Saurischian monophyly and the origin of birds",
-          "journal": "Memoirs of the California Academy of Sciences",
-          "volume": "8",
-          "pages": "1-55"
-        }
-      ]
-    },
     "Massopoda": {
       "description": "Massopoda is a clade of sauropodomorph dinosaurs that lived from the Late Triassic through the Late Cretaceous. It is defined as all sauropodomorphs more closely related to Saltasaurus than to Plateosaurus (Yates, 2007), and its name is a contraction of Massospondylidae and Sauropoda, two very different groups that both fall within it. Nested inside is the more exclusive Sauropodiformes, the most inclusive group that contains Saltasaurus but excludes Massospondylus (McPhee and colleagues, 2014). Its members range from small, bipedal massospondylids to the gigantic, quadrupedal true sauropods, and together they encompass the great majority of sauropodomorph diversity.\n",
       "taxonomy": [
@@ -1831,7 +1745,7 @@
       ]
     },
     "Massospondylidae": {
-      "description": "Massospondylidae is a family of early massopod sauropodomorph dinosaurs that lived from the Late Triassic to the Early Jurassic, with a near-global spread that reached Asia, Africa, North America, South America, and Antarctica. It is defined as a stem-based group encompassing all animals more closely related to Massospondylus carinatus than to Plateosaurus or Saltasaurus (Sereno, 2007). Most recent analyses recover a monophyletic Massospondylidae that usually includes Massospondylus, Coloradisaurus and Lufengosaurus with a variable number of other taxa, though some have found it to contain Massospondylus alone (Barrett and colleagues, 2019); Fernández and Werneburg (2022) add Adeopapposaurus, Glacialisaurus and Leyesaurus, and Pradhania falls within the family for Novas and colleagues (2010) but in Unaysauridae for Barrett and colleagues (2026). Its members were small to medium-sized, long-necked, facultatively bipedal herbivores or omnivores that represent an early-branching lineage of sauropodomorphs rather than close relatives of the true sauropods.\n",
+      "description": "Massospondylidae is a family of early massopod sauropodomorph dinosaurs that lived from the Late Triassic to the Early Jurassic, with a near-global spread that reached Asia, Africa, North America, South America, and Antarctica. It is defined as a stem-based group encompassing all animals more closely related to Massospondylus carinatus than to Plateosaurus or Saltasaurus (Sereno, 2007). Most recent analyses recover a monophyletic Massospondylidae that usually includes Massospondylus, Coloradisaurus and Lufengosaurus with a variable number of other taxa, though some have found it to contain Massospondylus alone (Barrett and colleagues, 2019); Regalado Fernández and Werneburg (2022) add Adeopapposaurus, Glacialisaurus and Leyesaurus, and Pradhania falls within the family for Novas and colleagues (2010) but in Unaysauridae for Barrett and colleagues (2026). Its members were small to medium-sized, long-necked, facultatively bipedal herbivores or omnivores that represent an early-branching lineage of sauropodomorphs rather than close relatives of the true sauropods.\n",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -1916,8 +1830,8 @@
           "notes": "Gave the original stem-based definition of Massospondylidae, with Plateosaurus as the external specifier."
         },
         {
-          "id": "fernández2022a",
-          "authors": "Fernández, O. R. R.; Werneburg, I.",
+          "id": "regaladofernández2022a",
+          "authors": "Regalado Fernández, O. R.; Werneburg, I.",
           "year": 2022,
           "title": "A new massopodan sauropodomorph from Trossingen Formation (Germany) hidden as 'Plateosaurus' for 100 years in the historical Tübingen collection",
           "journal": "Vertebrate Zoology",
@@ -2198,85 +2112,6 @@
           "pages": "e12362",
           "doi": "10.7717/peerj.12362",
           "notes": "Provides the modern phylogenetic definition of Ornithischia."
-        }
-      ]
-    },
-    "Oviraptorosauria": {
-      "description": "Oviraptorosauria is a clade of feathered, bipedal maniraptoran theropods from the Cretaceous of what are now Asia and North America, and among the dinosaur groups closest to the ancestry of birds. Its members are distinguished by short, deep, parrot-like skulls, often bearing bony crests, with jaws that carry few or no teeth. The most primitive forms, such as Caudipteryx and Incisivosaurus, retain a few front teeth, in the latter enlarged into prominent bucktoothed incisors, while more derived members are toothless. The group spans a wide size range, from turkey-sized early-diverging species to the eight-meter Gigantoraptor, and its more advanced members are typically divided between the toothless caenagnathids and the crested oviraptorids. Several species are preserved with pennaceous feathers on the wings and tail, and oviraptorids are famously known from specimens frozen in a brooding posture over circular clutches of eggs. Their diet appears to have been generalized, ranging from herbivory to omnivory, with some evidence of small vertebrates and gastroliths.\n",
-      "taxonomy": [
-        "Life",
-        "Animalia",
-        "Chordata",
-        "Vertebrata",
-        "Sarcopterygii",
-        "Tetrapoda",
-        "Reptilia",
-        "Archosauria",
-        "Dinosauria",
-        "Saurischia",
-        "Theropoda",
-        "Neotheropoda",
-        "Averostra",
-        "Tetanurae",
-        "Avetheropoda",
-        "Coelurosauria",
-        "Maniraptora",
-        "Oviraptorosauria"
-      ],
-      "type_genus": "Oviraptor",
-      "described": 1976,
-      "authors": "Barsbold, R.",
-      "erected_in": "barsbold1976b",
-      "described_in": "maryańska2002a",
-      "diagnostic_features": [
-        "Short, deep skull with a reduced dentition trending toward edentulism",
-        "Downturned, robust dentary with an extensive symphysis",
-        "Pneumatic, tall-spined cervical vertebrae with a long, mobile neck",
-        "Shortened tail, in derived members terminating in coossified distal caudals",
-        "Large, three-fingered grasping hand (reduced in derived oviraptorids)"
-      ],
-      "references": [
-        {
-          "id": "barsbold1976b",
-          "authors": "Barsbold, R.",
-          "year": 1976,
-          "title": "On the evolution and systematics of the late Mesozoic dinosaurs",
-          "journal": "Transactions of the Joint Soviet-Mongolian Paleontological Expedition",
-          "volume": "3",
-          "pages": "68-75",
-          "notes": "Diagnosed the infraorder Oviraptorosauria, with Oviraptoridae as its only family, crediting the name to Barsbold (1974)."
-        },
-        {
-          "id": "barsbold1974a",
-          "authors": "Barsbold, R.",
-          "year": 1974,
-          "title": "Poyedinok dinozavrov [Dueling dinosaurs]",
-          "journal": "Priroda",
-          "volume": "2",
-          "pages": "81-83",
-          "notes": "The 1974 Barsbold paper credited with the name Oviraptorosauria in Barsbold (1976)."
-        },
-        {
-          "id": "maryańska2002a",
-          "authors": "Maryańska, T.; Osmólska, H.; Wolsan, M.",
-          "year": 2002,
-          "title": "Avialan status for Oviraptorosauria",
-          "journal": "Acta Palaeontologica Polonica",
-          "volume": "47",
-          "issue": "1",
-          "pages": "97-116",
-          "notes": "Defined Oviraptorosauria as the most inclusive clade containing Oviraptor philoceratops but not Passer domesticus, and diagnosed it by five unambiguous synapomorphies."
-        },
-        {
-          "id": "funston2018a",
-          "authors": "Funston, G. F.; Mendonca, S. E.; Currie, P. J.; Barsbold, R.",
-          "year": 2018,
-          "title": "Oviraptorosaur anatomy, diversity and ecology in the Nemegt Basin",
-          "journal": "Palaeogeography, Palaeoclimatology, Palaeoecology",
-          "volume": "494",
-          "pages": "101-120",
-          "doi": "10.1016/j.palaeo.2017.10.023",
-          "notes": "Reviewed the anatomy, diversity and ecology of the oviraptorosaurs of the Nemegt Basin."
         }
       ]
     },
@@ -3354,7 +3189,17 @@
               0.972953
             ],
             "region_code": "ES-L",
-            "part_of": "formation"
+            "part_of": "formation",
+            "paleocoordinates": {
+              "latitude": 29.5664,
+              "longitude": 10.9992,
+              "latitude_present": 42.159484,
+              "longitude_present": 0.972953,
+              "age_ma": 69.1,
+              "model": "GOLONKA",
+              "model_plate_id": 304,
+              "approximate": false
+            }
           },
           "size": {
             "hip_height_m": {
@@ -3540,7 +3385,17 @@
             "part": "lower",
             "notes": "Etheridge (1867) placed the remains in the lower part of the Chalk Marl, about eight feet above the Upper Greensand, and fixed them to the lower part of the Grey Chalk series on an associated fauna of some forty species, among them Ammonites varians and Holaster subglobosus.",
             "region_code": "GB-KEN",
-            "part_of": "formation"
+            "part_of": "formation",
+            "paleocoordinates": {
+              "latitude": 47.213,
+              "longitude": 16.9764,
+              "latitude_present": 51.2206,
+              "longitude_present": 0.7345,
+              "age_ma": 97.2,
+              "model": "GOLONKA",
+              "model_plate_id": 315,
+              "approximate": true
+            }
           },
           "size": {
             "length_m": {
@@ -3778,7 +3633,17 @@
             "locality": "Cochran farm",
             "region": "Oklahoma",
             "formation": "Antlers",
-            "region_code": "US-OK"
+            "region_code": "US-OK",
+            "paleocoordinates": {
+              "latitude": 41.2743,
+              "longitude": -45.1853,
+              "latitude_present": 35.5879,
+              "longitude_present": -97.5114,
+              "age_ma": 110.95,
+              "model": "GOLONKA",
+              "model_plate_id": 101,
+              "approximate": true
+            }
           },
           "type_specimen": {
             "specimen_id": [
@@ -4025,7 +3890,17 @@
             "part": "middle",
             "notes": "Martínez (2009) places the holotype in the \"Upper Pelitic Member\", 148 m from the base, in an earlier scheme; Martínez and Colombi (2011) divide the formation into lower, middle and upper members and name the middle member's pelitic facies as the source of Adeopapposaurus.",
             "region_code": "AR-J",
-            "part_of": "formation"
+            "part_of": "formation",
+            "paleocoordinates": {
+              "latitude": -33.6888,
+              "longitude": -15.2419,
+              "latitude_present": -30.8282,
+              "longitude_present": -68.8788,
+              "age_ma": 188.05,
+              "model": "GOLONKA",
+              "model_plate_id": 291,
+              "approximate": true
+            }
           },
           "size": {
             "length_m": {
@@ -4218,7 +4093,17 @@
             "region": "Colorado",
             "formation": "Morrison",
             "member": "Brushy Basin",
-            "region_code": "US-CO"
+            "region_code": "US-CO",
+            "paleocoordinates": {
+              "latitude": 26.4165,
+              "longitude": -41.3651,
+              "latitude_present": 38.9991,
+              "longitude_present": -105.5468,
+              "age_ma": 148.95,
+              "model": "GOLONKA",
+              "model_plate_id": 101,
+              "approximate": true
+            }
           },
           "type_specimen": {
             "specimen_id": [
@@ -4272,7 +4157,17 @@
             "formation": "Morrison",
             "member": "Salt Wash",
             "locality": "Dinosaur National Monument (locality DNM 116)",
-            "region_code": "US-UT"
+            "region_code": "US-UT",
+            "paleocoordinates": {
+              "latitude": 27.4879,
+              "longitude": -45.6016,
+              "latitude_present": 39.3265,
+              "longitude_present": -111.6742,
+              "age_ma": 152,
+              "model": "GOLONKA",
+              "model_plate_id": 101,
+              "approximate": true
+            }
           },
           "type_specimen": {
             "specimen_id": [
@@ -4536,7 +4431,17 @@
             "formation": "Hongqin",
             "part": "lower",
             "region_code": "CN-AH",
-            "part_of": "formation"
+            "part_of": "formation",
+            "paleocoordinates": {
+              "latitude": 37.0808,
+              "longitude": 133.1661,
+              "latitude_present": 31.8211,
+              "longitude_present": 117.2268,
+              "age_ma": 168.1,
+              "model": "GOLONKA",
+              "model_plate_id": 604,
+              "approximate": true
+            }
           },
           "type_specimen": {
             "specimen_id": [
@@ -4659,7 +4564,17 @@
             "formation": "Snow Hill Island",
             "member": "Gamma",
             "part": "lower",
-            "part_of": "member"
+            "part_of": "member",
+            "paleocoordinates": {
+              "latitude": -82.217,
+              "longitude": -23.0524,
+              "latitude_present": -80.5082,
+              "longitude_present": 19.9084,
+              "age_ma": 77.9,
+              "model": "GOLONKA",
+              "model_plate_id": 802,
+              "approximate": true
+            }
           },
           "size": {
             "hip_height_m": {
@@ -4754,46 +4669,52 @@
       "authors": "Salgado, L.; Gasparini, Z.",
       "described": 2006
     },
-    "Beibeilong": {
-      "genus": "Beibeilong",
-      "parent": "Caenagnathidae",
-      "etymology": "From Mandarin Chinese beibei (贝贝) meaning 'baby' and long (龙) meaning 'dragon'. Full meaning: 'baby dragon'.",
-      "pronunciation": {
-        "phonetic": "bay-bay-long"
+    "Australotitan": {
+      "genus": "Australotitan",
+      "parent": "Diamantinasauria",
+      "dispute": {
+        "summary": "Australotitan is recovered within Diamantinasauria, where Beeston and colleagues (2024) found insufficient autapomorphies to distinguish it from Diamantinasaurus and suggested it is probably a junior synonym of Diamantinasaurus matildae, retaining it conservatively as an indeterminate diamantinasaurian.\n"
       },
-      "description": "Beibeilong is a genus of large caenagnathid dinosaurs that lived in China during the Late Cretaceous epoch, about 96 million to 88 million years ago. The genus contains a single species, Beibeilong sinensis. The species was named and described in 2017 through analysis of an embryonic skeleton (nicknamed Baby Louie) and partial nest with large eggs that were discovered in the Gaogou Formation of China (Henan Province) between 1992 and 1993.",
-      "diet": "omnivore",
-      "locomotion": "bipedal",
+      "pronunciation": {
+        "phonetic": "aw-STRAY-lo-TIE-tan",
+        "ipa": "/ɔːˈstreɪloʊˈtaɪtən/"
+      },
+      "etymology": "From Latin 'australis' meaning 'southern' and Greek 'titan' meaning 'giant', referring to the large size of this dinosaur from southern Australia.",
+      "description": "Australotitan is an extinct genus of possibly titanosaurian somphospondylan dinosaurs from the Late Cretaceous Winton Formation (Cenomanian-Turonian) of southern-central Queensland, Australia. The genus contains a single species, A. cooperensis, known from multiple partial skeletons. The genus Australotitan may be synonymous with Diamantinasaurus, a contemporary relative.",
+      "diet": "herbivore",
+      "locomotion": "quadrupedal",
       "paleoenvironment": [
-        "fluvial",
-        "lacustrine"
+        "fluvial"
       ],
       "diagnostic_features": [
-        "Antorbital fossa demarcated by sharply defined alveolar and dorsoposterior trending ridges",
-        "Posterodorsal margin of lacrimal overlapped by frontal",
-        "Subantorbital portion of the maxilla is inset medially",
-        "Pronounced retroarticular process with a distinct concave posterior facet, roughly as tall at the base as it is wide",
-        "Preacetabular process of the ilium longer than postacetabular process; posterior end of the postacetabular process truncated or broadly rounded",
-        "Accessory trochanter of the femur weakly developed"
+        "Ulna with heavily reduced anterolateral and olecranon processes relative to much enlarged and elongate anteromedial process.",
+        "Ulna with a distinct radial interosseous ridge within the distal half of the radial fossa, and anterolateral process bearing a distal accessory projection proximal to a proximally beveled distal epiphysis.",
+        "Humerus with a rounded ridge extending from the distal end of the deltopectoral crest to just proximal of a tri-lobate distal epiphysis.",
+        "Distal ischial blades curve ventrally to produce a dorsal face that is posteriorly directed.",
+        "Femur with a medially sloped proximolateral margin, anteroposteriorly narrow diaphysis, and distal condyles directed anterolaterally to posteromedially."
       ],
       "appearance": {
-        "integument": "feathered",
+        "integument": "scaled",
         "evidence": "inferred"
       },
       "identifiers": [
         {
           "source": "pbdb",
-          "id": "372793"
+          "id": "438442"
         },
         {
           "source": "wikidata",
-          "id": "Q29877274"
+          "id": "Q107141748"
+        },
+        {
+          "source": "gbif",
+          "id": "11196034"
         }
       ],
       "species": [
         {
-          "name": "Beibeilong sinensis",
-          "etymology": "Named for its country of discovery, China, derived from the prefix Sino meaning 'Chinese'.",
+          "name": "Australotitan cooperensis",
+          "etymology": "Named for the Cooper Creek system near the initial location of the holotype, and the nickname 'Cooper' given to the holotype when it was discovered.",
           "status": "valid",
           "type_species": true,
           "period": {
@@ -4808,53 +4729,111 @@
             "to_ma": 89.8
           },
           "location": {
-            "country": "CN",
-            "locality": "Heimaogou, 2 km east of Zhaoying Village, Yangcheng Township",
-            "region": "Henan",
-            "formation": "Gaogou",
-            "coordinates": [
-              33.258333,
-              111.728056
-            ],
-            "region_code": "CN-HA"
+            "country": "AU",
+            "locality": "EML011(a), Plevna Downs Station",
+            "region": "Queensland",
+            "formation": "Winton",
+            "region_code": "AU-QLD",
+            "paleocoordinates": {
+              "latitude": -62.1231,
+              "longitude": 144.2752,
+              "latitude_present": -22.5717,
+              "longitude_present": 144.5502,
+              "age_ma": 95.15,
+              "model": "GOLONKA",
+              "model_plate_id": 801,
+              "approximate": true
+            }
           },
           "size": {
             "length_m": {
-              "min": 7.5,
-              "max": 7.5
+              "min": 24,
+              "max": 24
             },
             "weight_kg": {
-              "min": 1500,
-              "max": 2000
+              "min": 35000,
+              "max": 35000
+            },
+            "hip_height_m": {
+              "min": 4,
+              "max": 4
             }
           },
+          "erected_in": "hocknull2021a",
           "type_specimen": {
             "specimen_id": [
-              "HGM 41HIII-1219"
+              "EMF102"
             ],
-            "nickname": "Baby Louie",
+            "nickname": "Cooper",
             "specimen_type": "holotype",
-            "institution": "Henan Geological Museum",
-            "material": "Small, semi-articulated skeleton associated with a partial nest of 6-8 eggs.",
+            "institution": "Eromanga Natural History Museum",
+            "material": "Ten appendicular elements: partial left scapula, partial left and complete right humerus, right ulna, right and left pubes and ischia, partial right and left femora, plus corticocancellous internal bone fragments.",
             "completeness": "partial"
           },
-          "erected_in": "pu2017a",
-          "authors": "Pu, H.; Zelenitsky, D. K.; Lü, J.; Currie, P. J.; Carpenter, K.; Xu, L.; Koppelhus, E. B.; Jia, S.; Xiao, L.; Chuang, H.; Li, T.; Kundrát, M.; Shen, C.",
-          "described": 2017
+          "authors": "Hocknull, S. A.; Wilkinson, M.; Lawrence, R. A.; Konstantinov, V.; Mackenzie, S.; Mackenzie, R.",
+          "described": 2021
+        }
+      ],
+      "notable_specimens": [
+        {
+          "nickname": "George",
+          "specimen_id": [
+            "EMF164"
+          ],
+          "institution": "Eromanga Natural History Museum",
+          "species": "Australotitan cooperensis",
+          "category": "largest-individual",
+          "significance": "Referred specimen representing the largest known individual; its 2.146 meter femur is the basis cited for Australotitan being the largest known Australian dinosaur, comparable to Futalognkosaurus and Dreadnoughtus. Preserves femur, ulna, vertebrae, and ribs.",
+          "discovered": {
+            "year": 2005,
+            "by": "Sandy Mackenzie"
+          },
+          "references": [
+            "hocknull2021a"
+          ]
         }
       ],
       "references": [
         {
-          "id": "pu2017a",
-          "authors": "Pu, H.; Zelenitsky, D. K.; Lü, J.; Currie, P. J.; Carpenter, K.; Xu, L.; Koppelhus, E. B.; Jia, S.; Xiao, L.; Chuang, H.; Li, T.; Kundrát, M.; Shen, C.",
-          "year": 2017,
-          "title": "Perinate and eggs of a giant caenagnathid dinosaur from the Late Cretaceous of central China",
-          "journal": "Nature Communications",
-          "publisher": "Springer Science and Business Media LLC",
-          "volume": "8",
-          "issue": "1",
-          "doi": "10.1038/ncomms14952",
-          "notes": "Source of the holotype's nickname, Baby Louie."
+          "id": "qm2021a",
+          "authors": "Queensland Museum",
+          "year": 2021,
+          "title": "Meet Australia's largest dinosaur -- Australotitan, the southern titan!",
+          "publisher": "EurekAlert!",
+          "notes": "Source of the holotype's nickname, Cooper.",
+          "url": "https://www.eurekalert.org/news-releases/643637"
+        },
+        {
+          "id": "hocknull2021a",
+          "authors": "Hocknull, S. A.; Wilkinson, M.; Lawrence, R. A.; Konstantinov, V.; Mackenzie, S.; Mackenzie, R.",
+          "year": 2021,
+          "title": "A new giant sauropod, Australotitan cooperensis gen. et sp. nov., from the mid-Cretaceous of Australia",
+          "journal": "PeerJ",
+          "publisher": "PeerJ",
+          "volume": "9",
+          "pages": "e11317",
+          "doi": "10.7717/peerj.11317"
+        },
+        {
+          "id": "jones2026b",
+          "authors": "Jones, B.",
+          "year": 2026,
+          "title": "The Princeton Encyclopedia of Dinosaurs: Sauropods",
+          "publisher": "Princeton University Press",
+          "isbn": "978-0-691-25023-6",
+          "notes": "Source of the body length, mass, and hip height estimates."
+        },
+        {
+          "id": "beeston2024a",
+          "authors": "Beeston, S. L.; Poropat, S. F.; Mannion, P. D.; Pentland, A. H.; Enchelmaier, M. J.; Sloan, T.; Elliott, D. A.",
+          "year": 2024,
+          "title": "Reappraisal of sauropod dinosaur diversity in the Upper Cretaceous Winton Formation of Queensland, Australia, through 3D digitisation and description of new specimens",
+          "journal": "PeerJ",
+          "publisher": "PeerJ",
+          "volume": "12",
+          "pages": "e17180",
+          "doi": "10.7717/peerj.17180",
+          "notes": "Found insufficient autapomorphies to distinguish Australotitan within Diamantinasauria."
         }
       ],
       "taxonomy": [
@@ -4868,19 +4847,23 @@
         "Archosauria",
         "Dinosauria",
         "Saurischia",
-        "Theropoda",
-        "Neotheropoda",
-        "Averostra",
-        "Tetanurae",
-        "Avetheropoda",
-        "Coelurosauria",
-        "Maniraptora",
-        "Oviraptorosauria",
-        "Caenagnathoidea",
-        "Caenagnathidae"
+        "Sauropodomorpha",
+        "Bagualosauria",
+        "Plateosauria",
+        "Massopoda",
+        "Sauropodiformes",
+        "Sauropoda",
+        "Gravisauria",
+        "Eusauropoda",
+        "Neosauropoda",
+        "Macronaria",
+        "Camarasauromorpha",
+        "Titanosauriformes",
+        "Somphospondyli",
+        "Diamantinasauria"
       ],
-      "authors": "Pu, H.; Zelenitsky, D. K.; Lü, J.; Currie, P. J.; Carpenter, K.; Xu, L.; Koppelhus, E. B.; Jia, S.; Xiao, L.; Chuang, H.; Li, T.; Kundrát, M.; Shen, C.",
-      "described": 2017
+      "authors": "Hocknull, S. A.; Wilkinson, M.; Lawrence, R. A.; Konstantinov, V.; Mackenzie, S.; Mackenzie, R.",
+      "described": 2021
     },
     "Daspletosaurus": {
       "genus": "Daspletosaurus",
@@ -4956,7 +4939,17 @@
             "region": "Alberta",
             "formation": "Oldman",
             "notes": "Russell (1970) gives the type as from \"quarry 88 of Sternberg 1905\", under a pre-1993 Oldman Formation. Powers and colleagues (2026) list CMN 8506 at their quarry Q072, which they call the type locality, 3.867 m below the nearest Oldman-Dinosaur Park Formation contact.",
-            "region_code": "CA-AB"
+            "region_code": "CA-AB",
+            "paleocoordinates": {
+              "latitude": 65.4719,
+              "longitude": -64.7325,
+              "latitude_present": 55.1671,
+              "longitude_present": -114.5097,
+              "age_ma": 77.9,
+              "model": "GOLONKA",
+              "model_plate_id": 101,
+              "approximate": true
+            }
           },
           "type_specimen": {
             "specimen_id": [
@@ -5010,7 +5003,17 @@
             "formation": "Two Medicine",
             "part": "upper",
             "region_code": "US-MT",
-            "part_of": "formation"
+            "part_of": "formation",
+            "paleocoordinates": {
+              "latitude": 56.8192,
+              "longitude": -66.3296,
+              "latitude_present": 47.0318,
+              "longitude_present": -109.638,
+              "age_ma": 77.9,
+              "model": "GOLONKA",
+              "model_plate_id": 101,
+              "approximate": true
+            }
           },
           "type_specimen": {
             "specimen_id": [
@@ -5052,7 +5055,17 @@
             "region": "Montana",
             "formation": "Judith River",
             "locality": "Jack's B2",
-            "region_code": "US-MT"
+            "region_code": "US-MT",
+            "paleocoordinates": {
+              "latitude": 56.8192,
+              "longitude": -66.3296,
+              "latitude_present": 47.0318,
+              "longitude_present": -109.638,
+              "age_ma": 77.9,
+              "model": "GOLONKA",
+              "model_plate_id": 101,
+              "approximate": true
+            }
           },
           "type_specimen": {
             "specimen_id": [
@@ -5111,6 +5124,7 @@
           ]
         },
         {
+          "nickname": "Gorgeous George",
           "specimen_id": [
             "FMNH PR308"
           ],
@@ -5123,11 +5137,21 @@
             "by": "Barnum Brown"
           },
           "references": [
-            "carr1999a"
+            "carr1999a",
+            "miller2021a"
           ]
         }
       ],
       "references": [
+        {
+          "id": "miller2021a",
+          "authors": "Miller, B.",
+          "year": 2021,
+          "title": "Before SUE the T. rex, there was 'Gorgeous George'",
+          "publisher": "Field Museum",
+          "notes": "Source of the nickname of FMNH PR308, Gorgeous George.",
+          "url": "https://www.fieldmuseum.org/blog/sue-t-rex-there-was-gorgeous-george"
+        },
         {
           "id": "russell1970a",
           "authors": "Russell, D. A.",
@@ -5326,7 +5350,17 @@
             "region": "Montana",
             "formation": "Hell Creek",
             "locality": "Sand Creek",
-            "region_code": "US-MT"
+            "region_code": "US-MT",
+            "paleocoordinates": {
+              "latitude": 58.7865,
+              "longitude": -68.069,
+              "latitude_present": 47.0318,
+              "longitude_present": -109.638,
+              "age_ma": 69.1,
+              "model": "GOLONKA",
+              "model_plate_id": 101,
+              "approximate": true
+            }
           },
           "type_specimen": {
             "specimen_id": [
@@ -5373,15 +5407,26 @@
             "country": "US",
             "region": "Montana",
             "formation": "Hell Creek",
-            "region_code": "US-MT"
+            "region_code": "US-MT",
+            "paleocoordinates": {
+              "latitude": 58.7865,
+              "longitude": -68.069,
+              "latitude_present": 47.0318,
+              "longitude_present": -109.638,
+              "age_ma": 69.1,
+              "model": "GOLONKA",
+              "model_plate_id": 101,
+              "approximate": true
+            }
           },
           "type_specimen": {
             "specimen_id": [
               "BMRP 2002.4.1"
             ],
+            "nickname": "Jane",
             "specimen_type": "holotype",
             "institution": "Burpee Museum of Natural History",
-            "material": "Partial skeleton (\"Jane\") including skull, axial column, pelvic and hindlimb elements; estimated body mass at death ~819 kg, asymptotic adult mass modeled at ~1,264 kg.",
+            "material": "Partial skeleton including skull, axial column, pelvic and hindlimb elements; estimated body mass at death ~819 kg, asymptotic adult mass modeled at ~1,264 kg.",
             "completeness": "partial"
           },
           "synonyms": [
@@ -5482,7 +5527,7 @@
           "volume": "648",
           "pages": "357-367",
           "doi": "10.1038/s41586-025-09801-6",
-          "notes": "Pro-validity. NCSM 40000 (\"Bloody Mary\") interpreted as mature N. lancensis (~700 kg); erects N. lethaeus on BMRP 2002.4.1 (\"Jane\"); erects Nanotyrannidae."
+          "notes": "Pro-validity. NCSM 40000 (\"Bloody Mary\") interpreted as mature N. lancensis (~700 kg); erects N. lethaeus on BMRP 2002.4.1 (\"Jane\"); erects Nanotyrannidae. Source of the holotype's nickname, Jane."
         },
         {
           "id": "voris2025a",
@@ -5648,7 +5693,17 @@
             "locality": "Nemegt",
             "region": "Ömnögovi",
             "formation": "Nemegt",
-            "region_code": "MN-053"
+            "region_code": "MN-053",
+            "paleocoordinates": {
+              "latitude": 36.9393,
+              "longitude": 97.1112,
+              "latitude_present": 43.2749,
+              "longitude_present": 104.1129,
+              "age_ma": 69.1,
+              "model": "GOLONKA",
+              "model_plate_id": 628,
+              "approximate": true
+            }
           },
           "type_specimen": {
             "specimen_id": [
@@ -5923,7 +5978,17 @@
             "region": "Montana",
             "formation": "Hell Creek",
             "locality": "Quarry No. 1, near Jordan",
-            "region_code": "US-MT"
+            "region_code": "US-MT",
+            "paleocoordinates": {
+              "latitude": 58.7865,
+              "longitude": -68.069,
+              "latitude_present": 47.0318,
+              "longitude_present": -109.638,
+              "age_ma": 69.1,
+              "model": "GOLONKA",
+              "model_plate_id": 101,
+              "approximate": true
+            }
           },
           "size": {
             "hip_height_m": {

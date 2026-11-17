@@ -1,5 +1,5 @@
 import type { GeologicTimeline, TimeUnit } from "./age-figure.ts";
-import type { Genus, Location } from "./dataset.ts";
+import type { Genus, Paleocoordinates } from "./dataset.ts";
 import { abbreviateSpeciesName } from "./genus-map.ts";
 import type { MapPosition } from "./map-shapes.ts";
 import type { RotationModel } from "./plate-rotation.ts";
@@ -9,51 +9,6 @@ import { createSlug } from "./slugs.ts";
 // Each species' position at the midpoint of its stage, for the genus page's ancient map. The
 // dataset reconstructs species at their own age; rotating them to the stage midpoint lines them
 // up with that stage's coastlines (public/paleo-coastlines/).
-
-/**
- * A species' paleocoordinates, as the dataset gives them (schema 3.5.0).
- */
-export type PaleoCoordinates = {
-    /**
-     * Latitude at age_ma, in degrees.
-     */
-    latitude: number;
-
-    /**
-     * Longitude at age_ma, in degrees.
-     */
-    longitude: number;
-
-    /**
-     * The present-day latitude reconstructed.
-     */
-    latitude_present: number;
-
-    /**
-     * The present-day longitude reconstructed.
-     */
-    longitude_present: number;
-
-    /**
-     * The age reconstructed at: the midpoint of the species' age range, in millions of years.
-     */
-    age_ma: number;
-
-    /**
-     * The plate model.
-     */
-    model: string;
-
-    /**
-     * The plate the position moves with in that model.
-     */
-    model_plate_id: number;
-
-    /**
-     * Whether the present-day position is a region's or country's center, not a published site.
-     */
-    approximate: boolean;
-};
 
 /**
  * One place on a "when it lived" map: the species found there, at their ancient position.
@@ -119,17 +74,6 @@ export type PaleoView = {
  * A stage and the epoch it belongs to.
  */
 type StageInEpoch = [TimeUnit, string];
-
-/**
- * Read a species' paleocoordinates from its location. They arrive with schema 3.5.0.
- *
- * @param location - The species' location.
- * @returns The paleocoordinates, or undefined if the dataset gives none.
- */
-export function readPaleoCoordinates(location: Location | undefined): PaleoCoordinates | undefined
-{
-    return (location as (Location & { paleocoordinates?: PaleoCoordinates }) | undefined)?.paleocoordinates;
-}
 
 /**
  * Get a stage's midpoint, rounded to 0.1 million years: the age its coastlines are
@@ -209,7 +153,7 @@ function findPlaceAt(view: PaleoView, position: MapPosition): PaleoPlace | undef
  * @param paleo - Its paleocoordinates.
  * @param model - The rotation model.
  */
-function addToView(views: Map<string, PaleoView>, stageInEpoch: StageInEpoch, speciesName: string, isTypeSpecies: boolean, paleo: PaleoCoordinates, model: RotationModel): void
+function addToView(views: Map<string, PaleoView>, stageInEpoch: StageInEpoch, speciesName: string, isTypeSpecies: boolean, paleo: Paleocoordinates, model: RotationModel): void
 {
     const [stage, epoch] = stageInEpoch;
     const ageMa = getStageMidpoint(stage.fromMa, stage.toMa);
@@ -261,7 +205,7 @@ export function createPaleoViews(genus: Genus, timeline: GeologicTimeline | unde
 
     for (const species of genus.species)
     {
-        const paleo = readPaleoCoordinates(species.location);
+        const paleo = species.location?.paleocoordinates;
         const stageInEpoch = paleo ? findStageForAge(timeline, paleo.age_ma) : undefined;
 
         if (!paleo || !stageInEpoch)

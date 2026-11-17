@@ -15,6 +15,7 @@ export type {
     Metadata,
     NotableSpecimen,
     OpenPaleoDataset,
+    Paleocoordinates,
     Period,
     Pronunciation,
     Reference,

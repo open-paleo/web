@@ -8,7 +8,7 @@ import { createSiteData } from "../src/data/site-data.ts";
 import { createTreeChart, getTreeChartLegend } from "../src/data/tree-chart.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const siteData = createSiteData(readDataset(path.join(testDirectory, "fixtures"), "3.4.0"));
+const siteData = createSiteData(readDataset(path.join(testDirectory, "fixtures"), "3.5.0"));
 const top = siteData.cladeByName.get("Dinosauria");
 
 test("every genus below Dinosauria is in exactly one tip", () =>

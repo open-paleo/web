@@ -13,8 +13,8 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   of that stage's coastlines, with a dot for each published site and a ring for each region's
   center, a latitude and longitude grid, and the poles marked. Positions come from the
   dataset's paleocoordinates (plate model of Wright et al. 2013, CC BY 3.0 AU), rotated at build
-  time to the stage's midpoint so they line up with the coastlines. The switch appears once the
-  dataset provides paleocoordinates (schema 3.5.0)
+  time to the stage's midpoint so they line up with the coastlines. The site reads schema 3.5.0,
+  which adds the paleocoordinates
 
 ## 2026-11-14
 
