@@ -13,10 +13,10 @@ import {
     hasDarkChartColor,
 } from "../src/data/age-figure.ts";
 import { createSlug } from "../src/data/slugs.ts";
-import { readDataset } from "../src/data/load-dataset.ts";
+import { readFixture } from "./fixture.ts";
 
 const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.5.0");
+const dataset = readFixture();
 
 /**
  * Get the fixture's timeline, which the fixture is known to carry.

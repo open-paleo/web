@@ -1,14 +1,11 @@
 import * as assert from "node:assert/strict";
-import * as path from "node:path";
 import { test } from "node:test";
-import * as url from "node:url";
 
-import { readDataset } from "../src/data/load-dataset.ts";
 import { createSiteData } from "../src/data/site-data.ts";
 import { createTreeFindNames } from "../src/data/tree-find.ts";
+import { readFixture } from "./fixture.ts";
 
-const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const siteData = createSiteData(readDataset(path.join(testDirectory, "fixtures"), "3.5.0"));
+const siteData = createSiteData(readFixture());
 const top = siteData.cladeByName.get("Dinosauria");
 
 test("the find list holds every clade from Dinosauria down and every genus placed in one", () =>

@@ -1,7 +1,5 @@
 import * as assert from "node:assert/strict";
-import * as path from "node:path";
 import { test } from "node:test";
-import * as url from "node:url";
 
 import { createGeologicTimeline } from "../src/data/age-figure.ts";
 import {
@@ -12,12 +10,11 @@ import {
     groupStagesForAxis,
     getMajorGroups,
 } from "../src/data/home.ts";
-import { readDataset } from "../src/data/load-dataset.ts";
 import { getTypeSpecies } from "../src/data/records.ts";
 import { createSiteData } from "../src/data/site-data.ts";
+import { readFixture } from "./fixture.ts";
 
-const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.5.0");
+const dataset = readFixture();
 const siteData = createSiteData(dataset);
 
 assert.ok(dataset.timescale, "the fixture should carry the timescale");

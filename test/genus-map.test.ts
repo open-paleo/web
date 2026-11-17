@@ -1,7 +1,5 @@
 import * as assert from "node:assert/strict";
-import * as path from "node:path";
 import { test } from "node:test";
-import * as url from "node:url";
 
 import type { Genus } from "../src/data/dataset.ts";
 import {
@@ -14,11 +12,10 @@ import {
     findMissingOutline,
     getMapShapes,
 } from "../src/data/genus-map.ts";
-import { readDataset } from "../src/data/load-dataset.ts";
 import type { MapPolygon, MapPosition, MapShapes } from "../src/data/map-shapes.ts";
+import { readFixture } from "./fixture.ts";
 
-const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.5.0");
+const dataset = readFixture();
 const shapes = getMapShapes();
 
 /**

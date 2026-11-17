@@ -1,13 +1,10 @@
 import * as assert from "node:assert/strict";
-import * as path from "node:path";
 import { test } from "node:test";
-import * as url from "node:url";
 
-import { readDataset } from "../src/data/load-dataset.ts";
 import { getTypeSpecies, getSizeMeasurements, sortSynonyms } from "../src/data/records.ts";
+import { readFixture } from "./fixture.ts";
 
-const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.5.0");
+const dataset = readFixture();
 
 test("getTypeSpecies finds the marked type species", () =>
 {

@@ -1,7 +1,5 @@
 import * as assert from "node:assert/strict";
-import * as path from "node:path";
 import { test } from "node:test";
-import * as url from "node:url";
 
 import {
     createLetterAnchor,
@@ -12,12 +10,10 @@ import {
     groupByLetter,
     readDatasetFiles,
 } from "../src/data/indexes.ts";
-import { readDataset } from "../src/data/load-dataset.ts";
 import { createSiteData } from "../src/data/site-data.ts";
+import { fixtureDirectory, readFixture } from "./fixture.ts";
 
-const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const fixtureDirectory = path.join(testDirectory, "fixtures");
-const siteData = createSiteData(readDataset(fixtureDirectory, "3.5.0"));
+const siteData = createSiteData(readFixture());
 
 test("getIndexLetter files names under their first letter without accents", () =>
 {

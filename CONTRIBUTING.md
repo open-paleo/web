@@ -133,8 +133,11 @@ the file and later calls reuse the result.
 a small dataset cut from the real one by `npm run create-test-fixture`: a few named genera,
 plus the first genus that shows each case the tests need (a nomen dubium, an ICZN case,
 reference keys with accents and apostrophes, a type species dated to an epoch but no stage, one
-with published coordinates and one known only to its country). Regenerate it after a schema
-change and review the diff. Tests never use invented records.
+with published coordinates and one known only to its country, and one with a nicknamed type
+specimen). Tests read it with `readFixture()` from `test/fixture.ts`, which uses the schema
+version the bindings describe, so after a schema change `npm run update-bindings` and
+`npm run create-test-fixture` are all that's needed; review the fixture's diff. Tests never use
+invented records.
 
 ### Map outlines
 

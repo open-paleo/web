@@ -1,15 +1,12 @@
 import * as assert from "node:assert/strict";
-import * as path from "node:path";
 import { test } from "node:test";
-import * as url from "node:url";
 
-import { readDataset } from "../src/data/load-dataset.ts";
 import { createPaleoViews, findStageForAge } from "../src/data/paleo-positions.ts";
 import { getWright2013Model } from "../src/data/plate-rotation.ts";
 import { createSiteData } from "../src/data/site-data.ts";
+import { readFixture } from "./fixture.ts";
 
-const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const siteData = createSiteData(readDataset(path.join(testDirectory, "fixtures"), "3.5.0"));
+const siteData = createSiteData(readFixture());
 const model = getWright2013Model();
 
 test("each species with paleocoordinates appears once, in the view of its stage", () =>

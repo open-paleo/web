@@ -1,15 +1,12 @@
 import * as assert from "node:assert/strict";
-import * as path from "node:path";
 import { test } from "node:test";
-import * as url from "node:url";
 
 import { createAgeSpan, getDescendantGenera, getPlacedGenera } from "../src/data/clades.ts";
-import { readDataset } from "../src/data/load-dataset.ts";
 import type { CladeEntry, GenusEntry } from "../src/data/site-data.ts";
 import { createSiteData } from "../src/data/site-data.ts";
+import { readFixture } from "./fixture.ts";
 
-const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const siteData = createSiteData(readDataset(path.join(testDirectory, "fixtures"), "3.5.0"));
+const siteData = createSiteData(readFixture());
 
 /**
  * Get a clade entry that the fixture is known to contain.

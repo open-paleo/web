@@ -1,13 +1,10 @@
 import * as assert from "node:assert/strict";
-import * as path from "node:path";
 import { test } from "node:test";
-import * as url from "node:url";
 
 import { createDatasetCitation, createRecordCitation } from "../src/data/citations.ts";
-import { readDataset } from "../src/data/load-dataset.ts";
+import { readFixture } from "./fixture.ts";
 
-const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const metadata = readDataset(path.join(testDirectory, "fixtures"), "3.5.0")._metadata;
+const metadata = readFixture()._metadata;
 const year = metadata.version.split(".")[0];
 
 test("a genus citation names the record, the release and the page, with the genus in italic", () =>

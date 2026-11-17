@@ -1,14 +1,11 @@
 import * as assert from "node:assert/strict";
-import * as path from "node:path";
 import { test } from "node:test";
-import * as url from "node:url";
 
+import { bindingsSchemaVersion } from "../src/data/bindings/schema-version.ts";
 import { formatSpecimenName } from "../src/data/format.ts";
 import { compareSchemaVersions, parseSemanticVersion, readDataset } from "../src/data/load-dataset.ts";
 import { findDatasetDirectory, getDatasetDirectoryCandidates } from "../src/data/locate-dataset.ts";
-
-const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const fixtureDirectory = path.join(testDirectory, "fixtures");
+import { fixtureDirectory, readFixture } from "./fixture.ts";
 
 test("parseSemanticVersion splits a version into numbers", () =>
 {
@@ -35,15 +32,15 @@ test("compareSchemaVersions classifies versions against the supported one", () =
 
 test("readDataset reads a dataset with a supported schema", () =>
 {
-    const dataset = readDataset(fixtureDirectory, "3.5.0");
+    const dataset = readFixture();
 
-    assert.equal(dataset._metadata.schema_version, "3.5.0");
+    assert.equal(dataset._metadata.schema_version, bindingsSchemaVersion);
     assert.ok(dataset.genera.Tyrannosaurus);
 });
 
 test("a type specimen's nickname is read, unquoted, and shown in quotation marks", () =>
 {
-    const dataset = readDataset(fixtureDirectory, "3.5.0");
+    const dataset = readFixture();
     const nickname = dataset.genera.Australotitan.species[0].type_specimen?.nickname;
 
     assert.equal(nickname, "Cooper");

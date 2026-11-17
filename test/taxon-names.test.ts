@@ -1,14 +1,11 @@
 import * as assert from "node:assert/strict";
-import * as path from "node:path";
 import { test } from "node:test";
-import * as url from "node:url";
 
-import { readDataset } from "../src/data/load-dataset.ts";
 import type { ProseSegment } from "../src/data/taxon-names.ts";
 import { createTaxonNameIndex } from "../src/data/taxon-names.ts";
+import { readFixture } from "./fixture.ts";
 
-const testDirectory = path.dirname(url.fileURLToPath(import.meta.url));
-const dataset = readDataset(path.join(testDirectory, "fixtures"), "3.5.0");
+const dataset = readFixture();
 const index = createTaxonNameIndex(dataset);
 
 /**
