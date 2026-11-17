@@ -21,6 +21,7 @@
     "update-bindings": "node --experimental-strip-types scripts/update-bindings.ts",
     "create-test-fixture": "node --experimental-strip-types scripts/create-test-fixture.ts",
     "create-map-shapes": "node --experimental-strip-types scripts/create-map-shapes.ts",
+    "create-paleo-coastlines": "node --experimental-strip-types scripts/create-paleo-coastlines.ts",
     "create-social-image": "node --experimental-strip-types scripts/create-social-image.ts"
   },
   "devDependencies": {

@@ -29,9 +29,10 @@ npm run build     # write the site to dist/, then index it for search with Pagef
 npm run preview   # serve dist/ as it will be published, search included
 ```
 
-Two scripts regenerate committed files, and are run by hand when their inputs change:
-`npm run create-map-shapes` (the map outlines, see below) and `npm run create-social-image`
-(the link preview image, after a theme change).
+Three scripts regenerate committed files, and are run by hand when their inputs change:
+`npm run create-map-shapes` (the map outlines, see below), `npm run create-paleo-coastlines`
+(the ancient coastlines, see below) and `npm run create-social-image` (the link preview image,
+after a theme change).
 
 The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 [open-paleo/data](https://github.com/open-paleo/data) next to this repository, or set
@@ -147,6 +148,16 @@ time. Rerun it when the build warns that a region has no
 outline. Region codes Natural Earth records under an older code are mapped in the script; codes
 it has no outline for at all are listed in the file, and their species are shaded at country
 level.
+
+`public/paleo-coastlines/{stage}.json` holds the world's coastlines at the middle of each stage
+the dataset's species are dated to, Carnian to Maastrichtian, from the plate model of Wright et
+al. (2013) (the GPlates web service's GOLONKA; CC BY 3.0 AU). The data repository reconstructs
+each species' ancient position with the same model, so the dots and the coastlines match. These
+are today's coastlines moved to where the plates were, not ancient shorelines: they show where a
+place was, not the seaways of the time, and maps label them so. Each file is simplified (0.12°,
+land under 0.2 square degrees dropped) to about 60 KB compressed, and a map loads only the stage
+it shows. `npm run create-paleo-coastlines` rebuilds them from the GPlates web service; rerun it
+when the dataset gains a stage. Readers' browsers never contact GPlates.
 
 ## Code style
 
