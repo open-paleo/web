@@ -1,9 +1,5 @@
-// Draws the Tree page's chart with MapLibre, from tree/chart.json (src/data/tree-chart.ts).
-// Loaded by tree-chart.ts once the chart's data has arrived. The chart pans and zooms like a
-// map; clade names are ranked by how many genera they hold, so the largest show first and the
-// rest appear as there is room. Selecting a clade opens its page; selecting a tip opens a panel
-// listing its genera. The find field asks the chart to show a clade or genus with a
-// "tree-chart-find" event on its container.
+// Draws the Tree page's chart with MapLibre. Clicking a clade opens its page; clicking a tip
+// lists its genera. The find field sends a "tree-chart-find" event to show a clade or genus.
 
 import type { ExpressionSpecification, GeoJSONSource, GeoJSONSourceSpecification, MapLayerMouseEvent, StyleSpecification } from "maplibre-gl";
 import { Map as MapLibreMap, NavigationControl } from "maplibre-gl";
@@ -190,8 +186,8 @@ function createChartStyle(colors: TreeChartColors, chart: TreeChart): StyleSpeci
                 source: "labels",
                 filter: ["==", ["get", "kind"], "tip"],
                 layout: {
-                    // A tip clade's name over the summary of its genera; a tip of the genera placed
-                    // directly in a clade has only the summary.
+                    // A clade tip shows its name above its genus summary; a tip for a clade's own genera shows
+                    // only the summary.
                     "text-field": ["case", ["==", ["get", "name"], ""],
                         ["format",
                             ["get", "summaryItalic"], { "text-font": ["literal", italicLabelFont] },
@@ -376,8 +372,8 @@ function locateFindRequest(view: TreeChartView, request: TreeChartFindRequest): 
 }
 
 /**
- * Move the chart to a clade or genus the find field chose, ring it, and for a genus, open its
- * tip's panel with the genus marked.
+ * Move the chart to the clade or genus the find field chose and mark it; for a genus, also open
+ * its tip's panel with the genus highlighted.
  *
  * @param view - The chart.
  * @param request - What to show.

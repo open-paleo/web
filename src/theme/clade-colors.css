@@ -1,13 +1,6 @@
-/* Clade colors: one per clade listed in src/data/clade-colors.ts, and gray for every other
-   branch. The Tree page's chart colors each listed clade's branches with its color. Kept apart
-   from tokens.css because the list follows the dataset: when the tree grows, clades are added
-   or swapped here and in that list together.
-
-   test/clade-colors.test.ts checks them in CI: every pair, gray included, must stay at least 8
-   apart (OKLab x100) under normal vision and simulated protanopia, deuteranopia and tritanopia,
-   and each must reach 3:1 against --color-surface, the chart's background. The current light set
-   reaches 10, the dark set 8. A clade's dark color keeps its light hue. Clades are also named on
-   the chart and in its legend, so color is never the only cue. */
+/* One color per clade in src/data/clade-colors.ts, plus gray for the rest.
+   test/clade-colors.test.ts checks that they stay distinct for color-blind readers and have 3:1
+   contrast against --color-surface, the chart's background. */
 
 :root
 {

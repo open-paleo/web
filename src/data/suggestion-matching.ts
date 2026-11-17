@@ -1,7 +1,7 @@
 import type { SearchSuggestion, SuggestionKind } from "./search-suggestions.ts";
 
-// Matching names as the reader types, shared by the build and the browser script, so it imports
-// nothing that needs Node.
+// Matches typed text against names. The build and the browser both use it, so it imports
+// nothing from Node.
 
 /**
  * A suggestion with its name prepared for matching.
@@ -33,8 +33,8 @@ type ScoredSuggestion = {
     score: number;
 };
 
-// How well a name matches: the whole name, the start of the name, the start of a later word
-// (the epithet of a species), or anywhere in it.
+// Match scores, best first: the whole name, its start, the start of a later word (a species
+// epithet), anywhere in it.
 const exactScore = 4;
 const startScore = 3;
 const wordStartScore = 2;

@@ -1,8 +1,5 @@
-// The facts the privacy page states, kept here so the page and the site check read the same
-// list. The page states what the site sends each service, which depends on this site's code, and
-// links to each service's own policy for what it does with it, which depends on theirs. The site check (scripts/check-site.ts) records every off-site host the sample pages
-// contact and fails if a host isn't declared below, so a new outside service can't reach the
-// site without an entry here, and so without a place on the privacy page.
+// The outside services the privacy page lists. The site check fails if a page contacts a host
+// that isn't declared here.
 
 /**
  * An outside service that handles visitors' requests: the host serving the site, or a service a

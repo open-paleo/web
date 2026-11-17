@@ -54,7 +54,7 @@ function addCladeNames(clade: CladeEntry, siteData: SiteData, names: Array<TreeF
 }
 
 /**
- * List the names the Tree page's find field offers: every clade in the outline below and
+ * Get the names the Tree page's find field offers: every clade in the outline below and
  * including its top clade, and every genus placed in one of them.
  *
  * @param top - The outline's top clade (Dinosauria).

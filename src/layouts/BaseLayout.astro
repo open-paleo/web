@@ -64,19 +64,17 @@ const siteName = "Open Paleo";
 const documentTitle = title ? title + " | " + siteName : siteName;
 const homeUrl = import.meta.env.BASE_URL;
 const release = getSiteData().metadata;
-// Page views are counted with Plausible (see the privacy page) on the published site only:
-// local and CI builds have no site address, so they leave the counting script out.
+// Plausible counts page views on the published site only; local and CI builds have no site
+// address.
 const isCountingVisits = Astro.site !== undefined;
-// Plausible's queue, which holds calls made before its script has loaded, exactly as Plausible
-// gives it. It is emitted as text, since it follows Plausible's style rather than this site's.
+// Plausible's queue snippet, verbatim. It's emitted as text because it doesn't follow this
+// site's code style.
 const plausibleQueueScript = "window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()";
 // The canonical address and the sitemap link need the site's address, which local builds lack.
 const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 const sitemapUrl = Astro.site ? new URL(homeUrl + "sitemap-index.xml", Astro.site).href : undefined;
-// Link previews (Open Graph, read by Slack, Mastodon, iMessage and others, and Twitter cards)
-// show the page's title and description over one site-wide image, drawn by
-// scripts/create-social-image.ts. Their image and address must be absolute, so like the
-// canonical link they appear only where the site's address is known.
+// Link previews (Open Graph and Twitter cards) need absolute addresses, so like the canonical
+// link they're only added when the site's address is known.
 const previewImageUrl = Astro.site ? new URL(homeUrl + "social-preview.png", Astro.site).href : undefined;
 const previewImageDescription = siteName + ": a community-maintained phylogenetic dataset for paleontology, over the Triassic, Jurassic and Cretaceous periods in the colors of the geologic time scale.";
 const navigationItems: Array<NavigationItem> = [
@@ -222,9 +220,8 @@ const navigationItems: Array<NavigationItem> = [
         padding-inline: max(var(--space-4), env(safe-area-inset-left, 0px)) max(var(--space-4), env(safe-area-inset-right, 0px));
     }
 
-    /* The page is at least as tall as the window, and the main content takes the height left
-       over, so on a short page the footer sits at the bottom of the window instead of leaving
-       a gap below it. svh rather than vh, so mobile browser bars don't hide the footer. */
+    /* Keeps the footer at the bottom of short pages: the body is at least as tall as the window
+       and the main content takes the leftover height. svh, so mobile browser bars can't hide it. */
     body
     {
         display: flex;
@@ -233,8 +230,8 @@ const navigationItems: Array<NavigationItem> = [
         min-height: 100svh;
     }
 
-    /* Grows to fill the space; the full width keeps its centered column from shrinking to its
-       content, which a flex item with automatic side margins otherwise would. */
+    /* Full width, because a flex item with automatic side margins would otherwise shrink to its
+       content. */
     .site-main
     {
         flex: 1 0 auto;
@@ -259,8 +256,7 @@ const navigationItems: Array<NavigationItem> = [
         padding-block: var(--space-6) var(--space-7);
     }
 
-    /* Keeps the wordmark and its line together at the top; without it, the row (as tall as the
-       links beside it) stretches the gap between them. */
+    /* Keeps the wordmark and its line together instead of spreading them to the links' height. */
     .footer-about
     {
         display: grid;
@@ -400,8 +396,7 @@ const navigationItems: Array<NavigationItem> = [
         color: var(--color-header-muted);
     }
 
-    /* The name suggestions under a search field (src/scripts/search-suggestions.ts), on the
-       header's field and the home page's. The script creates them, so they are global here. */
+    /* Suggestion lists under the search fields; global because the script creates them. */
     .site-search,
     :global(.home-search-row)
     {

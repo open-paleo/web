@@ -1,7 +1,5 @@
-// Name suggestions under the search fields (the header's and the home page's), as the reader
-// types. Each field marked with data-suggestions becomes a combobox (name-combobox.ts) listing
-// the best-matching genera, species, clades and synonyms, each opening its page, with a last row
-// that runs the full-text search. The names load the first time a field is used.
+// Name suggestions for the header and home page search fields, with a last row that runs the
+// full-text search.
 
 import type { SearchSuggestion } from "../data/search-suggestions.ts";
 import type { PreparedSuggestion } from "../data/suggestion-matching.ts";

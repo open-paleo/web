@@ -1,11 +1,9 @@
 import { coloredCladeNames, createCladeColorToken } from "./clade-colors.ts";
 import type { CladeEntry, SiteData } from "./site-data.ts";
 
-// The Tree page's chart: the classification from Dinosauria down, drawn left to right, with the
-// genera summarized. A clade with no clades below it is a tip itself; a clade with both
-// subclades and genera of its own gets one more tip for those genera. Each tip ends one step past
-// its parent. The layout is written as GeoJSON in Web Mercator coordinates, so MapLibre, which
-// draws the site's maps, can pan and zoom it like a map.
+// Lays out the Tree page's chart as GeoJSON, so MapLibre can pan and zoom it. A clade with no
+// subclades is a tip; a clade with both subclades and genera of its own gets an extra tip for
+// those genera.
 
 /**
  * A longitude and latitude.
@@ -355,8 +353,7 @@ type ChartScale = {
     top: number;
 };
 
-// How far one step of depth reaches, in rows: wide enough that the branches spread across the
-// chart instead of bunching on the left.
+// The width of one depth step, in rows: wide enough that branches don't bunch up on the left.
 const stepWidth = 4.5;
 
 // Room past a tip for its label, in steps of depth.
@@ -470,9 +467,8 @@ function findDeepestTip(node: ChartNode): number
 }
 
 /**
- * Turn a position in the layout, in steps of depth across and rows down, into a longitude and
- * latitude. Web Mercator is conformal, so placing the layout linearly in its world square keeps
- * distances on screen true at every zoom.
+ * Convert a layout position (depth steps across, rows down) to longitude and latitude. Web
+ * Mercator is conformal, so a linear placement keeps on-screen distances true at every zoom.
  *
  * @param depth - Steps of depth from the top clade.
  * @param row - Rows from the top.
@@ -612,8 +608,8 @@ function createBranch(coordinates: Array<LngLat>, group: string, isTip: boolean)
 }
 
 /**
- * Find the clade the Tree page's chart and outline start from: the first clade with a record of
- * its own (today Dinosauria). The ranks above it carry no record and have no page.
+ * Find the first clade with a record (Dinosauria today), where the Tree page's chart and outline
+ * start.
  *
  * @param siteData - The lookup tables.
  * @returns The clade, or undefined if no clade has a record.

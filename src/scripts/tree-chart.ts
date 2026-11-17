@@ -1,6 +1,4 @@
-// Shows the Tree page's chart. Loads the chart's data (tree/chart.json), then
-// tree-chart-renderer.ts, which brings in MapLibre and draws it, so only the Tree page loads
-// MapLibre for the chart. Without JavaScript the chart stays hidden and the outline below it lists
+// Loads the Tree page's chart data and renderer. Without JavaScript, the outline below lists
 // the same clades.
 
 import type { TreeChart } from "../data/tree-chart.ts";

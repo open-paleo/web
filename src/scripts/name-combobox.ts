@@ -1,9 +1,5 @@
-// A text field that lists matching names as the reader types: the WAI-ARIA combobox pattern. A
-// list of the best matches opens below the field, the arrow keys move through it, Enter chooses
-// the highlighted row (with none highlighted, the field's form submits as usual), and Escape
-// closes it. Used by the header and home page search fields (search-suggestions.ts) and the Tree
-// page's find field; each supplies its names, the note beside each name, and what choosing one
-// does.
+// A text field with a list of matching names (the WAI-ARIA combobox pattern), shared by the
+// header search and the Tree and References pages' find fields.
 
 import type { SearchSuggestion, SuggestionKind } from "../data/search-suggestions.ts";
 import type { PreparedSuggestion } from "../data/suggestion-matching.ts";
@@ -211,8 +207,7 @@ async function showMatches(combobox: NameCombobox): Promise<void>
     const suggestions = findSuggestions(query, await combobox.settings.loadNames(), combobox.settings.limit);
     const queryRow = combobox.settings.queryRow;
 
-    // A slower load can finish after the reader has typed on; only the latest text counts, and
-    // the call for it updates the list.
+    // Ignore a result the reader has typed past; the call for the newer text updates the list.
     if (combobox.input.value.trim() !== query)
     {
         return;
@@ -351,8 +346,7 @@ export function connectNameCombobox(input: HTMLInputElement, settings: NameCombo
     input.addEventListener("keydown", (event) => handleKey(combobox, event));
     input.addEventListener("blur", () => closeList(combobox));
 
-    // Pressing a row must not take the focus from the field, or the list would close before the
-    // click lands.
+    // Keep the focus in the field when a row is pressed, or the list would close before the click.
     list.addEventListener("mousedown", (event) => event.preventDefault());
     list.addEventListener("click", (event) => handleListClick(combobox, event));
 }

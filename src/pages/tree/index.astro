@@ -10,8 +10,8 @@ import { createPagePath } from "../../data/urls.ts";
 
 const siteData = getSiteData();
 
-// The chart and the outline start at the first clade with a record of its own (Dinosauria): the
-// ranks above it carry no record and have no page.
+// The chart and outline start at the first clade with a record (Dinosauria); the ranks above it
+// have no pages.
 const top = findTreeTop(siteData);
 
 const cladeCount = siteData.metadata.clade_count;

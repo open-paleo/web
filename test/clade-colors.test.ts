@@ -6,9 +6,8 @@ import * as url from "node:url";
 
 import { coloredCladeNames, createCladeColorToken, otherCladeColorToken } from "../src/data/clade-colors.ts";
 
-// Checks the clade colors in src/theme/clade-colors.css: one light and one dark color for every
-// clade in src/data/clade-colors.ts and for the rest, distinct from one another under normal
-// vision and simulated color-vision deficiencies, and readable as lines on the chart's background.
+// Checks the clade colors: set in both themes, distinct for color-blind readers, and readable on
+// the chart's background.
 
 /**
  * A color in linear sRGB, each channel from 0 to 1.
