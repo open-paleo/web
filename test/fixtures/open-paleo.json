@@ -1,7 +1,7 @@
 {
   "_metadata": {
     "attribution": "Open Paleo contributors",
-    "built_at": "2026-11-17T20:00:57.189Z",
+    "built_at": "2026-11-17T22:11:42.402Z",
     "clade_count": 44,
     "genus_count": 12,
     "license": "CC-BY-4.0",
@@ -10,7 +10,7 @@
       "citation": "Wright, N.; Zahirovic, S.; Müller, R. D.; Seton, M. (2013). Towards community-driven paleogeographic reconstructions: integrating open-access paleogeographic and paleobiology data with plate tectonics. Biogeosciences 10(3): 1529-1541. doi:10.5194/bg-10-1529-2013",
       "license": "CC-BY-3.0-AU"
     },
-    "schema_version": "3.5.0",
+    "schema_version": "4.0.0",
     "version": "2026.11"
   },
   "timescale": {

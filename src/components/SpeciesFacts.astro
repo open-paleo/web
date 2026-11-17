@@ -29,6 +29,8 @@ const { species } = Astro.props;
 const specimen = species.type_specimen;
 const specimenIds = specimen?.specimen_id ?? [];
 const specimenType = formatSpecimenType(specimen?.specimen_type, specimenIds.length);
+// "Not cataloged" already says what the status "uncataloged" would.
+const specimenStatus = specimen?.status === "uncataloged" && specimenIds.length === 0 ? undefined : specimen?.status;
 const location = species.location;
 const units = location ? formatStratigraphicUnits(location) : "";
 const place = location ? formatPlace(location) : "";
@@ -49,7 +51,7 @@ const locality = location ? joinNonEmpty([location.locality ?? "", place]) : "";
                 {/* Written without line breaks between the parts: a break would render as a space before the comma. */}
                 {specimenIds.length > 0
                     ? specimenIds.map((id, index) => <><span class="catalog-number">{id}</span>{index < specimenIds.length - 1 ? ", " : ""}</>)
-                    : "Not catalogued"}{specimen.institution && <>, {specimen.institution}</>}{specimen.status && <span class="specimen-status"> ({specimen.status})</span>}
+                    : "Not cataloged"}{specimen.institution && <>, {specimen.institution}</>}{specimenStatus && <span class="specimen-status"> ({specimenStatus})</span>}
             </dd>
         </>
     )}

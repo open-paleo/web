@@ -6,6 +6,12 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ## 2026-11-17
 
+### Changed
+
+- The site reads the dataset's schema 4.0.0, which spells the holotype status "uncataloged". A
+  type specimen without a catalog number reads "Not cataloged" (it said "Not catalogued"), and
+  no longer repeats that as its status
+
 ### Added
 
 - Genus maps can show where each species was when it lived: a switch between "Today" and each

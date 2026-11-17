@@ -49,7 +49,9 @@ test("a type specimen's nickname is read, unquoted, and shown in quotation marks
 
 test("readDataset refuses a different major schema version", () =>
 {
-    assert.throws(() => readDataset(fixtureDirectory, "4.0.0"), /breaking change/);
+    const nextMajor = (parseSemanticVersion(bindingsSchemaVersion).major + 1) + ".0.0";
+
+    assert.throws(() => readDataset(fixtureDirectory, nextMajor), /breaking change/);
 });
 
 test("the override directory is searched first", () =>
