@@ -3,7 +3,7 @@
     "schema_version": "1.1.0",
     "license": "CC-BY-4.0",
     "attribution": "Open Paleo contributors",
-    "term_count": 87
+    "term_count": 212
   },
   "categories": [
     {
@@ -58,6 +58,51 @@
     }
   ],
   "terms": {
+    "acetabulum": {
+      "term": "acetabulum",
+      "category": "anatomy/limbs",
+      "forms": [
+        "acetabulum",
+        "acetabula",
+        "acetabular",
+        "supraacetabular"
+      ],
+      "definition": "The hip socket, where the thighbone meets the hips. In dinosaurs it is open in the middle. Supraacetabular means \"above the hip socket\".",
+      "etymology": "Latin, \"vinegar cup\".",
+      "see_also": [
+        "pelvis",
+        "femur"
+      ]
+    },
+    "acromion": {
+      "term": "acromion",
+      "category": "anatomy/limbs",
+      "forms": [
+        "acromion",
+        "acromial",
+        "acromion process"
+      ],
+      "definition": "A projection near the top of the shoulder blade, where shoulder muscles attach.",
+      "etymology": "Greek akron, \"tip\", and omos, \"shoulder\".",
+      "see_also": [
+        "scapula"
+      ]
+    },
+    "alveolus": {
+      "term": "alveolus",
+      "category": "anatomy/skull",
+      "forms": [
+        "alveolus",
+        "alveoli",
+        "alveolar"
+      ],
+      "definition": "A tooth socket in the jaw. Alveolar means \"of the tooth sockets\".",
+      "etymology": "Latin, \"small hollow\".",
+      "see_also": [
+        "dentary",
+        "maxilla"
+      ]
+    },
     "amphicoelous": {
       "term": "amphicoelous",
       "category": "anatomy/vertebrae",
@@ -86,6 +131,34 @@
         "posterior"
       ]
     },
+    "antorbital-fenestra": {
+      "term": "antorbital fenestra",
+      "category": "anatomy/skull",
+      "forms": [
+        "antorbital fenestra",
+        "antorbital fenestrae",
+        "antorbital",
+        "antorbital fossa"
+      ],
+      "definition": "An opening in the side of the skull between the nostril and the eye socket. The antorbital fossa is the hollow around it.",
+      "etymology": "Latin ante, \"before\", orbita, the eye socket, and fenestra, \"window\".",
+      "see_also": [
+        "fenestra",
+        "naris"
+      ]
+    },
+    "appendicular": {
+      "term": "appendicular",
+      "category": "anatomy/limbs",
+      "forms": [
+        "appendicular",
+        "appendicular skeleton"
+      ],
+      "definition": "Of the limbs and of the shoulder and hip bones they attach to, as opposed to the skull and backbone.",
+      "see_also": [
+        "axial-skeleton"
+      ]
+    },
     "articulated": {
       "term": "articulated",
       "category": "specimens",
@@ -93,11 +166,28 @@
         "articulated",
         "disarticulated",
         "semi-articulated",
-        "partially articulated"
+        "partially articulated",
+        "in articulation"
       ],
       "definition": "Of bones: found still joined together as they were in life. Disarticulated bones were found separated from each other.",
       "see_also": [
         "associated-skeleton"
+      ]
+    },
+    "articulation": {
+      "term": "articulation",
+      "category": "anatomy/general",
+      "forms": [
+        "articulation",
+        "articulations",
+        "articular"
+      ],
+      "definition": "A joint between bones. Articular means \"forming a joint\".",
+      "etymology": "Latin articulus, \"small joint\".",
+      "see_also": [
+        "condyle",
+        "facet",
+        "articulated"
       ]
     },
     "associated-skeleton": {
@@ -115,6 +205,40 @@
         "isolated"
       ]
     },
+    "astragalus": {
+      "term": "astragalus",
+      "category": "anatomy/limbs",
+      "forms": [
+        "astragalus",
+        "astragali",
+        "astragalar"
+      ],
+      "definition": "An ankle bone at the bottom of the shinbone. In many dinosaurs it sends a tall plate, the ascending process, up the front of the shin.",
+      "etymology": "Greek astragalos, \"ankle bone\".",
+      "see_also": [
+        "calcaneum",
+        "tibia"
+      ]
+    },
+    "atlas": {
+      "term": "atlas",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "atlas",
+        "atlantes"
+      ],
+      "definition": "The first vertebra of the neck, on which the skull rests and turns.",
+      "exceptions": [
+        "High Atlas",
+        "Middle Atlas",
+        "Atlas Mountains"
+      ],
+      "etymology": "Atlas of Greek myth, who held up the heavens.",
+      "see_also": [
+        "cervical-vertebra",
+        "intercentrum"
+      ]
+    },
     "autapomorphy": {
       "term": "autapomorphy",
       "category": "phylogenetics",
@@ -128,6 +252,51 @@
       "see_also": [
         "synapomorphy",
         "plesiomorphic"
+      ]
+    },
+    "axial-skeleton": {
+      "term": "axial skeleton",
+      "category": "anatomy/general",
+      "forms": [
+        "axial skeleton",
+        "axial skeletons",
+        "axial elements",
+        "axial material",
+        "axial column",
+        "axial remains"
+      ],
+      "definition": "The skull, backbone and ribs, as opposed to the limbs and the bones they attach to.",
+      "see_also": [
+        "appendicular"
+      ]
+    },
+    "basin": {
+      "term": "basin",
+      "category": "geology",
+      "forms": [
+        "basin",
+        "basins"
+      ],
+      "definition": "A low-lying region where sediment built up over a long time, forming the layers of rock that fossils are found in.",
+      "see_also": [
+        "formation"
+      ]
+    },
+    "basisphenoid": {
+      "term": "basisphenoid",
+      "category": "anatomy/skull",
+      "forms": [
+        "basisphenoid",
+        "basisphenoids",
+        "parabasisphenoid",
+        "basipterygoid",
+        "basipterygoid process",
+        "basipterygoid processes"
+      ],
+      "definition": "A bone of the floor of the braincase. Its basipterygoid processes reach down and forward to meet the palate.",
+      "see_also": [
+        "braincase",
+        "palate"
       ]
     },
     "bipedal": {
@@ -155,6 +324,75 @@
         "bone beds"
       ],
       "definition": "A layer of rock packed with the bones of many animals, often buried together."
+    },
+    "boss": {
+      "term": "boss",
+      "category": "anatomy/general",
+      "forms": [
+        "boss",
+        "bosses"
+      ],
+      "definition": "A rounded, thickened bump of bone, such as the bosses on the snouts of some horned dinosaurs.",
+      "see_also": [
+        "rugose"
+      ]
+    },
+    "braincase": {
+      "term": "braincase",
+      "category": "anatomy/skull",
+      "forms": [
+        "braincase",
+        "braincases"
+      ],
+      "definition": "The box of bone around the brain, at the back of the skull.",
+      "see_also": [
+        "cranium",
+        "occiput"
+      ]
+    },
+    "calcaneum": {
+      "term": "calcaneum",
+      "category": "anatomy/limbs",
+      "forms": [
+        "calcaneum",
+        "calcaneus",
+        "calcanea"
+      ],
+      "definition": "An ankle bone at the bottom of the fibula, beside the astragalus.",
+      "etymology": "Latin calx, \"heel\".",
+      "see_also": [
+        "astragalus",
+        "fibula"
+      ]
+    },
+    "carina": {
+      "term": "carina",
+      "category": "anatomy/skull",
+      "forms": [
+        "carina",
+        "carinae"
+      ],
+      "definition": "The sharp cutting edge along the front or back of a tooth, often lined with denticles.",
+      "etymology": "Latin, \"keel\".",
+      "see_also": [
+        "denticle",
+        "tooth-crown"
+      ]
+    },
+    "carpal": {
+      "term": "carpal",
+      "category": "anatomy/limbs",
+      "forms": [
+        "carpal",
+        "carpals",
+        "carpus"
+      ],
+      "definition": "One of the small bones of the wrist. The carpus is the wrist.",
+      "etymology": "Greek karpos, \"wrist\".",
+      "see_also": [
+        "metacarpal",
+        "manus"
+      ]
     },
     "caudal-vertebra": {
       "term": "caudal vertebra",
@@ -264,6 +502,20 @@
         "sister-taxon"
       ]
     },
+    "cnemial-crest": {
+      "term": "cnemial crest",
+      "category": "anatomy/limbs",
+      "forms": [
+        "cnemial crest",
+        "cnemial crests",
+        "cnemial"
+      ],
+      "definition": "A ridge at the front of the top of the shinbone, where the muscles that straighten the knee attach.",
+      "etymology": "Greek kneme, \"shin\".",
+      "see_also": [
+        "tibia"
+      ]
+    },
     "combined-directions": {
       "term": "combined directions",
       "category": "direction",
@@ -311,6 +563,21 @@
         "proximal"
       ]
     },
+    "condyle": {
+      "term": "condyle",
+      "category": "anatomy/general",
+      "forms": [
+        "condyle",
+        "condyles",
+        "intercondylar"
+      ],
+      "definition": "A rounded knob at the end of a bone that forms part of a joint.",
+      "etymology": "Greek kondylos, \"knuckle\".",
+      "see_also": [
+        "articulation",
+        "facet"
+      ]
+    },
     "consensus-tree": {
       "term": "consensus tree",
       "category": "phylogenetics",
@@ -340,6 +607,64 @@
         "synapomorphy"
       ]
     },
+    "coracoid": {
+      "term": "coracoid",
+      "category": "anatomy/limbs",
+      "forms": [
+        "coracoid",
+        "coracoids"
+      ],
+      "definition": "A plate of bone at the lower end of the shoulder blade, forming part of the shoulder joint.",
+      "etymology": "Greek korax, \"crow\", after its beak-like shape in mammals.",
+      "see_also": [
+        "scapula",
+        "glenoid"
+      ]
+    },
+    "coronoid": {
+      "term": "coronoid",
+      "category": "anatomy/skull",
+      "forms": [
+        "coronoid",
+        "coronoid process",
+        "coronoid processes",
+        "coronoid eminence"
+      ],
+      "definition": "A raised part of the lower jaw, behind the teeth, where jaw-closing muscles attach. In some dinosaurs it is a separate small bone.",
+      "etymology": "Greek korone, \"crow\", after its beak-like shape.",
+      "see_also": [
+        "mandible"
+      ]
+    },
+    "cranium": {
+      "term": "cranium",
+      "category": "anatomy/skull",
+      "forms": [
+        "cranium",
+        "crania",
+        "cranial",
+        "cranially"
+      ],
+      "definition": "The skull, or the part of it that encloses the brain. Cranial means \"of the skull\"; cranially means \"toward the head\".",
+      "etymology": "Greek kranion, \"skull\".",
+      "see_also": [
+        "braincase",
+        "postcranial"
+      ]
+    },
+    "crest": {
+      "term": "crest",
+      "category": "anatomy/general",
+      "forms": [
+        "crest",
+        "crests"
+      ],
+      "definition": "A ridge or blade of bone, such as the hollow crests on the heads of some hadrosaurs.",
+      "see_also": [
+        "deltopectoral-crest",
+        "cnemial-crest"
+      ]
+    },
     "cursorial": {
       "term": "cursorial",
       "category": "biology",
@@ -349,6 +674,19 @@
       "definition": "Built for running, with long, slender legs.",
       "etymology": "Latin cursor, \"runner\"."
     },
+    "deltopectoral-crest": {
+      "term": "deltopectoral crest",
+      "category": "anatomy/limbs",
+      "forms": [
+        "deltopectoral crest",
+        "deltopectoral crests",
+        "deltopectoral"
+      ],
+      "definition": "A ridge on the upper arm bone where the shoulder and chest muscles attach.",
+      "see_also": [
+        "humerus"
+      ]
+    },
     "dental-battery": {
       "term": "dental battery",
       "category": "anatomy/skull",
@@ -357,6 +695,49 @@
         "dental batteries"
       ],
       "definition": "Rows of tightly packed teeth that worked together as one grinding or slicing surface, with new teeth constantly growing in to replace worn ones, as in hadrosaurs and ceratopsids."
+    },
+    "dentary": {
+      "term": "dentary",
+      "category": "anatomy/skull",
+      "forms": [
+        "dentary",
+        "dentaries"
+      ],
+      "definition": "The main bone of the lower jaw, which carries the lower teeth.",
+      "etymology": "Latin dens, \"tooth\".",
+      "see_also": [
+        "mandible",
+        "maxilla"
+      ]
+    },
+    "denticle": {
+      "term": "denticle",
+      "category": "anatomy/skull",
+      "forms": [
+        "denticle",
+        "denticles",
+        "serration",
+        "serrations",
+        "serrated",
+        "unserrated"
+      ],
+      "definition": "One of the small bumps along the cutting edge of a tooth, like the teeth of a saw. Serrated teeth have them.",
+      "etymology": "Latin denticulus, \"small tooth\".",
+      "see_also": [
+        "carina"
+      ]
+    },
+    "deposit": {
+      "term": "deposit",
+      "category": "geology",
+      "forms": [
+        "deposit",
+        "deposits"
+      ],
+      "definition": "Sediment laid down by water, wind or other means, which can harden into rock.",
+      "see_also": [
+        "strata"
+      ]
     },
     "derived": {
       "term": "derived",
@@ -371,6 +752,49 @@
       "see_also": [
         "early-diverging",
         "plesiomorphic"
+      ]
+    },
+    "diagnosis": {
+      "term": "diagnosis",
+      "category": "naming",
+      "forms": [
+        "diagnosis",
+        "diagnoses",
+        "diagnostic"
+      ],
+      "definition": "The list of features that sets a species or genus apart from its relatives, published with its name or in a later study. A diagnostic feature is one that identifies it.",
+      "etymology": "Greek, \"distinguishing\".",
+      "see_also": [
+        "autapomorphy",
+        "nomen-dubium"
+      ]
+    },
+    "diapophysis": {
+      "term": "diapophysis",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "diapophysis",
+        "diapophyses",
+        "diapophyseal"
+      ],
+      "definition": "A projection on the side of a vertebra where the upper head of a rib attaches.",
+      "etymology": "Greek dia, \"across\", and apophysis, \"offshoot\".",
+      "see_also": [
+        "parapophysis",
+        "transverse-process"
+      ]
+    },
+    "diastema": {
+      "term": "diastema",
+      "category": "anatomy/skull",
+      "forms": [
+        "diastema",
+        "diastemata"
+      ],
+      "definition": "A gap in the tooth row, such as the one between the beak and the cheek teeth of many plant-eating dinosaurs.",
+      "etymology": "Greek, \"interval\".",
+      "see_also": [
+        "predentary"
       ]
     },
     "distal": {
@@ -437,6 +861,77 @@
         "derived"
       ]
     },
+    "edentulous": {
+      "term": "edentulous",
+      "category": "anatomy/skull",
+      "forms": [
+        "edentulous"
+      ],
+      "definition": "Toothless.",
+      "etymology": "Latin edentulus, \"toothless\".",
+      "see_also": [
+        "predentary"
+      ]
+    },
+    "epiparietal": {
+      "term": "epiparietal",
+      "category": "anatomy/skull",
+      "forms": [
+        "epiparietal",
+        "epiparietals",
+        "epoccipital",
+        "epoccipitals",
+        "episquamosal",
+        "episquamosals"
+      ],
+      "definition": "One of the bony points along the edge of a horned dinosaur's frill.",
+      "etymology": "Greek epi, \"upon\", and parietal.",
+      "see_also": [
+        "frill",
+        "parietal"
+      ]
+    },
+    "epipophysis": {
+      "term": "epipophysis",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "epipophysis",
+        "epipophyses",
+        "epipophyseal"
+      ],
+      "definition": "A bony projection above the postzygapophysis of a neck vertebra, where neck muscles attached.",
+      "etymology": "Greek epi, \"upon\", and apophysis, \"offshoot\".",
+      "see_also": [
+        "zygapophysis",
+        "cervical-vertebra"
+      ]
+    },
+    "epoch": {
+      "term": "epoch",
+      "category": "geology",
+      "forms": [
+        "epoch",
+        "epochs"
+      ],
+      "definition": "A division of geologic time within a period, such as the Late Cretaceous within the Cretaceous.",
+      "etymology": "Greek epoche, \"pause\".",
+      "see_also": [
+        "stage"
+      ]
+    },
+    "facet": {
+      "term": "facet",
+      "category": "anatomy/general",
+      "forms": [
+        "facet",
+        "facets"
+      ],
+      "definition": "A small, flat surface where one bone meets another.",
+      "see_also": [
+        "articulation",
+        "condyle"
+      ]
+    },
     "family": {
       "term": "family",
       "category": "naming",
@@ -452,6 +947,108 @@
         "clade"
       ]
     },
+    "femur": {
+      "term": "femur",
+      "category": "anatomy/limbs",
+      "forms": [
+        "femur",
+        "femora",
+        "femurs",
+        "femoral"
+      ],
+      "definition": "The thighbone. Femoral means \"of the femur\".",
+      "etymology": "Latin, \"thigh\".",
+      "see_also": [
+        "trochanter",
+        "tibia"
+      ]
+    },
+    "fenestra": {
+      "term": "fenestra",
+      "category": "anatomy/general",
+      "forms": [
+        "fenestra",
+        "fenestrae"
+      ],
+      "definition": "A large opening in a bone or between bones, especially in the skull.",
+      "etymology": "Latin, \"window\".",
+      "see_also": [
+        "antorbital-fenestra",
+        "temporal-fenestra",
+        "foramen"
+      ]
+    },
+    "fibula": {
+      "term": "fibula",
+      "category": "anatomy/limbs",
+      "forms": [
+        "fibula",
+        "fibulae",
+        "fibular"
+      ],
+      "definition": "The thin bone beside the shinbone in the lower leg.",
+      "etymology": "Latin, \"clasp\".",
+      "see_also": [
+        "tibia",
+        "calcaneum"
+      ]
+    },
+    "flange": {
+      "term": "flange",
+      "category": "anatomy/general",
+      "forms": [
+        "flange",
+        "flanges"
+      ],
+      "definition": "A thin rim or plate of bone that sticks out.",
+      "see_also": [
+        "process"
+      ]
+    },
+    "foramen": {
+      "term": "foramen",
+      "category": "anatomy/general",
+      "forms": [
+        "foramen",
+        "foramina"
+      ],
+      "definition": "A hole through a bone, for a nerve or blood vessel to pass through.",
+      "etymology": "Latin, \"opening\".",
+      "see_also": [
+        "fenestra",
+        "neurovascular"
+      ]
+    },
+    "formation": {
+      "term": "formation",
+      "category": "geology",
+      "forms": [
+        "formation",
+        "formations"
+      ],
+      "definition": "A body of rock that geologists map and name as a unit, such as the Hell Creek Formation. Fossils are dated and compared by the formations they come from.",
+      "exceptions": [
+        "formation of"
+      ],
+      "see_also": [
+        "stage",
+        "strata"
+      ]
+    },
+    "fossa": {
+      "term": "fossa",
+      "category": "anatomy/general",
+      "forms": [
+        "fossa",
+        "fossae"
+      ],
+      "definition": "A shallow hollow in a bone.",
+      "etymology": "Latin, \"ditch\".",
+      "see_also": [
+        "foramen",
+        "sulcus"
+      ]
+    },
     "fragmentary": {
       "term": "fragmentary",
       "category": "specimens",
@@ -461,6 +1058,102 @@
       "definition": "Of a fossil: known only from broken or incomplete pieces.",
       "see_also": [
         "nomen-dubium"
+      ]
+    },
+    "frill": {
+      "term": "frill",
+      "category": "anatomy/skull",
+      "forms": [
+        "frill",
+        "frills"
+      ],
+      "definition": "The bony shield that extends back over the neck from the skull of a horned dinosaur.",
+      "see_also": [
+        "parietal",
+        "squamosal",
+        "epiparietal"
+      ]
+    },
+    "frontal": {
+      "term": "frontal",
+      "category": "anatomy/skull",
+      "forms": [
+        "frontal",
+        "frontals"
+      ],
+      "definition": "One of the paired bones of the skull roof above the eyes.",
+      "etymology": "Latin frons, \"forehead\".",
+      "see_also": [
+        "parietal",
+        "prefrontal"
+      ]
+    },
+    "furcula": {
+      "term": "furcula",
+      "category": "anatomy/limbs",
+      "forms": [
+        "furcula",
+        "furculae",
+        "wishbone"
+      ],
+      "definition": "The wishbone: the fused collarbones of theropod dinosaurs, including birds.",
+      "etymology": "Latin, \"little fork\".",
+      "see_also": [
+        "sternum"
+      ]
+    },
+    "fused": {
+      "term": "fused",
+      "category": "anatomy/general",
+      "forms": [
+        "fused",
+        "unfused",
+        "co-ossified",
+        "coossified",
+        "fusion"
+      ],
+      "definition": "Of bones: grown together into one. Bones often fuse as an animal matures, so unfused bones can mark a young animal.",
+      "see_also": [
+        "suture",
+        "juvenile"
+      ]
+    },
+    "gastralia": {
+      "term": "gastralia",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "gastralia",
+        "gastralium"
+      ],
+      "definition": "Belly ribs: thin bones in the wall of the belly that are not attached to the backbone.",
+      "etymology": "Greek gaster, \"belly\"."
+    },
+    "girdle": {
+      "term": "girdle",
+      "category": "anatomy/general",
+      "forms": [
+        "girdle",
+        "girdles"
+      ],
+      "definition": "The bones a pair of limbs attach to: the shoulder bones for the forelimbs and the hip bones for the hindlimbs.",
+      "see_also": [
+        "pectoral-girdle",
+        "pelvis"
+      ]
+    },
+    "glenoid": {
+      "term": "glenoid",
+      "category": "anatomy/limbs",
+      "forms": [
+        "glenoid",
+        "glenoid fossa",
+        "glenoid cavity"
+      ],
+      "definition": "The socket of the shoulder joint, where the upper arm bone meets the shoulder bones.",
+      "etymology": "Greek glene, \"socket\".",
+      "see_also": [
+        "scapula",
+        "humerus"
       ]
     },
     "gondwana": {
@@ -475,6 +1168,18 @@
       "see_also": [
         "laurasia",
         "pangaea"
+      ]
+    },
+    "gracile": {
+      "term": "gracile",
+      "category": "anatomy/general",
+      "forms": [
+        "gracile"
+      ],
+      "definition": "Slender and lightly built.",
+      "etymology": "Latin gracilis, \"slender\".",
+      "see_also": [
+        "robust"
       ]
     },
     "grade": {
@@ -505,6 +1210,77 @@
         "referred-specimen"
       ]
     },
+    "horncore": {
+      "term": "horncore",
+      "category": "anatomy/skull",
+      "forms": [
+        "horncore",
+        "horncores",
+        "horn core",
+        "horn cores"
+      ],
+      "definition": "The bony core of a horn, which in life was covered by a sheath of horn.",
+      "see_also": [
+        "frill"
+      ]
+    },
+    "humerus": {
+      "term": "humerus",
+      "category": "anatomy/limbs",
+      "forms": [
+        "humerus",
+        "humeri",
+        "humeral"
+      ],
+      "definition": "The upper arm bone. Humeral means \"of the humerus\".",
+      "etymology": "Latin umerus, \"shoulder\".",
+      "see_also": [
+        "deltopectoral-crest",
+        "radius",
+        "ulna"
+      ]
+    },
+    "hypertrophied": {
+      "term": "hypertrophied",
+      "category": "anatomy/general",
+      "forms": [
+        "hypertrophied",
+        "hypertrophy"
+      ],
+      "definition": "Enlarged far beyond the usual size.",
+      "etymology": "Greek hyper, \"over\", and trophe, \"nourishment\"."
+    },
+    "hyposphene": {
+      "term": "hyposphene",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "hyposphene",
+        "hyposphenes",
+        "hypantrum",
+        "hypantra",
+        "hyposphene-hypantrum"
+      ],
+      "definition": "An extra joint between back vertebrae: a wedge below the joint surfaces at the back of one vertebra, the hyposphene, fits into a notch, the hypantrum, in the next.",
+      "etymology": "Greek hypo, \"below\", and sphen, \"wedge\".",
+      "see_also": [
+        "zygapophysis"
+      ]
+    },
+    "ilium": {
+      "term": "ilium",
+      "category": "anatomy/limbs",
+      "forms": [
+        "ilium",
+        "ilia",
+        "iliac"
+      ],
+      "definition": "The upper hip bone, joined to the backbone.",
+      "etymology": "Latin, \"flank\".",
+      "see_also": [
+        "pelvis",
+        "preacetabular-process"
+      ]
+    },
     "incertae-sedis": {
       "term": "incertae sedis",
       "category": "naming",
@@ -513,6 +1289,34 @@
       ],
       "definition": "Used for an animal that belongs to a larger group when where it fits within that group can't be decided.",
       "etymology": "Latin, \"of uncertain placement\"."
+    },
+    "intercentrum": {
+      "term": "intercentrum",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "intercentrum",
+        "intercentra"
+      ],
+      "definition": "A small wedge of bone below and between the main bodies of neighboring vertebrae. In dinosaurs it is found mainly at the front of the neck, as part of the atlas.",
+      "see_also": [
+        "atlas",
+        "centrum"
+      ]
+    },
+    "ischium": {
+      "term": "ischium",
+      "category": "anatomy/limbs",
+      "forms": [
+        "ischium",
+        "ischia",
+        "ischial"
+      ],
+      "definition": "The hip bone that points down and back.",
+      "etymology": "Greek ischion, \"hip joint\".",
+      "see_also": [
+        "pelvis",
+        "obturator"
+      ]
     },
     "isolated": {
       "term": "isolated",
@@ -523,6 +1327,20 @@
       "definition": "Of a fossil: found on its own, apart from any skeleton, as with an isolated tooth. An isolated bone is hard to assign to a species.",
       "see_also": [
         "associated-skeleton"
+      ]
+    },
+    "jugal": {
+      "term": "jugal",
+      "category": "anatomy/skull",
+      "forms": [
+        "jugal",
+        "jugals"
+      ],
+      "definition": "The cheekbone, below the eye socket.",
+      "etymology": "Latin jugum, \"yoke\".",
+      "see_also": [
+        "orbit",
+        "quadratojugal"
       ]
     },
     "juvenile": {
@@ -553,6 +1371,35 @@
       "etymology": "Latin labium, \"lip\".",
       "see_also": [
         "lingual"
+      ]
+    },
+    "lacrimal": {
+      "term": "lacrimal",
+      "category": "anatomy/skull",
+      "forms": [
+        "lacrimal",
+        "lacrimals"
+      ],
+      "definition": "A bone in front of the eye socket, between the eye and the antorbital fenestra.",
+      "etymology": "Latin lacrima, \"tear\".",
+      "see_also": [
+        "orbit",
+        "antorbital-fenestra"
+      ]
+    },
+    "lamina": {
+      "term": "lamina",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "lamina",
+        "laminae",
+        "laminar"
+      ],
+      "definition": "A thin plate or ridge of bone. On many dinosaur vertebrae, laminae brace the vertebra like struts, each named for the parts it joins.",
+      "etymology": "Latin, \"thin plate\".",
+      "see_also": [
+        "vertebra",
+        "pneumatic"
       ]
     },
     "lateral": {
@@ -634,6 +1481,34 @@
         "labial"
       ]
     },
+    "locality": {
+      "term": "locality",
+      "category": "geology",
+      "forms": [
+        "locality",
+        "localities",
+        "type locality"
+      ],
+      "definition": "The place where a fossil was found. The type locality is where the holotype was found.",
+      "see_also": [
+        "holotype"
+      ]
+    },
+    "mandible": {
+      "term": "mandible",
+      "category": "anatomy/skull",
+      "forms": [
+        "mandible",
+        "mandibles",
+        "mandibular"
+      ],
+      "definition": "The lower jaw, made of several bones on each side.",
+      "etymology": "Latin mandibula, from mandere, \"to chew\".",
+      "see_also": [
+        "dentary",
+        "surangular"
+      ]
+    },
     "manus": {
       "term": "manus",
       "category": "anatomy/limbs",
@@ -646,6 +1521,21 @@
       "see_also": [
         "pes",
         "pollex"
+      ]
+    },
+    "maxilla": {
+      "term": "maxilla",
+      "category": "anatomy/skull",
+      "forms": [
+        "maxilla",
+        "maxillae",
+        "maxillary"
+      ],
+      "definition": "The main tooth-bearing bone of the upper jaw, behind the premaxilla. Maxillary means \"of the maxilla\".",
+      "etymology": "Latin, \"jaw\".",
+      "see_also": [
+        "premaxilla",
+        "dentary"
       ]
     },
     "medial": {
@@ -674,6 +1564,37 @@
         "distal"
       ]
     },
+    "metacarpal": {
+      "term": "metacarpal",
+      "category": "anatomy/limbs",
+      "forms": [
+        "metacarpal",
+        "metacarpals",
+        "metacarpus"
+      ],
+      "definition": "One of the bones of the palm of the hand, between the wrist and the fingers.",
+      "etymology": "Greek meta, \"after\", and karpos, \"wrist\".",
+      "see_also": [
+        "carpal",
+        "phalanx"
+      ]
+    },
+    "metatarsal": {
+      "term": "metatarsal",
+      "category": "anatomy/limbs",
+      "forms": [
+        "metatarsal",
+        "metatarsals",
+        "metatarsus"
+      ],
+      "definition": "One of the long bones of the foot, between the ankle and the toes. Many dinosaurs walked with them raised off the ground.",
+      "etymology": "Greek meta, \"after\", and tarsos, \"flat of the foot\".",
+      "see_also": [
+        "tarsal",
+        "phalanx",
+        "pes"
+      ]
+    },
     "monophyletic": {
       "term": "monophyletic",
       "category": "phylogenetics",
@@ -696,6 +1617,36 @@
         "monospecific"
       ],
       "definition": "Containing only one member: a monotypic genus has a single species."
+    },
+    "naris": {
+      "term": "naris",
+      "category": "anatomy/skull",
+      "forms": [
+        "naris",
+        "nares",
+        "narial",
+        "external naris",
+        "external nares"
+      ],
+      "definition": "A nostril, or the opening in the skull for it.",
+      "etymology": "Latin, \"nostril\".",
+      "see_also": [
+        "nasal",
+        "antorbital-fenestra"
+      ]
+    },
+    "nasal": {
+      "term": "nasal",
+      "category": "anatomy/skull",
+      "forms": [
+        "nasal",
+        "nasals"
+      ],
+      "definition": "The bone on top of the snout, above the nostrils. Nasal also means \"of the nose\".",
+      "etymology": "Latin nasus, \"nose\".",
+      "see_also": [
+        "naris"
+      ]
     },
     "neotype": {
       "term": "neotype",
@@ -735,6 +1686,31 @@
         "neural-arch"
       ]
     },
+    "neurovascular": {
+      "term": "neurovascular",
+      "category": "anatomy/general",
+      "forms": [
+        "neurovascular"
+      ],
+      "definition": "For nerves and blood vessels, such as the small neurovascular openings along the jaws.",
+      "see_also": [
+        "foramen"
+      ]
+    },
+    "node-based": {
+      "term": "node-based",
+      "category": "phylogenetics",
+      "forms": [
+        "node-based",
+        "node-based clade",
+        "node-based clades"
+      ],
+      "definition": "Describes a clade defined as the last common ancestor of two or more named animals and all of its descendants.",
+      "see_also": [
+        "stem",
+        "least-inclusive-clade"
+      ]
+    },
     "nomen-dubium": {
       "term": "nomen dubium",
       "category": "naming",
@@ -760,6 +1736,67 @@
       "etymology": "Latin, \"naked name\".",
       "see_also": [
         "valid"
+      ]
+    },
+    "non-avian-dinosaur": {
+      "term": "non-avian dinosaur",
+      "category": "biology",
+      "forms": [
+        "non-avian dinosaur",
+        "non-avian dinosaurs",
+        "non-avian"
+      ],
+      "definition": "Any dinosaur other than a bird. Birds are dinosaurs, so \"non-avian\" sets apart the rest.",
+      "etymology": "Latin avis, \"bird\"."
+    },
+    "obturator": {
+      "term": "obturator",
+      "category": "anatomy/limbs",
+      "forms": [
+        "obturator",
+        "obturator process",
+        "obturator processes",
+        "obturator foramen",
+        "obturator notch"
+      ],
+      "definition": "Names features of the lower hip bones near the obturator nerve: the opening or notch in the pubis that the nerve passed through, and the obturator process of the ischium.",
+      "etymology": "Latin obturare, \"to stop up\".",
+      "see_also": [
+        "ischium",
+        "pubis"
+      ]
+    },
+    "occiput": {
+      "term": "occiput",
+      "category": "anatomy/skull",
+      "forms": [
+        "occiput",
+        "occipital",
+        "occipital condyle",
+        "supraoccipital",
+        "basioccipital",
+        "paroccipital",
+        "paroccipital process",
+        "paroccipital processes"
+      ],
+      "definition": "The back of the skull, around the opening for the spinal cord. The occipital condyle is the knob where the skull meets the neck; the paroccipital processes stick out to the sides.",
+      "etymology": "Latin, \"back of the head\".",
+      "see_also": [
+        "braincase",
+        "condyle"
+      ]
+    },
+    "olecranon": {
+      "term": "olecranon",
+      "category": "anatomy/limbs",
+      "forms": [
+        "olecranon",
+        "olecranon process"
+      ],
+      "definition": "The point of the elbow, at the top of the ulna.",
+      "etymology": "Greek olene, \"elbow\", and kranion, \"head\".",
+      "see_also": [
+        "ulna"
       ]
     },
     "ontogeny": {
@@ -790,6 +1827,69 @@
         "centrum"
       ]
     },
+    "orbit": {
+      "term": "orbit",
+      "category": "anatomy/skull",
+      "forms": [
+        "orbit",
+        "orbits",
+        "orbital",
+        "supraorbital",
+        "preorbital"
+      ],
+      "definition": "The eye socket. Supraorbital means \"above the eye socket\"; preorbital, \"in front of it\".",
+      "etymology": "Latin orbita, \"wheel track\".",
+      "see_also": [
+        "postorbital",
+        "lacrimal"
+      ]
+    },
+    "ossified-tendons": {
+      "term": "ossified tendons",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "ossified tendons",
+        "ossified tendon"
+      ],
+      "definition": "Tendons that turned to bone. In many ornithischian dinosaurs they formed a lattice of rods along the back and tail that stiffened them.",
+      "see_also": [
+        "caudal-vertebra"
+      ]
+    },
+    "osteoderm": {
+      "term": "osteoderm",
+      "category": "anatomy/general",
+      "forms": [
+        "osteoderm",
+        "osteoderms",
+        "scute",
+        "scutes",
+        "ossicles",
+        "dermal"
+      ],
+      "definition": "A bony plate or knob set in the skin, such as those that made up the armor of ankylosaurs. Dermal means \"of the skin\".",
+      "etymology": "Greek osteon, \"bone\", and derma, \"skin\"."
+    },
+    "palate": {
+      "term": "palate",
+      "category": "anatomy/skull",
+      "forms": [
+        "palate",
+        "palates",
+        "palatal",
+        "palatine",
+        "palatines",
+        "pterygoid",
+        "pterygoids",
+        "ectopterygoid",
+        "ectopterygoids"
+      ],
+      "definition": "The roof of the mouth. In dinosaurs it is made of several paired bones, among them the palatines, pterygoids and ectopterygoids.",
+      "etymology": "Latin palatum.",
+      "see_also": [
+        "braincase"
+      ]
+    },
     "pangaea": {
       "term": "Pangaea",
       "category": "geology",
@@ -818,6 +1918,20 @@
         "grade"
       ]
     },
+    "parapophysis": {
+      "term": "parapophysis",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "parapophysis",
+        "parapophyses",
+        "parapophyseal"
+      ],
+      "definition": "A projection or facet on the side of a vertebra where the lower head of a rib attaches.",
+      "etymology": "Greek para, \"beside\", and apophysis, \"offshoot\".",
+      "see_also": [
+        "diapophysis"
+      ]
+    },
     "paratype": {
       "term": "paratype",
       "category": "naming",
@@ -829,6 +1943,69 @@
       "etymology": "Greek para, \"beside\", and typos, \"model\".",
       "see_also": [
         "holotype"
+      ]
+    },
+    "parietal": {
+      "term": "parietal",
+      "category": "anatomy/skull",
+      "forms": [
+        "parietal",
+        "parietals"
+      ],
+      "definition": "One of the bones of the skull roof behind the eyes, over the brain. In horned dinosaurs the parietals form most of the frill.",
+      "etymology": "Latin paries, \"wall\".",
+      "see_also": [
+        "frontal",
+        "frill"
+      ]
+    },
+    "pectoral-girdle": {
+      "term": "pectoral girdle",
+      "category": "anatomy/limbs",
+      "forms": [
+        "pectoral girdle",
+        "pectoral girdles",
+        "shoulder girdle",
+        "pectoral"
+      ],
+      "definition": "The shoulder bones the forelimbs attach to: the shoulder blade and coracoid on each side.",
+      "etymology": "Latin pectus, \"chest\".",
+      "see_also": [
+        "scapula",
+        "coracoid",
+        "girdle"
+      ]
+    },
+    "peduncle": {
+      "term": "peduncle",
+      "category": "anatomy/limbs",
+      "forms": [
+        "peduncle",
+        "peduncles"
+      ],
+      "definition": "A short stalk of bone. On the ilium, the pubic and ischial peduncles join it to the other hip bones.",
+      "etymology": "Latin pedunculus, \"little foot\".",
+      "see_also": [
+        "ilium"
+      ]
+    },
+    "pelvis": {
+      "term": "pelvis",
+      "category": "anatomy/limbs",
+      "forms": [
+        "pelvis",
+        "pelves",
+        "pelvic",
+        "pelvic girdle",
+        "pelvic girdles"
+      ],
+      "definition": "The hip bones: the ilium, ischium and pubis on each side, joined to the sacrum.",
+      "etymology": "Latin, \"basin\".",
+      "see_also": [
+        "ilium",
+        "ischium",
+        "pubis",
+        "sacral-vertebra"
       ]
     },
     "pennaceous": {
@@ -854,6 +2031,22 @@
         "manus"
       ]
     },
+    "phalanx": {
+      "term": "phalanx",
+      "category": "anatomy/limbs",
+      "forms": [
+        "phalanx",
+        "phalanges",
+        "phalangeal"
+      ],
+      "definition": "One of the bones of a finger or toe.",
+      "etymology": "Greek, \"line of soldiers\".",
+      "see_also": [
+        "ungual",
+        "metacarpal",
+        "metatarsal"
+      ]
+    },
     "phylogenetic-analysis": {
       "term": "phylogenetic analysis",
       "category": "phylogenetics",
@@ -870,6 +2063,20 @@
         "consensus-tree"
       ]
     },
+    "platycoelous": {
+      "term": "platycoelous",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "platycoelous",
+        "amphiplatyan"
+      ],
+      "definition": "Describes a vertebra whose main body is flat at both ends.",
+      "etymology": "Greek platys, \"flat\", and koilos, \"hollow\".",
+      "see_also": [
+        "amphicoelous",
+        "centrum"
+      ]
+    },
     "plesiomorphic": {
       "term": "plesiomorphic",
       "category": "phylogenetics",
@@ -883,6 +2090,36 @@
       "see_also": [
         "synapomorphy",
         "derived"
+      ]
+    },
+    "pleurocoel": {
+      "term": "pleurocoel",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "pleurocoel",
+        "pleurocoels"
+      ],
+      "definition": "A hollow or opening in the side of a vertebra's main body, made by an air sac.",
+      "etymology": "Greek pleura, \"side\", and koilos, \"hollow\".",
+      "see_also": [
+        "pneumatic",
+        "centrum"
+      ]
+    },
+    "pneumatic": {
+      "term": "pneumatic",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "pneumatic",
+        "pneumaticity",
+        "pneumatized",
+        "pneumatization"
+      ],
+      "definition": "Hollowed by air sacs that grew into the bone from the lungs, as in birds. Pneumatic bones were lighter for their size.",
+      "etymology": "Greek pneuma, \"air\".",
+      "see_also": [
+        "pleurocoel",
+        "lamina"
       ]
     },
     "pollex": {
@@ -936,6 +2173,77 @@
         "anterior"
       ]
     },
+    "postorbital": {
+      "term": "postorbital",
+      "category": "anatomy/skull",
+      "forms": [
+        "postorbital",
+        "postorbitals"
+      ],
+      "definition": "The bone behind the eye socket. In horned dinosaurs it carries the horn above the eye.",
+      "etymology": "Latin post, \"behind\", and orbita, the eye socket.",
+      "see_also": [
+        "orbit",
+        "jugal"
+      ]
+    },
+    "preacetabular-process": {
+      "term": "preacetabular process",
+      "category": "anatomy/limbs",
+      "forms": [
+        "preacetabular process",
+        "preacetabular processes",
+        "preacetabular",
+        "postacetabular process",
+        "postacetabular processes",
+        "postacetabular"
+      ],
+      "definition": "The part of the ilium that extends forward of the hip socket. The postacetabular process extends behind it.",
+      "see_also": [
+        "ilium",
+        "acetabulum"
+      ]
+    },
+    "predentary": {
+      "term": "predentary",
+      "category": "anatomy/skull",
+      "forms": [
+        "predentary",
+        "predentaries"
+      ],
+      "definition": "A toothless bone at the front of the lower jaw of ornithischian dinosaurs, which carried a horny beak.",
+      "see_also": [
+        "dentary",
+        "rostral-bone"
+      ]
+    },
+    "prefrontal": {
+      "term": "prefrontal",
+      "category": "anatomy/skull",
+      "forms": [
+        "prefrontal",
+        "prefrontals"
+      ],
+      "definition": "A small bone above and in front of the eye socket.",
+      "see_also": [
+        "frontal",
+        "orbit"
+      ]
+    },
+    "premaxilla": {
+      "term": "premaxilla",
+      "category": "anatomy/skull",
+      "forms": [
+        "premaxilla",
+        "premaxillae",
+        "premaxillary"
+      ],
+      "definition": "The bone at the front tip of the upper jaw. In many dinosaurs it carries teeth; in others, a beak.",
+      "etymology": "Latin prae, \"before\", and maxilla, \"jaw\".",
+      "see_also": [
+        "maxilla"
+      ]
+    },
     "preoccupied": {
       "term": "preoccupied",
       "category": "naming",
@@ -946,6 +2254,48 @@
       "definition": "Of a name: already given to another animal, so it can't be used again. The later animal needs a replacement name.",
       "see_also": [
         "synonym"
+      ]
+    },
+    "prepubic-process": {
+      "term": "prepubic process",
+      "category": "anatomy/limbs",
+      "forms": [
+        "prepubic process",
+        "prepubic processes",
+        "prepubis",
+        "prepubic"
+      ],
+      "definition": "In ornithischian dinosaurs, a blade of the pubis that points forward.",
+      "see_also": [
+        "pubis"
+      ]
+    },
+    "presacral": {
+      "term": "presacral",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "presacral",
+        "presacrals",
+        "presacral vertebra",
+        "presacral vertebrae"
+      ],
+      "definition": "Of the vertebrae in front of the hips: those of the neck and back.",
+      "see_also": [
+        "sacral-vertebra",
+        "dorsal-vertebra"
+      ]
+    },
+    "process": {
+      "term": "process",
+      "category": "anatomy/general",
+      "forms": [
+        "process",
+        "processes"
+      ],
+      "definition": "A projection of bone, often where a muscle or ligament attaches.",
+      "see_also": [
+        "tubercle",
+        "condyle"
       ]
     },
     "procoelous": {
@@ -973,6 +2323,48 @@
       "etymology": "Latin proximus, \"nearest\".",
       "see_also": [
         "distal"
+      ]
+    },
+    "pubis": {
+      "term": "pubis",
+      "category": "anatomy/limbs",
+      "forms": [
+        "pubis",
+        "pubes",
+        "pubic"
+      ],
+      "definition": "The hip bone that points down and forward in saurischian dinosaurs, and down and back in ornithischians and birds.",
+      "etymology": "Latin os pubis.",
+      "see_also": [
+        "pelvis",
+        "prepubic-process"
+      ]
+    },
+    "quadrate": {
+      "term": "quadrate",
+      "category": "anatomy/skull",
+      "forms": [
+        "quadrate",
+        "quadrates"
+      ],
+      "definition": "The bone at the back of the skull that forms the upper half of the jaw joint.",
+      "etymology": "Latin quadratus, \"squared\".",
+      "see_also": [
+        "quadratojugal",
+        "squamosal"
+      ]
+    },
+    "quadratojugal": {
+      "term": "quadratojugal",
+      "category": "anatomy/skull",
+      "forms": [
+        "quadratojugal",
+        "quadratojugals"
+      ],
+      "definition": "A bone at the lower back corner of the skull that joins the quadrate to the jugal.",
+      "see_also": [
+        "quadrate",
+        "jugal"
       ]
     },
     "quadrupedal": {
@@ -1003,6 +2395,33 @@
         "lineage"
       ]
     },
+    "radius": {
+      "term": "radius",
+      "category": "anatomy/limbs",
+      "forms": [
+        "radius",
+        "radii"
+      ],
+      "definition": "One of the two bones of the forearm, beside the ulna.",
+      "etymology": "Latin, \"spoke\".",
+      "see_also": [
+        "ulna",
+        "humerus"
+      ]
+    },
+    "ramus": {
+      "term": "ramus",
+      "category": "anatomy/general",
+      "forms": [
+        "ramus",
+        "rami"
+      ],
+      "definition": "A branch of a bone, such as a bar of the upper jaw or each half of the lower jaw.",
+      "etymology": "Latin, \"branch\".",
+      "see_also": [
+        "mandible"
+      ]
+    },
     "referred-specimen": {
       "term": "referred specimen",
       "category": "naming",
@@ -1016,6 +2435,32 @@
         "holotype"
       ]
     },
+    "retroarticular-process": {
+      "term": "retroarticular process",
+      "category": "anatomy/skull",
+      "forms": [
+        "retroarticular process",
+        "retroarticular processes",
+        "retroarticular"
+      ],
+      "definition": "A projection of the lower jaw behind the jaw joint, where the muscle that opens the jaw attaches.",
+      "see_also": [
+        "mandible",
+        "quadrate"
+      ]
+    },
+    "robust": {
+      "term": "robust",
+      "category": "anatomy/general",
+      "forms": [
+        "robust"
+      ],
+      "definition": "Heavily built, with thick bones.",
+      "etymology": "Latin robustus, \"strong\".",
+      "see_also": [
+        "gracile"
+      ]
+    },
     "rostral": {
       "term": "rostral",
       "category": "direction",
@@ -1027,6 +2472,32 @@
       "etymology": "Latin rostrum, \"beak\".",
       "see_also": [
         "anterior"
+      ]
+    },
+    "rostral-bone": {
+      "term": "rostral bone",
+      "category": "anatomy/skull",
+      "forms": [
+        "rostral bone",
+        "rostral bones"
+      ],
+      "definition": "A toothless bone at the front of the upper jaw of horned dinosaurs, which carried the upper beak.",
+      "see_also": [
+        "predentary"
+      ]
+    },
+    "rugose": {
+      "term": "rugose",
+      "category": "anatomy/general",
+      "forms": [
+        "rugose",
+        "rugosity",
+        "rugosities"
+      ],
+      "definition": "Rough and wrinkled, often where a muscle attached or a horny covering grew.",
+      "etymology": "Latin rugosus, \"wrinkled\".",
+      "see_also": [
+        "boss"
       ]
     },
     "sacral-vertebra": {
@@ -1058,6 +2529,39 @@
         "transverse"
       ]
     },
+    "scapula": {
+      "term": "scapula",
+      "category": "anatomy/limbs",
+      "forms": [
+        "scapula",
+        "scapulae",
+        "scapular",
+        "scapulocoracoid",
+        "scapulocoracoids"
+      ],
+      "definition": "The shoulder blade. Fused to the coracoid, it forms a scapulocoracoid.",
+      "etymology": "Latin, \"shoulder blade\".",
+      "see_also": [
+        "coracoid",
+        "acromion"
+      ]
+    },
+    "shaft": {
+      "term": "shaft",
+      "category": "anatomy/general",
+      "forms": [
+        "shaft",
+        "shafts",
+        "midshaft",
+        "mid-shaft",
+        "diaphysis"
+      ],
+      "definition": "The long middle part of a limb bone, between its two ends.",
+      "see_also": [
+        "femur",
+        "humerus"
+      ]
+    },
     "sister-taxon": {
       "term": "sister taxon",
       "category": "phylogenetics",
@@ -1070,6 +2574,18 @@
       "definition": "The closest relative of a group on a family tree: the two share an ancestor that no other group shares.",
       "see_also": [
         "clade"
+      ]
+    },
+    "skin-impression": {
+      "term": "skin impression",
+      "category": "specimens",
+      "forms": [
+        "skin impression",
+        "skin impressions"
+      ],
+      "definition": "A mark left in the rock by an animal's skin, showing its scales or other covering.",
+      "see_also": [
+        "osteoderm"
       ]
     },
     "specific-epithet": {
@@ -1087,6 +2603,95 @@
         "type-species"
       ]
     },
+    "splenial": {
+      "term": "splenial",
+      "category": "anatomy/skull",
+      "forms": [
+        "splenial",
+        "splenials"
+      ],
+      "definition": "A thin bone on the inner side of the lower jaw.",
+      "see_also": [
+        "mandible"
+      ]
+    },
+    "squamosal": {
+      "term": "squamosal",
+      "category": "anatomy/skull",
+      "forms": [
+        "squamosal",
+        "squamosals"
+      ],
+      "definition": "A bone at the back corner of the skull, above the jaw joint. In horned dinosaurs it forms the sides of the frill.",
+      "etymology": "Latin squama, \"scale\".",
+      "see_also": [
+        "quadrate",
+        "frill"
+      ]
+    },
+    "stage": {
+      "term": "stage",
+      "category": "geology",
+      "forms": [
+        "stage",
+        "stages"
+      ],
+      "definition": "A division of geologic time within an epoch, lasting a few million years, such as the Maastrichtian.",
+      "exceptions": [
+        "growth stage",
+        "growth stages",
+        "ontogenetic stage"
+      ],
+      "see_also": [
+        "epoch"
+      ]
+    },
+    "stem": {
+      "term": "stem",
+      "category": "phylogenetics",
+      "forms": [
+        "stem",
+        "stem-based",
+        "stemward",
+        "stem lineage",
+        "stem group"
+      ],
+      "definition": "The extinct relatives of a group that branched off before its last common ancestor. A stem-based clade is defined as everything closer to one animal than to another.",
+      "see_also": [
+        "node-based",
+        "clade"
+      ]
+    },
+    "sternum": {
+      "term": "sternum",
+      "category": "anatomy/limbs",
+      "forms": [
+        "sternum",
+        "sterna",
+        "sternal",
+        "sternal plate",
+        "sternal plates"
+      ],
+      "definition": "The breastbone. In many dinosaurs it was a pair of flat sternal plates.",
+      "etymology": "Greek sternon, \"chest\".",
+      "see_also": [
+        "furcula"
+      ]
+    },
+    "strata": {
+      "term": "strata",
+      "category": "geology",
+      "forms": [
+        "strata",
+        "stratum",
+        "beds"
+      ],
+      "definition": "Layers of rock. Beds are the thinnest named layers.",
+      "etymology": "Latin stratum, \"layer\".",
+      "see_also": [
+        "formation"
+      ]
+    },
     "subfamily": {
       "term": "subfamily",
       "category": "naming",
@@ -1099,6 +2704,19 @@
         "family"
       ]
     },
+    "sulcus": {
+      "term": "sulcus",
+      "category": "anatomy/general",
+      "forms": [
+        "sulcus",
+        "sulci"
+      ],
+      "definition": "A groove in a bone.",
+      "etymology": "Latin, \"furrow\".",
+      "see_also": [
+        "fossa"
+      ]
+    },
     "superfamily": {
       "term": "superfamily",
       "category": "naming",
@@ -1109,6 +2727,45 @@
       "definition": "A group of related families. Superfamily names end in -oidea, as in Tyrannosauroidea.",
       "see_also": [
         "family"
+      ]
+    },
+    "surangular": {
+      "term": "surangular",
+      "category": "anatomy/skull",
+      "forms": [
+        "surangular",
+        "surangulars"
+      ],
+      "definition": "A bone at the back and top of the lower jaw, in front of the jaw joint.",
+      "see_also": [
+        "mandible"
+      ]
+    },
+    "suture": {
+      "term": "suture",
+      "category": "anatomy/general",
+      "forms": [
+        "suture",
+        "sutures"
+      ],
+      "definition": "The seam where two bones meet and grow together.",
+      "etymology": "Latin sutura, \"seam\".",
+      "see_also": [
+        "fused"
+      ]
+    },
+    "symphysis": {
+      "term": "symphysis",
+      "category": "anatomy/skull",
+      "forms": [
+        "symphysis",
+        "symphyses",
+        "symphyseal"
+      ],
+      "definition": "A joint where bones from the left and right sides meet in the middle, such as where the two halves of the lower jaw join at the chin.",
+      "etymology": "Greek, \"growing together\".",
+      "see_also": [
+        "mandible"
       ]
     },
     "synapomorphy": {
@@ -1158,6 +2815,21 @@
         "holotype"
       ]
     },
+    "tarsal": {
+      "term": "tarsal",
+      "category": "anatomy/limbs",
+      "forms": [
+        "tarsal",
+        "tarsals",
+        "tarsus"
+      ],
+      "definition": "One of the small bones of the ankle. The tarsus is the ankle.",
+      "etymology": "Greek tarsos, \"flat of the foot\".",
+      "see_also": [
+        "metatarsal",
+        "astragalus"
+      ]
+    },
     "taxon": {
       "term": "taxon",
       "category": "phylogenetics",
@@ -1169,6 +2841,72 @@
       "etymology": "Greek taxis, \"arrangement\".",
       "see_also": [
         "clade"
+      ]
+    },
+    "temporal-fenestra": {
+      "term": "temporal fenestra",
+      "category": "anatomy/skull",
+      "forms": [
+        "temporal fenestra",
+        "temporal fenestrae",
+        "supratemporal fenestra",
+        "supratemporal fenestrae",
+        "infratemporal fenestra",
+        "infratemporal fenestrae",
+        "laterotemporal fenestra",
+        "laterotemporal fenestrae",
+        "supratemporal",
+        "infratemporal",
+        "laterotemporal"
+      ],
+      "definition": "One of the openings in the skull behind the eye socket, through which jaw muscles passed: one on the skull roof (supratemporal) and one on each side (infratemporal or laterotemporal).",
+      "see_also": [
+        "fenestra",
+        "orbit"
+      ]
+    },
+    "tibia": {
+      "term": "tibia",
+      "category": "anatomy/limbs",
+      "forms": [
+        "tibia",
+        "tibiae",
+        "tibial"
+      ],
+      "definition": "The shinbone, the larger of the two bones of the lower leg.",
+      "etymology": "Latin, \"shinbone\".",
+      "see_also": [
+        "fibula",
+        "cnemial-crest",
+        "astragalus"
+      ]
+    },
+    "tibiotarsus": {
+      "term": "tibiotarsus",
+      "category": "anatomy/limbs",
+      "forms": [
+        "tibiotarsus",
+        "tibiotarsi"
+      ],
+      "definition": "In birds and some of their closest relatives, the shinbone fused with the upper ankle bones.",
+      "see_also": [
+        "tibia",
+        "astragalus"
+      ]
+    },
+    "tooth-crown": {
+      "term": "tooth crown",
+      "category": "anatomy/skull",
+      "forms": [
+        "tooth crown",
+        "tooth crowns",
+        "crown",
+        "crowns"
+      ],
+      "definition": "The part of a tooth that sticks out above the gum, covered in enamel.",
+      "see_also": [
+        "carina",
+        "denticle"
       ]
     },
     "transverse": {
@@ -1196,6 +2934,38 @@
         "vertebra"
       ]
     },
+    "trochanter": {
+      "term": "trochanter",
+      "category": "anatomy/limbs",
+      "forms": [
+        "trochanter",
+        "trochanters",
+        "trochanteric"
+      ],
+      "definition": "A bump or ridge on the thighbone where hip and leg muscles attach. Dinosaurs have several, such as the lesser and fourth trochanters.",
+      "etymology": "Greek, \"runner\".",
+      "see_also": [
+        "femur"
+      ]
+    },
+    "tubercle": {
+      "term": "tubercle",
+      "category": "anatomy/general",
+      "forms": [
+        "tubercle",
+        "tubercles",
+        "tuberosity",
+        "tuberosities",
+        "tuber",
+        "tubera"
+      ],
+      "definition": "A small bump on a bone, often where a muscle or ligament attaches. A tuberosity is a larger one.",
+      "etymology": "Latin tuberculum, \"small swelling\".",
+      "see_also": [
+        "process",
+        "trochanter"
+      ]
+    },
     "type-species": {
       "term": "type species",
       "category": "naming",
@@ -1220,6 +2990,34 @@
         "holotype",
         "lectotype",
         "neotype"
+      ]
+    },
+    "ulna": {
+      "term": "ulna",
+      "category": "anatomy/limbs",
+      "forms": [
+        "ulna",
+        "ulnae",
+        "ulnar"
+      ],
+      "definition": "One of the two bones of the forearm. The point of the elbow is at its upper end.",
+      "etymology": "Latin, \"elbow\".",
+      "see_also": [
+        "radius",
+        "olecranon"
+      ]
+    },
+    "ungual": {
+      "term": "ungual",
+      "category": "anatomy/limbs",
+      "forms": [
+        "ungual",
+        "unguals"
+      ],
+      "definition": "The last bone of a finger or toe, which carried the claw or hoof.",
+      "etymology": "Latin unguis, \"nail\" or \"claw\".",
+      "see_also": [
+        "phalanx"
       ]
     },
     "valid": {
@@ -1275,6 +3073,26 @@
       "definition": "An animal whose position jumps around a family tree from one analysis to the next, usually because too little of it is known.",
       "see_also": [
         "phylogenetic-analysis"
+      ]
+    },
+    "zygapophysis": {
+      "term": "zygapophysis",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "zygapophysis",
+        "zygapophyses",
+        "prezygapophysis",
+        "prezygapophyses",
+        "prezygapophyseal",
+        "postzygapophysis",
+        "postzygapophyses",
+        "postzygapophyseal"
+      ],
+      "definition": "One of the paired projections that link one vertebra to the next. The prezygapophyses at the front of a vertebra fit against the postzygapophyses at the back of the one ahead.",
+      "etymology": "Greek zygon, \"yoke\", and apophysis, \"offshoot\".",
+      "see_also": [
+        "vertebra",
+        "hyposphene"
       ]
     }
   }
