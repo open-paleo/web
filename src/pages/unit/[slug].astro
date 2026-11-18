@@ -1,0 +1,323 @@
+---
+import AgeFigure from "../../components/AgeFigure.astro";
+import CitationLink from "../../components/CitationLink.astro";
+import CorrectionLink from "../../components/CorrectionLink.astro";
+import DisputeNote from "../../components/DisputeNote.astro";
+import FactList from "../../components/FactList.astro";
+import GenusIndex from "../../components/GenusIndex.astro";
+import PageSection from "../../components/PageSection.astro";
+import RecordMain from "../../components/RecordMain.astro";
+import ReferenceList from "../../components/ReferenceList.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatGenusCount, formatGeologicAge, formatQuotes } from "../../data/format.ts";
+import { createGenusIndexRows, shouldGroupByLetter } from "../../data/genus-index.ts";
+import { getSiteData } from "../../data/site-data.ts";
+import type { UnitEntry, UnitPage } from "../../data/units.ts";
+import { describeUnitRank, getPageReferences, getUnits } from "../../data/units.ts";
+import { createPagePath } from "../../data/urls.ts";
+
+/**
+ * Properties of a unit's page, or of the page that sends a member or bed to its section.
+ */
+type Props = {
+    /**
+     * The page, when this path shows one.
+     */
+    page: UnitPage | undefined;
+
+    /**
+     * The member or bed, when this path sends it to its section on another unit's page.
+     */
+    section: UnitEntry | undefined;
+
+    /**
+     * The page the member or bed is shown on.
+     */
+    sectionPage: UnitPage | undefined;
+};
+
+/**
+ * One path of the unit pages.
+ */
+type UnitPath = {
+    /**
+     * The path's parameters.
+     */
+    params: UnitPathParameters;
+
+    /**
+     * The page's properties.
+     */
+    props: Props;
+};
+
+/**
+ * The parameters of a unit path.
+ */
+type UnitPathParameters = {
+    /**
+     * The unit's slug.
+     */
+    slug: string;
+};
+
+/**
+ * Get a path for every unit with a page, and one for each member or bed it shows, which sends
+ * readers to that section.
+ *
+ * @returns The path and properties of every unit page and section.
+ */
+export function getStaticPaths(): Array<UnitPath>
+{
+    const units = getUnits();
+    const paths = new Array<UnitPath>();
+
+    for (const page of units.pages)
+    {
+        paths.push({ params: { slug: page.entry.slug }, props: { page, section: undefined, sectionPage: undefined } });
+
+        for (const section of page.sections)
+        {
+            paths.push({ params: { slug: section.slug }, props: { page: undefined, section, sectionPage: page } });
+        }
+    }
+
+    return paths;
+}
+
+const { page, section, sectionPage } = Astro.props;
+const siteData = getSiteData();
+const units = getUnits();
+const baseUrl = import.meta.env.BASE_URL;
+const sectionUrl = section && sectionPage ? createPagePath(baseUrl, "unit", sectionPage.entry.slug) + "#" + section.slug : "";
+const entry = page?.entry;
+const record = entry?.record;
+const parentPage = record?.parent ? units.pageByName.get(record.parent) : undefined;
+const rows = page ? createGenusIndexRows(page.genera, siteData, siteData.timeline, "unit") : [];
+const age = record ? formatGeologicAge(record.period) : "";
+const variants = record?.variants ?? [];
+const references = page ? getPageReferences(page) : [];
+const subunitsTitle = page && page.subunitPages.every((subunit) => subunit.record.rank === "formation") ? "Formations" : "Units within it";
+---
+
+{section && sectionPage ? (
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="robots" content="noindex">
+            <title>{section.displayName} | Open Paleo</title>
+            <link rel="canonical" href={sectionUrl}>
+            <meta http-equiv="refresh" content={"0; url=" + sectionUrl}>
+        </head>
+        <body>
+            <main>
+                <p>The {section.displayName} is described on the page of the <a href={sectionUrl}>{sectionPage.entry.displayName}</a>.</p>
+            </main>
+        </body>
+    </html>
+) : page && entry && record && (
+    <BaseLayout title={entry.displayName} description={"The " + entry.displayName + (age ? ", a rock unit of the " + age : "") + ", and the " + formatGenusCount(page.genera.length) + " found in it."}>
+        <article class="unit-page" data-pagefind-body data-pagefind-filter="kind:Rock unit">
+            <nav class="unit-trail" aria-label="Rock units">
+                <a href={baseUrl + "units/"}>Rock units</a>
+                {parentPage && <><span aria-hidden="true">›</span><a href={createPagePath(baseUrl, "unit", parentPage.entry.slug)}>{parentPage.entry.displayName}</a></>}
+            </nav>
+
+            <header class="unit-header">
+                <h1 data-pagefind-weight="10">{entry.displayName}</h1>
+                <p class="unit-meta">{describeUnitRank(record)}{parentPage && <> in the <a href={createPagePath(baseUrl, "unit", parentPage.entry.slug)}>{parentPage.entry.displayName}</a></>}</p>
+                {variants.length > 0 && <p class="unit-variants">Also written {formatQuotes(variants.join(", "))}</p>}
+            </header>
+
+            {record.period.from_ma !== undefined && record.period.to_ma !== undefined && <AgeFigure period={record.period} />}
+
+            <RecordMain>
+                <FactList label="At a glance">
+                    <dt>Rank</dt>
+                    <dd>{describeUnitRank(record)}</dd>
+                    {parentPage && (
+                        <>
+                            <dt>Part of</dt>
+                            <dd><a href={createPagePath(baseUrl, "unit", parentPage.entry.slug)}>{parentPage.entry.displayName}</a></dd>
+                        </>
+                    )}
+                    {age && (
+                        <>
+                            <dt>Age</dt>
+                            <dd>{age}</dd>
+                        </>
+                    )}
+                    <dt>Genera</dt>
+                    <dd class="figures">{formatGenusCount(page.genera.length)}</dd>
+                    {page.subunitPages.length > 0 && (
+                        <>
+                            <dt>{subunitsTitle}</dt>
+                            <dd class="figures">{page.subunitPages.length}</dd>
+                        </>
+                    )}
+                    {page.sections.length > 0 && (
+                        <>
+                            <dt>Members and beds</dt>
+                            <dd class="figures">{page.sections.length}</dd>
+                        </>
+                    )}
+                </FactList>
+
+                <p class="unit-intro">
+                    The genera with a species found in the {entry.displayName}{page.sections.length > 0 || page.subunitPages.length > 0 ? " or a unit within it" : ""}.
+                    A genus found in several units appears on the page of each.
+                </p>
+
+                {record.dispute && (
+                    <PageSection title="Under dispute">
+                        <DisputeNote dispute={record.dispute} />
+                    </PageSection>
+                )}
+
+                {page.subunitPages.length > 0 && (
+                    <PageSection title={subunitsTitle}>
+                        <ul class="subunit-list">
+                            {page.subunitPages.map((subunit) => (
+                                <li>
+                                    <a href={createPagePath(baseUrl, "unit", subunit.slug)}>{subunit.displayName}</a>
+                                    <span class="subunit-details">{formatGeologicAge(subunit.record.period)}{units.pageByName.get(subunit.name) && <>, <span class="figures">{formatGenusCount(units.pageByName.get(subunit.name)?.genera.length ?? 0)}</span></>}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </PageSection>
+                )}
+
+                <PageSection title={"Genera found in the " + entry.displayName}>
+                    {/* The genera have their own pages in the search index. */}
+                    <div data-pagefind-ignore>
+                        <GenusIndex rows={rows} label={"Genera of the " + entry.displayName} headingLevel={3} isFilterable={false} isGroupedByLetter={shouldGroupByLetter(rows.length)} />
+                    </div>
+                </PageSection>
+
+                {page.sections.length > 0 && (
+                    <PageSection title="Members and beds">
+                        {page.sections.map((child) => (
+                            <section class="unit-section" id={child.slug} aria-labelledby={child.slug + "-heading"}>
+                                <h3 id={child.slug + "-heading"}>{child.displayName}</h3>
+                                <p class="section-meta">
+                                    {describeUnitRank(child.record)}{child.record.parent && child.record.parent !== entry.name && units.entryByName.get(child.record.parent) && " within the " + units.entryByName.get(child.record.parent)?.displayName}{formatGeologicAge(child.record.period) && ", " + formatGeologicAge(child.record.period)}
+                                </p>
+                                {(child.record.variants ?? []).length > 0 && <p class="section-meta">Also written {formatQuotes((child.record.variants ?? []).join(", "))}</p>}
+                                {child.record.dispute && <DisputeNote dispute={child.record.dispute} />}
+                                {child.genera.length > 0 && (
+                                    <p class="section-genera">
+                                        Genera: {child.genera.map((genus, index) => <>{index > 0 && ", "}<a href={createPagePath(baseUrl, "genus", genus.slug)}><i class="taxon">{genus.name}</i></a></>)}
+                                    </p>
+                                )}
+                                {child.record.references.length > 0 && (
+                                    <p class="section-sources">
+                                        Sources: {child.record.references.map((reference, index) => <>{index > 0 && "; "}<CitationLink id={reference.id} references={child.record.references} /></>)}
+                                    </p>
+                                )}
+                            </section>
+                        ))}
+                    </PageSection>
+                )}
+
+                {references.length > 0 && (
+                    <PageSection title="References">
+                        <ReferenceList references={references} />
+                    </PageSection>
+                )}
+            </RecordMain>
+
+            <CorrectionLink kind="Rock unit" name={entry.name} />
+        </article>
+    </BaseLayout>
+)}
+
+<style>
+    .unit-page
+    {
+        display: grid;
+        gap: var(--space-5);
+    }
+
+    .unit-trail
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+
+    .unit-header
+    {
+        display: grid;
+        gap: var(--space-2);
+    }
+
+    h1
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .unit-meta
+    {
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
+    }
+
+    .unit-variants,
+    .unit-intro
+    {
+        max-width: var(--measure);
+        color: var(--color-muted);
+    }
+
+    .subunit-list
+    {
+        display: grid;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .subunit-list li
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-1) var(--space-3);
+        padding-block: var(--space-2);
+        border-bottom: 1px solid var(--color-line);
+    }
+
+    .subunit-details,
+    .section-meta,
+    .section-sources
+    {
+        color: var(--color-muted);
+        font-size: var(--text-small);
+    }
+
+    .unit-section
+    {
+        display: grid;
+        gap: var(--space-2);
+        max-width: var(--measure);
+        padding-block: var(--space-3);
+        border-bottom: 1px solid var(--color-line);
+        scroll-margin-top: var(--space-5);
+    }
+
+    .unit-section:target
+    {
+        background: var(--color-accent-soft);
+        box-shadow: calc(-1 * var(--space-3)) 0 0 var(--color-accent-soft), var(--space-3) 0 0 var(--color-accent-soft);
+    }
+
+    .unit-section h3
+    {
+        font-size: var(--text-heading-4);
+    }
+</style>

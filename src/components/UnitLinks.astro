@@ -1,0 +1,44 @@
+---
+import type { Location } from "../data/dataset.ts";
+import { createUnitLabels } from "../data/format.ts";
+import { getUnitPath, getUnits } from "../data/units.ts";
+
+/**
+ * Properties of a location's rock units, each linking to its page.
+ */
+type Props = {
+    /**
+     * The location.
+     */
+    location: Location;
+};
+
+/**
+ * One rock unit, with the path of the page that shows it.
+ */
+type UnitLink = {
+    /**
+     * The text to display.
+     */
+    text: string;
+
+    /**
+     * The page's address, or an empty string when the unit has none.
+     */
+    href: string;
+};
+
+const { location } = Astro.props;
+const units = getUnits();
+const links = new Array<UnitLink>();
+
+for (const label of createUnitLabels(location))
+{
+    const path = getUnitPath(units, label.name);
+
+    links.push({ text: label.text, href: path ? import.meta.env.BASE_URL + path : "" });
+}
+
+// The markup is one line, since any space around it would show in the text.
+---
+{links.map((link, index) => <>{index > 0 && ", "}{link.href ? <a href={link.href}>{link.text}</a> : link.text}</>)}

@@ -1,5 +1,6 @@
 import { createSearchSuggestions } from "../../data/search-suggestions.ts";
 import { getSiteData } from "../../data/site-data.ts";
+import { getUnits } from "../../data/units.ts";
 
 /**
  * Write search/suggestions.json: every genus, species, clade and synonym with the page it opens,
@@ -9,7 +10,7 @@ import { getSiteData } from "../../data/site-data.ts";
  */
 export function GET(): Response
 {
-    return new Response(JSON.stringify(createSearchSuggestions(getSiteData())), {
+    return new Response(JSON.stringify(createSearchSuggestions(getSiteData(), getUnits())), {
         headers: { "Content-Type": "application/json" },
     });
 }

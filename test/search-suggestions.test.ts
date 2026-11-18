@@ -4,10 +4,12 @@ import { test } from "node:test";
 import { createSearchSuggestions } from "../src/data/search-suggestions.ts";
 import { createSiteData } from "../src/data/site-data.ts";
 import { findSuggestions, foldText, prepareSuggestions, scoreName } from "../src/data/suggestion-matching.ts";
+import { createUnitIndex } from "../src/data/units.ts";
 import { readFixture } from "./fixture.ts";
 
-const siteData = createSiteData(readFixture());
-const suggestions = createSearchSuggestions(siteData);
+const dataset = readFixture();
+const siteData = createSiteData(dataset);
+const suggestions = createSearchSuggestions(siteData, createUnitIndex(dataset, siteData));
 const prepared = prepareSuggestions(suggestions);
 
 /**
@@ -89,4 +91,14 @@ test("nothing is suggested for fewer than two characters", () =>
 {
     assert.deepEqual(suggestNames("t"), []);
     assert.deepEqual(suggestNames(" "), []);
+});
+
+test("rock units are suggested, and a member opens its section on its formation's page", () =>
+{
+    const hellCreek = suggestions.find((suggestion) => suggestion.name === "Hell Creek Formation");
+    const brushyBasin = suggestions.find((suggestion) => suggestion.name === "Brushy Basin Member");
+
+    assert.equal(hellCreek?.kind, "unit");
+    assert.equal(hellCreek?.path, "unit/hell-creek/");
+    assert.equal(brushyBasin?.path, "unit/morrison/#brushy-basin");
 });

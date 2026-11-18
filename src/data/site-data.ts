@@ -76,7 +76,7 @@ export type CladeEntry = {
 /**
  * The kind of record that cites a reference.
  */
-export type CitingRecordKind = "genus" | "clade";
+export type CitingRecordKind = "genus" | "clade" | "unit";
 
 /**
  * One record's citation of a reference.
@@ -437,7 +437,7 @@ export function createSiteData(dataset: OpenPaleoDataset): SiteData
         }
     }
 
-    // References, with every genus and then every clade that cites them.
+    // References, with every genus, then every clade, then every rock unit that cites them.
     const referenceById = new Map<string, ReferenceEntry>();
 
     for (const genus of genera)
@@ -460,6 +460,11 @@ export function createSiteData(dataset: OpenPaleoDataset): SiteData
         {
             addCitations(record.references, "clade", name, referenceById);
         }
+    }
+
+    for (const name of Object.keys(dataset.stratigraphy ?? {}).sort(nameCollator.compare))
+    {
+        addCitations(dataset.stratigraphy?.[name]?.references, "unit", name, referenceById);
     }
 
     // Names established in each work: genera and their species, then clades.

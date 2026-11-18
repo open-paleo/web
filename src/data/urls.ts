@@ -1,7 +1,7 @@
 /**
  * The sections of the site that have one page per record.
  */
-export type PageSection = "genus" | "clade" | "reference" | "stage" | "period";
+export type PageSection = "genus" | "clade" | "reference" | "stage" | "period" | "unit";
 
 /**
  * Create the path of a record's page: "/genus/tyrannosaurus/", or "/web/genus/tyrannosaurus/"
@@ -34,7 +34,7 @@ export function createReferenceAnchor(slug: string): string
 /**
  * The kinds of record a reader can report an error in.
  */
-export type CorrectionRecordKind = "Genus" | "Clade" | "Reference";
+export type CorrectionRecordKind = "Genus" | "Clade" | "Reference" | "Rock unit";
 
 // The issue form in open-paleo/data for reporting errors (.github/ISSUE_TEMPLATE/correction.yml).
 // Its file name and the field ids "record" and "page" are what these links fill in, so they must

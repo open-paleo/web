@@ -10,6 +10,7 @@ import {
 } from "../data/format.ts";
 import { getTypeSpecies, getSizeMeasurements } from "../data/records.ts";
 import FactList from "./FactList.astro";
+import UnitLinks from "./UnitLinks.astro";
 
 /**
  * Properties of the "at a glance" panel beside a genus's description.
@@ -27,8 +28,10 @@ const appearance = genus.appearance;
 const integument = appearance?.integument && appearance.integument !== "unknown"
     ? capitalizeFirstLetter(appearance.integument)
     : "";
+const foundUnits = typeSpecies.location ? formatStratigraphicUnits(typeSpecies.location) : "";
+const foundPlace = typeSpecies.location ? formatPlace(typeSpecies.location) : "";
 const foundIn = typeSpecies.location
-    ? joinNonEmpty([formatStratigraphicUnits(typeSpecies.location), formatPlace(typeSpecies.location)])
+    ? joinNonEmpty([foundUnits, foundPlace])
     : "";
 const measurements = getSizeMeasurements(typeSpecies.size);
 const identifiers = genus.identifiers ?? [];
@@ -75,7 +78,7 @@ const sizeNote = genus.species.length > 1 ? "Size and place are those of the typ
     {foundIn && (
         <>
             <dt>Found in</dt>
-            <dd>{foundIn}</dd>
+            <dd>{typeSpecies.location && <UnitLinks location={typeSpecies.location} />}{foundUnits && foundPlace && ", "}{foundPlace}</dd>
         </>
     )}
     {identifiers.length > 0 && (

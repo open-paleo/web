@@ -21,16 +21,19 @@ AA, checked on every deployment.
 | Period | One per period with genera: its stages as a chart, and its genera from A to Z |
 | Genus | One per genus: description, an age figure in the chart colors of the geologic time scale, a map of where each species was found (a dot for published coordinates, the region or country shaded otherwise), diagnosis, each species with its type specimen, horizon and locality, synonyms, notable specimens, ICZN cases and references, beside an "At a glance" panel; then how to cite the record and a link to suggest a correction |
 | Clade | One per clade with a record: description, the span of time its genera cover, diagnosis, the clades within it, the genera placed directly in it with their ages and countries, how to cite the record, and a link to suggest a correction |
-| Reference | One per cited work: the full citation, the names first published in it, every genus and clade that cites it, and a link to suggest a correction |
+| Rock unit | `unit/{slug}/`, one per formation, group or other top-level rock unit with genera: its rank and the unit it belongs to, its age figure, the genera found in it, the formations of a group, its members and beds as sections with their genera and sources, its references, and a link to suggest a correction. A member or bed's own address sends readers to its section |
+| Reference | One per cited work: the full citation, the names first published in it, every genus, clade and rock unit that cites it, and a link to suggest a correction |
 | Genera | Every genus, A to Z, with its group, epochs and country, and filters for time, group, diet, locomotion, integument, status and year named that are kept in the page address |
 | Map | Where every genus's type species was found, on a world map: regions shaded by how many genera come from them, dots for published coordinates, the genera of a selected region, the Genera page's filters, and an index of genera by country and region that works without JavaScript |
 | Feed | `feed.xml`, an Atom feed of the 50 most recently named genera, linked from every page's head and the home page |
 | Tree | The classification as a chart you can zoom (left to right, colored by major group, each tip summarizing a clade's genera and opening a list of them) and as an outline you can open and close, with genus counts. A find field shows any clade or genus in either |
 | References | Every cited work, by first author |
+| Rock units | `units/`: every rock unit with a page, and every member and bed, A to Z, with its rank, age and genus count |
+| Glossary | Plain-English definitions from [open-paleo/glossary](https://github.com/open-paleo/glossary), A to Z, each linked from the terms in genus and clade text |
 | Data | Downloads of the dataset's output files, how to cite a release, the versioning policy, and the tools |
 | Tools | The site's tools, from the header's "Tools" item: for now the tree extractor |
 | Tree extractor (beta) | `tools/tree-extractor/`: [open-paleo/tree-extractor](https://github.com/open-paleo/tree-extractor) in the site's theme, reading a tree from a figure into Newick or Nexus in the browser, with labels matched against the dataset's names. Its text recognition (Tesseract.js) is served from the site, so nothing leaves the reader's computer |
-| Search | Full-text search of the genus, clade, reference, stage and period pages with [Pagefind](https://pagefind.app/), filtered by kind. The header and home page search fields also suggest genus, species, clade and synonym names as you type |
+| Search | Full-text search of the genus, clade, reference, rock unit, stage and period pages with [Pagefind](https://pagefind.app/), filtered by kind. The header and home page search fields also suggest genus, species, clade, synonym and rock unit names as you type |
 
 Every page also has link-preview tags (Open Graph and Twitter cards) and a sitemap entry.
 Corrections go to the data repository through its correction form, and citations follow the

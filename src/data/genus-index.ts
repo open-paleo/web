@@ -16,12 +16,13 @@ import { getGenusEpochs } from "./time-pages.ts";
  * - "index": the Genera and period pages. Group, epochs and country.
  * - "stage": a stage page. Parent clade, stages with their dates, country, and whether the genus
  *   is under dispute.
+ * - "unit": a rock unit's page. The same details as a stage page.
  * - "clade": a clade page, listing the genera placed directly in it. Stages with their dates,
  *   country, whether its placement is incertae sedis, and whether it is under dispute.
  * - "place": the Map page's list for one region or country, which names the place itself. Group
  *   and epochs.
  */
-export type GenusListContext = "index" | "stage" | "clade" | "place";
+export type GenusListContext = "index" | "stage" | "unit" | "clade" | "place";
 
 /**
  * What one item of a genus's details line is, which sets how it is shown.
@@ -315,7 +316,7 @@ function createGenusDetails(
     }
     else
     {
-        if (context === "stage")
+        if (context === "stage" || context === "unit")
         {
             const parent = siteData.cladeByName.get(genus.parent);
 
@@ -336,7 +337,7 @@ function createGenusDetails(
     }
 
     // A disputed type species already has a "Disputed" badge, so the note would repeat it.
-    if ((context === "stage" || context === "clade") && genus.dispute !== undefined && getTypeSpecies(genus).status !== "disputed")
+    if ((context === "stage" || context === "unit" || context === "clade") && genus.dispute !== undefined && getTypeSpecies(genus).status !== "disputed")
     {
         details.push({ kind: "dispute", text: "under dispute", slug: "" });
     }

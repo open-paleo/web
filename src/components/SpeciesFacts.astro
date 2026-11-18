@@ -15,6 +15,7 @@ import {
 import { findGlossaryEntry, getGlossary } from "../data/glossary.ts";
 import DiagnosisList from "./DiagnosisList.astro";
 import GlossaryTerm from "./GlossaryTerm.astro";
+import UnitLinks from "./UnitLinks.astro";
 import Prose from "./Prose.astro";
 
 /**
@@ -43,7 +44,7 @@ const ageRange = species.period.from_ma !== undefined && species.period.to_ma !=
     ? formatAgeRange(species.period.from_ma, species.period.to_ma)
     : "";
 const ageNote = describeAgeResolution(species.period.resolution);
-const horizon = joinNonEmpty([units, geologicAge]);
+const horizon = units !== "" || geologicAge !== "";
 const locality = location ? formatQuotes(joinNonEmpty([location.locality ?? "", place])) : "";
 ---
 
@@ -91,7 +92,7 @@ const locality = location ? formatQuotes(joinNonEmpty([location.locality ?? "", 
         <>
             <dt>Horizon</dt>
             <dd>
-                {horizon}{ageRange && <span class="age-range figures">, {ageRange}</span>}
+                {location && <UnitLinks location={location} />}{units && geologicAge && ", "}{geologicAge}{ageRange && <span class="age-range figures">, {ageRange}</span>}
                 {ageNote && <span class="age-note">{ageNote}</span>}
             </dd>
         </>

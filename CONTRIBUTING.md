@@ -129,6 +129,7 @@ run `npm ci && npm run build` in the glossary. Or set `OPEN_PALEO_DATA` and
 | `citations.ts`, `feed.ts` | Citations of the dataset and its records, and the feed of new genera |
 | `known-names.ts` | The taxon and clade names the tree extractor matches labels against |
 | `glossary.ts` | `getGlossary()`: the glossary's terms in order, and finding them in text |
+| `units.ts` | `getUnits()`: the rock units arranged into pages, one per formation, group or other top-level unit with genera, with members and beds as sections of their unit's page |
 
 Pages call `getSiteData()` from their frontmatter or `getStaticPaths()`; the first call loads
 the file and later calls reuse the result.

@@ -51,7 +51,7 @@ function createNote(suggestion: SearchSuggestion): HTMLElement
     }
     else
     {
-        note.textContent = suggestion.kind === "species" ? "Species" : "Clade";
+        note.textContent = suggestion.kind === "species" ? "Species" : suggestion.kind === "unit" ? "Rock unit" : "Clade";
     }
 
     return note;

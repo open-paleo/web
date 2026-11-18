@@ -1,12 +1,14 @@
 import { formatAuthority } from "./format.ts";
 import type { SiteData } from "./site-data.ts";
 import { createSlug } from "./slugs.ts";
+import type { UnitIndex } from "./units.ts";
+import { getUnitPath } from "./units.ts";
 
 /**
  * What a suggestion names. Genus and species names, and their synonyms, are set in italic;
  * clade names and references are not.
  */
-export type SuggestionKind = "genus" | "species" | "clade" | "genus-synonym" | "species-synonym" | "clade-synonym" | "reference";
+export type SuggestionKind = "genus" | "species" | "clade" | "genus-synonym" | "species-synonym" | "clade-synonym" | "unit" | "reference";
 
 /**
  * One name the search fields suggest as the reader types.
@@ -47,12 +49,14 @@ export type SearchSuggestion = {
 
 /**
  * Create the names the search fields suggest: every genus, species, clade with a page, and
- * synonym, each with the page it opens. A synonym opens the record it is a synonym of.
+ * synonym, each with the page it opens, then every rock unit shown on a page. A synonym opens
+ * the record it is a synonym of; a member or bed opens its section on its unit's page.
  *
  * @param siteData - The lookup tables.
+ * @param units - The rock units.
  * @returns The suggestions, genera first, in the order the dataset lists them.
  */
-export function createSearchSuggestions(siteData: SiteData): Array<SearchSuggestion>
+export function createSearchSuggestions(siteData: SiteData, units: UnitIndex): Array<SearchSuggestion>
 {
     const suggestions = new Array<SearchSuggestion>();
 
@@ -100,6 +104,14 @@ export function createSearchSuggestions(siteData: SiteData): Array<SearchSuggest
         for (const synonym of clade.record.synonyms ?? [])
         {
             suggestions.push({ name: synonym.name, kind: "clade-synonym", path: cladePath, synonymOf: clade.name, authority: "" });
+        }
+    }
+
+    for (const page of units.pages)
+    {
+        for (const entry of [page.entry, ...page.sections])
+        {
+            suggestions.push({ name: entry.displayName, kind: "unit", path: getUnitPath(units, entry.name) ?? "", synonymOf: "", authority: "" });
         }
     }
 

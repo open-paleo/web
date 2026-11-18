@@ -1,0 +1,187 @@
+---
+import LetterJumpList from "../../components/LetterJumpList.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatGenusCount, formatGeologicAge } from "../../data/format.ts";
+import { createLetterAnchor, groupByLetter } from "../../data/indexes.ts";
+import type { UnitEntry } from "../../data/units.ts";
+import { describeUnitRank, getUnitPath, getUnits } from "../../data/units.ts";
+
+/**
+ * One unit in the index: a unit with a page, or a member or bed shown on another unit's page.
+ */
+type UnitListing = {
+    /**
+     * The unit.
+     */
+    entry: UnitEntry;
+
+    /**
+     * The page or section's address.
+     */
+    href: string;
+
+    /**
+     * What it is and where: "Formation", "Member of the Aguja Formation".
+     */
+    description: string;
+
+    /**
+     * How many genera were found in it, or 0 for a member or bed.
+     */
+    genusCount: number;
+};
+
+/**
+ * Get the name a unit is listed under.
+ *
+ * @param listing - The unit.
+ * @returns Its display name.
+ */
+function getListingName(listing: UnitListing): string
+{
+    return listing.entry.displayName;
+}
+
+const units = getUnits();
+const baseUrl = import.meta.env.BASE_URL;
+const listings = new Array<UnitListing>();
+
+for (const page of units.pages)
+{
+    const parent = page.entry.record.parent ? units.pageByName.get(page.entry.record.parent) : undefined;
+    const rank = describeUnitRank(page.entry.record);
+
+    listings.push({
+        entry: page.entry,
+        href: baseUrl + (getUnitPath(units, page.entry.name) ?? ""),
+        description: parent ? rank + " of the " + parent.entry.displayName : rank,
+        genusCount: page.genera.length,
+    });
+
+    for (const section of page.sections)
+    {
+        const container = units.entryByName.get(section.record.parent ?? "") ?? page.entry;
+
+        listings.push({
+            entry: section,
+            href: baseUrl + (getUnitPath(units, section.name) ?? ""),
+            description: describeUnitRank(section.record) + " of the " + container.displayName,
+            genusCount: 0,
+        });
+    }
+}
+
+listings.sort((first, second) => first.entry.displayName.localeCompare(second.entry.displayName, "en"));
+
+const groups = groupByLetter(listings, getListingName);
+const letters = new Array<string>();
+
+for (const group of groups)
+{
+    letters.push(group.letter);
+}
+
+const pageCount = new Intl.NumberFormat("en-US").format(units.pages.length);
+---
+
+<BaseLayout title="Rock units" description={"The " + pageCount + " rock units dinosaurs in Open Paleo were found in, with their ages and genera."}>
+    <div class="index-page">
+        <header class="index-header">
+            <h1>Rock units</h1>
+            <p class="index-summary">
+                The {pageCount} formations, groups and other rock units the dataset's genera were found in. Members
+                and beds are described on the page of the unit they belong to.
+            </p>
+            <LetterJumpList letters={letters} label="Rock units" />
+        </header>
+
+        {groups.map((group) => (
+            <section class="letter-group" aria-labelledby={createLetterAnchor(group.letter)}>
+                <h2 id={createLetterAnchor(group.letter)}>{group.letter}</h2>
+                <ul class="unit-index">
+                    {group.entries.map((listing) => (
+                        <li>
+                            <a href={listing.href}>{listing.entry.displayName}</a>
+                            <span class="unit-details">{listing.description}{formatGeologicAge(listing.entry.record.period) && ", " + formatGeologicAge(listing.entry.record.period)}{listing.genusCount > 0 && <>, <span class="figures">{formatGenusCount(listing.genusCount)}</span></>}</span>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+        ))}
+    </div>
+</BaseLayout>
+
+<style>
+    .index-page
+    {
+        display: grid;
+        gap: var(--space-7);
+    }
+
+    .index-header
+    {
+        display: grid;
+        gap: var(--space-4);
+    }
+
+    h1
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .index-summary
+    {
+        max-width: var(--measure);
+        color: var(--color-muted);
+    }
+
+    .letter-group
+    {
+        display: grid;
+        gap: var(--space-3);
+        scroll-margin-top: var(--space-5);
+    }
+
+    h2
+    {
+        padding-bottom: var(--space-2);
+        border-bottom: 1px solid var(--color-ink);
+    }
+
+    .unit-index
+    {
+        display: grid;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li
+    {
+        display: grid;
+        grid-template-columns: minmax(12rem, 18rem) minmax(0, 1fr);
+        gap: var(--space-1) var(--space-5);
+        padding-block: var(--space-2);
+        border-bottom: 1px solid var(--color-line);
+    }
+
+    a
+    {
+        justify-self: start;
+        font-family: var(--font-sans);
+    }
+
+    .unit-details
+    {
+        color: var(--color-muted);
+    }
+
+    @media (max-width: 40rem)
+    {
+        li
+        {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+</style>

@@ -4,6 +4,25 @@ The site is published continuously from `main`, so changes are grouped by the da
 live, newest first. Add to today's section, creating it if needed. The data the site shows has
 its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
+## 2026-11-18
+
+### Added
+
+- Pages for rock units (`unit/{slug}/`), from the stratigraphy the dataset publishes since schema
+  4.1.0: one per formation, group or other top-level unit with genera, with its rank, the unit it
+  belongs to, its age, the genera found in it, a group's formations, its members and beds as
+  sections, and its references. A member or bed's address sends readers to its section on its
+  unit's page. A Rock units index (`units/`) lists them all, A to Z
+- The species box and "At a glance" link each rock unit to its page, the search fields suggest
+  rock units, and reference pages list the rock units that cite them. The sitemap lists the unit
+  pages but not the members' and beds' forwarding pages
+
+### Changed
+
+- Rock unit names whose last word already names a rock type are no longer followed by the rank:
+  "Navajo Sandstone", not "Navajo Sandstone Formation"
+- Long web addresses and DOIs in citations wrap on narrow screens
+
 ## 2026-11-17
 
 ### Added

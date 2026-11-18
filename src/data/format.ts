@@ -204,6 +204,37 @@ export function formatCountry(code: string): string
     return countryNames.of(code) ?? code;
 }
 
+// Last words of unit names that already say what the unit is, so a formation, member or bed
+// named with one takes no rank word: "Navajo Sandstone", not "Navajo Sandstone Formation".
+const lithologyWords = new Set(["Bed", "Beds", "Chalk", "Clay", "Conglomerate", "Greensand", "Grit", "Limestone", "Marl", "Measures", "Mudstone", "Oolite", "Sands", "Sandstone", "Shale", "Siltstone"]);
+
+// Last words that keep even a group from taking its rank word: "Hastings Beds".
+const unitTypeWords = new Set(["Bed", "Beds", "Measures"]);
+
+/**
+ * Format a rock unit's name with its rank: "Hell Creek Formation", "Lower Greensand Group". A
+ * formation, member or bed whose name ends in a rock type takes no rank word ("Navajo
+ * Sandstone"), nor does an informal or unranked unit.
+ *
+ * @param name - The unit's name, as the dataset gives it.
+ * @param rank - Its rank, if known.
+ * @param isInformal - Whether the unit is an informal one.
+ * @returns The name to display.
+ */
+export function formatUnitName(name: string, rank: string | undefined, isInformal: boolean): string
+{
+    const words = name.split(" ");
+    const lastWord = words[words.length - 1];
+    const isGrouping = rank === "group" || rank === "subgroup" || rank === "supergroup";
+
+    if (!rank || isInformal || (words.length > 1 && (isGrouping ? unitTypeWords : lithologyWords).has(lastWord)))
+    {
+        return formatQuotes(name);
+    }
+
+    return formatQuotes(name + " " + capitalizeFirstLetter(rank));
+}
+
 /**
  * Format the lithostratigraphic units of a location from finest to broadest: "Valle de la Luna
  * Member, Ischigualasto Formation". An informal division is placed before the unit it
@@ -214,23 +245,56 @@ export function formatCountry(code: string): string
  */
 export function formatStratigraphicUnits(location: Location): string
 {
-    const units = new Array<string>();
-    const ranks: Array<"bed" | "member" | "formation" | "group"> = ["bed", "member", "formation", "group"];
-    const rankNames = ["Bed", "Member", "Formation", "Group"];
+    const texts = new Array<string>();
 
-    for (let index = 0; index < ranks.length; index++)
+    for (const label of createUnitLabels(location))
     {
-        const name = location[ranks[index]];
+        texts.push(label.text);
+    }
+
+    return texts.join(", ");
+}
+
+/**
+ * One rock unit of a location, as displayed.
+ */
+export type UnitLabel = {
+    /**
+     * The unit's name, as the dataset gives it, for finding its page.
+     */
+    name: string;
+
+    /**
+     * The text to display: "upper Hell Creek Formation".
+     */
+    text: string;
+};
+
+/**
+ * Create the labels of a location's rock units, from finest to broadest, each with any informal
+ * division it qualifies: "upper Hell Creek Formation".
+ *
+ * @param location - The location.
+ * @returns The labels; none when no units are recorded.
+ */
+export function createUnitLabels(location: Location): Array<UnitLabel>
+{
+    const labels = new Array<UnitLabel>();
+    const ranks: Array<"bed" | "member" | "formation" | "group"> = ["bed", "member", "formation", "group"];
+
+    for (const rank of ranks)
+    {
+        const name = location[rank];
 
         if (name)
         {
-            const unit = name + " " + rankNames[index];
+            const text = formatUnitName(name, rank, false);
 
-            units.push(location.part && location.part_of === ranks[index] ? location.part + " " + unit : unit);
+            labels.push({ name, text: location.part && location.part_of === rank ? location.part + " " + text : text });
         }
     }
 
-    return formatQuotes(units.join(", "));
+    return labels;
 }
 
 /**

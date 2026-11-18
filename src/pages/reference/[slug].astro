@@ -71,6 +71,7 @@ const shortCitation = formatShortCitation(reference);
 const workKind = describeWorkKind(reference);
 const genusCitations = new Array<CitationRecord>();
 const cladeCitations = new Array<CitationRecord>();
+const unitCitations = new Array<CitationRecord>();
 
 for (const citation of entry.citations)
 {
@@ -78,9 +79,13 @@ for (const citation of entry.citations)
     {
         genusCitations.push(citation);
     }
-    else
+    else if (citation.kind === "clade")
     {
         cladeCitations.push(citation);
+    }
+    else
+    {
+        unitCitations.push(citation);
     }
 }
 
@@ -150,6 +155,12 @@ const pageDescription = shortCitation + ". " + (parts.title ? parts.title + ". "
             {cladeCitations.length > 0 && (
                 <PageSection title="Cited by clades">
                     <CitingRecordList citations={cladeCitations} referenceSlug={entry.slug} />
+                </PageSection>
+            )}
+
+            {unitCitations.length > 0 && (
+                <PageSection title="Cited by rock units">
+                    <CitingRecordList citations={unitCitations} referenceSlug={entry.slug} />
                 </PageSection>
             )}
 

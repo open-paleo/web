@@ -41,7 +41,7 @@ const wordStartScore = 2;
 const containsScore = 1;
 
 // At equal scores, records come before synonyms, and genera first.
-const kindOrder: Array<SuggestionKind> = ["genus", "clade", "species", "genus-synonym", "species-synonym", "clade-synonym", "reference"];
+const kindOrder: Array<SuggestionKind> = ["genus", "clade", "species", "unit", "genus-synonym", "species-synonym", "clade-synonym", "reference"];
 
 /**
  * Fold text for matching: lowercase, without accents, and with punctuation other than hyphens

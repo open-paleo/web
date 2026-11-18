@@ -1,6 +1,7 @@
 ---
 import type { Citation } from "../data/site-data.ts";
 import { getSiteData } from "../data/site-data.ts";
+import { getUnitPath, getUnits } from "../data/units.ts";
 import { createPagePath, createReferenceAnchor } from "../data/urls.ts";
 import Prose from "./Prose.astro";
 
@@ -9,7 +10,7 @@ import Prose from "./Prose.astro";
  */
 type Props = {
     /**
-     * The citations, all of one kind (genera or clades).
+     * The citations, all of one kind (genera, clades or rock units).
      */
     citations: Array<Citation>;
 
@@ -21,6 +22,7 @@ type Props = {
 
 const { citations, referenceSlug } = Astro.props;
 const siteData = getSiteData();
+const units = getUnits();
 const baseUrl = import.meta.env.BASE_URL;
 const anchor = "#" + createReferenceAnchor(referenceSlug);
 
@@ -28,10 +30,19 @@ const anchor = "#" + createReferenceAnchor(referenceSlug);
  * Create the link to a citing record's entry for this work.
  *
  * @param citation - The citation.
- * @returns The link target: the record's page, at the work in its reference list.
+ * @returns The link target: the record's page, at the work in its reference list; empty for a
+ * rock unit without a page.
  */
 function createCitationLink(citation: Citation): string
 {
+    if (citation.kind === "unit")
+    {
+        const path = getUnitPath(units, citation.name);
+
+        // A member or bed's path already ends at its section; a unit without a page has none.
+        return path === undefined ? "" : baseUrl + path + (path.includes("#") ? "" : anchor);
+    }
+
     const slug = citation.kind === "genus"
         ? siteData.genusByName.get(citation.name)?.slug ?? ""
         : siteData.cladeByName.get(citation.name)?.slug ?? "";
@@ -43,7 +54,9 @@ function createCitationLink(citation: Citation): string
 <ul class="citing-records">
     {citations.map((citation) => (
         <li>
-            <a class:list={{ taxon: citation.kind === "genus" }} href={createCitationLink(citation)}>{citation.name}</a>
+            {createCitationLink(citation)
+                ? <a class:list={{ taxon: citation.kind === "genus" }} href={createCitationLink(citation)}>{citation.kind === "unit" ? units.entryByName.get(citation.name)?.displayName ?? citation.name : citation.name}</a>
+                : units.entryByName.get(citation.name)?.displayName ?? citation.name}
             {citation.notes && <p class="citation-notes"><Prose text={citation.notes.trim()} /></p>}
         </li>
     ))}
