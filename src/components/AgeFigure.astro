@@ -1,8 +1,9 @@
 ---
-import type { AgeMarker, AgeRow } from "../data/age-figure.ts";
+import type { AgeBand as AgeBandData, AgeBandDetails, AgeMarker, AgeRow } from "../data/age-figure.ts";
 import { createAgeFigureModel } from "../data/age-figure.ts";
+import AgeBand from "./AgeBand.astro";
 import type { Period } from "../data/dataset.ts";
-import { formatAgeRange } from "../data/format.ts";
+import { formatAgeRange, formatGenusCount } from "../data/format.ts";
 import { getTimePages, getAgeCaptionParts } from "../data/time-pages.ts";
 import { createPagePath } from "../data/urls.ts";
 import { getSiteData } from "../data/site-data.ts";
@@ -32,16 +33,6 @@ const captionParts = getAgeCaptionParts(period, getTimePages());
 const baseUrl = import.meta.env.BASE_URL;
 
 /**
- * Bands narrower than this share of the row carry no label; their name shows on hover.
- */
-const labelledBandPercent = 9;
-
-/**
- * Bands narrower than this share of the row also hide their name when the row is narrow, as on
- * a phone.
- */
-const labelledBandPercentWhenNarrow = 20;
-/**
  * Create the marker's position and width. A marker that starts on a band boundary moves one
  * pixel right, past the separator each band draws on its first pixel.
  *
@@ -56,6 +47,62 @@ function createMarkerStyle(marker: AgeMarker): string
     }
 
     return "left: " + marker.leftPercent + "%; width: " + marker.widthPercent + "%";
+}
+
+const timePages = getTimePages();
+const currentPath = Astro.url.pathname;
+const epochByStage = new Map<string, string>();
+
+for (const epoch of timeline?.epochs ?? [])
+{
+    for (const stage of epoch.stages)
+    {
+        epochByStage.set(stage.name, epoch.name);
+    }
+}
+
+/**
+ * Describe a band for its tooltip and link.
+ *
+ * @param band - The band.
+ * @param isStage - Whether the band is a stage rather than a period.
+ * @param centerPercent - Where the band's middle is across the row.
+ * @returns The details.
+ */
+function describeBand(band: AgeBandData, isStage: boolean, centerPercent: number): AgeBandDetails
+{
+    const page = isStage ? timePages.stageByName.get(band.name) : timePages.periodByName.get(band.name);
+    const path = page ? createPagePath(baseUrl, isStage ? "stage" : "period", page.slug) : "";
+
+    return {
+        band,
+        href: path === currentPath ? "" : path,
+        kind: isStage ? "Stage of the " + (epochByStage.get(band.name) ?? "") : "Period",
+        age: formatAgeRange(band.fromMa, band.toMa),
+        genera: page ? formatGenusCount(page.genera.length) : "No genera in the dataset",
+        alignment: centerPercent < 15 ? "start" : centerPercent > 85 ? "end" : "center",
+    };
+}
+
+/**
+ * Describe each band of a row.
+ *
+ * @param row - The row.
+ * @param isStageRow - Whether the row holds stages.
+ * @returns The details of each band, in order.
+ */
+function describeBands(row: AgeRow, isStageRow: boolean): Array<AgeBandDetails>
+{
+    const details = new Array<AgeBandDetails>();
+    let leftPercent = 0;
+
+    for (const band of row.bands)
+    {
+        details.push(describeBand(band, isStageRow, leftPercent + band.widthPercent / 2));
+        leftPercent += band.widthPercent;
+    }
+
+    return details;
 }
 
 const rows = new Array<AgeRow>();
@@ -82,23 +129,12 @@ if (model)
                 {rowIndex > 0 && <div class="age-row-label" data-pagefind-ignore>{row.label}</div>}
                 {/* The marker sits behind the bands and reaches past them, so the range shows as tabs
                    above and below the row and never crosses a band's label. */}
-                <div class="age-track" aria-hidden="true" data-pagefind-ignore>
-                    <span class="age-marker" style={createMarkerStyle(row.marker)}></span>
+                {/* Bands with a page are links, each named in full for screen readers, with a tooltip
+                   that shows on hover and focus. The rest, and the marker, are hidden from them. */}
+                <div class="age-track" data-pagefind-ignore>
+                    <span class="age-marker" style={createMarkerStyle(row.marker)} aria-hidden="true"></span>
                     <div class="age-row">
-                        {row.bands.map((band) => (
-                            <span
-                                class:list={[
-                                    "age-band",
-                                    {
-                                        "has-dark-color": band.hasDarkColor,
-                                        "is-in-range": band.isInRange,
-                                        "is-small": band.widthPercent < labelledBandPercentWhenNarrow,
-                                    },
-                                ]}
-                                style={"flex-basis: " + band.widthPercent + "%; background: var(" + band.colorToken + ")"}
-                                title={band.name}
-                            >{band.widthPercent >= labelledBandPercent && <span class="age-band-label">{band.name}</span>}</span>
-                        ))}
+                        {describeBands(row, rowIndex > 0).map((details) => <AgeBand details={details} />)}
                     </div>
                 </div>
                 <div class="age-scale figures" aria-hidden="true" data-pagefind-ignore>
@@ -168,53 +204,6 @@ if (model)
         position: relative;
         display: flex;
         height: 2.1rem;
-        overflow: hidden;
-        border-radius: var(--radius-small);
-    }
-
-    .age-band
-    {
-        display: flex;
-        flex-grow: 0;
-        flex-shrink: 0;
-        align-items: center;
-        min-width: 0;
-        padding-inline: var(--space-2);
-        overflow: hidden;
-        color: var(--color-on-period);
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    .age-band + .age-band
-    {
-        box-shadow: inset 1px 0 0 var(--color-surface);
-    }
-
-    /* Bands the record's range falls in have bold labels, so the range reads in the text as well
-       as in the tabs. */
-    .age-band.is-in-range
-    {
-        font-weight: 700;
-    }
-
-    .age-band.has-dark-color
-    {
-        color: var(--color-on-period-dark);
-    }
-
-    .age-band-label
-    {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    @container (max-width: 36rem)
-    {
-        .age-band.is-small .age-band-label
-        {
-            visibility: hidden;
-        }
     }
 
     /* The track holds the marker behind the row of bands. Its padding is how far the marker

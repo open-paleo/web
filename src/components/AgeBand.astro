@@ -1,0 +1,168 @@
+---
+import type { AgeBandDetails } from "../data/age-figure.ts";
+
+/**
+ * Properties of one period or stage band in the age figure.
+ */
+type Props = {
+    /**
+     * The band and what its tooltip and link show.
+     */
+    details: AgeBandDetails;
+};
+
+/**
+ * Bands narrower than this share of the row carry no label; their tooltip names them.
+ */
+const labelledBandPercent = 9;
+
+/**
+ * Bands narrower than this share of the row also hide their label when the row is narrow, as on
+ * a phone.
+ */
+const labelledBandPercentWhenNarrow = 20;
+
+const { details } = Astro.props;
+const band = details.band;
+const classes = ["age-band", "tooltip-" + details.alignment, { "is-link": details.href !== "", "has-dark-color": band.hasDarkColor, "is-in-range": band.isInRange, "is-small": band.widthPercent < labelledBandPercentWhenNarrow }];
+const style = "flex-basis: " + band.widthPercent + "%; background: var(" + band.colorToken + ")";
+const label = band.name + ", " + details.kind.charAt(0).toLowerCase() + details.kind.slice(1) + ", " + details.age + ", " + details.genera;
+
+// A band with a page is a link named in full for screen readers; the rest are hidden from them.
+// The tooltip shows on hover and keyboard focus.
+---
+{details.href
+    ? <a class:list={classes} style={style} href={details.href} aria-label={label}>{band.widthPercent >= labelledBandPercent && <span class="age-band-label">{band.name}</span>}<span class="age-tooltip" aria-hidden="true"><strong>{band.name}</strong><span>{details.kind}</span><span>{details.age}</span><span>{details.genera}</span></span></a>
+    : <span class:list={classes} style={style} aria-hidden="true">{band.widthPercent >= labelledBandPercent && <span class="age-band-label">{band.name}</span>}<span class="age-tooltip" aria-hidden="true"><strong>{band.name}</strong><span>{details.kind}</span><span>{details.age}</span><span>{details.genera}</span></span></span>}
+
+<style>
+    /* Bands don't clip their contents, so the tooltip can rise above the row; the label clips
+       itself, and the row's ends are rounded on its first and last bands. */
+    .age-band
+    {
+        position: relative;
+        display: flex;
+        flex-grow: 0;
+        flex-shrink: 0;
+        align-items: center;
+        min-width: 0;
+        padding-inline: var(--space-2);
+        color: var(--color-on-period);
+        white-space: nowrap;
+        text-decoration: none;
+    }
+
+    .age-band:first-child
+    {
+        border-radius: var(--radius-small) 0 0 var(--radius-small);
+    }
+
+    .age-band:last-child
+    {
+        border-radius: 0 var(--radius-small) var(--radius-small) 0;
+    }
+
+    /* A shade over the band's color, so the hover works over every period and stage color. */
+    .age-band.is-link:hover::after,
+    .age-band.is-link:focus-visible::after
+    {
+        position: absolute;
+        inset: 0;
+        background: var(--color-band-shade);
+        border-radius: inherit;
+        content: "";
+    }
+
+    .age-band.is-link:focus-visible
+    {
+        z-index: 2;
+        outline: 2px solid var(--color-ink);
+        outline-offset: 1px;
+    }
+
+    .age-tooltip
+    {
+        position: absolute;
+        bottom: calc(100% + var(--space-3));
+        left: 50%;
+        z-index: 3;
+        display: none;
+        gap: 0.1rem;
+        padding: var(--space-2) var(--space-3);
+        color: var(--color-ink);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+        box-shadow: 0 var(--space-1) var(--space-3) color-mix(in srgb, var(--color-ink) 15%, transparent);
+        font-size: var(--text-small);
+        font-weight: 400;
+        line-height: 1.4;
+        white-space: nowrap;
+        transform: translateX(-50%);
+    }
+
+    .age-tooltip strong
+    {
+        font-size: var(--text-interface);
+        font-weight: 600;
+    }
+
+    .age-tooltip span
+    {
+        color: var(--color-muted);
+    }
+
+    .age-band.tooltip-start .age-tooltip
+    {
+        left: 0;
+        transform: none;
+    }
+
+    .age-band.tooltip-end .age-tooltip
+    {
+        right: 0;
+        left: auto;
+        transform: none;
+    }
+
+    .age-band:hover .age-tooltip,
+    .age-band:focus-visible .age-tooltip
+    {
+        display: grid;
+    }
+
+    .age-band + .age-band
+    {
+        box-shadow: inset 1px 0 0 var(--color-surface);
+    }
+
+    /* Bands the record's range falls in have bold labels, so the range reads in the text as well
+       as in the tabs. */
+    .age-band.is-in-range
+    {
+        font-weight: 700;
+    }
+
+    .age-band.has-dark-color
+    {
+        color: var(--color-on-period-dark);
+    }
+
+    .age-band-label
+    {
+        position: relative;
+        z-index: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    @container (max-width: 36rem)
+    {
+        .age-band.is-small .age-band-label
+        {
+            visibility: hidden;
+        }
+    }
+
+</style>

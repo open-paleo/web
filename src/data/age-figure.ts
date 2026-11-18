@@ -84,6 +84,51 @@ export type AgeBand = {
      * True when the record's age range overlaps the band; its label is emphasized.
      */
     isInRange: boolean;
+
+    /**
+     * Start of the period or stage, in millions of years ago.
+     */
+    fromMa: number;
+
+    /**
+     * End of the period or stage, in millions of years ago.
+     */
+    toMa: number;
+};
+
+/**
+ * What a band's tooltip and link show.
+ */
+export type AgeBandDetails = {
+    /**
+     * The band.
+     */
+    band: AgeBand;
+
+    /**
+     * The page it links to, or an empty string when it has none or is the current page.
+     */
+    href: string;
+
+    /**
+     * What it is: "Period", or "Stage of the Late Jurassic".
+     */
+    kind: string;
+
+    /**
+     * Its age: "154.8–149.2 million years ago".
+     */
+    age: string;
+
+    /**
+     * How many genera are known from it: "28 genera", or a note that there are none.
+     */
+    genera: string;
+
+    /**
+     * Where the tooltip sits: centered over the band, or kept from running off an edge.
+     */
+    alignment: "start" | "center" | "end";
 };
 
 /**
@@ -318,6 +363,8 @@ function createAgeRow(label: string, units: Array<TimeUnit>, tokenPrefix: string
             hasDarkColor: hasDarkChartColor(unit.name),
             widthPercent: (unit.fromMa - unit.toMa) / span * 100,
             isInRange: overlapsRange(unit, fromMa, toMa),
+            fromMa: unit.fromMa,
+            toMa: unit.toMa,
         });
     }
 

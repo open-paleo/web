@@ -45,6 +45,8 @@
     --color-map-region-border: #c8cec8;
     --color-map-label: #59625d;
     --color-map-label-halo: #f2f3ef;
+    /* Darkens an age band under the pointer or keyboard focus, over any period or stage color. */
+    --color-band-shade: rgb(0 0 0 / 16%);
     /* The ancient-map globe: the box around it, so the globe's edge shows whatever faces the
        reader, and its latitude and longitude grid. */
     --color-map-space: #4a5652;

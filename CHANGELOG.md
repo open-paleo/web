@@ -8,6 +8,10 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ### Added
 
+- The period and stage bands of the age figure on genus, clade, stage and unit pages link to
+  their pages. Hovering or focusing a band darkens it and shows a tooltip with its full name,
+  what it is, its age and how many genera are known from it, which also names the narrow bands
+  too small for a label
 - Names in genus and clade text link to their pages: genera, species (to their section on the
   genus page, including synonyms and abbreviations such as "T. rex"), clades, rock units,
   stages and periods, and epochs to their row on the Time scale page. Each links once per block,
