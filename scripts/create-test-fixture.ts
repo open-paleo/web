@@ -2,7 +2,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import * as url from "node:url";
 
-import type { Clade, Genus, OpenPaleoDataset, TreeNode } from "../src/data/dataset.ts";
+import type { Clade, Genus, OpenPaleoDataset, StratigraphicUnit, TreeNode } from "../src/data/dataset.ts";
 import { datasetFileName, findDatasetDirectory, findGlossaryDirectory, glossaryFileName } from "../src/data/locate-dataset.ts";
 
 // Builds test/fixtures/open-paleo.json: a small dataset cut from the real one, so tests run
@@ -205,6 +205,34 @@ for (const name of [...keptClades].sort())
     }
 }
 
+// The rock units the kept species were found in, and the units those belong to.
+const stratigraphy: Record<string, StratigraphicUnit> = {};
+const unitNames = new Array<string>();
+
+for (const genus of Object.values(genera))
+{
+    for (const species of genus.species)
+    {
+        const location = species.location;
+
+        if (location)
+        {
+            unitNames.push(location.group ?? "", location.formation ?? "", location.member ?? "", location.bed ?? "");
+        }
+    }
+}
+
+for (let index = 0; index < unitNames.length; index++)
+{
+    const unit = dataset.stratigraphy?.[unitNames[index]];
+
+    if (unit && !stratigraphy[unitNames[index]])
+    {
+        stratigraphy[unitNames[index]] = unit;
+        unitNames.push(unit.parent ?? "");
+    }
+}
+
 const fixture: OpenPaleoDataset = {
     _metadata: {
         ...dataset._metadata,
@@ -215,6 +243,7 @@ const fixture: OpenPaleoDataset = {
     tree: pruneTree(dataset.tree, keptClades),
     clades,
     genera,
+    stratigraphy,
 };
 
 const outputPath = path.join(rootDirectory, "test", "fixtures", datasetFileName);

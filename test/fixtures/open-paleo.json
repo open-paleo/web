@@ -1,7 +1,7 @@
 {
   "_metadata": {
     "attribution": "Open Paleo contributors",
-    "built_at": "2026-11-17T22:11:42.402Z",
+    "built_at": "2026-11-18T18:10:22.217Z",
     "clade_count": 44,
     "genus_count": 12,
     "license": "CC-BY-4.0",
@@ -10,7 +10,7 @@
       "citation": "Wright, N.; Zahirovic, S.; Müller, R. D.; Seton, M. (2013). Towards community-driven paleogeographic reconstructions: integrating open-access paleogeographic and paleobiology data with plate tectonics. Biogeosciences 10(3): 1529-1541. doi:10.5194/bg-10-1529-2013",
       "license": "CC-BY-3.0-AU"
     },
-    "schema_version": "4.0.0",
+    "schema_version": "4.1.0",
     "version": "2026.11"
   },
   "timescale": {
@@ -6348,6 +6348,1478 @@
       ],
       "authors": "Osborn, H. F.",
       "described": 1905
+    }
+  },
+  "stratigraphy": {
+    "Conques": {
+      "rank": "formation",
+      "parent": "Tremp",
+      "period": {
+        "name": [
+          "Late Cretaceous"
+        ],
+        "stage": [
+          "Maastrichtian"
+        ],
+        "from_ma": 72.2,
+        "to_ma": 66
+      },
+      "references": [
+        {
+          "id": "prieto-márquez2019a",
+          "authors": "Prieto-Márquez, A.; Fondevilla, V.; Sellés, A. G.; Wagner, J. R.; Galobart, À.",
+          "year": 2019,
+          "title": "Adynomosaurus arcanus, a new lambeosaurine dinosaur from the Late Cretaceous Ibero-Armorican Island of the European archipelago",
+          "journal": "Cretaceous Research",
+          "publisher": "Elsevier BV",
+          "volume": "96",
+          "pages": "19-37",
+          "doi": "10.1016/j.cretres.2018.12.002",
+          "notes": "Places it in the \"Conques Formation and uppermost Maastrichtian\" interval. It is one of three formations of the Tremp Group defined and datable only in the eastern Tremp Syncline; facies alone will not separate it from the Talarn, both being red fluvial beds, so the magnetochron does the work — C31r with red fluvial floodplain is this unit, C29r is the Talarn.\n"
+        },
+        {
+          "id": "augustin2023a",
+          "authors": "Augustin, F. J.; Ősi, A.; Csiki-Sava, Z.",
+          "year": 2023,
+          "title": "The Rhabdodontidae (Dinosauria, Ornithischia), an enigmatic dinosaur group endemic to the Late Cretaceous European Archipelago",
+          "journal": "Fossil Record",
+          "publisher": "Pensoft Publishers",
+          "volume": "26",
+          "issue": "2",
+          "pages": "171-189",
+          "doi": "10.3897/fr.26.108967",
+          "notes": "Treats it as a member, placing the Pareisactus scapula in \"the Upper Cretaceous (lower Maastrichtian) Conques Member of the Tremp Formation in north-eastern Spain\".\n"
+        },
+        {
+          "id": "cuevas1992a",
+          "authors": "Cuevas, J. L.",
+          "year": 1992,
+          "title": "Estratigrafía del \"Garumniense\" de la Conca de Tremp, Prepirineo de Lérida [Stratigraphy of the \"Garumnian\" of the Conca de Tremp, Lleida Pre-Pyrenees]",
+          "journal": "Acta Geologica Hispanica",
+          "volume": "27",
+          "pages": "95-108",
+          "notes": "Erects the unit as the \"Formación Lutitas, Areniscas y Conglomerados de Conques\", with the Tossal d'Obà and Basturs Limestones members, in the Tremp Group. The type section is in the Barranco de Basturs, about 400 m thick, of variegated mudstones with lenticular sandstones; the base passes gradually into the Posa Formation and the top passes rapidly into the red mudstones of the Talarn. Gives no age of its own.\n"
+        },
+        {
+          "id": "díez-canseco2014a",
+          "authors": "Díez-Canseco, D.; Arz, J. A.; Benito, M. I.; Díaz-Molina, M.; Arenillas, I.",
+          "year": 2014,
+          "title": "Tidal influence in redbeds: a palaeoenvironmental and biochronostratigraphic reconstruction of the Lower Tremp Formation (South-Central Pyrenees, Spain) around the Cretaceous/Paleogene boundary",
+          "journal": "Sedimentary Geology",
+          "volume": "312",
+          "pages": "31-49",
+          "doi": "10.1016/j.sedgeo.2014.06.008",
+          "notes": "Equates the Conques and Talarn formations together with its Lower Red Unit, after Cuevas (1992) and others, and dates that unit from planktonic foraminifera: \"In situ assemblages indicate an early to late Maastrichtian age for the Grey Unit and the Lower Red Unit\".\n"
+        },
+        {
+          "id": "fondevilla2019a",
+          "authors": "Fondevilla, V.; Riera, V.; Vila, B.; Sellés, A. G.; Dinarès-Turell, J.; Vicens, E.; Gaete, R.; Oms, O.; Galobart, À.",
+          "year": 2019,
+          "title": "Chronostratigraphic synthesis of the latest Cretaceous dinosaur turnover in south-western Europe",
+          "journal": "Earth-Science Reviews",
+          "publisher": "Elsevier BV",
+          "volume": "191",
+          "pages": "168-189",
+          "doi": "10.1016/j.earscirev.2019.01.007",
+          "notes": "In the Orcau section of the northern Isona sector, places \"the complete La Posa and Conques formations\" in the early Maastrichtian, within chron C31r, on foraminiferal zones and magnetostratigraphy, and rejects the late Maastrichtian that earlier work gave them. In the southern Isona sector only the lower part of the formation is dated, likely within C31r.\n"
+        },
+        {
+          "id": "pujalte2005a",
+          "authors": "Pujalte, V.; Schmitz, B.",
+          "year": 2005,
+          "title": "Revisión de la estratigrafía del Grupo Tremp (\"Garumniense\", Cuenca de Tremp-Graus, Pirineos meridionales) [Revision of the stratigraphy of the Tremp Group (\"Garumnian\", Tremp-Graus Basin, southern Pyrenees)]",
+          "journal": "Geogaceta",
+          "volume": "38",
+          "pages": "79-82",
+          "notes": "Assigns to the Conques the variegated mudstones at the base of the Esplugafreda section that Cuevas (1992) included in the Talarn, because they lack carbonate paleosols and Microcodium, and labels the formation Maastrichtian.\n"
+        }
+      ]
+    },
+    "West Melbury Marly Chalk": {
+      "rank": "formation",
+      "period": {
+        "name": [
+          "Early Cretaceous",
+          "Late Cretaceous"
+        ],
+        "stage": [
+          "Albian",
+          "Cenomanian"
+        ],
+        "from_ma": 113.2,
+        "to_ma": 93.9
+      },
+      "references": [
+        {
+          "id": "hopson2005a",
+          "authors": "Hopson, P. M.",
+          "year": 2005,
+          "title": "A stratigraphical framework for the Upper Cretaceous Chalk of England and Scotland, with statements on the Chalk of Northern Ireland and the UK Offshore Sector",
+          "journal": "British Geological Survey Research Report",
+          "publisher": "British Geological Survey",
+          "volume": "RR/05/01",
+          "notes": "Defines the formation and names Copt Point among its primary reference sections.\n"
+        },
+        {
+          "id": "barrett2020a",
+          "authors": "Barrett, P. M.; Bonsor, J. A.",
+          "year": 2020,
+          "title": "A revision of the non-avian dinosaurs 'Eucercosaurus tanyspondylus' and 'Syngonosaurus macrocercus' from the Cambridge Greensand, UK",
+          "journal": "Cretaceous Research",
+          "publisher": "Elsevier BV",
+          "volume": "118",
+          "pages": "104638",
+          "doi": "10.1016/j.cretres.2020.104638",
+          "notes": "Gives \"West Melbury Marly Chalk Formation (Upper Cretaceous; Cenomanian)\" and notes that its vertebrate remains are \"reworked from the underlying Gault Formation (Lower Cretaceous; upper Albian ...)\".\n"
+        },
+        {
+          "id": "raven2020a",
+          "authors": "Raven, T. J.; Barrett, P. M.; Pond, S. B.; Maidment, S. C. R.",
+          "year": 2020,
+          "title": "Osteology and taxonomy of British Wealden Supergroup (Berriasian-Aptian) ankylosaurs (Ornithischia, Ankylosauria)",
+          "journal": "Journal of Vertebrate Paleontology",
+          "doi": "10.1080/02724634.2020.1826956",
+          "notes": "Independently gives \"West Melbury Marly Chalk Formation (Cenomanian)\".\n"
+        }
+      ]
+    },
+    "Antlers": {
+      "rank": "formation",
+      "parent": "Trinity",
+      "period": {
+        "name": [
+          "Early Cretaceous"
+        ],
+        "stage": [
+          "Aptian",
+          "Albian"
+        ],
+        "from_ma": 121.4,
+        "to_ma": 100.5
+      },
+      "references": [
+        {
+          "id": "d'emic2012a",
+          "authors": "D'Emic, M. D.; Melstrom, K. M.; Eddy, D. R.",
+          "year": 2012,
+          "title": "Paleobiology and geographic range of the large-bodied Cretaceous theropod dinosaur Acrocanthosaurus atokensis",
+          "journal": "Palaeogeography, Palaeoclimatology, Palaeoecology",
+          "volume": "333-334",
+          "pages": "13-23",
+          "doi": "10.1016/j.palaeo.2012.03.003",
+          "notes": "Gives \"Antlers Formation (Lower Cretaceous, Aptian-Albian)\". D'Emic (2012) records that it is laterally equivalent to the Twin Mountains Formation.\n"
+        },
+        {
+          "id": "suarez2021a",
+          "authors": "Suarez, C. A.; Frederickson, J.; Cifelli, R. L.; Pittman, J. G.; Nydam, R. L.; Hunt-Foster, R. K.; Morgan, K.",
+          "year": 2021,
+          "title": "A new vertebrate fauna from the Lower Cretaceous Holly Creek Formation of the Trinity Group, southwest Arkansas, USA",
+          "journal": "PeerJ",
+          "publisher": "PeerJ",
+          "volume": "9",
+          "pages": "e12242",
+          "doi": "10.7717/peerj.12242",
+          "notes": "Places it within its group by state: in Oklahoma and adjacent Texas the Trinity Group \"consists almost entirely of the Antlers Formation, although the Holly Creek Formation is present in extreme southeast McCurtain County\".\n"
+        },
+        {
+          "id": "d'emic2012c",
+          "authors": "D'Emic, M. D.",
+          "year": 2012,
+          "title": "Revision of the sauropod dinosaurs of the Lower Cretaceous Trinity Group, southern USA, with the description of a new genus",
+          "journal": "Journal of Systematic Palaeontology",
+          "publisher": "Informa UK Limited",
+          "volume": "11",
+          "issue": "6",
+          "pages": "707-726",
+          "doi": "10.1080/14772019.2012.667446",
+          "notes": "Gives the Sauroposeidon holotype horizon as \"Early Cretaceous (Aptian–Albian) Antlers Formation of southern Oklahoma, USA\", and describes the unit as \"a lateral equivalent of the Trinity Group of Texas\".\n"
+        }
+      ]
+    },
+    "Cañón del Colorado": {
+      "rank": "formation",
+      "period": {
+        "name": [
+          "Early Jurassic"
+        ],
+        "stage": [
+          "Hettangian",
+          "Sinemurian",
+          "Pliensbachian",
+          "Toarcian"
+        ],
+        "from_ma": 201.4,
+        "to_ma": 174.7
+      },
+      "references": [
+        {
+          "id": "martínez2009a",
+          "authors": "Martínez, R. N.",
+          "year": 2009,
+          "title": "Adeopapposaurus mognai, gen. et sp. nov. (Dinosauria: Sauropodomorpha), with comments on adaptations of basal Sauropodomorpha",
+          "journal": "Journal of Vertebrate Paleontology",
+          "publisher": "Informa UK Limited",
+          "volume": "29",
+          "issue": "1",
+          "pages": "142-164",
+          "doi": "10.1671/039.029.0102",
+          "notes": "Gives the Adeopapposaurus horizon as \"the Upper Pelitic Member ... of the Lower Jurassic Cañón del Colorado Formation\", from outcrops in the southwestern Sierra de Mogna, San Juan, northwestern Argentina. Gives only the series.\n"
+        },
+        {
+          "id": "barrett2019a",
+          "authors": "Barrett, P. M.; Chapelle, K. E. J.; Staunton, C. K.; Botha, J.; Choiniere, J. N.",
+          "year": 2019,
+          "title": "Postcranial osteology of the neotype specimen of Massospondylus carinatus Owen, 1854 (Dinosauria: Sauropodomorpha) from the upper Elliot Formation of South Africa",
+          "journal": "Palaeontologia Africana",
+          "volume": "53",
+          "pages": "114-178",
+          "notes": "Independently gives \"the Cañón del Colorado Formation (Lower Jurassic) of Argentina\".\n"
+        },
+        {
+          "id": "apaldetti2011a",
+          "authors": "Apaldetti, C.; Martínez, R. N.; Alcober, O. A.; Pol, D.",
+          "year": 2011,
+          "title": "A New Basal Sauropodomorph (Dinosauria: Saurischia) from Quebrada del Barro Formation (Marayes-El Carrizal Basin), Northwestern Argentina",
+          "journal": "PLoS ONE",
+          "publisher": "Public Library of Science (PLoS)",
+          "volume": "6",
+          "issue": "11",
+          "pages": "e26964",
+          "doi": "10.1371/journal.pone.0026964",
+          "notes": "Sets it beside the Norian units of the region, the Los Colorados, Laguna Colorada and Quebrada del Barro, as the Lower Jurassic one.\n"
+        },
+        {
+          "id": "martínez2011b",
+          "authors": "Martínez, R. N.; Colombi, C. E.",
+          "year": 2011,
+          "title": "Evolución litofacial y edad de la Formación Cañón del Colorado (Jurásico Inferior), Precordillera Oriental, San Juan [Lithofacial evolution and age of the Cañón del Colorado Formation (Lower Jurassic), Eastern Precordillera, San Juan]",
+          "journal": "Revista de la Asociación Geológica Argentina",
+          "volume": "68",
+          "issue": "1",
+          "pages": "96-108",
+          "notes": "Assigns the formation, in the authors' English abstract, \"a Lower Jurassic (Hettangian-Toarcian) age\" (p. 96), from the Adeopapposaurus remains in its middle member and the Hettangian to Toarcian biochron of Massospondylus, its sister taxon (p. 106); the paper also formally divides the unit into lower, middle and upper members. It reviews the older Triassic reading: \"Casamiquela y Miolano (1983) le asignaron una edad triásica superior\" (\"Casamiquela and Miolano (1983) assigned it an Upper Triassic age\", translated), from prosauropod vertebrae, and \"Milana et al. (1995) asignaron esta formación al Triásico Superior\" (\"Milana and colleagues (1995) assigned this formation to the Upper Triassic\", translated; p. 97).\n"
+        },
+        {
+          "id": "casamiquela1983a",
+          "authors": "Casamiquela, R. M.; Miolano, A. O.",
+          "year": 1983,
+          "title": "Hallazgo de vertebrados en la Sierra de los Morados en Talacasto, San Juan [Discovery of vertebrates in the Sierra de los Morados at Talacasto, San Juan]",
+          "series": "Publicación Interna",
+          "publisher": "Universidad Nacional de San Juan, Facultad de Filosofía, Humanidades y Artes",
+          "pages": "20 pp."
+        },
+        {
+          "id": "milana1995a",
+          "authors": "Milana, J. P.; Martínez, R. N.; Alcober, O. A.",
+          "year": 1995,
+          "title": "A new dinosaur locality of Upper Triassic - Lower Jurassic age, from San Juan province, Argentina",
+          "journal": "Journal of Vertebrate Paleontology",
+          "volume": "15",
+          "issue": "3, Supplement",
+          "pages": "44A-45A",
+          "notes": "Reports a new locality in the Sierra de Mogna, 60 km north of San Juan, with two partial skeletons of \"a new prosauropod of the plateosaurid type\", from the formation, \"which has been assigned a Tertiary ages [sic] but lies above the Patquia Formation of Late Permian age\" (p. 44A). Its title gives an Upper Triassic to Lower Jurassic age, and the text leans to the Late Triassic: \"Age determination is based on the known stratigraphic range of plateosaurids; however, the authors are inclined to a Late Triassic age assignment based on regional geologic considerations\" (p. 45A). Martínez and Colombi (2011) report that as the older view and assign the Lower Jurassic.\n"
+        }
+      ]
+    },
+    "Morrison": {
+      "rank": "formation",
+      "variants": [
+        "Atlantosaurus beds"
+      ],
+      "period": {
+        "name": [
+          "Late Jurassic",
+          "Early Cretaceous"
+        ],
+        "stage": [
+          "Oxfordian",
+          "Kimmeridgian",
+          "Tithonian",
+          "Berriasian"
+        ],
+        "from_ma": 161.5,
+        "to_ma": 137.05
+      },
+      "references": [
+        {
+          "id": "mannion2019a",
+          "authors": "Mannion, P. D.; Upchurch, P.; Schwarz, D.; Wings, O.",
+          "year": 2019,
+          "title": "Taxonomic affinities of the putative titanosaurs from the Late Jurassic Tendaguru Formation of Tanzania: phylogenetic and biogeographic implications for eusauropod dinosaur evolution",
+          "journal": "Zoological Journal of the Linnean Society",
+          "publisher": "Oxford University Press (OUP)",
+          "volume": "185",
+          "issue": "3",
+          "pages": "784-909",
+          "doi": "10.1093/zoolinnean/zly068",
+          "notes": "Gives the span: \"the Late Jurassic (Oxfordian-Tithonian) Morrison Formation of the western USA\".\n"
+        },
+        {
+          "id": "kirkland2016a",
+          "authors": "Kirkland, J. I.; Suarez, M.; Suarez, C.; Hunt-Foster, R.",
+          "year": 2016,
+          "title": "The Lower Cretaceous in east-central Utah — the Cedar Mountain Formation and its bounding strata",
+          "journal": "Geology of the Intermountain West",
+          "publisher": "Utah Geological Association",
+          "volume": "3",
+          "pages": "101-228",
+          "doi": "10.31711/giw.v3.pp101-228",
+          "notes": "Dates the top with two ages placed on the 2013 ICS chart: \"148.96 +2.54 to -2.21 Ma\" from zircons in an ash about 9 m below the base of the overlying Naturita Formation, and \"150.00 ± 0.52 Ma from near the top of the Brushy Basin Member\", so that \"the top of the Morrison Formation dates to the lower third of the Tithonian Stage near but not to the end of the Jurassic\". On the ICS chart v2024/12 (Tithonian base 149.2 Ma) the second age is Kimmeridgian, and the first is Tithonian only at its central value, its uncertainty spanning both stages.\n"
+        },
+        {
+          "id": "chure2000a",
+          "authors": "Chure, D. J.",
+          "year": 2000,
+          "title": "A new species of Allosaurus from the Morrison Formation of Dinosaur National Monument (UT-CO) and a revision of the theropod family Allosauridae",
+          "thesis": "doctoral",
+          "school": "Columbia University",
+          "notes": "Works at \"Kimmeridgian, Jurassic\" throughout for the Salt Wash Member, the horizon of the material it describes.\n"
+        },
+        {
+          "id": "darton1906a",
+          "authors": "Darton, N. H.",
+          "year": 1906,
+          "title": "Geology of the Bighorn Mountains",
+          "journal": "United States Geological Survey Professional Paper",
+          "volume": "51",
+          "pages": "1-129",
+          "notes": "Places the formation in the Bighorn uplift on the Cretaceous side of a then-open question: \"From stratigraphic evidence in other regions, the Morrison formation is provisionally classed in the early Cretaceous.\" Of its saurian remains, \"Opinions are divided as to whether these are of late Jurassic or early Cretaceous age.\"\n"
+        },
+        {
+          "id": "cifelli2014a",
+          "authors": "Cifelli, R. L.; Davis, B. M.; Sames, B.",
+          "year": 2014,
+          "title": "Earliest Cretaceous mammals from the western United States",
+          "journal": "Acta Palaeontologica Polonica",
+          "volume": "59",
+          "pages": "31-52",
+          "doi": "10.4202/app.2012.0089",
+          "notes": "Gives it as \"mainly Kimmeridgian–Tithonian, though time of deposition for the unit as a whole may also include the late Oxfordian and early Berriasian\", after Kowallis and colleagues (1998) and Miall and colleagues (2008). Across the Western Interior foreland basin it is the \"nonmarine Upper Jurassic (to possibly lower Berriasian) strata\" beneath the unconformity at the base of the Lower Cretaceous. The top dated by Kirkland and colleagues (2016), about 149 to 150 Ma, lies some 6 Myr before the Berriasian base of 143.1 Ma on the ICS chart v2024/12, so the dates do not reach that stage.\n"
+        },
+        {
+          "id": "kowallis1998a",
+          "authors": "Kowallis, B. J.; Christiansen, E. H.; Deino, A. L.; Peterson, F.; Turner, C. E.; Kunk, M. J.; Obradovich, J. D.",
+          "year": 1998,
+          "title": "The age of the Morrison Formation",
+          "journal": "Modern Geology",
+          "volume": "22",
+          "pages": "235-260"
+        },
+        {
+          "id": "miall2008a",
+          "authors": "Miall, A. D.; Catuneanu, O.; Vakarelov, B. K.; Post, R.",
+          "year": 2008,
+          "title": "The Western Interior Basin",
+          "book": "The Sedimentary Basins of the United States and Canada (Miall, A. D., ed.), Sedimentary Basins of the World 5",
+          "publisher": "Elsevier, Amsterdam",
+          "pages": "329-362",
+          "doi": "10.1016/S1874-5997(08)00009-9"
+        },
+        {
+          "id": "marsh1877c",
+          "authors": "Marsh, O. C.",
+          "year": 1877,
+          "title": "Notice of new dinosaurian reptiles from the Jurassic formation",
+          "journal": "American Journal of Science",
+          "publisher": "American Journal of Science (AJS)",
+          "volume": "s3-14",
+          "issue": "84",
+          "pages": "514-516",
+          "doi": "10.2475/ajs.s3-14.84.514",
+          "notes": "Names the deposits for their sauropods: \"The deposits which contained them may be called the Atlantosaurus beds, from their most characteristic fossils\".\n"
+        },
+        {
+          "id": "gilmore1922a",
+          "authors": "Gilmore, C. W.",
+          "year": 1922,
+          "title": "A new sauropod dinosaur from the Ojo Alamo Formation of New Mexico",
+          "journal": "Smithsonian Miscellaneous Collections",
+          "volume": "72",
+          "issue": "34",
+          "pages": "1-9",
+          "notes": "Uses the two names as one unit: \"the Morrison formation (Atlantosaurus beds) of the west\".\n"
+        }
+      ]
+    },
+    "Brushy Basin": {
+      "rank": "member",
+      "parent": "Morrison",
+      "period": {
+        "name": [
+          "Late Jurassic"
+        ],
+        "stage": [
+          "Kimmeridgian",
+          "Tithonian"
+        ],
+        "from_ma": 154.8,
+        "to_ma": 143.1
+      },
+      "references": [
+        {
+          "id": "carrano2012a",
+          "authors": "Carrano, M. T.; Benson, R. B. J.; Sampson, S. D.",
+          "year": 2012,
+          "title": "The phylogeny of Tetanurae (Dinosauria: Theropoda)",
+          "journal": "Journal of Systematic Palaeontology",
+          "publisher": "Informa UK Limited",
+          "volume": "10",
+          "issue": "2",
+          "pages": "211-300",
+          "doi": "10.1080/14772019.2011.630927",
+          "notes": "Allosaurus occurs in the \"Salt Wash and Brushy Basin Members, Morrison Formation; Kimmeridgian–Tithonian, Late Jurassic\", a span given for the two members together. Ceratosaurus comes from the \"lower Brushy Basin Member, Morrison Formation; Kimmeridgian–Tithonian, Late Jurassic\", and Marshosaurus from the \"Brushy Basin Member, Morrison Formation; Kimmeridgian, Late Jurassic\".\n"
+        },
+        {
+          "id": "chure2000a",
+          "authors": "Chure, D. J.",
+          "year": 2000,
+          "title": "A new species of Allosaurus from the Morrison Formation of Dinosaur National Monument (UT-CO) and a revision of the theropod family Allosauridae",
+          "thesis": "doctoral",
+          "school": "Columbia University",
+          "notes": "Uses \"Brushy Basin Member, Morrison Formation\" with \"AGE: Kimmeridgian, Late Jurassic\" for the material it describes.\n"
+        },
+        {
+          "id": "kowallis1998a",
+          "authors": "Kowallis, B. J.; Christiansen, E. H.; Deino, A. L.; Peterson, F.; Turner, C. E.; Kunk, M. J.; Obradovich, J. D.",
+          "year": 1998,
+          "title": "The age of the Morrison Formation",
+          "journal": "Modern Geology",
+          "volume": "22",
+          "pages": "235-260",
+          "notes": "Dates the member by 40Ar/39Ar on sanidine from ash beds. The ages \"range systematically between 148.1 ± 0.5 (1 std. error of mean) at the top of the member to 150.3 ± 0.3 Ma near the bottom\", Kimmeridgian at the base and Tithonian at the top on the ICS chart v2024/12 (Tithonian base 149.2 Ma). The paper reads the member as Kimmeridgian–Tithonian on the timescales of its day, and calls one Montezuma Creek age, 147.82 ± 0.63 Ma, about 1 Ma too young.\n"
+        },
+        {
+          "id": "kirkland2016a",
+          "authors": "Kirkland, J. I.; Suarez, M.; Suarez, C.; Hunt-Foster, R.",
+          "year": 2016,
+          "title": "The Lower Cretaceous in east-central Utah — the Cedar Mountain Formation and its bounding strata",
+          "journal": "Geology of the Intermountain West",
+          "publisher": "Utah Geological Association",
+          "volume": "3",
+          "pages": "101-228",
+          "doi": "10.31711/giw.v3.pp101-228",
+          "notes": "Relays \"150.00 ± 0.52 Ma from near the top of the Brushy Basin Member, near little Cedar Mesa, Emery County, Utah, based on a recalibrated 40Ar/39Ar age (Trujillo and Kowallis, 2015)\", Kimmeridgian on the ICS chart v2024/12, and concludes that \"the top of the Morrison Formation dates to the lower third of the Tithonian Stage\". Places the Jurassic–Cretaceous boundary \"just above the highest smectitic mudstone beds of the Brushy Basin Member\".\n"
+        },
+        {
+          "id": "trujillo2015a",
+          "authors": "Trujillo, K. C.; Kowallis, B. J.",
+          "year": 2015,
+          "title": "Recalibrated legacy 40Ar/39Ar ages for the Upper Jurassic Morrison Formation, Western Interior, U.S.A.",
+          "journal": "Geology of the Intermountain West",
+          "volume": "2",
+          "pages": "1-8",
+          "doi": "10.31711/giw.v2.pp1-8"
+        }
+      ]
+    },
+    "Salt Wash": {
+      "rank": "member",
+      "parent": "Morrison",
+      "period": {
+        "name": [
+          "Late Jurassic"
+        ],
+        "stage": [
+          "Oxfordian",
+          "Kimmeridgian"
+        ],
+        "from_ma": 161.5,
+        "to_ma": 149.2
+      },
+      "references": [
+        {
+          "id": "carpenter2008a",
+          "authors": "Carpenter, K.; Wilson, Y.",
+          "year": 2008,
+          "title": "A new species of Camptosaurus (Ornithopoda: Dinosauria) from the Morrison Formation (Upper Jurassic) of Dinosaur National Monument, Utah, and a biomechanical analysis of its forelimb",
+          "journal": "Annals of Carnegie Museum",
+          "publisher": "Carnegie Museum of Natural History",
+          "volume": "76",
+          "issue": "4",
+          "pages": "227-263",
+          "doi": "10.2992/0097-4463(2008)76[227:ANSOCO]2.0.CO;2",
+          "notes": "Dates Reed's Quarry 13 at Como Bluff, in the member, \"latest Oxfordian-earliest Kimmeridgian\" from \"regional correlations from dated horizons\", the quarry lying \"about 35 m below the 156.3 + 2 Ma age for strata at the level of Reed's Quarry 9\".\n"
+        },
+        {
+          "id": "chure2020a",
+          "authors": "Chure, D. J.; Loewen, M. A.",
+          "year": 2020,
+          "title": "Cranial anatomy of Allosaurus jimmadseni, a new species from the lower part of the Morrison Formation (Upper Jurassic) of Western North America",
+          "journal": "PeerJ",
+          "volume": "8",
+          "pages": "e7803",
+          "doi": "10.7717/peerj.7803",
+          "notes": "Gives a holotype horizon in \"the Salt Wash Member of the Upper Jurassic (Kimmeridgian) Morrison Formation\", with referred specimens \"in the stratigraphically equivalent lower part of the Morrison Formation in Wyoming\".\n"
+        },
+        {
+          "id": "chure2000a",
+          "authors": "Chure, D. J.",
+          "year": 2000,
+          "title": "A new species of Allosaurus from the Morrison Formation of Dinosaur National Monument (UT-CO) and a revision of the theropod family Allosauridae",
+          "thesis": "doctoral",
+          "school": "Columbia University",
+          "notes": "Independently gives \"the Salt Wash Member of the Morrison Formation (Kimmeridgian, Jurassic)\" at Dinosaur National Monument, the quarry being \"Kimmeridgian in age (Kowallis et al. 1998)\".\n"
+        },
+        {
+          "id": "carrano2012a",
+          "authors": "Carrano, M. T.; Benson, R. B. J.; Sampson, S. D.",
+          "year": 2012,
+          "title": "The phylogeny of Tetanurae (Dinosauria: Theropoda)",
+          "journal": "Journal of Systematic Palaeontology",
+          "publisher": "Informa UK Limited",
+          "volume": "10",
+          "issue": "2",
+          "pages": "211-300",
+          "doi": "10.1080/14772019.2011.630927",
+          "notes": "Pairs it with its neighbor above across the formation's span, \"Salt Wash and Brushy Basin Members, Morrison Formation; Kimmeridgian-Tithonian\".\n"
+        },
+        {
+          "id": "kowallis1998a",
+          "authors": "Kowallis, B. J.; Christiansen, E. H.; Deino, A. L.; Peterson, F.; Turner, C. E.; Kunk, M. J.; Obradovich, J. D.",
+          "year": 1998,
+          "title": "The age of the Morrison Formation",
+          "journal": "Modern Geology",
+          "volume": "22",
+          "pages": "235-260",
+          "notes": "Cited by Chure (2000) for the Kimmeridgian age of the Dinosaur National Monument quarry.\n"
+        }
+      ]
+    },
+    "Hongqin": {
+      "rank": "formation",
+      "period": {
+        "name": [
+          "Middle Jurassic"
+        ]
+      },
+      "references": [
+        {
+          "id": "huang2014a",
+          "authors": "Huang, J. D.; You, H. L.; Yang, J. T.; Ren, X. X.",
+          "year": 2014,
+          "title": "A new sauropod dinosaur from the Middle Jurassic of Huangshan, Anhui Province",
+          "journal": "Vertebrata PalAsiatica",
+          "volume": "52",
+          "issue": "4",
+          "pages": "390-400",
+          "notes": "Middle Jurassic of Shexian, Huangshan, Anhui, and the source of the first Jurassic dinosaur described from the province.\n"
+        },
+        {
+          "id": "ren2020b",
+          "authors": "Ren, X. X.; Huang, J. D.; You, H. L.",
+          "year": 2020,
+          "title": "The second mamenchisaurid dinosaur from the Middle Jurassic of Eastern China",
+          "journal": "Historical Biology",
+          "publisher": "Informa UK Limited",
+          "volume": "32",
+          "issue": "5",
+          "pages": "602-610",
+          "doi": "10.1080/08912963.2018.1515935",
+          "notes": "Purple sandstones interbedded with purple shales in the Tunxi Basin of Anhui, assigned to the Middle Jurassic on invertebrates.\n"
+        },
+        {
+          "id": "li2025a",
+          "authors": "Li, N.; Zhang, X.; Ren, X.; Li, D.; You, H.",
+          "year": 2025,
+          "title": "A new eusauropod (Dinosauria, Sauropodomorpha) from the Middle Jurassic of Gansu, China",
+          "journal": "Scientific Reports",
+          "publisher": "Springer Science and Business Media LLC",
+          "volume": "15",
+          "issue": "1",
+          "doi": "10.1038/s41598-025-03210-5",
+          "notes": "Lists the formation among the Middle Jurassic units of China that yield mamenchisaurids.\n"
+        }
+      ]
+    },
+    "Snow Hill Island": {
+      "rank": "formation",
+      "period": {
+        "name": [
+          "Late Cretaceous"
+        ],
+        "stage": [
+          "Campanian",
+          "Maastrichtian"
+        ],
+        "from_ma": 83.6,
+        "to_ma": 66
+      },
+      "references": [
+        {
+          "id": "motta2025a",
+          "authors": "Motta, M. J.; Agnolín, F. L.; Brissón Egli, F.; Novas, F. E.",
+          "year": 2025,
+          "title": "Unenlagiid affinities for Imperobator antarcticus (Paraves: Theropoda): paleobiogeographical implications",
+          "journal": "Ameghiniana",
+          "volume": "62",
+          "issue": "1",
+          "pages": "69-79",
+          "doi": "10.5710/AMGH.13.11.2024.3604",
+          "notes": "Gives \"Snow Hill Island Formation (Cape Lamb Member, Lower Maastrichtian ...)\".\n"
+        },
+        {
+          "id": "pittman2020c",
+          "authors": "Pittman, M.; O'Connor, J.; Tse, E.; Makovicky, P.; Field, D. J.; Ma, W.; Turner, A. H.; Norell, M. A.; Pei, R.; Xu, X.",
+          "year": 2020,
+          "title": "The fossil record of Mesozoic and Paleocene pennaraptorans",
+          "book": "Pennaraptoran Theropod Dinosaurs: Past Progress and New Frontiers (Pittman, M.; Xu, X., eds.)",
+          "series": "Bulletin of the American Museum of Natural History",
+          "volume": "440",
+          "publisher": "American Museum of Natural History, New York",
+          "pages": "37-95",
+          "notes": "Tabulates the formation as Late Cretaceous, Maastrichtian.\n"
+        },
+        {
+          "id": "soto-acuña2024a",
+          "authors": "Soto-Acuña, S.; Vargas, A. O.; Kaluza, J.",
+          "year": 2024,
+          "title": "A new look at the first dinosaur discovered in Antarctica: reappraisal of Antarctopelta oliveroi (Ankylosauria: Parankylosauria)",
+          "journal": "Advances in Polar Science",
+          "volume": "35",
+          "issue": "1",
+          "pages": "78-107",
+          "doi": "10.12429/j.advps.2023.0036",
+          "notes": "Gives the \"Gamma Member of Snow Hill Island Formation (upper Campanian)\".\n"
+        },
+        {
+          "id": "coria2011a",
+          "authors": "Coria, R. A.; Salgado, L.; Gasparini, Z.; Moly, J. J.",
+          "year": 2011,
+          "title": "Nuevos materiales del ejemplar holotipo de Antarctopelta oliveroi Salgado y Gasparini (Dinosauria, Ornithischia, Ankylosauria) del Cretácico superior de Antártida [New materials from the holotype specimen of Antarctopelta oliveroi Salgado and Gasparini (Dinosauria, Ornithischia, Ankylosauria) from the Upper Cretaceous of Antarctica]",
+          "journal": "Ameghiniana",
+          "volume": "48",
+          "issue": "4",
+          "pages": "R10",
+          "notes": "A one-page conference abstract that does not name this formation and gives the older assignment of the member: the Antarctopelta holotype is placed in \"lower levels of the Gamma Member of the Santa Marta Formation (Marambio Group, upper Campanian)\".\n"
+        }
+      ]
+    },
+    "Gamma": {
+      "rank": "member",
+      "parent": "Snow Hill Island",
+      "variants": [
+        "Herbert Sound"
+      ],
+      "period": {
+        "name": [
+          "Late Cretaceous"
+        ],
+        "stage": [
+          "Campanian",
+          "Maastrichtian"
+        ],
+        "from_ma": 83.6,
+        "to_ma": 66
+      },
+      "references": [
+        {
+          "id": "ely2019a",
+          "authors": "Ely, R. C.; Case, J. A.",
+          "year": 2019,
+          "title": "Phylogeny of a new gigantic paravian (Theropoda; Coelurosauria; Maniraptora) from the Upper Cretaceous of James Ross Island, Antarctica",
+          "journal": "Cretaceous Research",
+          "publisher": "Elsevier BV",
+          "volume": "101",
+          "pages": "1-16",
+          "doi": "10.1016/j.cretres.2019.04.003",
+          "notes": "Gives the alternate name and the position: \"The Herbert Sound or Gamma Member, underlies the Cape Lamb Member ... within the Snow Hill Island Formation\", and dates it uppermost Campanian.\n"
+        },
+        {
+          "id": "soto-acuña2024a",
+          "authors": "Soto-Acuña, S.; Vargas, A. O.; Kaluza, J.",
+          "year": 2024,
+          "title": "A new look at the first dinosaur discovered in Antarctica: reappraisal of Antarctopelta oliveroi (Ankylosauria: Parankylosauria)",
+          "journal": "Advances in Polar Science",
+          "volume": "35",
+          "issue": "1",
+          "pages": "78-107",
+          "doi": "10.12429/j.advps.2023.0036",
+          "notes": "Uses the Snow Hill Island reading, referring osteoderms to \"the Campanian-Maastrichtian Gamma Member of the Snow Hill Island\".\n"
+        },
+        {
+          "id": "salgado2006a",
+          "authors": "Salgado, L.; Gasparini, Z.",
+          "year": 2006,
+          "title": "Reappraisal of an ankylosaurian dinosaur from the Upper Cretaceous of James Ross Island (Antarctica)",
+          "journal": "Geodiversitas",
+          "volume": "28",
+          "issue": "1",
+          "pages": "119-135",
+          "doi": "10.5281/zenodo.5376155",
+          "notes": "Uses the older Santa Marta assignment, from before these outcrops were placed in the Snow Hill Island Formation, and fixes a level, the Antarctopelta fossils being \"collected about 90 m from the base of the Gamma Member\".\n"
+        }
+      ]
+    },
+    "Winton": {
+      "rank": "formation",
+      "parent": "Manuka",
+      "period": {
+        "name": [
+          "Early Cretaceous",
+          "Late Cretaceous"
+        ],
+        "stage": [
+          "Albian",
+          "Cenomanian",
+          "Turonian"
+        ],
+        "from_ma": 113.2,
+        "to_ma": 89.8
+      },
+      "dispute": {
+        "summary": "Poropat and colleagues (2020) give \"Cenomanian-lowermost Turonian\"; Tucker and colleagues (2013) hold that \"the upper Winton Formation very likely continued into or past the early Turonian\", and Hocknull and colleagues (2021) read detrital zircon maximum depositional ages as \"Late Albian to earliest Turonian\"; Korasidis and colleagues (2026), on palynology from two wells, find \"a latest Albian to Cenomanian age for the Winton Formation in these wells, with no evidence of Turonian-aged assemblages\".\n"
+      },
+      "references": [
+        {
+          "id": "poropat2020a",
+          "authors": "Poropat, S. F.; Mannion, P. D.; Upchurch, P.; Tischler, T. R.; Sloan, T.; Sinapius, G. H. K.; Elliott, J. A.; Elliott, D. A.",
+          "year": 2020,
+          "title": "Osteology of the wide-hipped titanosaurian sauropod dinosaur Savannasaurus elliottorum from the Upper Cretaceous Winton Formation of Queensland, Australia",
+          "journal": "Journal of Vertebrate Paleontology",
+          "publisher": "Informa UK Limited",
+          "volume": "40",
+          "issue": "3",
+          "pages": "e1786836",
+          "doi": "10.1080/02724634.2020.1786836",
+          "notes": "Gives \"Winton Formation; Cenomanian-lowermost Turonian\".\n"
+        },
+        {
+          "id": "beeston2024a",
+          "authors": "Beeston, S. L.; Poropat, S. F.; Mannion, P. D.; Pentland, A. H.; Enchelmaier, M. J.; Sloan, T.; Elliott, D. A.",
+          "year": 2024,
+          "title": "Reappraisal of sauropod dinosaur diversity in the Upper Cretaceous Winton Formation of Queensland, Australia, through 3D digitisation and description of new specimens",
+          "journal": "PeerJ",
+          "publisher": "PeerJ",
+          "volume": "12",
+          "pages": "e17180",
+          "doi": "10.7717/peerj.17180",
+          "notes": "Hedges the younger end, \"lower Upper Cretaceous (Cenomanian-? lowermost Turonian)\".\n"
+        },
+        {
+          "id": "hocknull2021a",
+          "authors": "Hocknull, S. A.; Wilkinson, M.; Lawrence, R. A.; Konstantinov, V.; Mackenzie, S.; Mackenzie, R.",
+          "year": 2021,
+          "title": "A new giant sauropod, Australotitan cooperensis gen. et sp. nov., from the mid-Cretaceous of Australia",
+          "journal": "PeerJ",
+          "publisher": "PeerJ",
+          "volume": "9",
+          "pages": "e11317",
+          "doi": "10.7717/peerj.11317",
+          "notes": "Reviews the palynology of Monteil (2006) that gave the formation \"a Late Albian to Cenomanian chronostratigraphic age\", and treats the detrital zircon results cautiously, saying they \"indicate a probable temporal age range of between 103 to 92 million years ago (Late Albian to earliest Turonian) for the maximal depositional ages of portions of the Winton Formation\". Gives the Australotitan holotype horizon as \"Cenomanian-? Turonian, Winton Formation.\"\n"
+        },
+        {
+          "id": "hocknull2009a",
+          "authors": "Hocknull, S. A.; White, M. A.; Tischler, T. R.; Cook, A. G.; Calleja, N. D.; Sloan, T.; Elliott, D. A.",
+          "year": 2009,
+          "title": "New Mid-Cretaceous (Latest Albian) Dinosaurs from Winton, Queensland, Australia",
+          "journal": "PLoS ONE",
+          "publisher": "Public Library of Science (PLoS)",
+          "volume": "4",
+          "issue": "7",
+          "pages": "e6190",
+          "doi": "10.1371/journal.pone.0006190",
+          "notes": "Reports that the formation \"is approximately 1100 m thick and is ascribed a late Albian-Cenomanian age by Burger\", with its lower section in an Albian and its upper section in a Cenomanian palynomorph zone. Dates the dinosaurs from \"the basal portion of the Winton Formation\" as \"latest Albian\", describing them as from the \"late Early Cretaceous (latest Albian) Winton Formation\".\n"
+        },
+        {
+          "id": "monteil2006a",
+          "authors": "Monteil, E.",
+          "year": 2006,
+          "title": "Australian Mesozoic and Cenozoic Palynology Zonations—updated to the 2004 Geologic Time Scale",
+          "book": "Geoscience Australia Record 2006/23 (Canberra: Geoscience Australia)"
+        },
+        {
+          "id": "burger1986a",
+          "authors": "Burger, D.",
+          "year": 1986,
+          "title": "Palynology, cyclic sedimentation and palaeoenvironments in the Late Mesozoic of the Eromanga Basin",
+          "book": "Contributions to the Geology and Hydrocarbon Potential of the Eromanga Basin (Gravestock, D. I.; Moore, P. S.; Pitt, G. M., eds.)",
+          "series": "Geological Society of Australia Special Publication",
+          "volume": "12",
+          "pages": "53-70"
+        },
+        {
+          "id": "korasidis2026a",
+          "authors": "Korasidis, V. A.; Wilkinson, M.; Wood, G.; Murdoch, C.; Wagstaff, B. E.; Mackenzie, S.; Mackenzie, R.",
+          "year": 2026,
+          "title": "New palynostratigraphic insights into the uppermost Albian–Cenomanian Winton Formation of Australia",
+          "journal": "Alcheringa: An Australasian Journal of Palaeontology",
+          "volume": "50",
+          "issue": "3",
+          "pages": "730-740",
+          "doi": "10.1080/03115518.2026.2661205",
+          "notes": "Assigns 16 Winton samples from two Eromanga Basin petroleum wells, Tamarama-1 and Queenscliff-1, to the PK7 palynological zone, which \"suggests a latest Albian to Cenomanian age for the Winton Formation in these wells, with no evidence of Turonian-aged assemblages\".\n"
+        },
+        {
+          "id": "tucker2013a",
+          "authors": "Tucker, R. T.; Roberts, E. M.; Hu, Y.; Kemp, A. I. S.; Salisbury, S. W.",
+          "year": 2013,
+          "title": "Detrital zircon age constraints for the Winton Formation, Queensland: contextualizing Australia's Late Cretaceous dinosaur faunas",
+          "journal": "Gondwana Research",
+          "volume": "24",
+          "issue": "2",
+          "pages": "767-779",
+          "doi": "10.1016/j.gr.2012.12.009",
+          "notes": "From detrital zircon maximum depositional ages, \"sedimentation of the Winton Formation commenced no earlier than latest Albian (~103.0–100.5 Ma)\", the base lies \"at or near the Albian/Cenomanian boundary\", and \"the upper Winton Formation very likely continued into or past the early Turonian\". Both ends rest on maximum ages, which bound the beds rather than date them. Places the formation in the Manuka Subgroup following Gray and colleagues (2002), conformably above the Mackunda Formation.\n"
+        },
+        {
+          "id": "gray2002a",
+          "authors": "Gray, A. R. G.; McKillop, M.; McKellar, J. L.",
+          "year": 2002,
+          "title": "Eromanga Basin stratigraphy",
+          "book": "Geology of the Cooper and Eromanga Basins, Queensland (Draper, J. J., ed.)",
+          "publisher": "Queensland Department of Natural Resources and Mines, Brisbane",
+          "pages": "30-56",
+          "notes": "Dates the formation on spores and pollen, querying the Albian: \"Mid-Cretaceous [late Albian(?)–Cenomanian] palynofloras of the Winton Formation encompass spore-pollen assemblages attributable to palynological units APK6 and APK7\". Records that it \"conformably overlies the Mackunda Formation and, in some areas, is unconformably overlain by the Tertiary Glendower Formation\".\n"
+        },
+        {
+          "id": "vine1967a",
+          "authors": "Vine, R. R.; Day, R. W.; Milligan, E. N.; Casey, D. J.; Galloway, M. C.; Exon, N. F.",
+          "year": 1967,
+          "title": "Revision of the nomenclature of the Rolling Downs Group in the Eromanga and Surat basins",
+          "journal": "Queensland Government Mining Journal",
+          "volume": "68",
+          "pages": "144-151",
+          "notes": "Keeps the unit as a formation (\"No change is proposed for the Winton and Mackunda Formations\") and places it in a new subgroup with the Mackunda: \"For this sequence we propose the term Manuka Sub-group.\" Gives no age.\n"
+        }
+      ]
+    },
+    "Oldman": {
+      "rank": "formation",
+      "parent": "Belly River",
+      "variants": [
+        "Pale Beds"
+      ],
+      "period": {
+        "name": [
+          "Late Cretaceous"
+        ],
+        "stage": [
+          "Campanian"
+        ],
+        "from_ma": 83.6,
+        "to_ma": 72.2
+      },
+      "references": [
+        {
+          "id": "eberth2005a",
+          "authors": "Eberth, D. A.",
+          "year": 2005,
+          "title": "The geology",
+          "book": "Dinosaur Provincial Park: A Spectacular Ancient Ecosystem Revealed",
+          "publisher": "Indiana University Press, Bloomington",
+          "pages": "54-82",
+          "notes": "The middle of the three, 40 m thick at the Park, \"made up of light-colored alluvial sandstones and mudstones that were first referred to as the 'Pale Beds' by Dowling (1916, 1917)\". It \"conformably overlies the Herronton Sandstone Zone at the top of the Foremost but is truncated at the top by a regional disconformity\", and it \"records the maximum regression of the Western Interior Seaway during the Campanian\".\n"
+        },
+        {
+          "id": "dowling1916a",
+          "authors": "Dowling, D. B.",
+          "year": 1916,
+          "title": "Water supply, southeastern Alberta",
+          "journal": "Geological Survey of Canada, Summary Report",
+          "volume": "1915",
+          "pages": "102-110",
+          "doi": "10.4095/104411",
+          "notes": "Cited by Eberth (2005) as the first to call these beds the 'Pale Beds'.\n"
+        },
+        {
+          "id": "dowling1917a",
+          "authors": "Dowling, D. B.",
+          "year": 1917,
+          "title": "The Southern Plains of Alberta",
+          "journal": "Geological Survey of Canada Memoir",
+          "publisher": "Government Printing Bureau, Ottawa",
+          "volume": "93",
+          "pages": "200 pp",
+          "doi": "10.4095/106740",
+          "notes": "Cited by Eberth (2005) as the first to call these beds the 'Pale Beds'.\n"
+        },
+        {
+          "id": "brown2013a",
+          "authors": "Brown, C. M.; Evans, D. C.; Ryan, M. J.; Russell, A. P.",
+          "year": 2013,
+          "title": "New data on the diversity and abundance of small-bodied ornithopods (Dinosauria, Ornithischia) from the Belly River Group (Campanian) of Alberta",
+          "journal": "Journal of Vertebrate Paleontology",
+          "publisher": "Informa UK Limited",
+          "volume": "33",
+          "issue": "3",
+          "pages": "495-520",
+          "doi": "10.1080/02724634.2013.746229",
+          "notes": "The middle formation of the Belly River Group, divided into informal lower, middle and upper units after Eberth and Hamblin (1993). The upper Oldman at Milk River is \"time-equivalent to the lower Dinosaur Park Formation\" at Dinosaur Provincial Park, and the contact between the two formations is a disconformity that is \"time transgressive from north to south\". Measures no date on the formation.\n"
+        },
+        {
+          "id": "eberth1993b",
+          "authors": "Eberth, D. A.; Hamblin, A. P.",
+          "year": 1993,
+          "title": "Tectonic, stratigraphic, and sedimentologic significance of a regional discontinuity in the upper Judith River Group (Belly River wedge) of southern Alberta, Saskatchewan, and northern Montana",
+          "journal": "Canadian Journal of Earth Sciences",
+          "volume": "30",
+          "issue": "1",
+          "pages": "174-200",
+          "doi": "10.1139/e93-016"
+        }
+      ]
+    },
+    "Two Medicine": {
+      "rank": "formation",
+      "period": {
+        "name": [
+          "Late Cretaceous"
+        ],
+        "stage": [
+          "Campanian"
+        ],
+        "from_ma": 83.6,
+        "to_ma": 72.2
+      },
+      "references": [
+        {
+          "id": "burnham2000a",
+          "authors": "Burnham, D. A.; Derstler, K. L.; Currie, P. J.; Bakker, R. T.; Zhou, Z.; Ostrom, J. H.",
+          "year": 2000,
+          "title": "Remarkable new birdlike dinosaur (Theropoda: Maniraptora) from the Upper Cretaceous of Montana",
+          "journal": "University of Kansas Paleontological Contributions",
+          "volume": "13",
+          "pages": "1-14",
+          "doi": "10.17161/pcns.1808.3761",
+          "notes": "Places its material \"approximately two-thirds of the way above the base of the unit, Upper Cretaceous, Campanian\".\n"
+        },
+        {
+          "id": "livius2026a",
+          "authors": "Livius, M. C. H.; Witmer, L. M.; Ryan, M. J.; Maddin, H. C.; Mallon, J. C.",
+          "year": 2026,
+          "title": "Redescription of the Panoplosaurus mirus (Ankylosauria: Nodosauridae) holotype skull using computed tomography, and a new comparative scheme for panoplosaurin cranial ornamentation",
+          "journal": "Journal of Vertebrate Paleontology",
+          "doi": "10.1080/02724634.2026.2636589",
+          "notes": "Independently gives the formation \"in Montana (Campanian, 78.2–74.6 Ma ...)\".\n"
+        }
+      ]
+    },
+    "Judith River": {
+      "rank": "formation",
+      "period": {
+        "name": [
+          "Late Cretaceous"
+        ],
+        "stage": [
+          "Campanian"
+        ],
+        "from_ma": 83.6,
+        "to_ma": 72.2
+      },
+      "references": [
+        {
+          "id": "arbour2017a",
+          "authors": "Arbour, V. M.; Evans, D. C.",
+          "year": 2017,
+          "title": "A new ankylosaurine dinosaur from the Judith River Formation of Montana, USA, based on an exceptional skeleton with soft tissue preservation",
+          "journal": "Royal Society Open Science",
+          "publisher": "The Royal Society",
+          "volume": "4",
+          "issue": "5",
+          "doi": "10.1098/rsos.161086",
+          "notes": "The formation \"of northern Montana was deposited over an approximately 4 Myr interval during the Campanian (Late Cretaceous)\".\n"
+        },
+        {
+          "id": "sues1978a",
+          "authors": "Sues, H. D.",
+          "year": 1978,
+          "title": "A new small theropod dinosaur from the Judith River Formation (Campanian) of Alberta Canada",
+          "journal": "Zoological Journal of the Linnean Society",
+          "publisher": "Oxford University Press (OUP)",
+          "volume": "62",
+          "issue": "4",
+          "pages": "381-400",
+          "doi": "10.1111/j.1096-3642.1978.tb01049.x",
+          "notes": "Independently gives \"Judith River Formation (Campanian)\"."
+        }
+      ]
+    },
+    "Hell Creek": {
+      "rank": "formation",
+      "period": {
+        "name": [
+          "Late Cretaceous"
+        ],
+        "stage": [
+          "Maastrichtian"
+        ],
+        "from_ma": 72.2,
+        "to_ma": 66
+      },
+      "references": [
+        {
+          "id": "arbour2017b",
+          "authors": "Arbour, V. M.; Mallon, J. C.",
+          "year": 2017,
+          "title": "Unusual cranial and postcranial anatomy in the archetypal ankylosaur Ankylosaurus magniventris",
+          "journal": "FACETS",
+          "publisher": "Canadian Science Publishing",
+          "volume": "2",
+          "issue": "2",
+          "pages": "764-794",
+          "doi": "10.1139/facets-2017-0063",
+          "notes": "Places its material \"61-67 m below Cretaceous-Palaeogene boundary, late Maastrichtian\".\n"
+        },
+        {
+          "id": "sullivan2006a",
+          "authors": "Sullivan, R. M.",
+          "year": 2006,
+          "title": "A taxonomic review of the Pachycephalosauridae (Dinosauria: Ornithischia)",
+          "book": "Late Cretaceous Vertebrates from the Western Interior",
+          "series": "New Mexico Museum of Natural History and Science Bulletin",
+          "volume": "35",
+          "pages": "348-365",
+          "notes": "Independently gives the formation as \"late Maastrichtian\"."
+        },
+        {
+          "id": "woodruff2023a",
+          "authors": "Woodruff, D. C.; Schott, R. K.; Evans, D. C.",
+          "year": 2023,
+          "title": "Two new species of small-bodied pachycephalosaurine (Dinosauria, Marginocephalia) from the uppermost Cretaceous of North America suggest hidden diversity in well-sampled formations",
+          "journal": "Papers in Palaeontology",
+          "publisher": "Wiley",
+          "volume": "9",
+          "issue": "6",
+          "pages": "e1535",
+          "doi": "10.1002/spp2.1535",
+          "notes": "Gives the Sphaerotholus triregnum holotype as from \"the lower half of the Hell Creek Formation (upper Maastrichtian, Upper Cretaceous)\", about 45 km southwest of Jordan in Garfield County, Montana.\n"
+        }
+      ]
+    },
+    "Nemegt": {
+      "rank": "formation",
+      "period": {
+        "name": [
+          "Late Cretaceous"
+        ],
+        "stage": [
+          "Campanian",
+          "Maastrichtian"
+        ],
+        "from_ma": 83.6,
+        "to_ma": 66
+      },
+      "references": [
+        {
+          "id": "khand2000a",
+          "authors": "Khand, Y.; Badamgarav, D.; Ariunchimeg, Y.; Barsbold, R.",
+          "year": 2000,
+          "title": "Cretaceous System in Mongolia and its depositional environments",
+          "book": "Cretaceous Environments of Asia (Okada, H.; Mateer, N. J., eds). Developments in Palaeontology and Stratigraphy 17",
+          "publisher": "Elsevier, Amsterdam",
+          "volume": "17",
+          "pages": "49-79",
+          "notes": "In the eastern Gobi the formation rests on the Javkhlant and \"appears to be of the Maastrichtian age\"; at Bugiin Tsav the plant-bearing beds are given as \"the Nemegt Formation (Campanian-Maastrichtian)\". The beds Shuvalov (1974) had called the Nemegt Formation and Khand (1987) the Upper Nemegt Formation are separated in this paper as the Nogoontsav Formation, 20 m thick and conformably above the Nemegt. The authors add that \"The uppermost Maastrichtian strata have not been documented in Mongolia.\"\n"
+        },
+        {
+          "id": "osmólska1987a",
+          "authors": "Osmólska, H.",
+          "year": 1987,
+          "title": "Borogovia gracilicrus gen. et sp. n., a new troodontid dinosaur from the Late Cretaceous of Mongolia",
+          "journal": "Acta Palaeontologica Polonica",
+          "volume": "32",
+          "issue": "1-2",
+          "pages": "133-150",
+          "notes": "\"Nemegt Formation, zone of Tarbosaurus bataar and Saurolophus angustirostris, ?Late Campanian or ?Early Maastrichtian\" — hedged on both sides.\n"
+        },
+        {
+          "id": "evans2018a",
+          "authors": "Evans, D. C.; Hayashi, S.; Chiba, K.; Watabe, M.; Ryan, M. J.; Lee, Y. N.; Currie, P. J.; Tsogtbaatar, K.; Barsbold, R.",
+          "year": 2018,
+          "title": "Morphology and histology of new cranial specimens of Pachycephalosauridae (Dinosauria, Ornithischia) from the Nemegt Formation, Mongolia",
+          "journal": "Palaeogeography, Palaeoclimatology, Palaeoecology",
+          "publisher": "Elsevier",
+          "volume": "494",
+          "pages": "121-134",
+          "doi": "10.1016/j.palaeo.2017.11.029",
+          "notes": "The Guriliin Tsav beds \"have been assigned a Maastrichtian\" age.\n"
+        },
+        {
+          "id": "wilson2005a",
+          "authors": "Wilson, J. A.",
+          "year": 2005,
+          "title": "Redescription of the Mongolian sauropod Nemegtosaurus mongoliensis Nowinski (Dinosauria: Saurischia) and comments on Late Cretaceous sauropod diversity",
+          "journal": "Journal of Systematic Palaeontology",
+          "volume": "3",
+          "issue": "3",
+          "pages": "283-318",
+          "doi": "10.1017/s1477201905001628",
+          "notes": "Gives the Nemegtosaurus mongoliensis occurrence as \"Nemegt Formation, Upper Cretaceous (mid-Maastrichtian ...)\", following Jerzykiewicz and Russell (1991).\n"
+        },
+        {
+          "id": "jerzykiewicz1991a",
+          "authors": "Jerzykiewicz, T.; Russell, D. A.",
+          "year": 1991,
+          "title": "Late Mesozoic stratigraphy and vertebrates of the Gobi Basin",
+          "journal": "Cretaceous Research",
+          "publisher": "Elsevier",
+          "volume": "12",
+          "issue": "4",
+          "pages": "345-377",
+          "doi": "10.1016/0195-6671(91)90015-5"
+        },
+        {
+          "id": "karczewska1983a",
+          "authors": "Karczewska, J.; Ziembinska-Tworzydlo, M.",
+          "year": 1983,
+          "title": "Age of the Upper Cretaceous Nemegt Formation (Mongolia) on charophytan evidence",
+          "journal": "Acta Palaeontologica Polonica",
+          "volume": "28",
+          "issue": "1-2",
+          "pages": "137-146",
+          "notes": "Charophytes make the \"Nemegt Formation (Upper Cretaceous)\" older than had been supposed: the assemblage \"cannot be considered younger than the Lower Campanian\", standing between two Upper Cretaceous assemblages of the Chinese Red Beds and keeping taxa known from the Lower/Upper Cretaceous transition. That reading disagrees with Fox (1978), for whom the unit is \"of the uppermost Campanian to Maastrichtian age\", and with the \"?Upper Campanian and/or ?Lower Maastrichtian\" of Gradziński, Kielan-Jaworowska and Maryańska (1977).\n"
+        },
+        {
+          "id": "fox1978a",
+          "authors": "Fox, R. C.",
+          "year": 1978,
+          "title": "Upper Cretaceous terrestrial vertebrate stratigraphy of the Gobi Desert (Mongolian People's Republic) and western North America",
+          "book": "Western and Arctic Canadian Biostratigraphy (Stelck, C. R.; Chatterton, B. D. E., eds.)",
+          "series": "Geological Association of Canada, Special Paper",
+          "volume": "18",
+          "pages": "577-594"
+        },
+        {
+          "id": "gradziński1977a",
+          "authors": "Gradziński, R.; Kielan-Jaworowska, Z.; Maryańska, T.",
+          "year": 1977,
+          "title": "Upper Cretaceous Djadokhta, Barun Goyot and Nemegt formations of Mongolia, including remarks on previous subdivisions",
+          "journal": "Acta Geologica Polonica",
+          "volume": "27",
+          "issue": "3",
+          "pages": "281-318"
+        },
+        {
+          "id": "khand1987a",
+          "authors": "Khand, Y.",
+          "year": 1987,
+          "title": "Late Cretaceous and Early Paleogene ostracods of Mongolia and their stratigraphic significance",
+          "thesis": "dissertation-abstract",
+          "school": "Akademiya Nauk SSSR, Paleontologicheskii Institut, Moscow",
+          "notes": "Dissertation abstract (avtoreferat), 22 pp., in Russian.\n"
+        },
+        {
+          "id": "shuvalov1974a",
+          "authors": "Shuvalov, V. F.",
+          "year": 1974,
+          "title": "O geologicheskom stroenii i vozraste mestonakhozhdenii Khobur i Khuren-Dukh [On the geological structure and age of the Khobur and Khuren-Dukh localities]",
+          "journal": "Trudy Sovmestnaya Sovetsko-Mongol'skaya Paleontologicheskaya Ekspeditsiya",
+          "volume": "1",
+          "pages": "296-304"
+        }
+      ]
+    },
+    "Tremp": {
+      "rank": "group",
+      "period": {
+        "name": [
+          "Late Cretaceous",
+          "Paleocene"
+        ],
+        "stage": [
+          "Campanian",
+          "Maastrichtian",
+          "Danian",
+          "Selandian",
+          "Thanetian"
+        ],
+        "from_ma": 83.6,
+        "to_ma": 56
+      },
+      "references": [
+        {
+          "id": "fondevilla2019a",
+          "authors": "Fondevilla, V.; Riera, V.; Vila, B.; Sellés, A. G.; Dinarès-Turell, J.; Vicens, E.; Gaete, R.; Oms, O.; Galobart, À.",
+          "year": 2019,
+          "title": "Chronostratigraphic synthesis of the latest Cretaceous dinosaur turnover in south-western Europe",
+          "journal": "Earth-Science Reviews",
+          "publisher": "Elsevier BV",
+          "volume": "191",
+          "pages": "168-189",
+          "doi": "10.1016/j.earscirev.2019.01.007",
+          "notes": "Describes how Cuevas (1992) and Pujalte and Schmitz (2005) \"redefined the Tremp Fm as Tremp Group, and divided it into different formations\", the Maastrichtian Conques and Talarn below the Vallcebre limestones, \"late Danian in the Tremp Syncline\" and \"likely early Danian\" in the Vallcebre Syncline, and the Upper Red Garumnian, \"dated as Selandian to Thanetian\".\n"
+        },
+        {
+          "id": "cuevas1992a",
+          "authors": "Cuevas, J. L.",
+          "year": 1992,
+          "title": "Estratigrafía del \"Garumniense\" de la Conca de Tremp, Prepirineo de Lérida [Stratigraphy of the \"Garumnian\" of the Conca de Tremp, Lleida Pre-Pyrenees]",
+          "journal": "Acta Geologica Hispanica",
+          "volume": "27",
+          "pages": "95-108",
+          "notes": "Defines the group in the Conca de Tremp: the six formations, Posa, Conques, Talarn, Calizas de Suterranya y Sant Salvador de Toló, Esplugafreda and Claret, \"se agrupan en una unidad de rango superior denominada «Grupo de Tremp»\" (are grouped into a unit of higher rank called the Tremp Group, translated), between the Maastrichtian Arén Sandstone and the Ilerdian marine beds. Gives no stage for the formations.\n"
+        },
+        {
+          "id": "díez-canseco2014a",
+          "authors": "Díez-Canseco, D.; Arz, J. A.; Benito, M. I.; Díaz-Molina, M.; Arenillas, I.",
+          "year": 2014,
+          "title": "Tidal influence in redbeds: a palaeoenvironmental and biochronostratigraphic reconstruction of the Lower Tremp Formation (South-Central Pyrenees, Spain) around the Cretaceous/Paleogene boundary",
+          "journal": "Sedimentary Geology",
+          "volume": "312",
+          "pages": "31-49",
+          "doi": "10.1016/j.sedgeo.2014.06.008",
+          "notes": "Dates the Lower Red Unit, the Conques and Talarn formations, as Maastrichtian and the Suterranya Limestone as late Danian from planktic foraminifera, so that \"at least the first 4 Ma of the Danian are absent in the Tremp Formation\"; the Cretaceous-Paleogene boundary lies at the top of the Lower Red Unit or within that hiatus.\n"
+        },
+        {
+          "id": "rosell2001a",
+          "authors": "Rosell, J.; Linares, R.; Llompart, C.",
+          "year": 2001,
+          "title": "El \"Garumniense\" Prepirenaico [The Pre-Pyrenean \"Garumnian\"]",
+          "journal": "Revista de la Sociedad Geológica de España",
+          "volume": "14",
+          "issue": "1-2",
+          "pages": "47-56",
+          "notes": "Places the Cretaceous-Tertiary boundary near the top of the lower red unit, \"muy cerca del contacto con las calizas\" (very close to the contact with the limestones, translated), the Danian Vallcebre limestones, on the last dinosaur bones, a change in charophytes and the first Microcodium.\n"
+        },
+        {
+          "id": "pujalte2005a",
+          "authors": "Pujalte, V.; Schmitz, B.",
+          "year": 2005,
+          "title": "Revisión de la estratigrafía del Grupo Tremp (\"Garumniense\", Cuenca de Tremp-Graus, Pirineos meridionales) [Revision of the stratigraphy of the Tremp Group (\"Garumnian\", Tremp-Graus Basin, southern Pyrenees)]",
+          "journal": "Geogaceta",
+          "volume": "38",
+          "pages": "79-82"
+        },
+        {
+          "id": "prieto-márquez2022a",
+          "authors": "Prieto-Márquez, A.; Sellés, A.",
+          "year": 2022,
+          "title": "Evolutionary convergence in a small cursorial styracosternan ornithopod dinosaur from western Europe",
+          "journal": "Journal of Vertebrate Paleontology",
+          "publisher": "Informa UK Limited",
+          "volume": "42",
+          "issue": "5",
+          "doi": "10.1080/02724634.2023.2210632",
+          "notes": "Gives group rank by naming a formation inside it, \"the Talarn Formation of the Tremp Group\". A unit that contains a named formation is a group.\n"
+        },
+        {
+          "id": "pereda-suberbiola2009a",
+          "authors": "Pereda-Suberbiola, X.; Canudo, J. I.; Cruzado-Caballero, P.; Barco, J. L.; López-Martínez, N.; Oms, O.; Ruiz-Omeñaca, J. I.",
+          "year": 2009,
+          "title": "The last hadrosaurid dinosaurs of Europe: a new lambeosaurine from the uppermost Cretaceous of Aren (Huesca, Spain)",
+          "journal": "Comptes Rendus Palevol",
+          "volume": "8",
+          "pages": "559-572",
+          "doi": "10.1016/j.crpv.2009.05.002",
+          "notes": "Uses the coarser scheme, \"the Maastrichtian of the Tremp Formation, in Lleida\", and places the Blasi sites other than Blasi 1, which lies on top of the Aren Sandstone, in its lower part, giving the Arenysaurus type horizon as \"lower part of the Tremp Formation; Late Cretaceous, Late Maastrichtian\". This is not a competing claim: an older \"Tremp Formation\" and a newer \"Talarn Formation\" are the same rock at two resolutions, and the coarse reading is the correct one in the western syncline, where the Talarn does not reach and the Conques and Talarn criteria cannot be observed.\n"
+        },
+        {
+          "id": "csiki-sava2015a",
+          "authors": "Csiki-Sava, Z.; Buffetaut, E.; Ősi, A.; Pereda-Suberbiola, X.; Brusatte, S. L.",
+          "year": 2015,
+          "title": "Island life in the Cretaceous — faunal composition, biogeography, evolution, and extinction of land-living vertebrates on the Late Cretaceous European archipelago",
+          "journal": "ZooKeys",
+          "volume": "469",
+          "pages": "1-161",
+          "doi": "10.3897/zookeys.469.8439",
+          "notes": "Treats it at formation rank as the \"transitional-to-continental\" counterpart of the Arén Sandstone and calls both units diachronous, the Tremp ranging \"from late Campanian to early Paleogene\".\n"
+        }
+      ]
+    },
+    "Trinity": {
+      "rank": "group",
+      "period": {
+        "name": [
+          "Early Cretaceous"
+        ],
+        "stage": [
+          "Aptian",
+          "Albian"
+        ],
+        "from_ma": 121.4,
+        "to_ma": 100.5
+      },
+      "references": [
+        {
+          "id": "hunt2018a",
+          "authors": "Hunt, R. K.; Quinn, J. H.",
+          "year": 2018,
+          "title": "A new ornithomimosaur from the Lower Cretaceous Trinity Group of Arkansas",
+          "journal": "Journal of Vertebrate Paleontology",
+          "publisher": "Informa UK Limited",
+          "volume": "38",
+          "issue": "1",
+          "pages": "e1421209",
+          "doi": "10.1080/02724634.2017.1421209",
+          "notes": "\"the Lower Cretaceous (Albian-Aptian) Trinity Group of Arkansas\".\n"
+        },
+        {
+          "id": "suarez2021a",
+          "authors": "Suarez, C. A.; Frederickson, J.; Cifelli, R. L.; Pittman, J. G.; Nydam, R. L.; Hunt-Foster, R. K.; Morgan, K.",
+          "year": 2021,
+          "title": "A new vertebrate fauna from the Lower Cretaceous Holly Creek Formation of the Trinity Group, southwest Arkansas, USA",
+          "journal": "PeerJ",
+          "publisher": "PeerJ",
+          "volume": "9",
+          "pages": "e12242",
+          "doi": "10.7717/peerj.12242",
+          "notes": "Gives the contents, which differ by state: in central Texas it \"consists of the Twin Mountains, Glen Rose, and Paluxy formations, in ascending order\", while in Oklahoma \"it consists almost entirely of the Antlers Formation, although the Holly Creek Formation is present in extreme southeast McCurtain County\".\n"
+        },
+        {
+          "id": "stoyanow1949a",
+          "authors": "Stoyanow, A. A.",
+          "year": 1949,
+          "title": "Lower Cretaceous stratigraphy in southeastern Arizona",
+          "journal": "Geological Society of America Memoir",
+          "volume": "38",
+          "pages": "1-169",
+          "notes": "\"Imlay (1939a, p. 1738, Table 2) tentatively correlated the Glance, Morita, and the lower member of the Mural limestone with the Trinity group of Texas (Upper Aptian-Lower Albian), assigning the upper member of the Mural and the Cintura formation to the Fredericksburg (Middle Albian).\" The upper Aptian to lower Albian age is Imlay's, relayed in this paper as part of the history of readings of the Bisbee group of southeastern Arizona rather than argued from the Texas section.\n"
+        },
+        {
+          "id": "imlay1939a",
+          "authors": "Imlay, R. W.",
+          "year": 1939,
+          "title": "Paleogeographic studies in northeastern Sonora",
+          "journal": "Geological Society of America Bulletin",
+          "volume": "50",
+          "pages": "1723-1744",
+          "doi": "10.1130/gsab-50-1723",
+          "notes": "Cited by Stoyanow (1949) for Imlay's correlation of the Bisbee group with the Trinity group (upper Aptian to lower Albian).\n"
+        }
+      ]
+    },
+    "Manuka": {
+      "rank": "subgroup",
+      "period": {
+        "name": [
+          "Early Cretaceous",
+          "Late Cretaceous"
+        ],
+        "stage": [
+          "Albian",
+          "Cenomanian",
+          "Turonian"
+        ],
+        "from_ma": 113.2,
+        "to_ma": 89.8
+      },
+      "references": [
+        {
+          "id": "gray2002a",
+          "authors": "Gray, A. R. G.; McKillop, M.; McKellar, J. L.",
+          "year": 2002,
+          "title": "Eromanga Basin stratigraphy",
+          "book": "Geology of the Cooper and Eromanga Basins, Queensland (Draper, J. J., ed.)",
+          "publisher": "Queensland Department of Natural Resources and Mines, Brisbane",
+          "pages": "30-56",
+          "notes": "Composes the subgroup and places it in the group above: the Mackunda and Winton formations \"were made part of the newly-proposed Manuka Subgroup (Vine & others, 1967)\", and \"The Wilgunyah and Manuka Subgroups constitute the Rolling Downs Group of Whitehouse (1955)\". Dates both members on spores and pollen: \"The Mackunda Formation embraces mid-Cretaceous (late Albian–early Cenomanian) spore-pollen assemblages\", and \"Mid-Cretaceous [late Albian(?)–Cenomanian] palynofloras of the Winton Formation encompass spore-pollen assemblages attributable to palynological units APK6 and APK7\".\n"
+        },
+        {
+          "id": "tucker2013a",
+          "authors": "Tucker, R. T.; Roberts, E. M.; Hu, Y.; Kemp, A. I. S.; Salisbury, S. W.",
+          "year": 2013,
+          "title": "Detrital zircon age constraints for the Winton Formation, Queensland: contextualizing Australia's Late Cretaceous dinosaur faunas",
+          "journal": "Gondwana Research",
+          "volume": "24",
+          "issue": "2",
+          "pages": "767-779",
+          "doi": "10.1016/j.gr.2012.12.009",
+          "notes": "Records the same composition, that Gray and colleagues (2002) \"grouped the Winton together with the Mackunda Formation to form the Manuka Subgroup\". From detrital zircons, \"sedimentation of the Winton Formation commenced no earlier than latest Albian (~103.0–100.5 Ma)\", and \"the upper Winton Formation very likely continued into or past the early Turonian\". The Turonian rests partly on maximum depositional ages, some from single grains that the paper says \"may be erroneous\".\n"
+        },
+        {
+          "id": "bartholomai1981a",
+          "authors": "Bartholomai, A.; Molnar, R. E.",
+          "year": 1981,
+          "title": "Muttaburrasaurus, a new iguanodontid (Ornithischia: Ornithopoda) dinosaur from the Lower Cretaceous of Queensland",
+          "journal": "Memoirs of the Queensland Museum",
+          "volume": "20",
+          "issue": "2",
+          "pages": "319-349",
+          "notes": "Names the subgroup by way of the Mackunda Formation inside it, in Queensland, following Vine and colleagues.\n"
+        },
+        {
+          "id": "vine1967a",
+          "authors": "Vine, R. R.; Day, R. W.; Milligan, E. N.; Casey, D. J.; Galloway, M. C.; Exon, N. F.",
+          "year": 1967,
+          "title": "Revision of the nomenclature of the Rolling Downs Group in the Eromanga and Surat basins",
+          "journal": "Queensland Government Mining Journal",
+          "volume": "68",
+          "pages": "144-151",
+          "notes": "Erects the unit: \"The overlying Mackunda and Winton Formations are characterized by the presence of beds of labile sandstone, deposition of which resulted from a major influx of volcanic detritus. For this sequence we propose the term Manuka Sub-group. The name is derived from Manuka Station, 55 miles NNE of Winton\". \"Together the Wilgunya and Manuka Sub-groups comprise the Rolling Downs Group of Whitehouse (1954).\" Gives no age for the subgroup.\n"
+        },
+        {
+          "id": "whitehouse1955a",
+          "authors": "Whitehouse, F. W.",
+          "year": 1955,
+          "title": "The geology of the Queensland portion of the Great Artesian Basin",
+          "book": "Artesian Water Supplies in Queensland",
+          "series": "Queensland Parliamentary Paper",
+          "volume": "A.56-1955",
+          "publisher": "Department of the Co-ordinator-General of Public Works, Brisbane",
+          "pages": "1-20",
+          "notes": "Cited by Gray and colleagues (2002) as the author of the Rolling Downs Group that holds the subgroup.\n"
+        }
+      ]
+    },
+    "Belly River": {
+      "rank": "group",
+      "period": {
+        "name": [
+          "Late Cretaceous"
+        ],
+        "stage": [
+          "Santonian",
+          "Campanian"
+        ],
+        "from_ma": 85.7,
+        "to_ma": 72.2
+      },
+      "references": [
+        {
+          "id": "eberth2005a",
+          "authors": "Eberth, D. A.",
+          "year": 2005,
+          "title": "The geology",
+          "book": "Dinosaur Provincial Park: A Spectacular Ancient Ecosystem Revealed",
+          "publisher": "Indiana University Press, Bloomington",
+          "pages": "54-82",
+          "notes": "Gives the rank, the contents and the span. At Dinosaur Provincial Park \"the complete Belly River Group (outcrop and subsurface) is approximately 280 m thick and consists of the Foremost (170 m), Oldman (40 m), and Dinosaur Park (70 m) formations\", and \"the entire Belly River Group ... ranges in age from 80.0 to 74.2 Ma\". Records that the name began as Dawson's (1883) Belly River \"series\", which \"unintentionally included within it the underlying Pakowki marine shales\".\n"
+        },
+        {
+          "id": "lull1942a",
+          "authors": "Lull, R. S.; Wright, N. E.",
+          "year": 1942,
+          "title": "Hadrosaurian Dinosaurs of North America",
+          "journal": "Geological Society of America Special Papers",
+          "publisher": "Geological Society of America",
+          "volume": "40",
+          "pages": "1-272",
+          "doi": "10.1130/spe40-p1",
+          "notes": "Treats it as the Belly River formation, \"equivalent in age to the Judith River\", and sets it beside the Lance among the formations \"of the late Cretaceous\". Divides it into \"the Milk River, Pakowki, Foremost, and Pale beds\", the Pale beds forming its upper part.\n"
+        },
+        {
+          "id": "brown2013a",
+          "authors": "Brown, C. M.; Evans, D. C.; Ryan, M. J.; Russell, A. P.",
+          "year": 2013,
+          "title": "New data on the diversity and abundance of small-bodied ornithopods (Dinosauria, Ornithischia) from the Belly River Group (Campanian) of Alberta",
+          "journal": "Journal of Vertebrate Paleontology",
+          "publisher": "Informa UK Limited",
+          "volume": "33",
+          "issue": "3",
+          "pages": "495-520",
+          "doi": "10.1080/02724634.2013.746229",
+          "notes": "Says the group \"spans 80-75 Ma in age\" and belongs to the Judith River clastic wedge of southern Alberta, which represents the western margin of the Western Interior Basin \"throughout much of the Campanian\".\n"
+        },
+        {
+          "id": "dawson1883a",
+          "authors": "Dawson, G. M.",
+          "year": 1883,
+          "title": "Preliminary report on the geology of the Bow and Belly rivers region, North-west Territory, with special reference to coal deposits",
+          "journal": "Geological and Natural History Survey and Museum of Canada, Report of Progress, 1880–82",
+          "issue": "pt. B",
+          "pages": "1-23",
+          "notes": "Names the unit and positions it, and gives no stage. It works entirely in North American series terms — Laramie, Pierre, Fox Hills, Niobrara, Judith River, Fort Union, St. Mary River, Willow Creek — and its correlation table puts the \"Belly River series\", of \"Sandstones, shales and sandy clays\" with fresh and brackish water molluscs, below the Pierre and against a queried Niobrara. The rank in this paper is series, and the correlation carries the author's own question mark.\n"
+        },
+        {
+          "id": "rozhdestvensky1968a",
+          "authors": "Rozhdestvensky, A. K.",
+          "year": 1968,
+          "title": "Gadrozavry Kazakhstana [Hadrosaurs of Kazakhstan]",
+          "journal": "[Upper Paleozoic and Mesozoic Amphibians and Reptiles]. Akademia Naul SSSR, Moscow",
+          "pages": "97-141",
+          "notes": "The most ancient and most plentiful North American hadrosaur remains \"were found in the Belly River Formation which has been dated to the Campanian and Upper Santonian\", older than those of \"the Maastrichtian Edmonton Formation\". Uses the name at formation rank and treats the unit as corresponding to the Two Medicine Formation.\n"
+        }
+      ]
     }
   }
 }

@@ -22,6 +22,7 @@ export type {
     Size,
     SizeRange,
     Species,
+    StratigraphicUnit,
     Status,
     Synonym,
     Timescale,
