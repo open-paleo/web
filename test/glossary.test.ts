@@ -53,7 +53,7 @@ test("a term is linked once per block, as written, and the text is kept whole", 
     const text = "Anterior caudals opisthocoelous, anterior dorsals amphicoelous.";
     const segments = splitGlossaryTerms(glossary, text, new Set());
 
-    assert.deepEqual(getLinkedIds(segments), ["anterior", "opisthocoelous", "amphicoelous"]);
+    assert.deepEqual(getLinkedIds(segments), ["anterior", "caudal-vertebra", "opisthocoelous", "dorsal-vertebra", "amphicoelous"]);
     assert.equal(segments[0].text, "Anterior");
     assert.equal(joinSegments(segments), text);
 });
@@ -62,8 +62,8 @@ test("blocks that share a set of linked terms link each term once between them",
 {
     const linked = new Set<string>();
 
-    assert.deepEqual(getLinkedIds(splitGlossaryTerms(glossary, "anterior caudals", linked)), ["anterior"]);
-    assert.deepEqual(getLinkedIds(splitGlossaryTerms(glossary, "anterior dorsals", linked)), []);
+    assert.deepEqual(getLinkedIds(splitGlossaryTerms(glossary, "anterior caudals", linked)), ["anterior", "caudal-vertebra"]);
+    assert.deepEqual(getLinkedIds(splitGlossaryTerms(glossary, "anterior caudals and dorsals", linked)), ["dorsal-vertebra"]);
 });
 
 test("a form inside a longer or hyphenated word is not linked", () =>
@@ -80,11 +80,29 @@ test("a form of several words matches across any white space, and other forms li
     assert.deepEqual(getLinkedIds(splitGlossaryTerms(glossary, "placed more anteriorly", new Set())), ["anterior"]);
 });
 
+test("the longest form wins where forms overlap", () =>
+{
+    const segments = splitGlossaryTerms(glossary, "two caudal vertebrae and a transverse process", new Set());
+
+    assert.deepEqual(getLinkedIds(segments), ["caudal-vertebra", "transverse-process"]);
+    assert.equal(segments[1].text, "caudal vertebrae");
+    assert.equal(segments[3].text, "transverse process");
+});
+
+test("an exception stays plain, and the same form elsewhere still links", () =>
+{
+    const segments = splitGlossaryTerms(glossary, "The name is derived from Greek; a derived titanosaur.", new Set());
+
+    assert.deepEqual(getLinkedIds(segments), ["derived"]);
+    assert.equal(segments[1].text, "derived");
+    assert.ok(segments[0].text.endsWith("derived from Greek; a "));
+});
+
 test("a whole value such as a status finds its term regardless of case", () =>
 {
     assert.equal(findGlossaryEntry(glossary, "Nomen dubium")?.id, "nomen-dubium");
     assert.equal(findGlossaryEntry(glossary, "incertae sedis")?.id, "incertae-sedis");
-    assert.equal(findGlossaryEntry(glossary, "valid"), undefined);
+    assert.equal(findGlossaryEntry(glossary, "disputed"), undefined);
 });
 
 test("the glossary page's look-ups name each term's category and resolve related terms", () =>

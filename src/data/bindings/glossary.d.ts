@@ -28,7 +28,7 @@ export interface Metadata {
   /**
    * The version of this schema the output follows. A new major version is a breaking change.
    */
-  schema_version: "1.0.0";
+  schema_version: "1.1.0";
   /**
    * The license, as an SPDX id.
    */
@@ -77,6 +77,10 @@ export interface Term {
    * @minItems 1
    */
   forms: [string, ...string[]];
+  /**
+   * Phrases that contain one of the forms but use it in another sense, such as "derived from". Match them along with the forms, longest first, and leave a match as plain text.
+   */
+  exceptions?: string[];
   /**
    * A plain-English definition of one or two sentences.
    */

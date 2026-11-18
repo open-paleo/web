@@ -13,7 +13,8 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   (descriptions, disputes, diagnoses, type material, synonym reasons, notable specimens) link to
   their definitions once per block, as do statuses such as "nomen dubium", "incertae sedis" in
   the lineage and specimen types. With JavaScript, a link opens the definition in a popover
-  beside the term
+  beside the term. Phrases a glossary entry lists as exceptions, such as "derived from", stay
+  unlinked
 - Typographic quotation marks and apostrophes throughout: dataset text such as a Latin word
   meaning ‘tail’, a quoted “associated with” and O’Connor is shown with curly marks, and
   coordinates with primes (30°03′S). Search and the find fields match either kind of apostrophe

@@ -1,9 +1,9 @@
 {
   "_metadata": {
-    "schema_version": "1.0.0",
+    "schema_version": "1.1.0",
     "license": "CC-BY-4.0",
     "attribution": "Open Paleo contributors",
-    "term_count": 6
+    "term_count": 87
   },
   "categories": [
     {
@@ -68,7 +68,8 @@
       "etymology": "Greek amphi, \"on both sides\", and koilos, \"hollow\".",
       "see_also": [
         "opisthocoelous",
-        "procoelous"
+        "procoelous",
+        "centrum"
       ]
     },
     "anterior": {
@@ -80,7 +81,429 @@
         "anteriormost"
       ],
       "definition": "Toward the front of the animal, the end with the head. The opposite of posterior.",
-      "etymology": "Latin anterior, \"further forward\"."
+      "etymology": "Latin anterior, \"further forward\".",
+      "see_also": [
+        "posterior"
+      ]
+    },
+    "articulated": {
+      "term": "articulated",
+      "category": "specimens",
+      "forms": [
+        "articulated",
+        "disarticulated",
+        "semi-articulated",
+        "partially articulated"
+      ],
+      "definition": "Of bones: found still joined together as they were in life. Disarticulated bones were found separated from each other.",
+      "see_also": [
+        "associated-skeleton"
+      ]
+    },
+    "associated-skeleton": {
+      "term": "associated skeleton",
+      "category": "specimens",
+      "forms": [
+        "associated skeleton",
+        "associated skeletons",
+        "associated remains",
+        "associated bones"
+      ],
+      "definition": "Bones found together and thought to come from a single animal, though not joined as they were in life.",
+      "see_also": [
+        "articulated",
+        "isolated"
+      ]
+    },
+    "autapomorphy": {
+      "term": "autapomorphy",
+      "category": "phylogenetics",
+      "forms": [
+        "autapomorphy",
+        "autapomorphies",
+        "autapomorphic"
+      ],
+      "definition": "A feature found in only one species or genus, which sets it apart from all its relatives. Autapomorphies show that a name represents a distinct animal.",
+      "etymology": "Greek autos, \"self\", apo, \"away from\", and morphe, \"form\".",
+      "see_also": [
+        "synapomorphy",
+        "plesiomorphic"
+      ]
+    },
+    "bipedal": {
+      "term": "bipedal",
+      "category": "biology",
+      "forms": [
+        "bipedal",
+        "biped",
+        "bipeds",
+        "bipedality"
+      ],
+      "definition": "Walking on two legs.",
+      "etymology": "Latin bi-, \"two\", and pes, \"foot\".",
+      "see_also": [
+        "quadrupedal"
+      ]
+    },
+    "bonebed": {
+      "term": "bonebed",
+      "category": "specimens",
+      "forms": [
+        "bonebed",
+        "bonebeds",
+        "bone bed",
+        "bone beds"
+      ],
+      "definition": "A layer of rock packed with the bones of many animals, often buried together."
+    },
+    "caudal-vertebra": {
+      "term": "caudal vertebra",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "caudal vertebra",
+        "caudal vertebrae",
+        "caudal",
+        "caudals",
+        "caudally"
+      ],
+      "definition": "A vertebra of the tail. Caudal means \"of the tail\" or \"toward the tail\".",
+      "etymology": "Latin cauda, \"tail\".",
+      "see_also": [
+        "sacral-vertebra",
+        "chevron"
+      ]
+    },
+    "centrum": {
+      "term": "centrum",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "centrum",
+        "centra"
+      ],
+      "definition": "The spool-shaped main body of a vertebra, which bears the weight. The spinal cord runs along its top, inside the neural arch.",
+      "etymology": "Latin, \"center\".",
+      "see_also": [
+        "neural-arch",
+        "vertebra"
+      ]
+    },
+    "cervical-vertebra": {
+      "term": "cervical vertebra",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "cervical vertebra",
+        "cervical vertebrae",
+        "cervical",
+        "cervicals"
+      ],
+      "definition": "A vertebra of the neck. Cervical means \"of the neck\".",
+      "etymology": "Latin cervix, \"neck\".",
+      "see_also": [
+        "dorsal-vertebra"
+      ]
+    },
+    "character": {
+      "term": "character",
+      "category": "phylogenetics",
+      "forms": [
+        "character",
+        "characters"
+      ],
+      "definition": "In a phylogenetic analysis, a feature that differs among the animals studied, such as the shape of a bone, recorded for each animal to work out how they are related.",
+      "exceptions": [
+        "movie character",
+        "witch character"
+      ],
+      "see_also": [
+        "phylogenetic-analysis"
+      ]
+    },
+    "chevron": {
+      "term": "chevron",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "chevron",
+        "chevrons",
+        "haemal arch",
+        "haemal arches",
+        "hemal arch",
+        "hemal arches"
+      ],
+      "definition": "A small bone that hangs below the joint between two tail vertebrae, protecting blood vessels and anchoring tail muscles.",
+      "etymology": "French, a V-shaped stripe, after its shape.",
+      "see_also": [
+        "caudal-vertebra"
+      ]
+    },
+    "chimera": {
+      "term": "chimera",
+      "category": "naming",
+      "forms": [
+        "chimera",
+        "chimaera",
+        "chimeric",
+        "chimaeric"
+      ],
+      "definition": "A specimen, or a name based on one, made up of bones that turned out to come from more than one kind of animal.",
+      "etymology": "The Chimera of Greek myth, a monster made of parts of several animals.",
+      "see_also": [
+        "holotype"
+      ]
+    },
+    "clade": {
+      "term": "clade",
+      "category": "phylogenetics",
+      "forms": [
+        "clade",
+        "clades"
+      ],
+      "definition": "A group made up of an ancestor and all of its descendants. Every branch of a family tree is a clade.",
+      "etymology": "Greek klados, \"branch\".",
+      "see_also": [
+        "monophyletic",
+        "sister-taxon"
+      ]
+    },
+    "combined-directions": {
+      "term": "combined directions",
+      "category": "direction",
+      "forms": [
+        "combined directions",
+        "anteroposterior",
+        "anteroposteriorly",
+        "dorsoventral",
+        "dorsoventrally",
+        "mediolateral",
+        "mediolaterally",
+        "lateromedially",
+        "proximodistal",
+        "proximodistally",
+        "craniocaudally",
+        "rostrocaudally",
+        "anterodorsal",
+        "anterodorsally",
+        "anteroventral",
+        "anteroventrally",
+        "posterodorsal",
+        "posterodorsally",
+        "posteroventral",
+        "posteroventrally",
+        "anterolateral",
+        "anterolaterally",
+        "posterolateral",
+        "posterolaterally",
+        "anteromedial",
+        "anteromedially",
+        "posteromedial",
+        "posteromedially",
+        "dorsolateral",
+        "dorsolaterally",
+        "ventrolateral",
+        "ventrolaterally",
+        "dorsomedial",
+        "dorsomedially"
+      ],
+      "definition": "Words that join two directions. Anteroposterior means \"from front to back\", so a bone that is anteroposteriorly long is long from front to back; anterodorsal means \"toward the front and the top\".",
+      "see_also": [
+        "anterior",
+        "dorsal",
+        "medial",
+        "proximal"
+      ]
+    },
+    "consensus-tree": {
+      "term": "consensus tree",
+      "category": "phylogenetics",
+      "forms": [
+        "consensus tree",
+        "consensus trees",
+        "strict consensus",
+        "strict consensus tree"
+      ],
+      "definition": "A family tree that combines several equally good trees from one analysis, keeping only the groupings they all agree on.",
+      "see_also": [
+        "phylogenetic-analysis",
+        "polytomy"
+      ]
+    },
+    "convergence": {
+      "term": "convergence",
+      "category": "phylogenetics",
+      "forms": [
+        "convergence",
+        "convergent",
+        "convergent evolution",
+        "convergently"
+      ],
+      "definition": "The evolution of similar features in animals that aren't closely related, often because they lived in similar ways.",
+      "see_also": [
+        "synapomorphy"
+      ]
+    },
+    "cursorial": {
+      "term": "cursorial",
+      "category": "biology",
+      "forms": [
+        "cursorial"
+      ],
+      "definition": "Built for running, with long, slender legs.",
+      "etymology": "Latin cursor, \"runner\"."
+    },
+    "dental-battery": {
+      "term": "dental battery",
+      "category": "anatomy/skull",
+      "forms": [
+        "dental battery",
+        "dental batteries"
+      ],
+      "definition": "Rows of tightly packed teeth that worked together as one grinding or slicing surface, with new teeth constantly growing in to replace worn ones, as in hadrosaurs and ceratopsids."
+    },
+    "derived": {
+      "term": "derived",
+      "category": "phylogenetics",
+      "forms": [
+        "derived"
+      ],
+      "definition": "Describes a member of a group that branched off later in the group's family tree, or a feature that changed from the ancestral condition. The opposite of early-diverging.",
+      "exceptions": [
+        "derived from"
+      ],
+      "see_also": [
+        "early-diverging",
+        "plesiomorphic"
+      ]
+    },
+    "distal": {
+      "term": "distal",
+      "category": "direction",
+      "forms": [
+        "distal",
+        "distally"
+      ],
+      "definition": "Farther from the body, or from where a limb or bone attaches. The knee end of the thighbone is its distal end. On a tooth, distal means \"toward the back of the jaw\".",
+      "etymology": "From \"distant\", Latin distare, \"to stand apart\".",
+      "see_also": [
+        "proximal",
+        "mesial"
+      ]
+    },
+    "dorsal": {
+      "term": "dorsal",
+      "category": "direction",
+      "forms": [
+        "dorsal",
+        "dorsally"
+      ],
+      "definition": "Toward the back or top of the animal, the side the backbone runs along. The opposite of ventral. Dorsal also names the vertebrae of the back.",
+      "etymology": "Latin dorsum, \"back\".",
+      "see_also": [
+        "ventral",
+        "dorsal-vertebra"
+      ]
+    },
+    "dorsal-vertebra": {
+      "term": "dorsal vertebra",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "dorsal vertebra",
+        "dorsal vertebrae",
+        "dorsals"
+      ],
+      "definition": "A vertebra of the back, between the neck and the hips. Most carry ribs.",
+      "etymology": "Latin dorsum, \"back\".",
+      "see_also": [
+        "cervical-vertebra",
+        "sacral-vertebra",
+        "dorsal"
+      ]
+    },
+    "early-diverging": {
+      "term": "early-diverging",
+      "category": "phylogenetics",
+      "forms": [
+        "early-diverging",
+        "early diverging",
+        "earliest-diverging",
+        "basal",
+        "basalmost"
+      ],
+      "definition": "Describes a member of a group that branched off early in the group's family tree, near its base. It need not be older or simpler than its relatives. Also called basal.",
+      "exceptions": [
+        "basal tubera",
+        "basal tuber",
+        "basal skull length"
+      ],
+      "see_also": [
+        "derived"
+      ]
+    },
+    "family": {
+      "term": "family",
+      "category": "naming",
+      "forms": [
+        "family",
+        "families"
+      ],
+      "definition": "A rank in traditional classification that groups related genera. Family names end in -idae, as in Tyrannosauridae.",
+      "etymology": "Latin familia, \"household\".",
+      "see_also": [
+        "subfamily",
+        "superfamily",
+        "clade"
+      ]
+    },
+    "fragmentary": {
+      "term": "fragmentary",
+      "category": "specimens",
+      "forms": [
+        "fragmentary"
+      ],
+      "definition": "Of a fossil: known only from broken or incomplete pieces.",
+      "see_also": [
+        "nomen-dubium"
+      ]
+    },
+    "gondwana": {
+      "term": "Gondwana",
+      "category": "geology",
+      "forms": [
+        "Gondwana",
+        "Gondwanan"
+      ],
+      "definition": "The southern supercontinent made up of today's South America, Africa, Madagascar, India, Antarctica and Australia, which broke apart during the age of dinosaurs.",
+      "etymology": "From a region of India, \"forest of the Gonds\".",
+      "see_also": [
+        "laurasia",
+        "pangaea"
+      ]
+    },
+    "grade": {
+      "term": "grade",
+      "category": "phylogenetics",
+      "forms": [
+        "grade",
+        "grades"
+      ],
+      "definition": "A set of animals at a similar stage of evolution that don't form a single clade, such as the early sauropodomorphs once grouped together as prosauropods.",
+      "see_also": [
+        "paraphyletic",
+        "clade"
+      ]
+    },
+    "holotype": {
+      "term": "holotype",
+      "category": "naming",
+      "forms": [
+        "holotype",
+        "holotypes"
+      ],
+      "definition": "The single specimen a species' name is tied to, chosen when the species is named. Other fossils are compared with it to decide whether they belong to the same species.",
+      "etymology": "Greek holos, \"whole\", and typos, \"model\".",
+      "see_also": [
+        "type-specimen",
+        "paratype",
+        "referred-specimen"
+      ]
     },
     "incertae-sedis": {
       "term": "incertae sedis",
@@ -91,6 +514,227 @@
       "definition": "Used for an animal that belongs to a larger group when where it fits within that group can't be decided.",
       "etymology": "Latin, \"of uncertain placement\"."
     },
+    "isolated": {
+      "term": "isolated",
+      "category": "specimens",
+      "forms": [
+        "isolated"
+      ],
+      "definition": "Of a fossil: found on its own, apart from any skeleton, as with an isolated tooth. An isolated bone is hard to assign to a species.",
+      "see_also": [
+        "associated-skeleton"
+      ]
+    },
+    "juvenile": {
+      "term": "juvenile",
+      "category": "specimens",
+      "forms": [
+        "juvenile",
+        "juveniles",
+        "subadult",
+        "subadults",
+        "immature"
+      ],
+      "definition": "A young animal, not yet fully grown. A subadult was nearly grown.",
+      "see_also": [
+        "ontogeny"
+      ]
+    },
+    "labial": {
+      "term": "labial",
+      "category": "direction",
+      "forms": [
+        "labial",
+        "labially",
+        "buccal",
+        "buccally"
+      ],
+      "definition": "On the side of a tooth or jaw that faces the lips or cheek, outside the mouth. The opposite of lingual.",
+      "etymology": "Latin labium, \"lip\".",
+      "see_also": [
+        "lingual"
+      ]
+    },
+    "lateral": {
+      "term": "lateral",
+      "category": "direction",
+      "forms": [
+        "lateral",
+        "laterally"
+      ],
+      "definition": "Toward the side of the animal, away from the line that runs down the middle of its body. The opposite of medial.",
+      "etymology": "Latin latus, \"side\".",
+      "see_also": [
+        "medial"
+      ]
+    },
+    "laurasia": {
+      "term": "Laurasia",
+      "category": "geology",
+      "forms": [
+        "Laurasia",
+        "Laurasian"
+      ],
+      "definition": "The northern supercontinent made up of today's North America, Europe and most of Asia, which broke apart during the age of dinosaurs.",
+      "etymology": "Laurentia (North America) and Eurasia.",
+      "see_also": [
+        "gondwana",
+        "pangaea"
+      ]
+    },
+    "least-inclusive-clade": {
+      "term": "least-inclusive clade",
+      "category": "phylogenetics",
+      "forms": [
+        "least-inclusive clade",
+        "least inclusive clade",
+        "least-inclusive"
+      ],
+      "definition": "The smallest clade that contains all the named animals. Defining a clade this way picks out the last common ancestor of those animals and all its descendants.",
+      "see_also": [
+        "clade"
+      ]
+    },
+    "lectotype": {
+      "term": "lectotype",
+      "category": "naming",
+      "forms": [
+        "lectotype",
+        "lectotypes"
+      ],
+      "definition": "A specimen chosen after a species was named, from among its syntypes, to be the single specimen its name is tied to.",
+      "etymology": "Greek lektos, \"chosen\", and typos, \"model\".",
+      "see_also": [
+        "syntype",
+        "holotype"
+      ]
+    },
+    "lineage": {
+      "term": "lineage",
+      "category": "phylogenetics",
+      "forms": [
+        "lineage",
+        "lineages"
+      ],
+      "definition": "A line of descent: an ancestor and the descendants that follow from it over time.",
+      "see_also": [
+        "clade"
+      ]
+    },
+    "lingual": {
+      "term": "lingual",
+      "category": "direction",
+      "forms": [
+        "lingual",
+        "lingually"
+      ],
+      "definition": "On the side of a tooth or jaw that faces the tongue, inside the mouth. The opposite of labial.",
+      "etymology": "Latin lingua, \"tongue\".",
+      "see_also": [
+        "labial"
+      ]
+    },
+    "manus": {
+      "term": "manus",
+      "category": "anatomy/limbs",
+      "forms": [
+        "manus",
+        "manual"
+      ],
+      "definition": "The hand. Manual means \"of the hand\".",
+      "etymology": "Latin, \"hand\".",
+      "see_also": [
+        "pes",
+        "pollex"
+      ]
+    },
+    "medial": {
+      "term": "medial",
+      "category": "direction",
+      "forms": [
+        "medial",
+        "medially"
+      ],
+      "definition": "Toward the line that runs down the middle of the animal's body. The opposite of lateral.",
+      "etymology": "Latin medius, \"middle\".",
+      "see_also": [
+        "lateral"
+      ]
+    },
+    "mesial": {
+      "term": "mesial",
+      "category": "direction",
+      "forms": [
+        "mesial",
+        "mesially"
+      ],
+      "definition": "On a tooth, the side toward the front of the jaw, following the curve of the tooth row. The opposite of distal.",
+      "etymology": "Greek mesos, \"middle\".",
+      "see_also": [
+        "distal"
+      ]
+    },
+    "monophyletic": {
+      "term": "monophyletic",
+      "category": "phylogenetics",
+      "forms": [
+        "monophyletic",
+        "monophyly"
+      ],
+      "definition": "Describes a group that includes an ancestor and all of its descendants. A monophyletic group is a clade.",
+      "etymology": "Greek monos, \"single\", and phyle, \"tribe\".",
+      "see_also": [
+        "paraphyletic",
+        "clade"
+      ]
+    },
+    "monotypic": {
+      "term": "monotypic",
+      "category": "naming",
+      "forms": [
+        "monotypic",
+        "monospecific"
+      ],
+      "definition": "Containing only one member: a monotypic genus has a single species."
+    },
+    "neotype": {
+      "term": "neotype",
+      "category": "naming",
+      "forms": [
+        "neotype",
+        "neotypes"
+      ],
+      "definition": "A specimen chosen to replace a holotype that has been lost or destroyed, or that can no longer be identified, so the name has a specimen to rest on again.",
+      "etymology": "Greek neos, \"new\", and typos, \"model\".",
+      "see_also": [
+        "holotype"
+      ]
+    },
+    "neural-arch": {
+      "term": "neural arch",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "neural arch",
+        "neural arches"
+      ],
+      "definition": "The arch of bone on top of a vertebra's main body, which encloses the spinal cord. The neural spine and most of the vertebra's other projections grow from it.",
+      "see_also": [
+        "centrum",
+        "neural-spine"
+      ]
+    },
+    "neural-spine": {
+      "term": "neural spine",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "neural spine",
+        "neural spines"
+      ],
+      "definition": "The blade or rod of bone that sticks up from the top of a vertebra, where back muscles and ligaments attach. Very tall neural spines formed sails or humps in some dinosaurs.",
+      "see_also": [
+        "neural-arch"
+      ]
+    },
     "nomen-dubium": {
       "term": "nomen dubium",
       "category": "naming",
@@ -98,8 +742,39 @@
         "nomen dubium",
         "nomina dubia"
       ],
-      "definition": "A name based on fossils that can't be reliably told apart from those of related animals, so it may not stand for a distinct species or genus.",
-      "etymology": "Latin, \"doubtful name\"."
+      "definition": "A name based on fossils that can't be reliably told apart from those of related animals, so it may not represent a distinct species or genus.",
+      "etymology": "Latin, \"doubtful name\".",
+      "see_also": [
+        "valid",
+        "synonym"
+      ]
+    },
+    "nomen-nudum": {
+      "term": "nomen nudum",
+      "category": "naming",
+      "forms": [
+        "nomen nudum",
+        "nomina nuda"
+      ],
+      "definition": "A name published without the description or other details the naming rules require, so it isn't a valid name.",
+      "etymology": "Latin, \"naked name\".",
+      "see_also": [
+        "valid"
+      ]
+    },
+    "ontogeny": {
+      "term": "ontogeny",
+      "category": "specimens",
+      "forms": [
+        "ontogeny",
+        "ontogenetic",
+        "ontogenetically"
+      ],
+      "definition": "The growth and development of an animal from hatching to adulthood. Ontogenetic changes can make young and old animals of one species look like different species.",
+      "etymology": "Greek on, \"being\", and genesis, \"origin\".",
+      "see_also": [
+        "juvenile"
+      ]
     },
     "opisthocoelous": {
       "term": "opisthocoelous",
@@ -111,7 +786,166 @@
       "etymology": "Greek opisthen, \"behind\", and koilos, \"hollow\".",
       "see_also": [
         "procoelous",
-        "amphicoelous"
+        "amphicoelous",
+        "centrum"
+      ]
+    },
+    "pangaea": {
+      "term": "Pangaea",
+      "category": "geology",
+      "forms": [
+        "Pangaea",
+        "Pangea"
+      ],
+      "definition": "The supercontinent that joined nearly all of Earth's land when the first dinosaurs lived, before it split into Laurasia and Gondwana.",
+      "etymology": "Greek, \"all lands\".",
+      "see_also": [
+        "laurasia",
+        "gondwana"
+      ]
+    },
+    "paraphyletic": {
+      "term": "paraphyletic",
+      "category": "phylogenetics",
+      "forms": [
+        "paraphyletic",
+        "paraphyly"
+      ],
+      "definition": "Describes a group that includes an ancestor but only some of its descendants, such as reptiles without birds.",
+      "etymology": "Greek para, \"beside\", and phyle, \"tribe\".",
+      "see_also": [
+        "monophyletic",
+        "grade"
+      ]
+    },
+    "paratype": {
+      "term": "paratype",
+      "category": "naming",
+      "forms": [
+        "paratype",
+        "paratypes"
+      ],
+      "definition": "A specimen the authors who named a species listed alongside the holotype. Paratypes help show what the species was like, but the name isn't tied to them.",
+      "etymology": "Greek para, \"beside\", and typos, \"model\".",
+      "see_also": [
+        "holotype"
+      ]
+    },
+    "pennaceous": {
+      "term": "pennaceous",
+      "category": "biology",
+      "forms": [
+        "pennaceous",
+        "pennaceous feathers"
+      ],
+      "definition": "Of feathers: having a central shaft with a flat vane on each side, like a bird's flight feathers, rather than being simple filaments.",
+      "etymology": "Latin penna, \"feather\"."
+    },
+    "pes": {
+      "term": "pes",
+      "category": "anatomy/limbs",
+      "forms": [
+        "pes",
+        "pedal"
+      ],
+      "definition": "The foot. Pedal means \"of the foot\".",
+      "etymology": "Latin, \"foot\".",
+      "see_also": [
+        "manus"
+      ]
+    },
+    "phylogenetic-analysis": {
+      "term": "phylogenetic analysis",
+      "category": "phylogenetics",
+      "forms": [
+        "phylogenetic analysis",
+        "phylogenetic analyses",
+        "cladistic analysis",
+        "cladistic analyses"
+      ],
+      "definition": "A study that works out how animals are related by comparing many of their features, usually with software that finds the family trees that best fit those features.",
+      "etymology": "Greek phylon, \"tribe\", and genesis, \"origin\".",
+      "see_also": [
+        "character",
+        "consensus-tree"
+      ]
+    },
+    "plesiomorphic": {
+      "term": "plesiomorphic",
+      "category": "phylogenetics",
+      "forms": [
+        "plesiomorphic",
+        "plesiomorphy",
+        "plesiomorphies"
+      ],
+      "definition": "Describes an ancestral feature, inherited from a distant ancestor and shared widely, so it says little about which animals are most closely related.",
+      "etymology": "Greek plesios, \"near\", and morphe, \"form\".",
+      "see_also": [
+        "synapomorphy",
+        "derived"
+      ]
+    },
+    "pollex": {
+      "term": "pollex",
+      "category": "anatomy/limbs",
+      "forms": [
+        "pollex",
+        "pollices"
+      ],
+      "definition": "The first finger of the hand, equivalent to the human thumb. In many sauropodomorphs it carried a large claw.",
+      "etymology": "Latin, \"thumb\".",
+      "see_also": [
+        "manus"
+      ]
+    },
+    "polytomy": {
+      "term": "polytomy",
+      "category": "phylogenetics",
+      "forms": [
+        "polytomy",
+        "polytomies"
+      ],
+      "definition": "A point on a family tree where three or more branches split at once, because the analysis couldn't settle the order in which they branched.",
+      "etymology": "Greek polys, \"many\", and tome, \"cut\".",
+      "see_also": [
+        "consensus-tree"
+      ]
+    },
+    "postcranial": {
+      "term": "postcranial",
+      "category": "specimens",
+      "forms": [
+        "postcranial",
+        "postcranium",
+        "postcrania"
+      ],
+      "definition": "Of the skeleton behind the skull: everything but the head.",
+      "etymology": "Latin post, \"behind\", and Greek kranion, \"skull\"."
+    },
+    "posterior": {
+      "term": "posterior",
+      "category": "direction",
+      "forms": [
+        "posterior",
+        "posteriorly",
+        "posteriormost"
+      ],
+      "definition": "Toward the back of the animal, the end with the tail. The opposite of anterior.",
+      "etymology": "Latin posterior, \"coming after\".",
+      "see_also": [
+        "anterior"
+      ]
+    },
+    "preoccupied": {
+      "term": "preoccupied",
+      "category": "naming",
+      "forms": [
+        "preoccupied",
+        "replacement name"
+      ],
+      "definition": "Of a name: already given to another animal, so it can't be used again. The later animal needs a replacement name.",
+      "see_also": [
+        "synonym"
       ]
     },
     "procoelous": {
@@ -124,7 +958,323 @@
       "etymology": "Greek pro, \"in front\", and koilos, \"hollow\".",
       "see_also": [
         "opisthocoelous",
-        "amphicoelous"
+        "amphicoelous",
+        "centrum"
+      ]
+    },
+    "proximal": {
+      "term": "proximal",
+      "category": "direction",
+      "forms": [
+        "proximal",
+        "proximally"
+      ],
+      "definition": "Closer to the body, or to where a limb or bone attaches. The hip end of the thighbone is its proximal end. The opposite of distal.",
+      "etymology": "Latin proximus, \"nearest\".",
+      "see_also": [
+        "distal"
+      ]
+    },
+    "quadrupedal": {
+      "term": "quadrupedal",
+      "category": "biology",
+      "forms": [
+        "quadrupedal",
+        "quadruped",
+        "quadrupeds",
+        "quadrupedality"
+      ],
+      "definition": "Walking on four legs.",
+      "etymology": "Latin quadru-, \"four\", and pes, \"foot\".",
+      "see_also": [
+        "bipedal"
+      ]
+    },
+    "radiation": {
+      "term": "radiation",
+      "category": "phylogenetics",
+      "forms": [
+        "radiation",
+        "radiations",
+        "adaptive radiation"
+      ],
+      "definition": "A burst of evolution in which one lineage splits into many species that spread into different ways of life.",
+      "see_also": [
+        "lineage"
+      ]
+    },
+    "referred-specimen": {
+      "term": "referred specimen",
+      "category": "naming",
+      "forms": [
+        "referred specimen",
+        "referred specimens",
+        "referred material"
+      ],
+      "definition": "A fossil assigned to a species after it was named, because it shares the species' features. The name isn't tied to it, and a later study can move it to another species.",
+      "see_also": [
+        "holotype"
+      ]
+    },
+    "rostral": {
+      "term": "rostral",
+      "category": "direction",
+      "forms": [
+        "rostral",
+        "rostrally"
+      ],
+      "definition": "Toward the tip of the snout.",
+      "etymology": "Latin rostrum, \"beak\".",
+      "see_also": [
+        "anterior"
+      ]
+    },
+    "sacral-vertebra": {
+      "term": "sacral vertebra",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "sacral vertebra",
+        "sacral vertebrae",
+        "sacral",
+        "sacrals",
+        "sacrum"
+      ],
+      "definition": "One of the vertebrae joined to the hip bones. Fused together, they form the sacrum.",
+      "etymology": "Latin os sacrum, \"sacred bone\".",
+      "see_also": [
+        "dorsal-vertebra",
+        "caudal-vertebra"
+      ]
+    },
+    "sagittal": {
+      "term": "sagittal",
+      "category": "direction",
+      "forms": [
+        "sagittal"
+      ],
+      "definition": "Running from front to back along the middle of the body, in the plane that divides the left side from the right.",
+      "etymology": "Latin sagitta, \"arrow\".",
+      "see_also": [
+        "transverse"
+      ]
+    },
+    "sister-taxon": {
+      "term": "sister taxon",
+      "category": "phylogenetics",
+      "forms": [
+        "sister taxon",
+        "sister taxa",
+        "sister group",
+        "sister groups"
+      ],
+      "definition": "The closest relative of a group on a family tree: the two share an ancestor that no other group shares.",
+      "see_also": [
+        "clade"
+      ]
+    },
+    "specific-epithet": {
+      "term": "specific epithet",
+      "category": "naming",
+      "forms": [
+        "specific epithet",
+        "epithet",
+        "epithets",
+        "specific name"
+      ],
+      "definition": "The second part of a species' name, such as rex in Tyrannosaurus rex. It names the species only together with its genus.",
+      "etymology": "Greek epitheton, \"added\".",
+      "see_also": [
+        "type-species"
+      ]
+    },
+    "subfamily": {
+      "term": "subfamily",
+      "category": "naming",
+      "forms": [
+        "subfamily",
+        "subfamilies"
+      ],
+      "definition": "A group of related genera within a family. Subfamily names end in -inae, as in Tyrannosaurinae.",
+      "see_also": [
+        "family"
+      ]
+    },
+    "superfamily": {
+      "term": "superfamily",
+      "category": "naming",
+      "forms": [
+        "superfamily",
+        "superfamilies"
+      ],
+      "definition": "A group of related families. Superfamily names end in -oidea, as in Tyrannosauroidea.",
+      "see_also": [
+        "family"
+      ]
+    },
+    "synapomorphy": {
+      "term": "synapomorphy",
+      "category": "phylogenetics",
+      "forms": [
+        "synapomorphy",
+        "synapomorphies"
+      ],
+      "definition": "A new feature shared by the members of a group, inherited from their common ancestor, that sets the group apart from others. Synapomorphies are the evidence for a clade.",
+      "etymology": "Greek syn, \"together\", apo, \"away from\", and morphe, \"form\".",
+      "see_also": [
+        "autapomorphy",
+        "clade"
+      ]
+    },
+    "synonym": {
+      "term": "synonym",
+      "category": "naming",
+      "forms": [
+        "synonym",
+        "synonyms",
+        "synonymy",
+        "synonymized",
+        "junior synonym",
+        "junior synonyms",
+        "senior synonym"
+      ],
+      "definition": "One of two or more names given to the same animal. The oldest name usually takes priority as the senior synonym; later names become junior synonyms and fall out of use.",
+      "etymology": "Greek syn, \"together\", and onoma, \"name\".",
+      "see_also": [
+        "valid",
+        "nomen-dubium"
+      ]
+    },
+    "syntype": {
+      "term": "syntype",
+      "category": "naming",
+      "forms": [
+        "syntype",
+        "syntypes"
+      ],
+      "definition": "One of several specimens that together served as the basis for a name, when no single holotype was chosen.",
+      "etymology": "Greek syn, \"together\", and typos, \"model\".",
+      "see_also": [
+        "lectotype",
+        "holotype"
+      ]
+    },
+    "taxon": {
+      "term": "taxon",
+      "category": "phylogenetics",
+      "forms": [
+        "taxon",
+        "taxa"
+      ],
+      "definition": "Any named group of living things, such as a species, a genus or a clade.",
+      "etymology": "Greek taxis, \"arrangement\".",
+      "see_also": [
+        "clade"
+      ]
+    },
+    "transverse": {
+      "term": "transverse",
+      "category": "direction",
+      "forms": [
+        "transverse",
+        "transversely"
+      ],
+      "definition": "Running across the body from side to side.",
+      "etymology": "Latin transversus, \"turned across\".",
+      "see_also": [
+        "sagittal"
+      ]
+    },
+    "transverse-process": {
+      "term": "transverse process",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "transverse process",
+        "transverse processes"
+      ],
+      "definition": "A projection that sticks out sideways from a vertebra, where ribs or muscles attach.",
+      "see_also": [
+        "vertebra"
+      ]
+    },
+    "type-species": {
+      "term": "type species",
+      "category": "naming",
+      "forms": [
+        "type species"
+      ],
+      "definition": "The species a genus name is tied to. A genus is defined by its type species, as a species is defined by its holotype.",
+      "see_also": [
+        "holotype"
+      ]
+    },
+    "type-specimen": {
+      "term": "type specimen",
+      "category": "naming",
+      "forms": [
+        "type specimen",
+        "type specimens",
+        "name-bearing specimen"
+      ],
+      "definition": "A specimen a species' name is formally tied to: the holotype, or a lectotype or neotype chosen later.",
+      "see_also": [
+        "holotype",
+        "lectotype",
+        "neotype"
+      ]
+    },
+    "valid": {
+      "term": "valid",
+      "category": "naming",
+      "forms": [
+        "valid",
+        "validity"
+      ],
+      "definition": "Of a name: properly published and the accepted name for its animal, not a synonym or a doubtful name.",
+      "see_also": [
+        "synonym",
+        "nomen-dubium"
+      ]
+    },
+    "ventral": {
+      "term": "ventral",
+      "category": "direction",
+      "forms": [
+        "ventral",
+        "ventrally"
+      ],
+      "definition": "Toward the belly or underside of the animal. The opposite of dorsal.",
+      "etymology": "Latin venter, \"belly\".",
+      "see_also": [
+        "dorsal"
+      ]
+    },
+    "vertebra": {
+      "term": "vertebra",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "vertebra",
+        "vertebrae",
+        "vertebral",
+        "vertebral column"
+      ],
+      "definition": "One of the bones of the backbone, which runs from the skull to the tip of the tail.",
+      "etymology": "Latin vertebra, \"joint\", from vertere, \"to turn\".",
+      "see_also": [
+        "centrum",
+        "neural-arch"
+      ]
+    },
+    "wildcard-taxon": {
+      "term": "wildcard taxon",
+      "category": "phylogenetics",
+      "forms": [
+        "wildcard taxon",
+        "wildcard taxa",
+        "wildcard"
+      ],
+      "definition": "An animal whose position jumps around a family tree from one analysis to the next, usually because too little of it is known.",
+      "see_also": [
+        "phylogenetic-analysis"
       ]
     }
   }

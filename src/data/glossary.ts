@@ -48,7 +48,9 @@ export type GlossaryIndex = {
     entryByForm: Map<string, GlossaryEntry>;
 
     /**
-     * Matches any form as a whole word, longest forms first; undefined when the glossary is empty.
+     * Matches any form, or any exception, as a whole word, longest first; undefined when the
+     * glossary is empty. An exception, such as "derived from", matches but finds no term, so it
+     * stays plain.
      */
     formPattern: RegExp | undefined;
 };
@@ -145,12 +147,22 @@ export function createGlossaryIndex(glossary: OpenPaleoGlossary): GlossaryIndex
 
     entries.sort((first, second) => first.record.term.localeCompare(second.record.term, "en"));
 
-    const forms = [...entryByForm.keys()].sort((first, second) => second.length - first.length);
+    const phrases = [...entryByForm.keys()];
+
+    for (const entry of entries)
+    {
+        for (const exception of entry.record.exceptions ?? [])
+        {
+            phrases.push(exception.toLowerCase());
+        }
+    }
+
+    phrases.sort((first, second) => second.length - first.length);
     const alternatives = new Array<string>();
 
-    for (const form of forms)
+    for (const phrase of phrases)
     {
-        alternatives.push(escapeForm(form));
+        alternatives.push(escapeForm(phrase));
     }
 
     // Letters, digits and hyphens on either side mean the form is part of a longer word.
