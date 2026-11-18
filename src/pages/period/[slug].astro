@@ -70,7 +70,8 @@ const stageCounts = new Array<StageCount>();
 
 if (siteData.timeline)
 {
-    for (const stage of countGeneraByStage(siteData, siteData.timeline))
+    // Every stage of the period, including those before or after any with genera.
+    for (const stage of countGeneraByStage(siteData, siteData.timeline, false))
     {
         if (stage.periodName === period.name)
         {
@@ -90,9 +91,7 @@ if (siteData.timeline)
                 <span class="figures">{formatGenusCount(period.genera.length)}</span>
             </p>
             <p class="period-intro">
-                The genera whose type species is known from any stage of the {period.name}. The dates
-                span the stages the dataset has genera from, so they can be narrower than the whole
-                period.
+                The genera whose type species is known from any stage of the {period.name}.
             </p>
         </header>
 

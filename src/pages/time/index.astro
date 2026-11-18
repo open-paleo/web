@@ -3,6 +3,7 @@ import GeneraThroughTime from "../../components/GeneraThroughTime.astro";
 import PageSection from "../../components/PageSection.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatAgeNumbers, formatAgeRange, formatCount, formatGenusCount } from "../../data/format.ts";
+import type { StageCount } from "../../data/home.ts";
 import { countGeneraByStage } from "../../data/home.ts";
 import { getSiteData } from "../../data/site-data.ts";
 import { getTimePages } from "../../data/time-pages.ts";
@@ -11,17 +12,44 @@ import { createPagePath } from "../../data/urls.ts";
 const siteData = getSiteData();
 const timePages = getTimePages();
 const baseUrl = import.meta.env.BASE_URL;
-const stageCounts = siteData.timeline ? countGeneraByStage(siteData, siteData.timeline) : [];
-const stageCount = formatCount(timePages.stages.length, "stage", "stages");
+const periodNames = new Set<string>();
+const stageCounts = new Array<StageCount>();
+
+for (const period of timePages.periods)
+{
+    periodNames.add(period.name);
+}
+
+// Every stage of the periods with genera, including the empty ones at either end.
+for (const stage of siteData.timeline ? countGeneraByStage(siteData, siteData.timeline, false) : [])
+{
+    if (periodNames.has(stage.periodName))
+    {
+        stageCounts.push(stage);
+    }
+}
+
+let allStageCount = 0;
+
+for (const period of timePages.periods)
+{
+    for (const epoch of period.epochs)
+    {
+        allStageCount += epoch.stages.length;
+    }
+}
+
+const stageCount = formatCount(allStageCount, "stage", "stages");
 ---
 
-<BaseLayout title="Geologic time scale" description={"The periods, epochs and " + stageCount + " of the Mesozoic with genera in Open Paleo, with their ages and how many genera are known from each."} navigationItem="time">
+<BaseLayout title="Geologic time scale" description={"The periods, epochs and " + stageCount + " of the Mesozoic, with their ages and how many genera in Open Paleo are known from each."} navigationItem="time">
     <div class="time-page">
         <header class="time-header">
             <h1>Geologic time scale</h1>
             <p class="time-summary">
-                The Triassic, Jurassic and Cretaceous, divided into epochs and {stageCount} with genera in the dataset, with
-                their ages and how many genera are known from each. A genus known from several stages counts in each.
+                The Triassic, Jurassic and Cretaceous, divided into epochs and {stageCount}, with their ages and how many
+                genera in the dataset are known from each; {timePages.stages.length} stages have genera and pages of their
+                own. A genus known from several stages counts in each.
             </p>
         </header>
 
@@ -48,10 +76,10 @@ const stageCount = formatCount(timePages.stages.length, "stage", "stages");
                                 <th scope="rowgroup" colspan="3">{epoch.name}</th>
                             </tr>
                             {epoch.stages.map((stage) => (
-                                <tr>
-                                    <th scope="row"><a href={createPagePath(baseUrl, "stage", stage.slug)}>{stage.name}</a></th>
+                                <tr class:list={{ "is-empty": !stage.page }}>
+                                    <th scope="row">{stage.page ? <a href={createPagePath(baseUrl, "stage", stage.page.slug)}>{stage.name}</a> : stage.name}</th>
                                     <td class="number figures">{formatAgeNumbers(stage.fromMa, stage.toMa)}</td>
-                                    <td class="number figures">{stage.genera.length}</td>
+                                    <td class="number figures">{stage.page?.genera.length ?? 0}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -133,6 +161,13 @@ const stageCount = formatCount(timePages.stages.length, "stage", "stages");
     {
         padding-top: var(--space-4);
         font-weight: 600;
+    }
+
+    /* Stages with no genera, and so no page. */
+    .stage-table .is-empty th,
+    .stage-table .is-empty td
+    {
+        color: var(--color-muted);
     }
 
     .stage-table .number

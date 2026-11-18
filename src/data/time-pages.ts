@@ -47,7 +47,32 @@ export type StagePage = {
 };
 
 /**
- * One epoch of a period, with its stages, for the period's page.
+ * A stage of a period, with its page if any genera are known from it.
+ */
+export type PeriodStage = {
+    /**
+     * Stage name: "Induan".
+     */
+    name: string;
+
+    /**
+     * Start of the stage, in millions of years ago.
+     */
+    fromMa: number;
+
+    /**
+     * End of the stage, in millions of years ago.
+     */
+    toMa: number;
+
+    /**
+     * The stage's page; undefined when no genera are known from it.
+     */
+    page: StagePage | undefined;
+};
+
+/**
+ * One epoch of a period, with all of its stages.
  */
 export type PeriodEpoch = {
     /**
@@ -56,9 +81,9 @@ export type PeriodEpoch = {
     name: string;
 
     /**
-     * The epoch's stages that have genera, oldest first.
+     * The epoch's stages, oldest first.
      */
-    stages: Array<StagePage>;
+    stages: Array<PeriodStage>;
 };
 
 /**
@@ -76,17 +101,17 @@ export type PeriodPage = {
     slug: string;
 
     /**
-     * Older boundary of its stages, in millions of years ago.
+     * Start of the period, in millions of years ago.
      */
     fromMa: number;
 
     /**
-     * Younger boundary of its stages, in millions of years ago.
+     * End of the period, in millions of years ago.
      */
     toMa: number;
 
     /**
-     * The period's epochs that have genera, oldest first.
+     * The period's epochs, oldest first, each with all of its stages.
      */
     epochs: Array<PeriodEpoch>;
 
@@ -202,18 +227,25 @@ export function createTimePages(siteData: SiteData, timeline: GeologicTimeline):
         }
     }
 
+    // Every period of the timescale, with all its epochs and stages. A stage gets a page only if
+    // genera are known from it, and a period only if any of its stages has one.
+    const candidates = new Array<PeriodPage>();
+    const candidateByName = new Map<string, PeriodPage>();
+    const periodsWithGenera = new Set<string>();
+
     for (const epoch of timeline.epochs)
     {
         const periodName = getPeriodName(epoch.name);
-        const epochStages = new Array<StagePage>();
+        const epochStages = new Array<PeriodStage>();
 
         for (const stage of epoch.stages)
         {
             const genera = generaByStage.get(stage.name);
+            let page: StagePage | undefined;
 
             if (genera && genera.length > 0)
             {
-                const page: StagePage = {
+                page = {
                     name: stage.name,
                     slug: createSlug(stage.name),
                     epochName: epoch.name,
@@ -222,32 +254,45 @@ export function createTimePages(siteData: SiteData, timeline: GeologicTimeline):
                     toMa: stage.toMa,
                     genera,
                 };
-                epochStages.push(page);
                 stages.push(page);
                 stageByName.set(stage.name, page);
+                periodsWithGenera.add(periodName);
             }
+
+            epochStages.push({ name: stage.name, fromMa: stage.fromMa, toMa: stage.toMa, page });
         }
 
-        if (epochStages.length > 0)
+        if (epochStages.length === 0)
         {
-            let period = periodByName.get(periodName);
+            continue;
+        }
 
-            if (!period)
-            {
-                period = {
-                    name: periodName,
-                    slug: createSlug(periodName),
-                    fromMa: epochStages[0].fromMa,
-                    toMa: epochStages[epochStages.length - 1].toMa,
-                    epochs: new Array<PeriodEpoch>(),
-                    genera: new Array<GenusEntry>(),
-                };
-                periodByName.set(periodName, period);
-                periods.push(period);
-            }
+        let period = candidateByName.get(periodName);
 
-            period.toMa = epochStages[epochStages.length - 1].toMa;
-            period.epochs.push({ name: epoch.name, stages: epochStages });
+        if (!period)
+        {
+            period = {
+                name: periodName,
+                slug: createSlug(periodName),
+                fromMa: epochStages[0].fromMa,
+                toMa: epochStages[epochStages.length - 1].toMa,
+                epochs: new Array<PeriodEpoch>(),
+                genera: new Array<GenusEntry>(),
+            };
+            candidateByName.set(periodName, period);
+            candidates.push(period);
+        }
+
+        period.toMa = epochStages[epochStages.length - 1].toMa;
+        period.epochs.push({ name: epoch.name, stages: epochStages });
+    }
+
+    for (const period of candidates)
+    {
+        if (periodsWithGenera.has(period.name))
+        {
+            periods.push(period);
+            periodByName.set(period.name, period);
         }
     }
 

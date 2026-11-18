@@ -17,7 +17,7 @@ const pages = createTimePages(siteData, timeline);
 
 test("each stage page lists the genera the home chart counts for it", () =>
 {
-    for (const stage of countGeneraByStage(siteData, timeline))
+    for (const stage of countGeneraByStage(siteData, timeline, true))
     {
         const page = pages.stageByName.get(stage.name);
 

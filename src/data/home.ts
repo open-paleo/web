@@ -116,10 +116,11 @@ export const majorGroupNames = ["Theropoda", "Sauropodomorpha", "Thyreophora", "
  *
  * @param siteData - The lookup tables.
  * @param timeline - The arranged timescale.
- * @returns One count per stage, oldest first, from the oldest stage with a genus to the
- * youngest, including any empty stages between them.
+ * @param isTrimmed - Whether to leave out the empty stages before the oldest stage with a genus
+ * and after the youngest.
+ * @returns One count per stage, oldest first, including empty stages between those with genera.
  */
-export function countGeneraByStage(siteData: SiteData, timeline: GeologicTimeline): Array<StageCount>
+export function countGeneraByStage(siteData: SiteData, timeline: GeologicTimeline, isTrimmed: boolean): Array<StageCount>
 {
     const countByStage = new Map<string, number>();
 
@@ -148,6 +149,11 @@ export function countGeneraByStage(siteData: SiteData, timeline: GeologicTimelin
                 count: countByStage.get(stage.name) ?? 0,
             });
         }
+    }
+
+    if (!isTrimmed)
+    {
+        return counts;
     }
 
     let first = 0;

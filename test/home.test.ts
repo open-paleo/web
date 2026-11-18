@@ -23,7 +23,7 @@ const timeline = createGeologicTimeline(dataset.timescale);
 
 test("countGeneraByStage counts each genus once per stage of its type species", () =>
 {
-    const counts = countGeneraByStage(siteData, timeline);
+    const counts = countGeneraByStage(siteData, timeline, true);
     let total = 0;
     let expected = 0;
 
@@ -47,7 +47,7 @@ test("countGeneraByStage counts each genus once per stage of its type species", 
 
 test("countGeneraByStage trims empty stages at both ends", () =>
 {
-    const counts = countGeneraByStage(siteData, timeline);
+    const counts = countGeneraByStage(siteData, timeline, true);
 
     assert.ok(counts[0].count > 0);
     assert.ok(counts[counts.length - 1].count > 0);
@@ -57,7 +57,7 @@ test("countGeneraByStage trims empty stages at both ends", () =>
 
 test("groupStagesForAxis makes one span per run of a period", () =>
 {
-    const spans = groupStagesForAxis(countGeneraByStage(siteData, timeline), "period");
+    const spans = groupStagesForAxis(countGeneraByStage(siteData, timeline, true), "period");
     const names = new Array<string>();
     let stageTotal = 0;
 
@@ -68,7 +68,7 @@ test("groupStagesForAxis makes one span per run of a period", () =>
     }
 
     assert.deepEqual(names, [...new Set(names)], "no period appears twice");
-    assert.equal(stageTotal, countGeneraByStage(siteData, timeline).length);
+    assert.equal(stageTotal, countGeneraByStage(siteData, timeline, true).length);
 });
 
 test("findRecentNames covers the newest year, reaching back until it has enough names", () =>
@@ -112,7 +112,7 @@ test("getMajorGroups keeps the groups the tree has, with a one-sentence summary"
 
 test("findAxisMaximum rounds up to a whole step above the largest count", () =>
 {
-    const stages = countGeneraByStage(siteData, timeline);
+    const stages = countGeneraByStage(siteData, timeline, true);
 
     assert.equal(findAxisMaximum([{ ...stages[0], count: 312 }], 100), 400);
     assert.equal(findAxisMaximum([{ ...stages[0], count: 300 }], 100), 400);
@@ -121,8 +121,18 @@ test("findAxisMaximum rounds up to a whole step above the largest count", () =>
 
 test("groupStagesForAxis can group by epoch instead", () =>
 {
-    const spans = groupStagesForAxis(countGeneraByStage(siteData, timeline), "epoch");
+    const spans = groupStagesForAxis(countGeneraByStage(siteData, timeline, true), "epoch");
 
     assert.ok(spans.length > 3, "more epochs than periods");
     assert.equal(spans[spans.length - 1].name, "Late Cretaceous");
+});
+
+test("untrimmed stage counts keep the empty stages at either end", () =>
+{
+    const trimmed = countGeneraByStage(siteData, timeline, true);
+    const untrimmed = countGeneraByStage(siteData, timeline, false);
+
+    assert.ok(untrimmed.length > trimmed.length);
+    assert.equal(untrimmed[0].count, 0);
+    assert.notEqual(trimmed[0].count, 0);
 });

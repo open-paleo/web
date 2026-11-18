@@ -18,7 +18,7 @@ for (const genus of siteData.genera)
     speciesCount += genus.record.species.length;
 }
 
-const stages = siteData.timeline ? countGeneraByStage(siteData, siteData.timeline) : [];
+const stages = siteData.timeline ? countGeneraByStage(siteData, siteData.timeline, true) : [];
 // At least a dozen names, so the section stays full early in a new year.
 const recent = findRecentNames(siteData, 12);
 const groups = getMajorGroups(siteData);

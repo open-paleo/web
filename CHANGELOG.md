@@ -17,8 +17,11 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   many genera it holds and the epochs they span, filterable by time, group and year named like
   the Genera page. It sits between Genera and Tree in the header's Taxa group
 - A Time scale page (`time/`), first in the header's Time group: the "genera through time" chart,
-  then each period's epochs and stages with their ages and genus counts, linking the stage and
-  period pages
+  then each period's epochs and every one of its stages with their ages and genus counts,
+  linking the stage and period pages. Stages with no genera are listed without a link
+- Period pages give the period's full span (the Triassic from 251.9 million years ago), not just
+  that of the stages with genera, and their charts show every stage of the period, as does the
+  Time scale page's chart; the home page's chart still starts at the first stage with genera
 - The species box and "At a glance" link each rock unit to its page, the search fields suggest
   rock units, and reference pages list the rock units that cite them. The sitemap lists the unit
   pages but not the members' and beds' forwarding pages
