@@ -2,7 +2,7 @@
 import GenusFilterForm from "../../components/GenusFilterForm.astro";
 import PageSection from "../../components/PageSection.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { formatGenusCount } from "../../data/format.ts";
+import { formatGenusCount, formatQuotes } from "../../data/format.ts";
 import { createGenusIndexRows, getGenusFilterOptions } from "../../data/genus-index.ts";
 import { groupGeneraByPlace, getPlaceIndexRows } from "../../data/site-map.ts";
 import { getSiteData } from "../../data/site-data.ts";
@@ -17,11 +17,11 @@ const filterOptions = getGenusFilterOptions(placedRows, siteData.timeline);
 const legendSteps = ["1", "2–4", "5–9", "10–24", "25 or more"];
 ---
 
-<BaseLayout title="Map" description={"Where the type species of " + formatGenusCount(placedCount) + " in Open Paleo were found, on today's map, by region and country."} section="map">
+<BaseLayout title="Map" description={"Where the type species of " + formatGenusCount(placedCount) + " in Open Paleo were found, on today’s map, by region and country."} section="map">
     <div class="map-page">
         <header class="map-header">
             <h1>Map</h1>
-            <p class="map-summary">Where the type species of {formatGenusCount(placedCount)} were found, on today's map.</p>
+            <p class="map-summary">Where the type species of {formatGenusCount(placedCount)} were found, on today’s map.</p>
         </header>
 
         <GenusFilterForm options={filterOptions} total={placedCount} isCollapsible={true} />
@@ -55,7 +55,7 @@ const legendSteps = ["1", "2–4", "5–9", "10–24", "25 or more"];
                         <ul class="place-regions">
                             {country.regions.map((region) => (
                                 <li class="place-region" data-place-group>
-                                    <span class="region-name">{region.name}</span> <span class="place-count" data-total={region.rows.length}>({region.rows.length})</span>
+                                    <span class="region-name">{formatQuotes(region.name)}</span> <span class="place-count" data-total={region.rows.length}>({region.rows.length})</span>
                                     <ul class="region-genera">
                                         {region.rows.map((row) => <li data-genus={row.entry.slug}><a class="taxon" href={createPagePath(baseUrl, "genus", row.entry.slug)}>{row.entry.name}</a></li>)}
                                     </ul>

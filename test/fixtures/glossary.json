@@ -1,0 +1,131 @@
+{
+  "_metadata": {
+    "schema_version": "1.0.0",
+    "license": "CC-BY-4.0",
+    "attribution": "Open Paleo contributors",
+    "term_count": 6
+  },
+  "categories": [
+    {
+      "id": "naming",
+      "name": "Naming",
+      "description": "How species and genera are named, and what makes a name valid."
+    },
+    {
+      "id": "phylogenetics",
+      "name": "Family trees",
+      "description": "How paleontologists work out which animals are related, and how closely."
+    },
+    {
+      "id": "specimens",
+      "name": "Fossils and specimens",
+      "description": "How fossils are found, kept and described."
+    },
+    {
+      "id": "direction",
+      "name": "Directions",
+      "description": "The words anatomists use for front, back, top, bottom, toward the body and away from it."
+    },
+    {
+      "id": "anatomy/skull",
+      "name": "Skull and teeth",
+      "description": "The bones of the skull and jaws, and the teeth."
+    },
+    {
+      "id": "anatomy/vertebrae",
+      "name": "Backbone",
+      "description": "The vertebrae of the neck, back, hips and tail, and their parts."
+    },
+    {
+      "id": "anatomy/limbs",
+      "name": "Limbs and girdles",
+      "description": "The bones of the arms and legs, and the shoulder and hip bones they attach to."
+    },
+    {
+      "id": "anatomy/general",
+      "name": "Bone features",
+      "description": "Bumps, ridges, holes and other features found on many bones."
+    },
+    {
+      "id": "biology",
+      "name": "Life and habits",
+      "description": "How dinosaurs lived, moved and fed."
+    },
+    {
+      "id": "geology",
+      "name": "Rocks and time",
+      "description": "The rocks fossils are found in, and how they are dated."
+    }
+  ],
+  "terms": {
+    "amphicoelous": {
+      "term": "amphicoelous",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "amphicoelous"
+      ],
+      "definition": "Describes a vertebra whose main body is hollow at both the front and the back.",
+      "etymology": "Greek amphi, \"on both sides\", and koilos, \"hollow\".",
+      "see_also": [
+        "opisthocoelous",
+        "procoelous"
+      ]
+    },
+    "anterior": {
+      "term": "anterior",
+      "category": "direction",
+      "forms": [
+        "anterior",
+        "anteriorly",
+        "anteriormost"
+      ],
+      "definition": "Toward the front of the animal, the end with the head. The opposite of posterior.",
+      "etymology": "Latin anterior, \"further forward\"."
+    },
+    "incertae-sedis": {
+      "term": "incertae sedis",
+      "category": "naming",
+      "forms": [
+        "incertae sedis"
+      ],
+      "definition": "Used for an animal that belongs to a larger group when where it fits within that group can't be decided.",
+      "etymology": "Latin, \"of uncertain placement\"."
+    },
+    "nomen-dubium": {
+      "term": "nomen dubium",
+      "category": "naming",
+      "forms": [
+        "nomen dubium",
+        "nomina dubia"
+      ],
+      "definition": "A name based on fossils that can't be reliably told apart from those of related animals, so it may not stand for a distinct species or genus.",
+      "etymology": "Latin, \"doubtful name\"."
+    },
+    "opisthocoelous": {
+      "term": "opisthocoelous",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "opisthocoelous"
+      ],
+      "definition": "Describes a vertebra whose main body is rounded at the front and hollow at the back, so each one fits into the next like a ball and socket.",
+      "etymology": "Greek opisthen, \"behind\", and koilos, \"hollow\".",
+      "see_also": [
+        "procoelous",
+        "amphicoelous"
+      ]
+    },
+    "procoelous": {
+      "term": "procoelous",
+      "category": "anatomy/vertebrae",
+      "forms": [
+        "procoelous"
+      ],
+      "definition": "Describes a vertebra whose main body is hollow at the front and rounded at the back, the reverse of opisthocoelous.",
+      "etymology": "Greek pro, \"in front\", and koilos, \"hollow\".",
+      "see_also": [
+        "opisthocoelous",
+        "amphicoelous"
+      ]
+    }
+  }
+}

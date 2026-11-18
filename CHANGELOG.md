@@ -6,6 +6,18 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ## 2026-11-17
 
+### Added
+
+- A Glossary page, linked from the header, with plain-English definitions from
+  [open-paleo/glossary](https://github.com/open-paleo/glossary). Terms in genus and clade text
+  (descriptions, disputes, diagnoses, type material, synonym reasons, notable specimens) link to
+  their definitions once per block, as do statuses such as "nomen dubium", "incertae sedis" in
+  the lineage and specimen types. With JavaScript, a link opens the definition in a popover
+  beside the term
+- Typographic quotation marks and apostrophes throughout: dataset text such as a Latin word
+  meaning ‘tail’, a quoted “associated with” and O’Connor is shown with curly marks, and
+  coordinates with primes (30°03′S). Search and the find fields match either kind of apostrophe
+
 ### Changed
 
 - The site reads the dataset's schema 4.0.0, which spells the holotype status "uncataloged". A

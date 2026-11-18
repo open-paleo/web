@@ -52,6 +52,7 @@ test("matching ignores case, accents and punctuation", () =>
 {
     assert.equal(foldText("Pérez"), "perez");
     assert.equal(foldText("Osborn (1905)"), "osborn 1905");
+    assert.equal(foldText("O’Connor"), foldText("O'Connor"));
     assert.equal(foldText("O'Connor et al. (2025a)"), "o'connor et al 2025a");
     assert.equal(scoreName(foldText("Tyrannosaurus"), foldText("TYRANNO")), 3);
 });

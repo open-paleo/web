@@ -2,7 +2,7 @@
 import GeneraThroughTime from "../components/GeneraThroughTime.astro";
 import PageSection from "../components/PageSection.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { formatGenusCount } from "../data/format.ts";
+import { formatGenusCount, formatQuotes } from "../data/format.ts";
 import { countGeneraByStage, describeRecentYears, findRecentNames, getMajorGroups } from "../data/home.ts";
 import { getSiteData } from "../data/site-data.ts";
 import { createPagePath } from "../data/urls.ts";
@@ -86,7 +86,7 @@ const lastStage = stages[stages.length - 1];
                             <a href={createPagePath(baseUrl, "clade", group.clade.slug)}>{group.clade.name}</a>
                             <span class="group-count figures">{formatGenusCount(group.clade.totalGenusCount)}</span>
                         </p>
-                        {group.summary && <p class="group-summary">{group.summary}</p>}
+                        {group.summary && <p class="group-summary">{formatQuotes(group.summary)}</p>}
                     </li>
                 ))}
             </ul>

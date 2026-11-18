@@ -266,6 +266,6 @@ export function describePaleoView(view: PaleoView): string
         hasApproximate ||= place.isApproximate;
     }
 
-    return "Today's coastlines where they were " + view.ageMa + " million years ago (" + view.stage + ", " + view.epoch + "), reconstructed with the plate model of Wright et al. (2013)."
-        + (hasApproximate ? " Rings mark places known only by region, shown at the region's center." : "");
+    return "Today’s coastlines where they were " + view.ageMa + " million years ago (" + view.stage + ", " + view.epoch + "), reconstructed with the plate model of Wright et al. (2013)."
+        + (hasApproximate ? " Rings mark places known only by region, shown at the region’s center." : "");
 }

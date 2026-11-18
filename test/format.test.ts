@@ -14,6 +14,7 @@ import {
     formatGenusCount,
     formatGeologicAge,
     formatPlace,
+    formatQuotes,
     formatShortCitation,
     formatSizeRange,
     formatSpecimenName,
@@ -220,8 +221,8 @@ test("formatDistinctShortCitations adds the key's letter only where two citation
         { id: "mayr2005a", authors: "Mayr, G.; Pohl, B.; Peters, D. S.", year: 2005 },
     ]);
 
-    assert.equal(labels.get("oconnor2025a"), "O'Connor et al. (2025a)");
-    assert.equal(labels.get("oconnor2025b"), "O'Connor et al. (2025b)");
+    assert.equal(labels.get("oconnor2025a"), "O’Connor et al. (2025a)");
+    assert.equal(labels.get("oconnor2025b"), "O’Connor et al. (2025b)");
     assert.equal(labels.get("mayr2005a"), "Mayr et al. (2005)");
 });
 
@@ -230,4 +231,14 @@ test("bindAbbreviatedGenus keeps an initial with its epithet", () =>
     assert.equal(bindAbbreviatedGenus("P. sibiricus"), "P." + String.fromCharCode(160) + "sibiricus");
     assert.equal(bindAbbreviatedGenus("Psittacosaurus sibiricus"), "Psittacosaurus sibiricus");
     assert.equal(bindAbbreviatedGenus("Tyrannosaurus"), "Tyrannosaurus");
+});
+
+test("formatQuotes makes quotation marks and apostrophes typographic, and minute marks primes", () =>
+{
+    assert.equal(formatQuotes("From Afrikaans 'aard' meaning 'earth'"), "From Afrikaans ‘aard’ meaning ‘earth’");
+    assert.equal(formatQuotes("Marc's Quarry, dell'Argentina, the dinosaurs' teeth"), "Marc’s Quarry, dell’Argentina, the dinosaurs’ teeth");
+    assert.equal(formatQuotes("cautioning that \"no witnesses are alive\" (\"quoted\")"), "cautioning that “no witnesses are alive” (“quoted”)");
+    assert.equal(formatQuotes("'coyote,' and a 'lizard.'\" Then"), "‘coyote,’ and a ‘lizard.’” Then");
+    assert.equal(formatQuotes("as \"S30°03', E28°32'\" at 30° 03'S"), "as “S30°03′, E28°32′” at 30° 03′S");
+    assert.equal(formatQuotes("Museo ‘Carmen Funes’"), "Museo ‘Carmen Funes’");
 });

@@ -12,13 +12,16 @@ type Props = {
 };
 
 const { features } = Astro.props;
+
+// Each term is linked once in the whole list.
+const linkedTerms = new Set<string>();
 ---
 
 {/* role="list" keeps the list announced as one where list-style: none would remove it (Safari).
    Each item is a two-column grid (number, text), so the text is wrapped in one span: unwrapped,
    every text run and italic name would become a grid cell of its own. */}
 <ol class="diagnosis-list" role="list">
-    {features.map((feature) => <li><span class="feature-text"><Prose text={feature.trim()} /></span></li>)}
+    {features.map((feature) => <li><span class="feature-text"><Prose text={feature.trim()} linkedTerms={linkedTerms} /></span></li>)}
 </ol>
 
 <style>

@@ -53,7 +53,8 @@ const kindOrder: Array<SuggestionKind> = ["genus", "clade", "species", "genus-sy
  */
 export function foldText(text: string): string
 {
-    return text.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/[^\p{L}\p{N}'\- ]+/gu, " ").replace(/\s+/g, " ").trim();
+    // Typographic apostrophes match straight ones, whichever the text or the query uses.
+    return text.replace(/[‘’]/gu, "'").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/[^\p{L}\p{N}'\- ]+/gu, " ").replace(/\s+/g, " ").trim();
 }
 
 /**

@@ -56,3 +56,44 @@ export function findDatasetDirectory(rootDirectory: string, overrideDirectory: s
         datasetFileName + ".",
     );
 }
+
+/**
+ * File name of the built glossary inside the glossary repository's dist/ directory.
+ */
+export const glossaryFileName = "glossary.json";
+
+/**
+ * Find the directory that holds the built glossary: the OPEN_PALEO_GLOSSARY environment variable
+ * when it is set, otherwise CI's checkout at ./glossary/dist, then a sibling clone at
+ * ../glossary/dist.
+ *
+ * @param rootDirectory - The web repository's root directory.
+ * @param overrideDirectory - The OPEN_PALEO_GLOSSARY environment variable, if set.
+ * @returns The absolute path of the first candidate that contains glossary.json.
+ */
+export function findGlossaryDirectory(rootDirectory: string, overrideDirectory: string | undefined): string
+{
+    const candidates = new Array<string>();
+
+    if (overrideDirectory)
+    {
+        candidates.push(path.resolve(rootDirectory, overrideDirectory));
+    }
+
+    candidates.push(path.join(rootDirectory, "glossary", "dist"));
+    candidates.push(path.join(rootDirectory, "..", "glossary", "dist"));
+
+    for (const candidate of candidates)
+    {
+        if (fs.existsSync(path.join(candidate, glossaryFileName)))
+        {
+            return candidate;
+        }
+    }
+
+    throw new Error(
+        "Could not find " + glossaryFileName + ". Looked in:\n  " + candidates.join("\n  ") +
+        "\nClone open-paleo/glossary next to this repository and run npm run build there, or set " +
+        "OPEN_PALEO_GLOSSARY to the directory that holds " + glossaryFileName + ".",
+    );
+}

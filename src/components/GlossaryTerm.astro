@@ -1,0 +1,75 @@
+---
+import { formatQuotes } from "../data/format.ts";
+import type { GlossaryEntry } from "../data/glossary.ts";
+
+/**
+ * Properties of a term in text that links to its glossary entry.
+ */
+type Props = {
+    /**
+     * The glossary entry.
+     */
+    entry: GlossaryEntry;
+
+    /**
+     * The text as written; the term itself when absent.
+     */
+    text?: string;
+};
+
+const { entry, text } = Astro.props;
+const href = import.meta.env.BASE_URL + "glossary/#" + entry.id;
+
+// With JavaScript, glossary-popover.ts shows the definition beside the term instead of following
+// the link. The markup is one line with no space around it, since any would show in the text.
+---
+<a class="glossary-term" href={href} data-term={entry.record.term} data-definition={formatQuotes(entry.record.definition)}>{text ?? entry.record.term}</a><script>
+    import { connectGlossaryPopover } from "../scripts/glossary-popover.ts";
+
+    connectGlossaryPopover();
+</script><style>
+    .glossary-term
+    {
+        color: inherit;
+        text-decoration-line: underline;
+        text-decoration-style: dotted;
+        text-decoration-color: var(--color-muted);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.2em;
+    }
+
+    /* The popover is created by glossary-popover.ts, outside this component. */
+    :global(.glossary-popover)
+    {
+        position: fixed;
+        inset: auto;
+        width: min(22rem, calc(100vw - 2 * var(--space-4)));
+        margin: 0;
+        padding: var(--space-3) var(--space-4);
+        color: var(--color-ink);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+        box-shadow: 0 var(--space-1) var(--space-3) color-mix(in srgb, var(--color-ink) 15%, transparent);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+        line-height: 1.5;
+    }
+
+    :global(.glossary-popover p)
+    {
+        margin: 0 0 var(--space-2);
+    }
+
+    :global(.glossary-popover-term)
+    {
+        font-weight: 600;
+    }
+
+    .glossary-term:hover,
+    .glossary-term[aria-expanded="true"]
+    {
+        color: var(--color-accent);
+        text-decoration-color: currentColor;
+    }
+</style>

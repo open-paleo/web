@@ -1,6 +1,8 @@
 ---
 import type { Status } from "../data/dataset.ts";
+import GlossaryTerm from "./GlossaryTerm.astro";
 import { capitalizeFirstLetter } from "../data/format.ts";
+import { findGlossaryEntry, getGlossary } from "../data/glossary.ts";
 
 /**
  * Properties of a species status badge.
@@ -10,14 +12,21 @@ type Props = {
      * The species status. Valid names get no badge.
      */
     status: Status;
+
+    /**
+     * Whether the status links to its glossary entry. Leave it off inside another link.
+     */
+    linkToGlossary?: boolean;
 };
 
-const { status } = Astro.props;
+const { status, linkToGlossary = false } = Astro.props;
+const label = capitalizeFirstLetter(status);
+const term = linkToGlossary ? findGlossaryEntry(getGlossary(), status) : undefined;
 ---
 
 {status !== "valid" && (
     <span class:list={["status-badge", status === "disputed" ? "status-disputed" : "status-doubtful"]}>
-        {capitalizeFirstLetter(status)}
+        {term ? <GlossaryTerm entry={term} text={label} /> : label}
     </span>
 )}
 

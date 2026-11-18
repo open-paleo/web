@@ -1,5 +1,8 @@
 ---
-import { bindAbbreviatedGenus } from "../data/format.ts";
+import GlossaryTerm from "./GlossaryTerm.astro";
+import { bindAbbreviatedGenus, formatQuotes } from "../data/format.ts";
+import type { GlossaryEntry } from "../data/glossary.ts";
+import { getGlossary, splitGlossaryTerms } from "../data/glossary.ts";
 import { getSiteData } from "../data/site-data.ts";
 
 /**
@@ -10,10 +13,56 @@ type Props = {
      * The text. Genus and species names in it are set in italics.
      */
     text: string;
+
+    /**
+     * Whether glossary terms in the text link to their definitions, each once.
+     */
+    linkTerms?: boolean;
+
+    /**
+     * The ids of terms already linked, for blocks that link each term once between them, such as
+     * the items of a list; this adds to it. Giving it also links terms.
+     */
+    linkedTerms?: Set<string>;
 };
 
-const { text } = Astro.props;
-const segments = getSiteData().taxonNames.splitProse(text);
+/**
+ * A run of prose: a genus or species name, plain text, or a glossary term.
+ */
+type ProsePart = {
+    /**
+     * The text of the run.
+     */
+    text: string;
+
+    /**
+     * True when the run is a genus or species name.
+     */
+    isTaxon: boolean;
+
+    /**
+     * The glossary term the run links to, if any.
+     */
+    term: GlossaryEntry | undefined;
+};
+
+const { text, linkTerms = false } = Astro.props;
+const linkedTerms = Astro.props.linkedTerms ?? (linkTerms ? new Set<string>() : undefined);
+const parts = new Array<ProsePart>();
+
+for (const segment of getSiteData().taxonNames.splitProse(formatQuotes(text)))
+{
+    if (segment.isTaxon || !linkedTerms)
+    {
+        parts.push({ text: segment.text, isTaxon: segment.isTaxon, term: undefined });
+        continue;
+    }
+
+    for (const termSegment of splitGlossaryTerms(getGlossary(), segment.text, linkedTerms))
+    {
+        parts.push({ text: termSegment.text, isTaxon: false, term: termSegment.entry });
+    }
+}
 ---
 
-{segments.map((segment) => segment.isTaxon ? <i class="taxon">{bindAbbreviatedGenus(segment.text)}</i> : segment.text)}
+{parts.map((part) => part.isTaxon ? <i class="taxon">{bindAbbreviatedGenus(part.text)}</i> : part.term ? <GlossaryTerm entry={part.term} text={part.text} /> : part.text)}

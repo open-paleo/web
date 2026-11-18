@@ -134,7 +134,7 @@ const citation = createRecordCitation("Clade", entry.name, entry.slug, citationU
                 )}
             </FactList>
 
-            {record.description && <p class="description"><Prose text={record.description.trim()} /></p>}
+            {record.description && <p class="description"><Prose text={record.description.trim()} linkTerms /></p>}
 
             {record.dispute && (
                 <PageSection title="Under dispute">

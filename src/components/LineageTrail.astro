@@ -1,4 +1,6 @@
 ---
+import GlossaryTerm from "./GlossaryTerm.astro";
+import { findGlossaryEntry, getGlossary } from "../data/glossary.ts";
 import { getSiteData } from "../data/site-data.ts";
 import { createPagePath } from "../data/urls.ts";
 
@@ -19,6 +21,7 @@ type Props = {
 };
 
 const { taxonomy, placement } = Astro.props;
+const placementTerm = placement ? findGlossaryEntry(getGlossary(), placement) : undefined;
 const siteData = getSiteData();
 const baseUrl = import.meta.env.BASE_URL;
 
@@ -46,7 +49,7 @@ const hiddenCount = ranks.length > visibleAtEachEnd * 2 + 1 ? ranks.length - vis
                 {siteData.cladeByName.get(name)?.record
                     ? <a href={createPagePath(baseUrl, "clade", siteData.cladeByName.get(name)?.slug ?? "")}>{name}</a>
                     : <span>{name}</span>}
-                {index === ranks.length - 1 && placement && <span class="placement"> <i>{placement}</i></span>}
+                {index === ranks.length - 1 && placement && <span class="placement"> <i>{placementTerm ? <GlossaryTerm entry={placementTerm} text={placement} /> : placement}</i></span>}
             </li>
         ))}
     </ol>

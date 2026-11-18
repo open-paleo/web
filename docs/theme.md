@@ -205,6 +205,12 @@ Running text is limited to `--measure` (40rem, about 75 characters of Alegreya a
   genus.
 - **Ranges use an en dash** with no spaces: `72.2–66.0 Ma`, `11.9–13 m`.
 - **Ages are given to one decimal place** in millions of years, written `Ma`.
+- **Quotation marks and apostrophes are typographic**: ‘tail’, “associated with”, O’Connor.
+  The dataset and the glossary use straight marks, so dataset text goes through `formatQuotes()`
+  (`src/data/format.ts`) on its way to the page: `Prose`, the citation, place and authority
+  formatters, and page titles and descriptions already do. A mark after a digit is a prime, as
+  in 30°03′S. The site's own copy is written with typographic marks. Reference keys and BibTeX
+  keep their straight marks, since they are identifiers and code.
 - **No all-caps labels, no tracking-out, no monospace.**
 
 ## Layout
@@ -249,5 +255,7 @@ block:
 | Tree extractor | The tool page sets the tool's `--te-*` custom properties from Strata's tokens (background, surface, ink, muted, line, accent, accent-soft, caution and danger; the surface color as text on the accent; the sans and mono faces; the radius), so it follows the site's light and dark mode. The page heading carries a "Beta" badge in the caution colors |
 | Beta badge | `BetaBadge.astro`: "Beta" in Alegreya Sans 700 on `--color-caution-soft` in `--color-caution`, beside the name of a tool that is usable but still being improved (the Tools page and the tool's own heading) |
 | Search suggestions | A list under the header's or home page's search field: each name in `--font-serif` at body size (italic for genera, species and their synonyms), with a `small` muted note of what it is ("Genus (Osborn, 1905)", "Synonym of *Tyrannosaurus*"), on `--color-surface` with a hairline border; the highlighted row on `--color-accent-soft`; a last row "Search for …" in the accent color above a rule. The header's list opens toward the left |
+| Glossary term | `GlossaryTerm.astro`: a term in running text keeps the text's color with a dotted underline in `--color-muted`, turning `--color-accent` on hover and while its definition is open. The definition opens in a popover below the term (above it near the bottom of the window): `--color-surface` with a hairline border and a soft shadow, at most 22rem wide, the term in Alegreya Sans 600, the definition, and "In the glossary" linking to the entry |
+| Glossary page | Terms A–Z under letter headings, each a row of the term in Alegreya Sans 600 beside its definition, then a `small` muted line of its etymology and one of its category and related terms. The entry a link leads to is highlighted in `--color-accent-soft` |
 | Diagnosis list | Numbered features with the numbers in their own right-aligned column (Alegreya Sans, muted), flush with the text around the list |
 | Site footer | The header's dark band repeated at the foot of every page: wordmark, a one-line description, links to the Data page and both repositories, and the license line with the data release the page was built from |

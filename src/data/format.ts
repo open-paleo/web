@@ -100,7 +100,7 @@ export function getSurnames(authors: string): Array<string>
  */
 export function formatAuthorNames(authors: string): string
 {
-    const surnames = getSurnames(authors);
+    const surnames = getSurnames(formatQuotes(authors));
 
     if (surnames.length >= 3)
     {
@@ -230,7 +230,7 @@ export function formatStratigraphicUnits(location: Location): string
         }
     }
 
-    return units.join(", ");
+    return formatQuotes(units.join(", "));
 }
 
 /**
@@ -254,7 +254,7 @@ export function formatPlace(location: Location): string
         parts.push(formatCountry(location.country));
     }
 
-    return parts.join(", ");
+    return formatQuotes(parts.join(", "));
 }
 
 /**
@@ -329,12 +329,12 @@ export function createCitationParts(reference: Reference): CitationParts
     }
 
     return {
-        authors: reference.authors ?? "",
+        authors: formatQuotes(reference.authors ?? ""),
         year: reference.year === undefined ? "n.d." : String(reference.year),
-        title: trimFinalPeriod(reference.title ?? ""),
-        container,
+        title: formatQuotes(trimFinalPeriod(reference.title ?? "")),
+        container: formatQuotes(container),
         location,
-        publisher,
+        publisher: formatQuotes(publisher),
         doi: reference.doi ?? "",
         url: reference.doi ? "" : reference.url ?? "",
     };
@@ -679,4 +679,56 @@ const nonBreakingSpace = String.fromCharCode(160);
 export function bindAbbreviatedGenus(name: string): string
 {
     return /^\p{Lu}\. /u.test(name) ? name.replace(" ", nonBreakingSpace) : name;
+}
+
+// Characters after which a quotation mark opens a quotation rather than closing one.
+const openingContextPattern = /[\s([{“‘—–\-/]/u;
+
+/**
+ * Replace the straight quotation marks and apostrophes in dataset text with typographic ones: a
+ * mark opens (“ ‘) after a space, an opening bracket or a dash and before a non-space, and closes
+ * (” ’) otherwise, which also makes every apostrophe ’. A mark right after a digit is a minute or
+ * second mark, as in 30°03'S, and becomes a prime (′ ″).
+ *
+ * @param text - The text, as the dataset gives it.
+ * @returns The text with typographic marks.
+ */
+export function formatQuotes(text: string): string
+{
+    if (!text.includes("'") && !text.includes("\""))
+    {
+        return text;
+    }
+
+    let result = "";
+
+    for (let index = 0; index < text.length; index++)
+    {
+        const character = text[index];
+
+        if (character !== "'" && character !== "\"")
+        {
+            result += character;
+            continue;
+        }
+
+        const previous = index > 0 ? text[index - 1] : " ";
+        const next = index < text.length - 1 ? text[index + 1] : " ";
+        const isSingle = character === "'";
+
+        if (/\d/u.test(previous))
+        {
+            result += isSingle ? "′" : "″";
+        }
+        else if (openingContextPattern.test(previous) && !/\s/u.test(next))
+        {
+            result += isSingle ? "‘" : "“";
+        }
+        else
+        {
+            result += isSingle ? "’" : "”";
+        }
+    }
+
+    return result;
 }

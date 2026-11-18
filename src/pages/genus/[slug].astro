@@ -108,7 +108,7 @@ const citation = createRecordCitation("Genus", genus.genus, entry.slug, citation
                 {authority && <a class="authority" href={authorityAnchor}>{authority}</a>}
                 {pronunciation?.phonetic && <span>{pronunciation.phonetic}</span>}
                 {pronunciation?.ipa && <span>{pronunciation.ipa}</span>}
-                <StatusBadge status={typeSpecies.status} />
+                <StatusBadge status={typeSpecies.status} linkToGlossary />
             </p>
             {genus.etymology && <p class="etymology"><Prose text={genus.etymology.trim()} /></p>}
         </header>
@@ -118,7 +118,7 @@ const citation = createRecordCitation("Genus", genus.genus, entry.slug, citation
         <RecordMain>
             <GlancePanel genus={genus} />
 
-            <p class="description"><Prose text={genus.description.trim()} /></p>
+            <p class="description"><Prose text={genus.description.trim()} linkTerms /></p>
 
             {genus.dispute && (
                 <PageSection title="Under dispute">

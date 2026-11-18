@@ -6,12 +6,15 @@ import {
     formatAgeRange,
     formatGeologicAge,
     formatPlace,
+    formatQuotes,
     formatSpecimenName,
     formatSpecimenType,
     formatStratigraphicUnits,
     joinNonEmpty,
 } from "../data/format.ts";
+import { findGlossaryEntry, getGlossary } from "../data/glossary.ts";
 import DiagnosisList from "./DiagnosisList.astro";
+import GlossaryTerm from "./GlossaryTerm.astro";
 import Prose from "./Prose.astro";
 
 /**
@@ -29,6 +32,7 @@ const { species } = Astro.props;
 const specimen = species.type_specimen;
 const specimenIds = specimen?.specimen_id ?? [];
 const specimenType = formatSpecimenType(specimen?.specimen_type, specimenIds.length);
+const specimenTypeTerm = specimen?.specimen_type ? findGlossaryEntry(getGlossary(), specimen.specimen_type) : undefined;
 // "Not cataloged" already says what the status "uncataloged" would.
 const specimenStatus = specimen?.status === "uncataloged" && specimenIds.length === 0 ? undefined : specimen?.status;
 const location = species.location;
@@ -40,18 +44,18 @@ const ageRange = species.period.from_ma !== undefined && species.period.to_ma !=
     : "";
 const ageNote = describeAgeResolution(species.period.resolution);
 const horizon = joinNonEmpty([units, geologicAge]);
-const locality = location ? joinNonEmpty([location.locality ?? "", place]) : "";
+const locality = location ? formatQuotes(joinNonEmpty([location.locality ?? "", place])) : "";
 ---
 
 <dl class="species-facts">
     {specimen && (
         <>
-            <dt>{specimenType}</dt>
+            <dt>{specimenTypeTerm ? <GlossaryTerm entry={specimenTypeTerm} text={specimenType} /> : specimenType}</dt>
             <dd>
                 {/* Written without line breaks between the parts: a break would render as a space before the comma. */}
                 {specimenIds.length > 0
                     ? specimenIds.map((id, index) => <><span class="catalog-number">{id}</span>{index < specimenIds.length - 1 ? ", " : ""}</>)
-                    : "Not cataloged"}{specimen.institution && <>, {specimen.institution}</>}{specimenStatus && <span class="specimen-status"> ({specimenStatus})</span>}
+                    : "Not cataloged"}{specimen.institution && <>, {formatQuotes(specimen.institution)}</>}{specimenStatus && <span class="specimen-status"> ({specimenStatus})</span>}
             </dd>
         </>
     )}
@@ -66,7 +70,7 @@ const locality = location ? joinNonEmpty([location.locality ?? "", place]) : "";
             <dt>Formerly</dt>
             <dd>
                 {specimen.former_ids.map((formerId) => (
-                    <span class="former-id"><span class="catalog-number">{formerId.from_id}</span> ({formerId.reason}{formerId.from_institution ? " from " + formerId.from_institution : ""})</span>
+                    <span class="former-id"><span class="catalog-number">{formerId.from_id}</span> ({formerId.reason}{formerId.from_institution ? " from " + formatQuotes(formerId.from_institution) : ""})</span>
                 ))}
             </dd>
         </>
@@ -74,13 +78,13 @@ const locality = location ? joinNonEmpty([location.locality ?? "", place]) : "";
     {specimen?.material && (
         <>
             <dt>Material</dt>
-            <dd><Prose text={specimen.material} /></dd>
+            <dd><Prose text={specimen.material} linkTerms /></dd>
         </>
     )}
     {specimen?.notes && (
         <>
             <dt>Notes</dt>
-            <dd><Prose text={specimen.notes} /></dd>
+            <dd><Prose text={specimen.notes} linkTerms /></dd>
         </>
     )}
     {horizon && (
@@ -97,7 +101,7 @@ const locality = location ? joinNonEmpty([location.locality ?? "", place]) : "";
             <dt>Locality</dt>
             <dd>
                 {locality}
-                {location?.notes && <span class="location-note">{capitalizeFirstLetter(location?.notes ?? "")}</span>}
+                {location?.notes && <span class="location-note">{capitalizeFirstLetter(formatQuotes(location?.notes ?? ""))}</span>}
             </dd>
         </>
     )}

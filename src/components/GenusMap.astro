@@ -26,7 +26,7 @@ type Props = {
 };
 
 const { map, genusName, paleoViews } = Astro.props;
-const todayNote = "Places are shown on today's map.";
+const todayNote = "Places are shown on today’s map.";
 const features = JSON.stringify(createGenusMapFeatures(map));
 const bounds = JSON.stringify(map.bounds);
 const view = JSON.stringify(createGenusMapView(map));

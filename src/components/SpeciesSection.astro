@@ -31,13 +31,13 @@ const headingId = createSlug(species.name);
         <h3 id={headingId}>
             <i class="taxon">{species.name}</i>
             {authority && <a class="authority" href={authorityAnchor}>{authority}</a>}
-            <StatusBadge status={species.status} />
+            <StatusBadge status={species.status} linkToGlossary />
         </h3>
         {species.type_species && <p class="species-role">Type species</p>}
         {species.erected_as && <p class="species-role">First named as <i class="taxon">{species.erected_as}</i></p>}
     </header>
     {species.etymology && <p class="species-etymology"><Prose text={species.etymology.trim()} /></p>}
-    {species.description && <p><Prose text={species.description.trim()} /></p>}
+    {species.description && <p><Prose text={species.description.trim()} linkTerms /></p>}
     <SpeciesFacts species={species} />
     {species.synonyms && species.synonyms.length > 0 && (
         <div class="species-synonyms">

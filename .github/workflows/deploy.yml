@@ -1,19 +1,19 @@
 name: Deploy
 
-# Builds the site against open-paleo/data and publishes it to GitHub Pages at
-# https://open-paleo.org.
+# Builds the site against open-paleo/data and open-paleo/glossary and publishes it to GitHub
+# Pages at https://open-paleo.org.
 #
-# - push to main: the site changed; build against the data repository's main.
-# - repository_dispatch (data-updated): the data repository's build published new output;
-#   build against the exact data commit in the payload, since main can be served stale for a
-#   few minutes after a push.
+# - push to main: the site changed; build against both repositories' main.
+# - repository_dispatch (data-updated or glossary-updated): that repository's build published new
+#   output; build against the exact commit in the payload, since main can be served stale for a
+#   few minutes after a push, and against the other repository's main.
 # - workflow_dispatch: run by hand from the Actions tab.
-# - schedule: nightly, in case a data-updated notification was missed.
+# - schedule: nightly, in case a notification was missed.
 on:
   push:
     branches: [main]
   repository_dispatch:
-    types: [data-updated]
+    types: [data-updated, glossary-updated]
   workflow_dispatch:
   schedule:
     - cron: "17 6 * * *"
@@ -46,8 +46,17 @@ jobs:
         uses: actions/checkout@v7
         with:
           repository: open-paleo/data
-          ref: ${{ github.event.client_payload.sha || 'main' }}
+          ref: ${{ github.event.action == 'data-updated' && github.event.client_payload.sha || 'main' }}
           path: data
+          sparse-checkout: dist
+          sparse-checkout-cone-mode: false
+
+      - name: Checkout glossary
+        uses: actions/checkout@v7
+        with:
+          repository: open-paleo/glossary
+          ref: ${{ github.event.action == 'glossary-updated' && github.event.client_payload.sha || 'main' }}
+          path: glossary
           sparse-checkout: dist
           sparse-checkout-cone-mode: false
 

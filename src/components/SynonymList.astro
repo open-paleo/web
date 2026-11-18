@@ -21,7 +21,7 @@ const sorted = sortSynonyms(Astro.props.synonyms);
     {sorted.map((synonym) => (
         <li>
             <p class="synonym-heading"><i class="taxon">{synonym.name}</i> <span class="synonym-type">{synonym.type}</span></p>
-            {synonym.reason && <p class="synonym-reason"><Prose text={synonym.reason.trim()} /></p>}
+            {synonym.reason && <p class="synonym-reason"><Prose text={synonym.reason.trim()} linkTerms /></p>}
         </li>
     ))}
 </ul>

@@ -34,9 +34,11 @@ Three scripts regenerate committed files, and are run by hand when their inputs 
 (the ancient coastlines, see below) and `npm run create-social-image` (the link preview image,
 after a theme change).
 
-The build reads the dataset from `../data/dist/open-paleo.json`, so clone
-[open-paleo/data](https://github.com/open-paleo/data) next to this repository, or set
-`OPEN_PALEO_DATA` to the directory that holds `open-paleo.json`.
+The build reads the dataset from `../data/dist/open-paleo.json` and the glossary from
+`../glossary/dist/glossary.json`, so clone [open-paleo/data](https://github.com/open-paleo/data)
+and [open-paleo/glossary](https://github.com/open-paleo/glossary) next to this repository, and
+run `npm ci && npm run build` in the glossary. Or set `OPEN_PALEO_DATA` and
+`OPEN_PALEO_GLOSSARY` to the directories that hold the files.
 
 ## Dependencies
 
@@ -104,6 +106,9 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
   fixture
 - Never write data values into templates or copy. Every value on the site comes from the
   dataset, which is backed by published literature
+- The glossary is read the same way: only `dist/glossary.json` from open-paleo/glossary, with its
+  bindings and schema version copied by `npm run update-bindings`, and a different major version
+  refused
 
 ### How pages get the data
 
@@ -111,7 +116,7 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 
 | Module | Contents |
 |--------|----------|
-| `locate-dataset.ts` | Finds `open-paleo.json`: `OPEN_PALEO_DATA`, then `./data/dist/`, then `../data/dist/` |
+| `locate-dataset.ts` | Finds `open-paleo.json`: `OPEN_PALEO_DATA`, then `./data/dist/`, then `../data/dist/`; and `glossary.json` the same way, with `OPEN_PALEO_GLOSSARY` and `glossary/dist/` |
 | `load-dataset.ts` | Reads and parses it, and checks the schema version |
 | `site-data.ts` | `getSiteData()`: sorted genera, the clade tree with children and genus counts, every reference with the records that cite it, and URL slugs |
 | `dataset.ts` | The dataset's types |
@@ -123,9 +128,20 @@ The build reads the dataset from `../data/dist/open-paleo.json`, so clone
 | `genus-map.ts`, `site-map.ts`, `map-shapes.ts`, `map-geometry.ts` | The genus maps, the Map page, and the region and country outlines |
 | `citations.ts`, `feed.ts` | Citations of the dataset and its records, and the feed of new genera |
 | `known-names.ts` | The taxon and clade names the tree extractor matches labels against |
+| `glossary.ts` | `getGlossary()`: the glossary's terms in order, and finding them in text |
 
 Pages call `getSiteData()` from their frontmatter or `getStaticPaths()`; the first call loads
 the file and later calls reuse the result.
+
+### Glossary terms
+
+`Prose` links glossary terms in dataset text when it is given `linkTerms`, each term once per
+block. Blocks that should link each term once between them share a set of linked term ids
+through `linkedTerms` instead, as the items of `DiagnosisList` do. Forms are matched case-insensitively as whole words, longest first,
+never inside taxon names, hyphenated words or etymologies. Statuses, placements and specimen
+types link through `findGlossaryEntry()` when the whole value is a form. Each link goes to the
+term's entry on the Glossary page; with JavaScript, `src/scripts/glossary-popover.ts` shows the
+definition beside the term instead.
 
 ### Tests
 
@@ -136,8 +152,9 @@ reference keys with accents and apostrophes, a type species dated to an epoch bu
 with published coordinates and one known only to its country, and one with a nicknamed type
 specimen). Tests read it with `readFixture()` from `test/fixture.ts`, which uses the schema
 version the bindings describe, so after a schema change `npm run update-bindings` and
-`npm run create-test-fixture` are all that's needed; review the fixture's diff. Tests never use
-invented records.
+`npm run create-test-fixture` are all that's needed; review the fixture's diff. The same script
+copies the glossary whole to `test/fixtures/glossary.json`, read with `readGlossaryFixture()`.
+Tests never use invented records.
 
 ### Map outlines
 

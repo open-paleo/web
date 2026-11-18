@@ -1,0 +1,143 @@
+---
+import LetterJumpList from "../../components/LetterJumpList.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatQuotes } from "../../data/format.ts";
+import { getGlossary, getGlossaryIndexName } from "../../data/glossary.ts";
+import { createLetterAnchor, groupByLetter } from "../../data/indexes.ts";
+
+const glossary = getGlossary();
+const numberFormat = new Intl.NumberFormat("en-US");
+const termCount = numberFormat.format(glossary.entries.length);
+const groups = groupByLetter(glossary.entries, getGlossaryIndexName);
+const letters = new Array<string>();
+
+for (const group of groups)
+{
+    letters.push(group.letter);
+}
+---
+
+<BaseLayout title="Glossary" description={"Plain-English definitions of " + termCount + " terms used on Open Paleo’s pages."} section="glossary">
+    <div class="index-page">
+        <header class="index-header">
+            <h1>Glossary</h1>
+            <p class="index-summary">
+                Plain-English definitions of {termCount} terms used on Open Paleo’s pages. The definitions come
+                from <a href="https://github.com/open-paleo/glossary">open-paleo/glossary</a>, where corrections and
+                new terms are welcome.
+            </p>
+            <LetterJumpList letters={letters} label="Glossary" />
+        </header>
+
+        {groups.map((group) => (
+            <section class="letter-group" aria-labelledby={createLetterAnchor(group.letter)}>
+                <h2 id={createLetterAnchor(group.letter)}>{group.letter}</h2>
+                <dl class="glossary-list">
+                    {group.entries.map((entry) => (
+                        <div class="glossary-entry" id={entry.id}>
+                            <dt>{entry.record.term}</dt>
+                            <dd>
+                                <p>{formatQuotes(entry.record.definition)}</p>
+                                {entry.record.etymology && <p class="etymology">{formatQuotes(entry.record.etymology)}</p>}
+                                {/* On one line: a line break between the parts would show as a space before the semicolon. */}
+                                <p class="entry-details">{entry.categoryName}{entry.record.see_also && entry.record.see_also.length > 0 && <span>; see also {entry.record.see_also.map((id, index) => <>{index > 0 && ", "}<a href={"#" + id}>{glossary.entryById.get(id)?.record.term ?? id}</a></>)}</span>}</p>
+                            </dd>
+                        </div>
+                    ))}
+                </dl>
+            </section>
+        ))}
+    </div>
+</BaseLayout>
+
+<style>
+    .index-page
+    {
+        display: grid;
+        gap: var(--space-7);
+    }
+
+    .index-header
+    {
+        display: grid;
+        gap: var(--space-4);
+    }
+
+    h1
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .index-summary
+    {
+        max-width: var(--measure);
+        color: var(--color-muted);
+    }
+
+    .letter-group
+    {
+        display: grid;
+        gap: var(--space-3);
+        scroll-margin-top: var(--space-5);
+    }
+
+    h2
+    {
+        padding-bottom: var(--space-2);
+        border-bottom: 1px solid var(--color-ink);
+    }
+
+    .glossary-list
+    {
+        display: grid;
+        margin: 0;
+    }
+
+    .glossary-entry
+    {
+        display: grid;
+        grid-template-columns: minmax(10rem, 14rem) minmax(0, 1fr);
+        gap: var(--space-1) var(--space-5);
+        padding-block: var(--space-3);
+        border-bottom: 1px solid var(--color-line);
+        scroll-margin-top: var(--space-5);
+    }
+
+    /* The entry a term's link leads to. The highlight extends sideways for room, but not over the
+       dividers above and below. */
+    .glossary-entry:target
+    {
+        background: var(--color-accent-soft);
+        box-shadow: calc(-1 * var(--space-3)) 0 0 var(--color-accent-soft), var(--space-3) 0 0 var(--color-accent-soft);
+    }
+
+    dt
+    {
+        font-family: var(--font-sans);
+        font-weight: 600;
+    }
+
+    dd
+    {
+        display: grid;
+        gap: var(--space-1);
+        max-width: var(--measure);
+        margin: 0;
+    }
+
+    .etymology,
+    .entry-details
+    {
+        color: var(--color-muted);
+        font-size: var(--text-small);
+    }
+
+    @media (max-width: 40rem)
+    {
+        .glossary-entry
+        {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+</style>

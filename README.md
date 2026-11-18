@@ -68,9 +68,11 @@ npm run create-social-image  # redraw public/social-preview.png, the link previe
 
 `check-site` needs Chromium once: `npx playwright install --only-shell chromium`.
 
-The build reads the dataset from `../data/dist/open-paleo.json`, so clone
-[open-paleo/data](https://github.com/open-paleo/data) beside this repository, or set
-`OPEN_PALEO_DATA` to the directory that holds `open-paleo.json`.
+The build reads the dataset from `../data/dist/open-paleo.json` and the glossary from
+`../glossary/dist/glossary.json`, so clone [open-paleo/data](https://github.com/open-paleo/data)
+and [open-paleo/glossary](https://github.com/open-paleo/glossary) beside this repository, and
+run `npm ci && npm run build` in the glossary, whose `dist/` only its CI commits. Or set
+`OPEN_PALEO_DATA` and `OPEN_PALEO_GLOSSARY` to the directories that hold the files.
 
 ## Maps
 

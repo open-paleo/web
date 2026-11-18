@@ -3,7 +3,7 @@ import * as path from "node:path";
 import * as url from "node:url";
 
 import type { Clade, Genus, OpenPaleoDataset, TreeNode } from "../src/data/dataset.ts";
-import { datasetFileName, findDatasetDirectory } from "../src/data/locate-dataset.ts";
+import { datasetFileName, findDatasetDirectory, findGlossaryDirectory, glossaryFileName } from "../src/data/locate-dataset.ts";
 
 // Builds test/fixtures/open-paleo.json: a small dataset cut from the real one, so tests run
 // against real records. It keeps a few named genera plus the first genus (alphabetically) that
@@ -221,3 +221,10 @@ const outputPath = path.join(rootDirectory, "test", "fixtures", datasetFileName)
 
 fs.writeFileSync(outputPath, JSON.stringify(fixture, null, 2) + "\n");
 console.log("Wrote " + Object.keys(genera).join(", ") + " to " + outputPath);
+
+// The glossary is copied whole while it is small.
+const glossaryDirectory = findGlossaryDirectory(rootDirectory, process.env.OPEN_PALEO_GLOSSARY);
+const glossaryOutputPath = path.join(rootDirectory, "test", "fixtures", glossaryFileName);
+
+fs.copyFileSync(path.join(glossaryDirectory, glossaryFileName), glossaryOutputPath);
+console.log("Copied the glossary to " + glossaryOutputPath);
