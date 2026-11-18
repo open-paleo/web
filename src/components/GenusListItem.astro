@@ -1,17 +1,17 @@
 ---
 import { createFilterAttributes } from "../data/genus-filters.ts";
-import type { GenusIndexRow } from "../data/genus-index.ts";
+import type { IndexRow } from "../data/genus-index.ts";
 import { createPagePath } from "../data/urls.ts";
 import StatusBadge from "./StatusBadge.astro";
 
 /**
- * Properties of one genus in a list of genera.
+ * Properties of one genus or clade in a list.
  */
 type Props = {
     /**
-     * The genus's row.
+     * The genus or clade's row.
      */
-    row: GenusIndexRow;
+    row: IndexRow;
 
     /**
      * Whether the item carries the data attributes the Genera page's filters read.
@@ -27,8 +27,8 @@ const baseUrl = import.meta.env.BASE_URL;
    its items. The commas are drawn by CSS, so each item stays one element. */}
 <li class="genus-item" {...(isFilterable ? createFilterAttributes(row.filterValues) : {})}>
     <span class="genus-heading">
-        <a class="taxon" href={createPagePath(baseUrl, "genus", row.entry.slug)}>{row.entry.name}</a>
-        <StatusBadge status={row.status} />
+        <a class:list={{ taxon: row.pageSection === "genus" }} href={createPagePath(baseUrl, row.pageSection, row.slug)}>{row.name}</a>
+        {row.status && <StatusBadge status={row.status} />}
         <span class="genus-authority">{row.authority}</span>
     </span>
     {row.details.length > 0 && (

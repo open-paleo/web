@@ -1,5 +1,5 @@
 ---
-import type { GenusIndexRow } from "../data/genus-index.ts";
+import type { IndexRow } from "../data/genus-index.ts";
 import { createLetterAnchor, groupByLetter } from "../data/indexes.ts";
 import LetterJumpList from "./LetterJumpList.astro";
 import GenusListItem from "./GenusListItem.astro";
@@ -18,7 +18,7 @@ type Props = {
     /**
      * The genera's rows, sorted by name.
      */
-    rows: Array<GenusIndexRow>;
+    rows: Array<IndexRow>;
 
     /**
      * What the index lists, for the letter navigation's accessible name: "Genera".
@@ -57,9 +57,9 @@ for (const group of groups)
  * @param row - The row.
  * @returns The genus name.
  */
-function getRowIndexName(row: GenusIndexRow): string
+function getRowIndexName(row: IndexRow): string
 {
-    return row.entry.name;
+    return row.name;
 }
 ---
 

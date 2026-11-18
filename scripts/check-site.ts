@@ -98,6 +98,8 @@ const samplePages: Array<SamplePage> = [
     { path: "clade/carcharodontosauridae/", reason: "clade with one of the longest names" },
     { path: "privacy/", reason: "privacy page" },
     { path: "stratigraphy/", reason: "rock unit index" },
+    { path: "clades/", reason: "clade index and its filters" },
+    { path: "time/", reason: "geologic time scale with the stage tables" },
     { path: "unit/wessex/", reason: "formation with members and beds" },
     { path: "unit/neuquen/", reason: "group with formations and many genera" },
     { path: "unit/abajo-shale/", reason: "member's page that sends readers to its section" },

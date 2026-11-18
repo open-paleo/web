@@ -53,8 +53,8 @@ export function createNavigationGroups(periods: Array<PeriodPage>): Array<Naviga
     }
 
     return [
-        { label: "Taxa", items: [{ id: "genera", label: "Genera", path: "genera/" }, { id: "tree", label: "Tree", path: "tree/" }] },
-        { label: "Time", items: periodItems },
+        { label: "Taxa", items: [{ id: "genera", label: "Genera", path: "genera/" }, { id: "clades", label: "Clades", path: "clades/" }, { id: "tree", label: "Tree", path: "tree/" }] },
+        { label: "Time", items: [{ id: "time", label: "Time scale", path: "time/" }, ...periodItems] },
         { label: "Places", items: [{ id: "map", label: "Map", path: "map/" }, { id: "stratigraphy", label: "Stratigraphy", path: "stratigraphy/" }] },
         { label: "Learn", items: [{ id: "glossary", label: "Glossary", path: "glossary/" }, { id: "references", label: "References", path: "references/" }] },
         { label: "Data", items: [{ id: "data", label: "Download and cite", path: "data/" }, { id: "tools", label: "Tools", path: "tools/" }] },

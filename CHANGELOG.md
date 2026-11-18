@@ -13,6 +13,12 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   belongs to, its age, the genera found in it, a group's formations, its members and beds as
   sections, and its references. A member or bed's address sends readers to its section on its
   unit's page. A Stratigraphy index (`stratigraphy/`) lists them all, A to Z
+- A Clades page (`clades/`): every clade with a page, A to Z, with the clade it belongs to, how
+  many genera it holds and the epochs they span, filterable by time, group and year named like
+  the Genera page. It sits between Genera and Tree in the header's Taxa group
+- A Time scale page (`time/`), first in the header's Time group: the "genera through time" chart,
+  then each period's epochs and stages with their ages and genus counts, linking the stage and
+  period pages
 - The species box and "At a glance" link each rock unit to its page, the search fields suggest
   rock units, and reference pages list the rock units that cite them. The sitemap lists the unit
   pages but not the members' and beds' forwarding pages

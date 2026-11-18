@@ -1,12 +1,13 @@
 import type { GeologicTimeline } from "./age-figure.ts";
 import { getPeriodName } from "./age-figure.ts";
 import type { Status } from "./dataset.ts";
-import { capitalizeFirstLetter, formatAgeNumbers, formatAuthority, formatCountry, formatShortAge, formatVocabularyValue } from "./format.ts";
+import { getDescendantGenera } from "./clades.ts";
+import { capitalizeFirstLetter, formatAgeNumbers, formatAuthority, formatCountry, formatGenusCount, formatShortAge, formatVocabularyValue } from "./format.ts";
 import type { ChoiceFilterName, GenusFilterValues } from "./genus-filters.ts";
 import { otherGroupValue } from "./genus-filters.ts";
 import { majorGroupNames } from "./home.ts";
 import { getTypeSpecies } from "./records.ts";
-import type { GenusEntry, SiteData } from "./site-data.ts";
+import type { CladeEntry, GenusEntry, SiteData } from "./site-data.ts";
 import { createSlug } from "./slugs.ts";
 import { getGenusEpochs } from "./time-pages.ts";
 
@@ -68,14 +69,24 @@ export function shouldGroupByLetter(count: number): boolean
 }
 
 /**
- * One genus in a list of genera: its name and authority, a line of details, and the values the
- * Genera page filters it on.
+ * One genus or clade in an A–Z list: its name and authority, a line of details, and the values
+ * the list's filters read.
  */
-export type GenusIndexRow = {
+export type IndexRow = {
     /**
-     * The genus.
+     * The name, which the list sorts and groups by.
      */
-    entry: GenusEntry;
+    name: string;
+
+    /**
+     * The slug of its page.
+     */
+    slug: string;
+
+    /**
+     * Whether it is a genus (italic, with a status badge) or a clade.
+     */
+    pageSection: "genus" | "clade";
 
     /**
      * Authority without parentheses: "Osborn, 1905".
@@ -89,14 +100,24 @@ export type GenusIndexRow = {
     details: Array<GenusDetail>;
 
     /**
-     * Status of the type species, for its badge.
+     * Status of a genus's type species, for its badge; undefined for a clade.
      */
-    status: Status;
+    status: Status | undefined;
 
     /**
-     * What the Genera page filters the genus on.
+     * What the list's filters read.
      */
     filterValues: GenusFilterValues;
+};
+
+/**
+ * One genus in a list of genera.
+ */
+export type GenusIndexRow = IndexRow & {
+    /**
+     * The genus.
+     */
+    entry: GenusEntry;
 };
 
 /**
@@ -387,6 +408,9 @@ export function createGenusIndexRows(
 
         rows.push({
             entry,
+            name: entry.name,
+            slug: entry.slug,
+            pageSection: "genus",
             authority: formatAuthority(genus.authors, genus.described, false),
             details: createGenusDetails(entry, siteData, context, group, epochNames),
             status: species.status,
@@ -546,7 +570,7 @@ export function getGenusFilterOptions(rows: Array<GenusIndexRow>, timeline: Geol
         countValue(diet, values.diet, formatOptionLabel(genus.diet ?? ""));
         countValue(locomotion, values.locomotion, formatOptionLabel(genus.locomotion ?? ""));
         countValue(integument, values.integument, formatOptionLabel(genus.appearance?.integument ?? ""));
-        countValue(status, values.status, formatOptionLabel(row.status));
+        countValue(status, values.status, formatOptionLabel(row.status ?? ""));
 
         if (values.year !== undefined)
         {
@@ -563,6 +587,180 @@ export function getGenusFilterOptions(rows: Array<GenusIndexRow>, timeline: Geol
             { name: "locomotion", label: "Locomotion", anyLabel: "Any locomotion", options: getOptionsByCount(locomotion), groups: [] },
             { name: "integument", label: "Integument", anyLabel: "Any integument", options: getOptionsByCount(integument), groups: [] },
             { name: "status", label: "Status", anyLabel: "Any status", options: getOptionsByCount(status), groups: [] },
+        ],
+        firstYear,
+        lastYear,
+    };
+}
+
+/**
+ * Find the major group a clade belongs to: the clade itself, or the nearest one above it.
+ *
+ * @param clade - The clade.
+ * @param siteData - The lookup tables.
+ * @returns The group's name, or undefined when the clade is in none of them.
+ */
+export function findCladeMajorGroup(clade: CladeEntry, siteData: SiteData): string | undefined
+{
+    let cladeName: string | undefined = clade.name;
+
+    while (cladeName !== undefined)
+    {
+        if (majorGroupNames.includes(cladeName))
+        {
+            return cladeName;
+        }
+
+        cladeName = siteData.cladeByName.get(cladeName)?.parentName;
+    }
+
+    return undefined;
+}
+
+/**
+ * Get the epochs any of a clade's genera are known from, oldest first.
+ *
+ * @param genera - The clade's genera.
+ * @param timeline - The arranged timescale.
+ * @returns The epochs' names.
+ */
+function getCladeEpochNames(genera: Array<GenusEntry>, timeline: GeologicTimeline): Array<string>
+{
+    const found = new Set<string>();
+    const names = new Array<string>();
+
+    for (const genus of genera)
+    {
+        for (const epoch of getGenusEpochs(genus.record, timeline))
+        {
+            found.add(epoch.name);
+        }
+    }
+
+    for (const epoch of timeline.epochs)
+    {
+        if (found.has(epoch.name))
+        {
+            names.push(epoch.name);
+        }
+    }
+
+    return names;
+}
+
+/**
+ * Create the rows of the Clades page: each clade with a page, its authority, and a details line
+ * of its parent clade, how many genera it holds, the epochs they span and whether it is under
+ * dispute. The filters read the periods and epochs of its genera, its major group and the year
+ * it was named.
+ *
+ * @param clades - The clades, sorted by name.
+ * @param siteData - The lookup tables.
+ * @param timeline - The arranged timescale, if the dataset has one.
+ * @returns The rows.
+ */
+export function createCladeIndexRows(clades: Array<CladeEntry>, siteData: SiteData, timeline: GeologicTimeline | undefined): Array<IndexRow>
+{
+    const rows = new Array<IndexRow>();
+
+    for (const clade of clades)
+    {
+        const record = clade.record;
+
+        if (!record)
+        {
+            continue;
+        }
+
+        const genera = getDescendantGenera(clade, siteData);
+        const epochNames = timeline ? getCladeEpochNames(genera, timeline) : [];
+        const group = findCladeMajorGroup(clade, siteData);
+        const parent = clade.parentName ? siteData.cladeByName.get(clade.parentName) : undefined;
+        const details = new Array<GenusDetail>();
+        const time = new Array<string>();
+
+        for (const name of epochNames)
+        {
+            const periodSlug = createSlug(getPeriodName(name));
+
+            if (!time.includes(periodSlug))
+            {
+                time.push(periodSlug);
+            }
+
+            time.push(createSlug(name));
+        }
+
+        if (parent)
+        {
+            details.push(parent.record ? { kind: "clade", text: parent.name, slug: parent.slug } : { kind: "text", text: parent.name, slug: "" });
+        }
+
+        addTextDetail(details, formatGenusCount(genera.length));
+        addTextDetail(details, joinEpochSpan(epochNames));
+
+        if (record.dispute !== undefined)
+        {
+            details.push({ kind: "dispute", text: "under dispute", slug: "" });
+        }
+
+        rows.push({
+            name: clade.name,
+            slug: clade.slug,
+            pageSection: "clade",
+            authority: formatAuthority(record.authors, record.described, false),
+            details,
+            status: undefined,
+            filterValues: {
+                time,
+                group: group ? createSlug(group) : otherGroupValue,
+                diet: "",
+                locomotion: "",
+                integument: "",
+                status: "",
+                year: record.described,
+            },
+        });
+    }
+
+    return rows;
+}
+
+/**
+ * Get what the Clades page's filters offer: time, group and the years named, with the number of
+ * clades for each option.
+ *
+ * @param rows - The rows of every clade.
+ * @param timeline - The arranged timescale, if the dataset has one.
+ * @returns The filters and the range of years named.
+ */
+export function getCladeFilterOptions(rows: Array<IndexRow>, timeline: GeologicTimeline | undefined): GenusFilterOptions
+{
+    const time = new Map<string, CountedValue>();
+    const group = new Map<string, CountedValue>();
+    let firstYear = Number.POSITIVE_INFINITY;
+    let lastYear = Number.NEGATIVE_INFINITY;
+
+    for (const row of rows)
+    {
+        for (const value of row.filterValues.time)
+        {
+            countValue(time, value, value);
+        }
+
+        countValue(group, row.filterValues.group, row.filterValues.group);
+
+        if (row.filterValues.year !== undefined)
+        {
+            firstYear = Math.min(firstYear, row.filterValues.year);
+            lastYear = Math.max(lastYear, row.filterValues.year);
+        }
+    }
+
+    return {
+        choices: [
+            { name: "time", label: "Time", anyLabel: "Any time", options: [], groups: getTimeOptions(time, timeline) },
+            { name: "group", label: "Group", anyLabel: "Any group", options: getGroupOptions(group), groups: [] },
         ],
         firstYear,
         lastYear,

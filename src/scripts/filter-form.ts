@@ -2,7 +2,7 @@
 // reading and setting its fields, the counts beside each option, the summary sentence, and
 // keeping the filters in the page address. Each page decides what matching genera look like.
 
-import { formatGenusCount } from "../data/format.ts";
+import { formatCount } from "../data/format.ts";
 import type { ChoiceFilterName, GenusFilterCriteria, GenusFilterValues } from "../data/genus-filters.ts";
 import {
     choiceFilterNames,
@@ -192,24 +192,28 @@ function updateFilterOptionCounts(genera: Array<GenusFilterValues>, criteria: Ge
 }
 
 /**
- * Describe how many genera are shown.
+ * Describe how many genera or clades are shown, in the nouns the form names.
  *
- * @param shown - Genera that match.
- * @param total - Genera on the page.
+ * @param controls - The form's parts.
+ * @param shown - Items that match.
+ * @param total - Items on the page.
  * @returns The sentence.
  */
-function describeShownGenera(shown: number, total: number): string
+function describeShownItems(controls: FilterForm, shown: number, total: number): string
 {
+    const singular = controls.form.dataset.singular ?? "genus";
+    const plural = controls.form.dataset.plural ?? "genera";
+
     if (shown === total)
     {
-        return "Showing all " + formatGenusCount(total) + ".";
+        return "Showing all " + formatCount(total, singular, plural) + ".";
     }
     else if (shown === 0)
     {
-        return "No genera match these filters.";
+        return "No " + plural + " match these filters.";
     }
 
-    return "Showing " + shown.toLocaleString("en-US") + " of " + formatGenusCount(total) + ".";
+    return "Showing " + shown.toLocaleString("en-US") + " of " + formatCount(total, singular, plural) + ".";
 }
 
 /**
@@ -228,7 +232,7 @@ export function updateFilterForm(controls: FilterForm, genera: Array<GenusFilter
         updateFilterOptionCounts(genera, criteria, name, select);
     }
 
-    controls.status.textContent = describeShownGenera(shown, genera.length);
+    controls.status.textContent = describeShownItems(controls, shown, genera.length);
     controls.clearButton.hidden = !hasActiveFilter(criteria);
 
     if (controls.toggle)

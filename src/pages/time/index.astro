@@ -1,0 +1,143 @@
+---
+import GeneraThroughTime from "../../components/GeneraThroughTime.astro";
+import PageSection from "../../components/PageSection.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatAgeNumbers, formatAgeRange, formatCount, formatGenusCount } from "../../data/format.ts";
+import { countGeneraByStage } from "../../data/home.ts";
+import { getSiteData } from "../../data/site-data.ts";
+import { getTimePages } from "../../data/time-pages.ts";
+import { createPagePath } from "../../data/urls.ts";
+
+const siteData = getSiteData();
+const timePages = getTimePages();
+const baseUrl = import.meta.env.BASE_URL;
+const stageCounts = siteData.timeline ? countGeneraByStage(siteData, siteData.timeline) : [];
+const stageCount = formatCount(timePages.stages.length, "stage", "stages");
+---
+
+<BaseLayout title="Geologic time scale" description={"The periods, epochs and " + stageCount + " of the Mesozoic with genera in Open Paleo, with their ages and how many genera are known from each."} navigationItem="time">
+    <div class="time-page">
+        <header class="time-header">
+            <h1>Geologic time scale</h1>
+            <p class="time-summary">
+                The Triassic, Jurassic and Cretaceous, divided into epochs and {stageCount} with genera in the dataset, with
+                their ages and how many genera are known from each. A genus known from several stages counts in each.
+            </p>
+        </header>
+
+        {stageCounts.length > 0 && <GeneraThroughTime stages={stageCounts} label="Genera known from each stage" axisGrouping="period" />}
+
+        {timePages.periods.map((period) => (
+            <PageSection title={period.name}>
+                <p class="period-summary">
+                    {formatAgeRange(period.fromMa, period.toMa)}, <span class="figures">{formatGenusCount(period.genera.length)}</span>.
+                    <a href={createPagePath(baseUrl, "period", period.slug)}>The {period.name} and its genera</a>
+                </p>
+                <table class="stage-table">
+                    <caption class="visually-hidden">Stages of the {period.name}</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Stage</th>
+                            <th scope="col" class="number">Million years ago</th>
+                            <th scope="col" class="number">Genera</th>
+                        </tr>
+                    </thead>
+                    {period.epochs.map((epoch) => (
+                        <tbody>
+                            <tr class="epoch-row">
+                                <th scope="rowgroup" colspan="3">{epoch.name}</th>
+                            </tr>
+                            {epoch.stages.map((stage) => (
+                                <tr>
+                                    <th scope="row"><a href={createPagePath(baseUrl, "stage", stage.slug)}>{stage.name}</a></th>
+                                    <td class="number figures">{formatAgeNumbers(stage.fromMa, stage.toMa)}</td>
+                                    <td class="number figures">{stage.genera.length}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    ))}
+                </table>
+            </PageSection>
+        ))}
+    </div>
+</BaseLayout>
+
+<style>
+    .time-page
+    {
+        display: grid;
+        gap: var(--space-7);
+    }
+
+    .time-header
+    {
+        display: grid;
+        gap: var(--space-4);
+    }
+
+    h1
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .time-summary,
+    .period-summary
+    {
+        max-width: var(--measure);
+        color: var(--color-muted);
+    }
+
+    /* Fixed columns, so the tables of every period line up. */
+    .stage-table
+    {
+        width: 100%;
+        max-width: 36rem;
+        table-layout: fixed;
+        border-collapse: collapse;
+        font-family: var(--font-sans);
+    }
+
+    .stage-table thead th:nth-child(1)
+    {
+        width: 50%;
+    }
+
+    .stage-table thead th:nth-child(2)
+    {
+        width: 32%;
+    }
+
+    .stage-table th,
+    .stage-table td
+    {
+        padding: var(--space-2) var(--space-3) var(--space-2) 0;
+        text-align: left;
+        border-bottom: 1px solid var(--color-line);
+    }
+
+    .stage-table thead th
+    {
+        color: var(--color-muted);
+        font-size: var(--text-small);
+        font-weight: 600;
+        border-bottom-color: var(--color-ink);
+    }
+
+    .stage-table tbody th
+    {
+        font-weight: 400;
+    }
+
+    .stage-table .epoch-row th
+    {
+        padding-top: var(--space-4);
+        font-weight: 600;
+    }
+
+    .stage-table .number
+    {
+        padding-right: 0;
+        text-align: right;
+    }
+</style>

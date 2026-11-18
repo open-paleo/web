@@ -103,7 +103,7 @@ const placedDirectly = entry.genusNames.length;
 const citation = createRecordCitation("Clade", entry.name, entry.slug, citationUrl, getSiteData().metadata);
 ---
 
-<BaseLayout title={entry.name} description={getFirstSentence(record.description ?? entry.name)} navigationItem="tree">
+<BaseLayout title={entry.name} description={getFirstSentence(record.description ?? entry.name)} navigationItem="clades">
     <article class="clade-page" data-pagefind-body data-pagefind-filter="kind:Clade">
         <LineageTrail taxonomy={ancestors} />
 

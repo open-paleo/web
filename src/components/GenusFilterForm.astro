@@ -1,6 +1,21 @@
 ---
 import type { GenusFilterOptions } from "../data/genus-index.ts";
-import { formatGenusCount } from "../data/format.ts";
+import { formatCount } from "../data/format.ts";
+
+/**
+ * The nouns for what a filtered list holds.
+ */
+type ItemNames = {
+    /**
+     * The noun for one: "genus".
+     */
+    singular: string;
+
+    /**
+     * The noun for any other count: "genera".
+     */
+    plural: string;
+};
 
 /**
  * Properties of the genus filter form, on the Genera and Map pages.
@@ -12,9 +27,14 @@ type Props = {
     options: GenusFilterOptions;
 
     /**
-     * Number of genera on the page.
+     * Number of genera or clades on the page.
      */
     total: number;
+
+    /**
+     * What the list holds, for the form's name and its count: "genus" and "genera" unless given.
+     */
+    itemNames?: ItemNames;
 
     /**
      * Whether the fields fold away behind a "Filters" button, leaving one line: the button, the
@@ -23,13 +43,13 @@ type Props = {
     isCollapsible: boolean;
 };
 
-const { options, total, isCollapsible } = Astro.props;
+const { options, total, isCollapsible, itemNames = { singular: "genus", plural: "genera" } } = Astro.props;
 ---
 
 {/* The form is hidden until the script starts, so a reader without JavaScript sees the full
    list and no controls that do nothing. The script reads the filters from the page address
    and writes them back to it, so a filtered list can be shared. */}
-<form class:list={["genus-filters", { "is-collapsible": isCollapsible }]} id="genus-filters" data-total={total} aria-label="Filter genera" hidden>
+<form class:list={["genus-filters", { "is-collapsible": isCollapsible }]} id="genus-filters" data-total={total} data-singular={itemNames.singular} data-plural={itemNames.plural} aria-label={"Filter " + itemNames.plural} hidden>
     <div class="filter-fields" id="genus-filter-fields" hidden={isCollapsible}>
         {options.choices.map((choice) => (
             <label class="filter-field">
@@ -66,7 +86,7 @@ const { options, total, isCollapsible } = Astro.props;
     </div>
     <div class="filter-summary">
         {isCollapsible && <button class="filter-toggle" type="button" id="genus-filter-toggle" aria-expanded="false" aria-controls="genus-filter-fields">Filters</button>}
-        <p class="filter-status" id="genus-filter-status" role="status">Showing all {formatGenusCount(total)}.</p>
+        <p class="filter-status" id="genus-filter-status" role="status">Showing all {formatCount(total, itemNames.singular, itemNames.plural)}.</p>
         <button class="filter-clear" type="button" id="genus-filter-clear" hidden>Clear filters</button>
     </div>
 </form>

@@ -1,0 +1,57 @@
+---
+import GenusFilterForm from "../../components/GenusFilterForm.astro";
+import GenusIndex from "../../components/GenusIndex.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatCount } from "../../data/format.ts";
+import { createCladeIndexRows, getCladeFilterOptions } from "../../data/genus-index.ts";
+import { getSiteData } from "../../data/site-data.ts";
+
+const siteData = getSiteData();
+const clades = [...siteData.clades].sort((first, second) => first.name.localeCompare(second.name, "en"));
+const rows = createCladeIndexRows(clades, siteData, siteData.timeline);
+const filterOptions = getCladeFilterOptions(rows, siteData.timeline);
+const cladeCount = formatCount(rows.length, "clade", "clades");
+---
+
+<BaseLayout title="Clades" description={"An A–Z index of the " + cladeCount + " with pages in Open Paleo, filterable by time, group and year named."} navigationItem="clades">
+    <div class="index-page">
+        <header class="index-header">
+            <h1>Clades</h1>
+            <p class="index-summary">
+                {cladeCount} in release {siteData.metadata.version}, from A to Z, each with the clade it belongs to, how
+                many genera it holds and when they lived. The <a href={import.meta.env.BASE_URL + "tree/"}>Tree</a> shows
+                how they fit together.
+            </p>
+        </header>
+        <GenusFilterForm options={filterOptions} total={rows.length} isCollapsible={false} itemNames={{ singular: "clade", plural: "clades" }} />
+        <GenusIndex rows={rows} label="Clades" headingLevel={2} isFilterable={true} isGroupedByLetter={true} />
+    </div>
+</BaseLayout>
+
+<script>
+    import "../../scripts/genus-filters.ts";
+</script>
+<style>
+    .index-page
+    {
+        display: grid;
+        gap: var(--space-5);
+    }
+
+    .index-header
+    {
+        display: grid;
+        gap: var(--space-4);
+    }
+
+    h1
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .index-summary
+    {
+        color: var(--color-muted);
+    }
+</style>

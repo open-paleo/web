@@ -622,7 +622,20 @@ export function formatAgeNumbers(fromMa: number, toMa: number): string
  */
 export function formatGenusCount(count: number): string
 {
-    return integerFormat.format(count) + (count === 1 ? " genus" : " genera");
+    return formatCount(count, "genus", "genera");
+}
+
+/**
+ * Format a count with its noun: "1 clade", "1,234 clades".
+ *
+ * @param count - The count.
+ * @param singular - The noun for one.
+ * @param plural - The noun for any other count.
+ * @returns The count and noun.
+ */
+export function formatCount(count: number, singular: string, plural: string): string
+{
+    return integerFormat.format(count) + " " + (count === 1 ? singular : plural);
 }
 
 /**

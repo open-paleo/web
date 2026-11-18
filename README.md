@@ -23,6 +23,8 @@ AA, checked on every deployment.
 | Clade | One per clade with a record: description, the span of time its genera cover, diagnosis, the clades within it, the genera placed directly in it with their ages and countries, how to cite the record, and a link to suggest a correction |
 | Rock unit | `unit/{slug}/`, one per formation, group or other top-level rock unit with genera: its rank and the unit it belongs to, its age figure, the genera found in it, the formations of a group, its members and beds as sections with their genera and sources, its references, and a link to suggest a correction. A member or bed's own address sends readers to its section |
 | Reference | One per cited work: the full citation, the names first published in it, every genus, clade and rock unit that cites it, and a link to suggest a correction |
+| Clades | Every clade with a page, A to Z, with the clade it belongs to, how many genera it holds and the epochs they span, and filters for time, group and year named, using the Genera page's filter form |
+| Time scale | `time/`: the "genera through time" chart and, for each period, a table of its epochs and stages with their ages and genus counts |
 | Genera | Every genus, A to Z, with its group, epochs and country, and filters for time, group, diet, locomotion, integument, status and year named that are kept in the page address |
 | Map | Where every genus's type species was found, on a world map: regions shaded by how many genera come from them, dots for published coordinates, the genera of a selected region, the Genera page's filters, and an index of genera by country and region that works without JavaScript |
 | Feed | `feed.xml`, an Atom feed of the 50 most recently named genera, linked from every page's head and the home page |

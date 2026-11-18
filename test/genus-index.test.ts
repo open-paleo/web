@@ -4,7 +4,7 @@ import { test } from "node:test";
 import { createGeologicTimeline } from "../src/data/age-figure.ts";
 import type { GenusIndexRow } from "../src/data/genus-index.ts";
 import type { GenusDetail } from "../src/data/genus-index.ts";
-import { createGenusIndexRows, findMajorGroup, getGenusFilterOptions, shouldGroupByLetter } from "../src/data/genus-index.ts";
+import { createCladeIndexRows, createGenusIndexRows, findCladeMajorGroup, findMajorGroup, getCladeFilterOptions, getGenusFilterOptions, shouldGroupByLetter } from "../src/data/genus-index.ts";
 import { createSiteData } from "../src/data/site-data.ts";
 import { readFixture } from "./fixture.ts";
 
@@ -162,4 +162,40 @@ test("the time filter lists periods oldest first, each followed by its epochs", 
     }
 
     assert.deepEqual(labels, ["Jurassic", "Cretaceous"]);
+});
+
+test("clade rows give each clade's parent, genus count and span, and filter on its group and genera's times", () =>
+{
+    const clades = [...siteData.clades].sort((first, second) => first.name.localeCompare(second.name, "en"));
+    const rows = createCladeIndexRows(clades, siteData, siteData.timeline);
+    const tyrannosauridae = rows.find((row) => row.name === "Tyrannosauridae");
+
+    assert.ok(tyrannosauridae);
+    assert.equal(tyrannosauridae.pageSection, "clade");
+    assert.equal(tyrannosauridae.status, undefined);
+    assert.equal(tyrannosauridae.filterValues.group, "theropoda");
+    assert.ok(tyrannosauridae.filterValues.time.includes("late-cretaceous"));
+    assert.ok(tyrannosauridae.details.some((detail) => /^\d+ genera?$|^1 genus$/.test(detail.text)));
+
+    // Only clades with a record have pages, so only they are listed.
+    for (const row of rows)
+    {
+        assert.ok(siteData.cladeByName.get(row.name)?.record, row.name);
+    }
+
+    const options = getCladeFilterOptions(rows, siteData.timeline);
+
+    assert.deepEqual(options.choices.map((choice) => choice.name), ["time", "group"]);
+});
+
+test("a clade's major group is itself or the nearest one above it", () =>
+{
+    const theropoda = siteData.cladeByName.get("Theropoda");
+    const tyrannosauridae = siteData.cladeByName.get("Tyrannosauridae");
+    const dinosauria = siteData.cladeByName.get("Dinosauria");
+
+    assert.ok(theropoda && tyrannosauridae && dinosauria);
+    assert.equal(findCladeMajorGroup(theropoda, siteData), "Theropoda");
+    assert.equal(findCladeMajorGroup(tyrannosauridae, siteData), "Theropoda");
+    assert.equal(findCladeMajorGroup(dinosauria, siteData), undefined);
 });

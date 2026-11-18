@@ -124,7 +124,7 @@ run `npm ci && npm run build` in the glossary. Or set `OPEN_PALEO_DATA` and
 | `format.ts`, `records.ts`, `taxon-names.ts` | Formatting values for display, reading records, and finding taxon names in prose |
 | `age-figure.ts`, `time-pages.ts`, `home.ts` | The geologic timeline, the age figure, the stage and period pages, and the home page's chart and lists |
 | `clades.ts`, `indexes.ts` | Clade spans and genera, and the A–Z indexes |
-| `genus-index.ts`, `genus-filters.ts` | Lists of genera with their details, and the filters (shared with the browser) |
+| `genus-index.ts`, `genus-filters.ts` | Lists of genera and of clades with their details, and the filters (shared with the browser) |
 | `genus-map.ts`, `site-map.ts`, `map-shapes.ts`, `map-geometry.ts` | The genus maps, the Map page, and the region and country outlines |
 | `citations.ts`, `feed.ts` | Citations of the dataset and its records, and the feed of new genera |
 | `known-names.ts` | The taxon and clade names the tree extractor matches labels against |
