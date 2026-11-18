@@ -12,13 +12,20 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   4.1.0: one per formation, group or other top-level unit with genera, with its rank, the unit it
   belongs to, its age, the genera found in it, a group's formations, its members and beds as
   sections, and its references. A member or bed's address sends readers to its section on its
-  unit's page. A Rock units index (`units/`) lists them all, A to Z
+  unit's page. A Stratigraphy index (`stratigraphy/`) lists them all, A to Z
 - The species box and "At a glance" link each rock unit to its page, the search fields suggest
   rock units, and reference pages list the rock units that cite them. The sitemap lists the unit
   pages but not the members' and beds' forwarding pages
 
 ### Changed
 
+- The header groups the site's pages: Taxa (Genera, Tree), Time (the period pages), Places (Map,
+  Stratigraphy), Learn (Glossary, References) and Data (Download and cite, Tools). The top row
+  holds the groups, and a second row shows the current group's pages, so the header fits one
+  row on phones again and new pages have a place
+- The rock unit index is now Stratigraphy, at `stratigraphy/`; `units/` forwards there
+- The footer groups its links into Data and About columns, adds the glossary repository, and
+  drops the tree extractor, which the header's Data group reaches
 - Rock unit names whose last word already names a rock type are no longer followed by the rank:
   "Navajo Sandstone", not "Navajo Sandstone Formation"
 - Long web addresses and DOIs in citations wrap on narrow screens

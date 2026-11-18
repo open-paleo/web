@@ -97,7 +97,7 @@ const samplePages: Array<SamplePage> = [
     { path: "clade/nodosauridae/", reason: "clade with genera of uncertain placement" },
     { path: "clade/carcharodontosauridae/", reason: "clade with one of the longest names" },
     { path: "privacy/", reason: "privacy page" },
-    { path: "units/", reason: "rock unit index" },
+    { path: "stratigraphy/", reason: "rock unit index" },
     { path: "unit/wessex/", reason: "formation with members and beds" },
     { path: "unit/neuquen/", reason: "group with formations and many genera" },
     { path: "unit/abajo-shale/", reason: "member's page that sends readers to its section" },

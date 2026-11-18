@@ -117,10 +117,10 @@ const subunitsTitle = page && page.subunitPages.every((subunit) => subunit.recor
         </body>
     </html>
 ) : page && entry && record && (
-    <BaseLayout title={entry.displayName} description={"The " + entry.displayName + (age ? ", a rock unit of the " + age : "") + ", and the " + formatGenusCount(page.genera.length) + " found in it."}>
+    <BaseLayout title={entry.displayName} description={"The " + entry.displayName + (age ? ", a rock unit of the " + age : "") + ", and the " + formatGenusCount(page.genera.length) + " found in it."} navigationItem="stratigraphy">
         <article class="unit-page" data-pagefind-body data-pagefind-filter="kind:Rock unit">
-            <nav class="unit-trail" aria-label="Rock units">
-                <a href={baseUrl + "units/"}>Rock units</a>
+            <nav class="unit-trail" aria-label="Stratigraphy">
+                <a href={baseUrl + "stratigraphy/"}>Stratigraphy</a>
                 {parentPage && <><span aria-hidden="true">›</span><a href={createPagePath(baseUrl, "unit", parentPage.entry.slug)}>{parentPage.entry.displayName}</a></>}
             </nav>
 

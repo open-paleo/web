@@ -86,7 +86,7 @@ const rows = createGenusIndexRows(stage.genera, siteData, siteData.timeline, "st
 const duration = formatDecimal(stage.fromMa - stage.toMa);
 ---
 
-<BaseLayout title={stage.name} description={"The " + formatGenusCount(stage.genera.length) + " known from the " + stage.name + " stage, " + formatAgeRange(stage.fromMa, stage.toMa) + "."}>
+<BaseLayout title={stage.name} description={"The " + formatGenusCount(stage.genera.length) + " known from the " + stage.name + " stage, " + formatAgeRange(stage.fromMa, stage.toMa) + "."} navigationItem={period ? "period-" + period.slug : undefined}>
     <article class="stage-page" data-pagefind-body data-pagefind-filter="kind:Stage">
         <nav class="time-trail" aria-label="Geologic time">
             {period ? <a href={createPagePath(baseUrl, "period", period.slug)}>{stage.periodName}</a> : stage.periodName}

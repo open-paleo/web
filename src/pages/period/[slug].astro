@@ -81,7 +81,7 @@ if (siteData.timeline)
 
 ---
 
-<BaseLayout title={period.name} description={"The " + formatGenusCount(period.genera.length) + " known from the " + period.name + ", " + formatAgeRange(period.fromMa, period.toMa) + "."}>
+<BaseLayout title={period.name} description={"The " + formatGenusCount(period.genera.length) + " known from the " + period.name + ", " + formatAgeRange(period.fromMa, period.toMa) + "."} navigationItem={"period-" + period.slug}>
     <article class="period-page" data-pagefind-body data-pagefind-filter="kind:Period">
         <header class="period-header">
             <h1 data-pagefind-weight="10">{period.name}</h1>

@@ -17,6 +17,10 @@ export default defineConfig({
     output: "static",
     outDir: "dist",
     trailingSlash: "always",
+    // The rock unit index moved from units/ on 2026-11-18, a day after it was published.
+    redirects: {
+        "/units/": "/stratigraphy/",
+    },
     // Keep the whitespace between elements as the templates write it. Compression removes it
     // between neighboring inline elements, which runs words together in text that Pagefind
     // extracts for search ("Found 1971iconic") and has dropped spaces before links and values.

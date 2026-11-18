@@ -98,7 +98,7 @@ const pronunciation = genus.pronunciation;
 const citation = createRecordCitation("Genus", genus.genus, entry.slug, citationUrl, getSiteData().metadata);
 ---
 
-<BaseLayout title={genus.genus} description={getFirstSentence(genus.description)} section="genera">
+<BaseLayout title={genus.genus} description={getFirstSentence(genus.description)} navigationItem="genera">
     <article class="genus-page" data-pagefind-body data-pagefind-filter="kind:Genus">
         <LineageTrail taxonomy={genus.taxonomy} placement={genus.placement} />
 

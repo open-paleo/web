@@ -28,10 +28,10 @@ AA, checked on every deployment.
 | Feed | `feed.xml`, an Atom feed of the 50 most recently named genera, linked from every page's head and the home page |
 | Tree | The classification as a chart you can zoom (left to right, colored by major group, each tip summarizing a clade's genera and opening a list of them) and as an outline you can open and close, with genus counts. A find field shows any clade or genus in either |
 | References | Every cited work, by first author |
-| Rock units | `units/`: every rock unit with a page, and every member and bed, A to Z, with its rank, age and genus count |
+| Stratigraphy | `stratigraphy/`: every rock unit with a page, and every member and bed, A to Z, with its rank, age and genus count |
 | Glossary | Plain-English definitions from [open-paleo/glossary](https://github.com/open-paleo/glossary), A to Z, each linked from the terms in genus and clade text |
 | Data | Downloads of the dataset's output files, how to cite a release, the versioning policy, and the tools |
-| Tools | The site's tools, from the header's "Tools" item: for now the tree extractor |
+| Tools | The site's tools, under the header's Data group: for now the tree extractor |
 | Tree extractor (beta) | `tools/tree-extractor/`: [open-paleo/tree-extractor](https://github.com/open-paleo/tree-extractor) in the site's theme, reading a tree from a figure into Newick or Nexus in the browser, with labels matched against the dataset's names. Its text recognition (Tesseract.js) is served from the site, so nothing leaves the reader's computer |
 | Search | Full-text search of the genus, clade, reference, rock unit, stage and period pages with [Pagefind](https://pagefind.app/), filtered by kind. The header and home page search fields also suggest genus, species, clade, synonym and rock unit names as you type |
 
