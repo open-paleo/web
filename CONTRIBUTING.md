@@ -129,17 +129,29 @@ run `npm ci && npm run build` in the glossary. Or set `OPEN_PALEO_DATA` and
 | `citations.ts`, `feed.ts` | Citations of the dataset and its records, and the feed of new genera |
 | `known-names.ts` | The taxon and clade names the tree extractor matches labels against |
 | `glossary.ts` | `getGlossary()`: the glossary's terms in order, and finding them in text |
+| `prose-links.ts` | `getProseLinks()`: the pages that genus, species, clade, rock unit and geologic time names in prose link to |
 | `units.ts` | `getUnits()`: the rock units arranged into pages, one per formation, group or other top-level unit with genera, with members and beds as sections of their unit's page |
 
 Pages call `getSiteData()` from their frontmatter or `getStaticPaths()`; the first call loads
 the file and later calls reuse the result.
 
-### Glossary terms
+### Links in prose
 
-`Prose` links glossary terms in dataset text when it is given `linkTerms`, each term once per
-block. Blocks that should link each term once between them share a set of linked term ids
-through `linkedTerms` instead, as the items of `DiagnosisList` do. Forms are matched case-insensitively as whole words, longest first,
-never inside taxon names, hyphenated words or etymologies. Statuses, placements and specimen
+`Prose` links names and glossary terms in dataset text when it is given `linkTerms`, each once
+per block. Blocks that should link each once between them share a set of what is already linked
+through `linkedTerms` instead, as the items of `DiagnosisList` do. A name or term whose page is
+the current page stays plain. In order, `Prose` finds:
+
+1. Genus and species names (the ones it already italicizes), linked through
+   `src/data/prose-links.ts` to the genus page or the species' section; synonyms lead to the
+   genus or species they belong to, and an abbreviated name ("T. rex") links only when it
+   belongs to one species.
+2. In the rest of the text, the names of clades, rock units (as displayed, with the rank word
+   capitalized or not, and their variants), stages and periods with pages, and epochs, which link
+   to their row on the Time scale page (`time/#late-cretaceous`). Matched as whole words,
+   case-sensitively, longest first.
+3. In what is left, glossary terms. Forms are matched case-insensitively as whole words, longest
+   first, never inside hyphenated words or etymologies. Statuses, placements and specimen
 types link through `findGlossaryEntry()` when the whole value is a form. Each link goes to the
 term's entry on the Glossary page; with JavaScript, `src/scripts/glossary-popover.ts` shows the
 definition beside the term instead.

@@ -3,6 +3,7 @@ import GlossaryTerm from "./GlossaryTerm.astro";
 import { bindAbbreviatedGenus, formatQuotes } from "../data/format.ts";
 import type { GlossaryEntry } from "../data/glossary.ts";
 import { getGlossary, splitGlossaryTerms } from "../data/glossary.ts";
+import { findTaxonPath, getProseLinks, splitNamedLinks } from "../data/prose-links.ts";
 import { getSiteData } from "../data/site-data.ts";
 
 /**
@@ -15,19 +16,20 @@ type Props = {
     text: string;
 
     /**
-     * Whether glossary terms in the text link to their definitions, each once.
+     * Whether names with pages (genera, species, clades, rock units, stages, epochs and periods)
+     * and glossary terms in the text link to them, each once.
      */
     linkTerms?: boolean;
 
     /**
-     * The ids of terms already linked, for blocks that link each term once between them, such as
-     * the items of a list; this adds to it. Giving it also links terms.
+     * The links already made, for blocks that link each name or term once between them, such as
+     * the items of a list; this adds to it. Giving it also turns linking on.
      */
     linkedTerms?: Set<string>;
 };
 
 /**
- * A run of prose: a genus or species name, plain text, or a glossary term.
+ * A run of prose: a genus or species name, a name with a page, a glossary term, or plain text.
  */
 type ProsePart = {
     /**
@@ -36,9 +38,14 @@ type ProsePart = {
     text: string;
 
     /**
-     * True when the run is a genus or species name.
+     * True when the run is a genus or species name, which is set in italics.
      */
     isTaxon: boolean;
+
+    /**
+     * The path the run links to, relative to the site's base, if any.
+     */
+    path: string | undefined;
 
     /**
      * The glossary term the run links to, if any.
@@ -48,21 +55,49 @@ type ProsePart = {
 
 const { text, linkTerms = false } = Astro.props;
 const linkedTerms = Astro.props.linkedTerms ?? (linkTerms ? new Set<string>() : undefined);
+const baseUrl = import.meta.env.BASE_URL;
+const currentPath = Astro.url.pathname.slice(baseUrl.length);
+const links = linkedTerms ? getProseLinks() : undefined;
 const parts = new Array<ProsePart>();
 
+// Names are found first (genera and species, then other names with pages), and glossary terms
+// only in the text left over, so a link never sits inside another.
 for (const segment of getSiteData().taxonNames.splitProse(formatQuotes(text)))
 {
-    if (segment.isTaxon || !linkedTerms)
+    if (!linkedTerms || !links)
     {
-        parts.push({ text: segment.text, isTaxon: segment.isTaxon, term: undefined });
-        continue;
+        parts.push({ text: segment.text, isTaxon: segment.isTaxon, path: undefined, term: undefined });
     }
-
-    for (const termSegment of splitGlossaryTerms(getGlossary(), segment.text, linkedTerms))
+    else if (segment.isTaxon)
     {
-        parts.push({ text: termSegment.text, isTaxon: false, term: termSegment.entry });
+        const path = findTaxonPath(links, segment.text);
+        const isLinked = path !== undefined && !linkedTerms.has(path) && path.split("#")[0] !== currentPath;
+
+        if (isLinked)
+        {
+            linkedTerms.add(path);
+        }
+
+        parts.push({ text: segment.text, isTaxon: true, path: isLinked ? path : undefined, term: undefined });
+    }
+    else
+    {
+        for (const named of splitNamedLinks(links, segment.text, linkedTerms, currentPath))
+        {
+            if (named.path)
+            {
+                parts.push({ text: named.text, isTaxon: false, path: named.path, term: undefined });
+                continue;
+            }
+
+            for (const termSegment of splitGlossaryTerms(getGlossary(), named.text, linkedTerms))
+            {
+                parts.push({ text: termSegment.text, isTaxon: false, path: undefined, term: termSegment.entry });
+            }
+        }
     }
 }
----
 
-{parts.map((part) => part.isTaxon ? <i class="taxon">{bindAbbreviatedGenus(part.text)}</i> : part.term ? <GlossaryTerm entry={part.term} text={part.text} /> : part.text)}
+// The markup is one line, since any space around it would show in the text.
+---
+{parts.map((part) => part.path ? <a class:list={{ taxon: part.isTaxon }} href={baseUrl + part.path}>{part.isTaxon ? bindAbbreviatedGenus(part.text) : part.text}</a> : part.isTaxon ? <i class="taxon">{bindAbbreviatedGenus(part.text)}</i> : part.term ? <GlossaryTerm entry={part.term} text={part.text} /> : part.text)}

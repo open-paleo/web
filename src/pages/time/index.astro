@@ -6,6 +6,7 @@ import { formatAgeNumbers, formatAgeRange, formatCount, formatGenusCount } from 
 import type { StageCount } from "../../data/home.ts";
 import { countGeneraByStage } from "../../data/home.ts";
 import { getSiteData } from "../../data/site-data.ts";
+import { createSlug } from "../../data/slugs.ts";
 import { getTimePages } from "../../data/time-pages.ts";
 import { createPagePath } from "../../data/urls.ts";
 
@@ -72,7 +73,7 @@ const stageCount = formatCount(allStageCount, "stage", "stages");
                     </thead>
                     {period.epochs.map((epoch) => (
                         <tbody>
-                            <tr class="epoch-row">
+                            <tr class="epoch-row" id={createSlug(epoch.name)}>
                                 <th scope="rowgroup" colspan="3">{epoch.name}</th>
                             </tr>
                             {epoch.stages.map((stage) => (
@@ -155,6 +156,17 @@ const stageCount = formatCount(allStageCount, "stage", "stages");
     .stage-table tbody th
     {
         font-weight: 400;
+    }
+
+    /* Epoch names in prose link to their row; the highlight shows which one. */
+    .stage-table .epoch-row
+    {
+        scroll-margin-top: var(--space-5);
+    }
+
+    .stage-table .epoch-row:target th
+    {
+        background: var(--color-accent-soft);
     }
 
     .stage-table .epoch-row th

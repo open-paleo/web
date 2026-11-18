@@ -8,6 +8,10 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ### Added
 
+- Names in genus and clade text link to their pages: genera, species (to their section on the
+  genus page, including synonyms and abbreviations such as "T. rex"), clades, rock units,
+  stages and periods, and epochs to their row on the Time scale page. Each links once per block,
+  never on its own page, and glossary terms link only in the text around them
 - Pages for rock units (`unit/{slug}/`), from the stratigraphy the dataset publishes since schema
   4.1.0: one per formation, group or other top-level unit with genera, with its rank, the unit it
   belongs to, its age, the genera found in it, a group's formations, its members and beds as

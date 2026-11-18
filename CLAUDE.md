@@ -68,8 +68,9 @@ The site uses the Strata theme, documented in [docs/theme.md](docs/theme.md).
 - Tests use `test/fixtures/open-paleo.json` and `test/fixtures/glossary.json`, copied from the
   real outputs by `npm run create-test-fixture` and read with `readFixture()` and
   `readGlossaryFixture()` from `test/fixture.ts`; never invent records for tests
-- Glossary terms in dataset text link to their definitions when a `Prose` block is given
-  `linkTerms` (each term once per block). Definitions come only from open-paleo/glossary;
+- Names with pages (genera, species, clades, rock units, stages, epochs, periods) and glossary
+  terms in dataset text link when a `Prose` block is given `linkTerms`, each once per block
+  (`src/data/prose-links.ts`, `src/data/glossary.ts`). Definitions come only from open-paleo/glossary;
   never write one into a template
 - If the site needs something that is not in `dist/`, raise it as a change to the data
   repository's build; do not work around the contract
