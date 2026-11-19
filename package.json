@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.4",
-    "@open-paleo/tree-extractor": "https://github.com/open-paleo/tree-extractor/releases/download/v0.7.0/open-paleo-tree-extractor-0.7.0.tgz",
+    "@open-paleo/tree-extractor": "https://github.com/open-paleo/tree-extractor/releases/download/v0.7.1/open-paleo-tree-extractor-0.7.1.tgz",
     "@tesseract.js-data/eng": "1.0.0",
     "astro": "7.4.2",
     "maplibre-gl": "6.16.0",
