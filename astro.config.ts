@@ -2,7 +2,7 @@ import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 
 import { createSitemapFilter } from "./src/integrations/sitemap-filter.ts";
-import { serveTesseractFiles } from "./src/integrations/tesseract-files.ts";
+import { serveOcrFiles } from "./src/integrations/ocr-files.ts";
 
 // The site is static: every page is generated at build time from the dataset, and pages ship
 // no JavaScript unless a component opts in.
@@ -38,8 +38,8 @@ export default defineConfig({
     // The sitemap lists every page for search engines, except the members' and beds' pages that
     // only send readers on. It needs the site's address, so local builds without SITE_URL leave
     // it out. The tree extractor's OCR files are served from the
-    // site in every build (src/integrations/tesseract-files.ts).
+    // site in every build (src/integrations/ocr-files.ts).
     integrations: process.env.SITE_URL
-        ? [sitemap({ filter: createSitemapFilter(process.env.SITE_BASE ?? "/") }), serveTesseractFiles(process.env.SITE_BASE ?? "/")]
-        : [serveTesseractFiles(process.env.SITE_BASE ?? "/")],
+        ? [sitemap({ filter: createSitemapFilter(process.env.SITE_BASE ?? "/") }), serveOcrFiles(process.env.SITE_BASE ?? "/")]
+        : [serveOcrFiles(process.env.SITE_BASE ?? "/")],
 });

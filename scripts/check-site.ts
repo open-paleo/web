@@ -264,8 +264,9 @@ async function checkSamplePage(browser: Browser, siteUrl: string, sample: Sample
 
 /**
  * Run the tree extractor on a small synthetic figure (made by the tree extractor's own
- * benchmark, with invented names): it must trace a tree and read its labels with nothing but the
- * site's own files, since every request off the site is blocked.
+ * benchmark, with invented names), reading unmatched labels a second time: it must trace a tree
+ * and read its labels with nothing but the site's own files, since every request off the site is
+ * blocked.
  *
  * @param browser - The browser.
  * @param siteUrl - The site's local address.
@@ -280,6 +281,17 @@ async function checkTreeExtractor(browser: Browser, siteUrl: string, problems: A
     page.on("pageerror", (error) => errors.push(error.message));
     await page.goto(siteUrl + "tools/tree-extractor/");
     await page.locator("#te-file").setInputFiles(treeFigurePath);
+
+    // Read unmatched labels a second time too, so the run loads ONNX Runtime and the model.
+    if (await page.locator("#te-second-ocr-row").isHidden())
+    {
+        problems.push({ location, check: "tool", message: "the second-reading checkbox is hidden" });
+    }
+    else
+    {
+        await page.locator("#te-second-ocr").check();
+    }
+
     await page.click("#te-run");
 
     try

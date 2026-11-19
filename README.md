@@ -96,7 +96,9 @@ other page makes a request outside the site. Region and country outlines are fro
 ## Tree extractor
 
 The tool page uses a pinned release of `@open-paleo/tree-extractor` (a tarball from its GitHub
-releases) and serves Tesseract.js's worker, core and English language data from the site. When
+releases) and serves Tesseract.js's worker, core and English language data from the site. Its
+optional second OCR engine, PaddleOCR on ONNX Runtime, is served from the site too; the build
+downloads the model at a pinned revision and checks its checksum. When
 the tree extractor publishes a release, `.github/workflows/tree-extractor-update.yml` pins it,
 runs every check, and opens a pull request.
 

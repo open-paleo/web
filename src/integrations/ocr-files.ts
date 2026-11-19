@@ -4,11 +4,11 @@ import * as url from "node:url";
 
 import type { AstroIntegration } from "astro";
 
-// Serves the files Tesseract.js loads at run time from the site itself, so the tree extractor
-// makes no request off the site: Tesseract's worker script, its core (WebAssembly) and the
-// English language data, at the versions the tree extractor is tested against (pinned in
-// package.json). The build copies them into dist/; the dev server serves them from
-// node_modules/. The tool page passes their locations to the viewer.
+import { paddleModelDirectory, paddleModelFiles, preparePaddleModel } from "./paddle-model.ts";
+
+// Serves the tree extractor's OCR files from the site, so it makes no request off the site:
+// Tesseract.js's worker, core and language data, and for the second OCR engine, ONNX Runtime and
+// the PaddleOCR model. The build copies them into dist/; the dev server serves them in place.
 
 /**
  * One directory of files to serve, and where under the site.
@@ -20,7 +20,7 @@ type ServedDirectory = {
     sitePath: string;
 
     /**
-     * The directory in node_modules/ it comes from.
+     * The directory it comes from.
      */
     sourceDirectory: string;
 
@@ -31,25 +31,32 @@ type ServedDirectory = {
 };
 
 /**
- * Where under the site's base the tree extractor's Tesseract files are served.
+ * Where under the site's base the tree extractor's OCR files are served.
  */
-export const tesseractSitePaths = {
+export const ocrSitePaths = {
     worker: "tools/tree-extractor/tesseract/worker.min.js",
     core: "tools/tree-extractor/tesseract-core",
     language: "tools/tree-extractor/tessdata",
+    onnxRuntime: "tools/tree-extractor/onnxruntime",
+    paddleModel: "tools/tree-extractor/paddleocr",
 };
 
 const rootDirectory = path.dirname(path.dirname(path.dirname(url.fileURLToPath(import.meta.url))));
 const modulesDirectory = path.join(rootDirectory, "node_modules");
 
 const servedDirectories: Array<ServedDirectory> = [
-    { sitePath: path.posix.dirname(tesseractSitePaths.worker), sourceDirectory: path.join(modulesDirectory, "tesseract.js", "dist"), files: ["worker.min.js"] },
-    { sitePath: tesseractSitePaths.core, sourceDirectory: path.join(modulesDirectory, "tesseract.js-core"), files: [] },
-    { sitePath: tesseractSitePaths.language, sourceDirectory: path.join(modulesDirectory, "@tesseract.js-data", "eng", "4.0.0_best_int"), files: [] },
+    { sitePath: path.posix.dirname(ocrSitePaths.worker), sourceDirectory: path.join(modulesDirectory, "tesseract.js", "dist"), files: ["worker.min.js"] },
+    { sitePath: ocrSitePaths.core, sourceDirectory: path.join(modulesDirectory, "tesseract.js-core"), files: [] },
+    { sitePath: ocrSitePaths.language, sourceDirectory: path.join(modulesDirectory, "@tesseract.js-data", "eng", "4.0.0_best_int"), files: [] },
+    // The WebAssembly build of ONNX Runtime, without the WebGPU and WebGL back ends.
+    { sitePath: ocrSitePaths.onnxRuntime, sourceDirectory: path.join(modulesDirectory, "onnxruntime-web", "dist"), files: ["ort.wasm.min.mjs", "ort-wasm-simd-threaded.mjs", "ort-wasm-simd-threaded.wasm"] },
+    { sitePath: ocrSitePaths.paddleModel, sourceDirectory: paddleModelDirectory, files: paddleModelFiles },
 ];
 
 const contentTypes = new Map<string, string>([
     [".js", "text/javascript; charset=utf-8"],
+    [".mjs", "text/javascript; charset=utf-8"],
+    [".txt", "text/plain; charset=utf-8"],
     [".wasm", "application/wasm"],
     [".gz", "application/gzip"],
 ]);
@@ -112,13 +119,17 @@ function findServedFile(requestPath: string): string | undefined
  * @param basePath - The site's base path, ending in "/".
  * @returns The Astro integration.
  */
-export function serveTesseractFiles(basePath: string): AstroIntegration
+export function serveOcrFiles(basePath: string): AstroIntegration
 {
     const base = basePath.endsWith("/") ? basePath : basePath + "/";
 
     return {
-        name: "tesseract-files",
+        name: "ocr-files",
         hooks: {
+            "astro:config:setup": async () =>
+            {
+                await preparePaddleModel();
+            },
             "astro:server:setup": ({ server }) =>
             {
                 server.middlewares.use((request, response, next) =>
