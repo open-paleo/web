@@ -1,7 +1,7 @@
 ---
 import BetaBadge from "../../../components/BetaBadge.astro";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
-import { tesseractSitePaths } from "../../../integrations/tesseract-files.ts";
+import { ocrSitePaths } from "../../../integrations/ocr-files.ts";
 
 const baseUrl = import.meta.env.BASE_URL;
 const sourceUrl = "https://github.com/open-paleo/tree-extractor";
@@ -18,7 +18,7 @@ const sourceUrl = "https://github.com/open-paleo/tree-extractor";
             </p>
             <ul class="tool-notes">
                 <li>It runs entirely in your browser: the figure is never uploaded.</li>
-                <li>The first time it reads labels it downloads about 10 MB of text-recognition data from this site, which your browser keeps.</li>
+                <li>The first time it reads labels it downloads about 10 MB of text-recognition data from this site, which your browser keeps. Reading unmatched labels a second time downloads about 12 MB more, the first time you use it.</li>
                 <li>It is a beta. Check every tree against its figure before you use it, and refer to <a href={sourceUrl + "#status"}>its documentation</a> for the kinds of figure it handles well.</li>
             </ul>
         </header>
@@ -30,9 +30,11 @@ const sourceUrl = "https://github.com/open-paleo/tree-extractor";
         <tree-extractor
             known-names-url={baseUrl + "tools/tree-extractor/known-names.txt"}
             known-clades-url={baseUrl + "tools/tree-extractor/known-clades.txt"}
-            tesseract-worker-path={baseUrl + tesseractSitePaths.worker}
-            tesseract-core-path={baseUrl + tesseractSitePaths.core + "/"}
-            tesseract-lang-path={baseUrl + tesseractSitePaths.language}
+            tesseract-worker-path={baseUrl + ocrSitePaths.worker}
+            tesseract-core-path={baseUrl + ocrSitePaths.core + "/"}
+            tesseract-lang-path={baseUrl + ocrSitePaths.language}
+            data-onnx-runtime-path={baseUrl + ocrSitePaths.onnxRuntime + "/"}
+            data-paddle-model-path={baseUrl + ocrSitePaths.paddleModel + "/"}
         ></tree-extractor>
 
         <p class="tool-source">

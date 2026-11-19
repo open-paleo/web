@@ -24,9 +24,9 @@ Rules that are easy to miss:
 - **Exact dependency versions**; no `^` or `~` in `package.json`, and pick releases at least
   two weeks old (Open Paleo's own packages, such as the tree extractor, are exempt)
 - **No browser dependencies** other than MapLibre GL JS (the maps and the Tree page's chart),
-  the tree extractor with Tesseract.js (the tool page), each loaded only where it is used, and
-  Plausible's counting script (every page, published builds only); every page but the tool works
-  with JavaScript off
+  the tree extractor with Tesseract.js and, for its optional second OCR engine, ONNX Runtime (the
+  tool page), each loaded only where it is used, and Plausible's counting script (every page,
+  published builds only); every page but the tool works with JavaScript off
 - **Every outside service is declared in `src/data/privacy.ts`**, which the privacy page lists:
   a new host a page contacts fails `check-site` until it has an entry there, and any change to
   the policy updates `privacyPolicyEffectiveDate`

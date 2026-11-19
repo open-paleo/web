@@ -59,8 +59,13 @@ files.
     OpenFreeMap's fonts for the labels; without JavaScript the outline lists the same clades
   - The tree extractor (`@open-paleo/tree-extractor`) and Tesseract.js, its text recognition,
     run the tool at `tools/tree-extractor/`, which is a tool and needs JavaScript. Tesseract's
-    core and language data are served from the site (`src/integrations/tesseract-files.ts`) at
-    the versions the tree extractor's README names
+    core and language data are served from the site (`src/integrations/ocr-files.ts`) at the
+    versions the tree extractor's README names
+  - ONNX Runtime (`onnxruntime-web`, its WebAssembly build) runs the tool's optional second OCR
+    engine, PaddleOCR, which reads again the labels Tesseract couldn't match. It loads only when
+    a reader ticks "Read unmatched labels a second time". The build downloads the model from
+    Hugging Face at a pinned revision, checks it against its checksum, and serves it from the
+    site with its dictionary and license (`src/integrations/paddle-model.ts`)
   - Plausible's counting script, on every page of the published site only (builds with
     `SITE_URL` set), counts page views without cookies; the privacy page (`privacy/`) links to
     Plausible's data policy for what it records. A page works the same without it
@@ -83,7 +88,7 @@ files.
 | `src/components/` | Reusable components: dispute note, age figure, reference list and so on |
 | `src/data/` | TypeScript that loads the dataset and prepares lookup tables for the pages |
 | `src/scripts/` | Browser TypeScript: search, filters, maps, copy buttons and the tree extractor |
-| `src/integrations/` | Astro integrations: serving the tree extractor's Tesseract files |
+| `src/integrations/` | Astro integrations: serving the tree extractor's OCR files, and downloading the second engine's model |
 | `src/theme/` | The Strata theme: tokens, fonts, element defaults. See [docs/theme.md](docs/theme.md) |
 | `public/` | Static files copied to the site unchanged: the site icon and the link preview image |
 | `scripts/` | Standalone Node tooling that is not part of the Astro build |
