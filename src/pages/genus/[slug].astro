@@ -4,7 +4,7 @@ import CorrectionLink from "../../components/CorrectionLink.astro";
 import DiagnosisList from "../../components/DiagnosisList.astro";
 import DisputeNote from "../../components/DisputeNote.astro";
 import GenusMap from "../../components/GenusMap.astro";
-import GenusOutline from "../../components/GenusOutline.astro";
+import TaxonOutline from "../../components/TaxonOutline.astro";
 import GlancePanel from "../../components/GlancePanel.astro";
 import HowToCite from "../../components/HowToCite.astro";
 import IcznCaseList from "../../components/IcznCaseList.astro";
@@ -114,7 +114,7 @@ const citation = createRecordCitation("Genus", genus.genus, entry.slug, citation
                 <StatusBadge status={typeSpecies.status} linkToGlossary />
             </p>
             {genus.etymology && <p class="etymology"><Prose text={genus.etymology.trim()} /></p>}
-            {outline && <GenusOutline outline={outline} />}
+            {outline && <TaxonOutline outline={outline} />}
         </header>
 
         <div class="genus-age"><AgeFigure period={typeSpecies.period} /></div>

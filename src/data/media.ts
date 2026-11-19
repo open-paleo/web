@@ -5,7 +5,7 @@ import type { OpenPaleoMedia, Outline } from "./bindings/media";
 import { mediaSchemaVersion } from "./bindings/schema-version.ts";
 import { compareSchemaVersions } from "./load-dataset.ts";
 import { findMediaDirectory, mediaFileName } from "./locate-dataset.ts";
-import type { GenusEntry, SiteData } from "./site-data.ts";
+import type { CladeEntry, GenusEntry, SiteData } from "./site-data.ts";
 
 // Reads open-paleo/media's output and finds each genus's outline.
 
@@ -156,6 +156,27 @@ export function findGenusOutline(media: MediaIndex, genus: GenusEntry, siteData:
     }
 
     return undefined;
+}
+
+/**
+ * Find the outline a clade shows: its own, or else its type genus's; none if it has neither.
+ *
+ * @param media - The media.
+ * @param clade - The clade.
+ * @param siteData - The lookup tables.
+ * @returns The outline, or undefined.
+ */
+export function findCladeOutline(media: MediaIndex, clade: CladeEntry, siteData: SiteData): OutlineEntry | undefined
+{
+    const own = media.outlineByTaxon.get(clade.name);
+    const typeGenus = clade.record?.type_genus ? siteData.genusByName.get(clade.record.type_genus) : undefined;
+
+    if (own)
+    {
+        return own;
+    }
+
+    return typeGenus ? findGenusOutline(media, typeGenus, siteData) : undefined;
 }
 
 /**

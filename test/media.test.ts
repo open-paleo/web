@@ -3,7 +3,7 @@ import { test } from "node:test";
 
 import { mediaSchemaVersion } from "../src/data/bindings/schema-version.ts";
 import { parseSemanticVersion } from "../src/data/load-dataset.ts";
-import { findGenusOutline, getLicenseInfo, readMedia } from "../src/data/media.ts";
+import { findCladeOutline, findGenusOutline, getLicenseInfo, readMedia } from "../src/data/media.ts";
 import { createSiteData } from "../src/data/site-data.ts";
 import { fixtureDirectory, readFixture, readMediaFixture } from "./fixture.ts";
 
@@ -55,4 +55,16 @@ test("readMedia refuses a different major schema version", () =>
     const nextMajor = (parseSemanticVersion(mediaSchemaVersion).major + 1) + ".0.0";
 
     assert.throws(() => readMedia(fixtureDirectory, nextMajor), /breaking change/);
+});
+
+test("a clade shows its own outline, else its type genus's, else none", () =>
+{
+    const sauropoda = siteData.cladeByName.get("Sauropoda");
+    const allosauridae = siteData.cladeByName.get("Allosauridae");
+    const avetheropoda = siteData.cladeByName.get("Avetheropoda");
+
+    assert.ok(sauropoda && allosauridae && avetheropoda);
+    assert.equal(findCladeOutline(media, sauropoda, siteData)?.taxon, "Sauropoda");
+    assert.equal(findCladeOutline(media, allosauridae, siteData)?.taxon, "Theropoda", "through its type genus, Allosaurus");
+    assert.equal(findCladeOutline(media, avetheropoda, siteData), undefined, "no outline and no type genus");
 });

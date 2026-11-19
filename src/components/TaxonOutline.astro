@@ -3,11 +3,12 @@ import type { OutlineEntry } from "../data/media.ts";
 import { getLicenseInfo } from "../data/media.ts";
 
 /**
- * Properties of the outline a genus page shows beside its name, and its credit line.
+ * Properties of the outline a genus or clade page shows beside its name, and its credit line.
+ * The page's header places them, in the grid areas "outline" and "credit".
  */
 type Props = {
     /**
-     * The outline of the nearest clade above the genus that has one.
+     * The outline.
      */
     outline: OutlineEntry;
 };
@@ -21,11 +22,11 @@ const changes = record.changes.toLowerCase().replace("; ", " and ");
 // The outline is decorative; the credit line describes it. open-paleo/media's build checks and
 // cleans every SVG, so it is inlined unchanged.
 ---
-<div class="genus-outline" aria-hidden="true"><Fragment set:html={outline.svg} /></div>
-<p class="genus-outline-credit">{record.title}, based on <i class="taxon">{record.depicts}</i>. By <a href={record.source}>{record.creator}</a>, {license.url ? <a href={license.url}>{license.name}</a> : license.name}, {changes}.</p>
+<div class="taxon-outline" aria-hidden="true"><Fragment set:html={outline.svg} /></div>
+<p class="taxon-outline-credit">{record.title}, based on <i class="taxon">{record.depicts}</i>. By <a href={record.source}>{record.creator}</a>, {license.url ? <a href={license.url}>{license.name}</a> : license.name}, {changes}.</p>
 
 <style>
-    .genus-outline
+    .taxon-outline
     {
         grid-area: outline;
         display: flex;
@@ -34,13 +35,13 @@ const changes = record.changes.toLowerCase().replace("; ", " and ");
         color: var(--color-muted);
     }
 
-    .genus-outline :global(svg)
+    .taxon-outline :global(svg)
     {
         width: 100%;
         max-height: 7rem;
     }
 
-    .genus-outline-credit
+    .taxon-outline-credit
     {
         grid-area: credit;
         color: var(--color-muted);
@@ -48,7 +49,7 @@ const changes = record.changes.toLowerCase().replace("; ", " and ");
         font-size: var(--text-caption);
     }
 
-    .genus-outline-credit a
+    .taxon-outline-credit a
     {
         color: inherit;
     }

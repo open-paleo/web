@@ -13,12 +13,14 @@ import RecordMain from "../../components/RecordMain.astro";
 import ReferenceList from "../../components/ReferenceList.astro";
 import SubcladeList from "../../components/SubcladeList.astro";
 import SynonymTable from "../../components/SynonymTable.astro";
+import TaxonOutline from "../../components/TaxonOutline.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { createRecordCitation } from "../../data/citations.ts";
 import { createAgeSpan, getDescendantGenera, getPlacedGenera } from "../../data/clades.ts";
 import { createGenusIndexRows } from "../../data/genus-index.ts";
 import type { Clade } from "../../data/dataset.ts";
 import { formatAuthority, formatGenusCount, getFirstSentence } from "../../data/format.ts";
+import { findCladeOutline, getMedia } from "../../data/media.ts";
 import type { CladeEntry } from "../../data/site-data.ts";
 import { getSiteData } from "../../data/site-data.ts";
 import { createPagePath, createReferenceAnchor } from "../../data/urls.ts";
@@ -94,6 +96,7 @@ const authority = formatAuthority(record.authors, record.described, false);
 const authorityReferenceId = record.erected_in ?? "";
 const authorityAnchor = "#" + createReferenceAnchor(siteData.referenceById.get(authorityReferenceId)?.slug ?? authorityReferenceId);
 const typeGenus = record.type_genus ? siteData.genusByName.get(record.type_genus) : undefined;
+const outline = findCladeOutline(getMedia(siteData), entry, siteData);
 const descendantGenera = getDescendantGenera(entry, siteData);
 const ageSpan = createAgeSpan(descendantGenera, siteData.timeline);
 const genusRows = createGenusIndexRows(getPlacedGenera(entry, siteData), siteData, siteData.timeline, "clade");
@@ -107,9 +110,10 @@ const citation = createRecordCitation("Clade", entry.name, entry.slug, citationU
     <article class="clade-page" data-pagefind-body data-pagefind-filter="kind:Clade">
         <LineageTrail taxonomy={ancestors} />
 
-        <header class="clade-header">
+        <header class:list={["clade-header", { "has-outline": outline }]}>
             <h1 class="clade-name" data-pagefind-weight="10" style={"--name-length: " + entry.name.length}>{entry.name}</h1>
             {authority && <p class="clade-meta"><a class="authority" href={authorityAnchor}>{authority}</a></p>}
+            {outline && <TaxonOutline outline={outline} />}
         </header>
 
         <div class="clade-age">{ageSpan && <AgeFigure period={ageSpan} rangeIntroduction="Its genera lived" />}</div>
@@ -194,11 +198,53 @@ const citation = createRecordCitation("Clade", entry.name, entry.slug, citationU
 
     /* The header is a size container, so the name below can be sized to its width, and its
        width comes from the page rather than from the name. */
+    /* The outline sits beside the name, with its credit beside the authority line. On phones it
+       moves beside the authority line, and the credit below it. */
     .clade-header
     {
+        --outline-column: 0rem;
+
         display: grid;
+        grid-template-columns: minmax(0, 1fr);
         gap: var(--space-2);
         container-type: inline-size;
+    }
+
+    .clade-header.has-outline
+    {
+        --outline-column: 13rem;
+
+        grid-template-columns: minmax(0, 1fr) 11rem;
+        grid-template-areas:
+            "name outline"
+            "meta credit";
+        column-gap: var(--space-6);
+    }
+
+    .clade-header.has-outline .clade-name
+    {
+        grid-area: name;
+    }
+
+    .clade-header.has-outline .clade-meta
+    {
+        grid-area: meta;
+    }
+
+    /* A media query, because the header is the size container, and a container query can't
+       style the container itself. */
+    @media (max-width: 40rem)
+    {
+        .clade-header.has-outline
+        {
+            --outline-column: 0rem;
+
+            grid-template-columns: minmax(0, 1fr) 4.5rem;
+            grid-template-areas:
+                "name name"
+                "meta outline"
+                "credit credit";
+        }
     }
 
     .clade-age:empty
@@ -212,7 +258,7 @@ const citation = createRecordCitation("Clade", entry.name, entry.slug, citationU
        fallback font before Alegreya loads), the name wraps rather than overflowing. */
     .clade-name
     {
-        font-size: min(var(--text-display), 100cqi / (var(--name-length) * 0.5));
+        font-size: min(var(--text-display), (100cqi - var(--outline-column)) / (var(--name-length) * 0.5));
         overflow-wrap: anywhere;
         font-weight: 800;
         letter-spacing: -0.01em;
