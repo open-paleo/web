@@ -7,16 +7,16 @@ import { compareSchemaVersions } from "./load-dataset.ts";
 import { findMediaDirectory, mediaFileName } from "./locate-dataset.ts";
 import type { GenusEntry, SiteData } from "./site-data.ts";
 
-// Reads open-paleo/media's output and finds the outline a genus shows.
+// Reads open-paleo/media's output and finds each genus's outline.
 
 /**
  * An outline, ready for a page.
  */
 export type OutlineEntry = {
     /**
-     * The clade it stands for.
+     * The genus or clade it stands for.
      */
-    clade: string;
+    taxon: string;
 
     /**
      * Its record: caption, the taxon it was drawn from, creator, source, license and changes.
@@ -34,9 +34,9 @@ export type OutlineEntry = {
  */
 export type MediaIndex = {
     /**
-     * Each outline, by the clade it stands for.
+     * Each outline, by the genus or clade it stands for.
      */
-    outlineByClade: Map<string, OutlineEntry>;
+    outlineByTaxon: Map<string, OutlineEntry>;
 };
 
 /**
@@ -103,42 +103,49 @@ export function readMedia(mediaDirectory: string, supportedVersion: string): Ope
  *
  * @param media - The media index.
  * @param mediaDirectory - The directory the outline files are in.
- * @param siteData - The lookup tables, to warn about outlines for clades the dataset doesn't have.
- * @returns The outlines by clade.
+ * @param siteData - The lookup tables, to warn about outlines for taxa the dataset doesn't have.
+ * @returns The outlines by taxon.
  */
 export function createMediaIndex(media: OpenPaleoMedia, mediaDirectory: string, siteData: SiteData): MediaIndex
 {
-    const outlineByClade = new Map<string, OutlineEntry>();
+    const outlineByTaxon = new Map<string, OutlineEntry>();
 
-    for (const [clade, record] of Object.entries(media.outlines))
+    for (const [taxon, record] of Object.entries(media.outlines))
     {
-        if (!siteData.cladeByName.has(clade))
+        if (!siteData.cladeByName.has(taxon) && !siteData.genusByName.has(taxon))
         {
-            console.warn("The media have an outline for " + clade + ", which the dataset has no clade by.");
+            console.warn("The media have an outline for " + taxon + ", which the dataset has no genus or clade by.");
             continue;
         }
 
-        outlineByClade.set(clade, { clade, record, svg: fs.readFileSync(path.join(mediaDirectory, record.file), "utf8") });
+        outlineByTaxon.set(taxon, { taxon, record, svg: fs.readFileSync(path.join(mediaDirectory, record.file), "utf8") });
     }
 
-    return { outlineByClade };
+    return { outlineByTaxon };
 }
 
 /**
- * Find the outline a genus shows: that of the nearest clade above it that has one.
+ * Find the outline a genus shows: its own, or that of the nearest clade above it that has one.
  *
  * @param media - The media.
  * @param genus - The genus.
  * @param siteData - The lookup tables.
- * @returns The outline, or undefined when no clade above the genus has one.
+ * @returns The outline, or undefined when neither the genus nor any clade above it has one.
  */
 export function findGenusOutline(media: MediaIndex, genus: GenusEntry, siteData: SiteData): OutlineEntry | undefined
 {
+    const own = media.outlineByTaxon.get(genus.name);
+
+    if (own)
+    {
+        return own;
+    }
+
     let cladeName: string | undefined = genus.record.parent;
 
     for (let depth = 0; cladeName !== undefined && depth < maximumDepth; depth++)
     {
-        const outline = media.outlineByClade.get(cladeName);
+        const outline = media.outlineByTaxon.get(cladeName);
 
         if (outline)
         {

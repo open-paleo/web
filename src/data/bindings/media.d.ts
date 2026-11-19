@@ -11,7 +11,7 @@
 export interface OpenPaleoMedia {
   _metadata: Metadata;
   /**
-   * The outlines, by the name of the clade each stands for, as the Open Paleo dataset names it. A genus takes the outline of the nearest clade above it that has one.
+   * The outlines, by the name of the genus or clade each stands for, as the Open Paleo dataset names it. A genus shows its own outline if it has one, and otherwise that of the nearest clade above it that has one.
    */
   outlines: {
     [k: string]: Outline;
@@ -24,7 +24,7 @@ export interface Metadata {
   /**
    * The version of this schema the output follows. A new major version is a breaking change.
    */
-  schema_version: "1.1.0";
+  schema_version: "1.2.0";
   /**
    * How the images are licensed.
    */
@@ -35,11 +35,11 @@ export interface Metadata {
   outline_count: number;
 }
 /**
- * An outline of a typical member of a clade.
+ * An outline of a genus, or of a typical member of a clade.
  */
 export interface Outline {
   /**
-   * The cleaned SVG file, relative to dist/: drawn in currentColor, with a viewBox and no fixed size.
+   * The cleaned SVG file, relative to dist/, such as "outlines/s/sauropoda.svg": drawn in currentColor, with a viewBox and no fixed size.
    */
   file: string;
   /**

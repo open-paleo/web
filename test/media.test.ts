@@ -16,8 +16,21 @@ test("a genus shows the outline of the nearest clade above it that has one", () 
     const allosaurus = siteData.genusByName.get("Allosaurus");
 
     assert.ok(tyrannosaurus && allosaurus);
-    assert.equal(findGenusOutline(media, tyrannosaurus, siteData)?.clade, "Tyrannosauroidea");
-    assert.equal(findGenusOutline(media, allosaurus, siteData)?.clade, "Theropoda");
+    assert.equal(findGenusOutline(media, tyrannosaurus, siteData)?.taxon, "Tyrannosauroidea");
+    assert.equal(findGenusOutline(media, allosaurus, siteData)?.taxon, "Theropoda");
+});
+
+test("a genus with its own outline shows it rather than its clade's", () =>
+{
+    const tyrannosaurus = siteData.genusByName.get("Tyrannosaurus");
+    const clades = media.outlineByTaxon.get("Tyrannosauroidea");
+
+    assert.ok(tyrannosaurus && clades);
+
+    // The clade's outline, filed under the genus as a genus-specific outline would be.
+    const withOwn = { outlineByTaxon: new Map([...media.outlineByTaxon, ["Tyrannosaurus", { ...clades, taxon: "Tyrannosaurus" }]]) };
+
+    assert.equal(findGenusOutline(withOwn, tyrannosaurus, siteData)?.taxon, "Tyrannosaurus");
 });
 
 test("every genus in the fixture has an outline, and outlines are inline SVG in the page's color", () =>
