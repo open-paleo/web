@@ -5,7 +5,6 @@
 import type { SecondOcrLoader, TreeExtractorElement } from "@open-paleo/tree-extractor/element";
 import { defineTreeExtractorElement } from "@open-paleo/tree-extractor/element";
 import type { TesseractLike } from "@open-paleo/tree-extractor";
-import type { OrtLike } from "@open-paleo/tree-extractor/paddle";
 import { createPaddleOcr } from "@open-paleo/tree-extractor/paddle";
 import type * as OnnxRuntime from "onnxruntime-web/wasm";
 import "@open-paleo/tree-extractor/viewer.css";
@@ -32,12 +31,6 @@ async function loadTesseract(): Promise<TesseractLike>
 type SecondOcrEngine = Awaited<ReturnType<SecondOcrLoader>>;
 
 /**
- * ONNX Runtime, as the second OCR engine uses it, with its settings. Its own types allow tensors
- * of strings, which the engine's narrower type doesn't, so the module is cast to this.
- */
-type OnnxRuntimeModule = OrtLike & Pick<typeof OnnxRuntime, "env">;
-
-/**
  * Load the second OCR engine, PaddleOCR on ONNX Runtime, from the files this site serves.
  *
  * @param runtimePath - The folder of ONNX Runtime's files, ending in "/".
@@ -48,7 +41,7 @@ async function loadPaddleOcr(runtimePath: string, modelPath: string): Promise<Se
 {
     const runtimeUrl = new URL(runtimePath, location.href).href;
     const modelUrl = new URL(modelPath, location.href).href;
-    const ort = await import(/* @vite-ignore */ runtimeUrl + "ort.wasm.min.mjs") as OnnxRuntimeModule;
+    const ort = await import(/* @vite-ignore */ runtimeUrl + "ort.wasm.min.mjs") as typeof OnnxRuntime;
 
     // One thread: the page isn't cross-origin isolated, which threads need.
     ort.env.wasm.wasmPaths = runtimeUrl;

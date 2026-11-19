@@ -10,7 +10,7 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 - Clade pages show an outline beside the name, as genus pages do: the clade's own, or else its
   type genus's. A clade with neither shows none
-- The tree extractor, now 0.7.0, can read the labels it couldn't match a second time, with
+- The tree extractor, now 0.7.1, can read the labels it couldn't match a second time, with
   PaddleOCR: tick "Read unmatched labels a second time". It downloads about 12 MB more from this
   site the first time it's used
 
