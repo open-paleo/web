@@ -11,8 +11,8 @@ let definitionText: HTMLElement | undefined;
 let entryLink: HTMLAnchorElement | undefined;
 let currentTerm: HTMLAnchorElement | undefined;
 
-// Pressing on the open term closes the popover before the click arrives; this keeps that click
-// from opening it again.
+// Pressing the open term closes the popover before the click event; this stops that click from
+// reopening it.
 let dismissingTerm: HTMLAnchorElement | undefined;
 
 /**

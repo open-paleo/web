@@ -39,6 +39,6 @@ for (const label of createUnitLabels(location))
     links.push({ text: label.text, href: path ? import.meta.env.BASE_URL + path : "" });
 }
 
-// The markup is one line, since any space around it would show in the text.
+// Keep the markup on one line: whitespace around it would appear in the text.
 ---
 {links.map((link, index) => <>{index > 0 && ", "}{link.href ? <a href={link.href}>{link.text}</a> : link.text}</>)}

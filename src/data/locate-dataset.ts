@@ -97,3 +97,43 @@ export function findGlossaryDirectory(rootDirectory: string, overrideDirectory: 
         "OPEN_PALEO_GLOSSARY to the directory that holds " + glossaryFileName + ".",
     );
 }
+
+/**
+ * File name of the built media index inside the media repository's dist/ directory.
+ */
+export const mediaFileName = "media.json";
+
+/**
+ * Find the directory that holds the built media: the OPEN_PALEO_MEDIA environment variable when
+ * it is set, otherwise CI's checkout at ./media/dist, then a sibling clone at ../media/dist.
+ *
+ * @param rootDirectory - The web repository's root directory.
+ * @param overrideDirectory - The OPEN_PALEO_MEDIA environment variable, if set.
+ * @returns The absolute path of the first candidate that contains media.json.
+ */
+export function findMediaDirectory(rootDirectory: string, overrideDirectory: string | undefined): string
+{
+    const candidates = new Array<string>();
+
+    if (overrideDirectory)
+    {
+        candidates.push(path.resolve(rootDirectory, overrideDirectory));
+    }
+
+    candidates.push(path.join(rootDirectory, "media", "dist"));
+    candidates.push(path.join(rootDirectory, "..", "media", "dist"));
+
+    for (const candidate of candidates)
+    {
+        if (fs.existsSync(path.join(candidate, mediaFileName)))
+        {
+            return candidate;
+        }
+    }
+
+    throw new Error(
+        "Could not find " + mediaFileName + ". Looked in:\n  " + candidates.join("\n  ") +
+        "\nClone open-paleo/media next to this repository, or set OPEN_PALEO_MEDIA to the directory " +
+        "that holds " + mediaFileName + ".",
+    );
+}

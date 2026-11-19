@@ -265,7 +265,7 @@ export function findRecentNames(siteData: SiteData, minimumCount: number): Recen
  * Describe the years a list of recent names covers: "2026", "2026 and 2027", "2025 to 2027".
  *
  * @param names - The recent names.
- * @returns The years in words.
+ * @returns The years.
  */
 export function describeRecentYears(names: RecentNames): string
 {

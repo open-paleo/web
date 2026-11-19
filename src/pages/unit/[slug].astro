@@ -17,7 +17,7 @@ import { describeUnitRank, getPageReferences, getUnits } from "../../data/units.
 import { createPagePath } from "../../data/urls.ts";
 
 /**
- * Properties of a unit's page, or of the page that sends a member or bed to its section.
+ * Properties of a unit's page, or of a member or bed's redirect page.
  */
 type Props = {
     /**
@@ -26,7 +26,7 @@ type Props = {
     page: UnitPage | undefined;
 
     /**
-     * The member or bed, when this path sends it to its section on another unit's page.
+     * The member or bed, when this path redirects to its section on another unit's page.
      */
     section: UnitEntry | undefined;
 
@@ -62,8 +62,7 @@ type UnitPathParameters = {
 };
 
 /**
- * Get a path for every unit with a page, and one for each member or bed it shows, which sends
- * readers to that section.
+ * Get a path for every unit page, and a redirect path for each member or bed on it.
  *
  * @returns The path and properties of every unit page and section.
  */

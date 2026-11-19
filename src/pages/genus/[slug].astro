@@ -4,6 +4,7 @@ import CorrectionLink from "../../components/CorrectionLink.astro";
 import DiagnosisList from "../../components/DiagnosisList.astro";
 import DisputeNote from "../../components/DisputeNote.astro";
 import GenusMap from "../../components/GenusMap.astro";
+import GenusOutline from "../../components/GenusOutline.astro";
 import GlancePanel from "../../components/GlancePanel.astro";
 import HowToCite from "../../components/HowToCite.astro";
 import IcznCaseList from "../../components/IcznCaseList.astro";
@@ -20,6 +21,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { createRecordCitation } from "../../data/citations.ts";
 import { formatAuthority, getFirstSentence } from "../../data/format.ts";
 import { createGenusMap, getMapShapes, warnAboutMissingOutlines } from "../../data/genus-map.ts";
+import { findGenusOutline, getMedia } from "../../data/media.ts";
 import { createPaleoViews } from "../../data/paleo-positions.ts";
 import { getWright2013Model } from "../../data/plate-rotation.ts";
 import { getTypeSpecies } from "../../data/records.ts";
@@ -86,6 +88,7 @@ const citationUrl = new URL(Astro.url.pathname, Astro.site ?? "http://localhost:
 const genus = entry.record;
 const siteData = getSiteData();
 const typeSpecies = getTypeSpecies(genus);
+const outline = findGenusOutline(getMedia(siteData), entry, siteData);
 const references = genus.references ?? [];
 const genusMap = createGenusMap(genus, getMapShapes());
 const paleoViews = createPaleoViews(genus, getSiteData().timeline, getWright2013Model());
@@ -102,7 +105,7 @@ const citation = createRecordCitation("Genus", genus.genus, entry.slug, citation
     <article class="genus-page" data-pagefind-body data-pagefind-filter="kind:Genus">
         <LineageTrail taxonomy={genus.taxonomy} placement={genus.placement} />
 
-        <header class="genus-header">
+        <header class:list={["genus-header", { "has-outline": outline }]}>
             <h1 class="genus-name taxon" data-pagefind-weight="10" style={"--name-length: " + genus.genus.length}>{genus.genus}</h1>
             <p class="genus-meta">
                 {authority && <a class="authority" href={authorityAnchor}>{authority}</a>}
@@ -111,6 +114,7 @@ const citation = createRecordCitation("Genus", genus.genus, entry.slug, citation
                 <StatusBadge status={typeSpecies.status} linkToGlossary />
             </p>
             {genus.etymology && <p class="etymology"><Prose text={genus.etymology.trim()} /></p>}
+            {outline && <GenusOutline outline={outline} />}
         </header>
 
         <div class="genus-age"><AgeFigure period={typeSpecies.period} /></div>
@@ -194,11 +198,60 @@ const citation = createRecordCitation("Genus", genus.genus, entry.slug, citation
 
     /* The header is a size container, so the name below can be sized to its width, and its
        width comes from the page rather than from the name. */
+    /* The outline sits beside the name, with its credit beside the etymology. On phones it moves
+       beside the authority line, and the credit below the etymology. */
     .genus-header
     {
+        --outline-column: 0rem;
+
         display: grid;
+        grid-template-columns: minmax(0, 1fr);
         gap: var(--space-3);
         container-type: inline-size;
+    }
+
+    .genus-header.has-outline
+    {
+        --outline-column: 13rem;
+
+        grid-template-columns: minmax(0, 1fr) 11rem;
+        grid-template-areas:
+            "name outline"
+            "meta outline"
+            "etymology credit";
+        column-gap: var(--space-6);
+    }
+
+    .genus-header.has-outline .genus-name
+    {
+        grid-area: name;
+    }
+
+    .genus-header.has-outline .genus-meta
+    {
+        grid-area: meta;
+    }
+
+    .genus-header.has-outline .etymology
+    {
+        grid-area: etymology;
+    }
+
+    /* A media query, because the header is the size container, and a container query can't
+       style the container itself. */
+    @media (max-width: 40rem)
+    {
+        .genus-header.has-outline
+        {
+            --outline-column: 0rem;
+
+            grid-template-columns: minmax(0, 1fr) 4.5rem;
+            grid-template-areas:
+                "name name"
+                "meta outline"
+                "etymology etymology"
+                "credit credit";
+        }
     }
 
     .genus-age:empty
@@ -212,7 +265,7 @@ const citation = createRecordCitation("Genus", genus.genus, entry.slug, citation
        fallback font before Alegreya loads), the name wraps rather than overflowing. */
     .genus-name
     {
-        font-size: min(var(--text-display), 100cqi / (var(--name-length) * 0.5));
+        font-size: min(var(--text-display), (100cqi - var(--outline-column)) / (var(--name-length) * 0.5));
         overflow-wrap: anywhere;
         font-weight: 800;
         letter-spacing: -0.01em;

@@ -60,8 +60,8 @@ const currentPath = Astro.url.pathname.slice(baseUrl.length);
 const links = linkedTerms ? getProseLinks() : undefined;
 const parts = new Array<ProsePart>();
 
-// Names are found first (genera and species, then other names with pages), and glossary terms
-// only in the text left over, so a link never sits inside another.
+// Find names first (genera and species, then other names with pages), then glossary terms in the
+// remaining text, so links never nest.
 for (const segment of getSiteData().taxonNames.splitProse(formatQuotes(text)))
 {
     if (!linkedTerms || !links)
@@ -98,6 +98,6 @@ for (const segment of getSiteData().taxonNames.splitProse(formatQuotes(text)))
     }
 }
 
-// The markup is one line, since any space around it would show in the text.
+// Keep the markup on one line: whitespace around it would appear in the text.
 ---
 {parts.map((part) => part.path ? <a class:list={{ taxon: part.isTaxon }} href={baseUrl + part.path}>{part.isTaxon ? bindAbbreviatedGenus(part.text) : part.text}</a> : part.isTaxon ? <i class="taxon">{bindAbbreviatedGenus(part.text)}</i> : part.term ? <GlossaryTerm entry={part.term} text={part.text} /> : part.text)}

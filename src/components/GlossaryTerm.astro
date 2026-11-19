@@ -20,8 +20,8 @@ type Props = {
 const { entry, text } = Astro.props;
 const href = import.meta.env.BASE_URL + "glossary/#" + entry.id;
 
-// With JavaScript, glossary-popover.ts shows the definition beside the term instead of following
-// the link. The markup is one line with no space around it, since any would show in the text.
+// With JavaScript, glossary-popover.ts opens the definition in a popover instead of following the
+// link. Keep the markup on one line: whitespace around it would appear in the text.
 ---
 <a class="glossary-term" href={href} data-term={entry.record.term} data-definition={formatQuotes(entry.record.definition)}>{text ?? entry.record.term}</a><script>
     import { connectGlossaryPopover } from "../scripts/glossary-popover.ts";

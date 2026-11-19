@@ -94,7 +94,7 @@ export type UnitIndex = {
     pageByName: Map<string, UnitPage>;
 };
 
-// Ranks shown as sections of the page of the unit they sit in.
+// Ranks shown as sections on their parent unit's page.
 const sectionRanks = new Set(["member", "bed"]);
 
 // The longest chain of parent units to follow; a longer one means the data has a loop.
@@ -265,8 +265,8 @@ export function createUnitIndex(dataset: OpenPaleoDataset, siteData: SiteData): 
         pageByName.set(entry.name, page);
     }
 
-    // A unit's subunits with pages of their own, once every page is known: a formation with no
-    // genera has none, and isn't listed on its group's page.
+    // List each page's subunits only once every page exists, so a formation without genera, and
+    // so without a page, isn't listed on its group's page.
     for (const page of pages)
     {
         for (const child of page.entry.children)

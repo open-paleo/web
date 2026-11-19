@@ -1,0 +1,55 @@
+---
+import type { OutlineEntry } from "../data/media.ts";
+import { getLicenseInfo } from "../data/media.ts";
+
+/**
+ * Properties of the outline a genus page shows beside its name, and its credit line.
+ */
+type Props = {
+    /**
+     * The outline of the nearest clade above the genus that has one.
+     */
+    outline: OutlineEntry;
+};
+
+const { outline } = Astro.props;
+const record = outline.record;
+const license = getLicenseInfo(record.license);
+// "Recolored; flipped horizontally" becomes "recolored and flipped horizontally".
+const changes = record.changes.toLowerCase().replace("; ", " and ");
+
+// The outline is decorative; the credit line describes it. open-paleo/media's build checks and
+// cleans every SVG, so it is inlined unchanged.
+---
+<div class="genus-outline" aria-hidden="true"><Fragment set:html={outline.svg} /></div>
+<p class="genus-outline-credit">{record.title}, based on <i class="taxon">{record.depicts}</i>. By <a href={record.source}>{record.creator}</a>, {license.url ? <a href={license.url}>{license.name}</a> : license.name}, {changes}.</p>
+
+<style>
+    .genus-outline
+    {
+        grid-area: outline;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        color: var(--color-muted);
+    }
+
+    .genus-outline :global(svg)
+    {
+        width: 100%;
+        max-height: 7rem;
+    }
+
+    .genus-outline-credit
+    {
+        grid-area: credit;
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-caption);
+    }
+
+    .genus-outline-credit a
+    {
+        color: inherit;
+    }
+</style>

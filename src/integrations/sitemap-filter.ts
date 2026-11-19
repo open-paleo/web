@@ -1,6 +1,6 @@
 import { getUnits } from "../data/units.ts";
 
-// Leaves the pages that only send readers elsewhere out of the sitemap.
+// Keeps redirect pages out of the sitemap.
 
 /**
  * Create the sitemap's filter, which leaves out each member and bed's page: those only send

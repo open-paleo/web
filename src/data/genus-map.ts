@@ -32,7 +32,7 @@ export type GenusMapPlace = {
     precision: MapPrecision;
 
     /**
-     * The place in words: "Hell Creek Formation, Montana, United States".
+     * The place as text: "Hell Creek Formation, Montana, United States".
      */
     description: string;
 

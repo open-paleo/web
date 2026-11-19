@@ -8,6 +8,11 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ### Added
 
+- Genus pages show an outline of the animal's group beside the name: the nearest clade above the
+  genus with one, from the new [open-paleo/media](https://github.com/open-paleo/media)
+  repository (twelve PhyloPic silhouettes so far, from Dinosauria to Pachycephalosauria). A
+  credit line beneath it names what it shows, the taxon it was drawn from, its creator, its
+  license and the changes made. Deploys also run when the media change
 - The period and stage bands of the age figure on genus, clade, stage and unit pages link to
   their pages. Hovering or focusing a band darkens it and shows a tooltip with its full name,
   what it is, its age and how many genera are known from it, which also names the narrow bands

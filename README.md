@@ -19,7 +19,7 @@ AA, checked on every deployment.
 | Home | Search, the release and its counts, a chart of genera through time whose stages and periods link to their pages, the major groups, the most recently named genera, and how to download, cite and contribute |
 | Stage | One per stage with genera: the genera known from it with their clades, ages and countries, the stage's place in the time scale, and links to the stages before and after |
 | Period | One per period with genera: its stages as a chart, and its genera from A to Z |
-| Genus | One per genus: description, an age figure in the chart colors of the geologic time scale, a map of where each species was found (a dot for published coordinates, the region or country shaded otherwise), diagnosis, each species with its type specimen, horizon and locality, synonyms, notable specimens, ICZN cases and references, beside an "At a glance" panel; then how to cite the record and a link to suggest a correction |
+| Genus | One per genus: an outline of the nearest clade above it with one (from [open-paleo/media](https://github.com/open-paleo/media), credited beneath it), description, an age figure in the chart colors of the geologic time scale, a map of where each species was found (a dot for published coordinates, the region or country shaded otherwise), diagnosis, each species with its type specimen, horizon and locality, synonyms, notable specimens, ICZN cases and references, beside an "At a glance" panel; then how to cite the record and a link to suggest a correction |
 | Clade | One per clade with a record: description, the span of time its genera cover, diagnosis, the clades within it, the genera placed directly in it with their ages and countries, how to cite the record, and a link to suggest a correction |
 | Rock unit | `unit/{slug}/`, one per formation, group or other top-level rock unit with genera: its rank and the unit it belongs to, its age figure, the genera found in it, the formations of a group, its members and beds as sections with their genera and sources, its references, and a link to suggest a correction. A member or bed's own address sends readers to its section |
 | Reference | One per cited work: the full citation, the names first published in it, every genus, clade and rock unit that cites it, and a link to suggest a correction |
@@ -73,11 +73,13 @@ npm run create-social-image  # redraw public/social-preview.png, the link previe
 
 `check-site` needs Chromium once: `npx playwright install --only-shell chromium`.
 
-The build reads the dataset from `../data/dist/open-paleo.json` and the glossary from
-`../glossary/dist/glossary.json`, so clone [open-paleo/data](https://github.com/open-paleo/data)
-and [open-paleo/glossary](https://github.com/open-paleo/glossary) beside this repository, and
-run `npm ci && npm run build` in the glossary, whose `dist/` only its CI commits. Or set
-`OPEN_PALEO_DATA` and `OPEN_PALEO_GLOSSARY` to the directories that hold the files.
+The build reads the dataset from `../data/dist/open-paleo.json`, the glossary from
+`../glossary/dist/glossary.json` and the outlines from `../media/dist/media.json`, so clone
+[open-paleo/data](https://github.com/open-paleo/data),
+[open-paleo/glossary](https://github.com/open-paleo/glossary) and
+[open-paleo/media](https://github.com/open-paleo/media) beside this repository; each one's CI
+commits its `dist/`. Or set `OPEN_PALEO_DATA`, `OPEN_PALEO_GLOSSARY` and `OPEN_PALEO_MEDIA` to the
+directories that hold the files.
 
 ## Maps
 

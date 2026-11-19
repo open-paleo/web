@@ -129,8 +129,7 @@ if (model)
                 {rowIndex > 0 && <div class="age-row-label" data-pagefind-ignore>{row.label}</div>}
                 {/* The marker sits behind the bands and reaches past them, so the range shows as tabs
                    above and below the row and never crosses a band's label. */}
-                {/* Bands with a page are links, each named in full for screen readers, with a tooltip
-                   that shows on hover and focus. The rest, and the marker, are hidden from them. */}
+                {/* The marker is hidden from screen readers; AgeBand.astro describes the bands. */}
                 <div class="age-track" data-pagefind-ignore>
                     <span class="age-marker" style={createMarkerStyle(row.marker)} aria-hidden="true"></span>
                     <div class="age-row">

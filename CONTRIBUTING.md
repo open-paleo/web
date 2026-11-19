@@ -34,11 +34,13 @@ Three scripts regenerate committed files, and are run by hand when their inputs 
 (the ancient coastlines, see below) and `npm run create-social-image` (the link preview image,
 after a theme change).
 
-The build reads the dataset from `../data/dist/open-paleo.json` and the glossary from
-`../glossary/dist/glossary.json`, so clone [open-paleo/data](https://github.com/open-paleo/data)
-and [open-paleo/glossary](https://github.com/open-paleo/glossary) next to this repository, and
-run `npm ci && npm run build` in the glossary. Or set `OPEN_PALEO_DATA` and
-`OPEN_PALEO_GLOSSARY` to the directories that hold the files.
+The build reads the dataset from `../data/dist/open-paleo.json`, the glossary from
+`../glossary/dist/glossary.json` and the outlines from `../media/dist/media.json`, so clone
+[open-paleo/data](https://github.com/open-paleo/data),
+[open-paleo/glossary](https://github.com/open-paleo/glossary) and
+[open-paleo/media](https://github.com/open-paleo/media) next to this repository. Or set
+`OPEN_PALEO_DATA`, `OPEN_PALEO_GLOSSARY` and `OPEN_PALEO_MEDIA` to the directories that hold the
+files.
 
 ## Dependencies
 
@@ -116,7 +118,7 @@ run `npm ci && npm run build` in the glossary. Or set `OPEN_PALEO_DATA` and
 
 | Module | Contents |
 |--------|----------|
-| `locate-dataset.ts` | Finds `open-paleo.json`: `OPEN_PALEO_DATA`, then `./data/dist/`, then `../data/dist/`; and `glossary.json` the same way, with `OPEN_PALEO_GLOSSARY` and `glossary/dist/` |
+| `locate-dataset.ts` | Finds `open-paleo.json`: `OPEN_PALEO_DATA`, then `./data/dist/`, then `../data/dist/`; and `glossary.json` and `media.json` the same way, with `OPEN_PALEO_GLOSSARY` and `glossary/dist/`, and `OPEN_PALEO_MEDIA` and `media/dist/` |
 | `load-dataset.ts` | Reads and parses it, and checks the schema version |
 | `site-data.ts` | `getSiteData()`: sorted genera, the clade tree with children and genus counts, every reference with the records that cite it, and URL slugs |
 | `dataset.ts` | The dataset's types |
@@ -129,6 +131,7 @@ run `npm ci && npm run build` in the glossary. Or set `OPEN_PALEO_DATA` and
 | `citations.ts`, `feed.ts` | Citations of the dataset and its records, and the feed of new genera |
 | `known-names.ts` | The taxon and clade names the tree extractor matches labels against |
 | `glossary.ts` | `getGlossary()`: the glossary's terms in order, and finding them in text |
+| `media.ts` | `getMedia()`: the outlines by clade, and `findGenusOutline()`, the outline of the nearest clade above a genus that has one |
 | `prose-links.ts` | `getProseLinks()`: the pages that genus, species, clade, rock unit and geologic time names in prose link to |
 | `units.ts` | `getUnits()`: the rock units arranged into pages, one per formation, group or other top-level unit with genera, with members and beds as sections of their unit's page |
 

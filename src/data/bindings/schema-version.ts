@@ -9,3 +9,8 @@ export const bindingsSchemaVersion = "4.1.0";
  * Glossary schema version that glossary.d.ts describes.
  */
 export const glossarySchemaVersion = "1.1.0";
+
+/**
+ * Media schema version that media.d.ts describes.
+ */
+export const mediaSchemaVersion = "1.1.0";

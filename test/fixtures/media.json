@@ -1,0 +1,117 @@
+{
+  "_metadata": {
+    "schema_version": "1.1.0",
+    "license": "Each image keeps the license in its record; everything else is CC-BY-4.0",
+    "outline_count": 12
+  },
+  "outlines": {
+    "Ankylosauria": {
+      "file": "outlines/ankylosauria.svg",
+      "title": "Outline of an ankylosaur",
+      "depicts": "Ankylosaurus magniventris",
+      "changes": "Recolored",
+      "creator": "Itai Fein",
+      "source": "https://www.phylopic.org/images/8a8a2525-e97d-4505-8085-7958f8d36137",
+      "license": "CC0-1.0"
+    },
+    "Ceratopsia": {
+      "file": "outlines/ceratopsia.svg",
+      "title": "Outline of a ceratopsian",
+      "depicts": "Triceratops",
+      "changes": "Recolored",
+      "creator": "Richard Rich",
+      "source": "https://www.phylopic.org/images/57d2507a-be74-453b-8522-f6993b2fc401",
+      "license": "CC0-1.0"
+    },
+    "Dinosauria": {
+      "file": "outlines/dinosauria.svg",
+      "title": "Outline of an early dinosaur relative",
+      "depicts": "Asilisaurus kongwe",
+      "changes": "Recolored",
+      "creator": "Scott Hartman",
+      "source": "https://www.phylopic.org/images/b512af42-a672-4362-95d6-96d3d0cfc369",
+      "license": "CC-BY-3.0"
+    },
+    "Dromaeosauridae": {
+      "file": "outlines/dromaeosauridae.svg",
+      "title": "Outline of a dromaeosaur",
+      "depicts": "Variraptor mechinorum",
+      "changes": "Recolored; flipped horizontally",
+      "creator": "François-Louis PELISSIER",
+      "source": "https://www.phylopic.org/images/d79359f8-41dc-4744-bfa1-2b9e560e310c",
+      "license": "CC0-1.0"
+    },
+    "Ornithischia": {
+      "file": "outlines/ornithischia.svg",
+      "title": "Outline of an early ornithischian",
+      "depicts": "Lesothosaurus diagnosticus",
+      "changes": "Recolored",
+      "creator": "Matt Dempsey",
+      "source": "https://www.phylopic.org/images/46447cfa-6a6b-4eb1-bb48-3531ec3ca4fd",
+      "license": "CC-BY-4.0"
+    },
+    "Ornithopoda": {
+      "file": "outlines/ornithopoda.svg",
+      "title": "Outline of an ornithopod",
+      "depicts": "Iguanodon bernissartensis",
+      "changes": "Recolored",
+      "creator": "Jaime Headden",
+      "source": "https://www.phylopic.org/images/32c6591b-e7c8-4cc4-8f7b-be70776d7299",
+      "license": "CC-BY-3.0"
+    },
+    "Pachycephalosauria": {
+      "file": "outlines/pachycephalosauria.svg",
+      "title": "Outline of a pachycephalosaur",
+      "depicts": "Pachycephalosaurus wyomingensis",
+      "changes": "Recolored",
+      "creator": "Emily Willoughby",
+      "source": "https://www.phylopic.org/images/6105ff49-0bd0-477c-8bef-41b0c39fdca9",
+      "license": "CC-BY-SA-3.0"
+    },
+    "Sauropoda": {
+      "file": "outlines/sauropoda.svg",
+      "title": "Outline of a sauropod",
+      "depicts": "Camarasaurus supremus",
+      "changes": "Recolored",
+      "creator": "Mathew Wedel",
+      "source": "https://www.phylopic.org/images/7a99b167-b719-4233-946c-addf3ef1c06c",
+      "license": "CC-BY-3.0"
+    },
+    "Sauropodomorpha": {
+      "file": "outlines/sauropodomorpha.svg",
+      "title": "Outline of an early sauropodomorph",
+      "depicts": "Massospondylus carinatus",
+      "changes": "Recolored",
+      "creator": "Scott Hartman",
+      "source": "https://www.phylopic.org/images/2da08fc6-7dc0-4d20-813c-58069902a96b",
+      "license": "CC-BY-3.0"
+    },
+    "Stegosauria": {
+      "file": "outlines/stegosauria.svg",
+      "title": "Outline of a stegosaur",
+      "depicts": "Stegosaurus stenops",
+      "changes": "Recolored",
+      "creator": "Scott Hartman",
+      "source": "https://www.phylopic.org/images/95778172-ab3b-49a5-8f41-52a8db03a832",
+      "license": "CC-BY-3.0"
+    },
+    "Theropoda": {
+      "file": "outlines/theropoda.svg",
+      "title": "Outline of a theropod",
+      "depicts": "Allosaurus europaeus",
+      "changes": "Recolored",
+      "creator": "Jagged Fang Designs",
+      "source": "https://www.phylopic.org/images/62f2e46f-9205-4e32-83d6-e14865a9e789",
+      "license": "CC0-1.0"
+    },
+    "Tyrannosauroidea": {
+      "file": "outlines/tyrannosauroidea.svg",
+      "title": "Outline of a tyrannosaur",
+      "depicts": "Daspletosaurus torosus",
+      "changes": "Recolored",
+      "creator": "Jagged Fang Designs",
+      "source": "https://www.phylopic.org/images/4a597666-eefa-4d9b-a957-23cab985bec0",
+      "license": "CC0-1.0"
+    }
+  }
+}

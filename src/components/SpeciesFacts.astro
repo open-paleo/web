@@ -34,7 +34,7 @@ const specimen = species.type_specimen;
 const specimenIds = specimen?.specimen_id ?? [];
 const specimenType = formatSpecimenType(specimen?.specimen_type, specimenIds.length);
 const specimenTypeTerm = specimen?.specimen_type ? findGlossaryEntry(getGlossary(), specimen.specimen_type) : undefined;
-// "Not cataloged" already says what the status "uncataloged" would.
+// The status "uncataloged" would repeat the "Not cataloged" label, so it is left out.
 const specimenStatus = specimen?.status === "uncataloged" && specimenIds.length === 0 ? undefined : specimen?.status;
 const location = species.location;
 const units = location ? formatStratigraphicUnits(location) : "";

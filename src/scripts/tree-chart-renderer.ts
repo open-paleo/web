@@ -13,8 +13,8 @@ import { glyphSource, italicLabelFont, labelFont, readToken } from "./map-style.
  */
 type TreeChartColors = {
     /**
-     * The chart's box, and the halo around its labels: --color-surface, so the chart reads as a
-     * panel on the page.
+     * The chart's box, and the halo around its labels: --color-surface, so the chart stands out as
+     * a panel on the page.
      */
     background: string;
 

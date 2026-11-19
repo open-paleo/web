@@ -62,8 +62,8 @@ const previewImageUrl = Astro.site ? new URL(homeUrl + "social-preview.png", Ast
 const previewImageDescription = siteName + ": a community-maintained phylogenetic dataset for paleontology, over the Triassic, Jurassic and Cretaceous periods in the colors of the geologic time scale.";
 const navigationGroups = createNavigationGroups(getTimePages().periods);
 const currentGroup = findNavigationGroup(navigationGroups, navigationItem);
-// The second row marks its link as the current page only on that page itself; a genus page marks
-// Genera as the place it belongs, not as the page being shown.
+// A second-row link is marked as the current page only on that page; a genus page marks Genera
+// as its section instead.
 const currentPath = Astro.url.pathname;
 ---
 

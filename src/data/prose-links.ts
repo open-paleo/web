@@ -113,7 +113,7 @@ function createTaxonPaths(dataset: OpenPaleoDataset, siteData: SiteData): Map<st
     const names = new Map<string, string>();
     const abbreviations = new Map<string, string>();
 
-    // Valid genera first, so a synonym never takes over a valid genus's name.
+    // Add valid genera first, so a synonym can't replace a valid genus's path.
     for (const genus of siteData.genera)
     {
         names.set(genus.name, "genus/" + genus.slug + "/");

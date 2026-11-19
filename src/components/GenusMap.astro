@@ -34,8 +34,8 @@ const view = JSON.stringify(createGenusMapView(map));
 
 {/* The map is drawn by src/scripts/place-map.ts, which loads MapLibre only when the map scrolls
    into view, so it stays hidden until the script runs. The list of places below it gives the
-   same information in words, works without JavaScript, and serves as the map's legend: each place's mark
-   matches its mark on the map. */}
+   same information as text, works without JavaScript, and serves as the map's legend: each place's
+   mark matches its mark on the map. */}
 <div class="genus-map">
     {/* Switches the map between today and each stage the species lived in; shown by the script. */}
     {paleoViews.length > 0 && (

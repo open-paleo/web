@@ -2,7 +2,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import * as url from "node:url";
 
-import { datasetFileName, findDatasetDirectory, findGlossaryDirectory, glossaryFileName } from "../src/data/locate-dataset.ts";
+import { datasetFileName, findDatasetDirectory, findGlossaryDirectory, findMediaDirectory, glossaryFileName, mediaFileName } from "../src/data/locate-dataset.ts";
 
 /**
  * The part of the dataset this script reads.
@@ -29,6 +29,7 @@ const rootDirectory = path.join(scriptDirectory, "..");
 const bindingsDirectory = path.join(rootDirectory, "src", "data", "bindings");
 const datasetDirectory = findDatasetDirectory(rootDirectory, process.env.OPEN_PALEO_DATA);
 const glossaryDirectory = findGlossaryDirectory(rootDirectory, process.env.OPEN_PALEO_GLOSSARY);
+const mediaDirectory = findMediaDirectory(rootDirectory, process.env.OPEN_PALEO_MEDIA);
 
 // Copy the generated TypeScript bindings unchanged.
 fs.copyFileSync(
@@ -39,6 +40,10 @@ fs.copyFileSync(
     path.join(glossaryDirectory, "bindings", "glossary.d.ts"),
     path.join(bindingsDirectory, "glossary.d.ts"),
 );
+fs.copyFileSync(
+    path.join(mediaDirectory, "bindings", "media.d.ts"),
+    path.join(bindingsDirectory, "media.d.ts"),
+);
 
 // Record the schema version the bindings describe, so the build can refuse an incompatible
 // dataset.
@@ -46,6 +51,8 @@ const dataset = JSON.parse(fs.readFileSync(path.join(datasetDirectory, datasetFi
 const schemaVersion = dataset._metadata.schema_version;
 const glossary = JSON.parse(fs.readFileSync(path.join(glossaryDirectory, glossaryFileName), "utf8")) as DatasetMetadataOnly;
 const glossaryVersion = glossary._metadata.schema_version;
+const media = JSON.parse(fs.readFileSync(path.join(mediaDirectory, mediaFileName), "utf8")) as DatasetMetadataOnly;
+const mediaVersion = media._metadata.schema_version;
 
 fs.writeFileSync(
     path.join(bindingsDirectory, "schema-version.ts"),
@@ -53,7 +60,9 @@ fs.writeFileSync(
     "/**\n * Output schema version that open-paleo.d.ts describes.\n */\n" +
     "export const bindingsSchemaVersion = \"" + schemaVersion + "\";\n\n" +
     "/**\n * Glossary schema version that glossary.d.ts describes.\n */\n" +
-    "export const glossarySchemaVersion = \"" + glossaryVersion + "\";\n",
+    "export const glossarySchemaVersion = \"" + glossaryVersion + "\";\n\n" +
+    "/**\n * Media schema version that media.d.ts describes.\n */\n" +
+    "export const mediaSchemaVersion = \"" + mediaVersion + "\";\n",
 );
 
-console.log("Copied bindings for schema " + schemaVersion + " from " + datasetDirectory + ", and glossary schema " + glossaryVersion + " from " + glossaryDirectory);
+console.log("Copied bindings for schema " + schemaVersion + " from " + datasetDirectory + ", glossary schema " + glossaryVersion + " from " + glossaryDirectory + ", and media schema " + mediaVersion + " from " + mediaDirectory);

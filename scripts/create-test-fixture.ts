@@ -3,7 +3,7 @@ import * as path from "node:path";
 import * as url from "node:url";
 
 import type { Clade, Genus, OpenPaleoDataset, StratigraphicUnit, TreeNode } from "../src/data/dataset.ts";
-import { datasetFileName, findDatasetDirectory, findGlossaryDirectory, glossaryFileName } from "../src/data/locate-dataset.ts";
+import { datasetFileName, findDatasetDirectory, findGlossaryDirectory, findMediaDirectory, glossaryFileName, mediaFileName } from "../src/data/locate-dataset.ts";
 
 // Builds test/fixtures/open-paleo.json: a small dataset cut from the real one, so tests run
 // against real records. It keeps a few named genera plus the first genus (alphabetically) that
@@ -257,3 +257,12 @@ const glossaryOutputPath = path.join(rootDirectory, "test", "fixtures", glossary
 
 fs.copyFileSync(path.join(glossaryDirectory, glossaryFileName), glossaryOutputPath);
 console.log("Copied the glossary to " + glossaryOutputPath);
+
+// The media are copied whole too: the index and its outlines.
+const mediaDirectory = findMediaDirectory(rootDirectory, process.env.OPEN_PALEO_MEDIA);
+const fixtureDirectory = path.join(rootDirectory, "test", "fixtures");
+
+fs.copyFileSync(path.join(mediaDirectory, mediaFileName), path.join(fixtureDirectory, mediaFileName));
+fs.rmSync(path.join(fixtureDirectory, "outlines"), { recursive: true, force: true });
+fs.cpSync(path.join(mediaDirectory, "outlines"), path.join(fixtureDirectory, "outlines"), { recursive: true });
+console.log("Copied the media to " + fixtureDirectory);

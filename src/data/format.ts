@@ -487,7 +487,7 @@ function joinTimeUnits(names: Array<string>): string
 }
 
 /**
- * Format a species' geologic age in words: "Maastrichtian, Late Cretaceous".
+ * Format a species' geologic age: "Maastrichtian, Late Cretaceous".
  *
  * @param period - The species' period block.
  * @returns The stages and periods, or an empty string when neither is recorded.
@@ -615,7 +615,7 @@ export function formatAgeNumbers(fromMa: number, toMa: number): string
 }
 
 /**
- * Count genera in words: "1 genus", "1,428 genera".
+ * Format a genus count: "1 genus", "1,428 genera".
  *
  * @param count - How many genera.
  * @returns The count with the right noun.

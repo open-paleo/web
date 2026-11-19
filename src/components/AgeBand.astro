@@ -28,16 +28,16 @@ const classes = ["age-band", "tooltip-" + details.alignment, { "is-link": detail
 const style = "flex-basis: " + band.widthPercent + "%; background: var(" + band.colorToken + ")";
 const label = band.name + ", " + details.kind.charAt(0).toLowerCase() + details.kind.slice(1) + ", " + details.age + ", " + details.genera;
 
-// A band with a page is a link named in full for screen readers; the rest are hidden from them.
-// The tooltip shows on hover and keyboard focus.
+// A band with a page is a link with a full description for screen readers; other bands are
+// hidden from them. The tooltip appears on hover and keyboard focus.
 ---
 {details.href
     ? <a class:list={classes} style={style} href={details.href} aria-label={label}>{band.widthPercent >= labelledBandPercent && <span class="age-band-label">{band.name}</span>}<span class="age-tooltip" aria-hidden="true"><strong>{band.name}</strong><span>{details.kind}</span><span>{details.age}</span><span>{details.genera}</span></span></a>
     : <span class:list={classes} style={style} aria-hidden="true">{band.widthPercent >= labelledBandPercent && <span class="age-band-label">{band.name}</span>}<span class="age-tooltip" aria-hidden="true"><strong>{band.name}</strong><span>{details.kind}</span><span>{details.age}</span><span>{details.genera}</span></span></span>}
 
 <style>
-    /* Bands don't clip their contents, so the tooltip can rise above the row; the label clips
-       itself, and the row's ends are rounded on its first and last bands. */
+    /* Bands don't clip their contents, so the tooltip can extend above the row. The label clips
+       itself, and the first and last bands round the row's ends. */
     .age-band
     {
         position: relative;
@@ -62,7 +62,7 @@ const label = band.name + ", " + details.kind.charAt(0).toLowerCase() + details.
         border-radius: 0 var(--radius-small) var(--radius-small) 0;
     }
 
-    /* A shade over the band's color, so the hover works over every period and stage color. */
+    /* A translucent shade, so the hover works on every period and stage color. */
     .age-band.is-link:hover::after,
     .age-band.is-link:focus-visible::after
     {
@@ -136,8 +136,8 @@ const label = band.name + ", " + details.kind.charAt(0).toLowerCase() + details.
         box-shadow: inset 1px 0 0 var(--color-surface);
     }
 
-    /* Bands the record's range falls in have bold labels, so the range reads in the text as well
-       as in the tabs. */
+    /* Bands within the record's range have bold labels, so the range shows in the text as well as
+       in the tabs. */
     .age-band.is-in-range
     {
         font-weight: 700;
