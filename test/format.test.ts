@@ -24,7 +24,9 @@ import {
     getIdentifierUrl,
     getSurnames,
     joinNonEmpty,
+    splitPronunciationReadings,
 } from "../src/data/format.ts";
+import { readFixture } from "./fixture.ts";
 
 test("getSurnames reads the reference store's author format", () =>
 {
@@ -241,4 +243,15 @@ test("formatQuotes makes quotation marks and apostrophes typographic, and minute
     assert.equal(formatQuotes("'coyote,' and a 'lizard.'\" Then"), "‘coyote,’ and a ‘lizard.’” Then");
     assert.equal(formatQuotes("as \"S30°03', E28°32'\" at 30° 03'S"), "as “S30°03′, E28°32′” at 30° 03′S");
     assert.equal(formatQuotes("Museo ‘Carmen Funes’"), "Museo ‘Carmen Funes’");
+});
+
+test("a pronunciation splits into its readings", () =>
+{
+    const dataset = readFixture();
+    const agilisaurus = dataset.genera["Agilisaurus"];
+    const apatodon = dataset.genera["Apatodon"];
+
+    assert.deepEqual(splitPronunciationReadings(agilisaurus.species[0].pronunciation?.phonetic ?? ""), ["LOU-dur-BACK-eye", "LAW-dur-BACK-eye"]);
+    assert.deepEqual(splitPronunciationReadings(apatodon.species[0].pronunciation?.phonetic ?? ""), ["MYE-rus"], "shown though the genus has none");
+    assert.deepEqual(splitPronunciationReadings(""), []);
 });

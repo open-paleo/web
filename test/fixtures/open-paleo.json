@@ -1,9 +1,9 @@
 {
   "_metadata": {
     "attribution": "Open Paleo contributors",
-    "built_at": "2026-11-19T23:32:54.316Z",
-    "clade_count": 44,
-    "genus_count": 12,
+    "built_at": "2026-11-20T03:51:30.433Z",
+    "clade_count": 45,
+    "genus_count": 14,
     "license": "CC-BY-4.0",
     "paleogeography": {
       "model": "GOLONKA",
@@ -317,7 +317,8 @@
                               "Nodosauridae": {},
                               "Parankylosauria": {}
                             }
-                          }
+                          },
+                          "Neornithischia": {}
                         }
                       }
                     }
@@ -1880,6 +1881,56 @@
         }
       ]
     },
+    "Neornithischia": {
+      "description": "Neornithischia (\"new ornithischians\") is a clade of ornithischian dinosaurs and the sister group of the armored Thyreophora within the larger clade Genasauria. It brings together a variety of basal, small-bodied early-diverging forms historically lumped together as \"hypsilophodonts\" — including the thescelosaurids — with the more derived Cerapoda, which in turn splits into the bird-footed Ornithopoda and the Marginocephalia, the latter comprising the dome-headed pachycephalosaurs and the horned ceratopsians. Members are set apart by a thicker layer of asymmetrical enamel on the inner face of their lower teeth, which wore unevenly during chewing to develop sharp ridges that let them break down tougher plant food than other dinosaurs. The earliest neornithischians were small, gracile, cursorial bipeds, but the clade went on to encompass some of the most successful herbivore radiations of the Mesozoic, among them the duck-billed, dome-headed, and horned dinosaurs.\n",
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Ornithischia",
+        "Genasauria",
+        "Neornithischia"
+      ],
+      "described": 1985,
+      "authors": "Cooper, M. R.",
+      "erected_in": "cooper1985a",
+      "described_in": "madzia2021a",
+      "diagnostic_features": [
+        "Tab-shaped (subrectangular) obturator process on the ischium",
+        "Articulation between the sacral ribs and the ischiadic peduncle of the ilium",
+        "Cheek-tooth crowns low and triangular with a well-developed primary ridge",
+        "Premaxillary dentition reduced and restricted to the anterior premaxilla"
+      ],
+      "references": [
+        {
+          "id": "cooper1985a",
+          "authors": "Cooper, M. R.",
+          "year": 1985,
+          "title": "A revision of the ornithischian dinosaur Kangnasaurus coetzeei Haughton, with a classification of the Ornithischia",
+          "journal": "Annals of the South African Museum",
+          "volume": "95",
+          "pages": "281-317",
+          "notes": "Erected Neornithischia."
+        },
+        {
+          "id": "madzia2021a",
+          "authors": "Madzia, D.; Arbour, V. M.; Boyd, C. A.; Farke, A. A.; Cruzado-Caballero, P.; Evans, D. C.",
+          "year": 2021,
+          "title": "The phylogenetic nomenclature of ornithischian dinosaurs",
+          "journal": "PeerJ",
+          "volume": "9",
+          "pages": "e12362",
+          "doi": "10.7717/peerj.12362",
+          "notes": "Provides the modern phylogenetic definition of Neornithischia."
+        }
+      ]
+    },
     "Neosauropoda": {
       "description": "Neosauropoda is a clade of sauropod dinosaurs that contains the majority of sauropod genera and is divided into two major subgroups, Diplodocoidea and Macronaria. Its members include familiar long-necked giants such as Apatosaurus, Brachiosaurus, and Diplodocus, as well as some of the largest land animals ever to have lived, among them Argentinosaurus, Patagotitan, and Sauroposeidon. Neosauropods arose in the Early Jurassic, quickly becoming the dominant large herbivores, and persisted until the Cretaceous–Paleogene extinction; diplodocids and brachiosaurids made up much of the group during the Jurassic before being widely replaced by titanosaurs through the Cretaceous. Like all sauropods they shared the basic body plan of great size, long necks, and columnar legs, but they are set apart by a suite of derived features of the skull, teeth, hand, and hindlimb, including the loss of tooth denticles and a hand reduced to two or fewer wrist bones.\n",
       "taxonomy": [
@@ -3365,6 +3416,9 @@
         {
           "name": "Acanthopholis horrida",
           "etymology": "From Latin 'horrida' (originally 'horridus') meaning 'frightening' or 'rough', referring to the animal's armored appearance.",
+          "pronunciation": {
+            "phonetic": "HOR-i-duh"
+          },
           "status": "nomen dubium",
           "type_species": true,
           "period": {
@@ -3615,6 +3669,9 @@
         {
           "name": "Acrocanthosaurus atokensis",
           "etymology": "Named for Atoka County in Oklahoma, where the original specimens were found.",
+          "pronunciation": {
+            "phonetic": "AY-toh-KEN-sis"
+          },
           "status": "valid",
           "type_species": true,
           "period": {
@@ -3867,6 +3924,9 @@
         {
           "name": "Adeopapposaurus mognai",
           "etymology": "Named for the Mogna locality in San Juan, Argentina, where the fossils were found.",
+          "pronunciation": {
+            "phonetic": "MOHG-nah-eye"
+          },
           "status": "valid",
           "type_species": true,
           "period": {
@@ -3984,6 +4044,150 @@
       "authors": "Martínez, R. N.",
       "described": 2009
     },
+    "Agilisaurus": {
+      "genus": "Agilisaurus",
+      "parent": "Neornithischia",
+      "pronunciation": {
+        "phonetic": "AJ-i-li-SAWR-us",
+        "ipa": "/ˌædʒɪlɪˈsɔːrəs/"
+      },
+      "etymology": "From Latin 'agilis' meaning 'agile' and Greek 'sauros' meaning 'lizard', meaning 'agile lizard'.",
+      "description": "Agilisaurus is a genus of ornithischian dinosaur from the Middle Jurassic Period of what is now eastern Asia. The only named species is A. louderbacki, recovered from the Lower Shaximiao Formation of Sichuan, China. It was about 1.2-1.7 m (3.9-5.6 ft) in length, 60 cm (2.0 ft) in hip height, and 40 kg (88 lb) in weight. It has leaf-shaped teeth that were well-adapted to its abrasive, plant-based diet. Most surprisingly, the wavy enamel of the teeth of this genus (and all other ornithopods), presumed to make them more resistant to wear, was previously thought to be exclusive to hadrosaurs. This is also the case for Changchunsaurus from the Cretaceous Period.",
+      "diet": "herbivore",
+      "locomotion": "bipedal",
+      "paleoenvironment": [
+        "fluvial",
+        "lacustrine"
+      ],
+      "diagnostic_features": [
+        "Middle part of parietal strongly contracted",
+        "Nasal long with longitudinal depression at central suture",
+        "Posterior process of premaxilla does not contact the lacrimal",
+        "Palpebral bone well-developed, posterior end abutting lateral surface of postorbital, dividing orbit into upper and lower openings",
+        "Elliptical foramen present on lateral surface of femoral shaft distal to fourth trochanter",
+        "Obturator process of ischium positioned at proximal third of shaft"
+      ],
+      "appearance": {
+        "integument": "scaled",
+        "evidence": "inferred"
+      },
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "57222"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q131319"
+        },
+        {
+          "source": "gbif",
+          "id": "4965754"
+        },
+        {
+          "source": "eol",
+          "id": "52572013"
+        }
+      ],
+      "species": [
+        {
+          "name": "Agilisaurus louderbacki",
+          "etymology": "Named for Dr. George D. Louderback, the American geologist who was the first to recognize dinosaur fossils from the Sichuan Province of China in 1915.",
+          "pronunciation": {
+            "phonetic": "LOU-dur-BACK-eye; LAW-dur-BACK-eye"
+          },
+          "status": "valid",
+          "type_species": true,
+          "period": {
+            "name": [
+              "Middle Jurassic",
+              "Late Jurassic"
+            ],
+            "stage": [
+              "Bajocian",
+              "Bathonian",
+              "Callovian",
+              "Oxfordian"
+            ],
+            "from_ma": 170.9,
+            "to_ma": 154.8
+          },
+          "location": {
+            "country": "CN",
+            "locality": "Dashanpu",
+            "region": "Sichuan",
+            "formation": "Shaximiao",
+            "part": "lower",
+            "region_code": "CN-SC",
+            "part_of": "formation",
+            "paleocoordinates": {
+              "latitude": 32.7721,
+              "longitude": 117.4486,
+              "latitude_present": 30.6141,
+              "longitude_present": 102.7028,
+              "age_ma": 162.85,
+              "model": "GOLONKA",
+              "model_plate_id": 611,
+              "approximate": true
+            }
+          },
+          "size": {
+            "length_m": {
+              "min": 1.2,
+              "max": 1.7
+            },
+            "weight_kg": {
+              "min": 40,
+              "max": 40
+            },
+            "hip_height_m": {
+              "min": 0.6,
+              "max": 0.6
+            }
+          },
+          "type_specimen": {
+            "specimen_id": [
+              "ZDM 6011"
+            ],
+            "specimen_type": "holotype",
+            "institution": "Zigong Dinosaur Museum",
+            "material": "Nearly complete skeleton lacking only portions of the left forelimb and left hindlimb",
+            "completeness": "complete"
+          },
+          "erected_in": "peng1992a",
+          "authors": "Peng, G.",
+          "described": 1992
+        }
+      ],
+      "references": [
+        {
+          "id": "peng1992a",
+          "authors": "Peng, G.",
+          "year": 1992,
+          "title": "Jurassic ornithopod Agilisaurus louderbacki (Ornithopoda: Fabrosauridae) from Zigong, Sichuan, China",
+          "journal": "Vertebrata PalAsiatica",
+          "volume": "30",
+          "issue": "1",
+          "pages": "39-53"
+        }
+      ],
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria",
+        "Ornithischia",
+        "Genasauria",
+        "Neornithischia"
+      ],
+      "authors": "Peng, G.",
+      "described": 1992
+    },
     "Allosaurus": {
       "genus": "Allosaurus",
       "parent": "Allosauridae",
@@ -4074,6 +4278,9 @@
         {
           "name": "Allosaurus fragilis",
           "etymology": "From Latin 'fragilis' meaning 'fragile', referring to the lightweight construction features of the vertebrae that Othniel Charles Marsh noted when describing the species in 1877.",
+          "pronunciation": {
+            "phonetic": "fruh-JIL-is"
+          },
           "status": "valid",
           "type_species": true,
           "period": {
@@ -4139,6 +4346,9 @@
         {
           "name": "Allosaurus jimmadseni",
           "etymology": "Honors James H. Madsen Jr., for work excavating, preparing, and curating Cleveland-Lloyd Allosaurus material.",
+          "pronunciation": {
+            "phonetic": "jim-MAD-sen-eye"
+          },
           "status": "valid",
           "type_species": false,
           "period": {
@@ -4546,6 +4756,9 @@
         {
           "name": "Antarctopelta oliveroi",
           "etymology": "Named for Eduardo Olivero, the Argentine geologist who discovered the holotype in 1986 and has worked in Antarctica for decades.",
+          "pronunciation": {
+            "phonetic": "oh-li-VEH-roh-eye"
+          },
           "status": "valid",
           "type_species": true,
           "period": {
@@ -4669,6 +4882,135 @@
       "authors": "Salgado, L.; Gasparini, Z.",
       "described": 2006
     },
+    "Apatodon": {
+      "genus": "Apatodon",
+      "parent": "Dinosauria",
+      "placement": "incertae sedis",
+      "etymology": "From Greek 'apate' ('deceit') and 'odon' ('tooth'), for the original misidentification of the specimen as the jaw of a mammal.",
+      "description": "Apatodon is a dubious genus of dinosaur that may have been a theropod. The type, and only species, A. mirus, was named in 1877 by Othniel Charles Marsh. It was found in the Late Jurassic-aged Morrison Formation of Colorado.",
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "52954"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q3766429"
+        },
+        {
+          "source": "gbif",
+          "id": "4822777"
+        }
+      ],
+      "species": [
+        {
+          "name": "Apatodon mirus",
+          "etymology": "From Latin 'mirus' ('wonderful', 'astonishing'), for the unexpected character of the specimen as Marsh interpreted it.",
+          "pronunciation": {
+            "phonetic": "MYE-rus"
+          },
+          "status": "nomen dubium",
+          "type_species": true,
+          "period": {
+            "name": [
+              "Early Jurassic",
+              "Middle Jurassic",
+              "Late Jurassic",
+              "Early Cretaceous"
+            ]
+          },
+          "location": {
+            "country": "US",
+            "locality": "Rocky Mountain region",
+            "notes": "Where the type came from was never recorded. Marsh (1877) gives only the Rocky Mountain region and a horizon of Lower Cretaceous or Jurassic, and Chure (2000) reports the holotype lost and repeats the same phrase. The Morrison Formation and a Colorado attribution appear in later compilations without stated support.",
+            "paleocoordinates": {
+              "latitude": 34.3327,
+              "longitude": -48.5645,
+              "latitude_present": 45.6881,
+              "longitude_present": -112.4962,
+              "age_ma": 150.95,
+              "model": "GOLONKA",
+              "model_plate_id": 127,
+              "approximate": true
+            }
+          },
+          "type_specimen": {
+            "specimen_type": "holotype",
+            "status": "lost",
+            "material": "Weathered fragment of a dinosaurian vertebra, from the neural spine, originally described as a portion of a lower jaw with the last molar in place.",
+            "completeness": "fragmentary"
+          },
+          "erected_in": "marsh1877d",
+          "authors": "Marsh, O. C.",
+          "described": 1877
+        }
+      ],
+      "references": [
+        {
+          "id": "marsh1877d",
+          "authors": "Marsh, O. C.",
+          "year": 1877,
+          "title": "Notice of some new vertebrate fossils",
+          "journal": "American Journal of Science",
+          "publisher": "American Journal of Science (AJS)",
+          "volume": "s3-14",
+          "issue": "81",
+          "pages": "249-256",
+          "doi": "10.2475/ajs.s3-14.81.249",
+          "notes": "Erects the genus and species on a fragment from the Rocky Mountain region, interpreting it as a mammalian lower jaw and giving the horizon as Lower Cretaceous or Jurassic."
+        },
+        {
+          "id": "chure2000a",
+          "authors": "Chure, D. J.",
+          "year": 2000,
+          "title": "A new species of Allosaurus from the Morrison Formation of Dinosaur National Monument (UT-CO) and a revision of the theropod family Allosauridae",
+          "thesis": "doctoral",
+          "school": "Columbia University",
+          "notes": "Rejects the referral to Allosaurus as unargued, accepts the fragment as a dinosaur vertebra, and treats the species as a nomen dubium at Dinosauria incertae sedis."
+        },
+        {
+          "id": "jones2026c",
+          "authors": "Jones, B.",
+          "year": 2026,
+          "title": "The Princeton Encyclopedia of Dinosaurs: Theropods",
+          "publisher": "Princeton University Press",
+          "isbn": "978-0-691-25021-2",
+          "notes": "Lists the genus among dubious theropods, records the material as a vertebral shard now lost, and gives the Morrison Formation occurrence."
+        },
+        {
+          "id": "molina-pérez2019a",
+          "authors": "Molina-Pérez, R.; Larramendi, A.",
+          "year": 2019,
+          "title": "Dinosaur Facts and Figures: The Theropods and Other Dinosauriformes",
+          "publisher": "Princeton University Press",
+          "isbn": "978-0-691-18031-1",
+          "notes": "Notes that the specimen was lost and never illustrated, so the referral to Allosaurus cannot be confirmed."
+        },
+        {
+          "id": "olshevsky1991a",
+          "authors": "Olshevsky, G.",
+          "year": 1991,
+          "title": "A revision of the parainfraclass Archosauria Cope, 1869, excluding the advanced Crocodylia",
+          "journal": "Mesozoic Meanderings",
+          "volume": "2",
+          "pages": "1-196",
+          "notes": "Source of the referral to Allosaurus, listed without supporting argument."
+        }
+      ],
+      "taxonomy": [
+        "Life",
+        "Animalia",
+        "Chordata",
+        "Vertebrata",
+        "Sarcopterygii",
+        "Tetrapoda",
+        "Reptilia",
+        "Archosauria",
+        "Dinosauria"
+      ],
+      "authors": "Marsh, O. C.",
+      "described": 1877
+    },
     "Australotitan": {
       "genus": "Australotitan",
       "parent": "Diamantinasauria",
@@ -4715,6 +5057,9 @@
         {
           "name": "Australotitan cooperensis",
           "etymology": "Named for the Cooper Creek system near the initial location of the holotype, and the nickname 'Cooper' given to the holotype when it was discovered.",
+          "pronunciation": {
+            "phonetic": "KOO-per-EN-sis"
+          },
           "status": "valid",
           "type_species": true,
           "period": {
@@ -4921,6 +5266,9 @@
         {
           "name": "Daspletosaurus torosus",
           "etymology": "From Latin 'torosus' meaning 'muscular' or 'brawny', a reference to the animal's robust build.",
+          "pronunciation": {
+            "phonetic": "taw-ROH-sus"
+          },
           "status": "valid",
           "type_species": true,
           "period": {
@@ -4985,6 +5333,9 @@
         {
           "name": "Daspletosaurus horneri",
           "etymology": "Latinized form of 'Horner', honoring John R. (Jack) Horner for a Two Medicine Formation field program and mentorship.",
+          "pronunciation": {
+            "phonetic": "HOR-ner-eye"
+          },
           "status": "valid",
           "type_species": false,
           "period": {
@@ -5038,6 +5389,9 @@
         {
           "name": "Daspletosaurus wilsoni",
           "etymology": "Latinization of 'Wilson', after John Wilson, discoverer of the holotype.",
+          "pronunciation": {
+            "phonetic": "WIL-sun-eye"
+          },
           "status": "valid",
           "type_species": false,
           "period": {
@@ -5333,6 +5687,9 @@
         {
           "name": "Nanotyrannus lancensis",
           "etymology": "From Latin lancensis (\"of the Lance\"), referring to the Lance Formation — Gilmore's (1946) original (and mistaken) attribution of the holotype's geological context; the actual horizon is the Hell Creek Formation.",
+          "pronunciation": {
+            "phonetic": "lan-SEN-sis"
+          },
           "status": "disputed",
           "type_species": true,
           "period": {
@@ -5391,6 +5748,9 @@
         {
           "name": "Nanotyrannus lethaeus",
           "etymology": "From Latin Lethaeus, the adjective of Lethe (the mythological river of forgetfulness flowing through the Greco-Roman underworld); the name references both the Hell Creek Formation and the river's mythological role.",
+          "pronunciation": {
+            "phonetic": "lee-THEE-us"
+          },
           "status": "valid",
           "type_species": false,
           "period": {
@@ -5676,6 +6036,9 @@
         {
           "name": "Tarbosaurus bataar",
           "etymology": "From Mongolian 'baatar' meaning 'hero', though the original spelling was a misspelling of the word.",
+          "pronunciation": {
+            "phonetic": "buh-TAHR"
+          },
           "status": "valid",
           "type_species": true,
           "period": {
@@ -5961,6 +6324,9 @@
         {
           "name": "Tyrannosaurus rex",
           "etymology": "From Latin rex, \"king\", chosen by Osborn to evoke the animal's standing as the largest carnivorous land vertebrate then known.",
+          "pronunciation": {
+            "phonetic": "RECKS"
+          },
           "status": "valid",
           "type_species": true,
           "period": {
@@ -6618,6 +6984,100 @@
           "issue": "3, Supplement",
           "pages": "44A-45A",
           "notes": "Reports a new locality in the Sierra de Mogna, 60 km north of San Juan, with two partial skeletons of \"a new prosauropod of the plateosaurid type\", from the formation, \"which has been assigned a Tertiary ages [sic] but lies above the Patquia Formation of Late Permian age\" (p. 44A). Its title gives an Upper Triassic to Lower Jurassic age, and the text leans to the Late Triassic: \"Age determination is based on the known stratigraphic range of plateosaurids; however, the authors are inclined to a Late Triassic age assignment based on regional geologic considerations\" (p. 45A). Martínez and Colombi (2011) report that as the older view and assign the Lower Jurassic.\n"
+        }
+      ]
+    },
+    "Shaximiao": {
+      "rank": "formation",
+      "variants": [
+        "Dashanpu"
+      ],
+      "period": {
+        "name": [
+          "Middle Jurassic",
+          "Late Jurassic"
+        ],
+        "stage": [
+          "Bajocian",
+          "Bathonian",
+          "Callovian",
+          "Oxfordian",
+          "Kimmeridgian",
+          "Tithonian"
+        ],
+        "from_ma": 170.9,
+        "to_ma": 143.1
+      },
+      "dispute": {
+        "summary": "The age is in flux and the lower and upper parts are dated separately. Mannion and colleagues (2019) record that \"Wang et al. (2018) recently dated the Shaximiao (=Dashanpu) Formation as Oxfordian, rather than the late Middle Jurassic (Bathonian-Callovian) age that has been the consensus for some time\", and say outright that \"the ages of several Jurassic stratigraphic units from China are in a state of flux\". Sánchez-Fenollosa and colleagues (2025) split it, giving the lower Shaximiao as \"Bathonian-early Oxfordian\" and the upper as \"?Kimmeridgian-?Tithonian\". Xiashaximiao and Shangshaximiao are the lower and upper parts rather than spellings: xia and shang are Chinese for lower and upper.\n"
+      },
+      "references": [
+        {
+          "id": "mannion2019a",
+          "authors": "Mannion, P. D.; Upchurch, P.; Schwarz, D.; Wings, O.",
+          "year": 2019,
+          "title": "Taxonomic affinities of the putative titanosaurs from the Late Jurassic Tendaguru Formation of Tanzania: phylogenetic and biogeographic implications for eusauropod dinosaur evolution",
+          "journal": "Zoological Journal of the Linnean Society",
+          "publisher": "Oxford University Press (OUP)",
+          "volume": "185",
+          "issue": "3",
+          "pages": "784-909",
+          "doi": "10.1093/zoolinnean/zly068",
+          "notes": "Records Wang and colleagues' (2018) Oxfordian redating and the consensus it displaces, \"the late Middle Jurassic (Bathonian-Callovian) age that has been the consensus for some time\", and gives Dashanpu as an equivalent name.\n"
+        },
+        {
+          "id": "sánchez-fenollosa2025a",
+          "authors": "Sánchez-Fenollosa, S.; Cobos, A.",
+          "year": 2025,
+          "title": "New insights into the phylogeny and skull evolution of stegosaurian dinosaurs: an extraordinary cranium from the European Late Jurassic (Dinosauria: Stegosauria)",
+          "journal": "Vertebrate Zoology",
+          "volume": "75",
+          "pages": "165-189",
+          "doi": "10.3897/vz.75.e146618",
+          "notes": "Dates the two parts separately, lower \"Bathonian-early Oxfordian\" and upper \"?Kimmeridgian-?Tithonian\", both hedged in the source.\n"
+        },
+        {
+          "id": "sadleir2008a",
+          "authors": "Sadleir, R.; Barrett, P. M.; Powell, H. P.",
+          "year": 2008,
+          "title": "The anatomy and systematics of Eustreptospondylus oxoniensis, a theropod dinosaur from the Middle Jurassic of Oxfordshire, England",
+          "journal": "Monographs of the Palaeontographical Society",
+          "publisher": "Palaeontographical Society",
+          "volume": "160",
+          "issue": "627",
+          "pages": "1-82",
+          "notes": "Uses \"Lower Shaximiao Formation (Bajocian or Bathonian-Callovian)\", the oldest bound among the sources cited.\n"
+        },
+        {
+          "id": "li2011a",
+          "authors": "Li, K.; Liu, J.; Yang, C.; Hu, F.",
+          "year": 2011,
+          "title": "Dinosaur assemblages from the Middle Jurassic Shaximiao Formation and Chuanjie Formation in the Sichuan-Yunnan Basin, China",
+          "notes": "Argues that \"the entire Shaximiao Formation is of Bajocian-Callovian age (middle-late part of Middle Jurassic)\", putting the upper member \"of Middle Jurassic age (Bathonian-Callovian)\" in the abstract but \"namely the Bajocian-Bathonian\" in the discussion. It records the reading it argues against: the invertebrates placed the formation in the Middle Jurassic, \"although vertebrate fossils tended to indicate a Late Jurassic age for the upper member of the Shaximiao Formation\".\n"
+        },
+        {
+          "id": "buffetaut1999a",
+          "authors": "Buffetaut, E.; Suteethorn, V.",
+          "year": 1999,
+          "title": "The dinosaur fauna of the Sao Khua Formation of Thailand and the beginning of the Cretaceous radiation of dinosaurs in Asia",
+          "journal": "Palaeogeography, Palaeoclimatology, Palaeoecology",
+          "volume": "150",
+          "issue": "1-2",
+          "pages": "13-23",
+          "doi": "10.1016/S0031-0182(99)00004-8",
+          "notes": "Treats the lower and upper parts as separate formations of different ages, contrasting the Sao Khua sauropods with \"the increasingly well known sauropods from the Middle Jurassic Xiashaximiao Formation and the Late Jurassic Shanshaximiao Formation of China\".\n"
+        },
+        {
+          "id": "wang2018a",
+          "authors": "Wang, J.; Ye, Y.; Pei, R.; Tian, Y.; Feng, C.; Zheng, D.; Chang, S. C.",
+          "year": 2018,
+          "title": "Age of Jurassic basal sauropods in Sichuan, China: A reappraisal of basal sauropod evolution",
+          "journal": "GSA Bulletin",
+          "volume": "130",
+          "issue": "9-10",
+          "pages": "1493-1500",
+          "doi": "10.1130/b31910.1",
+          "notes": "Cited by Mannion and colleagues (2019) for redating the Shaximiao Formation as Oxfordian.\n"
         }
       ]
     },

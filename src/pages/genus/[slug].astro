@@ -14,6 +14,7 @@ import PageSection from "../../components/PageSection.astro";
 import Prose from "../../components/Prose.astro";
 import RecordMain from "../../components/RecordMain.astro";
 import ReferenceList from "../../components/ReferenceList.astro";
+import PronunciationReadings from "../../components/PronunciationReadings.astro";
 import SpeciesSection from "../../components/SpeciesSection.astro";
 import StatusBadge from "../../components/StatusBadge.astro";
 import SynonymTable from "../../components/SynonymTable.astro";
@@ -109,8 +110,8 @@ const citation = createRecordCitation("Genus", genus.genus, entry.slug, citation
             <h1 class="genus-name taxon" data-pagefind-weight="10" style={"--name-length: " + genus.genus.length}>{genus.genus}</h1>
             <p class="genus-meta">
                 {authority && <a class="authority" href={authorityAnchor}>{authority}</a>}
-                {pronunciation?.phonetic && <span>{pronunciation.phonetic}</span>}
-                {pronunciation?.ipa && <span>{pronunciation.ipa}</span>}
+                {pronunciation?.phonetic && <PronunciationReadings text={pronunciation.phonetic} />}
+                {pronunciation?.ipa && <PronunciationReadings text={pronunciation.ipa} />}
                 <StatusBadge status={typeSpecies.status} linkToGlossary />
             </p>
             {genus.etymology && <p class="etymology"><Prose text={genus.etymology.trim()} /></p>}

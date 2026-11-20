@@ -1,0 +1,25 @@
+---
+import { splitPronunciationReadings } from "../data/format.ts";
+
+/**
+ * Properties of a name's pronunciation, in one of its notations.
+ */
+type Props = {
+    /**
+     * The pronunciation, as the dataset gives it: readings separated by "; ".
+     */
+    text: string;
+};
+
+const readings = splitPronunciationReadings(Astro.props.text);
+
+// Keep the markup on one line: whitespace around it would appear in the text.
+---
+<span class="pronunciation">{readings.map((reading, index) => <Fragment>{index > 0 && <i class="pronunciation-or">or</i>}{reading}</Fragment>)}</span>
+
+<style>
+    .pronunciation-or
+    {
+        margin: 0 0.5em;
+    }
+</style>

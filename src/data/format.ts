@@ -809,3 +809,24 @@ export function formatQuotes(text: string): string
 
     return result;
 }
+
+/**
+ * Split a pronunciation into its readings, which the dataset separates with "; ".
+ *
+ * @param text - The pronunciation.
+ * @returns The readings; none for an empty pronunciation.
+ */
+export function splitPronunciationReadings(text: string): Array<string>
+{
+    const readings = new Array<string>();
+
+    for (const reading of text.split(";"))
+    {
+        if (reading.trim())
+        {
+            readings.push(reading.trim());
+        }
+    }
+
+    return readings;
+}

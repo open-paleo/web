@@ -128,6 +128,49 @@ function hasReferenceKeyMatching(genus: Genus, pattern: RegExp): boolean
 }
 
 /**
+ * Report whether a genus has a species whose pronunciation gives two readings.
+ *
+ * @param genus - The genus record.
+ * @returns True if one does.
+ */
+function hasSpeciesWithTwoReadings(genus: Genus): boolean
+{
+    for (const species of genus.species)
+    {
+        if (species.pronunciation?.phonetic?.includes("; "))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
+ * Report whether a genus has no pronunciation of its own but one of its species does.
+ *
+ * @param genus - The genus record.
+ * @returns True if so.
+ */
+function hasPronouncedSpeciesOnly(genus: Genus): boolean
+{
+    if (genus.pronunciation?.phonetic)
+    {
+        return false;
+    }
+
+    for (const species of genus.species)
+    {
+        if (species.pronunciation?.phonetic)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
  * Find the first genus, alphabetically, that is not yet chosen and passes a test.
  *
  * @param chosen - Genera already in the fixture.
@@ -179,6 +222,8 @@ chosen.add(findFirstGenus(chosen, (genus) => hasEpochWithoutStage(genus)));
 chosen.add(findFirstGenus(chosen, (genus) => hasTypeSpeciesLocation(genus, "coordinates")));
 chosen.add(findFirstGenus(chosen, (genus) => hasTypeSpeciesLocation(genus, "country")));
 chosen.add(findFirstGenus(chosen, (genus) => hasNicknamedTypeSpecimen(genus)));
+chosen.add(findFirstGenus(chosen, (genus) => hasSpeciesWithTwoReadings(genus)));
+chosen.add(findFirstGenus(chosen, (genus) => hasPronouncedSpeciesOnly(genus)));
 
 const genera: Record<string, Genus> = {};
 const keptClades = new Set<string>();

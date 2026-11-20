@@ -8,6 +8,9 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ### Added
 
+- Species boxes on genus pages give the epithet's pronunciation, from the dataset's new species
+  pronunciations, beside the authority as the genus header does. Where a name has two readings,
+  they are shown with "or" between them
 - Clade pages show an outline beside the name, as genus pages do: the clade's own, or else its
   type genus's. A clade with neither shows none
 - The outline tracer, a new tool at `tools/outline-tracer/`: open a skeletal reconstruction, and
