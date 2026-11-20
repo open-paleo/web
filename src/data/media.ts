@@ -63,6 +63,21 @@ const licenses: Record<string, LicenseInfo> = {
     "CC-BY-SA-4.0": { name: "CC BY-SA 4.0", url: "https://creativecommons.org/licenses/by-sa/4.0/" },
 };
 
+/**
+ * A license an image may carry, for a form's choices.
+ */
+export type LicenseOption = {
+    /**
+     * The license's SPDX id: "CC-BY-4.0".
+     */
+    id: string;
+
+    /**
+     * Its short name: "CC BY 4.0".
+     */
+    name: string;
+};
+
 // The longest chain of parent clades to follow; a longer one means the tree has a loop.
 const maximumDepth = 60;
 
@@ -188,6 +203,23 @@ export function findCladeOutline(media: MediaIndex, clade: CladeEntry, siteData:
 export function getLicenseInfo(license: string): LicenseInfo
 {
     return licenses[license] ?? { name: license, url: "" };
+}
+
+/**
+ * Get the licenses an image may carry, in the order the media repository gives them.
+ *
+ * @returns The licenses.
+ */
+export function getLicenseOptions(): Array<LicenseOption>
+{
+    const options = new Array<LicenseOption>();
+
+    for (const [id, license] of Object.entries(licenses))
+    {
+        options.push({ id, name: license.name });
+    }
+
+    return options;
 }
 
 /**

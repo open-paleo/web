@@ -1,0 +1,574 @@
+---
+import BetaBadge from "../../../components/BetaBadge.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getLicenseOptions } from "../../../data/media.ts";
+
+const sourceUrl = "https://github.com/open-paleo/tools/tree/main/outline-tracer";
+const mediaUrl = "https://github.com/open-paleo/media";
+const guideUrl = mediaUrl + "/blob/main/CONTRIBUTING.md#tracing-a-skeletal-reconstruction";
+const licenseOptions = getLicenseOptions();
+---
+
+<BaseLayout title="Outline tracer" description="Trace a skeletal reconstruction into the outline a genus page shows, and write its record for Open Paleo's media, in your browser." navigationItem="tools">
+    <div class="tool-page">
+        <header class="tool-header">
+            <h1><span>Outline tracer</span> <BetaBadge /></h1>
+            <p class="tool-summary">
+                Traces a skeletal reconstruction into the outline a genus or clade page shows beside its name. Open
+                a figure; the tracer keeps the animal, drops names, scale bars and ground lines, fills the body and
+                traces its edge. Check the outline over the figure, adjust the settings, and copy the record for
+                <a href={mediaUrl}>open-paleo/media</a>.
+            </p>
+            <ul class="tool-notes">
+                <li>It runs entirely in your browser: the figure is never uploaded.</li>
+                <li>Trace only figures under a license the media repository accepts, and credit the artist as the figure's source does: see <a href={guideUrl}>Tracing a skeletal reconstruction</a>.</li>
+                <li>This is a preview. The outline that is committed comes from the record, by <code>npm run trace</code> in the media repository; a JPEG figure can come out a pixel different there.</li>
+            </ul>
+        </header>
+
+        <noscript>
+            <p class="tool-unavailable">The outline tracer needs JavaScript. Without it, write the record by hand and run <code>npm run trace</code> in <a href={mediaUrl}>open-paleo/media</a>.</p>
+        </noscript>
+
+        <div class="tracer" id="outline-tracer" hidden>
+            <div class="tracer-open">
+                <input class="visually-hidden" type="file" id="tracer-file" accept="image/png,image/jpeg,image/webp,image/gif" />
+                <label class="tracer-button" for="tracer-file">Open a figure</label>
+                <p class="tracer-file-name" id="tracer-file-name">Or drop one on this page.</p>
+            </div>
+
+            <fieldset class="tracer-panel" id="tracer-settings" disabled>
+                <legend>Settings</legend>
+                <div class="setting">
+                    <label for="tracer-threshold">Threshold</label>
+                    <div class="setting-control">
+                        <input type="range" id="tracer-threshold" min="1" max="254" value="180" aria-describedby="tracer-threshold-help" />
+                        <input type="number" id="tracer-threshold-value" min="1" max="254" value="180" aria-label="Threshold" aria-describedby="tracer-threshold-help" />
+                    </div>
+                    <p class="setting-help" id="tracer-threshold-help">
+                        How dark a pixel must be to count as part of the drawing, from 0 (black) to 255 (white). Lower it if a
+                        gray background is traced; raise it if thin lines break up.
+                    </p>
+                </div>
+                <div class="setting">
+                    <p class="setting-label">Keep-open points</p>
+                    <p class="setting-help">
+                        Click the figure inside a space that must stay open, such as the space under the body that overlapping
+                        legs close off. Click a point to remove it.
+                    </p>
+                    <ul class="point-list" id="tracer-points"></ul>
+                    <div class="point-form">
+                        <label for="tracer-point-x">x</label>
+                        <input type="number" id="tracer-point-x" min="0" step="1" />
+                        <label for="tracer-point-y">y</label>
+                        <input type="number" id="tracer-point-y" min="0" step="1" />
+                        <button class="tracer-button" type="button" id="tracer-point-add">Add point</button>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="tracer-run">
+                <button class="tracer-button tracer-trace" type="button" id="tracer-trace" disabled>Trace</button>
+                <p class="tracer-status" id="tracer-status" role="status"></p>
+            </div>
+
+            <div class="tracer-views">
+                <figure class="tracer-view">
+                    <figcaption>
+                        <span>Figure</span>
+                        <label class="view-option"><input type="checkbox" id="tracer-show-outline" checked /> Show overlay</label>
+                    </figcaption>
+                    <div class="figure-frame" id="tracer-figure">
+                        <div class="figure-canvas">
+                            <img id="tracer-image" alt="The figure being traced" hidden />
+                            <div class="figure-overlay" id="tracer-overlay" aria-hidden="true"></div>
+                            <div class="figure-markers" id="tracer-markers"></div>
+                        </div>
+                    </div>
+                </figure>
+                <figure class="tracer-view">
+                    <figcaption>Outline</figcaption>
+                    <div class="outline-frame">
+                        <div class="outline-large" id="tracer-outline" role="img" aria-label="The traced outline"></div>
+                        <div class="outline-size">
+                            <p>Size as shown on website</p>
+                            <div class="outline-small" id="tracer-outline-small" aria-hidden="true"></div>
+                        </div>
+                    </div>
+                </figure>
+            </div>
+
+            <fieldset class="tracer-panel tracer-record" id="tracer-record" disabled>
+                <legend>Record</legend>
+                <p class="setting-help">Fill these in from the figure's source page, such as its Wikimedia Commons file page.</p>
+                <div class="record-fields">
+                    <label for="record-taxon">Genus or clade</label>
+                    <input type="text" id="record-taxon" placeholder="Protoceratops" autocomplete="off" />
+                    <label for="record-depicts">Taxon drawn</label>
+                    <input type="text" id="record-depicts" placeholder="Protoceratops andrewsi" autocomplete="off" />
+                    <label for="record-creator">Artist</label>
+                    <input type="text" id="record-creator" autocomplete="off" />
+                    <label for="record-source">Source page</label>
+                    <input type="url" id="record-source" placeholder="https://commons.wikimedia.org/wiki/File:…" autocomplete="off" />
+                    <label for="record-image">Image file</label>
+                    <input type="url" id="record-image" placeholder="https://upload.wikimedia.org/…" autocomplete="off" />
+                    <label for="record-license">License</label>
+                    <select id="record-license">
+                        {licenseOptions.map((option) => <option value={option.id}>{option.name}</option>)}
+                    </select>
+                </div>
+                <p class="setting-help" id="tracer-record-path"></p>
+                <pre class="record-text" id="tracer-record-text" tabindex="0" role="region" aria-label="The record"><code></code></pre>
+                <div class="record-actions">
+                    <button class="tracer-button" type="button" id="tracer-copy">Copy record</button>
+                    <span class="record-copied" id="tracer-copy-status" role="status"></span>
+                </div>
+            </fieldset>
+        </div>
+
+        <p class="tool-source">
+            The outline tracer is open source, in <a href={sourceUrl}>open-paleo/tools</a>. It includes
+            <a href="https://potrace.sourceforge.net">potrace</a>, so it is licensed under the GNU General Public License,
+            version 2 or later.
+        </p>
+    </div>
+</BaseLayout>
+
+<script>
+    import "../../../scripts/outline-tracer.ts";
+</script>
+
+<style>
+    .tool-page
+    {
+        display: grid;
+        gap: var(--space-5);
+    }
+
+    .tool-header
+    {
+        display: grid;
+        gap: var(--space-3);
+    }
+
+    h1
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-2) var(--space-4);
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .tool-summary,
+    .tool-notes,
+    .tool-source
+    {
+        max-width: var(--measure);
+    }
+
+    .tool-notes
+    {
+        display: grid;
+        gap: var(--space-1);
+        margin: 0;
+        padding-left: var(--space-5);
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
+    }
+
+    .tool-source,
+    .tool-unavailable
+    {
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
+    }
+
+    .tracer
+    {
+        display: grid;
+        gap: var(--space-5);
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
+    }
+
+    .tracer[hidden]
+    {
+        display: none;
+    }
+
+    .tracer-open
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-3) var(--space-4);
+    }
+
+    .tracer-file-name
+    {
+        color: var(--color-muted);
+        overflow-wrap: anywhere;
+    }
+
+    .tracer-button
+    {
+        display: inline-block;
+        padding: var(--space-1) var(--space-4);
+        color: var(--color-accent);
+        background: var(--color-surface);
+        border: 1px solid var(--color-accent);
+        border-radius: var(--radius);
+        cursor: pointer;
+    }
+
+    /* The file input is visually hidden; its label is the button, and shows its focus. */
+    #tracer-file:focus-visible + .tracer-button
+    {
+        outline: 2px solid var(--color-accent);
+        outline-offset: 2px;
+    }
+
+    .tracer-panel
+    {
+        display: grid;
+        gap: var(--space-4);
+        margin: 0;
+        padding: var(--space-4) var(--space-5) var(--space-5);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+    }
+
+    .tracer-panel legend
+    {
+        padding: 0 var(--space-2);
+        font-weight: 700;
+    }
+
+    .tracer-panel:disabled
+    {
+        color: var(--color-muted);
+    }
+
+    .setting
+    {
+        display: grid;
+        gap: var(--space-2);
+    }
+
+    .setting > label,
+    .setting-label
+    {
+        font-weight: 600;
+    }
+
+    .setting-control
+    {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        max-width: 32rem;
+    }
+
+    .setting-control input[type="range"]
+    {
+        flex: 1;
+        accent-color: var(--color-accent);
+    }
+
+    .setting-control input[type="number"]
+    {
+        width: 5rem;
+    }
+
+    .setting-help
+    {
+        max-width: var(--measure);
+        color: var(--color-muted);
+        font-size: var(--text-small);
+    }
+
+    .point-list
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .point-list:empty
+    {
+        display: none;
+    }
+
+    /* The script creates the points' items and buttons, so the styles reach them through
+       :global. */
+    .point-list :global(li)
+    {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+    }
+
+    .point-list :global(button)
+    {
+        padding: 0 var(--space-2);
+        color: var(--color-accent);
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .point-form
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-2) var(--space-3);
+    }
+
+    .point-form input,
+    .record-fields input,
+    .record-fields select
+    {
+        padding: var(--space-1) var(--space-2);
+        background: var(--color-background);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-small);
+    }
+
+    .point-form input
+    {
+        width: 6rem;
+    }
+
+    .tracer-run
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-2) var(--space-4);
+    }
+
+    /* The main action, filled in the accent color. */
+    .tracer-trace
+    {
+        padding: var(--space-2) var(--space-6);
+        color: var(--color-surface);
+        background: var(--color-accent);
+        font-weight: 700;
+    }
+
+    .tracer-trace:disabled
+    {
+        color: var(--color-muted);
+        background: var(--color-surface);
+        border-color: var(--color-line);
+        cursor: default;
+    }
+
+    .tracer-status
+    {
+        min-height: 1.5em;
+        color: var(--color-muted);
+    }
+
+    .tracer-views
+    {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+        gap: var(--space-5);
+    }
+
+    .tracer-view
+    {
+        display: grid;
+        align-content: start;
+        gap: var(--space-2);
+        margin: 0;
+    }
+
+    .tracer-view figcaption
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: var(--space-2) var(--space-5);
+        color: var(--color-muted);
+    }
+
+    /* Square corners: a rounded corner on a 1px border looks as if the figure inside were cut
+       off. */
+    .figure-frame,
+    .outline-frame
+    {
+        position: relative;
+        min-height: 12rem;
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+    }
+
+    /* Exactly the image's size, so the overlay and markers line up with it whatever the frame's
+       height. */
+    .figure-canvas
+    {
+        position: relative;
+    }
+
+    .figure-frame img[hidden]
+    {
+        display: none;
+    }
+
+    .figure-frame img
+    {
+        display: block;
+        width: 100%;
+        height: auto;
+        cursor: crosshair;
+    }
+
+    /* The outline over the figure, in the accent color and half see-through, so the drawing shows
+       through it. */
+    .figure-overlay
+    {
+        position: absolute;
+        inset: 0;
+        color: var(--color-accent);
+        opacity: 0.55;
+        pointer-events: none;
+    }
+
+    .figure-overlay[hidden]
+    {
+        display: none;
+    }
+
+    .figure-overlay :global(svg)
+    {
+        position: absolute;
+    }
+
+    .figure-markers
+    {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    .figure-markers :global(button)
+    {
+        position: absolute;
+        width: 1.25rem;
+        height: 1.25rem;
+        margin: -0.625rem 0 0 -0.625rem;
+        padding: 0;
+        background: var(--color-surface);
+        border: 3px solid var(--color-danger);
+        border-radius: 50%;
+        cursor: pointer;
+        pointer-events: auto;
+    }
+
+    .outline-frame
+    {
+        display: grid;
+        grid-template-rows: minmax(0, 1fr) auto;
+    }
+
+    .outline-large
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-4);
+        color: var(--color-ink);
+    }
+
+    .outline-large :global(svg)
+    {
+        width: 100%;
+        max-height: 24rem;
+    }
+
+    /* The outline as a genus page shows it, at the right as in the page's header. */
+    .outline-size
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: var(--space-2) var(--space-4);
+        padding: var(--space-3) var(--space-4);
+        color: var(--color-muted);
+        border-top: 1px solid var(--color-line);
+    }
+
+    /* The size and color of the outline on a genus page (TaxonOutline.astro). */
+    .outline-small
+    {
+        width: 11rem;
+        color: var(--color-muted);
+    }
+
+    .outline-small :global(svg)
+    {
+        width: 100%;
+        max-height: 7rem;
+    }
+
+    .record-fields
+    {
+        display: grid;
+        grid-template-columns: max-content minmax(0, 32rem);
+        align-items: center;
+        gap: var(--space-2) var(--space-4);
+    }
+
+    .record-fields label
+    {
+        font-weight: 600;
+    }
+
+    /* The record is YAML, code to paste into a file, so it is set in the monospace face. */
+    .record-text
+    {
+        margin: 0;
+        padding: var(--space-4) var(--space-5);
+        overflow-x: auto;
+        background: var(--color-background);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+        font-family: var(--font-mono);
+        font-size: var(--text-small);
+    }
+
+    .record-actions
+    {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+    }
+
+    .record-copied
+    {
+        color: var(--color-muted);
+    }
+
+    @media (max-width: 40rem)
+    {
+        .record-fields
+        {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+</style>

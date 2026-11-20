@@ -85,6 +85,7 @@ const samplePages: Array<SamplePage> = [
     { path: "map/", reason: "world map, its panel, and the index of genera by place" },
     { path: "tools/", reason: "the list of tools" },
     { path: "tools/tree-extractor/", reason: "the tree extractor, before a figure is loaded" },
+    { path: "tools/outline-tracer/", reason: "the outline tracer, before a figure is opened" },
     { path: "search/?q=Tyrannosaurus", reason: "search results and filters" },
     { path: "404.html", reason: "page not found" },
     { path: "genus/tyrannosaurus/", reason: "genus with notable specimens and synonyms" },
@@ -111,6 +112,10 @@ const samplePages: Array<SamplePage> = [
 const colorSchemes: Array<ColorScheme> = ["light", "dark"];
 
 const treeFigurePath = path.join(path.dirname(url.fileURLToPath(import.meta.url)), "site-checks", "tree-figure.png");
+
+// A synthetic figure drawn for this check: a body with a white bone inside, two legs on a ground
+// line, and a label away from the animal.
+const outlineFigurePath = path.join(path.dirname(url.fileURLToPath(import.meta.url)), "site-checks", "outline-figure.png");
 
 /**
  * Read the base path the site was built for, as the build does.
@@ -315,6 +320,70 @@ async function checkTreeExtractor(browser: Browser, siteUrl: string, problems: A
     }
 
     await page.close();
+}
+
+/**
+ * Run the outline tracer on a synthetic figure: it must trace it with nothing but the site's own
+ * files, erasing the ground line and dropping the label, write the record with the figure's
+ * SHA-1, and pass axe with a figure open.
+ *
+ * @param browser - The browser.
+ * @param siteUrl - The site's local address.
+ * @param problems - The list to add failures to.
+ */
+async function checkOutlineTracer(browser: Browser, siteUrl: string, problems: Array<SiteProblem>): Promise<void>
+{
+    const page = await openLocalPage(browser, { viewport: { width: 1280, height: 900 } });
+    const errors = new Array<string>();
+    const location = "/tools/outline-tracer/ (tracing a figure)";
+
+    page.on("pageerror", (error) => errors.push(error.message));
+    await page.goto(siteUrl + "tools/outline-tracer/");
+    await page.locator("#tracer-file").setInputFiles(outlineFigurePath);
+    await page.locator("#tracer-trace").click();
+
+    try
+    {
+        await page.waitForFunction(isOutlineTraced, null, { timeout: 60000 });
+        const status = await page.locator("#tracer-status").textContent() ?? "";
+        const record = await page.locator("#tracer-record-text").textContent() ?? "";
+
+        if (!status.includes("1 ground line erased") || !status.includes("and 1 dropped") || await page.locator("#tracer-outline svg path").count() === 0)
+        {
+            problems.push({ location, check: "tool", message: "unexpected trace: " + status });
+        }
+
+        if (!/sha1: [0-9a-f]{40}\n/.test(record))
+        {
+            problems.push({ location, check: "tool", message: "the record has no SHA-1" });
+        }
+
+        for (const finding of (await checkAccessibility(page)).violations)
+        {
+            problems.push({ location, check: "axe", message: finding.rule + " at " + finding.target + ": " + finding.summary });
+        }
+    }
+    catch
+    {
+        problems.push({ location, check: "tool", message: "did not finish: " + (await page.locator("#tracer-status").textContent()) });
+    }
+
+    for (const error of errors)
+    {
+        problems.push({ location, check: "tool", message: error });
+    }
+
+    await page.close();
+}
+
+/**
+ * Report whether the outline tracer has finished a trace. Runs in the browser.
+ *
+ * @returns True once the status reports the trace.
+ */
+function isOutlineTraced(): boolean
+{
+    return /^(Traced|Couldn't)/.test(document.querySelector("#tracer-status")?.textContent ?? "");
 }
 
 /**
@@ -549,6 +618,7 @@ async function checkSite(): Promise<void>
         }
 
         await checkTreeExtractor(browser, server.url, problems);
+        await checkOutlineTracer(browser, server.url, problems);
         await checkSearchSuggestions(browser, server.url, problems);
         await checkTreeFind(browser, server.url, problems);
         await checkReferenceFind(browser, server.url, problems);

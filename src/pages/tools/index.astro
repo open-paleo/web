@@ -14,6 +14,14 @@ const baseUrl = import.meta.env.BASE_URL;
 
         <ul class="tool-list">
             <li>
+                <h2><a href={baseUrl + "tools/outline-tracer/"}>Outline tracer</a> <BetaBadge /></h2>
+                <p>
+                    Traces a skeletal reconstruction into the outline a genus or clade page shows, and writes its record
+                    for Open Paleo's images. It keeps the animal, drops labels and scale bars, and fills the body; you
+                    check the outline over the figure. The figure never leaves your computer.
+                </p>
+            </li>
+            <li>
                 <h2><a href={baseUrl + "tools/tree-extractor/"}>Tree extractor</a> <BetaBadge /></h2>
                 <p>
                     Reads a phylogenetic tree from a published figure and saves it as Newick or Nexus. It traces the

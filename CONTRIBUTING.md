@@ -66,6 +66,9 @@ files.
     a reader ticks "Read unmatched labels a second time". The build downloads the model from
     Hugging Face at a pinned revision, checks it against its checksum, and serves it from the
     site with its dictionary and license (`src/integrations/paddle-model.ts`)
+  - The outline tracer (`@open-paleo/outline-tracer`), with potrace's WebAssembly build, runs
+    the tool at `tools/outline-tracer/`, in a Web Worker. Both are GPL-licensed, so they stay in
+    that worker's own file, and the page names the license and links to the source
   - Plausible's counting script, on every page of the published site only (builds with
     `SITE_URL` set), counts page views without cookies; the privacy page (`privacy/`) links to
     Plausible's data policy for what it records. A page works the same without it

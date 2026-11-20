@@ -10,6 +10,9 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 - Clade pages show an outline beside the name, as genus pages do: the clade's own, or else its
   type genus's. A clade with neither shows none
+- The outline tracer, a new tool at `tools/outline-tracer/`: open a skeletal reconstruction, and
+  it traces the animal into an outline, shown over the figure to check it, with a threshold and
+  keep-open points to adjust, and writes the record for open-paleo/media
 - The tree extractor, now 0.7.1, can read the labels it couldn't match a second time, with
   PaddleOCR: tick "Read unmatched labels a second time". It downloads about 12 MB more from this
   site the first time it's used
