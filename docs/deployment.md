@@ -130,6 +130,20 @@ author. When the token expires, renew it and update the secret in both repositor
 then, releases still publish, and a release can be pinned by hand with
 `npm install --save-exact <tarball URL>`.
 
+### 8. Update the outline tracer when it releases
+
+The outline tracer's tool page pins a release of the outline tracer, also from open-paleo/tools,
+and open-paleo/media pins the same one for `npm run trace`. A release (tagged
+`outline-tracer-v1.2.3`) sends `outline-tracer-released`, with the same payload, to both
+repositories. Here `.github/workflows/outline-tracer-update.yml` pins it and opens a pull request
+with `WEB_DISPATCH_TOKEN`, as in step 7. In open-paleo/media, its own update workflow does the same
+and also retraces every traced outline, saying in the pull request whether any of them change.
+Merge the two together.
+
+The media side uses a second fine-grained token, scoped to `open-paleo/media` with Contents and
+Pull requests: read and write, stored as `MEDIA_DISPATCH_TOKEN` in open-paleo/tools and
+open-paleo/media.
+
 ## Checking a deployment
 
 - The run's summary in the Actions tab links to the published site.

@@ -108,9 +108,10 @@ runs every check, and opens a pull request.
 The tool page uses a pinned release of `@open-paleo/outline-tracer` from the same repository, and
 traces in a Web Worker (`src/scripts/outline-tracer-worker.ts`). It includes potrace's
 WebAssembly build, so that worker's code is licensed under the GPL, version 2 or later, as the
-page says; the rest of the site is not. There is no update workflow yet: move the pin by hand,
-to the same release open-paleo/media uses, so the preview matches what the media repository
-traces.
+page says; the rest of the site is not. When the tracer publishes a release,
+`.github/workflows/outline-tracer-update.yml` pins it and opens a pull request, as for the tree
+extractor; open-paleo/media gets the same pull request, and merging both keeps the preview
+matching what the media repository traces.
 
 ## Icon
 
