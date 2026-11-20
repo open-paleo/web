@@ -23,6 +23,7 @@ import { formatAuthority, formatGenusCount, getFirstSentence } from "../../data/
 import { findCladeOutline, getMedia } from "../../data/media.ts";
 import type { CladeEntry } from "../../data/site-data.ts";
 import { getSiteData } from "../../data/site-data.ts";
+import { createCladeStructuredData } from "../../data/structured-data.ts";
 import { createPagePath, createReferenceAnchor } from "../../data/urls.ts";
 
 /**
@@ -104,9 +105,10 @@ const ancestors = record.taxonomy.slice(0, -1);
 const references = record.references ?? [];
 const placedDirectly = entry.genusNames.length;
 const citation = createRecordCitation("Clade", entry.name, entry.slug, citationUrl, getSiteData().metadata);
+const structuredData = Astro.site ? createCladeStructuredData(entry, record, siteData, new URL(baseUrl, Astro.site)) : undefined;
 ---
 
-<BaseLayout title={entry.name} description={getFirstSentence(record.description ?? entry.name)} navigationItem="clades">
+<BaseLayout title={entry.name} description={getFirstSentence(record.description ?? entry.name)} navigationItem="clades" structuredData={structuredData}>
     <article class="clade-page" data-pagefind-body data-pagefind-filter="kind:Clade">
         <LineageTrail taxonomy={ancestors} />
 

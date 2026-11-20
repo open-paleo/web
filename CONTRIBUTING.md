@@ -137,6 +137,7 @@ files.
 | `genus-index.ts`, `genus-filters.ts` | Lists of genera and of clades with their details, and the filters (shared with the browser) |
 | `genus-map.ts`, `site-map.ts`, `map-shapes.ts`, `map-geometry.ts` | The genus maps, the Map page, and the region and country outlines |
 | `citations.ts`, `feed.ts` | Citations of the dataset and its records, and the feed of new genera |
+| `structured-data.ts` | The schema.org JSON-LD in the head of genus, clade and Data pages (see "Structured data" below) |
 | `known-names.ts` | The taxon and clade names the tree extractor matches labels against |
 | `glossary.ts` | `getGlossary()`: the glossary's terms in order, and finding them in text |
 | `media.ts` | `getMedia()`: the outlines by genus or clade, `findGenusOutline()`: a genus's own outline, or that of the nearest clade above it that has one, and `findCladeOutline()`: a clade's own outline, or else its type genus's |
@@ -179,6 +180,26 @@ version the bindings describe, so after a schema change `npm run update-bindings
 `npm run create-test-fixture` are all that's needed; review the fixture's diff. The same script
 copies the glossary whole to `test/fixtures/glossary.json`, read with `readGlossaryFixture()`.
 Tests never use invented records.
+
+### Structured data
+
+Genus, clade and Data pages describe their subject as schema.org JSON-LD, which
+`BaseLayout.astro` writes into the head from its `structuredData` property:
+
+- **Genus pages** follow the [Bioschemas Taxon profile](https://bioschemas.org/profiles/Taxon/1.0-RELEASE):
+  the genus with its rank, parent clade, species (as its children, addressed by their section
+  of the page), synonyms (`alternateName`, leaving out possible synonyms) and outside database
+  entries (`sameAs`)
+- **Clade pages** describe the clade the same way, but without a rank, which the dataset doesn't
+  give and the profile requires, so they don't claim to follow it. Ask open-paleo/data for clade
+  ranks rather than deriving them from a name's suffix
+- **The Data page** describes the dataset for Google Dataset Search: release, license, citation
+  and every file as a download
+
+The types come from [`schema-dts`](https://www.npmjs.com/package/schema-dts), which is only type
+declarations. JSON-LD addresses must be absolute, so, like the canonical link, it is written
+only when the build has `SITE_URL`. `npm run check-site` checks that every JSON-LD script parses
+and is a typed schema.org item. A new type is worth adding only when something reads it.
 
 ### Map outlines
 
@@ -402,7 +423,10 @@ const { dispute, question } = Astro.props;
   inline element directly inside a grid or flex container becomes an item of its own, so a
   sentence containing an italic name would split into separate cells
 - **Astro escapes every `{value}` in the template.** Never use `set:html` on dataset text;
-  components that add markup to prose (italic taxon names) build it from escaped parts
+  components that add markup to prose (italic taxon names) build it from escaped parts. The one
+  exception is the JSON-LD script in `BaseLayout.astro`, whose text comes from `writeJsonLd()`
+  in `src/data/structured-data.ts`: it escapes `<`, `>` and `&`, so dataset text can't end the
+  element
 - ESLint does not check template markup or `<style>` blocks, so reviewers do: 4-space
   indentation, double-quoted attributes, Allman braces in CSS
 
@@ -493,7 +517,8 @@ npm run build
 npm run check-site
 ```
 
-`npm run check-site` checks the built site: every internal link resolves, and a sample of
+`npm run check-site` checks the built site: every internal link resolves, every JSON-LD script
+is valid (in builds with `SITE_URL`), and a sample of
 pages (one of each kind, plus the records with the most unusual content) passes WCAG 2.2 AA in
 axe in light and dark mode, has no grid or flex container that splits prose into columns (loose
 text beside a link, italic name or span; a checkbox beside its label text is fine),

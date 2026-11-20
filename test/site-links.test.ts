@@ -3,6 +3,7 @@ import { test } from "node:test";
 
 import type { SitePage } from "../scripts/site-checks/links.ts";
 import { checkLinks, getServedFile, parseSitePage } from "../scripts/site-checks/links.ts";
+import { findStructuredDataProblem } from "../scripts/site-checks/structured-data.ts";
 
 /**
  * Report that no file other than a page exists.
@@ -23,6 +24,25 @@ test("parseSitePage keeps internal links and ids, and decodes &amp;", () =>
 
     assert.deepEqual(page.links, ["/genus/allosaurus/", "#species", "/search/?q=a&kind=genus"]);
     assert.deepEqual([...page.ids], ["species"]);
+});
+
+test("parseSitePage keeps the text of JSON-LD scripts and no other script", () =>
+{
+    const page = parseSitePage(
+        "<script is:inline>var a = 1;</script>"
+        + "<script type=\"application/ld+json\">{\"@type\":\"Taxon\"}</script>",
+    );
+
+    assert.deepEqual(page.structuredData, ["{\"@type\":\"Taxon\"}"]);
+});
+
+test("findStructuredDataProblem accepts a typed schema.org item and names what is wrong otherwise", () =>
+{
+    assert.equal(findStructuredDataProblem("{\"@context\":\"https://schema.org\",\"@type\":\"Taxon\"}"), undefined);
+    assert.match(findStructuredDataProblem("{\"@context\":") ?? "", /^is not JSON/);
+    assert.equal(findStructuredDataProblem("[]"), "is not a JSON object");
+    assert.equal(findStructuredDataProblem("{\"@type\":\"Taxon\"}"), "has no schema.org context");
+    assert.equal(findStructuredDataProblem("{\"@context\":\"https://schema.org\"}"), "has no type");
 });
 
 test("getServedFile maps directory paths to index.html under the base path", () =>

@@ -20,6 +20,20 @@ export function createPagePath(baseUrl: string, section: PageSection, slug: stri
 }
 
 /**
+ * Create the absolute address of a record's page: "https://open-paleo.org/genus/tyrannosaurus/".
+ *
+ * @param siteUrl - The site's address with its base path: "https://open-paleo.org/", or
+ * "https://open-paleo.github.io/web/" when the site is published under /web/.
+ * @param section - The kind of record.
+ * @param slug - The record's slug.
+ * @returns The address, with a trailing slash.
+ */
+export function createPageUrl(siteUrl: URL, section: PageSection, slug: string): string
+{
+    return new URL(createPagePath(siteUrl.pathname, section, slug), siteUrl).href;
+}
+
+/**
  * Create the id of a reference's entry in a page's reference list, so citations elsewhere on
  * the page can link to it.
  *

@@ -3,6 +3,8 @@ import "../theme/theme.css";
 import { formatQuotes } from "../data/format.ts";
 import { createNavigationGroups, findNavigationGroup } from "../data/navigation.ts";
 import { getSiteData } from "../data/site-data.ts";
+import type { StructuredData } from "../data/structured-data.ts";
+import { writeJsonLd } from "../data/structured-data.ts";
 import { getTimePages } from "../data/time-pages.ts";
 
 /**
@@ -37,9 +39,15 @@ type Props = {
      * turns it off, since its results already follow the field.
      */
     hasSearchSuggestions?: boolean;
+
+    /**
+     * The page's subject as schema.org structured data, written into the head as JSON-LD. Its
+     * addresses are absolute, so pages give it only when the site's address is known.
+     */
+    structuredData?: StructuredData;
 };
 
-const { navigationItem, searchQuery = "", hasSearchSuggestions = true } = Astro.props;
+const { navigationItem, searchQuery = "", hasSearchSuggestions = true, structuredData } = Astro.props;
 // Titles and descriptions often come from the dataset.
 const title = Astro.props.title === undefined ? undefined : formatQuotes(Astro.props.title);
 const description = formatQuotes(Astro.props.description);
@@ -60,6 +68,8 @@ const sitemapUrl = Astro.site ? new URL(homeUrl + "sitemap-index.xml", Astro.sit
 // link they're only added when the site's address is known.
 const previewImageUrl = Astro.site ? new URL(homeUrl + "social-preview.png", Astro.site).href : undefined;
 const previewImageDescription = siteName + ": a community-maintained phylogenetic dataset for paleontology, over the Triassic, Jurassic and Cretaceous periods in the colors of the geologic time scale.";
+// Escaped by writeJsonLd so dataset text in it can't end the script element.
+const structuredDataText = structuredData ? writeJsonLd(structuredData) : undefined;
 const navigationGroups = createNavigationGroups(getTimePages().periods);
 const currentGroup = findNavigationGroup(navigationGroups, navigationItem);
 // A second-row link is marked as the current page only on that page; a genus page marks Genera
@@ -89,6 +99,7 @@ const currentPath = Astro.url.pathname;
         {previewImageUrl && <meta property="og:image:height" content="630">}
         {previewImageUrl && <meta property="og:image:alt" content={previewImageDescription}>}
         <meta name="twitter:card" content={previewImageUrl ? "summary_large_image" : "summary"}>
+        {structuredDataText && <script is:inline type="application/ld+json" set:html={structuredDataText}></script>}
         {isCountingVisits && (
             <>
                 <script is:inline async src="https://plausible.io/js/pa-kxif62VY-48TH3yxyC6EQ.js"></script>

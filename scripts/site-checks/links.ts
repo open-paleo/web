@@ -2,7 +2,8 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 
 /**
- * What the link check needs from one built page: where its links point and which ids it has.
+ * What the site checks need from one built page: where its links point, which ids it has, and
+ * its structured data.
  */
 export type SitePage = {
     /**
@@ -14,6 +15,11 @@ export type SitePage = {
      * Every element id on the page, for checking the fragment of a link to it.
      */
     ids: Set<string>;
+
+    /**
+     * The text of every JSON-LD script on the page, as written.
+     */
+    structuredData: Array<string>;
 };
 
 /**
@@ -58,18 +64,20 @@ export type LinkReport = {
 
 const hrefPattern = /\shref="([^"]*)"/g;
 const idPattern = /\sid="([^"]*)"/g;
+const structuredDataPattern = /<script\b[^>]*\stype="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g;
 
 /**
- * Read the links and ids of one page's HTML. Links to other sites, mail addresses and the like
- * are left out: only links starting with "/" or "#" are internal.
+ * Read the links, ids and structured data of one page's HTML. Links to other sites, mail
+ * addresses and the like are left out: only links starting with "/" or "#" are internal.
  *
  * @param html - The page's HTML.
- * @returns The page's internal links and element ids.
+ * @returns The page's internal links, element ids and JSON-LD.
  */
 export function parseSitePage(html: string): SitePage
 {
     const links = new Array<string>();
     const ids = new Set<string>();
+    const structuredData = new Array<string>();
 
     for (const match of html.matchAll(hrefPattern))
     {
@@ -86,7 +94,12 @@ export function parseSitePage(html: string): SitePage
         ids.add(match[1]);
     }
 
-    return { links, ids };
+    for (const match of html.matchAll(structuredDataPattern))
+    {
+        structuredData.push(match[1]);
+    }
+
+    return { links, ids, structuredData };
 }
 
 /**

@@ -38,7 +38,8 @@ Astro components (see "Astro components" in CONTRIBUTING.md):
   declares a `Props` type
 - `map` with an arrow is allowed only in template markup, and only to output one element
 - Data work (sorting, grouping, look-ups, formatting) goes in `src/data/`, not in components
-- Never `set:html` on dataset text
+- Never `set:html` on dataset text; the one exception is the JSON-LD script, written through
+  `writeJsonLd()` in `src/data/structured-data.ts`
 - Styles go in the component's own `<style>` block; `src/theme/` is for global tokens and
   element defaults only
 

@@ -28,6 +28,7 @@ import { getWright2013Model } from "../../data/plate-rotation.ts";
 import { getTypeSpecies } from "../../data/records.ts";
 import type { GenusEntry } from "../../data/site-data.ts";
 import { getSiteData } from "../../data/site-data.ts";
+import { createGenusStructuredData } from "../../data/structured-data.ts";
 import { createReferenceAnchor } from "../../data/urls.ts";
 
 /**
@@ -100,9 +101,10 @@ const authorityReferenceId = genus.erected_in ?? typeSpecies.erected_in;
 const authorityAnchor = "#" + createReferenceAnchor(siteData.referenceById.get(authorityReferenceId)?.slug ?? authorityReferenceId);
 const pronunciation = genus.pronunciation;
 const citation = createRecordCitation("Genus", genus.genus, entry.slug, citationUrl, getSiteData().metadata);
+const structuredData = Astro.site ? createGenusStructuredData(entry, siteData, new URL(import.meta.env.BASE_URL, Astro.site)) : undefined;
 ---
 
-<BaseLayout title={genus.genus} description={getFirstSentence(genus.description)} navigationItem="genera">
+<BaseLayout title={genus.genus} description={getFirstSentence(genus.description)} navigationItem="genera" structuredData={structuredData}>
     <article class="genus-page" data-pagefind-body data-pagefind-filter="kind:Genus">
         <LineageTrail taxonomy={genus.taxonomy} placement={genus.placement} />
 

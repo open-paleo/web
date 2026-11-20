@@ -1,7 +1,8 @@
 /**
- * Check the built site in dist/: every internal link resolves, a sample of pages passes WCAG 2.2
- * AA in axe (light and dark), has no grid or flex container that splits loose text, and does not
- * scroll sideways at 320px, and the tree extractor reads a figure using only the site's files.
+ * Check the built site in dist/: every internal link resolves, every page's structured data is
+ * valid JSON-LD, a sample of pages passes WCAG 2.2 AA in axe (light and dark), has no grid or flex
+ * container that splits loose text, and does not scroll sideways at 320px, and the tree extractor
+ * reads a figure using only the site's files.
  *
  * Run after `npm run build`:
  *
@@ -18,9 +19,11 @@ import type { Browser, BrowserContextOptions, Page, Route } from "playwright";
 import { chromium } from "playwright";
 
 import { getDeclaredHosts } from "../src/data/privacy.ts";
+import type { SitePage } from "./site-checks/links.ts";
 import { checkLinks, readSitePages } from "./site-checks/links.ts";
 import { checkAccessibility, findLooseText, measureOverflow } from "./site-checks/page-checks.ts";
 import { startStaticServer } from "./site-checks/static-server.ts";
+import { findStructuredDataProblem } from "./site-checks/structured-data.ts";
 
 /**
  * A page the browser checks run on, and why it is in the sample.
@@ -47,7 +50,7 @@ type SiteProblem = {
     location: string;
 
     /**
-     * Which check failed: "links", "axe", "loose text" or "reflow".
+     * Which check failed: "links", "structured data", "axe", "loose text" or "reflow".
      */
     check: string;
 
@@ -133,13 +136,13 @@ function getBasePath(): string
 /**
  * Check every internal link in the built site.
  *
+ * @param pages - The built pages.
  * @param siteDirectory - The built site.
  * @param basePath - The base path.
  * @param problems - The list to add broken links to.
  */
-function checkSiteLinks(siteDirectory: string, basePath: string, problems: Array<SiteProblem>): void
+function checkSiteLinks(pages: Map<string, SitePage>, siteDirectory: string, basePath: string, problems: Array<SiteProblem>): void
 {
-    const pages = readSitePages(siteDirectory);
     const report = checkLinks(pages, (file) => fs.existsSync(path.join(siteDirectory, file)), basePath);
 
     console.log("Links: " + report.linkCount + " internal links on " + report.pageCount + " pages, " + report.brokenLinks.length + " broken");
@@ -148,6 +151,41 @@ function checkSiteLinks(siteDirectory: string, basePath: string, problems: Array
     {
         problems.push({ location: link.page, check: "links", message: link.href + ": " + link.reason });
     }
+}
+
+/**
+ * Check every page's structured data: each JSON-LD script parses and is a typed schema.org item.
+ * Builds without SITE_URL write none, since its addresses must be absolute.
+ *
+ * @param pages - The built pages.
+ * @param problems - The list to add problems to.
+ */
+function checkStructuredData(pages: Map<string, SitePage>, problems: Array<SiteProblem>): void
+{
+    let scriptCount = 0;
+    let pageCount = 0;
+
+    for (const [pagePath, page] of pages)
+    {
+        if (page.structuredData.length > 0)
+        {
+            pageCount++;
+        }
+
+        for (const text of page.structuredData)
+        {
+            const problem = findStructuredDataProblem(text);
+
+            scriptCount++;
+
+            if (problem)
+            {
+                problems.push({ location: pagePath, check: "structured data", message: "a JSON-LD script " + problem });
+            }
+        }
+    }
+
+    console.log("Structured data: " + scriptCount + " JSON-LD scripts on " + pageCount + " pages" + (scriptCount === 0 ? " (builds without SITE_URL write none)" : ""));
 }
 
 // Every off-site host a checked page asked for. Each must be declared in src/data/privacy.ts,
@@ -605,7 +643,10 @@ async function checkSite(): Promise<void>
         return;
     }
 
-    checkSiteLinks(siteDirectory, basePath, problems);
+    const pages = readSitePages(siteDirectory);
+
+    checkSiteLinks(pages, siteDirectory, basePath, problems);
+    checkStructuredData(pages, problems);
 
     const server = await startStaticServer(siteDirectory, basePath);
     const browser = await chromium.launch();
