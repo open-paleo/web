@@ -84,7 +84,8 @@ for (const segment of getSiteData().taxonNames.splitProse(formatQuotes(text)))
     {
         for (const named of splitNamedLinks(links, segment.text, linkedTerms, currentPath))
         {
-            if (named.path)
+            // A name stays whole, linked or not, so no glossary term is found inside it.
+            if (named.isName)
             {
                 parts.push({ text: named.text, isTaxon: false, path: named.path, term: undefined });
                 continue;

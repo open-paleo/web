@@ -1,7 +1,7 @@
 {
   "_metadata": {
     "attribution": "Open Paleo contributors",
-    "built_at": "2026-11-20T03:51:30.433Z",
+    "built_at": "2026-11-20T21:19:42.153Z",
     "clade_count": 45,
     "genus_count": 14,
     "license": "CC-BY-4.0",
@@ -10,7 +10,7 @@
       "citation": "Wright, N.; Zahirovic, S.; Müller, R. D.; Seton, M. (2013). Towards community-driven paleogeographic reconstructions: integrating open-access paleogeographic and paleobiology data with plate tectonics. Biogeosciences 10(3): 1529-1541. doi:10.5194/bg-10-1529-2013",
       "license": "CC-BY-3.0-AU"
     },
-    "schema_version": "4.2.0",
+    "schema_version": "4.3.0",
     "version": "2026.11"
   },
   "timescale": {
@@ -6852,6 +6852,7 @@
     "Antlers": {
       "rank": "formation",
       "parent": "Trinity",
+      "description": "The Antlers Formation is a stratum which ranges from Arkansas through southern Oklahoma into northeastern Texas. The stratum is 150 m (490 ft) thick consisting of silty to sandy mudstone and fine to coarse grained sandstone that is poorly to moderately sorted. Based on correlation with the Trinity Group of Texas, the Antlers Formation is estimated to be late Aptian-early Albian. This age range is supported by the presence of two dinosaurs that are also known from the Cloverly Formation, Deinonychus and Tenontosaurus.",
       "period": {
         "name": [
           "Early Cretaceous"
@@ -6904,6 +6905,7 @@
     },
     "Cañón del Colorado": {
       "rank": "formation",
+      "description": "The Cañón del Colorado Formation is an Early Jurassic geologic formation in the San Juan Province of Argentina. The formation comprises conglomerates and claystones and is exposed in the Sierra de Mogna. The sauropodomorph dinosaur Adeopapposaurus is known from this formation.",
       "period": {
         "name": [
           "Early Jurassic"
@@ -6992,6 +6994,7 @@
       "variants": [
         "Dashanpu"
       ],
+      "description": "The Shaximiao Formation is a Middle to Late Jurassic aged geological formation in Sichuan, China, most notable for the wealth of dinosaur fossils that have been excavated from its strata. The Shaximiao Formation is exposed in and around the small township of Dashanpu, situated seven kilometers north-east from Sichuan's third largest city, Zigong, in the Da'an District.",
       "period": {
         "name": [
           "Middle Jurassic",
@@ -7086,6 +7089,7 @@
       "variants": [
         "Atlantosaurus beds"
       ],
+      "description": "The Morrison Formation is a distinctive sequence of Upper Jurassic sedimentary rock found in the western United States which has been the most fertile source of dinosaur fossils in North America. It is composed of mudstone, sandstone, siltstone, and limestone and is light gray, greenish gray, or red. Most of the fossils occur in the green siltstone beds and lower sandstones, relics of the rivers and floodplains of the Jurassic period. It is centered in Wyoming and Colorado, with outcrops in Montana, North Dakota, South Dakota, Nebraska, Kansas, the panhandles of Oklahoma and Texas, New Mexico, Arizona, Utah, and Idaho. It was named after Morrison, Colorado, where some of the first fossils in the formation were discovered in 1877.",
       "period": {
         "name": [
           "Late Jurassic",
@@ -7204,6 +7208,7 @@
     "Brushy Basin": {
       "rank": "member",
       "parent": "Morrison",
+      "description": "Brushy Basin Member: conglomerate interbedded with mudstone; up to fifty percent by volume is made up of altered vitric ash, which originated as felsic ash falls. Deposition likely occurred in a fluvial-lacustrine environment, with the lacustrine component tending towards playas.",
       "period": {
         "name": [
           "Late Jurassic"
@@ -7393,6 +7398,7 @@
     },
     "Snow Hill Island": {
       "rank": "formation",
+      "description": "The Snow Hill Island Formation is an Early Maastrichtian geologic formation found on James Ross Island, James Ross Island group, Antarctica. Remains of a paravian theropod Imperobator antarcticus have been recovered from it, as well as the elasmarian ornithopods Trinisaura santamartaensis and Morrosaurus antarcticus, the ankylosaurian Antarctopelta oliveroi, and the shark Notidanodon sp. Alongside these described genera are also the remains of indeterminate elasmosaurids, lithostrotian titanosaurs and an indeterminate pterosaur. The uppermost portion of the Gamma Member containing the Santa Marta Cove fauna is dated to the late Campanian, approximately 73.4 million years ago, while the younger Cape Lamb Member is from the latest Campanian to early Maastrichtian, with the uppermost portion dated to 69.7 million years ago.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -7513,6 +7519,7 @@
     "Winton": {
       "rank": "formation",
       "parent": "Manuka",
+      "description": "The Winton Formation is an Early to Late Cretaceous geological formation, mainly in central-western Queensland, Australia. The formation blankets large areas of central-western Queensland, as well as northwestern South Australia, the southwestern corner of the Northern Territory, and parts of northern New South Wales.",
       "period": {
         "name": [
           "Early Cretaceous",
@@ -7649,6 +7656,7 @@
       "variants": [
         "Pale Beds"
       ],
+      "description": "The Oldman Formation is a stratigraphic unit of Late Cretaceous (Campanian stage) age that underlies much of southern Alberta, Canada. It consists primarily of sandstones that were deposited in fluvial channel and floodplain environments. It was named for exposures along the Oldman River between its confluence with the St. Mary River and the city of Lethbridge, and it is known primarily for its dinosaur remains and other fossils.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -7721,6 +7729,7 @@
     },
     "Two Medicine": {
       "rank": "formation",
+      "description": "The Two Medicine Formation is a geological formation, or rock body, in northwestern Montana and southern Alberta that was deposited between 82.4 Ma and 74.4 Ma, during Campanian (Late Cretaceous) time. It crops out to the east of the Rocky Mountain Overthrust Belt, and the western portion (about 600 meters or 2,000 feet thick) of this formation is folded and faulted while the eastern part, which thins out into the Sweetgrass Arch, is mostly undeformed plains. Below the formation are the nearshore (beach and tidal zone) deposits of the Virgelle Sandstone, and above it is the marine Bearpaw Shale. Throughout the Campanian, the Two Medicine Formation was deposited between the western shoreline of the Late Cretaceous Interior Seaway and the eastward advancing margin of the Cordilleran Overthrust Belt. The Two Medicine Formation is mostly sandstone, deposited by rivers and deltas.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -7756,6 +7765,7 @@
     },
     "Judith River": {
       "rank": "formation",
+      "description": "The Judith River Formation dates to the Late Cretaceous, between 79 and 75.3 million years ago, corresponding to the \"Judithian\" land vertebrate age. It was laid down during the same time period as portions of the Two Medicine Formation of Montana and the Oldman Formation of Alberta. It is an historically important formation, explored by early American paleontologists such as Edward Drinker Cope, who named several dinosaurs from scrappy remains found here on his 1876 expedition (such as Monoclonius). Modern work has found nearly complete skeletons of the hadrosaurid Brachylophosaurus.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -7796,6 +7806,7 @@
     },
     "Hell Creek": {
       "rank": "formation",
+      "description": "The Hell Creek Formation is an intensively studied division of rocks in North America, named for exposures studied along Hell Creek, near Jordan, Montana. The formation stretches over portions of Montana, North Dakota, South Dakota, and Wyoming. It is a series of fresh and brackish-water clays, mudstones, and sandstones deposited by fluvial activity in fluctuating river channels and deltas and very occasional peaty swamp deposits along the low-lying eastern continental margin fronting the late Cretaceous Western Interior Seaway. The climate was mild; the presence of crocodilians along with palm trees suggests a subtropical and temperate climate with no prolonged freeze. The famous iridium-enriched Cretaceous–Paleogene boundary, which separates the Cretaceous from the Cenozoic, occurs as a discontinuous but distinct thin marker bedding above the formation, near its boundary with the overlying Fort Union Formation.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -7848,6 +7859,7 @@
     },
     "Nemegt": {
       "rank": "formation",
+      "description": "The Nemegt Formation is a geological formation in the Gobi Desert of Mongolia, dating to the Late Cretaceous. The formation consists of river channel sediments and contains fossils of fish, turtles, crocodilians, and a diverse fauna of dinosaurs, including birds.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -7971,6 +7983,7 @@
     },
     "Tremp": {
       "rank": "group",
+      "description": "The Tremp Formation, alternatively described as Tremp Group, is a geological formation in the comarca Pallars Jussà, Lleida, Spain. The formation is restricted to the Tremp or Tremp-Graus Basin, a piggyback foreland basin in the Catalonian Pre-Pyrenees. The formation dates to the Maastrichtian to Thanetian, thus the formation includes the Cretaceous-Paleogene boundary that has been well studied in the area, using paleomagnetism and carbon and oxygen isotopes. The formation comprises several lithologies, from sandstone, conglomerates and shales to marls, siltstones, limestones and lignite and gypsum beds and ranges between 250 and 800 meters (820 and 2,620 ft) in thickness. The Tremp Formation was deposited in a continental to marginally marine fluvial-lacustrine environment characterized by estuarine to deltaic settings.",
       "period": {
         "name": [
           "Late Cretaceous",
@@ -8078,6 +8091,7 @@
     },
     "Trinity": {
       "rank": "group",
+      "description": "The Trinity Group is a group (sequence of rock strata) in the Lower Cretaceous lithostratigraphy of Texas, Arkansas, Mississippi, Louisiana and Oklahoma. It is named for the Trinity River of Texas. Formations within the Trinity Group include the Hammett Formation, Cow Creek Formation, Hensel Formation, and Lower and Upper Glen Rose Formation.",
       "period": {
         "name": [
           "Early Cretaceous"
@@ -8213,6 +8227,7 @@
     },
     "Belly River": {
       "rank": "group",
+      "description": "The Belly River Group is a stratigraphic unit of Late Cretaceous age in the Western Canadian Sedimentary Basin. It takes the name from the Belly River, a tributary of the Oldman River in southern Alberta, and was first described in outcrop on the banks of the Oldman River (at the time considered part of the Belly River) and Bow River.",
       "period": {
         "name": [
           "Late Cretaceous"

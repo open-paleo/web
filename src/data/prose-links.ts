@@ -45,9 +45,17 @@ export type NameSegment = {
     text: string;
 
     /**
-     * The path the name links to, relative to the site's base; undefined for plain text.
+     * The path the name links to, relative to the site's base; undefined for plain text and for
+     * a name that stays plain.
      */
     path: string | undefined;
+
+    /**
+     * True when the run is a name with a page, linked or not. A name that stays plain (on its own
+     * page, or already linked in the block) is still a name, so glossary terms aren't looked for
+     * in it: "Formation" in "Hell Creek Formation".
+     */
+    isName: boolean;
 };
 
 let cachedLinks: ProseLinkIndex | undefined;
@@ -281,7 +289,8 @@ export function findTaxonPath(links: ProseLinkIndex, name: string): string | und
 /**
  * Split prose into plain runs and the names of clades, rock units and geologic times. A name is
  * linked once per block: a path already in linkedPaths stays plain, and linked paths are added
- * to it. A name whose page is the current page stays plain too.
+ * to it. A name whose page is the current page stays plain too. A name that stays plain is still
+ * a run of its own, marked as a name.
  *
  * @param links - The look-ups.
  * @param text - The text.
@@ -296,7 +305,7 @@ export function splitNamedLinks(links: ProseLinkIndex, text: string, linkedPaths
 
     if (!pattern)
     {
-        segments.push({ text, path: undefined });
+        segments.push({ text, path: undefined, isName: false });
 
         return segments;
     }
@@ -309,24 +318,30 @@ export function splitNamedLinks(links: ProseLinkIndex, text: string, linkedPaths
     {
         const path = links.pathByName.get(match[0].replace(/\s+/g, " "));
 
-        if (!path || linkedPaths.has(path) || path.split("#")[0] === currentPath)
+        if (!path)
         {
             continue;
         }
 
+        const isLinked = !linkedPaths.has(path) && path.split("#")[0] !== currentPath;
+
         if (match.index > plainStart)
         {
-            segments.push({ text: text.slice(plainStart, match.index), path: undefined });
+            segments.push({ text: text.slice(plainStart, match.index), path: undefined, isName: false });
         }
 
-        segments.push({ text: match[0], path });
-        linkedPaths.add(path);
+        segments.push({ text: match[0], path: isLinked ? path : undefined, isName: true });
         plainStart = match.index + match[0].length;
+
+        if (isLinked)
+        {
+            linkedPaths.add(path);
+        }
     }
 
     if (plainStart < text.length)
     {
-        segments.push({ text: text.slice(plainStart), path: undefined });
+        segments.push({ text: text.slice(plainStart), path: undefined, isName: false });
     }
 
     return segments;

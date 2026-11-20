@@ -3,7 +3,8 @@ import { test } from "node:test";
 
 import { createUnitLabels, formatStratigraphicUnits, formatUnitName } from "../src/data/format.ts";
 import { createSiteData } from "../src/data/site-data.ts";
-import { createUnitIndex, describeUnitRank, findLocationUnit, getPageReferences, getUnitPath } from "../src/data/units.ts";
+import type { UnitPage } from "../src/data/units.ts";
+import { createUnitIndex, describeUnitRank, findDescribedGenera, findLocationUnit, getPageReferences, getUnitDescription, getUnitPath } from "../src/data/units.ts";
 import { readFixture } from "./fixture.ts";
 
 const dataset = readFixture();
@@ -110,4 +111,67 @@ test("a rank is described for display", () =>
     assert.equal(describeUnitRank({ rank: "formation", period: {}, references: [] }), "Formation");
     assert.equal(describeUnitRank({ rank: "bed", informal: true, period: {}, references: [] }), "Informal bed");
     assert.equal(describeUnitRank({ period: {}, references: [] }), "Rock unit");
+});
+
+/**
+ * Find a unit's page in the fixture, failing the test when it is missing.
+ *
+ * @param name - The unit's name.
+ * @returns The page.
+ */
+function findPage(name: string): UnitPage
+{
+    const page = units.pageByName.get(name);
+
+    assert.ok(page, name + " has a page");
+
+    return page;
+}
+
+test("a unit with a description in the dataset opens with it", () =>
+{
+    const page = findPage("Hell Creek");
+
+    assert.ok(page.entry.record.description);
+    assert.equal(getUnitDescription(page, units), page.entry.record.description.trim());
+});
+
+test("a unit without one gets a standard description from its rank, parent, age and genera", () =>
+{
+    assert.equal(findPage("Conques").entry.record.description, undefined);
+    assert.equal(
+        getUnitDescription(findPage("Conques"), units),
+        "The Conques Formation is a formation of the Tremp Group, dated to the Maastrichtian (Late Cretaceous). "
+        + "Fossils found in the Conques Formation include Abditosaurus.",
+    );
+    assert.equal(
+        getUnitDescription(findPage("Hongqin"), units),
+        "The Hongqin Formation is a formation dated to the Middle Jurassic. Fossils found in the Hongqin Formation include Anhuilong.",
+    );
+});
+
+test("the standard description names up to three genera, the earliest named first", () =>
+{
+    assert.deepEqual(findDescribedGenera(findPage("Hell Creek")), ["Tyrannosaurus", "Nanotyrannus"]);
+
+    // Every genus of the fixture, as if found in one unit.
+    const page: UnitPage = { ...findPage("Hell Creek"), genera: siteData.genera };
+    const names = findDescribedGenera(page);
+    const years = new Array<number>();
+
+    for (const name of names)
+    {
+        years.push(siteData.genusByName.get(name)?.record.described ?? Number.POSITIVE_INFINITY);
+    }
+
+    assert.equal(names.length, 3);
+    assert.deepEqual(years, [...years].sort((first, second) => first - second));
+
+    for (const genus of siteData.genera)
+    {
+        if (!names.includes(genus.name))
+        {
+            assert.ok((genus.record.described ?? Number.POSITIVE_INFINITY) >= years[2], genus.name + " was named after the ones listed");
+        }
+    }
 });

@@ -506,6 +506,28 @@ export function formatGeologicAge(period: Period): string
 }
 
 /**
+ * Format a geologic age to follow "dated to" in a sentence: "the Maastrichtian (Late
+ * Cretaceous)", or "the Late Jurassic" when no stage is recorded.
+ *
+ * @param period - The period block.
+ * @returns The phrase, or an empty string when neither stages nor periods are recorded.
+ */
+export function formatGeologicAgePhrase(period: Period): string
+{
+    const stages = joinTimeUnits(period.stage ?? []);
+    const periods = joinTimeUnits(period.name ?? []);
+
+    if (stages && periods)
+    {
+        return "the " + stages + " (" + periods + ")";
+    }
+
+    const age = stages !== "" ? stages : periods;
+
+    return age !== "" ? "the " + age : "";
+}
+
+/**
  * Explain how a species' stage relates to the rock unit it was found in, when that needs
  * saying.
  *

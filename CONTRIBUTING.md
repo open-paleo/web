@@ -142,7 +142,7 @@ files.
 | `glossary.ts` | `getGlossary()`: the glossary's terms in order, and finding them in text |
 | `media.ts` | `getMedia()`: the outlines by genus or clade, `findGenusOutline()`: a genus's own outline, or that of the nearest clade above it that has one, and `findCladeOutline()`: a clade's own outline, or else its type genus's |
 | `prose-links.ts` | `getProseLinks()`: the pages that genus, species, clade, rock unit and geologic time names in prose link to |
-| `units.ts` | `getUnits()`: the rock units arranged into pages, one per formation, group or other top-level unit with genera, with members and beds as sections of their unit's page |
+| `units.ts` | `getUnits()`: the rock units arranged into pages, one per formation, group or other top-level unit with genera, with members and beds as sections of their unit's page; `getUnitDescription()`: the dataset's description of a unit, or a standard one built from its rank, parent, age and earliest-named genera when it has none |
 
 Pages call `getSiteData()` from their frontmatter or `getStaticPaths()`; the first call loads
 the file and later calls reuse the result.

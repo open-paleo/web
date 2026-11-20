@@ -13,6 +13,7 @@ import {
     formatDistinctShortCitations,
     formatGenusCount,
     formatGeologicAge,
+    formatGeologicAgePhrase,
     formatPlace,
     formatQuotes,
     formatShortCitation,
@@ -147,6 +148,14 @@ test("formatGeologicAge names stages and periods as spans", () =>
         "Campanian–Maastrichtian, Late Cretaceous",
     );
     assert.equal(formatGeologicAge({ name: ["Late Jurassic"] }), "Late Jurassic");
+});
+
+test("formatGeologicAgePhrase puts the periods in parentheses after the stages", () =>
+{
+    assert.equal(formatGeologicAgePhrase({ name: ["Late Cretaceous"], stage: ["Maastrichtian"] }), "the Maastrichtian (Late Cretaceous)");
+    assert.equal(formatGeologicAgePhrase({ stage: ["Albian", "Cenomanian"] }), "the Albian–Cenomanian");
+    assert.equal(formatGeologicAgePhrase({ name: ["Middle Jurassic"] }), "the Middle Jurassic");
+    assert.equal(formatGeologicAgePhrase({}), "");
 });
 
 test("formatSpecimenType pluralizes a syntype series", () =>

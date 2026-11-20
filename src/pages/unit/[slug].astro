@@ -6,14 +6,15 @@ import DisputeNote from "../../components/DisputeNote.astro";
 import FactList from "../../components/FactList.astro";
 import GenusIndex from "../../components/GenusIndex.astro";
 import PageSection from "../../components/PageSection.astro";
+import Prose from "../../components/Prose.astro";
 import RecordMain from "../../components/RecordMain.astro";
 import ReferenceList from "../../components/ReferenceList.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { formatGenusCount, formatGeologicAge, formatQuotes } from "../../data/format.ts";
+import { formatGenusCount, formatGeologicAge, formatQuotes, getFirstSentence } from "../../data/format.ts";
 import { createGenusIndexRows, shouldGroupByLetter } from "../../data/genus-index.ts";
 import { getSiteData } from "../../data/site-data.ts";
 import type { UnitEntry, UnitPage } from "../../data/units.ts";
-import { describeUnitRank, getPageReferences, getUnits } from "../../data/units.ts";
+import { describeUnitRank, getPageReferences, getUnitDescription, getUnits } from "../../data/units.ts";
 import { createPagePath } from "../../data/urls.ts";
 
 /**
@@ -97,6 +98,11 @@ const age = record ? formatGeologicAge(record.period) : "";
 const variants = record?.variants ?? [];
 const references = page ? getPageReferences(page) : [];
 const subunitsTitle = page && page.subunitPages.every((subunit) => subunit.record.rank === "formation") ? "Formations" : "Units within it";
+// The dataset's description, or else a standard one built from the unit's record and genera.
+const description = page ? getUnitDescription(page, units) : "";
+const searchDescription = record?.description
+    ? getFirstSentence(record.description)
+    : "The " + (entry?.displayName ?? "") + (age ? ", a rock unit of the " + age : "") + ", and the " + formatGenusCount(page?.genera.length ?? 0) + " found in it.";
 ---
 
 {section && sectionPage ? (
@@ -116,7 +122,7 @@ const subunitsTitle = page && page.subunitPages.every((subunit) => subunit.recor
         </body>
     </html>
 ) : page && entry && record && (
-    <BaseLayout title={entry.displayName} description={"The " + entry.displayName + (age ? ", a rock unit of the " + age : "") + ", and the " + formatGenusCount(page.genera.length) + " found in it."} navigationItem="stratigraphy">
+    <BaseLayout title={entry.displayName} description={searchDescription} navigationItem="stratigraphy">
         <article class="unit-page" data-pagefind-body data-pagefind-filter="kind:Rock unit">
             <nav class="unit-trail" aria-label="Stratigraphy">
                 <a href={baseUrl + "stratigraphy/"}>Stratigraphy</a>
@@ -163,10 +169,7 @@ const subunitsTitle = page && page.subunitPages.every((subunit) => subunit.recor
                     )}
                 </FactList>
 
-                <p class="unit-intro">
-                    The genera with a species found in the {entry.displayName}{page.sections.length > 0 || page.subunitPages.length > 0 ? " or a unit within it" : ""}.
-                    A genus found in several units appears on the page of each.
-                </p>
+                <p class="description"><Prose text={description} linkTerms /></p>
 
                 {record.dispute && (
                     <PageSection title="Under dispute">
@@ -188,6 +191,10 @@ const subunitsTitle = page && page.subunitPages.every((subunit) => subunit.recor
                 )}
 
                 <PageSection title={"Genera found in the " + entry.displayName}>
+                    <p class="unit-intro">
+                        The genera with a species found in the {entry.displayName}{page.sections.length > 0 || page.subunitPages.length > 0 ? " or a unit within it" : ""}.
+                        A genus found in several units appears on the page of each.
+                    </p>
                     {/* The genera have their own pages in the search index. */}
                     <div data-pagefind-ignore>
                         <GenusIndex rows={rows} label={"Genera of the " + entry.displayName} headingLevel={3} isFilterable={false} isGroupedByLetter={shouldGroupByLetter(rows.length)} />
@@ -203,6 +210,7 @@ const subunitsTitle = page && page.subunitPages.every((subunit) => subunit.recor
                                     {describeUnitRank(child.record)}{child.record.parent && child.record.parent !== entry.name && units.entryByName.get(child.record.parent) && " within the " + units.entryByName.get(child.record.parent)?.displayName}{formatGeologicAge(child.record.period) && ", " + formatGeologicAge(child.record.period)}
                                 </p>
                                 {(child.record.variants ?? []).length > 0 && <p class="section-meta">Also written {formatQuotes((child.record.variants ?? []).join(", "))}</p>}
+                                {child.record.description && <p class="section-description"><Prose text={child.record.description.trim()} linkTerms /></p>}
                                 {child.record.dispute && <DisputeNote dispute={child.record.dispute} />}
                                 {child.genera.length > 0 && (
                                     <p class="section-genera">
@@ -272,6 +280,12 @@ const subunitsTitle = page && page.subunitPages.every((subunit) => subunit.recor
     {
         max-width: var(--measure);
         color: var(--color-muted);
+    }
+
+    .description,
+    .section-description
+    {
+        max-width: var(--measure);
     }
 
     .subunit-list

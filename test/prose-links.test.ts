@@ -69,3 +69,21 @@ test("a name on its own page, or inside a longer word, stays plain, and the text
     assert.deepEqual(getPaths(segments), []);
     assert.equal(joined, text);
 });
+
+test("a name that stays plain is still a run of its own, so no glossary term is looked for in it", () =>
+{
+    const text = "The Hell Creek Formation lies below the Hell Creek Formation's top.";
+    const segments = splitNamedLinks(links, text, new Set(), "unit/hell-creek/");
+    const names = new Array<string>();
+
+    for (const segment of segments)
+    {
+        if (segment.isName)
+        {
+            names.push(segment.text);
+        }
+    }
+
+    assert.deepEqual(getPaths(segments), []);
+    assert.deepEqual(names, ["Hell Creek Formation", "Hell Creek Formation"]);
+});

@@ -14,6 +14,21 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   Wikidata, GBIF, EOL and ZooBank. The Data page describes the dataset, its license and its
   files for Google Dataset Search. Only the published site carries it, since it needs absolute
   addresses ([#25](https://github.com/open-paleo/web/issues/25))
+- Rock unit pages open with a description of the unit, from the dataset's new unit
+  descriptions (schema 4.3.0). A unit without one gets a standard description: its rank, the
+  unit it is part of, its age, and up to three of its genera, the earliest named first. Members
+  and beds with a description show it in their section. Names in the descriptions link to their
+  pages, as in genus descriptions
+
+### Changed
+
+- On rock unit pages, the note about which genera are listed moved into the genera section
+
+### Fixed
+
+- A name in prose that isn't linked, because it names the current page or was already linked
+  in the passage, no longer has a glossary term linked inside it: "Formation" in "Hell Creek
+  Formation"
 
 ## 2026-11-19
 
