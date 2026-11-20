@@ -212,8 +212,8 @@ paleocoordinates gets no switch.
 
 ESLint enforces the formatting; run `npm run lint:fix` to apply it. The rules below are those of
 open-paleo/data's [scripts/CONTRIBUTING.md](https://github.com/open-paleo/data/blob/main/scripts/CONTRIBUTING.md),
-plus the stricter rules adopted in open-paleo/tree-extractor. Where the two differ, this file
-follows tree-extractor.
+plus the stricter rules adopted in open-paleo/tools. Where the two differ, this file follows
+open-paleo/tools.
 
 ### Formatting
 

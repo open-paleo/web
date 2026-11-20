@@ -4,8 +4,8 @@ import tseslint from "typescript-eslint";
 import stylistic from "@stylistic/eslint-plugin";
 import astro from "eslint-plugin-astro";
 
-// Formatting rules shared with open-paleo/data and open-paleo/tree-extractor, so all three
-// repositories read the same way.
+// Formatting rules shared with open-paleo/data and open-paleo/tools, so all three repositories
+// read the same way.
 /** @type {import("eslint").Linter.RulesRecord} */
 const sharedStylisticRules = {
     // Allman brace style

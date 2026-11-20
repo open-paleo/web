@@ -34,7 +34,7 @@ AA, checked on every deployment.
 | Glossary | Plain-English definitions from [open-paleo/glossary](https://github.com/open-paleo/glossary), A to Z, each linked from the terms in genus and clade text |
 | Data | Downloads of the dataset's output files, how to cite a release, the versioning policy, and the tools |
 | Tools | The site's tools, under the header's Data group: for now the tree extractor |
-| Tree extractor (beta) | `tools/tree-extractor/`: [open-paleo/tree-extractor](https://github.com/open-paleo/tree-extractor) in the site's theme, reading a tree from a figure into Newick or Nexus in the browser, with labels matched against the dataset's names. Its text recognition (Tesseract.js) is served from the site, so nothing leaves the reader's computer |
+| Tree extractor (beta) | `tools/tree-extractor/`: [the tree extractor](https://github.com/open-paleo/tools/tree/main/tree-extractor) from open-paleo/tools in the site's theme, reading a tree from a figure into Newick or Nexus in the browser, with labels matched against the dataset's names. Its text recognition (Tesseract.js) is served from the site, so nothing leaves the reader's computer |
 | Search | Full-text search of the genus, clade, reference, rock unit, stage and period pages with [Pagefind](https://pagefind.app/), filtered by kind. The header and home page search fields also suggest genus, species, clade, synonym and rock unit names as you type |
 
 Every page also has link-preview tags (Open Graph and Twitter cards) and a sitemap entry.
@@ -95,8 +95,8 @@ other page makes a request outside the site. Region and country outlines are fro
 
 ## Tree extractor
 
-The tool page uses a pinned release of `@open-paleo/tree-extractor` (a tarball from its GitHub
-releases) and serves Tesseract.js's worker, core and English language data from the site. Its
+The tool page uses a pinned release of `@open-paleo/tree-extractor` (a tarball from the GitHub
+releases of [open-paleo/tools](https://github.com/open-paleo/tools)) and serves Tesseract.js's worker, core and English language data from the site. Its
 optional second OCR engine, PaddleOCR on ONNX Runtime, is served from the site too; the build
 downloads the model at a pinned revision and checks its checksum. When
 the tree extractor publishes a release, `.github/workflows/tree-extractor-update.yml` pins it,

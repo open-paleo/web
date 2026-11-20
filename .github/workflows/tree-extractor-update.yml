@@ -1,6 +1,6 @@
 name: Update the tree extractor
 
-# When open-paleo/tree-extractor publishes a release, it sends a tree-extractor-released
+# When the tree extractor in open-paleo/tools publishes a release, it sends a tree-extractor-released
 # notification with client_payload { version, tag, tarball_url, integrity }. This workflow pins
 # the new release, checks the tarball is the one announced, and opens a pull request, on which
 # CI runs every check; nothing deploys until a maintainer merges it.
@@ -60,7 +60,7 @@ jobs:
             exit 1
           fi
           case "$TARBALL_URL" in
-            "https://github.com/open-paleo/tree-extractor/releases/download/"*) ;;
+            "https://github.com/open-paleo/tools/releases/download/tree-extractor-v"*) ;;
             *) echo "Not a tree-extractor release asset: $TARBALL_URL" >&2; exit 1 ;;
           esac
           npm install --save-exact "$TARBALL_URL"
@@ -86,7 +86,7 @@ jobs:
           git commit -m "Update the tree extractor to $VERSION"
           git push "https://x-access-token:${GH_TOKEN}@github.com/${REPOSITORY}.git" "$branch"
           {
-            echo "Pins @open-paleo/tree-extractor $VERSION ([release notes](https://github.com/open-paleo/tree-extractor/releases/tag/$TAG))."
+            echo "Pins @open-paleo/tree-extractor $VERSION ([release notes](https://github.com/open-paleo/tools/releases/tag/$TAG))."
             echo
             echo "Pinned, with the tarball's integrity checked against the release, in [this run]($RUN_URL). CI runs the type check, lint, tests, build and site check (which runs the tool on a figure) on this pull request."
             echo

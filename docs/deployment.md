@@ -113,8 +113,8 @@ and the site falls back to its nightly rebuild, so data changes appear within a 
 
 ### 7. Update the tree extractor when it releases
 
-The tool page depends on a pinned release of open-paleo/tree-extractor. When that repository
-publishes a release, it sends a `tree-extractor-released` notification
+The tool page depends on a pinned release of the tree extractor, from open-paleo/tools. When it
+publishes a release (tagged `tree-extractor-v1.2.3`), it sends a `tree-extractor-released` notification
 (`client_payload: { version, tag, tarball_url, integrity }`) to this repository, the same way
 the data repository sends `data-updated`. `.github/workflows/tree-extractor-update.yml` then
 pins the release, checks that the tarball's integrity is the one announced, and opens a pull

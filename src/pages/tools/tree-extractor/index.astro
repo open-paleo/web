@@ -4,7 +4,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { ocrSitePaths } from "../../../integrations/ocr-files.ts";
 
 const baseUrl = import.meta.env.BASE_URL;
-const sourceUrl = "https://github.com/open-paleo/tree-extractor";
+const sourceUrl = "https://github.com/open-paleo/tools/tree/main/tree-extractor";
 ---
 
 <BaseLayout title="Tree extractor" description="Read a phylogenetic tree from a published figure and save it as Newick or Nexus, in your browser." navigationItem="tools">
@@ -38,7 +38,7 @@ const sourceUrl = "https://github.com/open-paleo/tree-extractor";
         ></tree-extractor>
 
         <p class="tool-source">
-            The tree extractor is open source, at <a href={sourceUrl}>open-paleo/tree-extractor</a>, where it also runs from the
+            The tree extractor is open source, in <a href={sourceUrl}>open-paleo/tools</a>, where it also runs from the
             command line on whole folders of figures.
         </p>
     </div>

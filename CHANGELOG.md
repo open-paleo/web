@@ -14,6 +14,11 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   PaddleOCR: tick "Read unmatched labels a second time". It downloads about 12 MB more from this
   site the first time it's used
 
+### Changed
+
+- The tree extractor's source links point to its folder in open-paleo/tools, the repository it
+  moved to, and its releases are picked up from there
+
 ## 2026-11-18
 
 ### Added
