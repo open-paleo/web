@@ -44,7 +44,7 @@
   "dependencies": {
     "@astrojs/sitemap": "3.7.4",
     "@open-paleo/outline-tracer": "https://github.com/open-paleo/tools/releases/download/outline-tracer-v0.2.0/open-paleo-outline-tracer-0.2.0.tgz",
-    "@open-paleo/tree-extractor": "https://github.com/open-paleo/tree-extractor/releases/download/v0.7.2/open-paleo-tree-extractor-0.7.2.tgz",
+    "@open-paleo/tree-extractor": "https://github.com/open-paleo/tools/releases/download/tree-extractor-v0.7.3/open-paleo-tree-extractor-0.7.3.tgz",
     "@tesseract.js-data/eng": "1.0.0",
     "astro": "7.4.2",
     "maplibre-gl": "6.16.0",
