@@ -1,0 +1,75 @@
+---
+import type { LicenseEntry } from "../data/licenses.ts";
+
+/**
+ * Properties of a list of works by others on the Licenses page.
+ */
+type Props = {
+    /**
+     * The works, in order.
+     */
+    entries: Array<LicenseEntry>;
+};
+
+const { entries } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+{entries.map((entry) => (
+    <section class="licensed-work" id={entry.work.slug}>
+        <h3><a href={entry.work.sourceUrl}>{entry.work.name}</a></h3>
+        <dl>
+            {entry.version && (
+                <>
+                    <dt>Version</dt>
+                    <dd class="figures">{entry.version}</dd>
+                </>
+            )}
+            <dt>License</dt>
+            <dd><a href={entry.textPath ? baseUrl + entry.textPath : entry.work.licenseUrl}>{entry.work.license}</a></dd>
+            <dt>By</dt>
+            <dd>{entry.work.holder}</dd>
+            <dt>Used for</dt>
+            <dd>{entry.work.use}</dd>
+        </dl>
+    </section>
+))}
+
+<style>
+    .licensed-work
+    {
+        display: grid;
+        gap: var(--space-2);
+        padding-top: var(--space-3);
+        border-top: 1px solid var(--color-line);
+    }
+
+    .licensed-work dl
+    {
+        display: grid;
+        grid-template-columns: minmax(0, 9rem) minmax(0, 1fr);
+        gap: var(--space-2) var(--space-4);
+        margin: 0;
+    }
+
+    .licensed-work dt
+    {
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+
+    .licensed-work dd
+    {
+        margin: 0;
+    }
+
+    @media (max-width: 30rem)
+    {
+        .licensed-work dl
+        {
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-1);
+        }
+    }
+</style>

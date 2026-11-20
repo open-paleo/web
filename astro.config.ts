@@ -1,6 +1,7 @@
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 
+import { writeBundleLicenses } from "./src/integrations/license-files.ts";
 import { createSitemapFilter } from "./src/integrations/sitemap-filter.ts";
 import { serveOcrFiles } from "./src/integrations/ocr-files.ts";
 
@@ -38,8 +39,9 @@ export default defineConfig({
     // The sitemap lists every page for search engines, except the members' and beds' pages that
     // only send readers on. It needs the site's address, so local builds without SITE_URL leave
     // it out. The tree extractor's OCR files are served from the
-    // site in every build (src/integrations/ocr-files.ts).
+    // site in every build (src/integrations/ocr-files.ts), and every folder of others' code gets
+    // a LICENSE.txt (src/integrations/license-files.ts).
     integrations: process.env.SITE_URL
-        ? [sitemap({ filter: createSitemapFilter(process.env.SITE_BASE ?? "/") }), serveOcrFiles(process.env.SITE_BASE ?? "/")]
-        : [serveOcrFiles(process.env.SITE_BASE ?? "/")],
+        ? [sitemap({ filter: createSitemapFilter(process.env.SITE_BASE ?? "/") }), serveOcrFiles(process.env.SITE_BASE ?? "/"), writeBundleLicenses()]
+        : [serveOcrFiles(process.env.SITE_BASE ?? "/"), writeBundleLicenses()],
 });

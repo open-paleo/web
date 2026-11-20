@@ -47,8 +47,10 @@ const isCountryOutline: ExpressionSpecification = ["==", ["get", "kind"], "outli
 // The type species' label is placed first, so it is the one kept when labels collide.
 const labelPriority: ExpressionSpecification = ["case", ["get", "isTypeSpecies"], 0, 1];
 
-// The credit for the "when it lived" views, which the map's attribution shows.
-const paleoCredit = "Ancient positions and coastlines: Wright et al. 2013 (CC BY 3.0 AU)";
+// The credit for the "when it lived" views, which the map's attribution shows as HTML. CC BY 3.0
+// asks for the license's address and a note of the changes made.
+const paleoCredit = "Ancient positions and coastlines: <a href=\"https://doi.org/10.5194/bg-10-1529-2013\">Wright et al. 2013</a> "
+    + "(<a href=\"https://creativecommons.org/licenses/by/3.0/au/\">CC BY 3.0 AU</a>), simplified and moved to each stage’s midpoint";
 
 // The zoom a "when it lived" view opens at: the whole globe fits the map's height, poles included.
 const paleoZoom = 1;

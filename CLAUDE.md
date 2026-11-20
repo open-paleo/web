@@ -31,6 +31,10 @@ Rules that are easy to miss:
 - **Every outside service is declared in `src/data/privacy.ts`**, which the privacy page lists:
   a new host a page contacts fails `check-site` until it has an entry there, and any change to
   the policy updates `privacyPolicyEffectiveDate`
+- **Every work by others is listed in `src/data/licenses.ts`** (packages, fonts, models, icons,
+  data files), with its license text: the Licenses page and the `LICENSE.txt` in each built
+  folder come from it, and `npm test` fails on an unlisted dependency. Check a new work's terms
+  (attribution, share-alike, logo use) before adding it
 
 Astro components (see "Astro components" in CONTRIBUTING.md):
 

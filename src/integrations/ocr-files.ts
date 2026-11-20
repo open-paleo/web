@@ -45,7 +45,9 @@ const rootDirectory = path.dirname(path.dirname(path.dirname(url.fileURLToPath(i
 const modulesDirectory = path.join(rootDirectory, "node_modules");
 
 const servedDirectories: Array<ServedDirectory> = [
-    { sitePath: path.posix.dirname(ocrSitePaths.worker), sourceDirectory: path.join(modulesDirectory, "tesseract.js", "dist"), files: ["worker.min.js"] },
+    // The worker's opening comment points to its notices file, which lists the libraries bundled
+    // in it.
+    { sitePath: path.posix.dirname(ocrSitePaths.worker), sourceDirectory: path.join(modulesDirectory, "tesseract.js", "dist"), files: ["worker.min.js", "worker.min.js.LICENSE.txt"] },
     { sitePath: ocrSitePaths.core, sourceDirectory: path.join(modulesDirectory, "tesseract.js-core"), files: [] },
     { sitePath: ocrSitePaths.language, sourceDirectory: path.join(modulesDirectory, "@tesseract.js-data", "eng", "4.0.0_best_int"), files: [] },
     // The WebAssembly build of ONNX Runtime, without the WebGPU and WebGL back ends.

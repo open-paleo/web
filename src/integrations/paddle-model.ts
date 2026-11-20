@@ -44,8 +44,15 @@ type ModelFile = {
     checksum: string;
 };
 
-const modelRepository = "PaddlePaddle/en_PP-OCRv5_mobile_rec_onnx";
-const modelRevision = "3fafbc3b5dcf93dd72add9f48368be8a3a2cd33b";
+/**
+ * The model's repository on Hugging Face.
+ */
+export const modelRepository = "PaddlePaddle/en_PP-OCRv5_mobile_rec_onnx";
+
+/**
+ * The revision of the model the site serves.
+ */
+export const modelRevision = "3fafbc3b5dcf93dd72add9f48368be8a3a2cd33b";
 const modelFile: ModelFile = { name: "inference.onnx", checksum: "b5f833dfc5d0eb71da397b4efa06ebeee9b431b690a47d6af40d77d8eabc557f" };
 const configFile: ModelFile = { name: "inference.yml", checksum: "27e91d0582f40168aa218303c76e184bc78fa7a5d105aad0cfbad8458b441067" };
 

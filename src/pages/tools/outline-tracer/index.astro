@@ -1,9 +1,14 @@
 ---
 import BetaBadge from "../../../components/BetaBadge.astro";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { findLicensedWork, readWorkVersion } from "../../../data/licenses.ts";
 import { getLicenseOptions } from "../../../data/media.ts";
 
 const sourceUrl = "https://github.com/open-paleo/tools/tree/main/outline-tracer";
+const baseUrl = import.meta.env.BASE_URL;
+// The WebAssembly build of potrace the tracer runs, and the GPL's text as the tracer ships it.
+const potraceBuild = findLicensedWork("esm-potrace-wasm");
+const potraceBuildVersion = readWorkVersion(potraceBuild, process.cwd());
 const mediaUrl = "https://github.com/open-paleo/media";
 const guideUrl = mediaUrl + "/blob/main/CONTRIBUTING.md#tracing-a-skeletal-reconstruction";
 const licenseOptions = getLicenseOptions();
@@ -128,8 +133,10 @@ const licenseOptions = getLicenseOptions();
 
         <p class="tool-source">
             The outline tracer is open source, in <a href={sourceUrl}>open-paleo/tools</a>. It includes
-            <a href="https://potrace.sourceforge.net">potrace</a>, so it is licensed under the GNU General Public License,
-            version 2 or later.
+            <a href="https://potrace.sourceforge.net">potrace</a>, compiled to WebAssembly by
+            <a href={potraceBuild.sourceUrl}>esm-potrace-wasm</a> {potraceBuildVersion}, so it is licensed under the
+            <a href={baseUrl + "licenses/outline-tracer.txt"}>GNU General Public License, version 2 or later</a>.
+            The <a href={baseUrl + "licenses/"}>Licenses</a> page lists everything else the site uses.
         </p>
     </div>
 </BaseLayout>

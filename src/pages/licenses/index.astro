@@ -1,0 +1,71 @@
+---
+import LicenseList from "../../components/LicenseList.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { createLicenseEntries } from "../../data/licenses.ts";
+
+const rootDirectory = process.cwd();
+const codeEntries = createLicenseEntries("code", rootDirectory);
+const fontEntries = createLicenseEntries("fonts", rootDirectory);
+const dataEntries = createLicenseEntries("data", rootDirectory);
+---
+
+<BaseLayout title="Licenses" description="The software, fonts and data by others that Open Paleo’s site uses, and the licenses it uses them under.">
+    <article class="licenses-page">
+        <header class="licenses-header">
+            <h1>Licenses</h1>
+            <p class="licenses-summary">
+                The site’s own code is licensed under the
+                <a href="https://github.com/open-paleo/web/blob/main/LICENSE">MIT License</a>, and the Open Paleo data
+                under CC BY 4.0. This page lists the work of others it uses, with each license. Every folder of
+                bundled files on the site also holds a LICENSE.txt with the same texts.
+            </p>
+        </header>
+
+        <section>
+            <h2>Software</h2>
+            <LicenseList entries={codeEntries} />
+        </section>
+
+        <section>
+            <h2>Fonts</h2>
+            <LicenseList entries={fontEntries} />
+        </section>
+
+        <section>
+            <h2>Data and maps</h2>
+            <LicenseList entries={dataEntries} />
+        </section>
+    </article>
+</BaseLayout>
+
+<style>
+    .licenses-page
+    {
+        display: grid;
+        gap: var(--space-6);
+        max-width: var(--measure);
+    }
+
+    .licenses-header
+    {
+        display: grid;
+        gap: var(--space-3);
+    }
+
+    h1
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .licenses-summary
+    {
+        color: var(--color-muted);
+    }
+
+    section
+    {
+        display: grid;
+        gap: var(--space-3);
+    }
+</style>

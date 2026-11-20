@@ -19,10 +19,24 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   unit it is part of, its age, and up to three of its genera, the earliest named first. Members
   and beds with a description show it in their section. Names in the descriptions link to their
   pages, as in genus descriptions
+- A Licenses page (`licenses/`, linked from the footer) lists the software, fonts and data by
+  others that the site uses, each with its version, license, copyright holder and what it is
+  for, and serves each license text beside it (`licenses/{name}.txt`). Every folder of bundled
+  files on the site holds a `LICENSE.txt` with the same texts, since bundling strips the notices
+  from the code; the tree extractor's Tesseract worker gets the notices file it points to
 
 ### Changed
 
 - On rock unit pages, the note about which genera are listed moved into the genera section
+- The outline tracer page names esm-potrace-wasm, the WebAssembly build of potrace it runs, and
+  links the GPL's text
+- The ancient coastlines' credit on genus maps links the paper and its license, and says the
+  coastlines are simplified and moved to each stage's midpoint
+
+### Removed
+
+- The site icon. The stand-in fossil icon from Flaticon is gone, with its footer credit, since
+  Flaticon's terms restrict using its icons as a logo; the project's own icon will replace it
 
 ### Fixed
 

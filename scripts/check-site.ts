@@ -101,6 +101,7 @@ const samplePages: Array<SamplePage> = [
     { path: "clade/nodosauridae/", reason: "clade with genera of uncertain placement" },
     { path: "clade/carcharodontosauridae/", reason: "clade with one of the longest names" },
     { path: "privacy/", reason: "privacy page" },
+    { path: "licenses/", reason: "licenses page: the works by others and their licenses" },
     { path: "stratigraphy/", reason: "rock unit index" },
     { path: "clades/", reason: "clade index and its filters" },
     { path: "time/", reason: "geologic time scale with the stage tables" },

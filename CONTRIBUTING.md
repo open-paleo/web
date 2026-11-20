@@ -79,6 +79,15 @@ files.
   page lists them from there, and `npm run check-site` fails on any off-site
   host a checked page contacts that isn't declared. Any change to the policy also updates
   `privacyPolicyEffectiveDate`
+- **List every work by others in `src/data/licenses.ts`**: each package, font, model, icon or
+  data file the site serves or the repository holds, with its license, copyright holder,
+  source, what the site uses it for, its license text and the built folders it is served from.
+  The Licenses page (`licenses/`) and the license texts beside it (`licenses/{slug}.txt`) are
+  built from that list, and the build writes a `LICENSE.txt` naming the works into each of those
+  folders (`src/integrations/license-files.ts`), since bundling strips the notices from the
+  code. `npm test` fails when a dependency in `package.json` isn't listed. A license text that a
+  package doesn't ship goes in `src/licenses/`. Check a new work's license before adding it:
+  attribution and share-alike terms, and whether it may be used as a logo
 - Keep the shared development dependencies (ESLint, typescript-eslint, TypeScript, cspell) on
   the same versions as open-paleo/data, so the repositories lint and type-check alike
 
@@ -91,9 +100,10 @@ files.
 | `src/components/` | Reusable components: dispute note, age figure, reference list and so on |
 | `src/data/` | TypeScript that loads the dataset and prepares lookup tables for the pages |
 | `src/scripts/` | Browser TypeScript: search, filters, maps, copy buttons and the tree extractor |
-| `src/integrations/` | Astro integrations: serving the tree extractor's OCR files, and downloading the second engine's model |
+| `src/integrations/` | Astro integrations: serving the tree extractor's OCR files, downloading the second engine's model, and writing the license files into built folders |
+| `src/licenses/` | License texts of others' work that their packages don't ship |
 | `src/theme/` | The Strata theme: tokens, fonts, element defaults. See [docs/theme.md](docs/theme.md) |
-| `public/` | Static files copied to the site unchanged: the site icon and the link preview image |
+| `public/` | Static files copied to the site unchanged: the link preview image and the ancient coastlines |
 | `scripts/` | Standalone Node tooling that is not part of the Astro build |
 | `docs/` | Design and architecture notes |
 | `dist/` | Generated site output. Gitignored, never committed |
@@ -137,6 +147,7 @@ files.
 | `genus-index.ts`, `genus-filters.ts` | Lists of genera and of clades with their details, and the filters (shared with the browser) |
 | `genus-map.ts`, `site-map.ts`, `map-shapes.ts`, `map-geometry.ts` | The genus maps, the Map page, and the region and country outlines |
 | `citations.ts`, `feed.ts` | Citations of the dataset and its records, and the feed of new genera |
+| `licenses.ts` | Every work by others the site serves or the repository holds, with its license, for the Licenses page and the built folders' `LICENSE.txt` |
 | `structured-data.ts` | The schema.org JSON-LD in the head of genus, clade and Data pages (see "Structured data" below) |
 | `known-names.ts` | The taxon and clade names the tree extractor matches labels against |
 | `glossary.ts` | `getGlossary()`: the glossary's terms in order, and finding them in text |

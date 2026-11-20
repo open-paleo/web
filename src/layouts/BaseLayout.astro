@@ -84,8 +84,6 @@ const currentPath = Astro.url.pathname;
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content={description}>
         <title>{documentTitle}</title>
-        <link rel="icon" href={homeUrl + "favicon.ico"} sizes="16x16 32x32 48x48">
-        <link rel="apple-touch-icon" href={homeUrl + "apple-touch-icon.png"}>
         <link rel="alternate" type="application/atom+xml" title="Open Paleo: newly named genera" href={homeUrl + "feed.xml"}>
         {canonicalUrl && <link rel="canonical" href={canonicalUrl}>}
         {sitemapUrl && <link rel="sitemap" href={sitemapUrl}>}
@@ -176,13 +174,14 @@ const currentPath = Astro.url.pathname;
                     <h2 class="footer-heading" id="footer-about-heading">About</h2>
                     <ul class="footer-links">
                         <li><a href={homeUrl + "privacy/"}>Privacy</a></li>
+                        <li><a href={homeUrl + "licenses/"}>Licenses</a></li>
                     </ul>
                 </nav>
                 <p class="footer-license">
                     Data by Open Paleo contributors, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
-                    Site code licensed under the <a href="https://github.com/open-paleo/web/blob/main/LICENSE">MIT License</a>.
+                    Site code licensed under the <a href="https://github.com/open-paleo/web/blob/main/LICENSE">MIT License</a>;
+                    the work of others it uses is listed under <a href={homeUrl + "licenses/"}>Licenses</a>.
                     Built from release {release.version}.
-                    Site icon: <a href="https://www.flaticon.com/free-icons/fossil" title="fossil icons">Fossil icons created by Smashicons - Flaticon</a>.
                 </p>
             </div>
         </footer>

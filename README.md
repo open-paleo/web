@@ -115,11 +115,9 @@ matching what the media repository traces.
 
 ## Icon
 
-The site icon (`public/favicon.ico`, `public/apple-touch-icon.png`) is a stand-in until the
-project has its own logo: the "rock" fossil icon by Smashicons from
-[Flaticon](https://www.flaticon.com/free-icons/fossil), redrawn in light strokes on the header's
-dark green. Its free license requires the attribution in every page's footer; remove that line
-when the icon is replaced.
+The site has no icon for now. The stand-in, Smashicons' fossil icon from Flaticon, was removed
+because Flaticon's terms restrict using its icons as a logo. The project's own icon will come
+with its visual identity.
 
 ## Deployment
 
@@ -135,9 +133,22 @@ the change on its next build.
 
 ## License
 
-- **Code** in this repository is licensed under the [MIT License](LICENSE).
+- **Code** in this repository is licensed under the [MIT License](LICENSE), except the files
+  listed below.
 - **Data** shown on the site comes from the Open Paleo dataset and is licensed under
   [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), attributed to Open Paleo
-  contributors. Rendered pages carry that attribution.
+  contributors. Rendered pages carry that attribution. The test fixtures in `test/fixtures/` are
+  copies of it, and of the glossary and media, under the same licenses.
 - **Fonts** in `src/theme/fonts/` (Alegreya and Alegreya Sans) are licensed under the
   [SIL Open Font License 1.1](src/theme/fonts/OFL-Alegreya.txt).
+- **The plate model** in `src/data/plate-models/` and the coastlines in `public/paleo-coastlines/`,
+  from Wright et al. (2013), are licensed under
+  [CC BY 3.0 AU](https://creativecommons.org/licenses/by/3.0/au/); see
+  [src/data/plate-models/README.md](src/data/plate-models/README.md).
+- **The region and country outlines** in `src/data/map-shapes.json` are from Natural Earth, in
+  the public domain.
+- **License texts** of others' work are in `src/licenses/` and `src/integrations/apache-2.0.txt`.
+
+Everything by others that the site serves or this repository holds is listed in
+`src/data/licenses.ts`. The site's [Licenses](https://open-paleo.org/licenses/) page is built from
+that list, and the build writes a `LICENSE.txt` into each folder of bundled files.
