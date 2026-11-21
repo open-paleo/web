@@ -223,6 +223,22 @@ test("a ranked clade gives its rank as a word and a TDWG term, and so do the cla
     assert.deepEqual(taxon.parentTaxon?.taxonRank, getExpectedRank(entry.parentName));
 });
 
+test("a clade links to its entries in outside databases", () =>
+{
+    const entry = siteData.cladeByName.get("Tyrannosauridae");
+
+    assert.ok(entry?.record);
+
+    const identifiers = entry.record.identifiers ?? [];
+    const taxon = readJsonLd(createCladeStructuredData(entry, entry.record, siteData, siteUrl)) as TaxonJson;
+    const wikidata = identifiers.find((identifier) => identifier.source === "wikidata");
+
+    assert.ok(identifiers.length > 0, "the fixture's Tyrannosauridae has identifiers");
+    assert.equal(taxon.sameAs?.length, identifiers.length);
+    assert.ok(wikidata?.id);
+    assert.ok(taxon.sameAs?.includes("https://www.wikidata.org/wiki/" + wikidata.id));
+});
+
 /**
  * Get the rank a clade reference should carry: its record's rank, with the TDWG term when the
  * vocabulary has one.

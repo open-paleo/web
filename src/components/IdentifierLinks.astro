@@ -1,0 +1,32 @@
+---
+import type { Identifier } from "../data/dataset.ts";
+import { getIdentifierSourceName, getIdentifierUrl } from "../data/format.ts";
+
+/**
+ * Properties of the links to a genus's or clade's entries in outside databases, the value of an
+ * "Elsewhere" row in a fact list.
+ */
+type Props = {
+    /**
+     * The record's identifiers.
+     */
+    identifiers: Array<Identifier>;
+};
+
+const { identifiers } = Astro.props;
+---
+
+<dd class="identifiers" data-pagefind-ignore>
+    {identifiers.map((identifier) => (
+        <a href={getIdentifierUrl(identifier.source ?? "", identifier.id ?? "")}>{getIdentifierSourceName(identifier.source ?? "")}</a>
+    ))}
+</dd>
+
+<style>
+    .identifiers
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-1) var(--space-3);
+    }
+</style>

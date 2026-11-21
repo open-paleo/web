@@ -118,9 +118,9 @@ function getAlternateNames(synonyms: Array<Synonym> | undefined): Array<string>
 }
 
 /**
- * Get the addresses of a genus's entries in outside databases.
+ * Get the addresses of a genus's or clade's entries in outside databases.
  *
- * @param identifiers - The genus's identifiers.
+ * @param identifiers - The record's identifiers.
  * @returns The addresses, in the dataset's order.
  */
 function getSameAsUrls(identifiers: Array<Identifier> | undefined): Array<string>
@@ -262,7 +262,8 @@ export function createGenusStructuredData(entry: GenusEntry, siteData: SiteData,
 
 /**
  * Create a clade page's structured data: the clade as a Bioschemas taxon, with its rank, its
- * parent clade, the clades and genera directly within it, and its synonyms.
+ * parent clade, the clades and genera directly within it, its synonyms and its entries in
+ * outside databases.
  *
  * @param entry - The clade.
  * @param record - The clade's record.
@@ -296,6 +297,7 @@ export function createCladeStructuredData(entry: CladeEntry, record: Clade, site
         description: formatQuotes(record.description.trim()),
     };
     const alternateNames = getAlternateNames(record.synonyms);
+    const sameAsUrls = getSameAsUrls(record.identifiers);
 
     if (entry.parentName !== undefined)
     {
@@ -310,6 +312,11 @@ export function createCladeStructuredData(entry: CladeEntry, record: Clade, site
     if (alternateNames.length > 0)
     {
         taxon.alternateName = alternateNames;
+    }
+
+    if (sameAsUrls.length > 0)
+    {
+        taxon.sameAs = sameAsUrls;
     }
 
     return taxon;

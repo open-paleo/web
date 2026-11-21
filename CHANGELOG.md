@@ -23,6 +23,9 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   linked once across them
 - Clade pages give the clade's rank at a glance (family, subfamily, unranked and so on), linked
   to its glossary entry where there is one
+- Clade pages link to the same clade in PBDB, Wikidata, GBIF, EOL and ZooBank, from the
+  dataset's new clade identifiers (schema 4.6.0), at a glance as genus pages do and in their
+  structured data ([open-paleo/data#2347](https://github.com/open-paleo/data/issues/2347))
 - A Licenses page (`licenses/`, linked from the footer) lists the software, fonts and data by
   others that the site uses, each with its version, license, copyright holder and what it is
   for, and serves each license text beside it (`licenses/{name}.txt`). Every folder of bundled

@@ -203,9 +203,10 @@ Genus, clade and Data pages describe their subject as schema.org JSON-LD, which
   the genus with its rank, parent clade, species (as its children, addressed by their section
   of the page), synonyms (`alternateName`, leaving out possible synonyms) and outside database
   entries (`sameAs`)
-- **Clade pages** describe the clade the same way, with the rank the dataset gives it. A rank
-  goes with its term in the TDWG taxon rank vocabulary; "unranked", which the vocabulary has no
-  term for, goes alone. References to clades from other taxa carry their rank too
+- **Clade pages** describe the clade the same way, with the rank the dataset gives it and its
+  outside database entries (`sameAs`). A rank goes with its term in the TDWG taxon rank
+  vocabulary; "unranked", which the vocabulary has no term for, goes alone. References to clades
+  from other taxa carry their rank too
 - **The Data page** describes the dataset for Google Dataset Search: release, license, citation
   and every file as a download
 

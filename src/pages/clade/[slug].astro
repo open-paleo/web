@@ -8,6 +8,7 @@ import DisputeNote from "../../components/DisputeNote.astro";
 import FactList from "../../components/FactList.astro";
 import GlossaryTerm from "../../components/GlossaryTerm.astro";
 import HowToCite from "../../components/HowToCite.astro";
+import IdentifierLinks from "../../components/IdentifierLinks.astro";
 import LineageTrail from "../../components/LineageTrail.astro";
 import PageSection from "../../components/PageSection.astro";
 import RecordMain from "../../components/RecordMain.astro";
@@ -111,6 +112,7 @@ const structuredData = Astro.site ? createCladeStructuredData(entry, record, sit
 // The rank links to its glossary entry where the glossary has one.
 const rankLabel = capitalizeFirstLetter(record.rank);
 const rankTerm = findGlossaryEntry(getGlossary(), record.rank);
+const identifiers = record.identifiers ?? [];
 ---
 
 <BaseLayout title={entry.name} description={getFirstSentence(record.description)} navigationItem="clades" structuredData={structuredData}>
@@ -143,6 +145,12 @@ const rankTerm = findGlossaryEntry(getGlossary(), record.rank);
                     <>
                         <dt>Subclades</dt>
                         <dd class="figures">{entry.childCladeNames.length}</dd>
+                    </>
+                )}
+                {identifiers.length > 0 && (
+                    <>
+                        <dt>Elsewhere</dt>
+                        <IdentifierLinks identifiers={identifiers} />
                     </>
                 )}
             </FactList>

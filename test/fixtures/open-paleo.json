@@ -1,7 +1,7 @@
 {
   "_metadata": {
     "attribution": "Open Paleo contributors",
-    "built_at": "2026-11-21T00:58:11.656Z",
+    "built_at": "2026-11-21T01:30:38.260Z",
     "clade_count": 45,
     "genus_count": 14,
     "license": "CC-BY-4.0",
@@ -10,7 +10,7 @@
       "citation": "Wright, N.; Zahirovic, S.; Müller, R. D.; Seton, M. (2013). Towards community-driven paleogeographic reconstructions: integrating open-access paleogeographic and paleobiology data with plate tectonics. Biogeosciences 10(3): 1529-1541. doi:10.5194/bg-10-1529-2013",
       "license": "CC-BY-3.0-AU"
     },
-    "schema_version": "4.5.0",
+    "schema_version": "4.6.0",
     "version": "2026.11"
   },
   "timescale": {
@@ -353,6 +353,16 @@
         "Allosauroidea",
         "Allosauria"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "67934"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q128869288"
+        }
+      ],
       "described": 1988,
       "authors": "Paul, G. S.",
       "erected_in": "paul1988a",
@@ -412,6 +422,24 @@
         "Allosauridae"
       ],
       "type_genus": "Allosaurus",
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "38589"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q131684"
+        },
+        {
+          "source": "gbif",
+          "id": "4822582"
+        },
+        {
+          "source": "eol",
+          "id": "4433670"
+        }
+      ],
       "described": 1878,
       "authors": "Marsh, O. C.",
       "erected_in": "marsh1878a",
@@ -498,6 +526,20 @@
         "Allosauroidea"
       ],
       "type_genus": "Allosaurus",
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "64112"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q134188"
+        },
+        {
+          "source": "eol",
+          "id": "42333078"
+        }
+      ],
       "described": 1993,
       "authors": "Currie, P. J.; Zhao, X. J.",
       "erected_in": "currie1993c",
@@ -544,6 +586,20 @@
         "Ankylosauria"
       ],
       "type_genus": "Ankylosaurus",
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "38816"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q273617"
+        },
+        {
+          "source": "eol",
+          "id": "3014674"
+        }
+      ],
       "described": 1923,
       "authors": "Osborn, H. F.",
       "erected_in": "osborn1923b",
@@ -623,6 +679,20 @@
         "Neotheropoda",
         "Averostra"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "92043"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q4828332"
+        },
+        {
+          "source": "eol",
+          "id": "59275512"
+        }
+      ],
       "described": 2002,
       "authors": "Paul, G. S.",
       "erected_in": "paul2002a",
@@ -671,6 +741,16 @@
         "Averostra",
         "Tetanurae",
         "Avetheropoda"
+      ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "55483"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q138921"
+        }
       ],
       "described": 1988,
       "authors": "Paul, G. S.",
@@ -747,6 +827,16 @@
         "Sauropodomorpha",
         "Bagualosauria"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "460116"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q67759938"
+        }
+      ],
       "described": 2019,
       "authors": "Langer, M. C.; McPhee, B. W.; Marsola, J. C. de A.; Roberto-da-Silva, L.; Cabreira, S. F.",
       "erected_in": "langer2019b",
@@ -790,6 +880,20 @@
         "Neosauropoda",
         "Macronaria",
         "Camarasauromorpha"
+      ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "71921"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q580039"
+        },
+        {
+          "source": "eol",
+          "id": "47459756"
+        }
       ],
       "described": 1997,
       "authors": "Salgado, L.; Coria, R. A.; Calvo, J. O.",
@@ -873,6 +977,20 @@
         "Allosauria",
         "Carcharodontosauria"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "160847"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q3520436"
+        },
+        {
+          "source": "eol",
+          "id": "47458552"
+        }
+      ],
       "described": 2010,
       "authors": "Benson, R. B. J.; Carrano, M. T.; Brusatte, S. L.",
       "erected_in": "benson2010d",
@@ -921,6 +1039,24 @@
         "Carcharodontosauridae"
       ],
       "type_genus": "Carcharodontosaurus",
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "65363"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q131334"
+        },
+        {
+          "source": "gbif",
+          "id": "4822968"
+        },
+        {
+          "source": "eol",
+          "id": "4433598"
+        }
+      ],
       "described": 1931,
       "authors": "Stromer, E.",
       "erected_in": "stromer1931a",
@@ -1002,6 +1138,20 @@
         "Avetheropoda",
         "Coelurosauria"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "53940"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q131092"
+        },
+        {
+          "source": "eol",
+          "id": "4434257"
+        }
+      ],
       "described": 1914,
       "authors": "Huene, F. von",
       "erected_in": "huene1914a",
@@ -1055,6 +1205,16 @@
         "Titanosauriformes",
         "Somphospondyli",
         "Diamantinasauria"
+      ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "432385"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q105729950"
+        }
       ],
       "described": 2021,
       "authors": "Poropat, S. F.; Kundrát, M.; Mannion, P. D.; Upchurch, P.; Tischler, T. R.; Elliott, D. A.",
@@ -1152,6 +1312,20 @@
         "Archosauria",
         "Dinosauria"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "52775"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q430"
+        },
+        {
+          "source": "eol",
+          "id": "3014672"
+        }
+      ],
       "described": 1842,
       "authors": "Owen, R.",
       "erected_in": "owen1842a",
@@ -1197,6 +1371,20 @@
         "Sauropoda",
         "Gravisauria",
         "Eusauropoda"
+      ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "57437"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q1936183"
+        },
+        {
+          "source": "eol",
+          "id": "65420684"
+        }
       ],
       "described": 1995,
       "authors": "Upchurch, P.",
@@ -1292,6 +1480,20 @@
         "Lithostrotia",
         "Eutitanosauria"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "58924"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q515777"
+        },
+        {
+          "source": "eol",
+          "id": "47458388"
+        }
+      ],
       "described": 1999,
       "authors": "Sanz, J. L.; Powell, J. E.; Le Loeuff, J.; Martínez, R.; Pereda-Suberbiola, X.",
       "erected_in": "sanz1999a",
@@ -1349,6 +1551,16 @@
         "Coelurosauria",
         "Tyrannosauroidea",
         "Eutyrannosauria"
+      ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "519521"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q62397920"
+        }
       ],
       "described": 2018,
       "authors": "Delcourt, R.; Grillo, O. N.",
@@ -1414,6 +1626,20 @@
         "Ornithischia",
         "Genasauria"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "52776"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q2605453"
+        },
+        {
+          "source": "eol",
+          "id": "65420766"
+        }
+      ],
       "described": 1986,
       "authors": "Sereno, P. C.",
       "erected_in": "sereno1986a",
@@ -1470,6 +1696,20 @@
         "Sauropodiformes",
         "Sauropoda",
         "Gravisauria"
+      ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "133909"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q1954346"
+        },
+        {
+          "source": "eol",
+          "id": "65420682"
+        }
       ],
       "described": 2008,
       "authors": "Allain, R.; Aquesbi, N.",
@@ -1535,6 +1775,16 @@
         "Somphospondyli",
         "Titanosauria",
         "Lithostrotia"
+      ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "71974"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q140061"
+        }
       ],
       "described": 2004,
       "authors": "Upchurch, P.; Barrett, P. M.; Dodson, P.",
@@ -1604,6 +1854,20 @@
         "Neosauropoda",
         "Macronaria"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "57438"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q132504"
+        },
+        {
+          "source": "eol",
+          "id": "42333654"
+        }
+      ],
       "described": 1998,
       "authors": "Wilson, J. A.; Sereno, P. C.",
       "erected_in": "wilson1998a",
@@ -1652,6 +1916,24 @@
         "Mamenchisauridae"
       ],
       "type_genus": "Mamenchisaurus",
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "53026"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q138692"
+        },
+        {
+          "source": "gbif",
+          "id": "4967275"
+        },
+        {
+          "source": "eol",
+          "id": "4658107"
+        }
+      ],
       "described": 1972,
       "authors": "Young, C. C.; Zhao, X.",
       "erected_in": "young1972a",
@@ -1730,6 +2012,24 @@
         "Plateosauria",
         "Massopoda"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "181611"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q3307233"
+        },
+        {
+          "source": "gbif",
+          "id": "9526474"
+        },
+        {
+          "source": "eol",
+          "id": "65420676"
+        }
+      ],
       "described": 2007,
       "authors": "Yates, A. M.",
       "erected_in": "yates2007a",
@@ -1787,6 +2087,24 @@
         "Massospondylidae"
       ],
       "type_genus": "Massospondylus",
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "56621"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q250154"
+        },
+        {
+          "source": "gbif",
+          "id": "4822545"
+        },
+        {
+          "source": "eol",
+          "id": "4532833"
+        }
+      ],
       "described": 1914,
       "authors": "Huene, F. von",
       "erected_in": "huene1914b",
@@ -1920,6 +2238,16 @@
         "Genasauria",
         "Neornithischia"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "71774"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q379167"
+        }
+      ],
       "described": 1985,
       "authors": "Cooper, M. R.",
       "erected_in": "cooper1985a",
@@ -1978,6 +2306,20 @@
         "Eusauropoda",
         "Neosauropoda"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "57439"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q134889"
+        },
+        {
+          "source": "eol",
+          "id": "42333653"
+        }
+      ],
       "described": 1986,
       "authors": "Bonaparte, J. F.",
       "erected_in": "bonaparte1986b",
@@ -2031,6 +2373,20 @@
         "Theropoda",
         "Neotheropoda"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "56397"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q145206"
+        },
+        {
+          "source": "eol",
+          "id": "61173379"
+        }
+      ],
       "described": 1986,
       "authors": "Bakker, R. T.",
       "erected_in": "bakker1986a",
@@ -2080,6 +2436,24 @@
         "Nodosauridae"
       ],
       "type_genus": "Nodosaurus",
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "38817"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q134193"
+        },
+        {
+          "source": "gbif",
+          "id": "3238875"
+        },
+        {
+          "source": "eol",
+          "id": "3014675"
+        }
+      ],
       "described": 1890,
       "authors": "Marsh, O. C.",
       "erected_in": "marsh1890a",
@@ -2157,6 +2531,20 @@
         "Dinosauria",
         "Ornithischia"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "38712"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q191488"
+        },
+        {
+          "source": "eol",
+          "id": "4530715"
+        }
+      ],
       "described": 1888,
       "authors": "Seeley, H. G.",
       "erected_in": "seeley1888b",
@@ -2214,6 +2602,20 @@
         "Thyreophora",
         "Ankylosauria",
         "Parankylosauria"
+      ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "446237"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q109887677"
+        },
+        {
+          "source": "eol",
+          "id": "61966330"
+        }
       ],
       "described": 2021,
       "authors": "Soto-Acuña, S.; Vargas, A. O.; Kaluza, J.; Leppe, M. A.; Botelho, J. F.; Palma-Liberona, J.; Simon-Gutstein, C.; Fernández, R. A.; Ortiz, H.; Milla, V.; Aravena, B.; Manríquez, L. M. E.; Alarcón-Muñoz, J.; Pino, J. P.; Trevisan, C.; Mansilla, H.; Hinojosa, L. F.; Muñoz-Walther, V.; Rubilar-Rogers, D.",
@@ -2279,6 +2681,16 @@
         "Sauropodomorpha",
         "Bagualosauria",
         "Plateosauria"
+      ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "65098"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q1038256"
+        }
       ],
       "described": 1913,
       "authors": "Tornier, G.",
@@ -2370,6 +2782,24 @@
         "Saltasauridae"
       ],
       "type_genus": "Saltasaurus",
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "64335"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q136291"
+        },
+        {
+          "source": "gbif",
+          "id": "4967427"
+        },
+        {
+          "source": "eol",
+          "id": "4657963"
+        }
+      ],
       "described": 1992,
       "authors": "Powell, J. E.",
       "erected_in": "powell1992a",
@@ -2450,6 +2880,20 @@
         "Saltasauroidea"
       ],
       "type_genus": "Saltasaurus",
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "455537"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q111752864"
+        },
+        {
+          "source": "eol",
+          "id": "52571704"
+        }
+      ],
       "described": 1992,
       "authors": "Powell, J. E.",
       "erected_in": "powell1992a",
@@ -2510,6 +2954,20 @@
         "Archosauria",
         "Dinosauria",
         "Saurischia"
+      ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "38505"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q186334"
+        },
+        {
+          "source": "eol",
+          "id": "4531095"
+        }
       ],
       "described": 1888,
       "authors": "Seeley, H. G.",
@@ -2575,6 +3033,20 @@
         "Sauropodiformes",
         "Sauropoda"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "38653"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q14416"
+        },
+        {
+          "source": "eol",
+          "id": "42333651"
+        }
+      ],
       "described": 1878,
       "authors": "Marsh, O. C.",
       "erected_in": "marsh1878b",
@@ -2621,6 +3093,20 @@
         "Plateosauria",
         "Massopoda",
         "Sauropodiformes"
+      ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "174880"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q23928282"
+        },
+        {
+          "source": "eol",
+          "id": "62510988"
+        }
       ],
       "described": 2007,
       "authors": "Sereno, P. C.",
@@ -2672,6 +3158,20 @@
         "Dinosauria",
         "Saurischia",
         "Sauropodomorpha"
+      ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "38633"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q133012"
+        },
+        {
+          "source": "eol",
+          "id": "42333648"
+        }
       ],
       "described": 1932,
       "authors": "Huene, F. V.",
@@ -2737,6 +3237,20 @@
         "Titanosauriformes",
         "Somphospondyli"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "66514"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q4049742"
+        },
+        {
+          "source": "eol",
+          "id": "59249835"
+        }
+      ],
       "described": 1998,
       "authors": "Wilson, J. A.; Sereno, P. C.",
       "erected_in": "wilson1998a",
@@ -2778,6 +3292,20 @@
         "Neotheropoda",
         "Averostra",
         "Tetanurae"
+      ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "53374"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q131391"
+        },
+        {
+          "source": "eol",
+          "id": "4658726"
+        }
       ],
       "described": 1986,
       "authors": "Gauthier, J. A.",
@@ -2831,6 +3359,20 @@
         "Saurischia",
         "Theropoda"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "38513"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q188438"
+        },
+        {
+          "source": "eol",
+          "id": "4531545"
+        }
+      ],
       "described": 1881,
       "authors": "Marsh, O. C.",
       "erected_in": "marsh1881b",
@@ -2870,6 +3412,20 @@
         "Ornithischia",
         "Genasauria",
         "Thyreophora"
+      ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "52777"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q823931"
+        },
+        {
+          "source": "eol",
+          "id": "47043860"
+        }
       ],
       "described": 1915,
       "authors": "Nopcsa, B. F.",
@@ -2935,6 +3491,20 @@
         "Somphospondyli",
         "Titanosauria"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "55585"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q133051"
+        },
+        {
+          "source": "eol",
+          "id": "42333657"
+        }
+      ],
       "described": 1993,
       "authors": "Bonaparte, J. F.; Coria, R. A.",
       "erected_in": "bonaparte1993a",
@@ -2998,6 +3568,20 @@
         "Camarasauromorpha",
         "Titanosauriformes"
       ],
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "57468"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q142026"
+        },
+        {
+          "source": "eol",
+          "id": "47459584"
+        }
+      ],
       "described": 1997,
       "authors": "Salgado, L.; Coria, R. A.; Calvo, J. O.",
       "erected_in": "salgado1997a",
@@ -3058,6 +3642,24 @@
         "Tyrannosauridae"
       ],
       "type_genus": "Tyrannosaurus",
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "38606"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q131050"
+        },
+        {
+          "source": "gbif",
+          "id": "4822619"
+        },
+        {
+          "source": "eol",
+          "id": "4433624"
+        }
+      ],
       "described": 1906,
       "authors": "Osborn, H. F.",
       "erected_in": "osborn1906a",
@@ -3108,6 +3710,16 @@
         "Tyrannosaurinae"
       ],
       "type_genus": "Tyrannosaurus",
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "65352"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q2073980"
+        }
+      ],
       "described": 1906,
       "authors": "Osborn, H. F.",
       "erected_in": "osborn1906a",
@@ -3166,6 +3778,20 @@
         "Tyrannosauroidea"
       ],
       "type_genus": "Tyrannosaurus",
+      "identifiers": [
+        {
+          "source": "pbdb",
+          "id": "58837"
+        },
+        {
+          "source": "wikidata",
+          "id": "Q131396"
+        },
+        {
+          "source": "eol",
+          "id": "42332925"
+        }
+      ],
       "described": 1906,
       "authors": "Osborn, H. F.",
       "erected_in": "osborn1906a",
