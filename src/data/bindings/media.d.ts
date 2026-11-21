@@ -24,7 +24,7 @@ export interface Metadata {
   /**
    * The version of this schema the output follows. A new major version is a breaking change.
    */
-  schema_version: "1.2.0";
+  schema_version: "1.3.0";
   /**
    * How the images are licensed.
    */
@@ -65,5 +65,5 @@ export interface Outline {
   /**
    * Its license, as an SPDX id. Share-alike outlines keep their license in the cleaned copy.
    */
-  license: "CC0-1.0" | "PDM-1.0" | "CC-BY-3.0" | "CC-BY-4.0" | "CC-BY-SA-3.0" | "CC-BY-SA-4.0";
+  license: "CC0-1.0" | "PDM-1.0" | "CC-BY-2.0" | "CC-BY-3.0" | "CC-BY-4.0" | "CC-BY-SA-3.0" | "CC-BY-SA-4.0";
 }

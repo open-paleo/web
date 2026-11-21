@@ -13,11 +13,11 @@ const media = readMediaFixture(siteData);
 test("a genus shows the outline of the nearest clade above it that has one", () =>
 {
     const tyrannosaurus = siteData.genusByName.get("Tyrannosaurus");
-    const allosaurus = siteData.genusByName.get("Allosaurus");
+    const acanthopholis = siteData.genusByName.get("Acanthopholis");
 
-    assert.ok(tyrannosaurus && allosaurus);
+    assert.ok(tyrannosaurus && acanthopholis);
     assert.equal(findGenusOutline(media, tyrannosaurus, siteData)?.taxon, "Tyrannosauroidea");
-    assert.equal(findGenusOutline(media, allosaurus, siteData)?.taxon, "Theropoda");
+    assert.equal(findGenusOutline(media, acanthopholis, siteData)?.taxon, "Ankylosauria");
 });
 
 test("a genus with its own outline shows it rather than its clade's", () =>
@@ -31,6 +31,11 @@ test("a genus with its own outline shows it rather than its clade's", () =>
     const withOwn = { outlineByTaxon: new Map([...media.outlineByTaxon, ["Tyrannosaurus", { ...clades, taxon: "Tyrannosaurus" }]]) };
 
     assert.equal(findGenusOutline(withOwn, tyrannosaurus, siteData)?.taxon, "Tyrannosaurus");
+
+    const allosaurus = siteData.genusByName.get("Allosaurus");
+
+    assert.ok(allosaurus);
+    assert.equal(findGenusOutline(media, allosaurus, siteData)?.taxon, "Allosaurus", "a traced genus outline");
 });
 
 test("every genus in the fixture has an outline, and outlines are inline SVG in the page's color", () =>
@@ -65,6 +70,6 @@ test("a clade shows its own outline, else its type genus's, else none", () =>
 
     assert.ok(sauropoda && allosauridae && avetheropoda);
     assert.equal(findCladeOutline(media, sauropoda, siteData)?.taxon, "Sauropoda");
-    assert.equal(findCladeOutline(media, allosauridae, siteData)?.taxon, "Theropoda", "through its type genus, Allosaurus");
+    assert.equal(findCladeOutline(media, allosauridae, siteData)?.taxon, "Allosaurus", "its type genus's own outline");
     assert.equal(findCladeOutline(media, avetheropoda, siteData), undefined, "no outline and no type genus");
 });

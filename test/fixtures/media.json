@@ -1,10 +1,208 @@
 {
   "_metadata": {
-    "schema_version": "1.2.0",
+    "schema_version": "1.3.0",
     "license": "Each image keeps the license in its record; everything else is CC-BY-4.0",
-    "outline_count": 12
+    "outline_count": 304
   },
   "outlines": {
+    "Abdarainurus": {
+      "file": "outlines/a/abdarainurus.svg",
+      "title": "Outline of Abdarainurus",
+      "depicts": "Abdarainurus barsboldi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Skye M",
+      "source": "https://commons.wikimedia.org/wiki/File:Abdarainurus.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Achillobator": {
+      "file": "outlines/a/achillobator.svg",
+      "title": "Outline of Achillobator",
+      "depicts": "Achillobator giganticus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PaleoNeolitic",
+      "source": "https://commons.wikimedia.org/wiki/File:Achillobator_Skeleton_Reconstruction.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Acrocanthosaurus": {
+      "file": "outlines/a/acrocanthosaurus.svg",
+      "title": "Outline of Acrocanthosaurus",
+      "depicts": "Acrocanthosaurus atokensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Acrocanthosaurus_atokensis.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Adratiklit": {
+      "file": "outlines/a/adratiklit.svg",
+      "title": "Outline of Adratiklit",
+      "depicts": "Adratiklit boulahfa",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Adratiklit_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Afrovenator": {
+      "file": "outlines/a/afrovenator.svg",
+      "title": "Outline of Afrovenator",
+      "depicts": "Afrovenator abakensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Afrovenator_skeleton.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Agilisaurus": {
+      "file": "outlines/a/agilisaurus.svg",
+      "title": "Outline of Agilisaurus",
+      "depicts": "Agilisaurus louderbacki",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Agilisaurus_louderbacki.jpg",
+      "license": "CC-BY-SA-3.0"
+    },
+    "Ahshislesaurus": {
+      "file": "outlines/a/ahshislesaurus.svg",
+      "title": "Outline of Ahshislesaurus",
+      "depicts": "Ahshislesaurus wimani",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Definitely NOT Dilophosaurus",
+      "source": "https://commons.wikimedia.org/wiki/File:Ahshislesaurus_Skeletal_Main.png",
+      "license": "CC-BY-4.0"
+    },
+    "Ahvaytum": {
+      "file": "outlines/a/ahvaytum.svg",
+      "title": "Outline of Ahvaytum",
+      "depicts": "Ahvaytum bahndooiveche",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Ahvaytum_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Ajkaceratops": {
+      "file": "outlines/a/ajkaceratops.svg",
+      "title": "Outline of Ajkaceratops",
+      "depicts": "Ajkaceratops",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Crizz30",
+      "source": "https://commons.wikimedia.org/wiki/File:Ajkaceratops_holotipo.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Alamosaurus": {
+      "file": "outlines/a/alamosaurus.svg",
+      "title": "Outline of Alamosaurus",
+      "depicts": "Alamosaurus sanjuanensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Alamotitan",
+      "source": "https://commons.wikimedia.org/wiki/File:Alamosaurus-sanjuanensis.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Alcovasaurus": {
+      "file": "outlines/a/alcovasaurus.svg",
+      "title": "Outline of Alcovasaurus",
+      "depicts": "Alcovasaurus longispinus",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Alcovasaurus_longispinus_Skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Alectrosaurus": {
+      "file": "outlines/a/alectrosaurus.svg",
+      "title": "Outline of Alectrosaurus",
+      "depicts": "Alectrosaurus olseni",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PaleoNeolitic",
+      "source": "https://commons.wikimedia.org/wiki/File:Alectrosaurus_Skeleton_Reconstruction.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Alioramus": {
+      "file": "outlines/a/alioramus.svg",
+      "title": "Outline of Alioramus",
+      "depicts": "Alioramus remotus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Steveoc 86",
+      "source": "https://commons.wikimedia.org/wiki/File:Alioramus_skeletal_steveoc.png",
+      "license": "CC-BY-3.0"
+    },
+    "Allosaurus": {
+      "file": "outlines/a/allosaurus.svg",
+      "title": "Outline of Allosaurus",
+      "depicts": "Allosaurus jimmadseni",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Artwork by Scott Hartman, published by Daniel J. Chure, Mark A. Loewen",
+      "source": "https://commons.wikimedia.org/wiki/File:Allosaurus_jimmadseni_skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Alvarezsaurus": {
+      "file": "outlines/a/alvarezsaurus.svg",
+      "title": "Outline of Alvarezsaurus",
+      "depicts": "Alvarezsaurus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime Headden (Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Alvarezsaurus_Jaime_Headden.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Alxasaurus": {
+      "file": "outlines/a/alxasaurus.svg",
+      "title": "Outline of Alxasaurus",
+      "depicts": "Alxasaurus elesitaiensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Alxasaurus_elesitaiensis.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Amanzia": {
+      "file": "outlines/a/amanzia.svg",
+      "title": "Outline of Amanzia",
+      "depicts": "Amanzia greppini",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Daniela Schwarz, Philip D. Mannion, Oliver Wings & Christian A. Meyer",
+      "source": "https://commons.wikimedia.org/wiki/File:Amanzia_reconstruction_(cropped).png",
+      "license": "CC-BY-4.0"
+    },
+    "Amargasaurus": {
+      "file": "outlines/a/amargasaurus.svg",
+      "title": "Outline of Amargasaurus",
+      "depicts": "Amargasaurus cazaui",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Amargasaurus_cazaui_skeletal_by_Gunnar_Bivens.png",
+      "license": "CC-BY-3.0"
+    },
+    "Amargatitanis": {
+      "file": "outlines/a/amargatitanis.svg",
+      "title": "Outline of Amargatitanis",
+      "depicts": "Amargatitanis macni",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Amargatitanis_Skeletal.svg",
+      "license": "CC-BY-4.0"
+    },
+    "Amazonsaurus": {
+      "file": "outlines/a/amazonsaurus.svg",
+      "title": "Outline of Amazonsaurus",
+      "depicts": "Amazonsaurus maranhensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Amazonsaurus_Skeletal.svg",
+      "license": "CC-BY-4.0"
+    },
+    "Anchiornis": {
+      "file": "outlines/a/anchiornis.svg",
+      "title": "Outline of Anchiornis",
+      "depicts": "Anchiornis huxleyi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Wang X., Pittman, M., Zheng X., Kaye, T.G., Falk, A.R., Hartman, S.A., and Xu X.",
+      "source": "https://commons.wikimedia.org/wiki/File:Anchiornis_huxleyi_skel_hartman_2017.png",
+      "license": "CC-BY-4.0"
+    },
+    "Anhuilong": {
+      "file": "outlines/a/anhuilong.svg",
+      "title": "Outline of Anhuilong",
+      "depicts": "Anhuilong diboensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Skye McDavid",
+      "source": "https://commons.wikimedia.org/wiki/File:Anhuilong.png",
+      "license": "CC-BY-SA-4.0"
+    },
     "Ankylosauria": {
       "file": "outlines/a/ankylosauria.svg",
       "title": "Outline of an ankylosaur",
@@ -12,6 +210,321 @@
       "changes": "Recolored",
       "creator": "Itai Fein",
       "source": "https://www.phylopic.org/images/8a8a2525-e97d-4505-8085-7958f8d36137",
+      "license": "CC0-1.0"
+    },
+    "Antarctosaurus": {
+      "file": "outlines/a/antarctosaurus.svg",
+      "title": "Outline of Antarctosaurus",
+      "depicts": "Antarctosaurus wichmannianus",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Antarctosaurus_wichmannianus_Skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Apatosaurus": {
+      "file": "outlines/a/apatosaurus.svg",
+      "title": "Outline of Apatosaurus",
+      "depicts": "Apatosaurus louisae",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Bricksmashtv",
+      "source": "https://commons.wikimedia.org/wiki/File:Apatosaurus_louisae_skeletal_by_Bricksmashtv.png",
+      "license": "CC-BY-3.0"
+    },
+    "Archaeocursor": {
+      "file": "outlines/a/archaeocursor.svg",
+      "title": "Outline of Archaeocursor",
+      "depicts": "Archaeocursor asiaticus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Archaeocursor_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Ardetosaurus": {
+      "file": "outlines/a/ardetosaurus.svg",
+      "title": "Outline of Ardetosaurus",
+      "depicts": "Ardetosaurus viator",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Ole Zant",
+      "source": "https://commons.wikimedia.org/wiki/File:Ardetosaurus_viator_(skeletal_reconstruction).png",
+      "license": "CC-BY-4.0"
+    },
+    "Argentinosaurus": {
+      "file": "outlines/a/argentinosaurus.svg",
+      "title": "Outline of Argentinosaurus",
+      "depicts": "Argentinosaurus",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "User:Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Argentinosaurus_9.svg",
+      "license": "PDM-1.0"
+    },
+    "Asfaltovenator": {
+      "file": "outlines/a/asfaltovenator.svg",
+      "title": "Outline of Asfaltovenator",
+      "depicts": "Asfaltovenator",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "User:Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Asfaltovenator_Scale.svg",
+      "license": "PDM-1.0"
+    },
+    "Atacamatitan": {
+      "file": "outlines/a/atacamatitan.svg",
+      "title": "Outline of Atacamatitan",
+      "depicts": "Atacamatitan chilensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PaleoNeolitic",
+      "source": "https://commons.wikimedia.org/wiki/File:Atacamatitan_Skeleton_Reconstruction.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Atrociraptor": {
+      "file": "outlines/a/atrociraptor.svg",
+      "title": "Outline of Atrociraptor",
+      "depicts": "Atrociraptor marshalli",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Mette Aumala",
+      "source": "https://commons.wikimedia.org/wiki/File:Atrociraptor_marshalli_skeletal_diagram.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Australodocus": {
+      "file": "outlines/a/australodocus.svg",
+      "title": "Outline of Australodocus",
+      "depicts": "Australodocus bohetii",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Australodocus_Skeletal_V2.svg",
+      "license": "CC-BY-4.0"
+    },
+    "Australotitan": {
+      "file": "outlines/a/australotitan.svg",
+      "title": "Outline of Australotitan",
+      "depicts": "Australotitan cooperensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Sauriazoicillus",
+      "source": "https://commons.wikimedia.org/wiki/File:Australotitan_cooperensis.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Austroraptor": {
+      "file": "outlines/a/austroraptor.svg",
+      "title": "Outline of Austroraptor",
+      "depicts": "Austroraptor cabazai",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Austroraptor.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Avaceratops": {
+      "file": "outlines/a/avaceratops.svg",
+      "title": "Outline of Avaceratops",
+      "depicts": "Avaceratops",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "User:Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Avaceratops_Scale.svg",
+      "license": "PDM-1.0"
+    },
+    "Avimimus": {
+      "file": "outlines/a/avimimus.svg",
+      "title": "Outline of Avimimus",
+      "depicts": "Avimimus portentosus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Avimimus_portentosus.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Bagaceratops": {
+      "file": "outlines/b/bagaceratops.svg",
+      "title": "Outline of Bagaceratops",
+      "depicts": "Bagaceratops rozhdestvenskyi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PaleoNeolitic",
+      "source": "https://commons.wikimedia.org/wiki/File:Bagaceratops_Skeleton_Reconstruction.png",
+      "license": "CC-BY-4.0"
+    },
+    "Bagualosaurus": {
+      "file": "outlines/b/bagualosaurus.svg",
+      "title": "Outline of Bagualosaurus",
+      "depicts": "Bagualosaurus agudoensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Maurissauro",
+      "source": "https://commons.wikimedia.org/wiki/File:Bagualosaurus_agudoensis.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Baiyinosaurus": {
+      "file": "outlines/b/baiyinosaurus.svg",
+      "title": "Outline of Baiyinosaurus",
+      "depicts": "Baiyinosaurus baojiensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Baiyinosaurus_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Balaur": {
+      "file": "outlines/b/balaur.svg",
+      "title": "Outline of Balaur",
+      "depicts": "Balaur bondoc",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Produced by Jaime Headden, used with permission.",
+      "source": "https://commons.wikimedia.org/wiki/File:Balaur.png",
+      "license": "CC-BY-4.0"
+    },
+    "Bambiraptor": {
+      "file": "outlines/b/bambiraptor.svg",
+      "title": "Outline of Bambiraptor",
+      "depicts": "Bambiraptor feinbergi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Bambiraptor_feinbergi.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Baryonyx": {
+      "file": "outlines/b/baryonyx.svg",
+      "title": "Outline of Baryonyx",
+      "depicts": "Baryonyx walkeri",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Suchomimus_and_Baryonyx.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Bashanosaurus": {
+      "file": "outlines/b/bashanosaurus.svg",
+      "title": "Outline of Bashanosaurus",
+      "depicts": "Bashanosaurus primitivus",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Bashanosaurus_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Beipiaosaurus": {
+      "file": "outlines/b/beipiaosaurus.svg",
+      "title": "Outline of Beipiaosaurus",
+      "depicts": "Beipiaosaurus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Beipiaosaurus_skeletal_Headden.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Bicharracosaurus": {
+      "file": "outlines/b/bicharracosaurus.svg",
+      "title": "Outline of Bicharracosaurus",
+      "depicts": "Bicharracosaurus dionidei",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Alexandra Reutter et al.",
+      "source": "https://commons.wikimedia.org/wiki/File:Bicharracosaurus_dionidei_(skeletal_reconstruction).png",
+      "license": "CC-BY-4.0"
+    },
+    "Bisticeratops": {
+      "file": "outlines/b/bisticeratops.svg",
+      "title": "Outline of Bisticeratops",
+      "depicts": "Bisticeratops froeseorum",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Skye McDavid",
+      "source": "https://commons.wikimedia.org/wiki/File:Bisticeratops_skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Bonitasaura": {
+      "file": "outlines/b/bonitasaura.svg",
+      "title": "Outline of Bonitasaura",
+      "depicts": "Bonitasaura salgadoi",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Bonitasaura_salgadoi_Skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Brachiosaurus": {
+      "file": "outlines/b/brachiosaurus.svg",
+      "title": "Outline of Brachiosaurus",
+      "depicts": "Brachiosaurus altithorax",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Brachiosaurus_altithorax_Mk_III_Multiview_Skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Bravoceratops": {
+      "file": "outlines/b/bravoceratops.svg",
+      "title": "Outline of Bravoceratops",
+      "depicts": "Bravoceratops",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Bravoceratops_skeletal.png",
+      "license": "CC-BY-3.0"
+    },
+    "Buitreraptor": {
+      "file": "outlines/b/buitreraptor.svg",
+      "title": "Outline of Buitreraptor",
+      "depicts": "Buitreraptor gonzalezorum",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Buitreraptor_gonzalezorum.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Byronosaurus": {
+      "file": "outlines/b/byronosaurus.svg",
+      "title": "Outline of Byronosaurus",
+      "depicts": "Byronosaurus jaffei",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Byronosaurus_jaffei_headden.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Caletodraco": {
+      "file": "outlines/c/caletodraco.svg",
+      "title": "Outline of Caletodraco",
+      "depicts": "Caletodraco cottardi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Caletodraco_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Camarasaurus": {
+      "file": "outlines/c/camarasaurus.svg",
+      "title": "Outline of Camarasaurus",
+      "depicts": "Camarasaurus grandis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Scott Hartman",
+      "source": "https://commons.wikimedia.org/wiki/File:Camarasaurus_skeletal.jpg",
+      "license": "CC-BY-2.0"
+    },
+    "Camarillasaurus": {
+      "file": "outlines/c/camarillasaurus.svg",
+      "title": "Outline of Camarillasaurus",
+      "depicts": "Camarillasaurus cirugedae",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Definitely NOT Dilophosaurus",
+      "source": "https://commons.wikimedia.org/wiki/File:Camarillasaurus_Skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Camptosaurus": {
+      "file": "outlines/c/camptosaurus.svg",
+      "title": "Outline of Camptosaurus",
+      "depicts": "Camptosaurus dispar",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "User:Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Camptosaurus_Scale.svg",
+      "license": "PDM-1.0"
+    },
+    "Carnotaurus": {
+      "file": "outlines/c/carnotaurus.svg",
+      "title": "Outline of Carnotaurus",
+      "depicts": "Carnotaurus sastrei",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Carnotaurus_reconstruction_Headden.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Caudipteryx": {
+      "file": "outlines/c/caudipteryx.svg",
+      "title": "Outline of Caudipteryx",
+      "depicts": "Caudipteryx",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Caudipteryx.gif",
+      "license": "CC-BY-3.0"
+    },
+    "Ceratocaudia": {
+      "file": "outlines/c/ceratocaudia.svg",
+      "title": "Outline of Ceratocaudia",
+      "depicts": "Ceratocaudia antiqua",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Abhishek Natarajan",
+      "source": "https://commons.wikimedia.org/wiki/File:Ceratocaudia_antiqua_(skeletal_reconstruction).png",
       "license": "CC0-1.0"
     },
     "Ceratopsia": {
@@ -23,6 +536,213 @@
       "source": "https://www.phylopic.org/images/57d2507a-be74-453b-8522-f6993b2fc401",
       "license": "CC0-1.0"
     },
+    "Cetiosauriscus": {
+      "file": "outlines/c/cetiosauriscus.svg",
+      "title": "Outline of Cetiosauriscus",
+      "depicts": "Cetiosauriscus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Eotyrannu5",
+      "source": "https://commons.wikimedia.org/wiki/File:Cetiosauriscus_composite_skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Cetiosaurus": {
+      "file": "outlines/c/cetiosaurus.svg",
+      "title": "Outline of Cetiosaurus",
+      "depicts": "Cetiosaurus oxoniensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden",
+      "source": "https://commons.wikimedia.org/wiki/File:Cetiosaurus_oxoniensis_skeletal.png",
+      "license": "CC-BY-SA-3.0"
+    },
+    "Chilantaisaurus": {
+      "file": "outlines/c/chilantaisaurus.svg",
+      "title": "Outline of Chilantaisaurus",
+      "depicts": "Chilantaisaurus tashuikouensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Chilantaisaurus_Skeletal.svg",
+      "license": "CC-BY-4.0"
+    },
+    "Chilesaurus": {
+      "file": "outlines/c/chilesaurus.svg",
+      "title": "Outline of Chilesaurus",
+      "depicts": "Chilesaurus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden",
+      "source": "https://commons.wikimedia.org/wiki/File:Chilesaurus_skeleton.png",
+      "license": "CC-BY-3.0"
+    },
+    "Chindesaurus": {
+      "file": "outlines/c/chindesaurus.svg",
+      "title": "Outline of Chindesaurus",
+      "depicts": "Chindesaurus bryansmalli",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Maurissauro",
+      "source": "https://commons.wikimedia.org/wiki/File:Chindesaurus_skeleton.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Chirostenotes": {
+      "file": "outlines/c/chirostenotes.svg",
+      "title": "Outline of Chirostenotes",
+      "depicts": "Chirostenotes pergracilis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Gregory Funston",
+      "source": "https://commons.wikimedia.org/wiki/File:Chirostenotes_skeletal.jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Chromogisaurus": {
+      "file": "outlines/c/chromogisaurus.svg",
+      "title": "Outline of Chromogisaurus",
+      "depicts": "Chromogisaurus novasi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Maurissauro",
+      "source": "https://commons.wikimedia.org/wiki/File:Chromogisaurus_skeleton.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Chuandongocoelurus": {
+      "file": "outlines/c/chuandongocoelurus.svg",
+      "title": "Outline of Chuandongocoelurus",
+      "depicts": "Chuandongocoelurus primitivus",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Paleocolour",
+      "source": "https://commons.wikimedia.org/wiki/File:Chuandongocoelurus_Skeletal.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Chucarosaurus": {
+      "file": "outlines/c/chucarosaurus.svg",
+      "title": "Outline of Chucarosaurus",
+      "depicts": "Chucarosaurus diripienda",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Chucarosaurus_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Citipes": {
+      "file": "outlines/c/citipes.svg",
+      "title": "Outline of Citipes",
+      "depicts": "Citipes elegans",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Gregory Funston",
+      "source": "https://commons.wikimedia.org/wiki/File:Citipes_skeletal.jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Coelurus": {
+      "file": "outlines/c/coelurus.svg",
+      "title": "Outline of Coelurus",
+      "depicts": "Coelurus fragilis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Coelurus.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Comahuesaurus": {
+      "file": "outlines/c/comahuesaurus.svg",
+      "title": "Outline of Comahuesaurus",
+      "depicts": "Comahuesaurus windhauseni",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Comahuesaurus_Skeletal_V0.svg",
+      "license": "CC-BY-4.0"
+    },
+    "Compsognathus": {
+      "file": "outlines/c/compsognathus.svg",
+      "title": "Outline of Compsognathus",
+      "depicts": "Compsognathus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Compsognathidae.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Corythoraptor": {
+      "file": "outlines/c/corythoraptor.svg",
+      "title": "Outline of Corythoraptor",
+      "depicts": "Corythoraptor jacobsi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Junchang Lü, Guoqing Li, Martin Kundrát, Yuong-Nam Lee, Zhenyuan Sun, Yoshitsugu Kobayashi, Caizhi Shen, Fangfang Teng & Hanfeng Liu",
+      "source": "https://commons.wikimedia.org/wiki/File:Corythoraptor_skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Cumnoria": {
+      "file": "outlines/c/cumnoria.svg",
+      "title": "Outline of Cumnoria",
+      "depicts": "Cumnoria prestwichii",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Definitely NOT Dilophosaurus",
+      "source": "https://commons.wikimedia.org/wiki/File:Cumnoria_Skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Dacentrurus": {
+      "file": "outlines/d/dacentrurus.svg",
+      "title": "Outline of Dacentrurus",
+      "depicts": "Dacentrurus armatus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Dacentrurus_armatus_skeleton.png",
+      "license": "CC-BY-SA-3.0"
+    },
+    "Dakotaraptor": {
+      "file": "outlines/d/dakotaraptor.svg",
+      "title": "Outline of Dakotaraptor",
+      "depicts": "Dakotaraptor steini",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PaleoNeolitic",
+      "source": "https://commons.wikimedia.org/wiki/File:Dakotaraptor_Skeleton_Reconstruction.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Daspletosaurus": {
+      "file": "outlines/d/daspletosaurus.svg",
+      "title": "Outline of Daspletosaurus",
+      "depicts": "Daspletosaurus",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Ethan Warner-Cowgill, Glenn W. Storrs, Raymond R. Rogers, and Anthony E. Maltese",
+      "source": "https://commons.wikimedia.org/wiki/File:Daspletosaurus_sp._(CMC_VP15826)_skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Datousaurus": {
+      "file": "outlines/d/datousaurus.svg",
+      "title": "Outline of Datousaurus",
+      "depicts": "Datousaurus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "User:Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Datousaurus_Scale.svg",
+      "license": "PDM-1.0"
+    },
+    "Daurlong": {
+      "file": "outlines/d/daurlong.svg",
+      "title": "Outline of Daurlong",
+      "depicts": "Daurlong wangi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "X. Wang, A. Cau, B. Guo, F. Ma, G. Qing, & Y. Liu",
+      "source": "https://commons.wikimedia.org/wiki/File:Daurlong_skeletal_reconstruction.jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Deltadromeus": {
+      "file": "outlines/d/deltadromeus.svg",
+      "title": "Outline of Deltadromeus",
+      "depicts": "Deltadromeus agilis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Nizar Ibrahim, Paul C. Sereno, David J. Varricchio, David M. Martill, Didier B. Dutheil, David M. Unwin, Lahssen Baidder, Hans C. E. Larsson, Samir Zouhri, Abdelhadi Kaoukaya",
+      "source": "https://commons.wikimedia.org/wiki/File:Deltadromeus_skeletal.jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Demandasaurus": {
+      "file": "outlines/d/demandasaurus.svg",
+      "title": "Outline of Demandasaurus",
+      "depicts": "Demandasaurus darwini",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Demandasaurus_Skeletal.svg",
+      "license": "CC-BY-4.0"
+    },
+    "Diluvicursor": {
+      "file": "outlines/d/diluvicursor.svg",
+      "title": "Outline of Diluvicursor",
+      "depicts": "Diluvicursor pickeringi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Herne MC, Tait AM, Weisbecker V, Hall M, Nair JP, Cleeland M, Salisbury SW.",
+      "source": "https://commons.wikimedia.org/wiki/File:Diluvicursor_skeleton.png",
+      "license": "CC-BY-4.0"
+    },
     "Dinosauria": {
       "file": "outlines/d/dinosauria.svg",
       "title": "Outline of an early dinosaur relative",
@@ -32,6 +752,42 @@
       "source": "https://www.phylopic.org/images/b512af42-a672-4362-95d6-96d3d0cfc369",
       "license": "CC-BY-3.0"
     },
+    "Doolysaurus": {
+      "file": "outlines/d/doolysaurus.svg",
+      "title": "Outline of Doolysaurus",
+      "depicts": "Doolysaurus huhmini",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "J. Jung, K. Kim, H. Jo & J. A. Clarke",
+      "source": "https://commons.wikimedia.org/wiki/File:Doolysaurus_huhmini_(skeletal_reconstruction).jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Dornraptor": {
+      "file": "outlines/d/dornraptor.svg",
+      "title": "Outline of Dornraptor",
+      "depicts": "Dornraptor normani",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Dornraptor_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Draconyx": {
+      "file": "outlines/d/draconyx.svg",
+      "title": "Outline of Draconyx",
+      "depicts": "Draconyx loureiroi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Draconyx_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Dreadnoughtus": {
+      "file": "outlines/d/dreadnoughtus.svg",
+      "title": "Outline of Dreadnoughtus",
+      "depicts": "Dreadnoughtus schrani",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Dreadnoughtus_schrani_Multiview_Skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
     "Dromaeosauridae": {
       "file": "outlines/d/dromaeosauridae.svg",
       "title": "Outline of a dromaeosaur",
@@ -40,6 +796,1113 @@
       "creator": "François-Louis PELISSIER",
       "source": "https://www.phylopic.org/images/d79359f8-41dc-4744-bfa1-2b9e560e310c",
       "license": "CC0-1.0"
+    },
+    "Dryptosaurus": {
+      "file": "outlines/d/dryptosaurus.svg",
+      "title": "Outline of Dryptosaurus",
+      "depicts": "Dryptosaurus aquilunguis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Conty",
+      "source": "https://commons.wikimedia.org/wiki/File:Dryptosaurus_remains_01.png",
+      "license": "CC-BY-3.0"
+    },
+    "Edmontosaurus": {
+      "file": "outlines/e/edmontosaurus.svg",
+      "title": "Outline of Edmontosaurus",
+      "depicts": "Edmontosaurus annectens",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Edmontosaurus_annectens_Multiview_Skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Ekrixinatosaurus": {
+      "file": "outlines/e/ekrixinatosaurus.svg",
+      "title": "Outline of Ekrixinatosaurus",
+      "depicts": "Ekrixinatosaurus novasi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Joseph Shanks",
+      "source": "https://commons.wikimedia.org/wiki/File:Ekrixinatosaurus_novasi_skeletal_diagram.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Elaphrosaurus": {
+      "file": "outlines/e/elaphrosaurus.svg",
+      "title": "Outline of Elaphrosaurus",
+      "depicts": "Elaphrosaurus bambergi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Elaphrosaurus_bambergi.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Elmisaurus": {
+      "file": "outlines/e/elmisaurus.svg",
+      "title": "Outline of Elmisaurus",
+      "depicts": "Elmisaurus rarus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Elmisaurus_rarus.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Enigmacursor": {
+      "file": "outlines/e/enigmacursor.svg",
+      "title": "Outline of Enigmacursor",
+      "depicts": "Enigmacursor",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Maidment and Barrett (2025)",
+      "source": "https://commons.wikimedia.org/wiki/File:Skeletal_and_life_reconstruction_of_Enigmacursor.jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Enigmosaurus": {
+      "file": "outlines/e/enigmosaurus.svg",
+      "title": "Outline of Enigmosaurus",
+      "depicts": "Enigmosaurus mongoliensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PaleoNeolitic",
+      "source": "https://commons.wikimedia.org/wiki/File:Enigmosaurus_Skeleton_Reconstruction.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Eoabelisaurus": {
+      "file": "outlines/e/eoabelisaurus.svg",
+      "title": "Outline of Eoabelisaurus",
+      "depicts": "Eoabelisaurus mefi",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "User:Paleocolour, modified by User:IJReid",
+      "source": "https://commons.wikimedia.org/wiki/File:Eoabelisaurus_silhouette.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Eocursor": {
+      "file": "outlines/e/eocursor.svg",
+      "title": "Outline of Eocursor",
+      "depicts": "Eocursor parvus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "D. B. Norman, M. G. Baron, M. S. Garcia & R. T. Müller",
+      "source": "https://commons.wikimedia.org/wiki/File:Eocursor_(skeletal_reconstruction).png",
+      "license": "CC-BY-4.0"
+    },
+    "Eodromaeus": {
+      "file": "outlines/e/eodromaeus.svg",
+      "title": "Outline of Eodromaeus",
+      "depicts": "Eodromaeus murphi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Maurissauro",
+      "source": "https://commons.wikimedia.org/wiki/File:Eodromaeus_skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Eoraptor": {
+      "file": "outlines/e/eoraptor.svg",
+      "title": "Outline of Eoraptor",
+      "depicts": "Eoraptor lunensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Maurissauro",
+      "source": "https://commons.wikimedia.org/wiki/File:Eoraptor_skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Eotyrannus": {
+      "file": "outlines/e/eotyrannus.svg",
+      "title": "Outline of Eotyrannus",
+      "depicts": "Eotyrannus lengi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Dan Folkes, published by Darren Naish and Andrea Cau",
+      "source": "https://commons.wikimedia.org/wiki/File:Skeletal_reconstruction_of_Eotyrannus.png",
+      "license": "CC-BY-4.0"
+    },
+    "Epichirostenotes": {
+      "file": "outlines/e/epichirostenotes.svg",
+      "title": "Outline of Epichirostenotes",
+      "depicts": "Epichirostenotes curriei",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Epichirostenotes.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Epidexipteryx": {
+      "file": "outlines/e/epidexipteryx.svg",
+      "title": "Outline of Epidexipteryx",
+      "depicts": "Epidexipteryx hui",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Epidexipteryx_hui.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Erketu": {
+      "file": "outlines/e/erketu.svg",
+      "title": "Outline of Erketu",
+      "depicts": "Erketu ellisoni",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Erketu_ellisoni_skeletal.png",
+      "license": "CC-BY-3.0"
+    },
+    "Erliansaurus": {
+      "file": "outlines/e/erliansaurus.svg",
+      "title": "Outline of Erliansaurus",
+      "depicts": "Erliansaurus bellamanus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Erliansaurus_skeleton.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Erlikosaurus": {
+      "file": "outlines/e/erlikosaurus.svg",
+      "title": "Outline of Erlikosaurus",
+      "depicts": "Erlikosaurus andrewsi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PaleoNeolitic",
+      "source": "https://commons.wikimedia.org/wiki/File:Erlikosaurus_Skeleton_Reconstruction.jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Erythrovenator": {
+      "file": "outlines/e/erythrovenator.svg",
+      "title": "Outline of Erythrovenator",
+      "depicts": "Erythrovenator jacuiensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Maurissauro",
+      "source": "https://commons.wikimedia.org/wiki/File:Erythrovenator_pronto.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Europatitan": {
+      "file": "outlines/e/europatitan.svg",
+      "title": "Outline of Europatitan",
+      "depicts": "Europatitan eastwoodi",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Europatitan_eastwoodi_Skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Eustreptospondylus": {
+      "file": "outlines/e/eustreptospondylus.svg",
+      "title": "Outline of Eustreptospondylus",
+      "depicts": "Eustreptospondylus oxoniensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Eustreptospondylus_oxoniensis_skeleton.png",
+      "license": "CC-BY-SA-3.0"
+    },
+    "Ferrisaurus": {
+      "file": "outlines/f/ferrisaurus.svg",
+      "title": "Outline of Ferrisaurus",
+      "depicts": "Ferrisaurus sustutensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Victoria M. Arbour & David C. Evans",
+      "source": "https://commons.wikimedia.org/wiki/File:Ferrisaurus_holotype_skeletal_diagram.png",
+      "license": "CC-BY-4.0"
+    },
+    "Fona": {
+      "file": "outlines/f/fona.svg",
+      "title": "Outline of Fona",
+      "depicts": "Fona herzogae",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Fona_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Fosterovenator": {
+      "file": "outlines/f/fosterovenator.svg",
+      "title": "Outline of Fosterovenator",
+      "depicts": "Fosterovenator",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Levi B. Martinez-Reza",
+      "source": "https://commons.wikimedia.org/wiki/File:Fosterovenator.png",
+      "license": "CC-BY-SA-3.0"
+    },
+    "Fylax": {
+      "file": "outlines/f/fylax.svg",
+      "title": "Outline of Fylax",
+      "depicts": "Fylax thyrakolasus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PaleoNooby",
+      "source": "https://commons.wikimedia.org/wiki/File:Fylax_thyrakolasus_skeletal_reconstruction.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Gannansaurus": {
+      "file": "outlines/g/gannansaurus.svg",
+      "title": "Outline of Gannansaurus",
+      "depicts": "Gannansaurus sinensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Skye McDavid",
+      "source": "https://commons.wikimedia.org/wiki/File:Gannansaurus.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Garudimimus": {
+      "file": "outlines/g/garudimimus.svg",
+      "title": "Outline of Garudimimus",
+      "depicts": "Garudimimus brevipes",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PaleoNeolitic",
+      "source": "https://commons.wikimedia.org/wiki/File:Garudimimus_Skeleton_Reconstruction.png",
+      "license": "CC-BY-4.0"
+    },
+    "Gasosaurus": {
+      "file": "outlines/g/gasosaurus.svg",
+      "title": "Outline of Gasosaurus",
+      "depicts": "Gasosaurus constructus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "IJReid",
+      "source": "https://commons.wikimedia.org/wiki/File:Gasosaurus_skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Genyodectes": {
+      "file": "outlines/g/genyodectes.svg",
+      "title": "Outline of Genyodectes",
+      "depicts": "Genyodectes",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "User:Paleocolour, Cristiano Dal Sasso, Simone Maganuco, Andrea Cau",
+      "source": "https://commons.wikimedia.org/wiki/File:Genyodectes_known_material.png",
+      "license": "CC-BY-4.0"
+    },
+    "Gigantoraptor": {
+      "file": "outlines/g/gigantoraptor.svg",
+      "title": "Outline of Gigantoraptor",
+      "depicts": "Gigantoraptor erlianensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Ivan Iofrida",
+      "source": "https://commons.wikimedia.org/wiki/File:Gigantoraptor_erlianensis_skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Gigantspinosaurus": {
+      "file": "outlines/g/gigantspinosaurus.svg",
+      "title": "Outline of Gigantspinosaurus",
+      "depicts": "Gigantspinosaurus sichuanensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jadlfs",
+      "source": "https://commons.wikimedia.org/wiki/File:Gigantspinosaurus_skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Giraffatitan": {
+      "file": "outlines/g/giraffatitan.svg",
+      "title": "Outline of Giraffatitan",
+      "depicts": "Giraffatitan brancai",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Giraffatitan_brancai_Skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Gobihadros": {
+      "file": "outlines/g/gobihadros.svg",
+      "title": "Outline of Gobihadros",
+      "depicts": "Gobihadros mongoliensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Khishigjav Tsogtbaatar, David B. Weishampel, David C. Evans & Mahito Watabe",
+      "source": "https://commons.wikimedia.org/wiki/File:Gobihadros_skeleton.png",
+      "license": "CC-BY-4.0"
+    },
+    "Gobiraptor": {
+      "file": "outlines/g/gobiraptor.svg",
+      "title": "Outline of Gobiraptor",
+      "depicts": "Gobiraptor",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "2019 Lee et al.",
+      "source": "https://commons.wikimedia.org/wiki/File:Gobiraptor.png",
+      "license": "CC-BY-4.0"
+    },
+    "Gonkoken": {
+      "file": "outlines/g/gonkoken.svg",
+      "title": "Outline of Gonkoken",
+      "depicts": "Gonkoken nanoi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jhonatan Alarcón-Muñoz, Alexander O. Vargas, Hans P. Püschel, Sergio Soto-Acuña, Leslie Manríquez, Marcelo Leppe, Jonatan Kaluza, Verónica Milla, Carolina S. Gutstein, José Palma-Liberona, Wolfgang Stinnesbeck, Eberhard Frey Juan Pablo Pino, Dániel Bajor, Elaine Núñez Héctor Ortiz, David Rubilar-Rogers, Penélope Cruzado-Caballero",
+      "source": "https://commons.wikimedia.org/wiki/File:Gonkoken.jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Goyocephale": {
+      "file": "outlines/g/goyocephale.svg",
+      "title": "Outline of Goyocephale",
+      "depicts": "Goyocephale lattimorei",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Goyocephale_lattimorei.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Graciliceratops": {
+      "file": "outlines/g/graciliceratops.svg",
+      "title": "Outline of Graciliceratops",
+      "depicts": "Graciliceratops mongoliensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PaleoNeolitic",
+      "source": "https://commons.wikimedia.org/wiki/File:Graciliceratops_Skeleton_Reconstruction.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Graciliraptor": {
+      "file": "outlines/g/graciliraptor.svg",
+      "title": "Outline of Graciliraptor",
+      "depicts": "Graciliraptor lujiatunensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Graciliraptor_lujiatunensis.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Guaibasaurus": {
+      "file": "outlines/g/guaibasaurus.svg",
+      "title": "Outline of Guaibasaurus",
+      "depicts": "Guaibasaurus candelariensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Maurissauro",
+      "source": "https://commons.wikimedia.org/wiki/File:Guaibasaurus_candelariensis.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Gualicho": {
+      "file": "outlines/g/gualicho.svg",
+      "title": "Outline of Gualicho",
+      "depicts": "Gualicho shinyae",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Sebastián Apesteguía, Nathan D. Smith, Rubén Juárez Valieri, Peter J. Makovicky",
+      "source": "https://commons.wikimedia.org/wiki/File:Gualicho.PNG",
+      "license": "CC-BY-4.0"
+    },
+    "Halszkaraptor": {
+      "file": "outlines/h/halszkaraptor.svg",
+      "title": "Outline of Halszkaraptor",
+      "depicts": "Halszkaraptor escuilliei",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Andrea Cau, Vincent Beyrand, Rinchen Barsbold, Khishigjav Tsogtbaatar & Pascal Godefroit",
+      "source": "https://commons.wikimedia.org/wiki/File:Halszkaraptor_escuilliei_skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Hamititan": {
+      "file": "outlines/h/hamititan.svg",
+      "title": "Outline of Hamititan",
+      "depicts": "Hamititan xinjiangensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Armin Reindl",
+      "source": "https://commons.wikimedia.org/wiki/File:Hamititan_skeletal.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Haplocanthosaurus": {
+      "file": "outlines/h/haplocanthosaurus.svg",
+      "title": "Outline of Haplocanthosaurus",
+      "depicts": "Haplocanthosaurus utterbacki",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "IJReid",
+      "source": "https://commons.wikimedia.org/wiki/File:Haplocanthosaurus_utterbacki_skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Harpymimus": {
+      "file": "outlines/h/harpymimus.svg",
+      "title": "Outline of Harpymimus",
+      "depicts": "Harpymimus okladnikovi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime Headden (en:User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Harpymimus_okladnikovi_headden.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Herrerasaurus": {
+      "file": "outlines/h/herrerasaurus.svg",
+      "title": "Outline of Herrerasaurus",
+      "depicts": "Herrerasaurus ischigualastensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Oscar Alcober, Ricardo Martinez",
+      "source": "https://commons.wikimedia.org/wiki/File:Herrerasaurus_skeletal.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Hesperonyx": {
+      "file": "outlines/h/hesperonyx.svg",
+      "title": "Outline of Hesperonyx",
+      "depicts": "Hesperonyx martinhotomasorum",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Hesperonyx_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Hesperornithoides": {
+      "file": "outlines/h/hesperornithoides.svg",
+      "title": "Outline of Hesperornithoides",
+      "depicts": "Hesperornithoides",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Scott Hartman, Mickey Mortimer, William R. Wahl, Dean R. Lomax, Jessica Lippincott, David M. Lovelace.",
+      "source": "https://commons.wikimedia.org/wiki/File:Hesperornithoides_skeletal_reconstruction.png",
+      "license": "CC-BY-4.0"
+    },
+    "Heterodontosaurus": {
+      "file": "outlines/h/heterodontosaurus.svg",
+      "title": "Outline of Heterodontosaurus",
+      "depicts": "Heterodontosaurus tucki",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Carol Abraczinskas, Paul C. Sereno",
+      "source": "https://commons.wikimedia.org/wiki/File:Heterodontosaurus_tucki.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Hexinlusaurus": {
+      "file": "outlines/h/hexinlusaurus.svg",
+      "title": "Outline of Hexinlusaurus",
+      "depicts": "Hexinlusaurus multidens",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Hexinlusaurus_multidens.png",
+      "license": "CC-BY-3.0"
+    },
+    "Heyuannia": {
+      "file": "outlines/h/heyuannia.svg",
+      "title": "Outline of Heyuannia",
+      "depicts": "Heyuannia huangi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Heyuannia.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Homalocephale": {
+      "file": "outlines/h/homalocephale.svg",
+      "title": "Outline of Homalocephale",
+      "depicts": "Homalocephale",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Homalocephale_calathoceros.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Huangshanlong": {
+      "file": "outlines/h/huangshanlong.svg",
+      "title": "Outline of Huangshanlong",
+      "depicts": "Huangshanlong anhuiensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Skye McDavid",
+      "source": "https://commons.wikimedia.org/wiki/File:Huangshanlong.png",
+      "license": "CC-BY-4.0"
+    },
+    "Huaxiagnathus": {
+      "file": "outlines/h/huaxiagnathus.svg",
+      "title": "Outline of Huaxiagnathus",
+      "depicts": "Huaxiagnathus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Huaxiagnathus_skeletal.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Hudiesaurus": {
+      "file": "outlines/h/hudiesaurus.svg",
+      "title": "Outline of Hudiesaurus",
+      "depicts": "Hudiesaurus sinojapanorum",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Hudiesaurus_Skeletal.svg",
+      "license": "CC0-1.0"
+    },
+    "Hulsanpes": {
+      "file": "outlines/h/hulsanpes.svg",
+      "title": "Outline of Hulsanpes",
+      "depicts": "Hulsanpes perlei",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PaleoNeolitic",
+      "source": "https://commons.wikimedia.org/wiki/File:Hulsanpes_Skeleton_Reconstruction.png",
+      "license": "CC-BY-4.0"
+    },
+    "Iberospinus": {
+      "file": "outlines/i/iberospinus.svg",
+      "title": "Outline of Iberospinus",
+      "depicts": "Iberospinus natarioi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Scott Hartman",
+      "source": "https://commons.wikimedia.org/wiki/File:Iberospinus.png",
+      "license": "CC-BY-4.0"
+    },
+    "Ichthyovenator": {
+      "file": "outlines/i/ichthyovenator.svg",
+      "title": "Outline of Ichthyovenator",
+      "depicts": "Ichthyovenator laosensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PaleoGeekSquared",
+      "source": "https://commons.wikimedia.org/wiki/File:Ichthyovenator_laosensis_skeletal_reconstruction_by_PaleoGeek.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Iguanodon": {
+      "file": "outlines/i/iguanodon.svg",
+      "title": "Outline of Iguanodon",
+      "depicts": "Iguanodon bernissartensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Iguanodon_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Inawentu": {
+      "file": "outlines/i/inawentu.svg",
+      "title": "Outline of Inawentu",
+      "depicts": "Inawentu oslatus",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Inawentu_oslatus_Skeletal.png",
+      "license": "CC-BY-SA-3.0"
+    },
+    "Infernogallus": {
+      "file": "outlines/i/infernogallus.svg",
+      "title": "Outline of Infernogallus",
+      "depicts": "Infernogallus jamesi",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "G. F. Funston, T. W. Dudgeon, D. J. Simon, D. M. Dufault, C. Boyd, D. Fowler, P. J. Currie & D. C. Evans",
+      "source": "https://commons.wikimedia.org/wiki/File:Infernogallus_jamesi_(holotype,_ROM_VP_65050).png",
+      "license": "CC-BY-4.0"
+    },
+    "Irisosaurus": {
+      "file": "outlines/i/irisosaurus.svg",
+      "title": "Outline of Irisosaurus",
+      "depicts": "Irisosaurus yimenensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Peyre de Fabrègues, C., Bi, S., Li, H. et al.",
+      "source": "https://commons.wikimedia.org/wiki/File:Irisosaurus_skeletal.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Isasicursor": {
+      "file": "outlines/i/isasicursor.svg",
+      "title": "Outline of Isasicursor",
+      "depicts": "Isasicursor",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Novas, F., Agnolin, F., Rozadilla, S., Aranciaga-Rolando, A., Brissón-Eli, F., Motta, M., Cerroni, M., Ezcurra, M., Martinelli, A., D'Angelo, J., Álvarez-Herrera, G., Gentil, A., Bogan, S., Chimento, N., García-Marsà, J., Lo Coco, G., Miquel, S., Brito, F., Vera, E., Loinaze, V., Fernandez, M., & Salgado, L.",
+      "source": "https://commons.wikimedia.org/wiki/File:Isasicursor_skeletal.png",
+      "license": "CC-BY-3.0"
+    },
+    "Ischioceratops": {
+      "file": "outlines/i/ischioceratops.svg",
+      "title": "Outline of Ischioceratops",
+      "depicts": "Ischioceratops",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Crizz30",
+      "source": "https://commons.wikimedia.org/wiki/File:Ischioceratops_skeleton.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Istiorachis": {
+      "file": "outlines/i/istiorachis.svg",
+      "title": "Outline of Istiorachis",
+      "depicts": "Istiorachis macarthurae",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "J. A. F. Lockwood, D. M. Martill & S. C. R. Maidment",
+      "source": "https://commons.wikimedia.org/wiki/File:Istiorachis_(reconstructed_skeleton).jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Itapeuasaurus": {
+      "file": "outlines/i/itapeuasaurus.svg",
+      "title": "Outline of Itapeuasaurus",
+      "depicts": "Itapeuasaurus cajapioensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Itapeuasaurus_Skeletal.svg",
+      "license": "CC-BY-4.0"
+    },
+    "Jaculinykus": {
+      "file": "outlines/j/jaculinykus.svg",
+      "title": "Outline of Jaculinykus",
+      "depicts": "Jaculinykus yaruui",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Kohta Kubo, Yoshitsugu Kobayashi, Tsogtbaatar Chinzorig & Khishigjav Tsogtbaatar",
+      "source": "https://commons.wikimedia.org/wiki/File:%D0%A1%D0%BA%D0%B5%D0%BB%D0%B5%D1%82%D0%BD%D0%B0%D1%8F_%D1%80%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_Jaculinykus.png",
+      "license": "CC-BY-4.0"
+    },
+    "Jainosaurus": {
+      "file": "outlines/j/jainosaurus.svg",
+      "title": "Outline of Jainosaurus",
+      "depicts": "Jainosaurus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "DaDinoNerdBoi",
+      "source": "https://commons.wikimedia.org/wiki/File:Jainosaurus_Skeletal_V3_updated.png",
+      "license": "CC-BY-4.0"
+    },
+    "Jakapil": {
+      "file": "outlines/j/jakapil.svg",
+      "title": "Outline of Jakapil",
+      "depicts": "Jakapil kaniukura",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "F. J. Riguetti, S. Apesteguía & X. Pereda-Suberbiola",
+      "source": "https://commons.wikimedia.org/wiki/File:Jakapil_skeletal.webp",
+      "license": "CC-BY-4.0"
+    },
+    "Jinfengopteryx": {
+      "file": "outlines/j/jinfengopteryx.svg",
+      "title": "Outline of Jinfengopteryx",
+      "depicts": "Jinfengopteryx elegans",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Jinfengopteryx_elegans.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Jingiella": {
+      "file": "outlines/j/jingiella.svg",
+      "title": "Outline of Jingiella",
+      "depicts": "Jingiella dongxingensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Jingiella_skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Juratyrant": {
+      "file": "outlines/j/juratyrant.svg",
+      "title": "Outline of Juratyrant",
+      "depicts": "Juratyrant",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Eotyrannu5",
+      "source": "https://commons.wikimedia.org/wiki/File:Juratyrant_known_elements_skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Juravenator": {
+      "file": "outlines/j/juravenator.svg",
+      "title": "Outline of Juravenator",
+      "depicts": "Juravenator",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Juravenator.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Kamuysaurus": {
+      "file": "outlines/k/kamuysaurus.svg",
+      "title": "Outline of Kamuysaurus",
+      "depicts": "Kamuysaurus japonicus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Art by Genya Masukawa, published by Yoshitsugu Kobayashi, Tomohiro Nishimura, Ryuji Takasaki, Kentaro Chiba, Anthony R. Fiorillo, Kohei Tanaka, Tsogtbaatar Chinzorig, Tamaki Sato & Kazuhiko Sakurai",
+      "source": "https://commons.wikimedia.org/wiki/File:Holotype_skeleton_of_Kamuysaurus.jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Katepensaurus": {
+      "file": "outlines/k/katepensaurus.svg",
+      "title": "Outline of Katepensaurus",
+      "depicts": "Katepensaurus goicoecheai",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Katepensaurus_Skeletal.svg",
+      "license": "CC-BY-4.0"
+    },
+    "Khaan": {
+      "file": "outlines/k/khaan.svg",
+      "title": "Outline of Khaan",
+      "depicts": "Khaan mckennai",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Khaan_skeletal_Headden.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Khankhuuluu": {
+      "file": "outlines/k/khankhuuluu.svg",
+      "title": "Outline of Khankhuuluu",
+      "depicts": "Khankhuuluu mongoliensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Khankhuuluu_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Kileskus": {
+      "file": "outlines/k/kileskus.svg",
+      "title": "Outline of Kileskus",
+      "depicts": "Kileskus aristotocus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SirBlameson",
+      "source": "https://commons.wikimedia.org/wiki/File:KileskusAristotousSkeletal.png",
+      "license": "CC0-1.0"
+    },
+    "Koreaceratops": {
+      "file": "outlines/k/koreaceratops.svg",
+      "title": "Outline of Koreaceratops",
+      "depicts": "Koreaceratops hwaseongensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PARK Jin-Young & SON Minyoung",
+      "source": "https://commons.wikimedia.org/wiki/File:Koreaceratops_skeletal_drawing_(PARK_%26_SON,_2022).jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Koreanosaurus": {
+      "file": "outlines/k/koreanosaurus.svg",
+      "title": "Outline of Koreanosaurus",
+      "depicts": "Koreanosaurus boseongensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PARK Jin-Young",
+      "source": "https://commons.wikimedia.org/wiki/File:Skeletal_diagram_of_Koreanosaurus_boseongensis.jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Kryptops": {
+      "file": "outlines/k/kryptops.svg",
+      "title": "Outline of Kryptops",
+      "depicts": "Kryptops palaios",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Paleocolour",
+      "source": "https://commons.wikimedia.org/wiki/File:Kryptops_skeletal_diagram.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Kurupi": {
+      "file": "outlines/k/kurupi.svg",
+      "title": "Outline of Kurupi",
+      "depicts": "Kurupi itaata",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Clumsystiggy",
+      "source": "https://commons.wikimedia.org/wiki/File:Kurupi_skeletal_2.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Labocania": {
+      "file": "outlines/l/labocania.svg",
+      "title": "Outline of Labocania",
+      "depicts": "Labocania anomala",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "D. Barrera Guevara",
+      "source": "https://commons.wikimedia.org/wiki/File:LabocaniaanomalaBody.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Laquintasaura": {
+      "file": "outlines/l/laquintasaura.svg",
+      "title": "Outline of Laquintasaura",
+      "depicts": "Laquintasaura venezuelae",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "D. B. Norman, M. G. Baron, M. S. Garcia & R. T. Müller",
+      "source": "https://commons.wikimedia.org/wiki/File:Laquintasaura_(skeletal_reconstruction).png",
+      "license": "CC-BY-4.0"
+    },
+    "Lavocatisaurus": {
+      "file": "outlines/l/lavocatisaurus.svg",
+      "title": "Outline of Lavocatisaurus",
+      "depicts": "Lavocatisaurus agrioensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "José I. Canudo, José L. Carballido, Alberto Garrido, and Leonardo Salgado",
+      "source": "https://commons.wikimedia.org/wiki/File:Lavocatisaurus_agrioensis.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Leptoceratops": {
+      "file": "outlines/l/leptoceratops.svg",
+      "title": "Outline of Leptoceratops",
+      "depicts": "Leptoceratops gracilis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Leptoceratops_gracilis_skeletal.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Liaoceratops": {
+      "file": "outlines/l/liaoceratops.svg",
+      "title": "Outline of Liaoceratops",
+      "depicts": "Liaoceratops yanzigouensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Skye McDavid",
+      "source": "https://commons.wikimedia.org/wiki/File:Liaoceratops_skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Limusaurus": {
+      "file": "outlines/l/limusaurus.svg",
+      "title": "Outline of Limusaurus",
+      "depicts": "Limusaurus inextricabilis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Limusaurus_inextricabilis_skeleton.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Lingwulong": {
+      "file": "outlines/l/lingwulong.svg",
+      "title": "Outline of Lingwulong",
+      "depicts": "Lingwulong shenqi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Xing Xu, Paul Upchurch, Philip D. Mannion, Paul M. Barrett, Omar R. Regalado-Fernandez, Jinyou Mo, Jinfu Ma & Hongan Liu",
+      "source": "https://commons.wikimedia.org/wiki/File:Skeletal_reconstruction_and_exemplar_skeletal_remains_of_Lingwulong_shenqi.jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Linheraptor": {
+      "file": "outlines/l/linheraptor.svg",
+      "title": "Outline of Linheraptor",
+      "depicts": "Linheraptor exquisitus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Linheraptor_skeletal.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Lishulong": {
+      "file": "outlines/l/lishulong.svg",
+      "title": "Outline of Lishulong",
+      "depicts": "Lishulong wangi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Lishulong_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Lokiceratops": {
+      "file": "outlines/l/lokiceratops.svg",
+      "title": "Outline of Lokiceratops",
+      "depicts": "Lokiceratops",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Mark Loewen",
+      "source": "https://commons.wikimedia.org/wiki/File:Lokiceratops_(Skeletal_Reconstruction).png",
+      "license": "CC-BY-4.0"
+    },
+    "Macrocollum": {
+      "file": "outlines/m/macrocollum.svg",
+      "title": "Outline of Macrocollum",
+      "depicts": "Macrocollum itaquii",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Maurissauro",
+      "source": "https://commons.wikimedia.org/wiki/File:Macrocollum_pronto.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Magnapaulia": {
+      "file": "outlines/m/magnapaulia.svg",
+      "title": "Outline of Magnapaulia",
+      "depicts": "Magnapaulia",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Carpenter, Kenneth",
+      "source": "https://commons.wikimedia.org/wiki/File:Magnapaulia_skeleton.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Magnosaurus": {
+      "file": "outlines/m/magnosaurus.svg",
+      "title": "Outline of Magnosaurus",
+      "depicts": "Magnosaurus nethercombensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Conty",
+      "source": "https://commons.wikimedia.org/wiki/File:Magnosaurus_OUMNH_J._12143.png",
+      "license": "CC-BY-3.0"
+    },
+    "Mahakala": {
+      "file": "outlines/m/mahakala.svg",
+      "title": "Outline of Mahakala",
+      "depicts": "Mahakala omnogovae",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Mahakala_as_generic_deinonychosaur.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Majungasaurus": {
+      "file": "outlines/m/majungasaurus.svg",
+      "title": "Outline of Majungasaurus",
+      "depicts": "Majungasaurus crenatissimus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Majungasaurus_crenatissimus_skeleton.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Maleriraptor": {
+      "file": "outlines/m/maleriraptor.svg",
+      "title": "Outline of Maleriraptor",
+      "depicts": "Maleriraptor kuttyi",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "M. D. Ezcurra, M. S. Garcia, F. E. Novas, R. T. Müller, F. L. Agnolín & S. Chatterjee",
+      "source": "https://commons.wikimedia.org/wiki/File:Maleriraptor_(holotype,_skeletal_reconstruction).jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Manipulonyx": {
+      "file": "outlines/m/manipulonyx.svg",
+      "title": "Outline of Manipulonyx",
+      "depicts": "Manipulonyx reshetovi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Manipulonyx_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Masiakasaurus": {
+      "file": "outlines/m/masiakasaurus.svg",
+      "title": "Outline of Masiakasaurus",
+      "depicts": "Masiakasaurus knopfleri",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Masiakasaurus_knopfleri.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Medusaceratops": {
+      "file": "outlines/m/medusaceratops.svg",
+      "title": "Outline of Medusaceratops",
+      "depicts": "Medusaceratops lokii",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Montanoceratops",
+      "source": "https://commons.wikimedia.org/wiki/File:Medusaceratops_sketetal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Megalosaurus": {
+      "file": "outlines/m/megalosaurus.svg",
+      "title": "Outline of Megalosaurus",
+      "depicts": "Megalosaurus bucklandii",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Megalosaurus_5.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Microraptor": {
+      "file": "outlines/m/microraptor.svg",
+      "title": "Outline of Microraptor",
+      "depicts": "Microraptor",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Microraptor_Skeletons_by_Qilong.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Microvenator": {
+      "file": "outlines/m/microvenator.svg",
+      "title": "Outline of Microvenator",
+      "depicts": "Microvenator celer",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Microvenator_celer.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Migmanychion": {
+      "file": "outlines/m/migmanychion.svg",
+      "title": "Outline of Migmanychion",
+      "depicts": "Migmanychion laiyang",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Migmanychion_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Minimocursor": {
+      "file": "outlines/m/minimocursor.svg",
+      "title": "Outline of Minimocursor",
+      "depicts": "Minimocursor phunoiensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "S. Manitkoon, U Deesri, B. Khalloufi, T. Nonsrirach, V Suteethorn, P Chanthasit, W Boonla, & E Buffetaut",
+      "source": "https://commons.wikimedia.org/wiki/File:Minimocursor_Skeletal.jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Mongolostegus": {
+      "file": "outlines/m/mongolostegus.svg",
+      "title": "Outline of Mongolostegus",
+      "depicts": "Mongolostegus exspectabilis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Mongolostegus_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Moros": {
+      "file": "outlines/m/moros.svg",
+      "title": "Outline of Moros",
+      "depicts": "Moros intrepidus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Lindsay E. Zanno, Ryan T. Tucker, Aurore Canoville, Haviv M. Avrahami, Terry A. Gates & Peter J. Makovicky",
+      "source": "https://commons.wikimedia.org/wiki/File:Moros_intrepidus.png",
+      "license": "CC-BY-4.0"
+    },
+    "Musankwa": {
+      "file": "outlines/m/musankwa.svg",
+      "title": "Outline of Musankwa",
+      "depicts": "Musankwa sanyatiensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Musankwa_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Nanshiungosaurus": {
+      "file": "outlines/n/nanshiungosaurus.svg",
+      "title": "Outline of Nanshiungosaurus",
+      "depicts": "Nanshiungosaurus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Nanshiungosaurus.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Nasutoceratops": {
+      "file": "outlines/n/nasutoceratops.svg",
+      "title": "Outline of Nasutoceratops",
+      "depicts": "Nasutoceratops titusi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Lukas Panzarin, published by S.D. Sampson; E.K. Lund; M.A. Loewen; A.A. Farke; K.E. Clayton",
+      "source": "https://commons.wikimedia.org/wiki/File:Nasutoceratops_skeleton.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Natovenator": {
+      "file": "outlines/n/natovenator.svg",
+      "title": "Outline of Natovenator",
+      "depicts": "Natovenator polydontus",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Sungjin Lee, Yuong-Nam Lee, Philip J. Currie, Robin Sissons, Jin-Young Park, Su-Hwan Kim, Rinchen Barsbold & Khishigjav Tsogtbaatar",
+      "source": "https://commons.wikimedia.org/wiki/File:Natovenator_skeletal_(holotype).png",
+      "license": "CC-BY-4.0"
+    },
+    "Nemegtomaia": {
+      "file": "outlines/n/nemegtomaia.svg",
+      "title": "Outline of Nemegtomaia",
+      "depicts": "Nemegtomaia barsboldi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Nemegtomaia_barsboldi_holotype.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Nemegtonykus": {
+      "file": "outlines/n/nemegtonykus.svg",
+      "title": "Outline of Nemegtonykus",
+      "depicts": "Nemegtonykus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Sungjin Lee, Jin-Young Park, Yuong-Nam Lee, Su-Hwan Kim, Junchang Lü, Rinchen Barsbold & Khishigjav Tsogtbaatar",
+      "source": "https://commons.wikimedia.org/wiki/File:Nemegtonykus_Skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Neuquenraptor": {
+      "file": "outlines/n/neuquenraptor.svg",
+      "title": "Outline of Neuquenraptor",
+      "depicts": "Neuquenraptor argentinus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Neuquenraptor_Skeletal.svg",
+      "license": "CC-BY-4.0"
+    },
+    "Nhandumirim": {
+      "file": "outlines/n/nhandumirim.svg",
+      "title": "Outline of Nhandumirim",
+      "depicts": "Nhandumirim waldsangae",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Maurissauro",
+      "source": "https://commons.wikimedia.org/wiki/File:Nhandumirim_skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Nigersaurus": {
+      "file": "outlines/n/nigersaurus.svg",
+      "title": "Outline of Nigersaurus",
+      "depicts": "Nigersaurus taqueti",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Mike Hanson (Apatomerus)",
+      "source": "https://commons.wikimedia.org/wiki/File:Nigersaurus_taqueti_skeletal.png",
+      "license": "CC-BY-3.0"
+    },
+    "Noasaurus": {
+      "file": "outlines/n/noasaurus.svg",
+      "title": "Outline of Noasaurus",
+      "depicts": "Noasaurus leali",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Noasaurus_leali_skeletal_diagram.png",
+      "license": "CC-BY-3.0"
+    },
+    "Nomingia": {
+      "file": "outlines/n/nomingia.svg",
+      "title": "Outline of Nomingia",
+      "depicts": "Nomingia gobiensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Nomingia_gobiensis.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Nothronychus": {
+      "file": "outlines/n/nothronychus.svg",
+      "title": "Outline of Nothronychus",
+      "depicts": "Nothronychus mckinleyi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Definitely NOT Dilophosaurus",
+      "source": "https://commons.wikimedia.org/wiki/File:Nothronychus_Skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Notocolossus": {
+      "file": "outlines/n/notocolossus.svg",
+      "title": "Outline of Notocolossus",
+      "depicts": "Notocolossus gonzalezparejasi",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Bernardo J. González Riga, Matthew C. Lamanna, Leonardo D. Ortiz David, Jorge O. Calvo & Juan P. Coria",
+      "source": "https://commons.wikimedia.org/wiki/File:Notocolossus.jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Nullotitan": {
+      "file": "outlines/n/nullotitan.svg",
+      "title": "Outline of Nullotitan",
+      "depicts": "Nullotitan",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Novas, F., Agnolin, F., Rozadilla, S., Aranciaga-Rolando, A., Brissón-Eli, F., Motta, M., Cerroni, M., Ezcurra, M., Martinelli, A., D'Angelo, J., Álvarez-Herrera, G., Gentil, A., Bogan, S., Chimento, N., García-Marsà, J., Lo Coco, G., Miquel, S., Brito, F., Vera, E., Loinaze, V., Fernandez, M., & Salgado, L.",
+      "source": "https://commons.wikimedia.org/wiki/File:Nullotitan_skeletal.png",
+      "license": "CC-BY-3.0"
+    },
+    "Oblitosaurus": {
+      "file": "outlines/o/oblitosaurus.svg",
+      "title": "Outline of Oblitosaurus",
+      "depicts": "Oblitosaurus bunnueli",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Oblitosaurus_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Oceanotitan": {
+      "file": "outlines/o/oceanotitan.svg",
+      "title": "Outline of Oceanotitan",
+      "depicts": "Oceanotitan dantasi",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Oceanotitan_dantasi_Skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Opisthocoelicaudia": {
+      "file": "outlines/o/opisthocoelicaudia.svg",
+      "title": "Outline of Opisthocoelicaudia",
+      "depicts": "Opisthocoelicaudia",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden",
+      "source": "https://commons.wikimedia.org/wiki/File:Opisthocoelicaudia_skeleton_restoration.jpg",
+      "license": "CC-BY-3.0"
     },
     "Ornithischia": {
       "file": "outlines/o/ornithischia.svg",
@@ -59,6 +1922,15 @@
       "source": "https://www.phylopic.org/images/32c6591b-e7c8-4cc4-8f7b-be70776d7299",
       "license": "CC-BY-3.0"
     },
+    "Oviraptor": {
+      "file": "outlines/o/oviraptor.svg",
+      "title": "Outline of Oviraptor",
+      "depicts": "Oviraptor philoceratops",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Iofry",
+      "source": "https://commons.wikimedia.org/wiki/File:Oviraptor_Skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
     "Pachycephalosauria": {
       "file": "outlines/p/pachycephalosauria.svg",
       "title": "Outline of a pachycephalosaur",
@@ -67,6 +1939,249 @@
       "creator": "Emily Willoughby",
       "source": "https://www.phylopic.org/images/6105ff49-0bd0-477c-8bef-41b0c39fdca9",
       "license": "CC-BY-SA-3.0"
+    },
+    "Pampadromaeus": {
+      "file": "outlines/p/pampadromaeus.svg",
+      "title": "Outline of Pampadromaeus",
+      "depicts": "Pampadromaeus barberenai",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Maurissauro",
+      "source": "https://commons.wikimedia.org/wiki/File:Skeletal_reconstruction_of_Pampadromaeus_barberenai.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Paralitherizinosaurus": {
+      "file": "outlines/p/paralitherizinosaurus.svg",
+      "title": "Outline of Paralitherizinosaurus",
+      "depicts": "Paralitherizinosaurus japonicus",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Genya Masukawa",
+      "source": "https://commons.wikimedia.org/wiki/File:Paralitherizinosaurus_holotype_skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Parasaurolophus": {
+      "file": "outlines/p/parasaurolophus.svg",
+      "title": "Outline of Parasaurolophus",
+      "depicts": "Parasaurolophus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Scott Hartman",
+      "source": "https://commons.wikimedia.org/wiki/File:Parasaurolophus_reconstructed_skeleton.png",
+      "license": "CC-BY-4.0"
+    },
+    "Paraxenisaurus": {
+      "file": "outlines/p/paraxenisaurus.svg",
+      "title": "Outline of Paraxenisaurus",
+      "depicts": "Paraxenisaurus normalensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Daniel Barrera Guevara",
+      "source": "https://commons.wikimedia.org/wiki/File:Paraxenisaurus_skeleton.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Pellegrinisaurus": {
+      "file": "outlines/p/pellegrinisaurus.svg",
+      "title": "Outline of Pellegrinisaurus",
+      "depicts": "Pellegrinisaurus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PaleoNeolitic",
+      "source": "https://commons.wikimedia.org/wiki/File:Pellegrinisaurus_Skeleton_reconstruction.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Pendraig": {
+      "file": "outlines/p/pendraig.svg",
+      "title": "Outline of Pendraig",
+      "depicts": "Pendraig milnerae",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Maurissauro",
+      "source": "https://commons.wikimedia.org/wiki/File:Pendraig_milnerae_skeleton.png",
+      "license": "CC-BY-3.0"
+    },
+    "Piatnitzkysaurus": {
+      "file": "outlines/p/piatnitzkysaurus.svg",
+      "title": "Outline of Piatnitzkysaurus",
+      "depicts": "Piatnitzkysaurus floresi",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Paleocolour",
+      "source": "https://commons.wikimedia.org/wiki/File:Piatnitzkysaurus_floresi_skeletal_reconstruction.jpg",
+      "license": "CC-BY-SA-3.0"
+    },
+    "Pilmatueia": {
+      "file": "outlines/p/pilmatueia.svg",
+      "title": "Outline of Pilmatueia",
+      "depicts": "Pilmatueia faundezi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Armin Reindl",
+      "source": "https://commons.wikimedia.org/wiki/File:Pilmatueia_skeletal.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Platytholus": {
+      "file": "outlines/p/platytholus.svg",
+      "title": "Outline of Platytholus",
+      "depicts": "Platytholus clemensi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Platytholus_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Protarchaeopteryx": {
+      "file": "outlines/p/protarchaeopteryx.svg",
+      "title": "Outline of Protarchaeopteryx",
+      "depicts": "Protarchaeopteryx robusta",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Protarchaeopteryx.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Protathlitis": {
+      "file": "outlines/p/protathlitis.svg",
+      "title": "Outline of Protathlitis",
+      "depicts": "Protathlitis cinctorrensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Andrés Santos-Cubedo, Carlos de Santisteban, Begoña Poza & Sergi Meseguer",
+      "source": "https://commons.wikimedia.org/wiki/File:Skeletal_reconstruction_of_Protathlitis_cinctorrensis.webp",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Protoceratops": {
+      "file": "outlines/p/protoceratops.svg",
+      "title": "Outline of Protoceratops",
+      "depicts": "Protoceratops andrewsi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Scott Hartman",
+      "source": "https://commons.wikimedia.org/wiki/File:Protoceratops_andrewsi_skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Psittacosaurus": {
+      "file": "outlines/p/psittacosaurus.svg",
+      "title": "Outline of Psittacosaurus",
+      "depicts": "Psittacosaurus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jakob Vinther, Robert Nicholls, Stephan Lautenschlager, Michael Pittman, Thomas G. Kaye, Emily Rayfield, Gerald Mayr & Innes C. Cuthill",
+      "source": "https://commons.wikimedia.org/wiki/File:Psittacosaurus_sp_skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Ptychotherates": {
+      "file": "outlines/p/ptychotherates.svg",
+      "title": "Outline of Ptychotherates",
+      "depicts": "Ptychotherates bucculentus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Ptychotherates_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Puertasaurus": {
+      "file": "outlines/p/puertasaurus.svg",
+      "title": "Outline of Puertasaurus",
+      "depicts": "Puertasaurus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Puertasaurus_Skeletal_V2.svg",
+      "license": "CC0-1.0"
+    },
+    "Pycnonemosaurus": {
+      "file": "outlines/p/pycnonemosaurus.svg",
+      "title": "Outline of Pycnonemosaurus",
+      "depicts": "Pycnonemosaurus nevesi",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Pycnonemosaurus_nevesi_skeletal_simple.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Quilmesaurus": {
+      "file": "outlines/q/quilmesaurus.svg",
+      "title": "Outline of Quilmesaurus",
+      "depicts": "Quilmesaurus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "User:Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Quilmesaurus_Skeletal.svg",
+      "license": "PDM-1.0"
+    },
+    "Rahonavis": {
+      "file": "outlines/r/rahonavis.svg",
+      "title": "Outline of Rahonavis",
+      "depicts": "Rahonavis ostromi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Rahonavis.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Rapetosaurus": {
+      "file": "outlines/r/rapetosaurus.svg",
+      "title": "Outline of Rapetosaurus",
+      "depicts": "Rapetosaurus krausei",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Rapetosaurus_krausei_Skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Rayososaurus": {
+      "file": "outlines/r/rayososaurus.svg",
+      "title": "Outline of Rayososaurus",
+      "depicts": "Rayososaurus agrioensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Rayososaurus_Skeletal.svg",
+      "license": "CC-BY-4.0"
+    },
+    "Rebbachisaurus": {
+      "file": "outlines/r/rebbachisaurus.svg",
+      "title": "Outline of Rebbachisaurus",
+      "depicts": "Rebbachisaurus garasbae",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Rebbachisaurus_Skeletal.svg",
+      "license": "CC-BY-4.0"
+    },
+    "Rinconraptor": {
+      "file": "outlines/r/rinconraptor.svg",
+      "title": "Outline of Rinconraptor",
+      "depicts": "Rinconraptor pipoae",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Rinconraptor_Skeletal.svg",
+      "license": "CC-BY-4.0"
+    },
+    "Rugops": {
+      "file": "outlines/r/rugops.svg",
+      "title": "Outline of Rugops",
+      "depicts": "Rugops primus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Crizz30",
+      "source": "https://commons.wikimedia.org/wiki/File:Rugops_primus.jpeg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Saltriovenator": {
+      "file": "outlines/s/saltriovenator.svg",
+      "title": "Outline of Saltriovenator",
+      "depicts": "Saltriovenator",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Cristiano Dal Sasso, Simone Maganuco, Andrea Cau",
+      "source": "https://commons.wikimedia.org/wiki/File:Saltriovenator_Skeletal_Diagram.png",
+      "license": "CC-BY-4.0"
+    },
+    "Sanjuansaurus": {
+      "file": "outlines/s/sanjuansaurus.svg",
+      "title": "Outline of Sanjuansaurus",
+      "depicts": "Sanjuansaurus gordilloi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Maurissauro",
+      "source": "https://commons.wikimedia.org/wiki/File:Sanjuansaurus_skeleton.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Sarcosaurus": {
+      "file": "outlines/s/sarcosaurus.svg",
+      "title": "Outline of Sarcosaurus",
+      "depicts": "Sarcosaurus woodi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Eotyrannu5",
+      "source": "https://commons.wikimedia.org/wiki/File:Sarcosaurus_known_material.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Saturnalia": {
+      "file": "outlines/s/saturnalia.svg",
+      "title": "Outline of Saturnalia",
+      "depicts": "Saturnalia tupiniquim",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Maurissauro",
+      "source": "https://commons.wikimedia.org/wiki/File:Skeletal_reconstruction_of_Saturnalia_tupiniquim.png",
+      "license": "CC-BY-SA-4.0"
     },
     "Sauropoda": {
       "file": "outlines/s/sauropoda.svg",
@@ -86,6 +2201,159 @@
       "source": "https://www.phylopic.org/images/2da08fc6-7dc0-4d20-813c-58069902a96b",
       "license": "CC-BY-3.0"
     },
+    "Sauroposeidon": {
+      "file": "outlines/s/sauroposeidon.svg",
+      "title": "Outline of Sauroposeidon",
+      "depicts": "Sauroposeidon proteles",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Sauroposeidon_proteles_Skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Saurornitholestes": {
+      "file": "outlines/s/saurornitholestes.svg",
+      "title": "Outline of Saurornitholestes",
+      "depicts": "Saurornitholestes langstoni",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Saurornitholestes_langstoni_skeletal.png",
+      "license": "CC-BY-3.0"
+    },
+    "Savannasaurus": {
+      "file": "outlines/s/savannasaurus.svg",
+      "title": "Outline of Savannasaurus",
+      "depicts": "Savannasaurus elliottorum",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Stephen F. Poropat, Philip D. Mannion, Paul Upchurch, Scott A. Hocknull, Benjamin P. Kear, Martin Kundrát, Travis R. Tischler, Trish Sloan, George H. K. Sinapius, Judy A. Elliott & David A. Elliott",
+      "source": "https://commons.wikimedia.org/wiki/File:Savannasaurus_skeleton.jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Scansoriopteryx": {
+      "file": "outlines/s/scansoriopteryx.svg",
+      "title": "Outline of Scansoriopteryx",
+      "depicts": "Scansoriopteryx heilmanni",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Scansoriopteryx_heilmanni.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Scutellosaurus": {
+      "file": "outlines/s/scutellosaurus.svg",
+      "title": "Outline of Scutellosaurus",
+      "depicts": "Scutellosaurus lawleri",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Scutellosaurus_lawleri.jpg",
+      "license": "CC-BY-SA-3.0"
+    },
+    "Segnosaurus": {
+      "file": "outlines/s/segnosaurus.svg",
+      "title": "Outline of Segnosaurus",
+      "depicts": "Segnosaurus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "IJReid",
+      "source": "https://commons.wikimedia.org/wiki/File:Segnosaurus_skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Shishugounykus": {
+      "file": "outlines/s/shishugounykus.svg",
+      "title": "Outline of Shishugounykus",
+      "depicts": "Shishugounykus inexpectus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Aijuan Shi",
+      "source": "https://commons.wikimedia.org/wiki/File:Shishugounykus_inexpectus_skeletal_reconstruction.png",
+      "license": "CC-BY-4.0"
+    },
+    "Shuvuuia": {
+      "file": "outlines/s/shuvuuia.svg",
+      "title": "Outline of Shuvuuia",
+      "depicts": "Shuvuuia deserti",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Shuvuuia_skeletal_Headden.jpg",
+      "license": "CC-BY-SA-3.0"
+    },
+    "Siats": {
+      "file": "outlines/s/siats.svg",
+      "title": "Outline of Siats",
+      "depicts": "Siats meekerorum",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Silhouette by DaCaTaraptor . diagram by Paleocolour .",
+      "source": "https://commons.wikimedia.org/wiki/File:Siats_meekerorum_skeletal_diagram.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Silutitan": {
+      "file": "outlines/s/silutitan.svg",
+      "title": "Outline of Silutitan",
+      "depicts": "Silutitan sinensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Armin Reindl",
+      "source": "https://commons.wikimedia.org/wiki/File:Silutitan_skeletal_reconstruction.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Sinornithoides": {
+      "file": "outlines/s/sinornithoides.svg",
+      "title": "Outline of Sinornithoides",
+      "depicts": "Sinornithoides youngi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Sinornithoides_youngi.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Sinornithosaurus": {
+      "file": "outlines/s/sinornithosaurus.svg",
+      "title": "Outline of Sinornithosaurus",
+      "depicts": "Sinornithosaurus millenii",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Sinornithosaurus_millenii.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Sinosauropteryx": {
+      "file": "outlines/s/sinosauropteryx.svg",
+      "title": "Outline of Sinosauropteryx",
+      "depicts": "Sinosauropteryx prima",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Sinosauropteryx.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Sinotyrannus": {
+      "file": "outlines/s/sinotyrannus.svg",
+      "title": "Outline of Sinotyrannus",
+      "depicts": "Sinotyrannus kazuoensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SirBlameson",
+      "source": "https://commons.wikimedia.org/wiki/File:Sinotyrannus_kazuoensis_skeletal.png",
+      "license": "CC0-1.0"
+    },
+    "Spectrovenator": {
+      "file": "outlines/s/spectrovenator.svg",
+      "title": "Outline of Spectrovenator",
+      "depicts": "Spectrovenator ragei",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Feliaspaleozoobr",
+      "source": "https://commons.wikimedia.org/wiki/File:Spectrovenator_ragei_skeletal_reconstruction_by_Felipe_Elias.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Spicomellus": {
+      "file": "outlines/s/spicomellus.svg",
+      "title": "Outline of Spicomellus",
+      "depicts": "Spicomellus afer",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Spicomellus_Skeletal_(separate_skeleton_and_osteoderms).svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Staurikosaurus": {
+      "file": "outlines/s/staurikosaurus.svg",
+      "title": "Outline of Staurikosaurus",
+      "depicts": "Staurikosaurus pricei",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Maurissauro",
+      "source": "https://commons.wikimedia.org/wiki/File:Staurikosaurus_reconstruction.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
     "Stegosauria": {
       "file": "outlines/s/stegosauria.svg",
       "title": "Outline of a stegosaur",
@@ -94,6 +2362,78 @@
       "creator": "Scott Hartman",
       "source": "https://www.phylopic.org/images/95778172-ab3b-49a5-8f41-52a8db03a832",
       "license": "CC-BY-3.0"
+    },
+    "Struthiomimus": {
+      "file": "outlines/s/struthiomimus.svg",
+      "title": "Outline of Struthiomimus",
+      "depicts": "Struthiomimus altus",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Struthiomimus_altus_skeletal.png",
+      "license": "CC-BY-3.0"
+    },
+    "Suchomimus": {
+      "file": "outlines/s/suchomimus.svg",
+      "title": "Outline of Suchomimus",
+      "depicts": "Suchomimus tenerensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Suchomimus_and_Baryonyx.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Suuwassea": {
+      "file": "outlines/s/suuwassea.svg",
+      "title": "Outline of Suuwassea",
+      "depicts": "Suuwassea emilieae",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Suuwassea_Skeletal.svg",
+      "license": "CC-BY-4.0"
+    },
+    "Suzhousaurus": {
+      "file": "outlines/s/suzhousaurus.svg",
+      "title": "Outline of Suzhousaurus",
+      "depicts": "Suzhousaurus megatherioides",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PaleoNeolitic",
+      "source": "https://commons.wikimedia.org/wiki/File:Suzhousaurus_Skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Tarbosaurus": {
+      "file": "outlines/t/tarbosaurus.svg",
+      "title": "Outline of Tarbosaurus",
+      "depicts": "Tarbosaurus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Shanshanosaurus_headden.jpg",
+      "license": "CC-BY-SA-3.0"
+    },
+    "Tarchia": {
+      "file": "outlines/t/tarchia.svg",
+      "title": "Outline of Tarchia",
+      "depicts": "Tarchia tumanovae",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jin-Young Park, Yuong-Nam Lee, Yoshitsugu Kobayashi, Louis L. Jacobs, Rinchen Barsbold, Hang-Jae Lee, Namsoo Kim, Kyo-Young Song & Michael J. Polcyn",
+      "source": "https://commons.wikimedia.org/wiki/File:Tarchia_tumanovae_holotype_skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Tawa": {
+      "file": "outlines/t/tawa.svg",
+      "title": "Outline of Tawa",
+      "depicts": "Tawa hallae",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Maurissauro",
+      "source": "https://commons.wikimedia.org/wiki/File:Tawa_hallae_skeleton.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Thecodontosaurus": {
+      "file": "outlines/t/thecodontosaurus.svg",
+      "title": "Outline of Thecodontosaurus",
+      "depicts": "Thecodontosaurus antiquus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Thecodontosaurus_antiquus_skeleton.png",
+      "license": "CC-BY-SA-3.0"
     },
     "Theropoda": {
       "file": "outlines/t/theropoda.svg",
@@ -104,6 +2444,105 @@
       "source": "https://www.phylopic.org/images/62f2e46f-9205-4e32-83d6-e14865a9e789",
       "license": "CC0-1.0"
     },
+    "Thyreosaurus": {
+      "file": "outlines/t/thyreosaurus.svg",
+      "title": "Outline of Thyreosaurus",
+      "depicts": "Thyreosaurus atlasicus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Thyreosaurus_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Tiamat": {
+      "file": "outlines/t/tiamat.svg",
+      "title": "Outline of Tiamat",
+      "depicts": "Tiamat valdecii",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Tiamat_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Tietasaura": {
+      "file": "outlines/t/tietasaura.svg",
+      "title": "Outline of Tietasaura",
+      "depicts": "Tietasaura derbyiana",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Tietasaura_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Timimus": {
+      "file": "outlines/t/timimus.svg",
+      "title": "Outline of Timimus",
+      "depicts": "Timimus hermani",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Timimus_Skeletal_V1.svg",
+      "license": "CC-BY-4.0"
+    },
+    "Timurlengia": {
+      "file": "outlines/t/timurlengia.svg",
+      "title": "Outline of Timurlengia",
+      "depicts": "Timurlengia euotica",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Definitely NOT Dilophosaurus",
+      "source": "https://commons.wikimedia.org/wiki/File:Timurlengia_Skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Torvosaurus": {
+      "file": "outlines/t/torvosaurus.svg",
+      "title": "Outline of Torvosaurus",
+      "depicts": "Torvosaurus gurneyi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Scott Hartman, Carol Abraczinskas, Simão Mateus, Christophe Hendrickx, Octávio Mateus",
+      "source": "https://commons.wikimedia.org/wiki/File:Torvosaurus_gurneyi.png",
+      "license": "CC-BY-4.0"
+    },
+    "Tratayenia": {
+      "file": "outlines/t/tratayenia.svg",
+      "title": "Outline of Tratayenia",
+      "depicts": "Tratayenia rosalesi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Tratayenia_Skeletal.svg",
+      "license": "CC-BY-4.0"
+    },
+    "Trinisaura": {
+      "file": "outlines/t/trinisaura.svg",
+      "title": "Outline of Trinisaura",
+      "depicts": "Trinisaura",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Levi B. Martinez-Reza",
+      "source": "https://commons.wikimedia.org/wiki/File:Trinisaura_esqueletico.jpg",
+      "license": "CC-BY-SA-3.0"
+    },
+    "Tsagantegia": {
+      "file": "outlines/t/tsagantegia.svg",
+      "title": "Outline of Tsagantegia",
+      "depicts": "Tsagantegia longicranialis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PaleoNeolitic",
+      "source": "https://commons.wikimedia.org/wiki/File:Tsagantegia_Skeleton_Reconstruction.jpg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Tuebingosaurus": {
+      "file": "outlines/t/tuebingosaurus.svg",
+      "title": "Outline of Tuebingosaurus",
+      "depicts": "Tuebingosaurus maierfritzorum",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Omar Rafael Regalado Fernández, Ingmar Werneburg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tuebingosaurus.jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Tyrannomimus": {
+      "file": "outlines/t/tyrannomimus.svg",
+      "title": "Outline of Tyrannomimus",
+      "depicts": "Tyrannomimus fukuiensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "S Hattori, M Shibata, S Kawabe, T Imai, H Nishi & Y Azuma",
+      "source": "https://commons.wikimedia.org/wiki/File:Tyrannomimus_Skeletal.jpg",
+      "license": "CC-BY-4.0"
+    },
     "Tyrannosauroidea": {
       "file": "outlines/t/tyrannosauroidea.svg",
       "title": "Outline of a tyrannosaur",
@@ -112,6 +2551,195 @@
       "creator": "Jagged Fang Designs",
       "source": "https://www.phylopic.org/images/4a597666-eefa-4d9b-a957-23cab985bec0",
       "license": "CC0-1.0"
+    },
+    "Udanoceratops": {
+      "file": "outlines/u/udanoceratops.svg",
+      "title": "Outline of Udanoceratops",
+      "depicts": "Udanoceratops tschizhovi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PaleoNeolitic",
+      "source": "https://commons.wikimedia.org/wiki/File:Udanoceratops_Skeleton_Reconstruction.png",
+      "license": "CC-BY-4.0"
+    },
+    "Unaysaurus": {
+      "file": "outlines/u/unaysaurus.svg",
+      "title": "Outline of Unaysaurus",
+      "depicts": "Unaysaurus tolentinoi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Maurissauro",
+      "source": "https://commons.wikimedia.org/wiki/File:Skeletal_reconstruction_of_Unaysaurus_tolentinoi.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Unenlagia": {
+      "file": "outlines/u/unenlagia.svg",
+      "title": "Outline of Unenlagia",
+      "depicts": "Unenlagia comahuensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Unenlagia.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Velociraptor": {
+      "file": "outlines/v/velociraptor.svg",
+      "title": "Outline of Velociraptor",
+      "depicts": "Velociraptor mongoliensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Velociraptor.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Velocisaurus": {
+      "file": "outlines/v/velocisaurus.svg",
+      "title": "Outline of Velocisaurus",
+      "depicts": "Velocisaurus unicus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Definitely NOT Dilophosaurus",
+      "source": "https://commons.wikimedia.org/wiki/File:Velocisaurus_Skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Veterupristisaurus": {
+      "file": "outlines/v/veterupristisaurus.svg",
+      "title": "Outline of Veterupristisaurus",
+      "depicts": "Veterupristisaurus milneri",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Original artist IJReid, modified silhouette by Paleocolour",
+      "source": "https://commons.wikimedia.org/wiki/File:Veterupristisaurus_Skeletal_Diagram.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Volgatitan": {
+      "file": "outlines/v/volgatitan.svg",
+      "title": "Outline of Volgatitan",
+      "depicts": "Volgatitan",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Volgatitan_Skeletal.svg",
+      "license": "CC0-1.0"
+    },
+    "Vulcanodon": {
+      "file": "outlines/v/vulcanodon.svg",
+      "title": "Outline of Vulcanodon",
+      "depicts": "Vulcanodon karibaensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "IJReid",
+      "source": "https://commons.wikimedia.org/wiki/File:Vulcanodon_skeleton.png",
+      "license": "CC-BY-4.0"
+    },
+    "Wendiceratops": {
+      "file": "outlines/w/wendiceratops.svg",
+      "title": "Outline of Wendiceratops",
+      "depicts": "Wendiceratops pinhornensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Original Diagram by David C Evans and Michael J Ryan, recolored by Skye McDavid",
+      "source": "https://commons.wikimedia.org/wiki/File:Wendiceratops_skeletal_recolored.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Wulatelong": {
+      "file": "outlines/w/wulatelong.svg",
+      "title": "Outline of Wulatelong",
+      "depicts": "Wulatelong gobiensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Wulatelong_gobiensis_skeleton.png",
+      "license": "CC-BY-SA-3.0"
+    },
+    "Xenoposeidon": {
+      "file": "outlines/x/xenoposeidon.svg",
+      "title": "Outline of Xenoposeidon",
+      "depicts": "Xenoposeidon proneneukos",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Slate Weasel",
+      "source": "https://commons.wikimedia.org/wiki/File:Xenoposeidon_Skeletal.svg",
+      "license": "CC-BY-4.0"
+    },
+    "Xiaotingia": {
+      "file": "outlines/x/xiaotingia.svg",
+      "title": "Outline of Xiaotingia",
+      "depicts": "Xiaotingia zhengi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Xiaotingia_by_Qilong.jpg",
+      "license": "CC-BY-3.0"
+    },
+    "Xinjiangtitan": {
+      "file": "outlines/x/xinjiangtitan.svg",
+      "title": "Outline of Xinjiangtitan",
+      "depicts": "Xinjiangtitan shanshanesis",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Gunnar Bivens",
+      "source": "https://commons.wikimedia.org/wiki/File:Xinjiangtitan_shanshanesis_Skeletal.png",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Xiongguanlong": {
+      "file": "outlines/x/xiongguanlong.svg",
+      "title": "Outline of Xiongguanlong",
+      "depicts": "Xiongguanlong baimoensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Definitely NOT Dilophosaurus",
+      "source": "https://commons.wikimedia.org/wiki/File:Xiongguanlong_Skeletal.png",
+      "license": "CC-BY-4.0"
+    },
+    "Yamaceratops": {
+      "file": "outlines/y/yamaceratops.svg",
+      "title": "Outline of Yamaceratops",
+      "depicts": "Yamaceratops dorngobiensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "Minyoung Son, Yuong-Nam Lee, Badamkhatan Zorigt, Yoshitsugu Kobayashi, Jin-Young Park, Sungjin Lee, Su-Hwan Kim & Kang Young Lee",
+      "source": "https://commons.wikimedia.org/wiki/File:Skeletal_Yamaceratops_MPC-D_100_553_specimen.png",
+      "license": "CC-BY-4.0"
+    },
+    "Yanbeilong": {
+      "file": "outlines/y/yanbeilong.svg",
+      "title": "Outline of Yanbeilong",
+      "depicts": "Yanbeilong ultimus",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Yanbeilong_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Yingshanosaurus": {
+      "file": "outlines/y/yingshanosaurus.svg",
+      "title": "Outline of Yingshanosaurus",
+      "depicts": "Yingshanosaurus jichuanensis",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Yingshanosaurus_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Yuanyanglong": {
+      "file": "outlines/y/yuanyanglong.svg",
+      "title": "Outline of Yuanyanglong",
+      "depicts": "Yuanyanglong bainian",
+      "changes": "Traced; rest of the figure removed; filled; recolored; flipped horizontally",
+      "creator": "SlvrHwk",
+      "source": "https://commons.wikimedia.org/wiki/File:Yuanyanglong_Skeletal.svg",
+      "license": "CC-BY-SA-4.0"
+    },
+    "Yurgovuchia": {
+      "file": "outlines/y/yurgovuchia.svg",
+      "title": "Outline of Yurgovuchia",
+      "depicts": "Yurgovuchia doellingi",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "PaleoNeolitic",
+      "source": "https://commons.wikimedia.org/wiki/File:Yurgovuchia_Skeleton_Reconstruction.jpg",
+      "license": "CC-BY-4.0"
+    },
+    "Zanabazar": {
+      "file": "outlines/z/zanabazar.svg",
+      "title": "Outline of Zanabazar",
+      "depicts": "Zanabazar",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "Jaime A. Headden (User:Qilong)",
+      "source": "https://commons.wikimedia.org/wiki/File:Zanabazar_skeletal.png",
+      "license": "CC-BY-SA-3.0"
+    },
+    "Zuolong": {
+      "file": "outlines/z/zuolong.svg",
+      "title": "Outline of Zuolong",
+      "depicts": "Zuolong salleei",
+      "changes": "Traced; rest of the figure removed; filled; recolored",
+      "creator": "IJReid",
+      "source": "https://commons.wikimedia.org/wiki/File:Zuolong_skeletal.png",
+      "license": "CC-BY-4.0"
     }
   }
 }

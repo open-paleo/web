@@ -13,4 +13,4 @@ export const glossarySchemaVersion = "1.1.0";
 /**
  * Media schema version that media.d.ts describes.
  */
-export const mediaSchemaVersion = "1.2.0";
+export const mediaSchemaVersion = "1.3.0";
