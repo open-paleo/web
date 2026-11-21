@@ -60,6 +60,11 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 - A name in prose that isn't linked, because it names the current page or was already linked
   in the passage, no longer has a glossary term linked inside it: "Formation" in "Hell Creek
   Formation"
+- The filters on the Genera, Clades and Map pages, and the map on the Map page, show with the
+  rest of the page instead of appearing up to a second later and pushing the list down, in
+  browsers that report scripting (all current ones). On the Genera page the script no longer
+  moves every genus as it starts. When the Map page's places can't be loaded, the map's place
+  says so and the filters, which would have nothing to filter, are hidden
 
 ## 2026-11-19
 

@@ -60,6 +60,12 @@ type FilterPage = {
      * The list the matching genera move into while a filter is on.
      */
     results: HTMLElement;
+
+    /**
+     * Whether the matches are in the results list, so turning the filters off has to move each
+     * genus back under its letter. Until then the genera stay where the page put them.
+     */
+    isShowingResults: boolean;
 };
 
 /**
@@ -102,13 +108,14 @@ function findFilterPage(): FilterPage | undefined
         }
     }
 
-    return { controls, genera, values, letterGroups, letterNavigation, results };
+    return { controls, genera, values, letterGroups, letterNavigation, results, isShowingResults: false };
 }
 
 /**
  * Show the genera that match the form's filters. While a filter is on, the matches move into one
- * list and the letter groups are hidden; with every filter off, each genus goes back under its
- * letter.
+ * list and the letter groups are hidden; when every filter goes off, each genus goes back under
+ * its letter. With no filter on from the start, nothing moves, which on the Genera page spares
+ * moving every genus as the page loads.
  *
  * @param page - The page's parts.
  */
@@ -118,19 +125,26 @@ function applyFilters(page: FilterPage): void
     const isFiltered = hasActiveFilter(criteria);
     const matches = new Array<HTMLElement>();
 
-    for (const genus of page.genera)
+    if (isFiltered)
     {
-        if (!isFiltered)
+        for (const genus of page.genera)
+        {
+            if (matchesGenusFilters(genus.values, criteria, undefined))
+            {
+                matches.push(genus.element);
+            }
+        }
+    }
+    else if (page.isShowingResults)
+    {
+        for (const genus of page.genera)
         {
             genus.letterList.append(genus.element);
-        }
-        else if (matchesGenusFilters(genus.values, criteria, undefined))
-        {
-            matches.push(genus.element);
         }
     }
 
     page.results.replaceChildren(...matches);
+    page.isShowingResults = isFiltered;
     page.results.hidden = !isFiltered;
     page.letterNavigation.hidden = isFiltered;
 

@@ -46,10 +46,10 @@ type Props = {
 const { options, total, isCollapsible, itemNames = { singular: "genus", plural: "genera" } } = Astro.props;
 ---
 
-{/* The form is hidden until the script starts, so a reader without JavaScript sees the full
-   list and no controls that do nothing. The script reads the filters from the page address
-   and writes them back to it, so a filtered list can be shared. */}
-<form class:list={["genus-filters", { "is-collapsible": isCollapsible }]} id="genus-filters" data-total={total} data-singular={itemNames.singular} data-plural={itemNames.plural} aria-label={"Filter " + itemNames.plural} hidden>
+{/* A reader without JavaScript sees the full list and no controls that do nothing, so the form
+   shows only where scripts run (see the styles below). The script reads the filters from the
+   page address and writes them back to it, so a filtered list can be shared. */}
+<form class:list={["genus-filters", { "is-collapsible": isCollapsible }]} id="genus-filters" data-total={total} data-singular={itemNames.singular} data-plural={itemNames.plural} aria-label={"Filter " + itemNames.plural}>
     <div class="filter-fields" id="genus-filter-fields" hidden={isCollapsible}>
         {options.choices.map((choice) => (
             <label class="filter-field">
@@ -92,9 +92,13 @@ const { options, total, isCollapsible, itemNames = { singular: "genus", plural: 
 </form>
 
 <style>
+    /* Hidden without scripts. Where the browser reports that scripts run, the form shows from the
+       first paint, so the list doesn't jump down when the page's script starts, which on the
+       Genera page comes a second after the list (it waits for the whole list to load). A browser
+       that can't report it shows the form once the script has connected it. */
     .genus-filters
     {
-        display: grid;
+        display: none;
         gap: var(--space-4);
         padding: var(--space-5);
         background: var(--color-surface);
@@ -103,6 +107,20 @@ const { options, total, isCollapsible, itemNames = { singular: "genus", plural: 
         font-family: var(--font-sans);
     }
 
+    .genus-filters.is-connected
+    {
+        display: grid;
+    }
+
+    @media (scripting: enabled)
+    {
+        .genus-filters
+        {
+            display: grid;
+        }
+    }
+
+    /* The Map page hides the form again when the places it filters can't be loaded. */
     .genus-filters[hidden],
     .filter-fields[hidden],
     .filter-clear[hidden]

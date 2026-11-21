@@ -26,9 +26,9 @@ const legendSteps = ["1", "2–4", "5–9", "10–24", "25 or more"];
 
         <GenusFilterForm options={filterOptions} total={placedCount} isCollapsible={true} />
 
-        {/* The map and its panel are hidden until the map script runs; without it, the index of
-           genera by place below gives the same information. */}
-        <div class="map-layout" id="site-map-layout" hidden>
+        {/* The map and its panel show only where scripts run (see the styles below); without them,
+           the index of genera by place below gives the same information. */}
+        <div class="map-layout" id="site-map-layout">
             <div class="site-map" id="site-map" data-places={baseUrl + "map/places.json"} data-base={baseUrl} role="region" aria-label="Map of where the genera were found"></div>
             <aside class="map-panel" aria-label="Map legend and selected place">
                 <div class="map-legend">
@@ -102,17 +102,29 @@ const legendSteps = ["1", "2–4", "5–9", "10–24", "25 or more"];
        screens and under it on narrow ones. */
     /* The map fills the window below the header, title and folded filters (about 22rem), so on a
        laptop the whole map is in view without scrolling; taller screens stop at 40rem. */
+    /* Hidden without scripts. Where the browser reports that scripts run, the map's place is kept
+       from the first paint, so the index below doesn't jump down when the map script has loaded
+       the places; the map fills it in. A browser that can't report it shows it once the script
+       starts. */
     .map-layout
     {
-        display: grid;
+        display: none;
         grid-template-columns: minmax(0, 1fr) var(--sidebar-width);
         gap: var(--space-4);
         height: clamp(24rem, calc(100svh - 22rem), 40rem);
     }
 
-    .map-layout[hidden]
+    .map-layout.is-connected
     {
-        display: none;
+        display: grid;
+    }
+
+    @media (scripting: enabled)
+    {
+        .map-layout
+        {
+            display: grid;
+        }
     }
 
     .site-map

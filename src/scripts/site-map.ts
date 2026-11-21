@@ -245,6 +245,21 @@ function selectPlace(page: MapPage, key: string): void
 }
 
 /**
+ * Show a message in the map's place, when there is no map to show.
+ *
+ * @param container - The map's container.
+ * @param text - The message.
+ */
+function showMapMessage(container: HTMLElement, text: string): void
+{
+    const message = document.createElement("p");
+
+    message.className = "map-unavailable";
+    message.textContent = text;
+    container.replaceChildren(message);
+}
+
+/**
  * Load MapLibre and draw the map, then show the current filters on it.
  *
  * @param page - The page.
@@ -259,16 +274,32 @@ async function drawMap(page: MapPage): Promise<void>
 
     if (!page.view)
     {
-        const message = document.createElement("p");
-
-        message.className = "map-unavailable";
-        message.textContent = "The map could not be shown in this browser. The genera are listed by place below.";
-        page.container.replaceChildren(message);
+        showMapMessage(page.container, "The map could not be shown in this browser. The genera are listed by place below.");
 
         return;
     }
 
     page.view.map.once("load", () => applyFilters(page));
+}
+
+/**
+ * Load the places and genera the map shows.
+ *
+ * @param address - The address of map/places.json.
+ * @returns The data, or undefined when it could not be loaded.
+ */
+async function loadMapData(address: string): Promise<SiteMapData | undefined>
+{
+    try
+    {
+        const response = await fetch(address);
+
+        return response.ok ? await response.json() as SiteMapData : undefined;
+    }
+    catch
+    {
+        return undefined;
+    }
 }
 
 /**
@@ -286,14 +317,22 @@ async function initializeMapPage(): Promise<void>
         return;
     }
 
-    const response = await fetch(container.dataset.places ?? "");
+    // Browsers that report scripting show the map's place from the first paint; this shows it in
+    // the ones that don't (map/index.astro).
+    layout.classList.add("is-connected");
 
-    if (!response.ok)
+    const data = await loadMapData(container.dataset.places ?? "");
+
+    // Without the data there is nothing to map or filter, so the filters go and the map's place
+    // says so.
+    if (!data)
     {
+        controls.form.hidden = true;
+        showMapMessage(container, "The map could not be loaded. The genera are listed by place below.");
+
         return;
     }
 
-    const data = await response.json() as SiteMapData;
     const values = new Array<GenusFilterValues>();
     const placeByKey = new Map<string, SiteMapPlace>();
 
@@ -321,7 +360,6 @@ async function initializeMapPage(): Promise<void>
         selectedKey: "",
     };
 
-    layout.hidden = false;
     connectFilterForm(controls, () => applyFilters(page));
     await drawMap(page);
 }

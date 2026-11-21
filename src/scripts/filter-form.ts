@@ -275,7 +275,9 @@ function toggleFilterFields(controls: FilterForm): void
 export function connectFilterForm(controls: FilterForm, applyFilters: () => void): void
 {
     writeFormCriteria(controls, readFilterCriteria(new URLSearchParams(window.location.search)));
-    controls.form.hidden = false;
+    // Browsers that report scripting show the form from the first paint; this shows it in the
+    // ones that don't (GenusFilterForm.astro).
+    controls.form.classList.add("is-connected");
     applyFilters();
     controls.form.addEventListener("change", applyFilters);
     controls.form.addEventListener("input", applyFilters);
