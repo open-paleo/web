@@ -1,7 +1,7 @@
 {
   "_metadata": {
     "attribution": "Open Paleo contributors",
-    "built_at": "2026-11-21T01:30:38.260Z",
+    "built_at": "2026-11-21T05:29:28.709Z",
     "clade_count": 45,
     "genus_count": 14,
     "license": "CC-BY-4.0",
@@ -1273,7 +1273,7 @@
           "issue": "1",
           "pages": "2293038",
           "doi": "10.1080/14772019.2023.2293038",
-          "notes": "Recovers Diamantinasauria as sister taxon to Titanosauria rather than a sub-clade within it"
+          "notes": "Recovers Diamantinasauria as sister taxon to Titanosauria rather than a sub-clade within it."
         },
         {
           "id": "jones2026b",
@@ -2281,7 +2281,7 @@
           "notes": "Provides the modern phylogenetic definition of Neornithischia."
         }
       ],
-      "description": "Neornithischia is a clade of genasaurian ornithischian dinosaurs named by Cooper in 1985. Its members lived from the Toarcian stage of the Early Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now the United States, China, Canada and 30 other countries. It includes the clades Jeholosauridae, Thescelosauridae and Cerapoda. It contains 347 genera, among them Edmontosaurus, Protoceratops and Brachylophosaurus. Its members were herbivores. Madzia and colleagues revised it in 2021."
+      "description": "Neornithischia is a clade of genasaurian ornithischian dinosaurs named by Cooper in 1985. Its members lived from the Toarcian stage of the Early Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now the United States, China, Canada and 30 other countries. It includes the clades Thescelosauridae and Cerapoda. It contains 347 genera, among them Edmontosaurus, Protoceratops and Brachylophosaurus. Its members were herbivores. Madzia and colleagues revised it in 2021."
     },
     "Neosauropoda": {
       "rank": "unranked",
@@ -2660,7 +2660,7 @@
           "journal": "Nature",
           "pages": "1-6",
           "doi": "10.1038/s41586-025-09453-6",
-          "notes": "New Spicomellus phylogeny dispersed putative Parankylosauria members across Ankylosauria and Thyreophora"
+          "notes": "New Spicomellus phylogeny dispersed putative Parankylosauria members across Ankylosauria and Thyreophora."
         }
       ],
       "description": "Parankylosauria is a clade of ankylosaur dinosaurs named by Soto-Acuña and colleagues in 2021. Its members lived from the Albian stage of the Early Cretaceous to the Maastrichtian stage of the Late Cretaceous in what is now Antarctica, Australia and Chile. Its genera are Antarctopelta, Kunbarrasaurus and Stegouros. Its members were quadrupedal herbivores. Aspects of its classification are disputed."
@@ -4050,7 +4050,7 @@
       "genus": "Acanthopholis",
       "parent": "Nodosauridae",
       "placement": "incertae sedis",
-      "etymology": "From Greek 'akantha' meaning 'spine' or 'thorn' and 'pholis' meaning 'scale'; meaning 'spiny scales'",
+      "etymology": "From Greek 'akantha' (spine) and 'pholis' (scale); meaning 'spiny scale'.",
       "pronunciation": {
         "phonetic": "a-kan-THOF-o-lis",
         "ipa": "/ˌækənˈθɒfoʊlɪs/"
@@ -4277,7 +4277,7 @@
       ],
       "authors": "Huxley, T. H.",
       "described": 1867,
-      "description": "Acanthopholis (meaning \"spiny scales\") is a genus of nodosaurid ankylosaur dinosaur of uncertain placement within Nodosauridae, now considered a nomen dubium, named by Huxley in 1867. It lived during the Cenomanian stage of the Late Cretaceous in what is now the United Kingdom, in the West Melbury Marly Chalk. Its only species is Acanthopholis horrida. It was described from scutes and spines of dermal armor, three teeth, fragmentary vertebrae, partial skull, and distal end of a humerus. Acanthopholis was a quadrupedal herbivore estimated at 3 to 5.5 meters long."
+      "description": "Acanthopholis (meaning \"spiny scale\") is a genus of nodosaurid ankylosaur dinosaur of uncertain placement within Nodosauridae, now considered a nomen dubium, named by Huxley in 1867. It lived during the Cenomanian stage of the Late Cretaceous in what is now the United Kingdom, in the West Melbury Marly Chalk. Its only species is Acanthopholis horrida. It was described from scutes and spines of dermal armor, three teeth, fragmentary vertebrae, partial skull, and distal end of a humerus. Acanthopholis was a quadrupedal herbivore estimated at 3 to 5.5 meters long."
     },
     "Acrocanthosaurus": {
       "genus": "Acrocanthosaurus",
@@ -4338,7 +4338,7 @@
       "species": [
         {
           "name": "Acrocanthosaurus atokensis",
-          "etymology": "Named for Atoka County in Oklahoma, where the original specimens were found.",
+          "etymology": "Named for Atoka County, Oklahoma, where the type was found.",
           "pronunciation": {
             "phonetic": "AY-toh-KEN-sis"
           },
@@ -4762,7 +4762,7 @@
       "species": [
         {
           "name": "Agilisaurus louderbacki",
-          "etymology": "Named for Dr. George D. Louderback, the American geologist who was the first to recognize dinosaur fossils from the Sichuan Province of China in 1915.",
+          "etymology": "Named for the late U.S. geologist Dr. George D. Louderback, who in 1915 was the first scientist to discover dinosaur fossils in the Sichuan Basin.",
           "pronunciation": {
             "phonetic": "LOU-dur-BACK-eye; LAW-dur-BACK-eye"
           },
@@ -4857,7 +4857,7 @@
       ],
       "authors": "Peng, G.",
       "described": 1992,
-      "description": "Agilisaurus (meaning \"agile lizard\") is a genus of neornithischian ornithischian dinosaur named by Peng in 1992. It lived during the Bajocian to Oxfordian stages of the Middle Jurassic and the Late Jurassic in what is now China, in the Shaximiao Formation. Its only species is Agilisaurus louderbacki. It was described from a nearly complete skeleton lacking only portions of the left forelimb and left hindlimb. Agilisaurus was a bipedal herbivore estimated at 1.2 to 1.7 meters long."
+      "description": "Agilisaurus (meaning \"agile lizard\") is a genus of neornithischian dinosaur named by Peng in 1992. It lived during the Bajocian to Oxfordian stages of the Middle Jurassic and the Late Jurassic in what is now China, in the Shaximiao Formation. Its only species is Agilisaurus louderbacki. It was described from a nearly complete skeleton lacking only portions of the left forelimb and left hindlimb. Agilisaurus was a bipedal herbivore estimated at 1.2 to 1.7 meters long."
     },
     "Allosaurus": {
       "genus": "Allosaurus",
@@ -5726,7 +5726,7 @@
       "species": [
         {
           "name": "Australotitan cooperensis",
-          "etymology": "Named for the Cooper Creek system near the initial location of the holotype, and the nickname 'Cooper' given to the holotype when it was discovered.",
+          "etymology": "Named for the Cooper-Eromanga Basin, the Cooper Creek system and \"Cooper Country\", where it was found.",
           "pronunciation": {
             "phonetic": "KOO-per-EN-sis"
           },
@@ -5815,8 +5815,8 @@
           "year": 2021,
           "title": "Meet Australia's largest dinosaur -- Australotitan, the southern titan!",
           "publisher": "EurekAlert!",
-          "notes": "Source of the holotype's nickname, Cooper.",
-          "url": "https://www.eurekalert.org/news-releases/643637"
+          "url": "https://www.eurekalert.org/news-releases/643637",
+          "notes": "Source of the holotype's nickname, Cooper."
         },
         {
           "id": "hocknull2021a",
@@ -6173,8 +6173,8 @@
           "year": 2021,
           "title": "Before SUE the T. rex, there was 'Gorgeous George'",
           "publisher": "Field Museum",
-          "notes": "Source of the nickname of FMNH PR308, Gorgeous George.",
-          "url": "https://www.fieldmuseum.org/blog/sue-t-rex-there-was-gorgeous-george"
+          "url": "https://www.fieldmuseum.org/blog/sue-t-rex-there-was-gorgeous-george",
+          "notes": "Source of the nickname of FMNH PR308, Gorgeous George."
         },
         {
           "id": "russell1970a",
@@ -8643,8 +8643,7 @@
           "year": 1987,
           "title": "Late Cretaceous and Early Paleogene ostracods of Mongolia and their stratigraphic significance",
           "thesis": "dissertation-abstract",
-          "school": "Akademiya Nauk SSSR, Paleontologicheskii Institut, Moscow",
-          "notes": "Dissertation abstract (avtoreferat), 22 pp., in Russian.\n"
+          "school": "Akademiya Nauk SSSR, Paleontologicheskii Institut, Moscow"
         },
         {
           "id": "shuvalov1974a",
