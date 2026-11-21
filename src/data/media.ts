@@ -57,6 +57,7 @@ type LicenseInfo = {
 const licenses: Record<string, LicenseInfo> = {
     "CC0-1.0": { name: "CC0", url: "https://creativecommons.org/publicdomain/zero/1.0/" },
     "PDM-1.0": { name: "public domain", url: "https://creativecommons.org/publicdomain/mark/1.0/" },
+    "CC-BY-2.0": { name: "CC BY 2.0", url: "https://creativecommons.org/licenses/by/2.0/" },
     "CC-BY-3.0": { name: "CC BY 3.0", url: "https://creativecommons.org/licenses/by/3.0/" },
     "CC-BY-4.0": { name: "CC BY 4.0", url: "https://creativecommons.org/licenses/by/4.0/" },
     "CC-BY-SA-3.0": { name: "CC BY-SA 3.0", url: "https://creativecommons.org/licenses/by-sa/3.0/" },
