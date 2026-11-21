@@ -1,0 +1,32 @@
+---
+import Prose from "./Prose.astro";
+import { splitParagraphs } from "../data/format.ts";
+
+/**
+ * Properties of a record's description: a genus's, a clade's or a rock unit's.
+ */
+type Props = {
+    /**
+     * The description, as the dataset gives it: paragraphs separated by a blank line.
+     */
+    text: string;
+};
+
+const { text } = Astro.props;
+const paragraphs = splitParagraphs(text);
+// Names and glossary terms link once in the whole description, not once per paragraph.
+const linkedTerms = new Set<string>();
+---
+
+<div class="description">
+    {paragraphs.map((paragraph) => <p><Prose text={paragraph} linkedTerms={linkedTerms} /></p>)}
+</div>
+
+<style>
+    .description
+    {
+        display: grid;
+        gap: var(--space-3);
+        max-width: var(--measure);
+    }
+</style>

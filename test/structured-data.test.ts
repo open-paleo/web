@@ -189,7 +189,7 @@ test("a genus's alternate names leave out possible synonyms", () =>
     assert.deepEqual(taxon.alternateName ?? [], expected);
 });
 
-test("a clade is a taxon without a rank, listing the clades and genera directly within it", () =>
+test("an unranked clade is a Bioschemas taxon listing the clades and genera directly within it", () =>
 {
     const entry = siteData.cladeByName.get("Dinosauria");
 
@@ -198,13 +198,49 @@ test("a clade is a taxon without a rank, listing the clades and genera directly 
     const taxon = readJsonLd(createCladeStructuredData(entry, entry.record, siteData, siteUrl)) as TaxonJson;
 
     assert.equal(taxon["@id"], "https://open-paleo.org/clade/" + entry.slug + "/");
-    assert.equal(taxon["http://purl.org/dc/terms/conformsTo"], undefined);
-    assert.equal(taxon.taxonRank, undefined);
+    assert.equal(taxon["http://purl.org/dc/terms/conformsTo"]?.["@id"], "https://bioschemas.org/profiles/Taxon/1.0-RELEASE");
+    // The TDWG vocabulary has no term for an unranked clade.
+    assert.deepEqual(taxon.taxonRank, ["unranked"]);
     assert.equal(taxon.childTaxon?.length, entry.childCladeNames.length + entry.genusNames.length);
-    // The ranks above Dinosauria have no page, so its parent is named without an address.
+    // The ranks above Dinosauria have no page, so its parent is named without an address or rank.
     assert.equal(taxon.parentTaxon?.name, entry.parentName);
     assert.equal(taxon.parentTaxon?.["@id"], undefined);
+    assert.equal(taxon.parentTaxon?.taxonRank, undefined);
 });
+
+test("a ranked clade gives its rank as a word and a TDWG term, and so do the clades around it", () =>
+{
+    const entry = siteData.cladeByName.get("Tyrannosauridae");
+
+    assert.ok(entry?.record);
+    assert.equal(entry.record.rank, "family");
+
+    const taxon = readJsonLd(createCladeStructuredData(entry, entry.record, siteData, siteUrl)) as TaxonJson;
+    const subfamily = taxon.childTaxon?.find((child) => child.name === "Tyrannosaurinae");
+
+    assert.deepEqual(taxon.taxonRank, ["family", "http://rs.tdwg.org/ontology/voc/TaxonRank#Family"]);
+    assert.deepEqual(subfamily?.taxonRank, ["subfamily", "http://rs.tdwg.org/ontology/voc/TaxonRank#Subfamily"]);
+    assert.deepEqual(taxon.parentTaxon?.taxonRank, getExpectedRank(entry.parentName));
+});
+
+/**
+ * Get the rank a clade reference should carry: its record's rank, with the TDWG term when the
+ * vocabulary has one.
+ *
+ * @param name - The clade's name.
+ * @returns The rank values, or undefined for a clade without a record.
+ */
+function getExpectedRank(name: string | undefined): Array<string> | undefined
+{
+    const rank = name ? siteData.cladeByName.get(name)?.record?.rank : undefined;
+
+    if (!rank)
+    {
+        return undefined;
+    }
+
+    return rank === "unranked" ? [rank] : [rank, "http://rs.tdwg.org/ontology/voc/TaxonRank#" + rank.charAt(0).toUpperCase() + rank.slice(1)];
+}
 
 test("the dataset gives its release, license and every file", () =>
 {

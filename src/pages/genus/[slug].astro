@@ -1,6 +1,7 @@
 ---
 import AgeFigure from "../../components/AgeFigure.astro";
 import CorrectionLink from "../../components/CorrectionLink.astro";
+import Description from "../../components/Description.astro";
 import DiagnosisList from "../../components/DiagnosisList.astro";
 import DisputeNote from "../../components/DisputeNote.astro";
 import GenusMap from "../../components/GenusMap.astro";
@@ -125,7 +126,7 @@ const structuredData = Astro.site ? createGenusStructuredData(entry, siteData, n
         <RecordMain>
             <GlancePanel genus={genus} />
 
-            <p class="description"><Prose text={genus.description.trim()} linkTerms /></p>
+            <Description text={genus.description} />
 
             {genus.dispute && (
                 <PageSection title="Under dispute">
@@ -302,11 +303,6 @@ const structuredData = Astro.site ? createGenusStructuredData(entry, siteData, n
     {
         max-width: var(--measure);
         color: var(--color-muted);
-    }
-
-    .description
-    {
-        max-width: var(--measure);
     }
 
     /* Species boxes sit side by side where two fit, one per row otherwise. */

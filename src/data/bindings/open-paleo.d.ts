@@ -6,6 +6,10 @@
  */
 
 /**
+ * A clade's rank. A family-group name's rank is fixed by its ending (ICZN Article 29.2); a phylogenetic name in the tree has none and is 'unranked'.
+ */
+export type CladeRanks = "superfamily" | "family" | "subfamily" | "tribe" | "unranked";
+/**
  * Ordered ancestor clade names from root to the record's placement.
  */
 export type Taxonomy = string[];
@@ -294,7 +298,11 @@ export interface TreeNode {
   [k: string]: TreeNode;
 }
 export interface Clade {
-  description?: string;
+  rank: CladeRanks;
+  /**
+   * A summary the build writes from the record (what the clade is and who named it, when and where its members lived, its subgroups and best-known genera, their way of life, and who revised it), followed after a blank line by a narrative in our own words where the record has one.
+   */
+  description: string;
   dispute?: Dispute;
   taxonomy: Taxonomy;
   /**
@@ -372,6 +380,9 @@ export interface Genus {
   taxonomy: Taxonomy;
   etymology?: string;
   pronunciation?: Pronunciation;
+  /**
+   * A summary the build writes from the record (what the genus is and who named it, when and where it lived, its species, type material and naming history, size and way of life, well-known specimens), followed after a blank line by a narrative in our own words where the record has one.
+   */
   description: string;
   dispute?: Dispute;
   diet?: Diet;
@@ -697,9 +708,9 @@ export interface StratigraphicUnit {
    */
   variants?: string[];
   /**
-   * A few-sentence summary of the unit for a general reader: where it crops out, its rock and setting, and what it is known for.
+   * A few-sentence summary of the unit for a general reader, written by the build from the record (rank, parent, age, places, members, variants, dinosaurs recorded from it), followed after a blank line by a narrative in our own words where the record has one.
    */
-  description?: string;
+  description: string;
   period: Period;
   dispute?: Dispute;
   references: Reference[];

@@ -13,7 +13,6 @@ import {
     formatDistinctShortCitations,
     formatGenusCount,
     formatGeologicAge,
-    formatGeologicAgePhrase,
     formatPlace,
     formatQuotes,
     formatShortCitation,
@@ -25,6 +24,7 @@ import {
     getIdentifierUrl,
     getSurnames,
     joinNonEmpty,
+    splitParagraphs,
     splitPronunciationReadings,
 } from "../src/data/format.ts";
 import { readFixture } from "./fixture.ts";
@@ -150,14 +150,6 @@ test("formatGeologicAge names stages and periods as spans", () =>
     assert.equal(formatGeologicAge({ name: ["Late Jurassic"] }), "Late Jurassic");
 });
 
-test("formatGeologicAgePhrase puts the periods in parentheses after the stages", () =>
-{
-    assert.equal(formatGeologicAgePhrase({ name: ["Late Cretaceous"], stage: ["Maastrichtian"] }), "the Maastrichtian (Late Cretaceous)");
-    assert.equal(formatGeologicAgePhrase({ stage: ["Albian", "Cenomanian"] }), "the Albian–Cenomanian");
-    assert.equal(formatGeologicAgePhrase({ name: ["Middle Jurassic"] }), "the Middle Jurassic");
-    assert.equal(formatGeologicAgePhrase({}), "");
-});
-
 test("formatSpecimenType pluralizes a syntype series", () =>
 {
     assert.equal(formatSpecimenType("holotype", 1), "Holotype");
@@ -176,6 +168,16 @@ test("joinNonEmpty skips empty parts", () =>
 {
     assert.equal(joinNonEmpty(["", "Montana", "United States"]), "Montana, United States");
     assert.equal(joinNonEmpty(["", ""]), "");
+});
+
+test("splitParagraphs splits a description at blank lines and drops empty paragraphs", () =>
+{
+    const dataset = readFixture();
+    const summary = dataset.genera.Tyrannosaurus.description;
+
+    assert.deepEqual(splitParagraphs(summary), [summary.trim()]);
+    assert.deepEqual(splitParagraphs(summary + "\n\n" + summary + "\n \n\n"), [summary.trim(), summary.trim()]);
+    assert.deepEqual(splitParagraphs(" \n\n "), []);
 });
 
 test("getFirstSentence stops at the first sentence end, not at an abbreviation", () =>

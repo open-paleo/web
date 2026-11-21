@@ -9,16 +9,20 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 ### Added
 
 - Genus, clade and Data pages describe their subject as schema.org structured data (JSON-LD)
-  for search engines and linked-data crawlers. Genus pages follow the Bioschemas Taxon profile,
-  with the genus's rank, parent clade, species, synonyms and links to the same genus in PBDB,
-  Wikidata, GBIF, EOL and ZooBank. The Data page describes the dataset, its license and its
-  files for Google Dataset Search. Only the published site carries it, since it needs absolute
-  addresses ([#25](https://github.com/open-paleo/web/issues/25))
-- Rock unit pages open with a description of the unit, from the dataset's new unit
-  descriptions (schema 4.3.0). A unit without one gets a standard description: its rank, the
-  unit it is part of, its age, and up to three of its genera, the earliest named first. Members
-  and beds with a description show it in their section. Names in the descriptions link to their
-  pages, as in genus descriptions
+  for search engines and linked-data crawlers. Genus and clade pages follow the Bioschemas Taxon
+  profile, with the taxon's rank (a clade's from the dataset's new clade ranks, schema 4.5.0),
+  parent clade, children, synonyms and, for a genus, links to the same genus in PBDB, Wikidata,
+  GBIF, EOL and ZooBank. The Data page describes the dataset, its license and its files for
+  Google Dataset Search. Only the published site carries it, since it needs absolute addresses
+  ([#25](https://github.com/open-paleo/web/issues/25))
+- Rock unit pages open with the unit's description from the dataset, which now writes one for
+  every unit; members and beds show theirs in their section. Names in the descriptions link to
+  their pages, as in genus descriptions
+- A description with a narrative after its summary, which the dataset separates with a blank
+  line, is shown as separate paragraphs on genus, clade and rock unit pages, with each name
+  linked once across them
+- Clade pages give the clade's rank at a glance (family, subfamily, unranked and so on), linked
+  to its glossary entry where there is one
 - A Licenses page (`licenses/`, linked from the footer) lists the software, fonts and data by
   others that the site uses, each with its version, license, copyright holder and what it is
   for, and serves each license text beside it (`licenses/{name}.txt`). Every folder of bundled

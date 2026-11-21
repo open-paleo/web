@@ -1,7 +1,7 @@
 import type { DataDownload, Dataset, Taxon, Thing, WithContext } from "schema-dts";
 
 import { createDatasetCitation, dataRepositoryUrl } from "./citations.ts";
-import type { Clade, Identifier, Metadata, Species, Synonym } from "./dataset.ts";
+import type { Clade, CladeRanks, Identifier, Metadata, Species, Synonym } from "./dataset.ts";
 import { formatGenusCount, formatQuotes, getIdentifierUrl } from "./format.ts";
 import type { DatasetFile } from "./indexes.ts";
 import { formatFileSize } from "./indexes.ts";
@@ -48,20 +48,26 @@ type BioschemasTaxon = Taxon & {
 };
 
 /**
- * A rank the dataset states: genera and species. Clades have no rank in the dataset.
+ * A rank the dataset states: genus and species, and each clade's rank, "unranked" for a clade
+ * with a phylogenetic name.
  */
-type TaxonRank = "genus" | "species";
+type TaxonRank = "genus" | "species" | CladeRanks;
 
 const taxonProfile: ProfileReference = {
     "@id": "https://bioschemas.org/profiles/Taxon/1.0-RELEASE",
     "@type": "CreativeWork",
 };
 
-// Each rank as a word and as its term in the TDWG taxon rank vocabulary, as the profile asks.
-const taxonRankTerms: Record<TaxonRank, string> = {
-    genus: "http://rs.tdwg.org/ontology/voc/TaxonRank#Genus",
-    species: "http://rs.tdwg.org/ontology/voc/TaxonRank#Species",
-};
+// Each rank's term in the TDWG taxon rank vocabulary, which the profile asks for alongside the
+// word. The vocabulary has no term for an unranked clade, which gets the word alone.
+const taxonRankTerms = new Map<TaxonRank, string>([
+    ["superfamily", "http://rs.tdwg.org/ontology/voc/TaxonRank#Superfamily"],
+    ["family", "http://rs.tdwg.org/ontology/voc/TaxonRank#Family"],
+    ["subfamily", "http://rs.tdwg.org/ontology/voc/TaxonRank#Subfamily"],
+    ["tribe", "http://rs.tdwg.org/ontology/voc/TaxonRank#Tribe"],
+    ["genus", "http://rs.tdwg.org/ontology/voc/TaxonRank#Genus"],
+    ["species", "http://rs.tdwg.org/ontology/voc/TaxonRank#Species"],
+]);
 
 // Media types of the dataset's files, by extension. Files with no registered or customary type
 // (the Newick and NEXUS trees, the TypeScript declarations) get none.
@@ -77,14 +83,16 @@ const encodingFormats: Array<[string, string]> = [
 const scriptUnsafeCharacters = /[<>&\u2028\u2029]/gu;
 
 /**
- * Get a rank as the profile asks for it: the word, and its TDWG term.
+ * Get a rank as the profile asks for it: the word, and its TDWG term when it has one.
  *
  * @param rank - The rank.
- * @returns The word and the term.
+ * @returns The word, then the term.
  */
 function getTaxonRankValues(rank: TaxonRank): Array<string>
 {
-    return [rank, taxonRankTerms[rank]];
+    const term = taxonRankTerms.get(rank);
+
+    return term ? [rank, term] : [rank];
 }
 
 /**
@@ -133,8 +141,8 @@ function getSameAsUrls(identifiers: Array<Identifier> | undefined): Array<string
 }
 
 /**
- * Create a reference to a clade from another taxon: its name, and its page when it has one.
- * The ranks above Dinosauria have no page.
+ * Create a reference to a clade from another taxon: its name, and its rank and page when it
+ * has a record. The ranks above Dinosauria have neither.
  *
  * @param name - The clade's name.
  * @param siteData - The site's lookup tables.
@@ -149,7 +157,7 @@ function createCladeReference(name: string, siteData: SiteData, siteUrl: URL): T
     {
         const pageUrl = createPageUrl(siteUrl, "clade", clade.slug);
 
-        return { "@type": "Taxon", "@id": pageUrl, name, url: pageUrl };
+        return { "@type": "Taxon", "@id": pageUrl, name, taxonRank: getTaxonRankValues(clade.record.rank), url: pageUrl };
     }
 
     return { "@type": "Taxon", name };
@@ -253,9 +261,8 @@ export function createGenusStructuredData(entry: GenusEntry, siteData: SiteData,
 }
 
 /**
- * Create a clade page's structured data: the clade as a taxon, with its parent clade, the
- * clades and genera directly within it, and its synonyms. The dataset gives clades no rank,
- * which the Bioschemas profile requires, so a clade does not claim to follow it.
+ * Create a clade page's structured data: the clade as a Bioschemas taxon, with its rank, its
+ * parent clade, the clades and genera directly within it, and its synonyms.
  *
  * @param entry - The clade.
  * @param record - The clade's record.
@@ -278,19 +285,17 @@ export function createCladeStructuredData(entry: CladeEntry, record: Clade, site
         children.push(createGenusReference(name, siteData, siteUrl));
     }
 
-    const taxon: WithContext<Taxon> = {
+    const taxon: WithContext<BioschemasTaxon> = {
         "@context": "https://schema.org",
         "@type": "Taxon",
         "@id": pageUrl,
+        "http://purl.org/dc/terms/conformsTo": taxonProfile,
         name: entry.name,
+        taxonRank: getTaxonRankValues(record.rank),
         url: pageUrl,
+        description: formatQuotes(record.description.trim()),
     };
     const alternateNames = getAlternateNames(record.synonyms);
-
-    if (record.description)
-    {
-        taxon.description = formatQuotes(record.description.trim());
-    }
 
     if (entry.parentName !== undefined)
     {

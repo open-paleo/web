@@ -5,6 +5,7 @@
 export type {
     Appearance,
     Clade,
+    CladeRanks,
     Completeness,
     Dispute,
     FormerId,

@@ -1,14 +1,15 @@
 ---
 import AgeFigure from "../../components/AgeFigure.astro";
 import CorrectionLink from "../../components/CorrectionLink.astro";
+import Description from "../../components/Description.astro";
 import GenusIndex from "../../components/GenusIndex.astro";
 import DiagnosisList from "../../components/DiagnosisList.astro";
 import DisputeNote from "../../components/DisputeNote.astro";
 import FactList from "../../components/FactList.astro";
+import GlossaryTerm from "../../components/GlossaryTerm.astro";
 import HowToCite from "../../components/HowToCite.astro";
 import LineageTrail from "../../components/LineageTrail.astro";
 import PageSection from "../../components/PageSection.astro";
-import Prose from "../../components/Prose.astro";
 import RecordMain from "../../components/RecordMain.astro";
 import ReferenceList from "../../components/ReferenceList.astro";
 import SubcladeList from "../../components/SubcladeList.astro";
@@ -19,7 +20,8 @@ import { createRecordCitation } from "../../data/citations.ts";
 import { createAgeSpan, getDescendantGenera, getPlacedGenera } from "../../data/clades.ts";
 import { createGenusIndexRows } from "../../data/genus-index.ts";
 import type { Clade } from "../../data/dataset.ts";
-import { formatAuthority, formatGenusCount, getFirstSentence } from "../../data/format.ts";
+import { capitalizeFirstLetter, formatAuthority, formatGenusCount, getFirstSentence } from "../../data/format.ts";
+import { findGlossaryEntry, getGlossary } from "../../data/glossary.ts";
 import { findCladeOutline, getMedia } from "../../data/media.ts";
 import type { CladeEntry } from "../../data/site-data.ts";
 import { getSiteData } from "../../data/site-data.ts";
@@ -106,9 +108,12 @@ const references = record.references ?? [];
 const placedDirectly = entry.genusNames.length;
 const citation = createRecordCitation("Clade", entry.name, entry.slug, citationUrl, getSiteData().metadata);
 const structuredData = Astro.site ? createCladeStructuredData(entry, record, siteData, new URL(baseUrl, Astro.site)) : undefined;
+// The rank links to its glossary entry where the glossary has one.
+const rankLabel = capitalizeFirstLetter(record.rank);
+const rankTerm = findGlossaryEntry(getGlossary(), record.rank);
 ---
 
-<BaseLayout title={entry.name} description={getFirstSentence(record.description ?? entry.name)} navigationItem="clades" structuredData={structuredData}>
+<BaseLayout title={entry.name} description={getFirstSentence(record.description)} navigationItem="clades" structuredData={structuredData}>
     <article class="clade-page" data-pagefind-body data-pagefind-filter="kind:Clade">
         <LineageTrail taxonomy={ancestors} />
 
@@ -122,6 +127,8 @@ const structuredData = Astro.site ? createCladeStructuredData(entry, record, sit
 
         <RecordMain>
             <FactList label="At a glance">
+                <dt>Rank</dt>
+                <dd>{rankTerm ? <GlossaryTerm entry={rankTerm} text={rankLabel} /> : rankLabel}</dd>
                 {typeGenus && (
                     <>
                         <dt>Type genus</dt>
@@ -140,7 +147,7 @@ const structuredData = Astro.site ? createCladeStructuredData(entry, record, sit
                 )}
             </FactList>
 
-            {record.description && <p class="description"><Prose text={record.description.trim()} linkTerms /></p>}
+            <Description text={record.description} />
 
             {record.dispute && (
                 <PageSection title="Under dispute">
@@ -287,10 +294,5 @@ const structuredData = Astro.site ? createCladeStructuredData(entry, record, sit
     {
         color: var(--color-accent);
         text-decoration: underline;
-    }
-
-    .description
-    {
-        max-width: var(--measure);
     }
 </style>

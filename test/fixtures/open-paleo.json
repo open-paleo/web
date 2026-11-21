@@ -1,7 +1,7 @@
 {
   "_metadata": {
     "attribution": "Open Paleo contributors",
-    "built_at": "2026-11-20T21:19:42.153Z",
+    "built_at": "2026-11-21T00:58:11.656Z",
     "clade_count": 45,
     "genus_count": 14,
     "license": "CC-BY-4.0",
@@ -10,7 +10,7 @@
       "citation": "Wright, N.; Zahirovic, S.; Müller, R. D.; Seton, M. (2013). Towards community-driven paleogeographic reconstructions: integrating open-access paleogeographic and paleobiology data with plate tectonics. Biogeosciences 10(3): 1529-1541. doi:10.5194/bg-10-1529-2013",
       "license": "CC-BY-3.0-AU"
     },
-    "schema_version": "4.3.0",
+    "schema_version": "4.5.0",
     "version": "2026.11"
   },
   "timescale": {
@@ -333,7 +333,7 @@
   },
   "clades": {
     "Allosauria": {
-      "description": "Allosauria is a clade of allosauroid theropods comprising Allosauridae and Carcharodontosauria, recovered as the sister group of the metriacanthosaurids within Allosauroidea. The group unites the well-known Late Jurassic Allosaurus with the giant carcharodontosaurians that were among the largest terrestrial predators of the Cretaceous.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -386,10 +386,11 @@
           "pages": "211-300",
           "doi": "10.1080/14772019.2011.630927"
         }
-      ]
+      ],
+      "description": "Allosauria is a clade of allosauroid theropod dinosaurs named by Paul in 1988. Its members lived from the Kimmeridgian stage of the Late Jurassic to the Turonian stage of the Late Cretaceous in what is now Argentina, the United States, Morocco and 8 other countries. It includes the clades Allosauridae and Carcharodontosauria. It contains 19 genera, among them Allosaurus, Acrocanthosaurus and Giganotosaurus. Its members were bipedal carnivores. Carrano and colleagues revised it in 2012."
     },
     "Allosauridae": {
-      "description": "Allosauridae is a family of medium to large, bipedal, carnivorous allosauroid theropod dinosaurs from the Late Jurassic, best known from Allosaurus. Their overall anatomy is fairly typical of other theropods, which has long made the family's precise membership difficult to define; Saurophaganax has been attributed to the group, though Danison and colleagues (2024) refer some of its distinguishing elements to a diplodocid sauropod, base a new species of Allosaurus on other material referred to it, and treat Saurophaganax maximus as a nomen dubium. Allosaurid skulls carry prominent horns or hornlets on the lacrimal bones above the eyes that would have been sheathed in keratin, and show marked cranial kinesis, with flexible joints that cushioned the skull and let the animals gape their jaws very wide. Like most theropods they had short forelimbs relative to their hindlimbs, with three-fingered hands bearing long, strongly curved claws suited to raking and grasping prey. The pubis is greatly elongated and ends in a broad \"foot\" that likely helped support the body's weight when the animal rested in a crouch.\n",
+      "rank": "family",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -473,10 +474,11 @@
           "doi": "10.18435/vamp29404",
           "notes": "Referred some elements used to diagnose Saurophaganax to a diplodocid, treated the name as a nomen dubium, and named a new species of Allosaurus for other referred material."
         }
-      ]
+      ],
+      "description": "Allosauridae is a family of allosaurian theropod dinosaurs named by Marsh in 1878, with Allosaurus as its type genus. Its members lived during the Kimmeridgian to Tithonian stages of the Late Jurassic in what is now the United States. Its genera are Allosaurus and Saurophaganax. Its members were bipedal carnivores, from 8.5 to 12 meters long. Carrano and colleagues revised it in 2012."
     },
     "Allosauroidea": {
-      "description": "Allosauroidea is a superfamily of carnosaurian theropod dinosaurs comprising the metriacanthosaurids (sinraptorids), the allosaurids, and the carcharodontosaurians. Its members were among the first giant predators in theropod history, some weighing more than two tons, and together with the megalosauroids they served as apex predators from the Middle Jurassic to the early Late Cretaceous. Fossils have been recovered across North America, South America, Europe, Africa, and Asia, though in North America and Asia allosauroids were eventually replaced by the tyrannosauroids during the Late Cretaceous. These medium- to gigantic-sized bipedal hunters are distinguished by large, narrow skulls roughly two and a half to three times longer than tall, frequently ornamented with crests or rugosities, and by long, laterally compressed, serrated teeth well suited to slicing flesh from prey.\n",
+      "rank": "superfamily",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -521,10 +523,11 @@
           "doi": "10.1139/e93-179",
           "notes": "Defined Allosauroidea and provided the shared cranial and postcranial characters used as its diagnosis."
         }
-      ]
+      ],
+      "description": "Allosauroidea is a superfamily of avetheropod dinosaurs named by Currie and Zhao in 1993, with Allosaurus as its type genus. Its members lived from the Toarcian stage of the Early Jurassic to the Turonian stage of the Late Cretaceous in what is now Argentina, China, the United States and 11 other countries. It includes the clades Metriacanthosauridae and Allosauria. It contains 29 genera, among them Allosaurus, Acrocanthosaurus and Giganotosaurus. Its members were bipedal carnivores."
     },
     "Ankylosauria": {
-      "description": "Ankylosauria is a clade of herbivorous ornithischian dinosaurs that includes the great majority of the armored dinosaurs, whose bodies were sheathed in bony osteoderms much like a turtle's shell. Its members were bulky, low-slung quadrupeds carried on short, powerful limbs. The group first appeared in North Africa during the Middle Jurassic and persisted until the end of the Late Cretaceous. It was traditionally split into the Nodosauridae and the Ankylosauridae, a dichotomy that Raven and colleagues (2023) do not recover. The basal Parankylosauria, known from the latest Cretaceous of southern Gondwana, split from all other ankylosaurs before about 167 million years ago (Soto-Acuña and colleagues, 2021). Together with the plated and spiked stegosaurs, ankylosaurs make up the Thyreophora, the armored branch of ornithischians distinct from the ornithopods and marginocephalians.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -600,10 +603,11 @@
           "doi": "10.1038/s41586-021-04147-1",
           "notes": "Named Parankylosauria for Stegouros and its Gondwanan relatives, inferring an origin before the earliest euankylosaurs some 167 million years ago."
         }
-      ]
+      ],
+      "description": "Ankylosauria is a clade of thyreophoran dinosaurs named by Osborn in 1923, with Ankylosaurus as its type genus. Its members lived from the Bathonian stage of the Middle Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now the United States, China, the United Kingdom and 16 other countries. It includes the clades Ankylosauridae, Nodosauridae and Parankylosauria. It contains 85 genera, among them Liaoningosaurus, Ankylosaurus and Euoplocephalus. Its members were quadrupedal herbivores. Madzia and colleagues revised it in 2021."
     },
     "Averostra": {
-      "description": "Averostra, meaning \"bird snouts,\" is a clade of theropod dinosaurs within Neotheropoda that encompasses most theropods, uniting the two great branches Ceratosauria and Tetanurae. It represents the only lineage of theropods to survive beyond the Early Jurassic, and so includes nearly every theropod from the Middle Jurassic onward, from the horned ceratosaurs and abelisaurs to the megalosaurs, allosaurs, and the feathered coelurosaurs that ultimately gave rise to birds. Its members are among the most derived theropods, distinguished by the complete loss of the fifth metacarpal, a hand bone that other saurischians retained in reduced form. They also share a promaxillary or maxillary fenestra, an extra opening near the front of the upper jaw, together with fewer teeth in the maxilla, a tooth row set further back along the jaw, and a lacrimal fenestra.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -646,10 +650,11 @@
           "doi": "10.1671/0272-4634(2007)27[73:tclagn]2.0.co;2",
           "notes": "Defined Averostra as the node-based clade of Ceratosaurus nasicornis, Allosaurus fragilis and all descendants of their common ancestor, following Paul's original arrangement."
         }
-      ]
+      ],
+      "description": "Averostra is a clade of neotheropod dinosaurs named by Paul in 2002. Its non-avian members lived from the Hettangian stage of the Early Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now China, the United States, Argentina and 31 other countries. It includes the clades Tetanurae and Ceratosauria. Its genera include Tyrannosaurus, Archaeopteryx and Daspletosaurus. Ezcurra and Cuny revised it in 2007."
     },
     "Avetheropoda": {
-      "description": "Avetheropoda is a clade of tetanuran theropod dinosaurs comprising Allosaurus, modern birds, and all descendants of their most recent common ancestor. In effect it unites the two great advanced theropod lineages, the allosauroid carnosaurs and the coelurosaurs, which diverge from one another at the base of the group; it is often treated as equivalent to Neotetanurae (Carrano and colleagues, 2012). Avetheropods account for the bulk of predatory dinosaur diversity of the Late Jurassic and Cretaceous, and they include the only theropods to survive to the present day, the living birds. They are set apart from more basal tetanurans such as the megalosauroids by skeletal details, including a femoral head oriented fully medially rather than anteromedially. The group is recovered in many analyses (Carrano and colleagues, 2012), though Rauhut and colleagues (2024), like some earlier studies, instead unite allosauroids and megalosauroids as Carnosauria.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -723,10 +728,11 @@
           "doi": "10.1093/zoolinnean/zlae090",
           "notes": "Described a new theropod from the Callovian Balabansai Formation and recovered Carnosauria, uniting Megalosauroidea and Allosauroidea, rather than Avetheropoda."
         }
-      ]
+      ],
+      "description": "Avetheropoda is a clade of tetanuran theropod dinosaurs named by Paul in 1988. Its non-avian members lived from the Toarcian stage of the Early Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now China, Mongolia, the United States and 27 other countries. It includes the clades Allosauroidea and Coelurosauria. Its genera include Tyrannosaurus, Archaeopteryx and Daspletosaurus. Holtz and colleagues revised it in 2004."
     },
     "Bagualosauria": {
-      "description": "Bagualosauria is a clade of sauropodomorph dinosaurs uniting Bagualosaurus with its more derived relatives, including the group Plateosauria and, nested within it, the sauropods. It is the sister lineage to Saturnaliidae, a group of smaller, more basal Carnian sauropodomorphs from South America such as Saturnalia and Chromogisaurus, and Bagualosauria excludes these earliest-diverging forms. Bagualosaurus itself, among the most basal known members of the clade, already shows skull and dental modifications linked to more efficient herbivory along with a moderate increase in body size compared to its saturnaliid relatives, hinting at trends that became far more pronounced later in the group's history. Because it excludes only that earliest-diverging grade, Bagualosauria encompasses most sauropodomorph diversity, ranging from moderate-sized Triassic and Early Jurassic forms to the giant long-necked sauropods of the later Mesozoic.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -757,10 +763,11 @@
           "doi": "10.1371/journal.pone.0212543",
           "notes": "Named and phylogenetically defined Bagualosauria."
         }
-      ]
+      ],
+      "description": "Bagualosauria is a clade of sauropodomorph dinosaurs named by Langer and colleagues in 2019. Its members lived from the Carnian stage of the Late Triassic to the Maastrichtian stage of the Late Cretaceous in what is now Argentina, China, the United States and 38 other countries. It includes the clade Plateosauria. It contains 378 genera, among them Camarasaurus, Diplodocus and Alamosaurus."
     },
     "Camarasauromorpha": {
-      "description": "Camarasauromorpha is a node-based clade of macronarian sauropod dinosaurs comprising the most recent common ancestor of Camarasauridae and Titanosauriformes, together with all of its descendants (Salgado and colleagues, 1997). It may be synonymous with Macronaria (Canudo and colleagues, 2008), and it includes a handful of basal forms, such as Europasaurus, whose finer placement within Macronaria remains unresolved. Fragmentary Middle Jurassic remains from Khadir Island, western India, were once assigned to the clade, but Mannion and Moore (2025) find no neosauropod features in them. Camarasaurus itself is distinguished from Diplodocus by an abbreviated face and large spoon-shaped teeth (Gilmore, 1925).\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -841,10 +848,11 @@
           "doi": "10.5962/p.217807",
           "notes": "Distinguished the skull of Camarasaurus from that of Diplodocus by its abbreviated face and spoon-shaped teeth."
         }
-      ]
+      ],
+      "description": "Camarasauromorpha is a clade of macronarian sauropod dinosaurs named by Salgado and colleagues in 1997. Its members lived from the Bathonian stage of the Middle Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now Argentina, China, Brazil and 26 other countries. It includes the clades Camarasauridae and Titanosauriformes. It contains 180 genera, among them Camarasaurus, Alamosaurus and Diamantinasaurus. Its members were quadrupedal herbivores."
     },
     "Carcharodontosauria": {
-      "description": "Carcharodontosauria is a clade of allosauroid theropods comprising Carcharodontosauridae and their closest relatives, encompassing many of the largest terrestrial predators of the Cretaceous across both Gondwana and Laurasia. Its basal members are medium-sized forms that grade into the giant carcharodontosaurids. The carcharodontosaurids underwent a worldwide dispersal during the Early Cretaceous before the family died out in the Turonian, roughly 90 million years ago, after which other large theropods took over the apex-predator role.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -886,10 +894,11 @@
           "pages": "71-78",
           "doi": "10.1007/s00114-009-0614-x"
         }
-      ]
+      ],
+      "description": "Carcharodontosauria is a clade of allosaurian theropod dinosaurs named by Benson and colleagues in 2010. Its members lived from the Kimmeridgian stage of the Late Jurassic to the Turonian stage of the Late Cretaceous in what is now Argentina, Morocco, Niger and 8 other countries. It includes the family Carcharodontosauridae. It contains 17 genera, among them Acrocanthosaurus, Giganotosaurus and Taurovenator. Its members were bipedal carnivores."
     },
     "Carcharodontosauridae": {
-      "description": "Carcharodontosauridae is a family of giant carnivorous theropod dinosaurs forming a clade within Carnosauria. Its members include some of the largest land predators ever known, among them Acrocanthosaurus, Giganotosaurus, Mapusaurus, and Tyrannotitan, the biggest of which rivaled Tyrannosaurus and Spinosaurus in size, with the heaviest estimated at 8 to 10 metric tons. Together with the spinosaurids, carcharodontosaurids were the dominant large predators of the Early and mid-Cretaceous across Gondwana, and species also occur in North America, Europe, and possibly Asia. Their fossil record spans the Cretaceous from the Barremian to the Turonian, after which they were replaced by smaller abelisaurids in Gondwana and by tyrannosaurids in North America and Asia. Coria and Currie (2006) named a South American subfamily, Giganotosaurinae, for Giganotosaurus and Mapusaurus, which Brusatte and Sereno (2008) replaced with the tribe Giganotosaurini; Carrano and colleagues (2012) found little support for grouping the two genera.\n",
+      "rank": "family",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -970,10 +979,11 @@
           "doi": "10.1080/14772019.2011.630927",
           "notes": "Found little support for a Giganotosaurus plus Mapusaurus clade in a phylogenetic revision of Tetanurae."
         }
-      ]
+      ],
+      "description": "Carcharodontosauridae is a family of carcharodontosaurian theropod dinosaurs named by Stromer in 1931, with Carcharodontosaurus as its type genus. Its members lived from the Kimmeridgian stage of the Late Jurassic to the Turonian stage of the Late Cretaceous in what is now Argentina, Morocco, Niger and 5 other countries. It includes the subfamily Carcharodontosaurinae. It contains 14 genera, among them Acrocanthosaurus, Giganotosaurus and Taurovenator. Its members were bipedal carnivores, from 3.5 to 13 meters long. Brusatte and Sereno revised it in 2008."
     },
     "Coelurosauria": {
-      "description": "Coelurosauria is a large and diverse subgroup of theropod dinosaurs, defined as all theropods more closely related to birds than to carnosaurs. It encompasses compsognathids, tyrannosauroids, ornithomimosaurs, and the bird-line maniraptorans, along with megaraptorans, whose exact position remains uncertain. Coelurosaurs range from some of the largest carnivorous dinosaurs, such as Tyrannosaurus, to some of the smallest, and they diversified into omnivorous, insectivorous, herbivorous, and carnivorous forms. Most feathered dinosaurs found so far are coelurosaurs, and many lineages bore filamentous integument or true feathers, though some retained scales over parts of the body. The clade appears by the Middle Jurassic and includes birds, the only dinosaur lineage to survive the end-Cretaceous extinction and the only one alive today.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -1012,10 +1022,11 @@
           "volume": "1914",
           "pages": "154-158"
         }
-      ]
+      ],
+      "description": "Coelurosauria is a clade of avetheropod dinosaurs named by Huene in 1914. Its non-avian members lived from the Bathonian stage of the Middle Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now China, Mongolia, the United States and 22 other countries. It includes the clades Tyrannosauroidea, Maniraptora, Compsognathidae and 2 others. Its genera include Tyrannosaurus, Archaeopteryx and Daspletosaurus."
     },
     "Diamantinasauria": {
-      "description": "Diamantinasauria is a clade of somphospondylan titanosauriform sauropods with close affinities to Titanosauria, known from the early Late Cretaceous of South America and Australia. It groups the Australian Diamantinasaurus, Savannasaurus, and Australotitan from the Winton Formation of Queensland with the Patagonian Sarmientosaurus of the Bajo Barreal Formation, and may also include Wintonotitan. This shared membership across two continents points to a faunal connection between Australia and South America by way of Antarctica during the Cretaceous. Distinguishing traits are drawn from the sternal plate, braincase, and limb skeleton, and dental microwear suggests these animals were mid-height browsers that fed on vegetation roughly one to ten meters above the ground. While the group is consistently recovered as a coherent clade, its exact position relative to Titanosauria has shifted between analyses.\n",
+      "rank": "unranked",
       "dispute": {
         "summary": "The position of Diamantinasauria relative to Titanosauria is unstable. In equal-weights analyses, Poropat and colleagues (2016) recover Diamantinasaurus and Savannasaurus as non-lithostrotian titanosaurs, and Poropat and colleagues (2023) recover the named clade in the same position, whereas the most recent dedicated analyses recover the clade as the sister group to Titanosauria, just outside it (Beeston and colleagues, 2024, under both equal and extended implied weighting; Han and colleagues, 2024). It is placed conservatively as a non-titanosaurian somphospondylan following the most recent dedicated work.\n"
       },
@@ -1125,10 +1136,11 @@
           "doi": "10.7717/peerj.17180",
           "notes": "Recovered Diamantinasauria as the sister group of Titanosauria under both equal and extended implied weighting, with Sarmientosaurus as its earliest-diverging member."
         }
-      ]
+      ],
+      "description": "Diamantinasauria is a clade of somphospondylan sauropod dinosaurs named by Poropat and colleagues in 2021. Its members lived from the Albian stage of the Early Cretaceous to the Turonian stage of the Late Cretaceous in what is now Australia and Argentina. Its genera are Diamantinasaurus, Australotitan, Sarmientosaurus and Savannasaurus. Its members were quadrupedal herbivores. Beeston and colleagues revised it in 2024. Aspects of its classification are disputed."
     },
     "Dinosauria": {
-      "description": "Dinosauria is a clade of archosaurian reptiles that first appeared early in the Triassic period and went on to become the dominant terrestrial vertebrates for much of the Mesozoic era, through the Jurassic and Cretaceous. The group is extraordinarily diverse, with paleontologists having identified more than 900 genera and over 1,000 species of extinct non-avian dinosaurs alone, ranging from small bipeds to the largest land animals that ever lived, the biggest sauropods reaching nearly 40 meters in length. Dinosaurs share an erect, bird-like leg posture that set them apart from the sprawling stance of most other reptiles, and elaborate display structures such as horns and crests appear across the group, while some lineages evolved bony armor and spines. They were ancestrally bipedal, though many groups became quadrupedal, and the evidence indicates that all laid eggs, with nest-building widespread. Birds are the one dinosaur lineage to have survived the Cretaceous–Paleogene extinction roughly 66 million years ago, so the clade is divided into the avian dinosaurs (birds) and the extinct non-avian dinosaurs.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -1161,10 +1173,11 @@
           "volume": "11",
           "pages": "60-204"
         }
-      ]
+      ],
+      "description": "Dinosauria is the clade of all dinosaurs, named by Owen in 1842. It includes the clades Saurischia and Ornithischia. Its genera include Edmontosaurus, Tyrannosaurus and Protoceratops."
     },
     "Eusauropoda": {
-      "description": "Eusauropoda (\"true lizard foot\") is a derived clade of sauropod dinosaurs that encompasses the great majority of sauropod diversity. Upchurch (1995) erected it for all sauropods except the vulcanodontids, including Shunosaurus and Neosauropoda; Wilson and Sereno (1998) define it as sauropods closer to Saltasaurus than to Vulcanodon, whereas Salgado and colleagues (1997) applied the name to the node of Barapasaurus and Neosauropoda. Its members were strictly herbivorous, long-necked quadrupeds that grew to enormous size, and their remains have been found on every major continent, ranging in time from the Early Jurassic to the latest Cretaceous. The group includes the largely Asian family Mamenchisauridae, the clades Turiasauria and Cetiosauridae, and Neosauropoda, which in turn contains the widespread diplodocoids and titanosaurs. Eusauropods are set apart by skeletal specializations for bulk browsing, including broad, U-shaped jaws and lateral plates along the tooth rows, together with retracted nostrils, a further-elongated neck built from additional cervical vertebrae, and a semi-digitigrade, weight-bearing foot posture.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -1243,10 +1256,11 @@
           "pages": "3-32",
           "notes": "Applied the name Eusauropoda to the node of Barapasaurus and Neosauropoda."
         }
-      ]
+      ],
+      "description": "Eusauropoda is a clade of gravisaurian sauropod dinosaurs named by Upchurch in 1995. Its members lived from the Sinemurian stage of the Early Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now Argentina, China, the United States and 34 other countries. It includes the clades Mamenchisauridae, Neosauropoda, Turiasauria and Cetiosauridae. It contains 295 genera, among them Camarasaurus, Diplodocus and Alamosaurus. Its members were quadrupedal herbivores. Wilson revised it in 2002."
     },
     "Eutitanosauria": {
-      "description": "Eutitanosauria is a clade of titanosaurs that gathers together the more derived members of the group. Under its current node-based definition it spans the smallest grouping that contains both Patagotitan and Saltasaurus, making it the immediate parent of two major branches: Colossosauria, which includes the enormous lognkosaurs and the comparatively small-bodied rinconsaurs, and Saltasauroidea, which includes the smaller, heavily armored saltasaurids. Members are distinguished by the loss of the hyposphene-hypantrum articulation between the vertebrae, and many bore bony osteoderms embedded in the skin. Because the definition has shifted repeatedly and often overlaps with the broader Lithostrotia, the label is frequently left unused or unlabeled on phylogenetic trees.\n",
+      "rank": "unranked",
       "dispute": {
         "summary": "The content and rank of Eutitanosauria, and its position relative to Lithostrotia, vary among analyses. Sanz and colleagues (1999) introduced the name for a clade of advanced titanosaurs, and Carballido and colleagues (2022) redefined it as the node of Patagotitan and Saltasaurus, whose two stems are Colossosauria and Saltasauroidea. Whether that node lies within Lithostrotia depends on the position of Malawisaurus: in most analyses Lithostrotia includes nearly all titanosaurs, but in others it is the sister of Colossosauria and so falls within Eutitanosauria (Carballido and colleagues, 2022). Its content is highly labile among analyses, and many studies neither define nor label it (Carballido and colleagues, 2022). It is placed within Lithostrotia, following the majority topology.\n"
       },
@@ -1311,10 +1325,11 @@
           "doi": "10.1007/978-3-030-95959-3_8",
           "notes": "Redefined Eutitanosauria as the node of Patagotitan and Saltasaurus, with Colossosauria and Saltasauroidea as its two stems."
         }
-      ]
+      ],
+      "description": "Eutitanosauria is a clade of lithostrotian sauropod dinosaurs named by Sanz and colleagues in 1999. Its members lived from the Hauterivian stage of the Early Cretaceous to the Maastrichtian stage of the Late Cretaceous in what is now Argentina, Brazil, Mongolia and 13 other countries. It includes the clades Colossosauria and Saltasauroidea. It contains 62 genera, among them Alamosaurus, Rapetosaurus and Bonatitan. Its members were quadrupedal herbivores. Carballido and colleagues revised it in 2022. Aspects of its classification are disputed."
     },
     "Eutyrannosauria": {
-      "description": "Eutyrannosauria is a clade of large-bodied tyrannosauroid theropod dinosaurs of the Northern Hemisphere, encompassing the family Tyrannosauridae together with its closest non-tyrannosaurid relatives, such as the eastern North American genera Dryptosaurus and Appalachiosaurus (Voris and colleagues, 2025). The southwestern North American Bistahieversor is the sister of Tyrannosauridae in the analysis of Delcourt and Grillo (2018) but falls within Tyrannosaurinae in that of Voris and colleagues (2025). It was defined to set these advanced, often gigantic northern forms apart from the more basal, globally distributed tyrannosauroids. Members are distinguished by their great size and by prominent cranial ornamentation, including roughened, ridge-bearing nasal bones. Powers and colleagues (2026) instead recover a family Dryptosauridae, including Dryptosaurus, in all their implied-weights analyses.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -1381,10 +1396,11 @@
           "doi": "10.1080/02724634.2026.2728669",
           "notes": "Described a new albertosaurine and recovered Dryptosauridae as a clade in all implied-weights analyses, in place of Eutyrannosauria."
         }
-      ]
+      ],
+      "description": "Eutyrannosauria is a clade of tyrannosauroid theropod dinosaurs named by Delcourt and Grillo in 2018. Its members lived during the Campanian to Maastrichtian stages of the Late Cretaceous in what is now the United States, Canada, Mongolia and China. It includes the family Tyrannosauridae. It contains 23 genera, among them Tyrannosaurus, Daspletosaurus and Gorgosaurus. Its members were bipedal carnivores."
     },
     "Genasauria": {
-      "description": "Genasauria is a clade that encompasses the great majority of ornithischian dinosaurs, excluding only the earliest-diverging forms such as Lesothosaurus. It unites two major branches: Thyreophora, the armored dinosaurs including ankylosaurs, stegosaurs, and more primitive relatives like Scelidosaurus; and Cerapoda, which gathers the ornithopods, ceratopsians, pachycephalosaurs, and various small early forms. Members were primarily herbivores that typically held their heads about a meter off the ground, suggesting they fed mainly on ground-level plants such as ferns, cycads, and other low-growing gymnosperms. A hallmark of the group is the presence of fleshy cheeks bounding inset tooth rows, an adaptation for more efficient processing of plant material in the mouth.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -1431,10 +1447,11 @@
           "doi": "10.7717/peerj.12362",
           "notes": "Provides the modern phylogenetic definition of Genasauria."
         }
-      ]
+      ],
+      "description": "Genasauria is a clade of ornithischian dinosaurs named by Sereno in 1986. Its members lived from the Hettangian stage of the Early Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now the United States, China, Canada and 30 other countries. It includes the clades Thyreophora and Neornithischia. It contains 472 genera, among them Edmontosaurus, Protoceratops and Brachylophosaurus. Its members were herbivores. Madzia and colleagues revised it in 2021."
     },
     "Gravisauria": {
-      "description": "Gravisauria is a clade of sauropod dinosaurs that unites the vulcanodontid grade, including Vulcanodon and Tazoudasaurus, with the more derived Eusauropoda. Antetonitrus, Gongxianosaurus and Isanosaurus fall outside it as successively closer relatives (Allain and Aquesbi, 2008). It encompasses essentially the full radiation of the massive, fully graviportal sauropods. Members share dorsal vertebrae that are broader from side to side than front to back and asymmetrical condyles at the lower end of the femur. The clade is thought to have originated in the Early Jurassic, around the Pliensbachian and Toarcian roughly 183 million years ago, as part of a broader faunal turnover that saw the decline of the prosauropods, coelophysoids, and basal thyreophorans.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -1487,10 +1504,11 @@
           "doi": "10.1080/08912960600866953",
           "notes": "Coined Massopoda and argued that Sauropoda, as then defined, had expanded far beyond its traditional content and needed redefinition."
         }
-      ]
+      ],
+      "description": "Gravisauria is a clade of sauropod dinosaurs named by Allain and Aquesbi in 2008. Its members lived from the Sinemurian stage of the Early Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now Argentina, China, the United States and 35 other countries. It includes the clade Eusauropoda. It contains 300 genera, among them Camarasaurus, Diplodocus and Alamosaurus. Its members were quadrupedal herbivores."
     },
     "Lithostrotia": {
-      "description": "Lithostrotia is a clade of derived titanosaur sauropods that lived through the Early and Late Cretaceous, encompassing much of the group's diversity from Malawisaurus through the more derived saltasauroids and colossosaurians. Its name means \"inlaid with stones,\" referring to the bony osteoderms preserved in many of its members, though those osteoderms are not actually diagnostic of the clade: they appear sporadically inside and outside it and may have evolved more than once. The trait that truly sets it apart is its tail, with caudal vertebrae whose front faces are strongly concave, so that they socketed together, except for the most distal ones. The clade excludes more basal titanosaurs such as Andesaurus, Argentinosaurus, and Phuwiangosaurus, which retain flatter or only weakly hollowed tail vertebrae. Its boundaries remain unsettled, because the anchoring genus Malawisaurus may be a mix of unrelated remains, and different analyses have recovered Lithostrotia as anything from a small group to one taking in nearly all titanosaurs (Carballido and colleagues, 2022).\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -1559,10 +1577,11 @@
           "school": "Ohio University",
           "notes": "Found that the Malawi material referred to Malawisaurus represents at least two distinct morphs."
         }
-      ]
+      ],
+      "description": "Lithostrotia is a clade of titanosaurian sauropod dinosaurs named by Upchurch and colleagues in 2004. Its members lived from the Valanginian stage of the Early Cretaceous to the Maastrichtian stage of the Late Cretaceous in what is now Argentina, Brazil, Romania and 15 other countries. It includes the clades Lirainosaurinae and Eutitanosauria. It contains 80 genera, among them Alamosaurus, Ampelosaurus and Rapetosaurus. Its members were quadrupedal herbivores."
     },
     "Macronaria": {
-      "description": "Macronaria is a clade of sauropod dinosaurs that takes its name from the enlarged nasal opening of the skull, which exceeds the size of the eye socket. Nested within Neosauropoda as the sister group to Diplodocoidea, it encompasses Camarasauridae and Titanosauriformes, and so includes such animals as Camarasaurus, Brachiosaurus, and the titanosaurs, with camarasauromorphs forming its most basal branch. Macronarians lived from the Middle Jurassic through the end of the Cretaceous and have been found across the globe, from Argentina and the United States to Portugal, China, and Tanzania. In addition to their large nostrils, they are distinguished by box-like skulls bearing broad, spoon-shaped teeth, unlike the elongate skulls and peg-like teeth of the diplodocoids. Their body sizes diverged dramatically: some titanosaurs such as Argentinosaurus rank among the largest land animals ever to have existed, while others, including Saltasaurus and Magyarosaurus, dwindled to just a few metric tons.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -1606,10 +1625,11 @@
           "pages": "1-68",
           "doi": "10.2307/3889325"
         }
-      ]
+      ],
+      "description": "Macronaria is a clade of neosauropod dinosaurs named by Wilson and Sereno in 1998. Its members lived from the Toarcian stage of the Early Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now Argentina, China, Brazil and 26 other countries. It includes the clade Camarasauromorpha. It contains 189 genera, among them Camarasaurus, Alamosaurus and Diamantinasaurus. Its members were quadrupedal herbivores."
     },
     "Mamenchisauridae": {
-      "description": "Mamenchisauridae is a family of eusauropod dinosaurs known from the Jurassic and Early Cretaceous of Asia and Africa, best known for their proportionately extremely long necks. The group was predominantly a Chinese radiation, including such genera as Mamenchisaurus, Omeisaurus, Chuanjiesaurus, Eomamenchisaurus, and Tonganosaurus, but its range extended to the Tanzanian outlier Wamweracaudia and, based on fragmentary remains, into Siberia. Some members reached gigantic sizes, ranking among the largest of all sauropods. The family has historically been confused with the somphospondylan Euhelopus and its relatives, and some phylogenetic analyses have again recovered Euhelopus within the mamenchisaurid lineage, which then takes the name Euhelopodidae (Moore and colleagues, 2020).\n",
+      "rank": "family",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -1689,10 +1709,11 @@
           "doi": "10.1080/14772019.2023.2171818",
           "notes": "Reviewed the published definitions of Mamenchisauridae and adopted that of Naish and Martill (2007)."
         }
-      ]
+      ],
+      "description": "Mamenchisauridae is a family of eusauropod dinosaurs named by Young and Zhao in 1972, with Mamenchisaurus as its type genus. Its members lived from the Aalenian stage of the Middle Jurassic to the Berriasian stage of the Early Cretaceous in what is now China, Tanzania and Thailand. It contains 20 genera, among them Mamenchisaurus, Omeisaurus and Analong. Its members were quadrupedal herbivores, from 11.6 to 35 meters long. Naish and Martill revised it in 2007."
     },
     "Massopoda": {
-      "description": "Massopoda is a clade of sauropodomorph dinosaurs that lived from the Late Triassic through the Late Cretaceous. It is defined as all sauropodomorphs more closely related to Saltasaurus than to Plateosaurus (Yates, 2007), and its name is a contraction of Massospondylidae and Sauropoda, two very different groups that both fall within it. Nested inside is the more exclusive Sauropodiformes, the most inclusive group that contains Saltasaurus but excludes Massospondylus (McPhee and colleagues, 2014). Its members range from small, bipedal massospondylids to the gigantic, quadrupedal true sauropods, and together they encompass the great majority of sauropodomorph diversity.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -1743,10 +1764,11 @@
           "doi": "10.1111/zoj.12127",
           "notes": "Redefined Sauropodiformes as all taxa closer to Saltasaurus than to Massospondylus, replacing Sereno's node-based definition."
         }
-      ]
+      ],
+      "description": "Massopoda is a clade of plateosaurian sauropodomorph dinosaurs named by Yates in 2007. Its members lived from the Norian stage of the Late Triassic to the Maastrichtian stage of the Late Cretaceous in what is now Argentina, China, the United States and 37 other countries. It includes the clades Massospondylidae, Riojasauridae and Sauropodiformes. It contains 364 genera, among them Camarasaurus, Diplodocus and Alamosaurus."
     },
     "Massospondylidae": {
-      "description": "Massospondylidae is a family of early massopod sauropodomorph dinosaurs that lived from the Late Triassic to the Early Jurassic, with a near-global spread that reached Asia, Africa, North America, South America, and Antarctica. It is defined as a stem-based group encompassing all animals more closely related to Massospondylus carinatus than to Plateosaurus or Saltasaurus (Sereno, 2007). Most recent analyses recover a monophyletic Massospondylidae that usually includes Massospondylus, Coloradisaurus and Lufengosaurus with a variable number of other taxa, though some have found it to contain Massospondylus alone (Barrett and colleagues, 2019); Regalado Fernández and Werneburg (2022) add Adeopapposaurus, Glacialisaurus and Leyesaurus, and Pradhania falls within the family for Novas and colleagues (2010) but in Unaysauridae for Barrett and colleagues (2026). Its members were small to medium-sized, long-necked, facultatively bipedal herbivores or omnivores that represent an early-branching lineage of sauropodomorphs rather than close relatives of the true sauropods.\n",
+      "rank": "family",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -1879,10 +1901,11 @@
           "publisher": "W. Junk, Berlin",
           "notes": "Named the family Massospondylidae (p. 13), marked as new, for Massospondylus."
         }
-      ]
+      ],
+      "description": "Massospondylidae is a family of massopod sauropodomorph dinosaurs named by Huene in 1914, with Massospondylus as its type genus. Its members lived from the Norian stage of the Late Triassic to the Toarcian stage of the Early Jurassic in what is now Argentina, South Africa, China and Antarctica. It contains 9 genera, among them Massospondylus, Adeopapposaurus and Coloradisaurus. Its members were bipedal herbivores, from 2.5 to 9 meters long. Sereno revised it in 2007."
     },
     "Neornithischia": {
-      "description": "Neornithischia (\"new ornithischians\") is a clade of ornithischian dinosaurs and the sister group of the armored Thyreophora within the larger clade Genasauria. It brings together a variety of basal, small-bodied early-diverging forms historically lumped together as \"hypsilophodonts\" — including the thescelosaurids — with the more derived Cerapoda, which in turn splits into the bird-footed Ornithopoda and the Marginocephalia, the latter comprising the dome-headed pachycephalosaurs and the horned ceratopsians. Members are set apart by a thicker layer of asymmetrical enamel on the inner face of their lower teeth, which wore unevenly during chewing to develop sharp ridges that let them break down tougher plant food than other dinosaurs. The earliest neornithischians were small, gracile, cursorial bipeds, but the clade went on to encompass some of the most successful herbivore radiations of the Mesozoic, among them the duck-billed, dome-headed, and horned dinosaurs.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -1929,10 +1952,11 @@
           "doi": "10.7717/peerj.12362",
           "notes": "Provides the modern phylogenetic definition of Neornithischia."
         }
-      ]
+      ],
+      "description": "Neornithischia is a clade of genasaurian ornithischian dinosaurs named by Cooper in 1985. Its members lived from the Toarcian stage of the Early Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now the United States, China, Canada and 30 other countries. It includes the clades Jeholosauridae, Thescelosauridae and Cerapoda. It contains 347 genera, among them Edmontosaurus, Protoceratops and Brachylophosaurus. Its members were herbivores. Madzia and colleagues revised it in 2021."
     },
     "Neosauropoda": {
-      "description": "Neosauropoda is a clade of sauropod dinosaurs that contains the majority of sauropod genera and is divided into two major subgroups, Diplodocoidea and Macronaria. Its members include familiar long-necked giants such as Apatosaurus, Brachiosaurus, and Diplodocus, as well as some of the largest land animals ever to have lived, among them Argentinosaurus, Patagotitan, and Sauroposeidon. Neosauropods arose in the Early Jurassic, quickly becoming the dominant large herbivores, and persisted until the Cretaceous–Paleogene extinction; diplodocids and brachiosaurids made up much of the group during the Jurassic before being widely replaced by titanosaurs through the Cretaceous. Like all sauropods they shared the basic body plan of great size, long necks, and columnar legs, but they are set apart by a suite of derived features of the skull, teeth, hand, and hindlimb, including the loss of tooth denticles and a hand reduced to two or fewer wrist bones.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -1988,10 +2012,11 @@
           "doi": "10.1046/j.1096-3642.2002.00029.x",
           "notes": "Provided the cladistic diagnosis and synapomorphies of Neosauropoda."
         }
-      ]
+      ],
+      "description": "Neosauropoda is a clade of eusauropod dinosaurs named by Bonaparte in 1986. Its members lived from the Toarcian stage of the Early Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now Argentina, China, the United States and 30 other countries. It includes the clades Macronaria and Diplodocoidea. It contains 237 genera, among them Camarasaurus, Diplodocus and Alamosaurus. Its members were quadrupedal herbivores. Wilson revised it in 2002."
     },
     "Neotheropoda": {
-      "description": "Neotheropoda, meaning \"new theropods,\" is a clade that encompasses nearly all theropod dinosaurs, from the small, lightly built coelophysoids of the Late Triassic to the more advanced ceratosaurs and tetanurans, the latter of which ultimately gave rise to modern birds. Its members are distinguished by a reduction of several foot bones, which left the characteristic three-toed (tridactyl) footprints associated with theropods. It is the only group of theropods to survive the Triassic-Jurassic extinction event, after which it radiated into the dominant terrestrial predators of the Jurassic and Cretaceous. The more derived members form the clade Averostra, which unites the ceratosaurs and the tetanurans; by the Early Jurassic the non-averostran lineages had died out.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -2030,10 +2055,11 @@
           "doi": "10.1127/njgpa/210/1998/41",
           "notes": "Defined Neotheropoda as the node of Coelophysis and modern birds."
         }
-      ]
+      ],
+      "description": "Neotheropoda is a clade of theropod dinosaurs named by Bakker in 1986. Its non-avian members lived from the Carnian stage of the Late Triassic to the Maastrichtian stage of the Late Cretaceous in what is now China, the United States, Argentina and 34 other countries. It includes the clades Averostra and Coelophysoidea. Its genera include Tyrannosaurus, Archaeopteryx and Daspletosaurus. Sereno revised it in 1998."
     },
     "Nodosauridae": {
-      "description": "Nodosauridae is a family of armored, quadrupedal, herbivorous ankylosaurian dinosaurs known from the Late Jurassic to the Late Cretaceous of Asia, Europe, North America, and possibly South America. Like their close relatives the ankylosaurids, nodosaurids were heavily built and clad in rows of bony nodules and spines set into the skin and sheathed in keratin, but they lacked the mace-like bony tail club of the ankylosaurids and instead retained a more flexible tail. Many bore prominent spikes projecting outward from the neck and shoulders, and they carried a narrower, more elongate skull than the broad-headed ankylosaurids. The family is traditionally composed of the spiny, basal polacanthines, together with the panoplosaurine and struthiosaurine lineages of the more derived Nodosaurinae. One exceptionally preserved nodosaurid, the \"mummy\" of Borealopelta, retains its armor in life position along with keratin and skin traces that record a reddish, countershaded coloration.\n",
+      "rank": "family",
       "dispute": {
         "summary": "The monophyly of Nodosauridae is contested. It is the traditional, broadly used family for non-tail-clubbed ankylosaurs, but Raven and colleagues (2023) recovered it as paraphyletic, with separate panoplosaurid, polacanthid and struthiosaurid radiations, for which they defined the existing names Panoplosauridae, Polacanthidae and Struthiosauridae; the basal polacanthine taxa (Polacanthus, Hylaeosaurus, Gastonia, Hoplitosaurus) variously fall within or outside it across analyses. The traditional Nodosauridae is retained pending broad consensus.\n"
       },
@@ -2114,10 +2140,11 @@
           "doi": "10.1080/14772019.2023.2205433",
           "notes": "Recovered Nodosauridae as paraphyletic and defined Panoplosauridae, Polacanthidae and Struthiosauridae, all existing names, for its separate radiations."
         }
-      ]
+      ],
+      "description": "Nodosauridae is a family of ankylosaur dinosaurs named by Marsh in 1890, with Nodosaurus as its type genus. Its members lived from the Kimmeridgian stage of the Late Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now the United States, the United Kingdom, Canada and 10 other countries. It contains 35 genera, among them Sauropelta, Denversaurus and Mymoorapelta. Its members were quadrupedal herbivores, from 2 to 7 meters long. Madzia and colleagues revised it in 2021. Aspects of its classification are disputed."
     },
     "Ornithischia": {
-      "description": "Ornithischia, meaning \"bird-hipped,\" is one of the two great branches of dinosaurs, encompassing a mostly herbivorous radiation whose members are known from every continent and across an enormous range of sizes. The group takes its name from a pelvis superficially resembling that of birds, though this is a case of convergence, since birds are in fact theropods and only distantly related. Its major subgroups include the horn-faced ceratopsians, the thick-domed pachycephalosaurs, the armored thyreophorans such as stegosaurs and ankylosaurs, and the ornithopods, alongside a scattering of small, early-diverging forms near the base of the group. The earliest members were lightly built bipeds around one to two meters long with long counterbalancing tails, but later lineages grew far larger and many became quadrupedal. Most were browsers or grazers of ground-level plants, though a few were opportunistic omnivores. Several ornithischians are known to have lived in herds, sometimes with juveniles flocking apart from adults, and exceptionally preserved specimens reveal a range of skin coverings from mosaic scales to disputed filamentous, quill-like structures.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -2164,10 +2191,11 @@
           "doi": "10.7717/peerj.12362",
           "notes": "Provides the modern phylogenetic definition of Ornithischia."
         }
-      ]
+      ],
+      "description": "Ornithischia is a clade of dinosaurs named by Seeley in 1888. Its members lived from the Hettangian stage of the Early Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now the United States, China, Canada and 34 other countries. It includes the clades Genasauria and Heterodontosauridae. It contains 495 genera, among them Edmontosaurus, Protoceratops and Brachylophosaurus. Its members were herbivores. Madzia and colleagues revised it in 2021."
     },
     "Parankylosauria": {
-      "description": "Parankylosauria is an early-diverging clade of armored dinosaurs that lived across the former southern supercontinent of Gondwana — in what are now South America, Antarctica, and Australia — during the Cretaceous. It is recovered as the first lineage to branch off from the rest of the ankylosaurs, making it the sister group to Euankylosauria, the ankylosaurids and nodosaurids that dominate the Northern Hemisphere. Its members, including Stegouros, Antarctopelta, and Kunbarrasaurus, were relatively small, roughly 1.5 to 4 meters long, and retained a number of primitive traits shared with early armored dinosaurs and stegosaurs but lost in other ankylosaurs, such as longer, more slender limbs and simple, narrow hips. Their skulls bear elongate snouts with distinctive narrow nasal bones and lack the elaborate horns and bosses seen in other ankylosaurs. Rather than a knob-like tail club, several parankylosaurs carried a frond-like tail weapon known as a macuahuitl, formed from flattened osteoderms arranged along both sides of the tail.\n",
+      "rank": "unranked",
       "dispute": {
         "summary": "The monophyly of Parankylosauria is contested. Soto-Acuña and colleagues (2021) erected it for Stegouros, Antarctopelta, and Kunbarrasaurus and recovered it across five matrices, with support from Soto-Acuña and colleagues (2024). Using a different matrix, Maidment and colleagues (2025) did not recover the clade and instead dispersed its putative members across Ankylosauria and Thyreophora. Whether it is a genuine clade sister to Euankylosauria or a convergent Gondwanan grade remains open; Patagopelta and Minmi are contested members placed elsewhere.\n"
       },
@@ -2232,10 +2260,11 @@
           "doi": "10.1038/s41586-025-09453-6",
           "notes": "New Spicomellus phylogeny dispersed putative Parankylosauria members across Ankylosauria and Thyreophora"
         }
-      ]
+      ],
+      "description": "Parankylosauria is a clade of ankylosaur dinosaurs named by Soto-Acuña and colleagues in 2021. Its members lived from the Albian stage of the Early Cretaceous to the Maastrichtian stage of the Late Cretaceous in what is now Antarctica, Australia and Chile. Its genera are Antarctopelta, Kunbarrasaurus and Stegouros. Its members were quadrupedal herbivores. Aspects of its classification are disputed."
     },
     "Plateosauria": {
-      "description": "Plateosauria is a large, node-based clade within Sauropodomorpha, conventionally defined as the last common ancestor of Plateosaurus and Massospondylus (Sereno, 2007), or of Plateosaurus and Jingshanosaurus (Galton and Upchurch, 2004), together with all of that ancestor's descendants. So defined, it unites the Plateosauridae with the more inclusive Massopoda and takes in Late Triassic and Early Jurassic sauropodomorphs such as Coloradisaurus, Euskelosaurus, Jingshanosaurus, Massospondylus, Mussaurus, Sellosaurus, and Yunnanosaurus, while its descendant lineages also encompass the giant, long-necked true sauropods. It groups the more derived, generally herbivorous members of the lineage, spanning the transition from largely bipedal early forms toward larger-bodied, increasingly quadrupedal ones. In all, it accounts for the bulk of sauropodomorph diversity above the earliest, most basal grade.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -2305,10 +2334,11 @@
           "pages": "232-258",
           "notes": "Defined Plateosauria as Jingshanosaurus, Plateosaurus, their most recent common ancestor and all its descendants."
         }
-      ]
+      ],
+      "description": "Plateosauria is a clade of bagualosaurian sauropodomorph dinosaurs named by Tornier in 1913. Its members lived from the Norian stage of the Late Triassic to the Maastrichtian stage of the Late Cretaceous in what is now Argentina, China, the United States and 38 other countries. It includes the clades Unaysauridae, Plateosauridae and Massopoda. It contains 376 genera, among them Camarasaurus, Diplodocus and Alamosaurus. Sereno revised it in 2007."
     },
     "Saltasauridae": {
-      "description": "Saltasauridae is a family of armored, herbivorous titanosaurian sauropods from the Late Cretaceous, known from fossils across South America, North America, Africa, Asia, and Europe. It splits into two subfamilies: the Saltasaurinae, which includes the often small and armored Saltasaurus, Neuquensaurus, and Rocasaurus, and the Opisthocoelicaudiinae, which includes larger forms such as Opisthocoelicaudia and the giant Alamosaurus. As sauropods they were quadrupeds with small heads, peg-like teeth, long necks, and counterbalancing tails, and were among the last of their kind, persisting until the very end of the Cretaceous. They are recognized by convexities in certain tail vertebrae and by distinctive markings on the coracoid bones of the shoulder. Many members bore bony scutes, or osteoderms, embedded in the skin of their backs, though such armor has not been found in every genus and its distribution across the group remains uncertain.\n",
+      "rank": "family",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -2385,10 +2415,11 @@
           "doi": "10.1017/S1477201903001044",
           "notes": "Defined Saltasauridae as the most recent common ancestor of Opisthocoelicaudia skarzynskii and Saltasaurus loricatus and all its descendants, adopting Sereno's node-stem triplet."
         }
-      ]
+      ],
+      "description": "Saltasauridae is a family of saltasauroid sauropod dinosaurs named by Powell in 1992, with Saltasaurus as its type genus. Its members lived during the Cenomanian to Maastrichtian stages of the Late Cretaceous in what is now Argentina, China, Spain and 5 other countries. It includes the subfamilies Opisthocoelicaudiinae and Saltasaurinae. It contains 13 genera, among them Alamosaurus, Bonatitan and Ibirania. Its members were quadrupedal herbivores, from 5.7 to 21 meters long. Wilson and Upchurch revised it in 2003."
     },
     "Saltasauroidea": {
-      "description": "Saltasauroidea is a superfamily of titanosaurian sauropod dinosaurs, defined by Carballido and colleagues (2022) as all taxa closer to Saltasaurus than to Patagotitan. This definition splits the derived titanosaur group Eutitanosauria roughly in half, making Saltasauroidea the sister branch to the inversely defined Colossosauria. França and colleagues (2016), who introduced the name, applied it to a clade uniting the aeolosaurins and the heavily armored, often dwarfed saltasaurids, along with intermediate genera such as Baurutitan, Diamantinasaurus, and Isisaurus, and defined it as the most inclusive clade containing Saltasaurus but not Nemegtosaurus. Its members account for much of the terminal-Cretaceous titanosaur diversity across both Gondwana and Laurasia.\n",
+      "rank": "superfamily",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -2463,10 +2494,11 @@
           "doi": "10.1007/978-3-030-95959-3_8",
           "notes": "Defined Saltasauroidea as all taxa closer to Saltasaurus than to Patagotitan, the Saltasaurus-line stem of Eutitanosauria."
         }
-      ]
+      ],
+      "description": "Saltasauroidea is a superfamily of eutitanosaurian sauropod dinosaurs named by Powell in 1992, with Saltasaurus as its type genus. Its members lived from the Aptian stage of the Early Cretaceous to the Maastrichtian stage of the Late Cretaceous in what is now Argentina, Mongolia, Brazil and 9 other countries. It includes the families Nemegtosauridae and Saltasauridae. It contains 26 genera, among them Alamosaurus, Rapetosaurus and Bonatitan. Its members were quadrupedal herbivores. Carballido and colleagues revised it in 2022."
     },
     "Saurischia": {
-      "description": "Saurischia, meaning \"lizard-hipped,\" is one of the two major divisions of dinosaurs, distinguished from the ornithischians by hip structure. Its members retain the ancestral, three-pronged pelvic arrangement in which the pubis points forward, the same configuration seen in modern lizards and other reptiles, rather than the backward-rotated pubis of ornithischians. The group encompasses the mostly carnivorous, typically bipedal theropods together with the long-necked, herbivorous sauropodomorphs, and because birds are a lineage of maniraptoran theropods, they too fall within Saurischia. It is defined as birds and all dinosaurs more closely related to them than to Triceratops (Sereno, 1998); Gauthier (1986) had defined it against Ornithischia as a whole. All saurischians except birds died out in the Cretaceous-Paleogene extinction event at the end of the Cretaceous, while birds survive as the clade's only living descendants.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -2520,10 +2552,11 @@
           "pages": "1-55",
           "notes": "Defined Saurischia as birds and all dinosaurs closer to birds than to Ornithischia."
         }
-      ]
+      ],
+      "description": "Saurischia is a clade of dinosaurs named by Seeley in 1888. Its non-avian members lived from the Carnian stage of the Late Triassic to the Maastrichtian stage of the Late Cretaceous in what is now China, Argentina, the United States and 48 other countries. It includes the clades Theropoda, Sauropodomorpha and Herrerasauria. Its genera include Tyrannosaurus, Archaeopteryx and Daspletosaurus."
     },
     "Sauropoda": {
-      "description": "Sauropoda is a clade of saurischian, or lizard-hipped, dinosaurs, whose members are known as sauropods. They are the largest animals ever to have lived on land, with very long necks, long tails, small heads relative to the body, and four thick, pillar-like legs supporting massive bodies. Air-filled, hollow bones are a characteristic feature of the group, lightening the enormous skeleton and aiding a bird-like system of air sacs. Well-known members include Diplodocus, Apatosaurus, Brachiosaurus, Camarasaurus, and the giant titanosaurs such as Argentinosaurus. The oldest unequivocal sauropods appear in the Early Jurassic; by the Late Jurassic groups like the diplodocids and brachiosaurids had become widespread, and by the Late Cretaceous the titanosaurs had replaced all other sauropods and achieved a near-global distribution. Their fossils have been found on every continent, including Antarctica.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -2567,10 +2600,11 @@
           "doi": "10.2475/ajs.s3-16.95.411",
           "notes": "Erected the clade Sauropoda."
         }
-      ]
+      ],
+      "description": "Sauropoda is a clade of sauropodiform sauropodomorph dinosaurs named by Marsh in 1878. Its members lived from the Norian stage of the Late Triassic to the Maastrichtian stage of the Late Cretaceous in what is now Argentina, China, the United States and 35 other countries. It includes the clade Gravisauria. It contains 323 genera, among them Camarasaurus, Diplodocus and Alamosaurus. Its members were quadrupedal herbivores."
     },
     "Sauropodiformes": {
-      "description": "Sauropodiformes is a clade of sauropodomorph dinosaurs that gathers the true sauropods together with their closest non-sauropod relatives. As a stem-based group, it embraces every taxon on the sauropod side of the split from Massospondylus, running from the \"near-sauropod\" grade of animals such as Anchisaurus, Melanorosaurus, Aardonyx, and Mussaurus, through the lessemsaurids, and on to the sauropods themselves. Its members chart one of the defining transitions in dinosaur evolution: the shift from a mostly bipedal posture to quadrupedal walking, in which McPhee and colleagues (2014) place Antetonitrus as a transitional form, accompanied by the march toward enormous body size on the line leading to Sauropoda.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -2621,10 +2655,11 @@
           "doi": "10.1111/zoj.12127",
           "notes": "Provides the stem-based redefinition of Sauropodiformes used for the clade."
         }
-      ]
+      ],
+      "description": "Sauropodiformes is a clade of massopod sauropodomorph dinosaurs named by Sereno in 2007. Its members lived from the Norian stage of the Late Triassic to the Maastrichtian stage of the Late Cretaceous in what is now Argentina, China, the United States and 36 other countries. It includes the clades Lessemsauridae and Sauropoda. It contains 347 genera, among them Camarasaurus, Diplodocus and Alamosaurus. McPhee and colleagues revised it in 2014."
     },
     "Sauropodomorpha": {
-      "description": "Sauropodomorpha is a clade of saurischian dinosaurs that includes the long-necked, herbivorous sauropods together with their earlier relatives, the basal forms traditionally grouped as \"prosauropods.\" The clade first appeared among the earliest dinosaurs in the Late Triassic, around 230 million years ago, and persisted until the end-Cretaceous extinction. Its earliest members were small bipeds that were omnivorous or even carnivorous, but over time the group shifted toward plant-eating, larger body size, and, in the true sauropods, quadrupedal locomotion. The sauropods became the dominant terrestrial herbivores through much of the Mesozoic and include the largest animals ever to walk on land. Their remains have been found on every continent, including Antarctica.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -2672,10 +2707,11 @@
           "pages": "261-289",
           "notes": "Defined Sauropodomorpha as the most inclusive clade containing Saltasaurus loricatus but not Passer domesticus or Triceratops horridus."
         }
-      ]
+      ],
+      "description": "Sauropodomorpha is a clade of saurischian dinosaurs named by Huene in 1932. Its members lived from the Carnian stage of the Late Triassic to the Maastrichtian stage of the Late Cretaceous in what is now Argentina, China, the United States and 38 other countries. It includes the clades Saturnaliidae and Bagualosauria. It contains 399 genera, among them Camarasaurus, Diplodocus and Alamosaurus. Sereno revised it in 2007."
     },
     "Somphospondyli": {
-      "description": "Somphospondyli is a clade of titanosauriform sauropod dinosaurs that lived from the Late Jurassic to the end of the Cretaceous, with remains found on every continent. It embraces all titanosauriforms more closely related to the giant, largely Cretaceous titanosaurs than to the brachiosaurids, and so unites the diverse Titanosauria with the East Asian euhelopodids and an assortment of more basal, non-titanosaurian forms. Members are distinguished by details of their vertebrae, including a long neck and internal bone tissue riddled with a sponge-like network of air-filled chambers. It is this spongy, camellate texture pervading the backbone that gives the group its name.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -2722,10 +2758,11 @@
           "pages": "1-68",
           "doi": "10.2307/3889325"
         }
-      ]
+      ],
+      "description": "Somphospondyli is a clade of titanosauriform sauropod dinosaurs named by Wilson and Sereno in 1998. Its members lived from the Tithonian stage of the Late Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now Argentina, China, Brazil and 22 other countries. It includes the clades Titanosauria, Euhelopodidae and Diamantinasauria. It contains 155 genera, among them Alamosaurus, Diamantinasaurus and Ampelosaurus. Its members were quadrupedal herbivores."
     },
     "Tetanurae": {
-      "description": "Tetanurae, meaning \"stiff tails,\" is a large clade of theropod dinosaurs that includes most predatory dinosaur diversity, encompassing the megalosauroids, the allosauroids, and the coelurosaurs, the last of which contains tyrannosauroids, ornithomimosaurs, compsognathids, and the maniraptorans, including living birds. The group is defined as all theropods more closely related to modern birds than to Ceratosauria (Gauthier, 1986), its sister lineage, from which it diverged during the Late Triassic according to Sereno and colleagues (1994). Tetanurans appear in the fossil record by the Early Jurassic and had become globally distributed by the Middle Jurassic. Their evolution was marked by the parallel diversification of several lineages that repeatedly attained large body size and similar locomotor forms; basal members were the first theropods to reach truly giant sizes, with some megalosauroids and allosauroids exceeding a ton. Distinctive features of the group include stiffened tails, the loss of the fourth finger to leave a three-fingered hand, maxillary teeth restricted to the front of the snout, and, in more advanced forms, an air-sac-ventilated lung system resembling that of modern birds. Birds are the only living survivors of the clade.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -2776,10 +2813,11 @@
           "doi": "10.1126/science.266.5183.267",
           "notes": "Described Early Cretaceous Saharan theropods and inferred that Ceratosauria and Tetanurae diverged during the Late Triassic."
         }
-      ]
+      ],
+      "description": "Tetanurae is a clade of averostran theropod dinosaurs named by Gauthier in 1986. Its non-avian members lived from the Toarcian stage of the Early Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now China, Mongolia, the United States and 29 other countries. It includes the clades Megalosauroidea and Avetheropoda. Its genera include Tyrannosaurus, Archaeopteryx and Daspletosaurus."
     },
     "Theropoda": {
-      "description": "Theropoda is one of the three major clades of dinosaurs, alongside Ornithischia and Sauropodomorpha, and is generally grouped among the saurischians as a nearer relative of the sauropodomorphs. Theropods were ancestrally carnivorous and included the majority of large terrestrial predators from the Early Jurassic until the end of the Cretaceous, among them the largest meat-eating land animals ever to exist, such as Tyrannosaurus and Giganotosaurus. First appearing in the Late Triassic, the group spans an enormous range of body sizes and lifestyles, with several lineages independently shifting to herbivory or omnivory. Its major subgroups include the early coelophysoids and the often horned ceratosaurs, together with the sprawling tetanuran radiation, which encompasses the semiaquatic spinosaurids, the allosauroids, and the feathered coelurosaurs, the last including tyrannosaurids, ornithomimosaurs, dromaeosaurids, and therizinosaurs. From small, specialized coelurosaurs, birds arose during the Jurassic and endure today as roughly 11,000 living species, making theropods the only dinosaur lineage still present on Earth.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -2814,10 +2852,11 @@
           "volume": "21",
           "pages": "417-423"
         }
-      ]
+      ],
+      "description": "Theropoda is a clade of saurischian dinosaurs named by Marsh in 1881. Its non-avian members lived from the Carnian stage of the Late Triassic to the Maastrichtian stage of the Late Cretaceous in what is now China, the United States, Argentina and 34 other countries. It includes the clade Neotheropoda. Its genera include Tyrannosaurus, Archaeopteryx and Daspletosaurus."
     },
     "Thyreophora": {
-      "description": "Thyreophora, meaning \"shield bearers,\" is a clade of armored ornithischian dinosaurs. It contains two major subgroups, the plated stegosaurs and the heavily armored ankylosaurs, together with a grade of early-diverging forms such as Scutellosaurus, Emausaurus, and Scelidosaurus. Its members are defined by body armor arranged in longitudinal rows along the back and flanks: primitive forms bore simple low keeled scutes, while more derived members developed elaborate spikes and plates. Thyreophorans first appeared in the Early Jurassic and persisted until the end of the Cretaceous. The earliest species were small and at least partly bipedal, but the group trended toward a robust, low-slung body plan, with the large stegosaurs and ankylosaurs becoming obligate quadrupeds whose forelimbs were much shorter than their hindlimbs.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -2865,10 +2904,11 @@
           "doi": "10.7717/peerj.12362",
           "notes": "Provides the modern phylogenetic definition of Thyreophora."
         }
-      ]
+      ],
+      "description": "Thyreophora is a clade of genasaurian ornithischian dinosaurs named by Nopcsa in 1915. Its members lived from the Hettangian stage of the Early Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now the United States, China, the United Kingdom and 19 other countries. It includes the clades Ankylosauria and Stegosauria. It contains 123 genera, among them Liaoningosaurus, Ankylosaurus and Euoplocephalus. Its members were herbivores. Madzia and colleagues revised it in 2021."
     },
     "Titanosauria": {
-      "description": "Titanosauria is a diverse clade of sauropod dinosaurs known from every continent, including Antarctica, and the last group of long-necked sauropods to survive up to the mass extinction at the end of the Cretaceous. It spans the widest range of body size of any sauropod group, encompassing some of the largest land animals ever to have lived, such as Patagotitan, Argentinosaurus, and Puertasaurus, alongside dwarf forms like the island-dwelling Magyarosaurus. Titanosaurs had small, wide heads and whip-like tails, and the skin of many was studded with a mosaic of small bead-like scales. Together with the brachiosaurids and their relatives, they make up the larger clade Titanosauriformes, and most members apart from a few basal genera fall within a subgroup called Lithostrotia. Their fossil record is the least complete of any major sauropod group, and the relationships among the species remain poorly resolved.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -2929,10 +2969,11 @@
           "pages": "3-32",
           "notes": "Provided the first phylogenetic definition of Titanosauria."
         }
-      ]
+      ],
+      "description": "Titanosauria is a clade of somphospondylan sauropod dinosaurs named by Bonaparte and Coria in 1993. Its members lived from the Valanginian stage of the Early Cretaceous to the Maastrichtian stage of the Late Cretaceous in what is now Argentina, Brazil, China and 15 other countries. It includes the clade Lithostrotia. It contains 104 genera, among them Alamosaurus, Ampelosaurus and Rapetosaurus. Its members were quadrupedal herbivores. Salgado and colleagues revised it in 1997."
     },
     "Titanosauriformes": {
-      "description": "Titanosauriformes is a clade of macronarian sauropods defined as the least inclusive group containing Brachiosaurus and Saltasaurus (Wilson and Sereno, 1998), comprising the two sister lineages Brachiosauridae and Somphospondyli. The clade is known from the fossil record beginning in the Late Jurassic and persisted to the end of the Cretaceous, achieving a global distribution across most continents. Titanosauriforms include some of the largest known terrestrial animals, among them the giant titanosaurs of the Late Cretaceous.\n",
+      "rank": "unranked",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -2990,10 +3031,11 @@
           "doi": "10.2307/3889325",
           "notes": "Redefined Titanosauriformes as Brachiosaurus, Saltasaurus, their common ancestor and all its descendants, and diagnosed it."
         }
-      ]
+      ],
+      "description": "Titanosauriformes is a clade of camarasauromorph sauropod dinosaurs named by Salgado and colleagues in 1997. Its members lived from the Bathonian stage of the Middle Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now Argentina, China, Brazil and 25 other countries. It includes the clades Somphospondyli and Brachiosauridae. It contains 177 genera, among them Alamosaurus, Diamantinasaurus and Ampelosaurus. Its members were quadrupedal herbivores. Wilson and Sereno revised it in 1998."
     },
     "Tyrannosauridae": {
-      "description": "Tyrannosauridae is a family of coelurosaurian theropod dinosaurs that lived near the end of the Cretaceous period, with fossils known only from North America and Asia. It is divided into two subfamilies: the more lightly built Albertosaurinae, comprising the North American genera Albertosaurus and Gorgosaurus, and the Tyrannosaurinae, which includes Daspletosaurus, Tarbosaurus, Teratophoneus, Zhuchengtyrannus, and Tyrannosaurus itself, among others. Estimates of how many genera the family contains range from as few as three to around fifteen. Though descended from smaller ancestors, tyrannosaurids were almost always the largest predators in their ecosystems, standing at the apex of the food chain. They were bipedal carnivores with massive, deep skulls packed with large teeth, proportionally long and cursorial hindlimbs for their size, and greatly reduced forelimbs bearing only two functional fingers.\n",
+      "rank": "family",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -3038,10 +3080,11 @@
           "pages": "281-296",
           "notes": "Proposed Tyrannosauridae conditionally, for a separate family of the Theropoda that \"may be called Tyrannosauridæ\" if it proved distinct."
         }
-      ]
+      ],
+      "description": "Tyrannosauridae is a family of eutyrannosaurian theropod dinosaurs named by Osborn in 1906, with Tyrannosaurus as its type genus. Its members lived during the Campanian to Maastrichtian stages of the Late Cretaceous in what is now the United States, Canada, Mongolia and China. It includes the subfamilies Albertosaurinae and Tyrannosaurinae. It contains 18 genera, among them Tyrannosaurus, Daspletosaurus and Gorgosaurus. Its members were bipedal carnivores, from 3 to 13 meters long."
     },
     "Tyrannosaurinae": {
-      "description": "Tyrannosaurinae is one of the two subfamilies of tyrannosaurid theropods, known from Late Cretaceous deposits of western North America and east Asia. Compared with their albertosaurine relatives, tyrannosaurines were generally more robust, larger, and more heavily built, with deep, powerful skulls; the exceptions were the long-snouted, more gracile alioramins. The group includes some of the oldest tyrannosaurids, such as Lythronax, alongside its youngest and most famous member, Tyrannosaurus rex. Its genera are usually sorted into several lineages: the basal Alioramini, the American southwestern Teratophoneini, and a group uniting the Daspletosaurini and the Tyrannosaurini, which contains Tarbosaurus and Tyrannosaurus. Studies of Tyrannosaurus growth suggest these animals changed markedly with age, shifting from slender, semi-long-snouted juveniles into robust, heavy-headed adults that likely occupied different ecological niches as they matured.\n",
+      "rank": "subfamily",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -3098,10 +3141,11 @@
           "url": "https://app.pan.pl/article/item/app48-227.html",
           "notes": "Provides the modern phylogenetic definition and cranial diagnosis of Tyrannosaurinae."
         }
-      ]
+      ],
+      "description": "Tyrannosaurinae is a subfamily of tyrannosaurid theropod dinosaurs named by Osborn in 1906, with Tyrannosaurus as its type genus. Its members lived during the Campanian to Maastrichtian stages of the Late Cretaceous in what is now the United States, China, Canada and Mongolia. It contains 12 genera, among them Tyrannosaurus, Daspletosaurus and Tarbosaurus. Its members were bipedal carnivores, from 3.5 to 13 meters long. Currie and colleagues revised it in 2003."
     },
     "Tyrannosauroidea": {
-      "description": "Tyrannosauroidea is a superfamily of coelurosaurian theropod dinosaurs that unites the family Tyrannosauridae with a range of smaller, more basal relatives such as the proceratosaurids. The group arose on the northern supercontinent Laurasia in the Jurassic and persisted until the end of the Cretaceous, when tyrannosauroids became the dominant large predators of the Northern Hemisphere, culminating in the giant Tyrannosaurus; their fossils are known from what are now North America, Europe, and Asia. All members were bipedal carnivores distinguished by a suite of skull and pelvic features, including a tall premaxilla that blunted the front of the snout, fused and often roughly textured nasal bones, and small, D-shaped premaxillary teeth. Early forms were small animals with long, three-fingered forelimbs, whereas the later giants reached enormous size yet had proportionately tiny, two-fingered arms; the derived forms also developed a pinched third metatarsal, the arctometatarsus, tied to running efficiency. Primitive filamentous feathers are preserved in several species, and many tyrannosauroids bore bony crests of varied shape on the skull that likely served for display.\n",
+      "rank": "superfamily",
       "taxonomy": [
         "Life",
         "Animalia",
@@ -3170,7 +3214,8 @@
           "doi": "10.1073/pnas.1600140113",
           "notes": "Described the braincase and endocast of Timurlengia, showing the shallow endocast and long cochlear duct that earlier studies identify as tyrannosauroid synapomorphies."
         }
-      ]
+      ],
+      "description": "Tyrannosauroidea is a superfamily of coelurosaurian theropod dinosaurs named by Osborn in 1906, with Tyrannosaurus as its type genus. Its members lived from the Bathonian stage of the Middle Jurassic to the Maastrichtian stage of the Late Cretaceous in what is now the United States, China, Canada and 6 other countries. It includes the clades Proceratosauridae and Eutyrannosauria. It contains 45 genera, among them Tyrannosaurus, Daspletosaurus and Gorgosaurus. Its members were bipedal carnivores. Holtz revised it in 2004."
     }
   },
   "genera": {
@@ -3182,7 +3227,6 @@
       "pronunciation": {
         "phonetic": "ab-DEE-toe-SOR-us"
       },
-      "description": "Abditosaurus is an extinct genus of titanosaurian sauropod dinosaur from the Late Cretaceous (Maastrichtian) Conques Formation (Tremp Group) of Catalonia, Spain. The genus contains a single species, Abditosaurus kuehnei, known from a partial specimen representing the most complete titanosaur skeleton found in Europe. Phylogenetic analyses recover it within a clade of South American and African saltasaurines, distinct from other insular dwarf sauropods from the European archipelago. Abditosaurus inhabited the Ibero-Armorican Island, a prehistoric island made up of what is now Spain, Portugal, and southern France, and would have been the largest titanosaur species in its environment.",
       "dispute": {
         "summary": "Placed within Saltasauridae as incertae sedis. The describing analysis (Vila and colleagues, 2022) recovered Abditosaurus more precisely as a saltasaurine, within a clade of South American and African saltasaurines (sister to Paralititan) distinct from the lirainosaurine titanosaurs of the European archipelago. Because that saltasaurine topology rests on a single analysis whose recovered neighbors (Paralititan, Maxakalisaurus) are atypical relative to most studies, it is placed conservatively at Saltasauridae rather than within Saltasaurinae.\n"
       },
@@ -3373,7 +3417,8 @@
         "Saltasauridae"
       ],
       "authors": "Vila, B.; Sellés, A.; Moreno-Azanza, M.; Razzolini, N. L.; Gil-Delgado, A.; Canudo, J. I.; Galobart, À.",
-      "described": 2022
+      "described": 2022,
+      "description": "Abditosaurus (meaning \"forgotten lizard\") is a genus of saltasaurid sauropod dinosaur of uncertain placement within Saltasauridae named by Vila and colleagues in 2022. It lived during the Maastrichtian stage of the Late Cretaceous in what is now Spain, in the Conques Formation. Its only species is Abditosaurus kuehnei. Abditosaurus was a quadrupedal herbivore estimated at about 17.5 meters long. Aspects of its classification are disputed."
     },
     "Acanthopholis": {
       "genus": "Acanthopholis",
@@ -3384,7 +3429,6 @@
         "phonetic": "a-kan-THOF-o-lis",
         "ipa": "/ˌækənˈθɒfoʊlɪs/"
       },
-      "description": "Acanthopholis is a nomen dubium for armored ankylosaur remains from the Cenomanian of Kent, England, which Pereda-Suberbiola and Barrett (1999) refer to Nodosauridae. Only its type species, A. horrida, is retained in the genus; Seeley's further species are now referred to other groups.",
       "diet": "herbivore",
       "locomotion": "quadrupedal",
       "paleoenvironment": [
@@ -3606,7 +3650,8 @@
         "Nodosauridae"
       ],
       "authors": "Huxley, T. H.",
-      "described": 1867
+      "described": 1867,
+      "description": "Acanthopholis (meaning \"spiny scales\") is a genus of nodosaurid ankylosaur dinosaur of uncertain placement within Nodosauridae, now considered a nomen dubium, named by Huxley in 1867. It lived during the Cenomanian stage of the Late Cretaceous in what is now the United Kingdom, in the West Melbury Marly Chalk. Its only species is Acanthopholis horrida. It was described from scutes and spines of dermal armor, three teeth, fragmentary vertebrae, partial skull, and distal end of a humerus. Acanthopholis was a quadrupedal herbivore estimated at 3 to 5.5 meters long."
     },
     "Acrocanthosaurus": {
       "genus": "Acrocanthosaurus",
@@ -3616,7 +3661,6 @@
         "ipa": "/ˌækroʊˌkænθəˈsɔːrəs/"
       },
       "etymology": "From Greek 'akros' meaning 'high', 'akantha' meaning 'spine', and 'sauros' meaning 'lizard', referring to its high-spined vertebrae.",
-      "description": "Acrocanthosaurus is a genus of carcharodontosaurid dinosaurs that existed in what is now North America during the Barremian and early Cenomanian stages of the Early Cretaceous and Late Cretaceous, from 125 to 99.6 million years ago. Like most dinosaur genera, Acrocanthosaurus contains only a single species, A. atokensis. It had a continent-wide range, with fossil remains known from the U.S. states of Oklahoma, Texas, and Wyoming in the west and Maryland in the east. However, most of these remains are assigned to the species based on the assumption that Acrocanthosaurus is the only large carcharodontosaurid from North America during this time, and the possibility exists that some referred specimens could represent distinct taxa.",
       "diet": "carnivore",
       "locomotion": "bipedal",
       "paleoenvironment": [
@@ -3878,7 +3922,8 @@
         "Carcharodontosauridae"
       ],
       "authors": "Stovall, J. W.; Langston, W.",
-      "described": 1950
+      "described": 1950,
+      "description": "Acrocanthosaurus is a genus of carcharodontosaurid theropod dinosaur named by Stovall and Langston in 1950. It lived during the Aptian to Albian stages of the Early Cretaceous in what is now the United States, in the Antlers Formation. Its only species is Acrocanthosaurus atokensis. Acrocanthosaurus was a bipedal carnivore estimated at 11 to 12.2 meters long. A well-known specimen is nicknamed \"Fran\"."
     },
     "Adeopapposaurus": {
       "genus": "Adeopapposaurus",
@@ -3887,7 +3932,6 @@
       "pronunciation": {
         "phonetic": "ah-dee-o-pah-po-sor-us"
       },
-      "description": "Adeopapposaurus is a genus of plateosaurian dinosaur from the Early Jurassic Cañón del Colorado Formation of San Juan, Argentina. It was similar to Massospondylus. Four partial skeletons with two partial skulls are known.",
       "locomotion": "bipedal",
       "paleoenvironment": [
         "fluvial"
@@ -4042,7 +4086,8 @@
         "Massospondylidae"
       ],
       "authors": "Martínez, R. N.",
-      "described": 2009
+      "described": 2009,
+      "description": "Adeopapposaurus (meaning \"far eating lizard\") is a genus of massospondylid sauropodomorph dinosaur named by Martínez in 2009. It lived during the Hettangian to Toarcian stages of the Early Jurassic in what is now Argentina, in the Cañón del Colorado Formation. Its only species is Adeopapposaurus mognai. Adeopapposaurus was a bipedal herbivore estimated at about 2.9 meters long."
     },
     "Agilisaurus": {
       "genus": "Agilisaurus",
@@ -4052,7 +4097,6 @@
         "ipa": "/ˌædʒɪlɪˈsɔːrəs/"
       },
       "etymology": "From Latin 'agilis' meaning 'agile' and Greek 'sauros' meaning 'lizard', meaning 'agile lizard'.",
-      "description": "Agilisaurus is a genus of ornithischian dinosaur from the Middle Jurassic Period of what is now eastern Asia. The only named species is A. louderbacki, recovered from the Lower Shaximiao Formation of Sichuan, China. It was about 1.2-1.7 m (3.9-5.6 ft) in length, 60 cm (2.0 ft) in hip height, and 40 kg (88 lb) in weight. It has leaf-shaped teeth that were well-adapted to its abrasive, plant-based diet. Most surprisingly, the wavy enamel of the teeth of this genus (and all other ornithopods), presumed to make them more resistant to wear, was previously thought to be exclusive to hadrosaurs. This is also the case for Changchunsaurus from the Cretaceous Period.",
       "diet": "herbivore",
       "locomotion": "bipedal",
       "paleoenvironment": [
@@ -4186,7 +4230,8 @@
         "Neornithischia"
       ],
       "authors": "Peng, G.",
-      "described": 1992
+      "described": 1992,
+      "description": "Agilisaurus (meaning \"agile lizard\") is a genus of neornithischian ornithischian dinosaur named by Peng in 1992. It lived during the Bajocian to Oxfordian stages of the Middle Jurassic and the Late Jurassic in what is now China, in the Shaximiao Formation. Its only species is Agilisaurus louderbacki. It was described from a nearly complete skeleton lacking only portions of the left forelimb and left hindlimb. Agilisaurus was a bipedal herbivore estimated at 1.2 to 1.7 meters long."
     },
     "Allosaurus": {
       "genus": "Allosaurus",
@@ -4196,7 +4241,6 @@
         "ipa": "/ˌæləˈsɔːrəs/",
         "phonetic": "AL-o-SAWR-us"
       },
-      "description": "Allosaurus is a genus of theropod dinosaur that lived 155 to 145 million years ago during the Late Jurassic period (Kimmeridgian to late Tithonian ages). The first fossil remains that could definitively be ascribed to this genus were described in 1877 by Othniel C. Marsh. The name \"Allosaurus\" means \"different lizard\", alluding to its lightweight vertebrae, which Marsh believed were unique. The genus has a very complicated taxonomy and includes at least three valid species, the best known of which is A. fragilis. The bulk of Allosaurus remains come from North America's Morrison Formation, with material also known from the Alcobaça, Bombarral, and Lourinhã formations in Portugal. It was known for over half of the 20th century as Antrodemus, but a study of the abundant remains from the Cleveland-Lloyd Dinosaur Quarry returned the name \"Allosaurus\" to prominence. As one of the first well-known theropod dinosaurs, it has long attracted attention outside of paleontological circles.",
       "diet": "carnivore",
       "locomotion": "bipedal",
       "paleoenvironment": [
@@ -4590,7 +4634,8 @@
         "Allosauridae"
       ],
       "authors": "Marsh, O. C.",
-      "described": 1877
+      "described": 1877,
+      "description": "Allosaurus (meaning \"different lizard\") is a genus of allosaurid theropod dinosaur named by Marsh in 1877. It lived during the Kimmeridgian to Tithonian stages of the Late Jurassic in what is now the United States, in the Morrison Formation. It contains 2 species, of which Allosaurus fragilis is the type species. Gilmore redescribed it in 1920. In 2023 the ICZN designated a new type specimen for it (Opinion 2486). Allosaurus was a bipedal carnivore estimated at about 8.5 meters long. Well-known specimens include \"Big Al\" and \"Big Al II\"."
     },
     "Anhuilong": {
       "genus": "Anhuilong",
@@ -4599,7 +4644,6 @@
         "phonetic": "ahn-HWAY-long"
       },
       "etymology": "Named after Anhui province in China combined with Chinese 'long' meaning 'dragon'; meaning 'Anhui dragon'",
-      "description": "Anhuilong is a genus of mamenchisaurid dinosaur known from the Hongqin Formation of Anhui province, China. The genus contains a single species, Anhuilong diboensis.",
       "diet": "herbivore",
       "locomotion": "quadrupedal",
       "paleoenvironment": [
@@ -4703,7 +4747,8 @@
         "Mamenchisauridae"
       ],
       "authors": "Ren, X. X.; Huang, J. D.; You, H. L.",
-      "described": 2020
+      "described": 2020,
+      "description": "Anhuilong (meaning \"Anhui dragon\") is a genus of mamenchisaurid sauropod dinosaur named by Ren and colleagues in 2020. It lived during the Middle Jurassic in what is now China, in the Hongqin Formation. Its only species is Anhuilong diboensis. It was described from associated and complete left humerus, ulna and radius of an individual. Anhuilong was a quadrupedal herbivore."
     },
     "Antarctopelta": {
       "genus": "Antarctopelta",
@@ -4712,7 +4757,6 @@
         "phonetic": "ann-TARK-toh-PEL-tuh"
       },
       "etymology": "From 'Antarctica' and Greek 'pelta' meaning 'shield', meaning 'Antarctic shield', reflecting its discovery in Antarctica.",
-      "description": "Antarctopelta is a genus of ankylosaurian dinosaur, a group of large, quadrupedal herbivores, that lived during the late Campanian age of the Late Cretaceous period on what is now James Ross Island, Antarctica. Antarctopelta is the only known ankylosaur from Antarctica and a member of Parankylosauria. The only described specimen was found in 1986, the first dinosaur to be found on the continent, by Argentine geologists Eduardo Olivero and Robert Scasso. The fossils were later described in 2006 by paleontologists Leonardo Salgado and Zulma Gasparini, who named the type species A. oliveroi after Olivero. A 2024 reappraisal by Soto Acuña, Vargas, and Kaluza redescribed the holotype, placed the genus within Parankylosauria, and reinterpreted its caudal osteoderms as a Stegouros-like bony tail weapon.",
       "diet": "herbivore",
       "locomotion": "quadrupedal",
       "paleoenvironment": [
@@ -4880,14 +4924,14 @@
         "Parankylosauria"
       ],
       "authors": "Salgado, L.; Gasparini, Z.",
-      "described": 2006
+      "described": 2006,
+      "description": "Antarctopelta (meaning \"Antarctic shield\") is a genus of parankylosaurian ankylosaur dinosaur named by Salgado and Gasparini in 2006. It lived during the Campanian stage of the Late Cretaceous in what is now Antarctica, in the Snow Hill Island Formation. Its only species is Antarctopelta oliveroi. Soto-Acuña and colleagues redescribed it in 2024. Antarctopelta was a quadrupedal herbivore estimated at about 4 meters long."
     },
     "Apatodon": {
       "genus": "Apatodon",
       "parent": "Dinosauria",
       "placement": "incertae sedis",
       "etymology": "From Greek 'apate' ('deceit') and 'odon' ('tooth'), for the original misidentification of the specimen as the jaw of a mammal.",
-      "description": "Apatodon is a dubious genus of dinosaur that may have been a theropod. The type, and only species, A. mirus, was named in 1877 by Othniel Charles Marsh. It was found in the Late Jurassic-aged Morrison Formation of Colorado.",
       "identifiers": [
         {
           "source": "pbdb",
@@ -5009,7 +5053,8 @@
         "Dinosauria"
       ],
       "authors": "Marsh, O. C.",
-      "described": 1877
+      "described": 1877,
+      "description": "Apatodon is a genus of dinosaurian dinosaur of uncertain placement within Dinosauria, now considered a nomen dubium, named by Marsh in 1877. It lived during the Early Jurassic, the Middle Jurassic, the Late Jurassic and the Early Cretaceous in what is now the United States. Its only species is Apatodon mirus."
     },
     "Australotitan": {
       "genus": "Australotitan",
@@ -5022,7 +5067,6 @@
         "ipa": "/ɔːˈstreɪloʊˈtaɪtən/"
       },
       "etymology": "From Latin 'australis' meaning 'southern' and Greek 'titan' meaning 'giant', referring to the large size of this dinosaur from southern Australia.",
-      "description": "Australotitan is an extinct genus of possibly titanosaurian somphospondylan dinosaurs from the Late Cretaceous Winton Formation (Cenomanian-Turonian) of southern-central Queensland, Australia. The genus contains a single species, A. cooperensis, known from multiple partial skeletons. The genus Australotitan may be synonymous with Diamantinasaurus, a contemporary relative.",
       "diet": "herbivore",
       "locomotion": "quadrupedal",
       "paleoenvironment": [
@@ -5208,7 +5252,8 @@
         "Diamantinasauria"
       ],
       "authors": "Hocknull, S. A.; Wilkinson, M.; Lawrence, R. A.; Konstantinov, V.; Mackenzie, S.; Mackenzie, R.",
-      "described": 2021
+      "described": 2021,
+      "description": "Australotitan is a genus of diamantinasaurian sauropod dinosaur named by Hocknull and colleagues in 2021. It lived during the Cenomanian to Turonian stages of the Late Cretaceous in what is now Australia, in the Winton Formation. Its only species is Australotitan cooperensis. Australotitan was a quadrupedal herbivore estimated at about 24 meters long. A well-known specimen is nicknamed \"George\". Aspects of its classification are disputed."
     },
     "Daspletosaurus": {
       "genus": "Daspletosaurus",
@@ -5218,7 +5263,6 @@
         "phonetic": "das-PLEET-uh-SOR-uhs",
         "ipa": "/dæsˌpliːtəˈsɔːrəs/"
       },
-      "description": "Daspletosaurus is a genus of tyrannosaurid dinosaur that lived in Laramidia between about 77 and 74.4 million years ago, during the Late Cretaceous Period. The genus Daspletosaurus contains three named species. Fossils of the earlier type species, D. torosus, have been found in Alberta, while fossils of a later species, D. horneri, have been found in Montana and Alberta. D. wilsoni has been suggested as an intermediate species between D. torosus and D. horneri that evolved through anagenesis, though further research may be required to definitively support the theory.",
       "diet": "carnivore",
       "locomotion": "bipedal",
       "paleoenvironment": [
@@ -5627,7 +5671,8 @@
         "Tyrannosaurinae"
       ],
       "authors": "Russell, D. A.",
-      "described": 1970
+      "described": 1970,
+      "description": "Daspletosaurus (meaning \"frightful lizard\") is a genus of tyrannosaurine theropod dinosaur named by Russell in 1970. It lived during the Campanian stage of the Late Cretaceous in what is now Canada and the United States, in the Oldman, Two Medicine and Judith River formations. It contains 3 species, of which Daspletosaurus torosus is the type species. It was described from a skull and skeleton lacking hind limbs. Daspletosaurus was a bipedal carnivore estimated at 8.5 to 11 meters long. Well-known specimens include \"Pete III\" and \"Gorgeous George\"."
     },
     "Nanotyrannus": {
       "genus": "Nanotyrannus",
@@ -5637,7 +5682,6 @@
         "ipa": "/ˌnænoʊˈtaɪrænəs/",
         "phonetic": "NAN-oh-tye-RAN-us"
       },
-      "description": "Nanotyrannus is a genus of tyrannosauroid dinosaur that lived in what is now western North America during the Maastrichtian age of the Late Cretaceous, 67 to 66 million years ago. Its fossils are known from the Hell Creek Formation. It was one of the last-known non-avian dinosaurs and lived until the Cretaceous-Paleogene extinction event. The first named species, N. lancensis, was described as a new species of Gorgosaurus in 1946 by Charles W. Gilmore based on a single skull. Re-examination of the specimen in 1988 by Robert T. Bakker, Michael Williams and Philip J. Currie moved the species to a new genus of tyrannosaurid, named Nanotyrannus in reference to its small body size compared to other tyrannosaurids.\n",
       "dispute": {
         "summary": "The validity of Nanotyrannus is actively contested. After the 1988 erection of the genus, Carr (1999) and Woodward and colleagues (2020) argued that the holotype CMNH 7541 is an immature Tyrannosaurus rex, citing tooth-grain immaturity and femoral osteohistology. Longrich and Saitta (2024), Zanno and Napoli (2025) — who erected a second species, N. lethaeus — and Griffin and colleagues (2025, ceratobranchial histology) reaffirmed Nanotyrannus as a distinct, skeletally mature taxon. No broad consensus yet.\n"
       },
@@ -5966,7 +6010,8 @@
         "Eutyrannosauria"
       ],
       "authors": "Bakker, R. T.; Williams, M.; Currie, P. J.",
-      "described": 1988
+      "described": 1988,
+      "description": "Nanotyrannus is a genus of eutyrannosaurian theropod dinosaur named by Bakker and colleagues in 1988. It lived during the Maastrichtian stage of the Late Cretaceous in what is now the United States, in the Hell Creek Formation. It contains 2 species, of which Nanotyrannus lancensis is the type species, first named Gorgosaurus lancensis. Nanotyrannus was a bipedal carnivore. A well-known specimen is nicknamed \"Bloody Mary\". Aspects of its classification are disputed."
     },
     "Tarbosaurus": {
       "genus": "Tarbosaurus",
@@ -5976,7 +6021,6 @@
         "phonetic": "TAR-buh-SOR-uhs",
         "ipa": "/ˌtɑːrbəˈsɔːrəs/"
       },
-      "description": "Tarbosaurus is a genus of large tyrannosaurid dinosaur that lived in Asia during the Maastrichtian age of the Late Cretaceous epoch. It contains the type and single species Tarbosaurus bataar, which is known from the Nemegt Formation of Mongolia, with more fragmentary remains found further afield in the Subashi Formation of China. Tarbosaurus is represented by dozens of fossil specimens, including several complete skulls and skeletons. These remains have allowed studies focusing on its phylogeny, skull mechanics, and brain structure. Further fossil remains have been reported from other geologic formations of Asia, however, these remains are fragmentary and cannot be confidently assigned to Tarbosaurus or the type species.",
       "diet": "carnivore",
       "locomotion": "bipedal",
       "paleoenvironment": [
@@ -6263,7 +6307,8 @@
         "Tyrannosaurinae"
       ],
       "authors": "Maleev, E. A.",
-      "described": 1955
+      "described": 1955,
+      "description": "Tarbosaurus is a genus of tyrannosaurine theropod dinosaur named by Maleev in 1955. It lived during the Maastrichtian stage of the Late Cretaceous in what is now Mongolia, in the Nemegt Formation. Its only species is Tarbosaurus bataar, first named Tyrannosaurus bataar. It was described from a skull and postcranial skeleton. Tarbosaurus was a bipedal carnivore estimated at 10 to 12 meters long. Aspects of its classification are disputed."
     },
     "Tyrannosaurus": {
       "genus": "Tyrannosaurus",
@@ -6273,7 +6318,6 @@
         "phonetic": "ti-RAN-o-SAWR-us",
         "ipa": "/tɪˌrænəˈsɔːrəs/"
       },
-      "description": "Tyrannosaurus is a genus of large theropod dinosaur. The type species Tyrannosaurus rex (rex meaning 'king' in Latin), often shortened to T. rex, is one of the best represented theropods. It lived throughout what is now western North America, on what was then an island continent known as Laramidia, and had a much wider range than other tyrannosaurids. Fossils are found in a variety of geological formations dated to the late Maastrichtian age of the Late Cretaceous period, 69 to 66 million years ago, with isolated specimens possibly indicating an earlier origin in the middle Campanian age. It was one of the last known members of the tyrannosaurids and among the last non-avian dinosaurs to exist before the Cretaceous-Paleogene extinction event.",
       "diet": "carnivore",
       "locomotion": "bipedal",
       "paleoenvironment": [
@@ -6713,13 +6757,15 @@
         "Tyrannosaurinae"
       ],
       "authors": "Osborn, H. F.",
-      "described": 1905
+      "described": 1905,
+      "description": "Tyrannosaurus (meaning \"tyrant lizard\") is a genus of tyrannosaurine theropod dinosaur named by Osborn in 1905. It lived during the Maastrichtian stage of the Late Cretaceous in what is now the United States, in the Hell Creek Formation. Its only species is Tyrannosaurus rex. It was described from a partial skeleton with both jaws and portions of the skull, vertebrae, ribs, scapula, humerus, ilium, pubis, ischium, and metapodials. Tyrannosaurus bataar, first named in Tyrannosaurus, is now Tarbosaurus bataar. Tyrannosaurus was a bipedal carnivore estimated at 11.9 to 13 meters long. Well-known specimens include \"Sue\", \"Stan\" and \"Scotty\"."
     }
   },
   "stratigraphy": {
     "Conques": {
       "rank": "formation",
       "parent": "Tremp",
+      "description": "The Conques Formation is a formation of the Tremp Group in Lleida, Spain, dated to the Maastrichtian stage of the Late Cretaceous. Dinosaurs known from it include Abditosaurus, Adynomosaurus and Pareisactus.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -6803,6 +6849,7 @@
     },
     "West Melbury Marly Chalk": {
       "rank": "formation",
+      "description": "The West Melbury Marly Chalk is a formation in Cambridgeshire and Kent, United Kingdom, dated to the Albian to Cenomanian stages of the Early Cretaceous and the Late Cretaceous. It includes the Cambridge Greensand. Dinosaurs known from it include Acanthopholis, Eucercosaurus, Macrurosaurus and Syngonosaurus.",
       "period": {
         "name": [
           "Early Cretaceous",
@@ -6852,7 +6899,7 @@
     "Antlers": {
       "rank": "formation",
       "parent": "Trinity",
-      "description": "The Antlers Formation is a stratum which ranges from Arkansas through southern Oklahoma into northeastern Texas. The stratum is 150 m (490 ft) thick consisting of silty to sandy mudstone and fine to coarse grained sandstone that is poorly to moderately sorted. Based on correlation with the Trinity Group of Texas, the Antlers Formation is estimated to be late Aptian-early Albian. This age range is supported by the presence of two dinosaurs that are also known from the Cloverly Formation, Deinonychus and Tenontosaurus.",
+      "description": "The Antlers Formation is a formation of the Trinity Group in Oklahoma, United States, dated to the Aptian to Albian stages of the Early Cretaceous. Dinosaurs known from it include Acrocanthosaurus and Sauroposeidon.",
       "period": {
         "name": [
           "Early Cretaceous"
@@ -6905,7 +6952,7 @@
     },
     "Cañón del Colorado": {
       "rank": "formation",
-      "description": "The Cañón del Colorado Formation is an Early Jurassic geologic formation in the San Juan Province of Argentina. The formation comprises conglomerates and claystones and is exposed in the Sierra de Mogna. The sauropodomorph dinosaur Adeopapposaurus is known from this formation.",
+      "description": "The Cañón del Colorado Formation is a formation in San Juan, Argentina, dated to the Hettangian to Toarcian stages of the Early Jurassic. The dinosaur Adeopapposaurus is known from it.",
       "period": {
         "name": [
           "Early Jurassic"
@@ -6994,7 +7041,7 @@
       "variants": [
         "Dashanpu"
       ],
-      "description": "The Shaximiao Formation is a Middle to Late Jurassic aged geological formation in Sichuan, China, most notable for the wealth of dinosaur fossils that have been excavated from its strata. The Shaximiao Formation is exposed in and around the small township of Dashanpu, situated seven kilometers north-east from Sichuan's third largest city, Zigong, in the Da'an District.",
+      "description": "The Shaximiao Formation is a formation in Sichuan and Chongqing, China, dated to the Bajocian to Tithonian stages of the Middle Jurassic and the Late Jurassic. It is also known as the Dashanpu. Dinosaurs known from it include Mamenchisaurus, Chialingosaurus, Chungkingosaurus, Huayangosaurus and 24 other genera.",
       "period": {
         "name": [
           "Middle Jurassic",
@@ -7089,7 +7136,7 @@
       "variants": [
         "Atlantosaurus beds"
       ],
-      "description": "The Morrison Formation is a distinctive sequence of Upper Jurassic sedimentary rock found in the western United States which has been the most fertile source of dinosaur fossils in North America. It is composed of mudstone, sandstone, siltstone, and limestone and is light gray, greenish gray, or red. Most of the fossils occur in the green siltstone beds and lower sandstones, relics of the rivers and floodplains of the Jurassic period. It is centered in Wyoming and Colorado, with outcrops in Montana, North Dakota, South Dakota, Nebraska, Kansas, the panhandles of Oklahoma and Texas, New Mexico, Arizona, Utah, and Idaho. It was named after Morrison, Colorado, where some of the first fossils in the formation were discovered in 1877.",
+      "description": "The Morrison Formation is a formation in the United States, dated to the Oxfordian to Berriasian stages of the Late Jurassic and the Early Cretaceous. It is also known as the Atlantosaurus beds. It includes the Brushy Basin Member, the Kenton Member, the Salt Wash Member and the Tidwell Member. Dinosaurs known from it include Allosaurus, Camarasaurus, Diplodocus, Ceratosaurus and 42 other genera.",
       "period": {
         "name": [
           "Late Jurassic",
@@ -7208,7 +7255,7 @@
     "Brushy Basin": {
       "rank": "member",
       "parent": "Morrison",
-      "description": "Brushy Basin Member: conglomerate interbedded with mudstone; up to fifty percent by volume is made up of altered vitric ash, which originated as felsic ash falls. Deposition likely occurred in a fluvial-lacustrine environment, with the lacustrine component tending towards playas.",
+      "description": "The Brushy Basin Member is a member of the Morrison Formation in the United States, dated to the Kimmeridgian to Tithonian stages of the Late Jurassic. Dinosaurs known from it include Allosaurus, Camarasaurus, Ceratosaurus, Diplodocus and 13 other genera.",
       "period": {
         "name": [
           "Late Jurassic"
@@ -7280,6 +7327,7 @@
     "Salt Wash": {
       "rank": "member",
       "parent": "Morrison",
+      "description": "The Salt Wash Member is a member of the Morrison Formation in Utah and Wyoming, United States, dated to the Oxfordian to Kimmeridgian stages of the Late Jurassic. Dinosaurs known from it include Allosaurus and Camptosaurus.",
       "period": {
         "name": [
           "Late Jurassic"
@@ -7352,6 +7400,7 @@
     },
     "Hongqin": {
       "rank": "formation",
+      "description": "The Hongqin Formation is a formation in Anhui, China, dated to the Middle Jurassic. Dinosaurs known from it include Anhuilong and Huangshanlong.",
       "period": {
         "name": [
           "Middle Jurassic"
@@ -7398,7 +7447,7 @@
     },
     "Snow Hill Island": {
       "rank": "formation",
-      "description": "The Snow Hill Island Formation is an Early Maastrichtian geologic formation found on James Ross Island, James Ross Island group, Antarctica. Remains of a paravian theropod Imperobator antarcticus have been recovered from it, as well as the elasmarian ornithopods Trinisaura santamartaensis and Morrosaurus antarcticus, the ankylosaurian Antarctopelta oliveroi, and the shark Notidanodon sp. Alongside these described genera are also the remains of indeterminate elasmosaurids, lithostrotian titanosaurs and an indeterminate pterosaur. The uppermost portion of the Gamma Member containing the Santa Marta Cove fauna is dated to the late Campanian, approximately 73.4 million years ago, while the younger Cape Lamb Member is from the latest Campanian to early Maastrichtian, with the uppermost portion dated to 69.7 million years ago.",
+      "description": "The Snow Hill Island Formation is a formation in Antarctica, dated to the Campanian to Maastrichtian stages of the Late Cretaceous. It includes the Cape Lamb Member and the Gamma Member. Dinosaurs known from it include Antarctopelta, Imperobator, Morrosaurus and Trinisaura.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -7466,6 +7515,7 @@
       "variants": [
         "Herbert Sound"
       ],
+      "description": "The Gamma Member is a member of the Snow Hill Island Formation in Antarctica, dated to the Campanian to Maastrichtian stages of the Late Cretaceous. It is also known as the Herbert Sound. Dinosaurs known from it include Antarctopelta and Trinisaura.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -7519,7 +7569,7 @@
     "Winton": {
       "rank": "formation",
       "parent": "Manuka",
-      "description": "The Winton Formation is an Early to Late Cretaceous geological formation, mainly in central-western Queensland, Australia. The formation blankets large areas of central-western Queensland, as well as northwestern South Australia, the southwestern corner of the Northern Territory, and parts of northern New South Wales.",
+      "description": "The Winton Formation is a formation of the Manuka Subgroup in Queensland, Australia, dated to the Albian to Turonian stages of the Early Cretaceous and the Late Cretaceous. Dinosaurs known from it include Diamantinasaurus, Australotitan, Australovenator, Savannasaurus and 1 other genera.",
       "period": {
         "name": [
           "Early Cretaceous",
@@ -7656,7 +7706,7 @@
       "variants": [
         "Pale Beds"
       ],
-      "description": "The Oldman Formation is a stratigraphic unit of Late Cretaceous (Campanian stage) age that underlies much of southern Alberta, Canada. It consists primarily of sandstones that were deposited in fluvial channel and floodplain environments. It was named for exposures along the Oldman River between its confluence with the St. Mary River and the city of Lethbridge, and it is known primarily for its dinosaur remains and other fossils.",
+      "description": "The Oldman Formation is a formation of the Belly River Group in Alberta, Canada, dated to the Campanian stage of the Late Cretaceous. It is also known as the Pale Beds. Dinosaurs known from it include Brachylophosaurus, Daspletosaurus, Struthiomimus, Albertaceratops and 6 other genera.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -7729,7 +7779,7 @@
     },
     "Two Medicine": {
       "rank": "formation",
-      "description": "The Two Medicine Formation is a geological formation, or rock body, in northwestern Montana and southern Alberta that was deposited between 82.4 Ma and 74.4 Ma, during Campanian (Late Cretaceous) time. It crops out to the east of the Rocky Mountain Overthrust Belt, and the western portion (about 600 meters or 2,000 feet thick) of this formation is folded and faulted while the eastern part, which thins out into the Sweetgrass Arch, is mostly undeformed plains. Below the formation are the nearshore (beach and tidal zone) deposits of the Virgelle Sandstone, and above it is the marine Bearpaw Shale. Throughout the Campanian, the Two Medicine Formation was deposited between the western shoreline of the Late Cretaceous Interior Seaway and the eastward advancing margin of the Cordilleran Overthrust Belt. The Two Medicine Formation is mostly sandstone, deposited by rivers and deltas.",
+      "description": "The Two Medicine Formation is a formation in Montana, United States, dated to the Campanian stage of the Late Cretaceous. Dinosaurs known from it include Daspletosaurus, Brontotholus, Cerasinops, Bambiraptor and 12 other genera.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -7765,7 +7815,7 @@
     },
     "Judith River": {
       "rank": "formation",
-      "description": "The Judith River Formation dates to the Late Cretaceous, between 79 and 75.3 million years ago, corresponding to the \"Judithian\" land vertebrate age. It was laid down during the same time period as portions of the Two Medicine Formation of Montana and the Oldman Formation of Alberta. It is an historically important formation, explored by early American paleontologists such as Edward Drinker Cope, who named several dinosaurs from scrappy remains found here on his 1876 expedition (such as Monoclonius). Modern work has found nearly complete skeletons of the hadrosaurid Brachylophosaurus.",
+      "description": "The Judith River Formation is a formation in Montana, United States, dated to the Campanian stage of the Late Cretaceous. It includes the Coal Ridge and the McClelland Ferry Member. Dinosaurs known from it include Daspletosaurus, Judiceratops, Probrachylophosaurus, Aublysodon and 18 other genera.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -7806,7 +7856,7 @@
     },
     "Hell Creek": {
       "rank": "formation",
-      "description": "The Hell Creek Formation is an intensively studied division of rocks in North America, named for exposures studied along Hell Creek, near Jordan, Montana. The formation stretches over portions of Montana, North Dakota, South Dakota, and Wyoming. It is a series of fresh and brackish-water clays, mudstones, and sandstones deposited by fluvial activity in fluctuating river channels and deltas and very occasional peaty swamp deposits along the low-lying eastern continental margin fronting the late Cretaceous Western Interior Seaway. The climate was mild; the presence of crocodilians along with palm trees suggests a subtropical and temperate climate with no prolonged freeze. The famous iridium-enriched Cretaceous–Paleogene boundary, which separates the Cretaceous from the Cenozoic, occurs as a discontinuous but distinct thin marker bedding above the formation, near its boundary with the overlying Fort Union Formation.",
+      "description": "The Hell Creek Formation is a formation in Montana and South Dakota, United States, dated to the Maastrichtian stage of the Late Cretaceous. Dinosaurs known from it include Tyrannosaurus, Thescelosaurus, Ankylosaurus, Nanotyrannus and 11 other genera.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -7859,7 +7909,7 @@
     },
     "Nemegt": {
       "rank": "formation",
-      "description": "The Nemegt Formation is a geological formation in the Gobi Desert of Mongolia, dating to the Late Cretaceous. The formation consists of river channel sediments and contains fossils of fish, turtles, crocodilians, and a diverse fauna of dinosaurs, including birds.",
+      "description": "The Nemegt Formation is a formation in Ömnögovi, Bayankhongor and Govi-Altai, Mongolia, dated to the Campanian to Maastrichtian stages of the Late Cretaceous. Dinosaurs known from it include Deinocheirus, Gallimimus, Nemegtomaia, Oksoko and 24 other genera.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -7983,7 +8033,7 @@
     },
     "Tremp": {
       "rank": "group",
-      "description": "The Tremp Formation, alternatively described as Tremp Group, is a geological formation in the comarca Pallars Jussà, Lleida, Spain. The formation is restricted to the Tremp or Tremp-Graus Basin, a piggyback foreland basin in the Catalonian Pre-Pyrenees. The formation dates to the Maastrichtian to Thanetian, thus the formation includes the Cretaceous-Paleogene boundary that has been well studied in the area, using paleomagnetism and carbon and oxygen isotopes. The formation comprises several lithologies, from sandstone, conglomerates and shales to marls, siltstones, limestones and lignite and gypsum beds and ranges between 250 and 800 meters (820 and 2,620 ft) in thickness. The Tremp Formation was deposited in a continental to marginally marine fluvial-lacustrine environment characterized by estuarine to deltaic settings.",
+      "description": "The Tremp Group is a group in Lleida and Huesca, Spain, dated to the Campanian to Thanetian stages of the Late Cretaceous and the Paleocene. It includes the Conques Formation and the Talarn Formation. Dinosaurs known from it include Abditosaurus, Adynomosaurus, Arenysaurus, Calvarius and 3 other genera.",
       "period": {
         "name": [
           "Late Cretaceous",
@@ -8091,7 +8141,7 @@
     },
     "Trinity": {
       "rank": "group",
-      "description": "The Trinity Group is a group (sequence of rock strata) in the Lower Cretaceous lithostratigraphy of Texas, Arkansas, Mississippi, Louisiana and Oklahoma. It is named for the Trinity River of Texas. Formations within the Trinity Group include the Hammett Formation, Cow Creek Formation, Hensel Formation, and Lower and Upper Glen Rose Formation.",
+      "description": "The Trinity Group is a group in Texas, Oklahoma and Arkansas, United States, dated to the Aptian to Albian stages of the Early Cretaceous. It includes the Antlers Formation, the Paluxy Formation and the Twin Mountains Formation. Dinosaurs known from it include Acrocanthosaurus, Tenontosaurus, Arkansaurus, Astrophocaudia and 2 other genera.",
       "period": {
         "name": [
           "Early Cretaceous"
@@ -8154,6 +8204,7 @@
     },
     "Manuka": {
       "rank": "subgroup",
+      "description": "The Manuka Subgroup is a subgroup in Queensland, Australia, dated to the Albian to Turonian stages of the Early Cretaceous and the Late Cretaceous. It includes the Mackunda Formation and the Winton Formation. Dinosaurs known from it include Diamantinasaurus, Australotitan, Muttaburrasaurus, Australovenator and 2 other genera.",
       "period": {
         "name": [
           "Early Cretaceous",
@@ -8227,7 +8278,7 @@
     },
     "Belly River": {
       "rank": "group",
-      "description": "The Belly River Group is a stratigraphic unit of Late Cretaceous age in the Western Canadian Sedimentary Basin. It takes the name from the Belly River, a tributary of the Oldman River in southern Alberta, and was first described in outcrop on the banks of the Oldman River (at the time considered part of the Belly River) and Bow River.",
+      "description": "The Belly River Group is a group in Alberta, Canada, dated to the Santonian to Campanian stages of the Late Cretaceous. It includes the Dinosaur Park Formation, the Foremost Formation and the Oldman Formation. Dinosaurs known from it include Brachylophosaurus, Daspletosaurus, Gorgosaurus, Styracosaurus and 42 other genera.",
       "period": {
         "name": [
           "Late Cretaceous"

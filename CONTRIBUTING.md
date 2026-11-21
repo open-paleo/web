@@ -153,7 +153,7 @@ files.
 | `glossary.ts` | `getGlossary()`: the glossary's terms in order, and finding them in text |
 | `media.ts` | `getMedia()`: the outlines by genus or clade, `findGenusOutline()`: a genus's own outline, or that of the nearest clade above it that has one, and `findCladeOutline()`: a clade's own outline, or else its type genus's |
 | `prose-links.ts` | `getProseLinks()`: the pages that genus, species, clade, rock unit and geologic time names in prose link to |
-| `units.ts` | `getUnits()`: the rock units arranged into pages, one per formation, group or other top-level unit with genera, with members and beds as sections of their unit's page; `getUnitDescription()`: the dataset's description of a unit, or a standard one built from its rank, parent, age and earliest-named genera when it has none |
+| `units.ts` | `getUnits()`: the rock units arranged into pages, one per formation, group or other top-level unit with genera, with members and beds as sections of their unit's page |
 
 Pages call `getSiteData()` from their frontmatter or `getStaticPaths()`; the first call loads
 the file and later calls reuse the result.
@@ -162,7 +162,9 @@ the file and later calls reuse the result.
 
 `Prose` links names and glossary terms in dataset text when it is given `linkTerms`, each once
 per block. Blocks that should link each once between them share a set of what is already linked
-through `linkedTerms` instead, as the items of `DiagnosisList` do. A name or term whose page is
+through `linkedTerms` instead, as the items of `DiagnosisList` and the paragraphs of
+`Description` do (a genus's, clade's or rock unit's description: the summary the dataset's build
+writes, then a narrative after a blank line where the record has one). A name or term whose page is
 the current page stays plain. In order, `Prose` finds:
 
 1. Genus and species names (the ones it already italicizes), linked through
@@ -201,9 +203,9 @@ Genus, clade and Data pages describe their subject as schema.org JSON-LD, which
   the genus with its rank, parent clade, species (as its children, addressed by their section
   of the page), synonyms (`alternateName`, leaving out possible synonyms) and outside database
   entries (`sameAs`)
-- **Clade pages** describe the clade the same way, but without a rank, which the dataset doesn't
-  give and the profile requires, so they don't claim to follow it. Ask open-paleo/data for clade
-  ranks rather than deriving them from a name's suffix
+- **Clade pages** describe the clade the same way, with the rank the dataset gives it. A rank
+  goes with its term in the TDWG taxon rank vocabulary; "unranked", which the vocabulary has no
+  term for, goes alone. References to clades from other taxa carry their rank too
 - **The Data page** describes the dataset for Google Dataset Search: release, license, citation
   and every file as a download
 

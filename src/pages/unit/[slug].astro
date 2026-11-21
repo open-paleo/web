@@ -2,11 +2,11 @@
 import AgeFigure from "../../components/AgeFigure.astro";
 import CitationLink from "../../components/CitationLink.astro";
 import CorrectionLink from "../../components/CorrectionLink.astro";
+import Description from "../../components/Description.astro";
 import DisputeNote from "../../components/DisputeNote.astro";
 import FactList from "../../components/FactList.astro";
 import GenusIndex from "../../components/GenusIndex.astro";
 import PageSection from "../../components/PageSection.astro";
-import Prose from "../../components/Prose.astro";
 import RecordMain from "../../components/RecordMain.astro";
 import ReferenceList from "../../components/ReferenceList.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -14,7 +14,7 @@ import { formatGenusCount, formatGeologicAge, formatQuotes, getFirstSentence } f
 import { createGenusIndexRows, shouldGroupByLetter } from "../../data/genus-index.ts";
 import { getSiteData } from "../../data/site-data.ts";
 import type { UnitEntry, UnitPage } from "../../data/units.ts";
-import { describeUnitRank, getPageReferences, getUnitDescription, getUnits } from "../../data/units.ts";
+import { describeUnitRank, getPageReferences, getUnits } from "../../data/units.ts";
 import { createPagePath } from "../../data/urls.ts";
 
 /**
@@ -98,11 +98,7 @@ const age = record ? formatGeologicAge(record.period) : "";
 const variants = record?.variants ?? [];
 const references = page ? getPageReferences(page) : [];
 const subunitsTitle = page && page.subunitPages.every((subunit) => subunit.record.rank === "formation") ? "Formations" : "Units within it";
-// The dataset's description, or else a standard one built from the unit's record and genera.
-const description = page ? getUnitDescription(page, units) : "";
-const searchDescription = record?.description
-    ? getFirstSentence(record.description)
-    : "The " + (entry?.displayName ?? "") + (age ? ", a rock unit of the " + age : "") + ", and the " + formatGenusCount(page?.genera.length ?? 0) + " found in it.";
+const searchDescription = record ? getFirstSentence(record.description) : "";
 ---
 
 {section && sectionPage ? (
@@ -169,7 +165,7 @@ const searchDescription = record?.description
                     )}
                 </FactList>
 
-                <p class="description"><Prose text={description} linkTerms /></p>
+                <Description text={record.description} />
 
                 {record.dispute && (
                     <PageSection title="Under dispute">
@@ -210,7 +206,7 @@ const searchDescription = record?.description
                                     {describeUnitRank(child.record)}{child.record.parent && child.record.parent !== entry.name && units.entryByName.get(child.record.parent) && " within the " + units.entryByName.get(child.record.parent)?.displayName}{formatGeologicAge(child.record.period) && ", " + formatGeologicAge(child.record.period)}
                                 </p>
                                 {(child.record.variants ?? []).length > 0 && <p class="section-meta">Also written {formatQuotes((child.record.variants ?? []).join(", "))}</p>}
-                                {child.record.description && <p class="section-description"><Prose text={child.record.description.trim()} linkTerms /></p>}
+                                <Description text={child.record.description} />
                                 {child.record.dispute && <DisputeNote dispute={child.record.dispute} />}
                                 {child.genera.length > 0 && (
                                     <p class="section-genera">
@@ -280,12 +276,6 @@ const searchDescription = record?.description
     {
         max-width: var(--measure);
         color: var(--color-muted);
-    }
-
-    .description,
-    .section-description
-    {
-        max-width: var(--measure);
     }
 
     .subunit-list
