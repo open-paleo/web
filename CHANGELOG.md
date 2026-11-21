@@ -39,9 +39,14 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   links the GPL's text
 - The ancient coastlines' credit on genus maps links the paper and its license, and says the
   coastlines are simplified and moved to each stage's midpoint
+- The Data page no longer says everything on the site is under CC BY 4.0: it names what the
+  dataset covers, and says the outlines carry their own licenses and that the maps, fonts and
+  software are others' work, listed on the Licenses page
 
 ### Removed
 
+- The Data page's Tools section, which named only the tree extractor; the Tools page in the
+  main navigation lists every tool
 - The site icon. The stand-in fossil icon from Flaticon is gone, with its footer credit, since
   Flaticon's terms restrict using its icons as a logo; the project's own icon will replace it
 

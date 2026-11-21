@@ -25,10 +25,15 @@ const structuredData = Astro.site ? createDatasetStructuredData(metadata, files,
         <header class="data-header">
             <h1>Data</h1>
             <p class="data-summary">
-                Everything on this site comes from the Open Paleo dataset, which is free to use under
-                <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> with attribution to Open Paleo
-                contributors. The files below are the dataset’s built output, maintained in the
-                <a href={dataRepository}>open-paleo/data repository</a>.
+                The genera, clades, rock units and references on this site come from the Open Paleo dataset,
+                which is free to use under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+                with attribution to Open Paleo contributors. The files below are the dataset’s built output,
+                maintained in the <a href={dataRepository}>open-paleo/data repository</a>.
+            </p>
+            <p class="data-summary">
+                Not everything on the site is under that license. Each outline beside a genus or clade name
+                carries its own, named in its credit line, and the maps, fonts and software are the work of
+                others under theirs. The <a href={baseUrl + "licenses/"}>Licenses</a> page lists them.
             </p>
         </header>
 
@@ -85,14 +90,6 @@ const structuredData = Astro.site ? createDatasetStructuredData(metadata, files,
             <p class="section-note">
                 The dataset rests on published literature. If your work draws on it, consider citing the original papers too:
                 <a href={fileBaseUrl + "references.bib"}>references.bib</a> lists every one.
-            </p>
-        </PageSection>
-
-        <PageSection title="Tools">
-            <p>
-                The <a href={baseUrl + "tools/tree-extractor/"}>tree extractor</a> (beta) reads a phylogenetic tree from a
-                published figure and saves it as Newick or Nexus, in your browser, matching its labels to the names in the
-                dataset.
             </p>
         </PageSection>
     </div>
