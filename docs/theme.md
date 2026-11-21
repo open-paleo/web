@@ -50,6 +50,11 @@ section and the search button. On the band, text reaches 12.7:1, muted text 8.1:
 8.9:1, and the search field's border 4.2:1 (non-text needs 3:1). In dark mode the band is darker
 than the page, with `--color-header-edge` as a visible bottom border.
 
+`--color-header-background` also colors browsers' toolbars on phones, through the `theme-color`
+meta tags, one per color scheme. A meta tag can't read a CSS variable, so
+`src/data/theme-colors.ts` reads the token's light and dark values from `tokens.css` at build
+time; keep both as hex colors (the build fails otherwise).
+
 ### Map colors
 
 The genus maps style OpenFreeMap's OpenStreetMap tiles from tokens, so the base map sits in

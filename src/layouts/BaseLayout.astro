@@ -5,6 +5,7 @@ import { createNavigationGroups, findNavigationGroup } from "../data/navigation.
 import { getSiteData } from "../data/site-data.ts";
 import type { StructuredData } from "../data/structured-data.ts";
 import { writeJsonLd } from "../data/structured-data.ts";
+import { getHeaderColors } from "../data/theme-colors.ts";
 import { getTimePages } from "../data/time-pages.ts";
 
 /**
@@ -68,6 +69,8 @@ const sitemapUrl = Astro.site ? new URL(homeUrl + "sitemap-index.xml", Astro.sit
 // link they're only added when the site's address is known.
 const previewImageUrl = Astro.site ? new URL(homeUrl + "social-preview.png", Astro.site).href : undefined;
 const previewImageDescription = siteName + ": a community-maintained phylogenetic dataset for paleontology, over the Triassic, Jurassic and Cretaceous periods in the colors of the geologic time scale.";
+// The header's color in each scheme, from the theme's tokens, for the theme-color meta tags.
+const headerColors = getHeaderColors();
 // Escaped by writeJsonLd so dataset text in it can't end the script element.
 const structuredDataText = structuredData ? writeJsonLd(structuredData) : undefined;
 const navigationGroups = createNavigationGroups(getTimePages().periods);
@@ -84,9 +87,16 @@ const currentPath = Astro.url.pathname;
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content={description}>
         <title>{documentTitle}</title>
+        {/* Both schemes before the stylesheet loads, so dark mode starts dark; phones color their
+            toolbars like the header; Safari on iOS leaves catalog numbers and ages alone. */}
+        <meta name="color-scheme" content="light dark">
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content={headerColors.light}>
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content={headerColors.dark}>
+        <meta name="format-detection" content="telephone=no">
         <link rel="alternate" type="application/atom+xml" title="Open Paleo: newly named genera" href={homeUrl + "feed.xml"}>
         {canonicalUrl && <link rel="canonical" href={canonicalUrl}>}
         {sitemapUrl && <link rel="sitemap" href={sitemapUrl}>}
+        {canonicalUrl && <link rel="search" type="application/opensearchdescription+xml" title={siteName} href={homeUrl + "opensearch.xml"}>}
         <meta property="og:site_name" content={siteName}>
         <meta property="og:type" content="website">
         <meta property="og:title" content={title ?? siteName}>

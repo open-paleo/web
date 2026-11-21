@@ -31,6 +31,11 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   for, and serves each license text beside it (`licenses/{name}.txt`). Every folder of bundled
   files on the site holds a `LICENSE.txt` with the same texts, since bundling strips the notices
   from the code; the tree extractor's Tesseract worker gets the notices file it points to
+- Browsers on phones color their toolbars like the site's header, in light and dark mode
+  (`theme-color`), and dark mode starts dark before the stylesheet loads (`color-scheme`).
+  Safari on iOS no longer turns catalog numbers and ages into phone links
+- Browsers can offer the site's search from their address bar, through an OpenSearch
+  description (`opensearch.xml`), on the published site
 
 ### Changed
 
