@@ -88,7 +88,8 @@ const currentPath = Astro.url.pathname;
         <meta name="description" content={description}>
         <title>{documentTitle}</title>
         {/* Both schemes before the stylesheet loads, so dark mode starts dark; phones color their
-            toolbars like the header; Safari on iOS leaves catalog numbers and ages alone. */}
+            toolbars like the header (Safari on iOS 26 reads the body's background instead; see below);
+            Safari on iOS leaves catalog numbers and ages alone. */}
         <meta name="color-scheme" content="light dark">
         <meta name="theme-color" media="(prefers-color-scheme: light)" content={headerColors.light}>
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content={headerColors.dark}>
@@ -243,9 +244,12 @@ const currentPath = Astro.url.pathname;
     }
 
     /* Keeps the footer at the bottom of short pages: the body is at least as tall as the window
-       and the main content takes the leftover height. svh, so mobile browser bars can't hide it. */
+       and the main content takes the leftover height. svh, so mobile browser bars can't hide it.
+       The body has the header's band and the main content the page color, because Safari on
+       iOS 26 tints its toolbars from the body's background, not the theme-color meta tags. */
     body
     {
+        background: var(--color-header-background);
         display: flex;
         flex-direction: column;
         min-height: 100vh;
@@ -258,6 +262,7 @@ const currentPath = Astro.url.pathname;
     {
         flex: 1 0 auto;
         width: 100%;
+        background: var(--color-background);
     }
 
     /* The footer repeats the header's dark band, so the two frame the page. */
