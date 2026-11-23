@@ -1,6 +1,6 @@
 // Filters for the Genera page. The page lists every genus under its letter; with a filter on,
-// this script gathers the matching genera into one list and hides the letter groups. The form
-// itself is handled by filter-form.ts, shared with the Map page.
+// this script shows copies of the matching genera in one list and hides the letter groups. The
+// form itself is handled by filter-form.ts, shared with the Map page.
 
 import type { GenusFilterValues } from "../data/genus-filters.ts";
 import { hasActiveFilter, matchesGenusFilters, readFilterAttributes } from "../data/genus-filters.ts";
@@ -22,9 +22,9 @@ type FilteredGenus = {
     values: GenusFilterValues;
 
     /**
-     * The list under its letter, where it goes back when the filters are cleared.
+     * Its copy for the list of matches, made the first time it matches.
      */
-    letterList: HTMLElement;
+    copy: HTMLElement | undefined;
 };
 
 /**
@@ -57,15 +57,9 @@ type FilterPage = {
     letterNavigation: HTMLElement;
 
     /**
-     * The list the matching genera move into while a filter is on.
+     * The list that shows copies of the matching genera while a filter is on.
      */
     results: HTMLElement;
-
-    /**
-     * Whether the matches are in the results list, so turning the filters off has to move each
-     * genus back under its letter. Until then the genera stay where the page put them.
-     */
-    isShowingResults: boolean;
 };
 
 /**
@@ -101,21 +95,21 @@ function findFilterPage(): FilterPage | undefined
 
         for (const element of letterList.querySelectorAll<HTMLElement>("li[data-group]"))
         {
-            const genus = { element, values: readFilterAttributes(element.dataset), letterList };
+            const genus: FilteredGenus = { element, values: readFilterAttributes(element.dataset), copy: undefined };
 
             genera.push(genus);
             values.push(genus.values);
         }
     }
 
-    return { controls, genera, values, letterGroups, letterNavigation, results, isShowingResults: false };
+    return { controls, genera, values, letterGroups, letterNavigation, results };
 }
 
 /**
- * Show the genera that match the form's filters. While a filter is on, the matches move into one
- * list and the letter groups are hidden; when every filter goes off, each genus goes back under
- * its letter. With no filter on from the start, nothing moves, which on the Genera page spares
- * moving every genus as the page loads.
+ * Show the genera that match the form's filters. While a filter is on, copies of the matches fill
+ * one list and the letter groups are hidden; when every filter goes off, the list empties and the
+ * letter groups show again. The genera under their letters never move, so clearing the filters
+ * costs no more than laying out the letter groups on screen.
  *
  * @param page - The page's parts.
  */
@@ -131,20 +125,13 @@ function applyFilters(page: FilterPage): void
         {
             if (matchesGenusFilters(genus.values, criteria, undefined))
             {
-                matches.push(genus.element);
+                genus.copy ??= genus.element.cloneNode(true) as HTMLElement;
+                matches.push(genus.copy);
             }
-        }
-    }
-    else if (page.isShowingResults)
-    {
-        for (const genus of page.genera)
-        {
-            genus.letterList.append(genus.element);
         }
     }
 
     page.results.replaceChildren(...matches);
-    page.isShowingResults = isFiltered;
     page.results.hidden = !isFiltered;
     page.letterNavigation.hidden = isFiltered;
 

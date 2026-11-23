@@ -37,7 +37,7 @@ for (const group of groups)
         </header>
 
         {groups.map((group) => (
-            <section class="letter-group" aria-labelledby={createLetterAnchor(group.letter)}>
+            <section class="letter-group" aria-labelledby={createLetterAnchor(group.letter)} style={"--rows: " + group.entries.length}>
                 <h2 id={createLetterAnchor(group.letter)}>{group.letter}</h2>
                 <ul class="reference-index">
                     {group.entries.map((entry) => (
@@ -140,9 +140,24 @@ for (const group of groups)
             found.classList.remove("is-found");
         }
 
-        item?.classList.add("is-found");
-        item?.scrollIntoView({ block: "center", behavior: isMotionReduced ? "auto" : "smooth" });
-        item?.querySelector("a")?.focus({ preventScroll: true });
+        if (!item)
+        {
+            return;
+        }
+
+        // The letter groups passed on the way are laid out only as they come on screen, so a
+        // smooth scroll aims at estimated heights and can end off target; once it ends, center the
+        // reference again. Without the scrollend event, jump straight there.
+        const isSmooth = !isMotionReduced && "onscrollend" in window;
+
+        item.classList.add("is-found");
+        item.scrollIntoView({ block: "center", behavior: isSmooth ? "smooth" : "auto" });
+        item.querySelector("a")?.focus({ preventScroll: true });
+
+        if (isSmooth)
+        {
+            window.addEventListener("scrollend", () => item.scrollIntoView({ block: "center", behavior: "auto" }), { once: true });
+        }
     }
 
     /**
@@ -271,11 +286,17 @@ for (const group of groups)
         color: var(--color-muted);
     }
 
+    /* The browser lays out a letter group only near the screen, which saves laying out over
+       three thousand references at once. Until then it holds the group's height as estimated
+       from its row count, about 4.3rem a reference, or 8.3rem where the title goes under the
+       citation, and once laid out, its real height. */
     .letter-group
     {
         display: grid;
         gap: var(--space-3);
         scroll-margin-top: var(--space-5);
+        content-visibility: auto;
+        contain-intrinsic-block-size: auto calc(4rem + var(--rows) * 4.3rem);
     }
 
     h2
@@ -319,6 +340,11 @@ for (const group of groups)
         li
         {
             grid-template-columns: minmax(0, 1fr);
+        }
+
+        .letter-group
+        {
+            contain-intrinsic-block-size: auto calc(4rem + var(--rows) * 8.3rem);
         }
     }
 </style>

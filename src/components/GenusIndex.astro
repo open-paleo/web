@@ -65,13 +65,13 @@ function getRowIndexName(row: IndexRow): string
 
 <div class="genus-index">
     {isGroupedByLetter && <LetterJumpList letters={letters} label={label} />}
-    {/* While a filter is on, the filter script moves the matching genera into this list, in
-       name order, and hides the letter groups, so a short result is not spread thinly over
+    {/* While a filter is on, the filter script puts copies of the matching genera in this list,
+       in name order, and hides the letter groups, so a short result is not spread thinly over
        many letters. */}
-    {isFilterable && <ul class="genus-columns" id="genus-results" aria-label={"Matching " + label.toLowerCase()} hidden></ul>}
+    {isFilterable && <ul class="genus-columns genus-results" id="genus-results" aria-label={"Matching " + label.toLowerCase()} hidden></ul>}
     {isGroupedByLetter
         ? groups.map((group) => (
-            <section class="letter-group" aria-labelledby={createLetterAnchor(group.letter)}>
+            <section class="letter-group" aria-labelledby={createLetterAnchor(group.letter)} style={"--rows: " + group.entries.length}>
                 {headingLevel === 2
                     ? <h2 class="letter-heading" id={createLetterAnchor(group.letter)}>{group.letter}</h2>
                     : <h3 class="letter-heading" id={createLetterAnchor(group.letter)}>{group.letter}</h3>}
@@ -92,13 +92,54 @@ function getRowIndexName(row: IndexRow): string
     {
         display: grid;
         gap: var(--space-6);
+        container-type: inline-size;
     }
 
+    /* The browser lays out a letter group only near the screen, which on the Genera page saves
+       laying out over a thousand genera in columns at once. Until then it holds the group's
+       height as estimated from its row count, about 4.4rem a genus in each column, and once
+       laid out, its real height. */
     .letter-group
     {
+        --columns: 1;
         display: grid;
         gap: var(--space-4);
         scroll-margin-top: var(--space-5);
+        content-visibility: auto;
+        contain-intrinsic-block-size: auto calc(4rem + var(--rows) * 4.4rem / var(--columns));
+    }
+
+    /* Likewise each matching genus while a filter is on, so a broad filter doesn't lay out
+       hundreds of genera in columns at once. 3.3rem is a genus's height without its padding. */
+    .genus-results > :global(li)
+    {
+        content-visibility: auto;
+        contain-intrinsic-block-size: auto 3.3rem;
+    }
+
+    /* The column counts .genus-columns gives at each width: columns of 20rem with 3rem gaps. */
+    @container (min-width: 43rem)
+    {
+        .letter-group
+        {
+            --columns: 2;
+        }
+    }
+
+    @container (min-width: 66rem)
+    {
+        .letter-group
+        {
+            --columns: 3;
+        }
+    }
+
+    @container (min-width: 89rem)
+    {
+        .letter-group
+        {
+            --columns: 4;
+        }
     }
 
     /* The Genera page's filters hide the letter groups, or the list of matches, with the hidden
