@@ -163,9 +163,11 @@ const currentPath = Astro.url.pathname;
                 </div>
             )}
         </header>
-        <main class="site-main" id="content" tabindex="-1">
-            <slot />
-        </main>
+        <div class="site-page">
+            <main class="site-main" id="content" tabindex="-1">
+                <slot />
+            </main>
+        </div>
         <footer class="site-footer">
             <div class="site-footer-inner">
                 <div class="footer-about">
@@ -244,9 +246,10 @@ const currentPath = Astro.url.pathname;
     }
 
     /* Keeps the footer at the bottom of short pages: the body is at least as tall as the window
-       and the main content takes the leftover height. svh, so mobile browser bars can't hide it.
-       The body has the header's band and the main content the page color, because Safari on
-       iOS 26 tints its toolbars from the body's background, not the theme-color meta tags. */
+       and the page takes the leftover height. svh, so mobile browser bars can't hide it. The body
+       has the header's band and the page between header and footer the page color, because
+       Safari on iOS 26 tints its toolbars from the body's background, not the theme-color meta
+       tags. */
     body
     {
         background: var(--color-header-background);
@@ -256,12 +259,10 @@ const currentPath = Astro.url.pathname;
         min-height: 100svh;
     }
 
-    /* Full width, because a flex item with automatic side margins would otherwise shrink to its
-       content. */
-    .site-main
+    /* The page color across the window's full width, around the main content's column. */
+    .site-page
     {
         flex: 1 0 auto;
-        width: 100%;
         background: var(--color-background);
     }
 

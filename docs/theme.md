@@ -55,8 +55,9 @@ meta tags, one per color scheme. A meta tag can't read a CSS variable, so
 `src/data/theme-colors.ts` reads the token's light and dark values from `tokens.css` at build
 time; keep both as hex colors (the build fails otherwise). Safari on iOS 26 ignores the meta tags
 and tints its toolbars from the body's background instead, so in the base layout the token is the
-body's background and the main content has `--color-background`; the band shows only in the
-header, the footer, the toolbars and when the page is pulled past its top or bottom.
+body's background and the full-width page between header and footer has `--color-background`;
+the band shows only in the header, the footer, the toolbars and when the page is pulled past its
+top or bottom.
 
 ### Map colors
 
