@@ -77,6 +77,9 @@
     --color-header-accent: #9fd8c3;
     --color-header-border: #7b8f87;
     --color-header-edge: #1f2d29;
+    /* Pure white, for the Bluesky and Threads marks in the footer, which both brands allow only
+       in their official white or black. The same in both themes. */
+    --color-brand-white: #ffffff;
 
     /* Text drawn on top of geologic time colors. The time colors do not change with the theme,
        so neither do these. --color-on-period is dark enough to reach 4.5:1 on every chart color
