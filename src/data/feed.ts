@@ -2,6 +2,11 @@ import { formatAuthority, getFirstSentence } from "./format.ts";
 import type { GenusEntry, SiteData } from "./site-data.ts";
 
 /**
+ * How many genera the feed lists. The Developers page states it.
+ */
+export const genusFeedLength = 50;
+
+/**
  * One entry of the feed of newly named genera.
  */
 export type FeedEntry = {

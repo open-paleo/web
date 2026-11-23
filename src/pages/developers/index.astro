@@ -2,6 +2,7 @@
 import PageSection from "../../components/PageSection.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { createEmbedCode, createEmbedResizeCode, embedFrameHeight, embedFrameWidth } from "../../data/embed.ts";
+import { genusFeedLength } from "../../data/feed.ts";
 import type { EmbedHeightMessage } from "../../data/embed-message.ts";
 import { embedHeightMessageType } from "../../data/embed-message.ts";
 import {
@@ -85,20 +86,27 @@ const embedding = createHeading("Embedding a genus infobox");
 const frameSize = createHeading("Frame size");
 const fitting = createHeading("Fitting the frame to the infobox");
 const credit = createHeading("Credit and privacy");
+const following = createHeading("Feed, structured data and search");
+const feed = createHeading("Feed of newly named genera");
+const structuredData = createHeading("Structured data");
+const search = createHeading("Linking to a search");
 const contents: Array<ContentsEntry> = [
     { heading: bindings, subheadings: [typescript, python, versions] },
     { heading: embedding, subheadings: [frameSize, fitting, credit] },
+    { heading: following, subheadings: [feed, structuredData, search] },
 ];
+const feedUrl = new URL(baseUrl + "feed.xml", siteUrl).href;
+const exampleSearchPath = baseUrl + "search/?q=" + encodeURIComponent(exampleGenus.name);
 ---
 
-<BaseLayout title="Developers" description="How to build on Open Paleo: typed bindings for reading the dataset, and infoboxes that show a genus on your own site." navigationItem="developers">
+<BaseLayout title="Developers" description="How to build on Open Paleo: typed bindings for reading the dataset, infoboxes that show a genus on your own site, and the feed, structured data and search links the site offers." navigationItem="developers">
     <div class="developers-page">
         <header class="developers-header">
             <h1>Developers</h1>
             <p class="developers-summary">
-                How to build on Open Paleo: typed bindings for reading the dataset in code, and infoboxes that show a
-                genus on your own site. For the dataset’s files and how to cite them, see
-                <a href={baseUrl + "data/"}>Data</a>.
+                How to build on Open Paleo: typed bindings for reading the dataset in code, infoboxes that show a genus
+                on your own site, and the feed, structured data and search links the site offers. For the dataset’s
+                files and how to cite them, see <a href={baseUrl + "data/"}>Data</a>.
             </p>
         </header>
 
@@ -234,6 +242,45 @@ const contents: Array<ContentsEntry> = [
                     <p>
                         Open Paleo counts views of infoboxes as visits, as it does for its own pages; the
                         <a href={baseUrl + "privacy/"}>privacy policy</a> explains what that involves.
+                    </p>
+                </section>
+            </PageSection>
+
+            <PageSection title={following.title}>
+                <section class="subsection" aria-labelledby={feed.id}>
+                    <h3 id={feed.id}>{feed.title}</h3>
+                    <p>
+                        <a href={baseUrl + "feed.xml"}><code>feed.xml</code></a> is an Atom feed of the
+                        {genusFeedLength} most recently named genera, newest first. Each entry has the genus’s name, who
+                        named it and when, and the first sentence of its description, and links to its page. Subscribe in
+                        a feed reader with its address:
+                    </p>
+                    <pre class="code-block" tabindex="0" role="region" aria-label="Address of the feed"><code>{feedUrl}</code></pre>
+                    <p>
+                        The dataset records the year a genus was named, not when it was added, so every entry is dated by
+                        the release it comes from, and the feed changes when a new release is published. An entry’s id is
+                        its genus page’s address, so a feed reader shows each genus once.
+                    </p>
+                </section>
+
+                <section class="subsection" aria-labelledby={structuredData.id}>
+                    <h3 id={structuredData.id}>{structuredData.title}</h3>
+                    <p>
+                        Genus and clade pages describe their taxon as schema.org JSON-LD in the page’s head, following
+                        the <a href="https://bioschemas.org/profiles/Taxon/1.0-RELEASE">Bioschemas Taxon profile</a>: its
+                        rank, the taxon it belongs to, its synonyms and its entries in other databases, and for a genus,
+                        its species. The <a href={baseUrl + "data/"}>Data</a> page describes the dataset, its license and
+                        its files as a schema.org <code>Dataset</code>.
+                    </p>
+                </section>
+
+                <section class="subsection" aria-labelledby={search.id}>
+                    <h3 id={search.id}>{search.title}</h3>
+                    <p>
+                        To link to search results, add the words to <code>search/?q=</code>, as in
+                        <a href={exampleSearchPath}><code>search/?q={encodeURIComponent(exampleGenus.name)}</code></a>.
+                        Browsers can also offer the site’s search from their address bar, through its OpenSearch
+                        description, <a href={baseUrl + "opensearch.xml"}><code>opensearch.xml</code></a>.
                     </p>
                 </section>
             </PageSection>

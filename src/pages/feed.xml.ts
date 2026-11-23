@@ -1,10 +1,7 @@
 import type { APIContext } from "astro";
 
-import { createGenusFeed, writeAtomFeed } from "../data/feed.ts";
+import { createGenusFeed, genusFeedLength, writeAtomFeed } from "../data/feed.ts";
 import { getSiteData } from "../data/site-data.ts";
-
-// How many genera the feed lists.
-const feedLength = 50;
 
 /**
  * Write feed.xml: an Atom feed of the most recently named genera, for feed readers. Its
@@ -17,7 +14,7 @@ export function GET(context: APIContext): Response
 {
     const siteUrl = new URL(import.meta.env.BASE_URL, context.site ?? "http://localhost:4321").href;
 
-    return new Response(writeAtomFeed(createGenusFeed(getSiteData(), siteUrl, feedLength)), {
+    return new Response(writeAtomFeed(createGenusFeed(getSiteData(), siteUrl, genusFeedLength)), {
         headers: { "Content-Type": "application/atom+xml" },
     });
 }
