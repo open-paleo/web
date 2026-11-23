@@ -191,7 +191,7 @@ export type IcznCaseTypes =
 export type IcznCaseStatuses = "opinion" | "open" | "closed" | "withdrawn";
 
 /**
- * Schema for the built Open Paleo dataset (dist/open-paleo.json and dist/open-paleo.yml). This describes the STABLE output contract, versioned by _metadata.schema_version. The source YAML under genera/, clades/, and references/ is an editing format and is NOT covered by this schema. Objects intentionally allow additional properties so that future additive (minor-version) fields validate against an earlier schema of the same major version. Controlled-vocabulary enums under $defs mirror schema.yml, which remains the authoritative source (a validator check keeps them in sync).
+ * Schema for the built Open Paleo dataset (dist/open-paleo.json and dist/open-paleo.yml). This describes the STABLE output contract, versioned by _metadata.schema_version. The source YAML under genera/, clades/, and references/ is an editing format and is NOT covered by this schema. Objects intentionally allow additional properties so that future additive (minor-version) fields validate against an earlier schema of the same major version (before 1.0.0, additive changes are patch versions and the same holds within one 0.MINOR line). Controlled-vocabulary enums under $defs mirror schema.yml, which remains the authoritative source (a validator check keeps them in sync).
  */
 export interface OpenPaleoDataset {
   _metadata: Metadata;
@@ -711,6 +711,10 @@ export interface StratigraphicUnit {
    * Other names the literature gives the unit.
    */
   variants?: string[];
+  /**
+   * What the unit is made of, as a short phrase ("red mudstone and fine-grained sandstone"), taken from a cited paper.
+   */
+  lithology?: string;
   /**
    * A few-sentence summary of the unit for a general reader, written by the build from the record (rank, parent, age, places, members, variants, dinosaurs recorded from it), followed after a blank line by a narrative in our own words where the record has one.
    */

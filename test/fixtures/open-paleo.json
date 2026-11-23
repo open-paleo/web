@@ -1,7 +1,7 @@
 {
   "_metadata": {
     "attribution": "Open Paleo contributors",
-    "built_at": "2026-11-21T05:29:28.709Z",
+    "built_at": "2026-11-23T21:51:23.963Z",
     "clade_count": 45,
     "genus_count": 14,
     "license": "CC-BY-4.0",
@@ -10,7 +10,7 @@
       "citation": "Wright, N.; Zahirovic, S.; Müller, R. D.; Seton, M. (2013). Towards community-driven paleogeographic reconstructions: integrating open-access paleogeographic and paleobiology data with plate tectonics. Biogeosciences 10(3): 1529-1541. doi:10.5194/bg-10-1529-2013",
       "license": "CC-BY-3.0-AU"
     },
-    "schema_version": "4.6.0",
+    "schema_version": "0.4.7",
     "version": "2026.11"
   },
   "timescale": {
@@ -7391,7 +7391,8 @@
     "Conques": {
       "rank": "formation",
       "parent": "Tremp",
-      "description": "The Conques Formation is a formation of the Tremp Group in Lleida, Spain, dated to the Maastrichtian stage of the Late Cretaceous. Dinosaurs known from it include Abditosaurus, Adynomosaurus and Pareisactus.",
+      "lithology": "variegated mudstone, with lenticular sandstone and limestone",
+      "description": "The Conques Formation is a formation of the Tremp Group in Lleida, Spain, dated to the Maastrichtian stage of the Late Cretaceous. It consists mainly of variegated mudstone, with lenticular sandstone and limestone. Dinosaurs known from it include Abditosaurus, Adynomosaurus and Pareisactus.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -7436,7 +7437,7 @@
           "journal": "Acta Geologica Hispanica",
           "volume": "27",
           "pages": "95-108",
-          "notes": "Erects the unit as the \"Formación Lutitas, Areniscas y Conglomerados de Conques\", with the Tossal d'Obà and Basturs Limestones members, in the Tremp Group. The type section is in the Barranco de Basturs, about 400 m thick, of variegated mudstones with lenticular sandstones; the base passes gradually into the Posa Formation and the top passes rapidly into the red mudstones of the Talarn. Gives no age of its own.\n"
+          "notes": "Erects the unit as the \"Formación Lutitas, Areniscas y Conglomerados de Conques\", with the Tossal d'Obà and Basturs Limestones members, in the Tremp Group. The type section is in the Barranco de Basturs, about 400 m thick, of variegated mudstones with lenticular sandstones; the base passes gradually into the Posa Formation and the top passes rapidly into the red mudstones of the Talarn. Gives no age of its own. Source of the lithology.\n"
         },
         {
           "id": "díez-canseco2014a",
@@ -7475,7 +7476,8 @@
     },
     "West Melbury Marly Chalk": {
       "rank": "formation",
-      "description": "The West Melbury Marly Chalk is a formation in Cambridgeshire and Kent, United Kingdom, dated to the Albian to Cenomanian stages of the Early Cretaceous and the Late Cretaceous. It includes the Cambridge Greensand. Dinosaurs known from it include Acanthopholis, Eucercosaurus, Macrurosaurus and Syngonosaurus.",
+      "lithology": "soft marly chalk and hard gray limestone in couplets",
+      "description": "The West Melbury Marly Chalk is a formation in Cambridgeshire and Kent, United Kingdom, dated to the Albian to Cenomanian stages of the Early Cretaceous and the Late Cretaceous. It consists mainly of soft marly chalk and hard gray limestone in couplets. It includes the Cambridge Greensand. Dinosaurs known from it include Acanthopholis, Eucercosaurus, Macrurosaurus and Syngonosaurus.",
       "period": {
         "name": [
           "Early Cretaceous",
@@ -7497,7 +7499,7 @@
           "journal": "British Geological Survey Research Report",
           "publisher": "British Geological Survey",
           "volume": "RR/05/01",
-          "notes": "Defines the formation and names Copt Point among its primary reference sections.\n"
+          "notes": "Defines the formation and names Copt Point among its primary reference sections. Source of the lithology.\n"
         },
         {
           "id": "barrett2020a",
@@ -7578,7 +7580,8 @@
     },
     "Cañón del Colorado": {
       "rank": "formation",
-      "description": "The Cañón del Colorado Formation is a formation in San Juan, Argentina, dated to the Hettangian to Toarcian stages of the Early Jurassic. The dinosaur Adeopapposaurus is known from it.",
+      "lithology": "mudstone, sandy mudstone, conglomerate and sandstone",
+      "description": "The Cañón del Colorado Formation is a formation in San Juan, Argentina, dated to the Hettangian to Toarcian stages of the Early Jurassic. It consists mainly of mudstone, sandy mudstone, conglomerate and sandstone. The dinosaur Adeopapposaurus is known from it.",
       "period": {
         "name": [
           "Early Jurassic"
@@ -7638,7 +7641,7 @@
           "volume": "68",
           "issue": "1",
           "pages": "96-108",
-          "notes": "Assigns the formation, in the authors' English abstract, \"a Lower Jurassic (Hettangian-Toarcian) age\" (p. 96), from the Adeopapposaurus remains in its middle member and the Hettangian to Toarcian biochron of Massospondylus, its sister taxon (p. 106); the paper also formally divides the unit into lower, middle and upper members. It reviews the older Triassic reading: \"Casamiquela y Miolano (1983) le asignaron una edad triásica superior\" (\"Casamiquela and Miolano (1983) assigned it an Upper Triassic age\", translated), from prosauropod vertebrae, and \"Milana et al. (1995) asignaron esta formación al Triásico Superior\" (\"Milana and colleagues (1995) assigned this formation to the Upper Triassic\", translated; p. 97).\n"
+          "notes": "Assigns the formation \"a Lower Jurassic (Hettangian-Toarcian) age\" from the biochron of Massospondylus, sister taxon of Adeopapposaurus, and divides it into three members. Source of the lithology.\n"
         },
         {
           "id": "casamiquela1983a",
@@ -7658,7 +7661,7 @@
           "volume": "15",
           "issue": "3, Supplement",
           "pages": "44A-45A",
-          "notes": "Reports a new locality in the Sierra de Mogna, 60 km north of San Juan, with two partial skeletons of \"a new prosauropod of the plateosaurid type\", from the formation, \"which has been assigned a Tertiary ages [sic] but lies above the Patquia Formation of Late Permian age\" (p. 44A). Its title gives an Upper Triassic to Lower Jurassic age, and the text leans to the Late Triassic: \"Age determination is based on the known stratigraphic range of plateosaurids; however, the authors are inclined to a Late Triassic age assignment based on regional geologic considerations\" (p. 45A). Martínez and Colombi (2011) report that as the older view and assign the Lower Jurassic.\n"
+          "notes": "Reports two specimens of \"a new prosauropod of the plateosaurid type\" from the formation in the Sierra de Mogna, and leans to a Late Triassic age on regional geology.\n"
         }
       ]
     },
@@ -7667,7 +7670,8 @@
       "variants": [
         "Dashanpu"
       ],
-      "description": "The Shaximiao Formation is a formation in Sichuan and Chongqing, China, dated to the Bajocian to Tithonian stages of the Middle Jurassic and the Late Jurassic. It is also known as the Dashanpu. Dinosaurs known from it include Mamenchisaurus, Chialingosaurus, Chungkingosaurus, Huayangosaurus and 24 other genera.",
+      "lithology": "purplish-red mudstone, sandy mudstone and siltstone, with yellow-gray sandstone interbeds",
+      "description": "The Shaximiao Formation is a formation in Sichuan and Chongqing, China, dated to the Bajocian to Tithonian stages of the Middle Jurassic and the Late Jurassic. It consists mainly of purplish-red mudstone, sandy mudstone and siltstone, with yellow-gray sandstone interbeds. It is also known as the Dashanpu. Dinosaurs known from it include Mamenchisaurus, Chialingosaurus, Chungkingosaurus, Huayangosaurus and 24 other genera.",
       "period": {
         "name": [
           "Middle Jurassic",
@@ -7729,7 +7733,7 @@
           "authors": "Li, K.; Liu, J.; Yang, C.; Hu, F.",
           "year": 2011,
           "title": "Dinosaur assemblages from the Middle Jurassic Shaximiao Formation and Chuanjie Formation in the Sichuan-Yunnan Basin, China",
-          "notes": "Argues that \"the entire Shaximiao Formation is of Bajocian-Callovian age (middle-late part of Middle Jurassic)\", putting the upper member \"of Middle Jurassic age (Bathonian-Callovian)\" in the abstract but \"namely the Bajocian-Bathonian\" in the discussion. It records the reading it argues against: the invertebrates placed the formation in the Middle Jurassic, \"although vertebrate fossils tended to indicate a Late Jurassic age for the upper member of the Shaximiao Formation\".\n"
+          "notes": "Argues that \"the entire Shaximiao Formation is of Bajocian-Callovian age (middle-late part of Middle Jurassic)\", putting the upper member \"of Middle Jurassic age (Bathonian-Callovian)\" in the abstract but \"namely the Bajocian-Bathonian\" in the discussion. It records the reading it argues against: the invertebrates placed the formation in the Middle Jurassic, \"although vertebrate fossils tended to indicate a Late Jurassic age for the upper member of the Shaximiao Formation\". Source of the lithology.\n"
         },
         {
           "id": "buffetaut1999a",
@@ -7801,7 +7805,7 @@
           "volume": "3",
           "pages": "101-228",
           "doi": "10.31711/giw.v3.pp101-228",
-          "notes": "Dates the top with two ages placed on the 2013 ICS chart: \"148.96 +2.54 to -2.21 Ma\" from zircons in an ash about 9 m below the base of the overlying Naturita Formation, and \"150.00 ± 0.52 Ma from near the top of the Brushy Basin Member\", so that \"the top of the Morrison Formation dates to the lower third of the Tithonian Stage near but not to the end of the Jurassic\". On the ICS chart v2024/12 (Tithonian base 149.2 Ma) the second age is Kimmeridgian, and the first is Tithonian only at its central value, its uncertainty spanning both stages.\n"
+          "notes": "Dates the top with a U-Pb age of \"148.96 +2.54 to -2.21 Ma\" from an ash about 9 m below the Naturita Formation and an age of 150.00 ± 0.52 Ma near the top of the Brushy Basin Member.\n"
         },
         {
           "id": "chure2000a",
@@ -7831,7 +7835,7 @@
           "volume": "59",
           "pages": "31-52",
           "doi": "10.4202/app.2012.0089",
-          "notes": "Gives it as \"mainly Kimmeridgian–Tithonian, though time of deposition for the unit as a whole may also include the late Oxfordian and early Berriasian\", after Kowallis and colleagues (1998) and Miall and colleagues (2008). Across the Western Interior foreland basin it is the \"nonmarine Upper Jurassic (to possibly lower Berriasian) strata\" beneath the unconformity at the base of the Lower Cretaceous. The top dated by Kirkland and colleagues (2016), about 149 to 150 Ma, lies some 6 Myr before the Berriasian base of 143.1 Ma on the ICS chart v2024/12, so the dates do not reach that stage.\n"
+          "notes": "Gives the formation as \"mainly Kimmeridgian–Tithonian\", possibly reaching into the late Oxfordian and early Berriasian, after Kowallis and colleagues (1998) and Miall and colleagues (2008).\n"
         },
         {
           "id": "kowallis1998a",
@@ -7881,7 +7885,8 @@
     "Brushy Basin": {
       "rank": "member",
       "parent": "Morrison",
-      "description": "The Brushy Basin Member is a member of the Morrison Formation in the United States, dated to the Kimmeridgian to Tithonian stages of the Late Jurassic. Dinosaurs known from it include Allosaurus, Camarasaurus, Ceratosaurus, Diplodocus and 13 other genera.",
+      "lithology": "mudstone",
+      "description": "The Brushy Basin Member is a member of the Morrison Formation in the United States, dated to the Kimmeridgian to Tithonian stages of the Late Jurassic. It consists mainly of mudstone. Dinosaurs known from it include Allosaurus, Camarasaurus, Ceratosaurus, Diplodocus and 13 other genera.",
       "period": {
         "name": [
           "Late Jurassic"
@@ -7924,7 +7929,7 @@
           "journal": "Modern Geology",
           "volume": "22",
           "pages": "235-260",
-          "notes": "Dates the member by 40Ar/39Ar on sanidine from ash beds. The ages \"range systematically between 148.1 ± 0.5 (1 std. error of mean) at the top of the member to 150.3 ± 0.3 Ma near the bottom\", Kimmeridgian at the base and Tithonian at the top on the ICS chart v2024/12 (Tithonian base 149.2 Ma). The paper reads the member as Kimmeridgian–Tithonian on the timescales of its day, and calls one Montezuma Creek age, 147.82 ± 0.63 Ma, about 1 Ma too young.\n"
+          "notes": "Dates the member by 40Ar/39Ar on sanidine from ash beds. The ages \"range systematically between 148.1 ± 0.5 (1 std. error of mean) at the top of the member to 150.3 ± 0.3 Ma near the bottom\", Kimmeridgian at the base and Tithonian at the top on the ICS chart v2024/12 (Tithonian base 149.2 Ma). The paper reads the member as Kimmeridgian–Tithonian on the timescales of its day, and calls one Montezuma Creek age, 147.82 ± 0.63 Ma, about 1 Ma too young. Source of the lithology.\n"
         },
         {
           "id": "kirkland2016a",
@@ -7953,7 +7958,8 @@
     "Salt Wash": {
       "rank": "member",
       "parent": "Morrison",
-      "description": "The Salt Wash Member is a member of the Morrison Formation in Utah and Wyoming, United States, dated to the Oxfordian to Kimmeridgian stages of the Late Jurassic. Dinosaurs known from it include Allosaurus and Camptosaurus.",
+      "lithology": "gray or brown sandstone, with less red and green mudstone",
+      "description": "The Salt Wash Member is a member of the Morrison Formation in Utah and Wyoming, United States, dated to the Oxfordian to Kimmeridgian stages of the Late Jurassic. It consists mainly of gray or brown sandstone, with less red and green mudstone. Dinosaurs known from it include Allosaurus and Camptosaurus.",
       "period": {
         "name": [
           "Late Jurassic"
@@ -8020,7 +8026,7 @@
           "journal": "Modern Geology",
           "volume": "22",
           "pages": "235-260",
-          "notes": "Cited by Chure (2000) for the Kimmeridgian age of the Dinosaur National Monument quarry.\n"
+          "notes": "Cited by Chure (2000) for the Kimmeridgian age of the Dinosaur National Monument quarry. Source of the lithology.\n"
         }
       ]
     },
@@ -8141,7 +8147,8 @@
       "variants": [
         "Herbert Sound"
       ],
-      "description": "The Gamma Member is a member of the Snow Hill Island Formation in Antarctica, dated to the Campanian to Maastrichtian stages of the Late Cretaceous. It is also known as the Herbert Sound. Dinosaurs known from it include Antarctopelta and Trinisaura.",
+      "lithology": "fine- to medium-grained silty sandstone and carbonaceous mudstone, with conglomerate lenses",
+      "description": "The Gamma Member is a member of the Snow Hill Island Formation in Antarctica, dated to the Campanian to Maastrichtian stages of the Late Cretaceous. It consists mainly of fine- to medium-grained silty sandstone and carbonaceous mudstone, with conglomerate lenses. It is also known as the Herbert Sound. Dinosaurs known from it include Antarctopelta and Trinisaura.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -8176,7 +8183,7 @@
           "issue": "1",
           "pages": "78-107",
           "doi": "10.12429/j.advps.2023.0036",
-          "notes": "Uses the Snow Hill Island reading, referring osteoderms to \"the Campanian-Maastrichtian Gamma Member of the Snow Hill Island\".\n"
+          "notes": "Uses the Snow Hill Island reading, referring osteoderms to \"the Campanian-Maastrichtian Gamma Member of the Snow Hill Island\". Source of the lithology.\n"
         },
         {
           "id": "salgado2006a",
@@ -8195,7 +8202,8 @@
     "Winton": {
       "rank": "formation",
       "parent": "Manuka",
-      "description": "The Winton Formation is a formation of the Manuka Subgroup in Queensland, Australia, dated to the Albian to Turonian stages of the Early Cretaceous and the Late Cretaceous. Dinosaurs known from it include Diamantinasaurus, Australotitan, Australovenator, Savannasaurus and 1 other genera.",
+      "lithology": "interbedded sandstone, siltstone, mudstone and coal, with minor intraformational conglomerate",
+      "description": "The Winton Formation is a formation of the Manuka Subgroup in Queensland, Australia, dated to the Albian to Turonian stages of the Early Cretaceous and the Late Cretaceous. It consists mainly of interbedded sandstone, siltstone, mudstone and coal, with minor intraformational conglomerate. Dinosaurs known from it include Diamantinasaurus, Australotitan, Australovenator, Savannasaurus and 1 other genera.",
       "period": {
         "name": [
           "Early Cretaceous",
@@ -8248,7 +8256,7 @@
           "volume": "9",
           "pages": "e11317",
           "doi": "10.7717/peerj.11317",
-          "notes": "Reviews the palynology of Monteil (2006) that gave the formation \"a Late Albian to Cenomanian chronostratigraphic age\", and treats the detrital zircon results cautiously, saying they \"indicate a probable temporal age range of between 103 to 92 million years ago (Late Albian to earliest Turonian) for the maximal depositional ages of portions of the Winton Formation\". Gives the Australotitan holotype horizon as \"Cenomanian-? Turonian, Winton Formation.\"\n"
+          "notes": "Relays a late Albian to Cenomanian palynological age, reads detrital zircon maximum depositional ages as \"Late Albian to earliest Turonian\", and dates the Australotitan horizon \"Cenomanian-? Turonian\".\n"
         },
         {
           "id": "hocknull2009a",
@@ -8302,7 +8310,7 @@
           "issue": "2",
           "pages": "767-779",
           "doi": "10.1016/j.gr.2012.12.009",
-          "notes": "From detrital zircon maximum depositional ages, \"sedimentation of the Winton Formation commenced no earlier than latest Albian (~103.0–100.5 Ma)\", the base lies \"at or near the Albian/Cenomanian boundary\", and \"the upper Winton Formation very likely continued into or past the early Turonian\". Both ends rest on maximum ages, which bound the beds rather than date them. Places the formation in the Manuka Subgroup following Gray and colleagues (2002), conformably above the Mackunda Formation.\n"
+          "notes": "From detrital zircon maximum depositional ages, puts the base of the formation \"at or near the Albian/Cenomanian boundary\" and its upper part \"into or past the early Turonian\".\n"
         },
         {
           "id": "gray2002a",
@@ -8312,7 +8320,7 @@
           "book": "Geology of the Cooper and Eromanga Basins, Queensland (Draper, J. J., ed.)",
           "publisher": "Queensland Department of Natural Resources and Mines, Brisbane",
           "pages": "30-56",
-          "notes": "Dates the formation on spores and pollen, querying the Albian: \"Mid-Cretaceous [late Albian(?)–Cenomanian] palynofloras of the Winton Formation encompass spore-pollen assemblages attributable to palynological units APK6 and APK7\". Records that it \"conformably overlies the Mackunda Formation and, in some areas, is unconformably overlain by the Tertiary Glendower Formation\".\n"
+          "notes": "Dates the formation late Albian(?) to Cenomanian on spore-pollen assemblages, and has it conformably overlie the Mackunda Formation. Source of the lithology.\n"
         },
         {
           "id": "vine1967a",
@@ -8332,7 +8340,8 @@
       "variants": [
         "Pale Beds"
       ],
-      "description": "The Oldman Formation is a formation of the Belly River Group in Alberta, Canada, dated to the Campanian stage of the Late Cretaceous. It is also known as the Pale Beds. Dinosaurs known from it include Brachylophosaurus, Daspletosaurus, Struthiomimus, Albertaceratops and 6 other genera.",
+      "lithology": "very fine- to fine-grained sandstone, with siliceous paleosols",
+      "description": "The Oldman Formation is a formation of the Belly River Group in Alberta, Canada, dated to the Campanian stage of the Late Cretaceous. It consists mainly of very fine- to fine-grained sandstone, with siliceous paleosols. It is also known as the Pale Beds. Dinosaurs known from it include Brachylophosaurus, Daspletosaurus, Struthiomimus, Albertaceratops and 6 other genera.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -8399,13 +8408,15 @@
           "volume": "30",
           "issue": "1",
           "pages": "174-200",
-          "doi": "10.1139/e93-016"
+          "doi": "10.1139/e93-016",
+          "notes": "Source of the lithology.\n"
         }
       ]
     },
     "Two Medicine": {
       "rank": "formation",
-      "description": "The Two Medicine Formation is a formation in Montana, United States, dated to the Campanian stage of the Late Cretaceous. Dinosaurs known from it include Daspletosaurus, Brontotholus, Cerasinops, Bambiraptor and 12 other genera.",
+      "lithology": "mudstone, siltstone and fine-grained lenticular sandstone, with bentonite beds",
+      "description": "The Two Medicine Formation is a formation in Montana, United States, dated to the Campanian stage of the Late Cretaceous. It consists mainly of mudstone, siltstone and fine-grained lenticular sandstone, with bentonite beds. Dinosaurs known from it include Daspletosaurus, Brontotholus, Cerasinops, Bambiraptor and 12 other genera.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -8436,12 +8447,23 @@
           "journal": "Journal of Vertebrate Paleontology",
           "doi": "10.1080/02724634.2026.2636589",
           "notes": "Independently gives the formation \"in Montana (Campanian, 78.2–74.6 Ma ...)\".\n"
+        },
+        {
+          "id": "penkalski2013a",
+          "authors": "Penkalski, P.",
+          "year": 2013,
+          "title": "A new ankylosaurid from the late Cretaceous Two Medicine Formation of Montana, USA",
+          "journal": "Acta Palaeontologica Polonica",
+          "publisher": "Polska Akademia Nauk Instytut Paleobiologii (Institute of Paleobiology, Polish Academy of Sciences)",
+          "doi": "10.4202/app.2012.0125",
+          "notes": "Source of the lithology.\n"
         }
       ]
     },
     "Judith River": {
       "rank": "formation",
-      "description": "The Judith River Formation is a formation in Montana, United States, dated to the Campanian stage of the Late Cretaceous. It includes the Coal Ridge and the McClelland Ferry Member. Dinosaurs known from it include Daspletosaurus, Judiceratops, Probrachylophosaurus, Aublysodon and 18 other genera.",
+      "lithology": "interbedded mudstone, siltstone and sandstone, with minor coal, bentonite and mollusc coquinas",
+      "description": "The Judith River Formation is a formation in Montana, United States, dated to the Campanian stage of the Late Cretaceous. It consists mainly of interbedded mudstone, siltstone and sandstone, with minor coal, bentonite and mollusc coquinas. It includes the Coal Ridge and the McClelland Ferry Member. Dinosaurs known from it include Daspletosaurus, Judiceratops, Probrachylophosaurus, Aublysodon and 18 other genera.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -8477,12 +8499,21 @@
           "pages": "381-400",
           "doi": "10.1111/j.1096-3642.1978.tb01049.x",
           "notes": "Independently gives \"Judith River Formation (Campanian)\"."
+        },
+        {
+          "id": "cspg2008a",
+          "authors": "Canadian Society of Petroleum Geologists",
+          "year": 2008,
+          "title": "Judith River Formation",
+          "publisher": "Canadian Society of Petroleum Geologists",
+          "notes": "Source of the lithology.\n"
         }
       ]
     },
     "Hell Creek": {
       "rank": "formation",
-      "description": "The Hell Creek Formation is a formation in Montana and South Dakota, United States, dated to the Maastrichtian stage of the Late Cretaceous. Dinosaurs known from it include Tyrannosaurus, Thescelosaurus, Ankylosaurus, Nanotyrannus and 11 other genera.",
+      "lithology": "gray, green-gray and tan siltstone, with local mudstone, carbonaceous shale, lignite and lenticular sandstone",
+      "description": "The Hell Creek Formation is a formation in Montana and South Dakota, United States, dated to the Maastrichtian stage of the Late Cretaceous. It consists mainly of gray, green-gray and tan siltstone, with local mudstone, carbonaceous shale, lignite and lenticular sandstone. Dinosaurs known from it include Tyrannosaurus, Thescelosaurus, Ankylosaurus, Nanotyrannus and 11 other genera.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -8530,12 +8561,24 @@
           "pages": "e1535",
           "doi": "10.1002/spp2.1535",
           "notes": "Gives the Sphaerotholus triregnum holotype as from \"the lower half of the Hell Creek Formation (upper Maastrichtian, Upper Cretaceous)\", about 45 km southwest of Jordan in Garfield County, Montana.\n"
+        },
+        {
+          "id": "lehman1987a",
+          "authors": "Lehman, T. M.",
+          "year": 1987,
+          "title": "Late Maastrichtian paleoenvironments and dinosaur biogeography in the Western Interior of North America",
+          "journal": "Palaeogeography, Palaeoclimatology, Palaeoecology",
+          "volume": "60",
+          "pages": "189-217",
+          "doi": "10.1016/0031-0182(87)90032-0",
+          "notes": "Source of the lithology.\n"
         }
       ]
     },
     "Nemegt": {
       "rank": "formation",
-      "description": "The Nemegt Formation is a formation in Ömnögovi, Bayankhongor and Govi-Altai, Mongolia, dated to the Campanian to Maastrichtian stages of the Late Cretaceous. Dinosaurs known from it include Deinocheirus, Gallimimus, Nemegtomaia, Oksoko and 24 other genera.",
+      "lithology": "light-colored sand, with subordinate sandy claystone, siltstone and intraformational conglomerate",
+      "description": "The Nemegt Formation is a formation in Ömnögovi, Bayankhongor and Govi-Altai, Mongolia, dated to the Campanian to Maastrichtian stages of the Late Cretaceous. It consists mainly of light-colored sand, with subordinate sandy claystone, siltstone and intraformational conglomerate. Dinosaurs known from it include Deinocheirus, Gallimimus, Nemegtomaia, Oksoko and 24 other genera.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -8557,7 +8600,7 @@
           "publisher": "Elsevier, Amsterdam",
           "volume": "17",
           "pages": "49-79",
-          "notes": "In the eastern Gobi the formation rests on the Javkhlant and \"appears to be of the Maastrichtian age\"; at Bugiin Tsav the plant-bearing beds are given as \"the Nemegt Formation (Campanian-Maastrichtian)\". The beds Shuvalov (1974) had called the Nemegt Formation and Khand (1987) the Upper Nemegt Formation are separated in this paper as the Nogoontsav Formation, 20 m thick and conformably above the Nemegt. The authors add that \"The uppermost Maastrichtian strata have not been documented in Mongolia.\"\n"
+          "notes": "Gives the formation as Maastrichtian in the eastern Gobi and Campanian-Maastrichtian at Bugiin Tsav, and separates the 20 m of beds above it there as the Nogoontsav Formation.\n"
         },
         {
           "id": "osmólska1987a",
@@ -8615,7 +8658,7 @@
           "volume": "28",
           "issue": "1-2",
           "pages": "137-146",
-          "notes": "Charophytes make the \"Nemegt Formation (Upper Cretaceous)\" older than had been supposed: the assemblage \"cannot be considered younger than the Lower Campanian\", standing between two Upper Cretaceous assemblages of the Chinese Red Beds and keeping taxa known from the Lower/Upper Cretaceous transition. That reading disagrees with Fox (1978), for whom the unit is \"of the uppermost Campanian to Maastrichtian age\", and with the \"?Upper Campanian and/or ?Lower Maastrichtian\" of Gradziński, Kielan-Jaworowska and Maryańska (1977).\n"
+          "notes": "Finds from its charophytes that the formation \"can not be considered younger than the Lower Campanian\", older than earlier datings had placed it.\n"
         },
         {
           "id": "fox1978a",
@@ -8653,12 +8696,23 @@
           "journal": "Trudy Sovmestnaya Sovetsko-Mongol'skaya Paleontologicheskaya Ekspeditsiya",
           "volume": "1",
           "pages": "296-304"
+        },
+        {
+          "id": "gradziński1974a",
+          "authors": "Gradziński, R.; Jerzykiewicz, T.",
+          "year": 1974,
+          "title": "Sedimentation of the Barun Goyot Formation",
+          "journal": "Palaeontologia Polonica",
+          "volume": "30",
+          "pages": "111-146",
+          "notes": "Source of the lithology.\n"
         }
       ]
     },
     "Tremp": {
       "rank": "group",
-      "description": "The Tremp Group is a group in Lleida and Huesca, Spain, dated to the Campanian to Thanetian stages of the Late Cretaceous and the Paleocene. It includes the Conques Formation and the Talarn Formation. Dinosaurs known from it include Abditosaurus, Adynomosaurus, Arenysaurus, Calvarius and 3 other genera.",
+      "lithology": "gray marl, then multicolored marl and sandstone, with minor conglomerate and limestone",
+      "description": "The Tremp Group is a group in Lleida and Huesca, Spain, dated to the Campanian to Thanetian stages of the Late Cretaceous and the Paleocene. It consists mainly of gray marl, then multicolored marl and sandstone, with minor conglomerate and limestone. It includes the Conques Formation and the Talarn Formation. Dinosaurs known from it include Abditosaurus, Adynomosaurus, Arenysaurus, Calvarius and 3 other genera.",
       "period": {
         "name": [
           "Late Cretaceous",
@@ -8695,7 +8749,7 @@
           "journal": "Acta Geologica Hispanica",
           "volume": "27",
           "pages": "95-108",
-          "notes": "Defines the group in the Conca de Tremp: the six formations, Posa, Conques, Talarn, Calizas de Suterranya y Sant Salvador de Toló, Esplugafreda and Claret, \"se agrupan en una unidad de rango superior denominada «Grupo de Tremp»\" (are grouped into a unit of higher rank called the Tremp Group, translated), between the Maastrichtian Arén Sandstone and the Ilerdian marine beds. Gives no stage for the formations.\n"
+          "notes": "Defines the group in the Conca de Tremp, uniting six formations from the La Posa to the Claret between the Arén Sandstone and the Ilerdian marine beds, and gives them no stage.\n"
         },
         {
           "id": "díez-canseco2014a",
@@ -8706,7 +8760,7 @@
           "volume": "312",
           "pages": "31-49",
           "doi": "10.1016/j.sedgeo.2014.06.008",
-          "notes": "Dates the Lower Red Unit, the Conques and Talarn formations, as Maastrichtian and the Suterranya Limestone as late Danian from planktic foraminifera, so that \"at least the first 4 Ma of the Danian are absent in the Tremp Formation\"; the Cretaceous-Paleogene boundary lies at the top of the Lower Red Unit or within that hiatus.\n"
+          "notes": "Dates the Lower Red Unit, the Conques and Talarn formations, as Maastrichtian and the Suterranya Limestone as late Danian from planktic foraminifera, so that \"at least the first 4 Ma of the Danian are absent in the Tremp Formation\"; the Cretaceous-Paleogene boundary lies at the top of the Lower Red Unit or within that hiatus. Source of the lithology.\n"
         },
         {
           "id": "rosell2001a",
@@ -8737,6 +8791,7 @@
           "publisher": "Informa UK Limited",
           "volume": "42",
           "issue": "5",
+          "pages": "e2210632",
           "doi": "10.1080/02724634.2023.2210632",
           "notes": "Gives group rank by naming a formation inside it, \"the Talarn Formation of the Tremp Group\". A unit that contains a named formation is a group.\n"
         },
@@ -8749,7 +8804,7 @@
           "volume": "8",
           "pages": "559-572",
           "doi": "10.1016/j.crpv.2009.05.002",
-          "notes": "Uses the coarser scheme, \"the Maastrichtian of the Tremp Formation, in Lleida\", and places the Blasi sites other than Blasi 1, which lies on top of the Aren Sandstone, in its lower part, giving the Arenysaurus type horizon as \"lower part of the Tremp Formation; Late Cretaceous, Late Maastrichtian\". This is not a competing claim: an older \"Tremp Formation\" and a newer \"Talarn Formation\" are the same rock at two resolutions, and the coarse reading is the correct one in the western syncline, where the Talarn does not reach and the Conques and Talarn criteria cannot be observed.\n"
+          "notes": "Uses the older Tremp Formation, giving the Arenysaurus type horizon as \"lower part of the Tremp Formation; Late Cretaceous, Late Maastrichtian\".\n"
         },
         {
           "id": "csiki-sava2015a",
@@ -8766,7 +8821,8 @@
     },
     "Trinity": {
       "rank": "group",
-      "description": "The Trinity Group is a group in Texas, Oklahoma and Arkansas, United States, dated to the Aptian to Albian stages of the Early Cretaceous. It includes the Antlers Formation, the Paluxy Formation and the Twin Mountains Formation. Dinosaurs known from it include Acrocanthosaurus, Tenontosaurus, Arkansaurus, Astrophocaudia and 2 other genera.",
+      "lithology": "sandstone, claystone and limestone",
+      "description": "The Trinity Group is a group in Texas, Oklahoma and Arkansas, United States, dated to the Aptian to Albian stages of the Early Cretaceous. It consists mainly of sandstone, claystone and limestone. It includes the Antlers Formation, the Paluxy Formation and the Twin Mountains Formation. Dinosaurs known from it include Acrocanthosaurus, Tenontosaurus, Arkansaurus, Astrophocaudia and 2 other genera.",
       "period": {
         "name": [
           "Early Cretaceous"
@@ -8802,7 +8858,7 @@
           "volume": "9",
           "pages": "e12242",
           "doi": "10.7717/peerj.12242",
-          "notes": "Gives the contents, which differ by state: in central Texas it \"consists of the Twin Mountains, Glen Rose, and Paluxy formations, in ascending order\", while in Oklahoma \"it consists almost entirely of the Antlers Formation, although the Holly Creek Formation is present in extreme southeast McCurtain County\".\n"
+          "notes": "Gives the contents, which differ by state: in central Texas it \"consists of the Twin Mountains, Glen Rose, and Paluxy formations, in ascending order\", while in Oklahoma \"it consists almost entirely of the Antlers Formation, although the Holly Creek Formation is present in extreme southeast McCurtain County\". Source of the lithology.\n"
         },
         {
           "id": "stoyanow1949a",
@@ -8852,7 +8908,7 @@
           "book": "Geology of the Cooper and Eromanga Basins, Queensland (Draper, J. J., ed.)",
           "publisher": "Queensland Department of Natural Resources and Mines, Brisbane",
           "pages": "30-56",
-          "notes": "Composes the subgroup and places it in the group above: the Mackunda and Winton formations \"were made part of the newly-proposed Manuka Subgroup (Vine & others, 1967)\", and \"The Wilgunyah and Manuka Subgroups constitute the Rolling Downs Group of Whitehouse (1955)\". Dates both members on spores and pollen: \"The Mackunda Formation embraces mid-Cretaceous (late Albian–early Cenomanian) spore-pollen assemblages\", and \"Mid-Cretaceous [late Albian(?)–Cenomanian] palynofloras of the Winton Formation encompass spore-pollen assemblages attributable to palynological units APK6 and APK7\".\n"
+          "notes": "Places the Mackunda and Winton formations in the subgroup, within the Rolling Downs Group, and dates both on spore-pollen assemblages as late Albian to Cenomanian.\n"
         },
         {
           "id": "tucker2013a",
@@ -8864,7 +8920,7 @@
           "issue": "2",
           "pages": "767-779",
           "doi": "10.1016/j.gr.2012.12.009",
-          "notes": "Records the same composition, that Gray and colleagues (2002) \"grouped the Winton together with the Mackunda Formation to form the Manuka Subgroup\". From detrital zircons, \"sedimentation of the Winton Formation commenced no earlier than latest Albian (~103.0–100.5 Ma)\", and \"the upper Winton Formation very likely continued into or past the early Turonian\". The Turonian rests partly on maximum depositional ages, some from single grains that the paper says \"may be erroneous\".\n"
+          "notes": "Dates the Winton Formation from detrital zircons, its base no earlier than latest Albian and its upper part \"into or past the early Turonian\".\n"
         },
         {
           "id": "bartholomai1981a",
@@ -8885,7 +8941,7 @@
           "journal": "Queensland Government Mining Journal",
           "volume": "68",
           "pages": "144-151",
-          "notes": "Erects the unit: \"The overlying Mackunda and Winton Formations are characterized by the presence of beds of labile sandstone, deposition of which resulted from a major influx of volcanic detritus. For this sequence we propose the term Manuka Sub-group. The name is derived from Manuka Station, 55 miles NNE of Winton\". \"Together the Wilgunya and Manuka Sub-groups comprise the Rolling Downs Group of Whitehouse (1954).\" Gives no age for the subgroup.\n"
+          "notes": "Erects the subgroup for the Mackunda and Winton formations, named for Manuka Station, 55 miles NNE of Winton, within the Rolling Downs Group. Gives no age for the subgroup.\n"
         },
         {
           "id": "whitehouse1955a",
@@ -8903,7 +8959,8 @@
     },
     "Belly River": {
       "rank": "group",
-      "description": "The Belly River Group is a group in Alberta, Canada, dated to the Santonian to Campanian stages of the Late Cretaceous. It includes the Dinosaur Park Formation, the Foremost Formation and the Oldman Formation. Dinosaurs known from it include Brachylophosaurus, Daspletosaurus, Gorgosaurus, Styracosaurus and 42 other genera.",
+      "lithology": "interbedded mudstone and very fine-grained sandstone, with coarser sandstone beds and minor bentonite, coal and concretions",
+      "description": "The Belly River Group is a group in Alberta, Canada, dated to the Santonian to Campanian stages of the Late Cretaceous. It consists mainly of interbedded mudstone and very fine-grained sandstone, with coarser sandstone beds and minor bentonite, coal and concretions. It includes the Dinosaur Park Formation, the Foremost Formation and the Oldman Formation. Dinosaurs known from it include Brachylophosaurus, Daspletosaurus, Gorgosaurus, Styracosaurus and 42 other genera.",
       "period": {
         "name": [
           "Late Cretaceous"
@@ -8969,6 +9026,14 @@
           "journal": "[Upper Paleozoic and Mesozoic Amphibians and Reptiles]. Akademia Naul SSSR, Moscow",
           "pages": "97-141",
           "notes": "The most ancient and most plentiful North American hadrosaur remains \"were found in the Belly River Formation which has been dated to the Campanian and Upper Santonian\", older than those of \"the Maastrichtian Edmonton Formation\". Uses the name at formation rank and treats the unit as corresponding to the Two Medicine Formation.\n"
+        },
+        {
+          "id": "cspg2010a",
+          "authors": "Canadian Society of Petroleum Geologists",
+          "year": 2010,
+          "title": "Belly River Formation",
+          "publisher": "Canadian Society of Petroleum Geologists",
+          "notes": "Source of the lithology.\n"
         }
       ]
     }

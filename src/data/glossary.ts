@@ -90,8 +90,8 @@ export function readGlossary(glossaryDirectory: string, supportedVersion: string
     {
         throw new Error(
             filePath + " uses glossary schema " + version + ", but the site supports " + supportedVersion +
-            ". A different major version is a breaking change: update the site for the new schema, then run " +
-            "npm run update-bindings.",
+            ". A breaking change (a different major version, or before 1.0.0 a different minor version): update " +
+            "the site for the new schema, then run npm run update-bindings.",
         );
     }
     else if (compatibility !== "same")

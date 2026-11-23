@@ -24,10 +24,19 @@ test("compareSchemaVersions classifies versions against the supported one", () =
 {
     assert.equal(compareSchemaVersions("3.2.0", "3.2.0"), "same");
     assert.equal(compareSchemaVersions("3.2.5", "3.2.0"), "same");
-    assert.equal(compareSchemaVersions("3.3.0", "3.2.0"), "newer-minor");
-    assert.equal(compareSchemaVersions("3.1.0", "3.2.0"), "older-minor");
+    assert.equal(compareSchemaVersions("3.3.0", "3.2.0"), "newer");
+    assert.equal(compareSchemaVersions("3.1.0", "3.2.0"), "older");
     assert.equal(compareSchemaVersions("4.0.0", "3.2.0"), "incompatible");
     assert.equal(compareSchemaVersions("2.9.0", "3.2.0"), "incompatible");
+
+    // Before 1.0.0 the minor version is the breaking one, and the patch version counts additions.
+    assert.equal(compareSchemaVersions("0.4.7", "0.4.7"), "same");
+    assert.equal(compareSchemaVersions("0.4.8", "0.4.7"), "newer");
+    assert.equal(compareSchemaVersions("0.4.6", "0.4.7"), "older");
+    assert.equal(compareSchemaVersions("0.5.0", "0.4.7"), "incompatible");
+    assert.equal(compareSchemaVersions("0.3.9", "0.4.7"), "incompatible");
+    assert.equal(compareSchemaVersions("1.0.0", "0.4.7"), "incompatible");
+    assert.equal(compareSchemaVersions("4.7.0", "0.4.7"), "incompatible");
 });
 
 test("readDataset reads a dataset with a supported schema", () =>

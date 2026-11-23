@@ -28,7 +28,7 @@ export type SemanticVersion = {
 /**
  * How a dataset's schema version relates to the version the bindings describe.
  */
-export type SchemaCompatibility = "same" | "newer-minor" | "older-minor" | "incompatible";
+export type SchemaCompatibility = "same" | "newer" | "older" | "incompatible";
 
 /**
  * Parse a semantic version string such as "3.2.0".
@@ -53,11 +53,11 @@ export function parseSemanticVersion(version: string): SemanticVersion
 }
 
 /**
- * Compare the dataset's schema version with the version the bindings describe.
- *
- * Under the data repository's versioning policy a different major version is a breaking change.
- * A newer minor version only adds fields, which the site ignores until the bindings are
- * updated. An older minor version may lack fields the bindings declare.
+ * Compare an output's schema version with the version the bindings describe, as semver and npm's
+ * ^ ranges do: from 1.0.0 a different major version is a breaking change, and before 1.0.0 a
+ * different minor version is (0.4.x to 0.5.0), as the data repository's VERSIONING.md describes.
+ * A newer compatible version only adds fields, which the site ignores until the bindings are
+ * updated; an older one may lack fields the bindings declare.
  *
  * @param datasetVersion - The dataset's `_metadata.schema_version`.
  * @param supportedVersion - The version the bindings were copied from.
@@ -68,17 +68,23 @@ export function compareSchemaVersions(datasetVersion: string, supportedVersion: 
     const dataset = parseSemanticVersion(datasetVersion);
     const supported = parseSemanticVersion(supportedVersion);
 
-    if (dataset.major !== supported.major)
+    if (dataset.major !== supported.major || (supported.major === 0 && dataset.minor !== supported.minor))
     {
         return "incompatible";
     }
-    else if (dataset.minor > supported.minor)
+
+    // Within a compatible line, the part that counts additions: the minor version from 1.0.0, the
+    // patch version before it.
+    const datasetStep = supported.major === 0 ? dataset.patch : dataset.minor;
+    const supportedStep = supported.major === 0 ? supported.patch : supported.minor;
+
+    if (datasetStep > supportedStep)
     {
-        return "newer-minor";
+        return "newer";
     }
-    else if (dataset.minor < supported.minor)
+    else if (datasetStep < supportedStep)
     {
-        return "older-minor";
+        return "older";
     }
 
     return "same";
@@ -102,18 +108,18 @@ export function readDataset(datasetDirectory: string, supportedVersion: string):
     {
         throw new Error(
             filePath + " uses output schema " + datasetVersion + ", but the site supports " + supportedVersion +
-            ". A different major version is a breaking change: update the site for the new schema, then run " +
-            "npm run update-bindings.",
+            ". A breaking change (a different major version, or before 1.0.0 a different minor version): update " +
+            "the site for the new schema, then run npm run update-bindings.",
         );
     }
-    else if (compatibility === "newer-minor")
+    else if (compatibility === "newer")
     {
         console.warn(
             "The dataset uses output schema " + datasetVersion + ", newer than the bindings (" + supportedVersion +
             "). New fields are ignored until you run npm run update-bindings.",
         );
     }
-    else if (compatibility === "older-minor")
+    else if (compatibility === "older")
     {
         console.warn(
             "The dataset uses output schema " + datasetVersion + ", older than the bindings (" + supportedVersion +

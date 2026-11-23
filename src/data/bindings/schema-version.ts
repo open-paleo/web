@@ -3,7 +3,7 @@
 /**
  * Output schema version that open-paleo.d.ts describes.
  */
-export const bindingsSchemaVersion = "4.6.0";
+export const bindingsSchemaVersion = "0.4.7";
 
 /**
  * Glossary schema version that glossary.d.ts describes.
