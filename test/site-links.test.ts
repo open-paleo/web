@@ -26,6 +26,16 @@ test("parseSitePage keeps internal links and ids, and decodes &amp;", () =>
     assert.deepEqual([...page.ids], ["species"]);
 });
 
+test("parseSitePage keeps the address of the page's link preview image", () =>
+{
+    const page = parseSitePage(
+        "<meta property=\"og:image\" content=\"https://open-paleo.org/preview/genus/tyrannosaurus.png\">"
+        + "<meta property=\"og:image:width\" content=\"1200\">",
+    );
+
+    assert.deepEqual(page.previewImages, ["https://open-paleo.org/preview/genus/tyrannosaurus.png"]);
+});
+
 test("parseSitePage keeps the text of JSON-LD scripts and no other script", () =>
 {
     const page = parseSitePage(

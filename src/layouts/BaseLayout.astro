@@ -3,6 +3,8 @@ import "../theme/theme.css";
 import { formatQuotes } from "../data/format.ts";
 import { createNavigationGroups, findNavigationGroup } from "../data/navigation.ts";
 import { getSiteData } from "../data/site-data.ts";
+import type { PreviewImage } from "../data/preview-image.ts";
+import { previewImageHeight, previewImageWidth } from "../data/preview-image.ts";
 import type { StructuredData } from "../data/structured-data.ts";
 import { writeJsonLd } from "../data/structured-data.ts";
 import { getHeaderColors } from "../data/theme-colors.ts";
@@ -46,9 +48,14 @@ type Props = {
      * addresses are absolute, so pages give it only when the site's address is known.
      */
     structuredData?: StructuredData;
+
+    /**
+     * The page's own link preview image, as genus pages have. Pages without one use the site's.
+     */
+    previewImage?: PreviewImage;
 };
 
-const { navigationItem, searchQuery = "", hasSearchSuggestions = true, structuredData } = Astro.props;
+const { navigationItem, searchQuery = "", hasSearchSuggestions = true, structuredData, previewImage } = Astro.props;
 // Titles and descriptions often come from the dataset.
 const title = Astro.props.title === undefined ? undefined : formatQuotes(Astro.props.title);
 const description = formatQuotes(Astro.props.description);
@@ -67,8 +74,8 @@ const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href :
 const sitemapUrl = Astro.site ? new URL(homeUrl + "sitemap-index.xml", Astro.site).href : undefined;
 // Link previews (Open Graph and Twitter cards) need absolute addresses, so like the canonical
 // link they're only added when the site's address is known.
-const previewImageUrl = Astro.site ? new URL(homeUrl + "social-preview.png", Astro.site).href : undefined;
-const previewImageDescription = siteName + ": a community-maintained phylogenetic dataset for paleontology, over the Triassic, Jurassic and Cretaceous periods in the colors of the geologic time scale.";
+const previewImageUrl = Astro.site ? new URL(previewImage?.path ?? homeUrl + "social-preview.png", Astro.site).href : undefined;
+const previewImageDescription = previewImage?.description ?? siteName + ": a community-maintained phylogenetic dataset for paleontology, over the Triassic, Jurassic and Cretaceous periods in the colors of the geologic time scale.";
 // The header's color in each scheme, from the theme's tokens, for the theme-color meta tags.
 const headerColors = getHeaderColors();
 // Escaped by writeJsonLd so dataset text in it can't end the script element.
@@ -104,8 +111,8 @@ const currentPath = Astro.url.pathname;
         <meta property="og:description" content={description}>
         {canonicalUrl && <meta property="og:url" content={canonicalUrl}>}
         {previewImageUrl && <meta property="og:image" content={previewImageUrl}>}
-        {previewImageUrl && <meta property="og:image:width" content="1200">}
-        {previewImageUrl && <meta property="og:image:height" content="630">}
+        {previewImageUrl && <meta property="og:image:width" content={String(previewImageWidth)}>}
+        {previewImageUrl && <meta property="og:image:height" content={String(previewImageHeight)}>}
         {previewImageUrl && <meta property="og:image:alt" content={previewImageDescription}>}
         <meta name="twitter:card" content={previewImageUrl ? "summary_large_image" : "summary"}>
         {structuredDataText && <script is:inline type="application/ld+json" set:html={structuredDataText}></script>}

@@ -127,6 +127,11 @@ jobs:
           done
           exit 1
 
+      # Each genus page's link preview image is drawn in Chromium from a page the build writes,
+      # which is then removed (scripts/create-preview-images.ts).
+      - name: Draw link preview images
+        run: npm run create-preview-images
+
       - name: Check the built site
         run: npm run check-site
 

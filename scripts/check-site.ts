@@ -1,10 +1,10 @@
 /**
  * Check the built site in dist/: every internal link resolves, every page's structured data is
- * valid JSON-LD, a sample of pages passes WCAG 2.2 AA in axe (light and dark), has no grid or flex
- * container that splits loose text, and does not scroll sideways at 320px, and the tree extractor
- * reads a figure using only the site's files.
+ * valid JSON-LD, every link preview image a page names exists, a sample of pages passes WCAG 2.2
+ * AA in axe (light and dark), has no grid or flex container that splits loose text, and does not
+ * scroll sideways at 320px, and the tree extractor reads a figure using only the site's files.
  *
- * Run after `npm run build`:
+ * Run after `npm run build` and `npm run create-preview-images`:
  *
  *     npm run check-site
  *
@@ -266,6 +266,53 @@ function checkStructuredData(pages: Map<string, SitePage>, problems: Array<SiteP
     }
 
     console.log("Structured data: " + scriptCount + " JSON-LD scripts on " + pageCount + " pages" + (scriptCount === 0 ? " (builds without SITE_URL write none)" : ""));
+}
+
+/**
+ * Check that every link preview image a page names is in the built site: the site's own image,
+ * and each genus page's, which `npm run create-preview-images` draws after the build. Builds
+ * without SITE_URL name none, since the address must be absolute.
+ *
+ * @param pages - The built pages.
+ * @param siteDirectory - The built site.
+ * @param basePath - The base path.
+ * @param problems - The list to add missing images to.
+ */
+function checkPreviewImages(pages: Map<string, SitePage>, siteDirectory: string, basePath: string, problems: Array<SiteProblem>): void
+{
+    const siteUrl = process.env.SITE_URL;
+    const checked = new Map<string, boolean>();
+    let imageCount = 0;
+
+    for (const [pagePath, page] of pages)
+    {
+        for (const address of page.previewImages)
+        {
+            const imageUrl = new URL(address);
+
+            imageCount++;
+
+            if (!siteUrl || imageUrl.origin !== new URL(siteUrl).origin || !imageUrl.pathname.startsWith(basePath))
+            {
+                problems.push({ location: pagePath, check: "preview image", message: address + ": not on this site" });
+                continue;
+            }
+
+            const file = decodeURIComponent(imageUrl.pathname.slice(basePath.length));
+
+            if (!checked.has(file))
+            {
+                checked.set(file, fs.existsSync(path.join(siteDirectory, file)));
+            }
+
+            if (!checked.get(file))
+            {
+                problems.push({ location: pagePath, check: "preview image", message: address + ": no such file; run npm run create-preview-images after the build" });
+            }
+        }
+    }
+
+    console.log("Preview images: " + imageCount + " named, " + checked.size + " distinct" + (imageCount === 0 ? " (builds without SITE_URL name none)" : ""));
 }
 
 // Every off-site host a checked page asked for. Each must be declared in src/data/privacy.ts,
@@ -872,6 +919,7 @@ async function checkSite(): Promise<void>
 
     checkSiteLinks(pages, siteDirectory, basePath, problems);
     checkStructuredData(pages, problems);
+    checkPreviewImages(pages, siteDirectory, basePath, problems);
 
     const server = await startStaticServer(siteDirectory, basePath);
     const browser = await chromium.launch();

@@ -1,6 +1,6 @@
 ---
 import type { OutlineEntry } from "../data/media.ts";
-import { getLicenseInfo } from "../data/media.ts";
+import { formatOutlineChanges, getLicenseInfo } from "../data/media.ts";
 
 /**
  * Properties of the outline a genus or clade page shows beside its name, and its credit line.
@@ -16,8 +16,7 @@ type Props = {
 const { outline } = Astro.props;
 const record = outline.record;
 const license = getLicenseInfo(record.license);
-// "Recolored; flipped horizontally" becomes "recolored and flipped horizontally".
-const changes = record.changes.toLowerCase().replace("; ", " and ");
+const changes = formatOutlineChanges(record.changes);
 
 // The outline is decorative; the credit line describes it. open-paleo/media's build checks and
 // cleans every SVG, so it is inlined unchanged.

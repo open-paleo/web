@@ -31,8 +31,9 @@ npm run preview   # serve dist/ as it will be published, search included
 
 Three scripts regenerate committed files, and are run by hand when their inputs change:
 `npm run create-map-shapes` (the map outlines, see below), `npm run create-paleo-coastlines`
-(the ancient coastlines, see below) and `npm run create-social-image` (the link preview image,
-after a theme change).
+(the ancient coastlines, see below) and `npm run create-social-image` (the site's link preview
+image, after a theme change). Each genus's own preview image is not committed: it is drawn after
+every build (see "Link preview images" below).
 
 The build reads the dataset from `../data/dist/open-paleo.json`, the glossary from
 `../glossary/dist/glossary.json` and the outlines from `../media/dist/media.json`, so clone
@@ -149,6 +150,7 @@ files.
 | `citations.ts`, `feed.ts` | Citations of the dataset and its records, and the feed of new genera |
 | `licenses.ts` | Every work by others the site serves or the repository holds, with its license, for the Licenses page and the built folders' `LICENSE.txt` |
 | `structured-data.ts` | The schema.org JSON-LD in the head of genus, clade and Data pages (see "Structured data" below) |
+| `preview-image.ts` | Each genus page's link preview image: its time scale with the genus's age marked, its path and its description (see "Link preview images" below) |
 | `embed.ts`, `embed-message.ts` | What a genus's infobox shows, the code other sites use to embed it, and the height message it sends them (see "Infoboxes" below) |
 | `packages.ts` | The dataset's official typed bindings on npm and PyPI, for the Developers page: their install commands, compatible version ranges and examples, built from the dataset's schema version, which is also the packages' version |
 | `known-names.ts` | The taxon and clade names the tree extractor matches labels against |
@@ -254,6 +256,26 @@ frame.
 
 `npm run check-site` checks two infoboxes and the Developers page along with the other sample
 pages.
+
+### Link preview images
+
+Link previews (Open Graph and Twitter cards) show `public/social-preview.png` for every page but
+genus pages, which each have their own: the genus's name, parent clade, authority and status,
+its age marked on the Triassic-to-Cretaceous time scale, and its outline with the outline's
+credit line, in the header's dark band like the site's image. Each is 1200 by 630 pixels.
+
+- **The image is drawn from a page.** The build writes each genus's image as a page at
+  `preview/genus/{slug}/` (`src/pages/preview/genus/[slug].astro`, with the time scale and
+  description from `src/data/preview-image.ts`), using the site's components, fonts and tokens.
+  `npm run create-preview-images` (`scripts/create-preview-images.ts`) then serves the built
+  site, draws each page in Chromium as `preview/genus/{slug}.png` and removes the page. It
+  takes about half a minute for every genus and adds about 100 MB to the built site
+- **Only builds with `SITE_URL` name the images**, since `og:image` must be absolute. CI draws
+  them anyway, so a change that breaks the drawing fails before a deploy, and `npm run
+  check-site` fails a deploy when a page names an image that isn't in the built site
+- **The outline's credit line is in the image**, as it must be wherever the outline is shown
+- **The card pages stay out of the sitemap** (`src/integrations/sitemap-filter.ts`) and carry
+  `noindex`, in case the drawing step is skipped
 
 ### Map outlines
 
@@ -568,11 +590,14 @@ npm run lint
 npm run spellcheck
 npm test
 npm run build
+npm run create-preview-images
 npm run check-site
 ```
 
-`npm run check-site` checks the built site: every internal link resolves, every JSON-LD script
-is valid (in builds with `SITE_URL`), and a sample of
+`npm run create-preview-images` draws each genus's link preview image (see "Link preview images"
+above). `npm run check-site` checks the built site: every internal link resolves, every JSON-LD
+script is valid and every link preview image a page names exists (both in builds with
+`SITE_URL`), and a sample of
 pages (one of each kind, plus the records with the most unusual content) passes WCAG 2.2 AA in
 axe in light and dark mode, has no grid or flex container that splits prose into columns (loose
 text beside a link, italic name or span; a checkbox beside its label text is fine),
@@ -581,8 +606,8 @@ and does not scroll sideways in a 320px window. It needs Chromium once:
 `scripts/check-site.ts`; if a record in it leaves the dataset, replace it with one that shows the
 same thing.
 
-All six run in CI on every pull request, against the current `main` of open-paleo/data, and
-every deployment runs the site check before publishing. Add words that the spell checker
+All seven run in CI on every pull request, against the current `main` of open-paleo/data, and
+every deployment draws the preview images and runs the site check before publishing. Add words that the spell checker
 rejects but are correct (taxon names, font names) to `cspell.json`. Note the change in
 `CHANGELOG.md`, under today's date.
 

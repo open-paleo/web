@@ -20,6 +20,12 @@ export type SitePage = {
      * The text of every JSON-LD script on the page, as written.
      */
     structuredData: Array<string>;
+
+    /**
+     * The address of every link preview image the page names (its og:image), as written. Only
+     * builds with SITE_URL name one, since the address must be absolute.
+     */
+    previewImages: Array<string>;
 };
 
 /**
@@ -65,19 +71,22 @@ export type LinkReport = {
 const hrefPattern = /\shref="([^"]*)"/g;
 const idPattern = /\sid="([^"]*)"/g;
 const structuredDataPattern = /<script\b[^>]*\stype="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g;
+const previewImagePattern = /<meta property="og:image" content="([^"]*)"/g;
 
 /**
- * Read the links, ids and structured data of one page's HTML. Links to other sites, mail
- * addresses and the like are left out: only links starting with "/" or "#" are internal.
+ * Read the links, ids, structured data and link preview images of one page's HTML. Links to
+ * other sites, mail addresses and the like are left out: only links starting with "/" or "#" are
+ * internal.
  *
  * @param html - The page's HTML.
- * @returns The page's internal links, element ids and JSON-LD.
+ * @returns The page's internal links, element ids, JSON-LD and preview image addresses.
  */
 export function parseSitePage(html: string): SitePage
 {
     const links = new Array<string>();
     const ids = new Set<string>();
     const structuredData = new Array<string>();
+    const previewImages = new Array<string>();
 
     for (const match of html.matchAll(hrefPattern))
     {
@@ -99,7 +108,12 @@ export function parseSitePage(html: string): SitePage
         structuredData.push(match[1]);
     }
 
-    return { links, ids, structuredData };
+    for (const match of html.matchAll(previewImagePattern))
+    {
+        previewImages.push(match[1].replaceAll("&amp;", "&"));
+    }
+
+    return { links, ids, structuredData, previewImages };
 }
 
 /**

@@ -1,0 +1,334 @@
+---
+import "../../../theme/theme.css";
+import { createGenusEmbed } from "../../../data/embed.ts";
+import { capitalizeFirstLetter, formatAgeRange } from "../../../data/format.ts";
+import { findGenusOutline, formatOutlineChanges, getLicenseInfo, getMedia } from "../../../data/media.ts";
+import { createPreviewTimeScale, previewImageHeight, previewImageWidth } from "../../../data/preview-image.ts";
+import { getTypeSpecies } from "../../../data/records.ts";
+import type { GenusEntry } from "../../../data/site-data.ts";
+import { getSiteData } from "../../../data/site-data.ts";
+
+/**
+ * Properties of a genus's link preview image, built as a page that
+ * scripts/create-preview-images.ts draws as a PNG and then removes.
+ */
+type Props = {
+    /**
+     * The genus the image shows.
+     */
+    entry: GenusEntry;
+};
+
+/**
+ * One generated image page: its URL parameter and its properties.
+ */
+type PreviewPath = {
+    /**
+     * URL parameters: the genus slug.
+     */
+    params: PreviewPathParameters;
+
+    /**
+     * Properties passed to the page.
+     */
+    props: Props;
+};
+
+/**
+ * URL parameters of a genus's image page.
+ */
+type PreviewPathParameters = {
+    /**
+     * The genus slug, as in preview/genus/{slug}/.
+     */
+    slug: string;
+};
+
+/**
+ * List one image page per genus.
+ *
+ * @returns The path and properties of every image page.
+ */
+export function getStaticPaths(): Array<PreviewPath>
+{
+    const paths = new Array<PreviewPath>();
+
+    for (const entry of getSiteData().genera)
+    {
+        paths.push({ params: { slug: entry.slug }, props: { entry } });
+    }
+
+    return paths;
+}
+
+const { entry } = Astro.props;
+const siteData = getSiteData();
+const embed = createGenusEmbed(entry.record);
+const period = getTypeSpecies(entry.record).period;
+const ageRange = period.from_ma !== undefined && period.to_ma !== undefined ? formatAgeRange(period.from_ma, period.to_ma) : "";
+const outline = findGenusOutline(getMedia(siteData), entry, siteData);
+const license = outline ? getLicenseInfo(outline.record.license) : undefined;
+const changes = outline ? formatOutlineChanges(outline.record.changes) : "";
+const timeScale = siteData.timeline ? createPreviewTimeScale(period, siteData.timeline) : undefined;
+const status = embed.status === "valid" ? "" : capitalizeFirstLetter(embed.status);
+const siteHost = Astro.site ? Astro.site.host : "open-paleo.org";
+const pageStyle = "--name-length: " + embed.name.length + "; --image-width: " + previewImageWidth + "px; --image-height: " + previewImageHeight + "px";
+
+// The outline is decorative here as on the genus page; the credit line names it. open-paleo/media's
+// build checks and cleans every SVG, so it is inlined unchanged.
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="robots" content="noindex">
+        <title>{embed.name} | Open Paleo</title>
+    </head>
+    <body style={pageStyle}>
+        <main class:list={["preview-card", { "has-outline": outline }]}>
+            <p class="preview-site">Open Paleo</p>
+            <p class="preview-parent">{embed.parent}</p>
+            <h1 class="preview-name taxon">{embed.name}</h1>
+            {(embed.authority || status) && (
+                <p class="preview-meta">{embed.authority && <span>{embed.authority}</span>}{status && <span class="preview-status">{status}</span>}</p>
+            )}
+            {outline && <div class="preview-outline" aria-hidden="true"><Fragment set:html={outline.svg} /></div>}
+            <div class="preview-age">
+                <p class="preview-age-text">{ageRange && <span class="preview-age-range figures">{ageRange}</span>}{embed.age && <span>{embed.age}</span>}</p>
+                {timeScale && (
+                    <div class="preview-scale">
+                        <div class="preview-row preview-periods">
+                            {timeScale.periods.map((band) => <span class:list={{ "has-dark-color": band.hasDarkColor }} style={"flex-basis: " + band.widthPercent + "%; background: var(" + band.colorToken + ")"}>{band.name}</span>)}
+                        </div>
+                        <div class="preview-row preview-stages">
+                            {timeScale.stages.map((band) => <span style={"flex-basis: " + band.widthPercent + "%; background: var(" + band.colorToken + ")"}></span>)}
+                        </div>
+                        {timeScale.marker && <span class="preview-marker" style={"left: " + timeScale.marker.leftPercent + "%; width: " + timeScale.marker.widthPercent + "%"}></span>}
+                    </div>
+                )}
+            </div>
+            <footer class="preview-footer">
+                {outline && license && <p class="preview-credit">{outline.record.title}, based on <i class="taxon">{outline.record.depicts}</i>. By {outline.record.creator}, {license.name}, {changes}.</p>}
+                <p class="preview-host">{siteHost}</p>
+            </footer>
+        </main>
+    </body>
+</html>
+
+<style>
+    /* The image is the page, at exactly the image's size, in the header's dark band like the
+       site's own link preview. */
+    body
+    {
+        width: var(--image-width);
+        height: var(--image-height);
+        margin: 0;
+        overflow: hidden;
+        background: var(--color-header-background);
+    }
+
+    .preview-card
+    {
+        --outline-column: 0px;
+
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto auto auto auto 1fr auto auto;
+        grid-template-areas:
+            "site"
+            "parent"
+            "name"
+            "meta"
+            "."
+            "age"
+            "footer";
+        column-gap: 56px;
+        height: 100%;
+        padding: 52px 72px 44px;
+        color: var(--color-header-ink);
+        font-family: var(--font-sans);
+        container-type: inline-size;
+    }
+
+    .preview-card.has-outline
+    {
+        --outline-column: 376px;
+
+        grid-template-columns: minmax(0, 1fr) 320px;
+        grid-template-areas:
+            "site site"
+            "parent outline"
+            "name outline"
+            "meta outline"
+            ". outline"
+            "age age"
+            "footer footer";
+    }
+
+    .preview-site
+    {
+        grid-area: site;
+        margin-bottom: 28px;
+        font-family: var(--font-serif);
+        font-size: 34px;
+        font-weight: 800;
+        line-height: 1;
+    }
+
+    .preview-parent
+    {
+        grid-area: parent;
+        color: var(--color-header-muted);
+        font-size: 30px;
+    }
+
+    /* A long name shrinks to fit beside the outline: at 800 weight a letter is under half an em
+       wide, as on the genus page. */
+    .preview-name
+    {
+        grid-area: name;
+        color: var(--color-header-ink);
+        font-family: var(--font-serif);
+        font-size: min(104px, (100cqi - var(--outline-column)) / (var(--name-length) * 0.5));
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.01em;
+        overflow-wrap: anywhere;
+    }
+
+    .preview-meta
+    {
+        grid-area: meta;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 24px;
+        margin-top: 8px;
+        color: var(--color-header-muted);
+        font-size: 30px;
+    }
+
+    .preview-status
+    {
+        color: var(--color-header-accent);
+    }
+
+    .preview-outline
+    {
+        grid-area: outline;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        min-height: 0;
+        color: var(--color-header-ink);
+    }
+
+    .preview-outline :global(svg)
+    {
+        width: 100%;
+        max-height: 230px;
+    }
+
+    .preview-age
+    {
+        grid-area: age;
+        display: grid;
+        gap: 12px;
+        margin-top: 24px;
+    }
+
+    .preview-age-text
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 20px;
+        color: var(--color-header-muted);
+        font-size: 28px;
+    }
+
+    .preview-age-range
+    {
+        color: var(--color-header-ink);
+        font-weight: 700;
+    }
+
+    /* The periods and stages, each as wide as it lasted, under a frame that marks the genus's
+       age across both rows. */
+    .preview-scale
+    {
+        position: relative;
+        display: grid;
+        gap: 5px;
+    }
+
+    .preview-row
+    {
+        display: flex;
+        overflow: hidden;
+        border-radius: 3px;
+    }
+
+    .preview-row span
+    {
+        flex-grow: 0;
+        flex-shrink: 0;
+        box-shadow: inset 2px 0 0 var(--color-header-background);
+    }
+
+    .preview-periods span
+    {
+        padding: 6px 12px;
+        color: var(--color-on-period);
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+    .preview-periods span.has-dark-color
+    {
+        color: var(--color-on-period-dark);
+    }
+
+    .preview-stages
+    {
+        height: 16px;
+    }
+
+    .preview-marker
+    {
+        position: absolute;
+        top: -7px;
+        bottom: -7px;
+        min-width: 8px;
+        border: 4px solid var(--color-header-ink);
+        border-radius: 5px;
+        transform: translateX(-4px);
+        box-sizing: content-box;
+    }
+
+    .preview-footer
+    {
+        grid-area: footer;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 40px;
+        margin-top: 22px;
+    }
+
+    .preview-credit
+    {
+        max-width: 820px;
+        color: var(--color-header-muted);
+        font-size: 17px;
+        line-height: 1.35;
+    }
+
+    .preview-host
+    {
+        flex-shrink: 0;
+        margin-left: auto;
+        color: var(--color-header-accent);
+        font-size: 24px;
+    }
+</style>

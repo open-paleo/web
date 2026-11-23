@@ -20,6 +20,10 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   on npm (`@open-paleo/types`) and Pydantic models on PyPI (`open-paleo`), with how to install
   them, an example of reading the dataset with each, and which versions to use. The version
   numbers come from the dataset's schema version. The Data page's downloads point to it
+- Each genus page has its own link preview image for Bluesky, Threads, Slack, Discord and other
+  sites that show one: the genus's name, parent clade, authority and status, its age marked on
+  the Triassic-to-Cretaceous time scale, and its outline with the outline's credit line. The
+  images are drawn after the build, and the site check fails a deploy if one is missing
 - The Developers page describes what the site already offered developers: the Atom feed of
   newly named genera (`feed.xml`), the schema.org structured data on genus, clade and Data
   pages, and links to search results (`search/?q=`) and the OpenSearch description

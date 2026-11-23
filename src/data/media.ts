@@ -207,6 +207,18 @@ export function getLicenseInfo(license: string): LicenseInfo
 }
 
 /**
+ * Format the changes made to an outline for its credit line: "Recolored; flipped horizontally"
+ * becomes "recolored and flipped horizontally".
+ *
+ * @param changes - The outline record's changes.
+ * @returns The changes as they read in the credit line.
+ */
+export function formatOutlineChanges(changes: string): string
+{
+    return changes.toLowerCase().replace("; ", " and ");
+}
+
+/**
  * Get the licenses an image may carry, in the order the media repository gives them.
  *
  * @returns The licenses.

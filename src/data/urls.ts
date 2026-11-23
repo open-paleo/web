@@ -34,6 +34,21 @@ export function createGenusEmbedPath(baseUrl: string, slug: string): string
 }
 
 /**
+ * Create the path of a genus's link preview image: "/preview/genus/tyrannosaurus.png". The build
+ * makes it from the page at the same path without ".png" (src/data/preview-image.ts).
+ *
+ * @param baseUrl - The site's base path, from import.meta.env.BASE_URL.
+ * @param slug - The genus slug.
+ * @returns The path.
+ */
+export function createGenusPreviewImagePath(baseUrl: string, slug: string): string
+{
+    const base = baseUrl.endsWith("/") ? baseUrl : baseUrl + "/";
+
+    return base + "preview/genus/" + slug + ".png";
+}
+
+/**
  * Create the absolute address of a record's page: "https://open-paleo.org/genus/tyrannosaurus/".
  *
  * @param siteUrl - The site's address with its base path: "https://open-paleo.org/", or

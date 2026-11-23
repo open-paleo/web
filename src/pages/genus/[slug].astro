@@ -28,6 +28,7 @@ import { createGenusMap, getMapShapes, warnAboutMissingOutlines } from "../../da
 import { findGenusOutline, getMedia } from "../../data/media.ts";
 import { createPaleoViews } from "../../data/paleo-positions.ts";
 import { getWright2013Model } from "../../data/plate-rotation.ts";
+import { getGenusPreviewImage } from "../../data/preview-image.ts";
 import { getTypeSpecies } from "../../data/records.ts";
 import type { GenusEntry } from "../../data/site-data.ts";
 import { getSiteData } from "../../data/site-data.ts";
@@ -108,10 +109,12 @@ const pronunciation = genus.pronunciation;
 const citation = createRecordCitation("Genus", genus.genus, entry.slug, citationUrl, getSiteData().metadata);
 const embedPath = createGenusEmbedPath(import.meta.env.BASE_URL, entry.slug);
 const embedCode = createEmbedCode(new URL(embedPath, siteUrl).href, genus.genus);
+// The link preview image, drawn after the build by scripts/create-preview-images.ts.
+const previewImage = getGenusPreviewImage(genus, entry.slug, outline?.record.title ?? "", import.meta.env.BASE_URL);
 const structuredData = Astro.site ? createGenusStructuredData(entry, siteData, new URL(import.meta.env.BASE_URL, Astro.site)) : undefined;
 ---
 
-<BaseLayout title={genus.genus} description={getFirstSentence(genus.description)} navigationItem="genera" structuredData={structuredData}>
+<BaseLayout title={genus.genus} description={getFirstSentence(genus.description)} navigationItem="genera" structuredData={structuredData} previewImage={previewImage}>
     <article class="genus-page" data-pagefind-body data-pagefind-filter="kind:Genus">
         <LineageTrail taxonomy={genus.taxonomy} placement={genus.placement} />
 

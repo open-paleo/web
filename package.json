@@ -17,6 +17,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "spellcheck": "cspell \"**/*.md\" \"*.ts\" \"scripts/**/*.ts\" \"src/**/*.{ts,astro,css}\" --no-progress",
+    "create-preview-images": "node --experimental-strip-types scripts/create-preview-images.ts",
     "check-site": "node --experimental-strip-types scripts/check-site.ts",
     "update-bindings": "node --experimental-strip-types scripts/update-bindings.ts",
     "create-test-fixture": "node --experimental-strip-types scripts/create-test-fixture.ts",
