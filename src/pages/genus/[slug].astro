@@ -4,6 +4,7 @@ import CorrectionLink from "../../components/CorrectionLink.astro";
 import Description from "../../components/Description.astro";
 import DiagnosisList from "../../components/DiagnosisList.astro";
 import DisputeNote from "../../components/DisputeNote.astro";
+import EmbedCode from "../../components/EmbedCode.astro";
 import GenusMap from "../../components/GenusMap.astro";
 import TaxonOutline from "../../components/TaxonOutline.astro";
 import GlancePanel from "../../components/GlancePanel.astro";
@@ -21,6 +22,7 @@ import StatusBadge from "../../components/StatusBadge.astro";
 import SynonymTable from "../../components/SynonymTable.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { createRecordCitation } from "../../data/citations.ts";
+import { createEmbedCode } from "../../data/embed.ts";
 import { formatAuthority, getFirstSentence } from "../../data/format.ts";
 import { createGenusMap, getMapShapes, warnAboutMissingOutlines } from "../../data/genus-map.ts";
 import { findGenusOutline, getMedia } from "../../data/media.ts";
@@ -30,7 +32,7 @@ import { getTypeSpecies } from "../../data/records.ts";
 import type { GenusEntry } from "../../data/site-data.ts";
 import { getSiteData } from "../../data/site-data.ts";
 import { createGenusStructuredData } from "../../data/structured-data.ts";
-import { createReferenceAnchor } from "../../data/urls.ts";
+import { createGenusEmbedPath, createReferenceAnchor } from "../../data/urls.ts";
 
 /**
  * Properties of a genus page.
@@ -86,8 +88,10 @@ export function getStaticPaths(): Array<GenusPath>
 
 const { entry } = Astro.props;
 
-// The page's address for its citation; local builds without SITE_URL cite the preview server's.
-const citationUrl = new URL(Astro.url.pathname, Astro.site ?? "http://localhost:4321").href;
+// The page's address for its citation, and the site's for the embed code; local builds without
+// SITE_URL use the preview server's.
+const siteUrl = Astro.site ?? new URL("http://localhost:4321");
+const citationUrl = new URL(Astro.url.pathname, siteUrl).href;
 const genus = entry.record;
 const siteData = getSiteData();
 const typeSpecies = getTypeSpecies(genus);
@@ -102,6 +106,8 @@ const authorityReferenceId = genus.erected_in ?? typeSpecies.erected_in;
 const authorityAnchor = "#" + createReferenceAnchor(siteData.referenceById.get(authorityReferenceId)?.slug ?? authorityReferenceId);
 const pronunciation = genus.pronunciation;
 const citation = createRecordCitation("Genus", genus.genus, entry.slug, citationUrl, getSiteData().metadata);
+const embedPath = createGenusEmbedPath(import.meta.env.BASE_URL, entry.slug);
+const embedCode = createEmbedCode(new URL(embedPath, siteUrl).href, genus.genus);
 const structuredData = Astro.site ? createGenusStructuredData(entry, siteData, new URL(import.meta.env.BASE_URL, Astro.site)) : undefined;
 ---
 
@@ -178,6 +184,10 @@ const structuredData = Astro.site ? createGenusStructuredData(entry, siteData, n
 
             <PageSection title="Cite this record">
                 <HowToCite citation={citation} subject={genus.genus} />
+            </PageSection>
+
+            <PageSection title="Embed this genus">
+                <EmbedCode embedCode={embedCode} embedPath={embedPath} genusName={genus.genus} />
             </PageSection>
 
             <CorrectionLink kind="Genus" name={genus.genus} />

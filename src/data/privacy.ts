@@ -52,7 +52,7 @@ export type ExternalService = {
  * The day the current privacy policy took effect, as the page shows it. Update it whenever the
  * policy changes.
  */
-export const privacyPolicyEffectiveDate = "November 14, 2026";
+export const privacyPolicyEffectiveDate = "November 23, 2026";
 
 /**
  * The address for privacy questions and requests.
@@ -77,7 +77,7 @@ export const externalServices: Array<ExternalService> = [
         name: "Plausible Analytics",
         operator: "Plausible, Estonia",
         role: "Counts visits",
-        whenContacted: "On every page of open-paleo.org",
+        whenContacted: "On every page of open-paleo.org, including infoboxes shown on other sites",
         receives: "The page’s address, the site that linked to it, your browser’s description of itself, and your IP address.",
         policyUrl: "https://plausible.io/data-policy",
         policyName: "Plausible’s data policy",

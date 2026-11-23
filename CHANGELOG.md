@@ -4,6 +4,19 @@ The site is published continuously from `main`, so changes are grouped by the da
 live, newest first. Add to today's section, creating it if needed. The data the site shows has
 its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
+## 2026-11-23
+
+### Added
+
+- Every genus has an infobox other sites can embed (`embed/genus/{slug}/`): its name, parent
+  clade, authority, status, age, a one-sentence summary, diet, locomotion, length, mass, where
+  it was found and its outline, linking to the genus page. A new "Embed this genus" section on
+  genus pages gives the `iframe` code with a copy button, beside a preview of the infobox.
+  Infoboxes are left out of the sitemap and search, and the privacy policy now says that
+  Plausible counts views of them
+- A Developers page (`developers/`, under Data) documents embedding an infobox: the code, the
+  frame's size, the height message the infobox sends, and a script that fits the frame to it
+
 ## 2026-11-20
 
 ### Added

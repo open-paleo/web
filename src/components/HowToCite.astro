@@ -25,8 +25,8 @@ const { citation, subject } = Astro.props;
     <p class="citation-text">{citation.before}{citation.italic && <i class="taxon">{citation.italic}</i>}{citation.after}</p>
     <pre class="bibtex" tabindex="0" role="region" aria-label={"BibTeX entry for " + subject}><code>{citation.bibtex}</code></pre>
     <p class="copy-actions" hidden>
-        <button class="copy-button" type="button" data-copy-text={citation.text}>Copy citation</button>
-        <button class="copy-button" type="button" data-copy-text={citation.bibtex}>Copy BibTeX</button>
+        <button class="copy-button" type="button" data-copy-text={citation.text} data-copied-message="Citation copied.">Copy citation</button>
+        <button class="copy-button" type="button" data-copy-text={citation.bibtex} data-copied-message="BibTeX copied.">Copy BibTeX</button>
         <span class="copy-status" role="status"></span>
     </p>
 </div>

@@ -1,0 +1,334 @@
+---
+import Prose from "../../../components/Prose.astro";
+import StatusBadge from "../../../components/StatusBadge.astro";
+import TaxonOutline from "../../../components/TaxonOutline.astro";
+import EmbedLayout from "../../../layouts/EmbedLayout.astro";
+import { createGenusEmbed } from "../../../data/embed.ts";
+import { findGenusOutline, getMedia } from "../../../data/media.ts";
+import type { GenusEntry } from "../../../data/site-data.ts";
+import { getSiteData } from "../../../data/site-data.ts";
+import { createPagePath } from "../../../data/urls.ts";
+
+/**
+ * Properties of a genus's infobox.
+ */
+type Props = {
+    /**
+     * The genus the infobox summarizes.
+     */
+    entry: GenusEntry;
+};
+
+/**
+ * One generated infobox: its URL parameter and its properties.
+ */
+type EmbedPath = {
+    /**
+     * URL parameters: the genus slug.
+     */
+    params: EmbedPathParameters;
+
+    /**
+     * Properties passed to the page.
+     */
+    props: Props;
+};
+
+/**
+ * URL parameters of a genus's infobox.
+ */
+type EmbedPathParameters = {
+    /**
+     * The genus slug, as in embed/genus/{slug}/.
+     */
+    slug: string;
+};
+
+/**
+ * List one infobox per genus.
+ *
+ * @returns The path and properties of every infobox.
+ */
+export function getStaticPaths(): Array<EmbedPath>
+{
+    const paths = new Array<EmbedPath>();
+
+    for (const entry of getSiteData().genera)
+    {
+        paths.push({ params: { slug: entry.slug }, props: { entry } });
+    }
+
+    return paths;
+}
+
+const { entry } = Astro.props;
+const siteData = getSiteData();
+const baseUrl = import.meta.env.BASE_URL;
+const embed = createGenusEmbed(entry.record);
+const outline = findGenusOutline(getMedia(siteData), entry, siteData);
+const genusPath = createPagePath(baseUrl, "genus", entry.slug);
+const parent = siteData.cladeByName.get(embed.parent);
+const parentPath = parent?.record ? createPagePath(baseUrl, "clade", parent.slug) : "";
+// Valid names get no status badge, so the line under the name may have nothing to show.
+const hasMeta = embed.authority !== "" || embed.status !== "valid";
+---
+
+<EmbedLayout title={embed.name} canonicalPath={genusPath}>
+    <article class:list={["genus-embed", { "has-outline": outline }]}>
+        <p class="embed-parent">{parentPath ? <a href={parentPath}>{embed.parent}</a> : embed.parent}</p>
+        <h1 class="embed-name" style={"--name-length: " + embed.name.length}><a class="taxon" href={genusPath}>{embed.name}</a></h1>
+        {hasMeta && (
+            <p class="embed-meta">
+                {embed.authority && <span>{embed.authority}</span>}
+                <StatusBadge status={embed.status} />
+            </p>
+        )}
+        {outline && <TaxonOutline outline={outline} />}
+        {(embed.ageRange || embed.age) && (
+            <p class="embed-age">{embed.ageRange && <span class="embed-age-range figures">{embed.ageRange}</span>}{embed.age && <span class="embed-age-names">{embed.age}</span>}</p>
+        )}
+        <p class="embed-summary"><Prose text={embed.summary} /></p>
+        {embed.facts.length > 0 && (
+            <dl class="embed-facts">
+                {embed.facts.map((fact) => (
+                    <>
+                        <dt>{fact.label}</dt>
+                        <dd>{fact.value}</dd>
+                    </>
+                ))}
+            </dl>
+        )}
+        {embed.sizeNote && <p class="embed-note">{embed.sizeNote}</p>}
+        <footer class="embed-footer">
+            <a class="embed-more" href={genusPath}>More about <span class="taxon">{embed.name}</span></a>
+            <p class="embed-license"><a href={baseUrl}>Open Paleo</a>, data under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+        </footer>
+    </article>
+</EmbedLayout>
+
+<style>
+    /* A card filling the frame. The outline sits to the right of the name, with its credit above
+       the footer. */
+    .genus-embed
+    {
+        --outline-column: 0rem;
+
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-2);
+        padding: var(--space-4);
+        background: var(--color-surface);
+        border: 1px solid color-mix(in srgb, var(--color-line) 55%, var(--color-muted));
+        border-radius: var(--radius);
+        container-type: inline-size;
+    }
+
+    .genus-embed.has-outline
+    {
+        --outline-column: 7.5rem;
+
+        grid-template-columns: minmax(0, 1fr) 6.5rem;
+        grid-template-areas:
+            "parent outline"
+            "name outline"
+            "meta outline"
+            "age age"
+            "summary summary"
+            "facts facts"
+            "note note"
+            "credit credit"
+            "footer footer";
+        column-gap: var(--space-4);
+    }
+
+    .genus-embed.has-outline .embed-parent
+    {
+        grid-area: parent;
+    }
+
+    .genus-embed.has-outline .embed-name
+    {
+        grid-area: name;
+    }
+
+    .genus-embed.has-outline .embed-meta
+    {
+        grid-area: meta;
+    }
+
+    .genus-embed.has-outline .embed-age
+    {
+        grid-area: age;
+    }
+
+    .genus-embed.has-outline .embed-summary
+    {
+        grid-area: summary;
+    }
+
+    .genus-embed.has-outline .embed-facts
+    {
+        grid-area: facts;
+    }
+
+    .genus-embed.has-outline .embed-note
+    {
+        grid-area: note;
+    }
+
+    .genus-embed.has-outline .embed-footer
+    {
+        grid-area: footer;
+    }
+
+    /* In a narrow frame the outline shrinks beside the name. A media query, because the card is
+       the size container, and a container query can't style the container itself. */
+    @media (max-width: 22rem)
+    {
+        .genus-embed.has-outline
+        {
+            --outline-column: 5rem;
+
+            grid-template-columns: minmax(0, 1fr) 4rem;
+        }
+    }
+
+    .embed-parent,
+    .embed-meta,
+    .embed-age,
+    .embed-facts,
+    .embed-note,
+    .embed-footer
+    {
+        font-family: var(--font-sans);
+    }
+
+    .embed-parent,
+    .embed-meta
+    {
+        color: var(--color-muted);
+        font-size: var(--text-small);
+    }
+
+    .embed-meta
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: var(--space-1) var(--space-3);
+    }
+
+    .embed-parent a
+    {
+        color: inherit;
+    }
+
+    /* A long name shrinks to fit the card, as on the genus page: at 800 weight a letter is under
+       half an em wide. Should the estimate fall short, the name wraps rather than overflowing. */
+    .embed-name
+    {
+        font-size: min(var(--text-heading-1), (100cqi - var(--outline-column)) / (var(--name-length) * 0.5));
+        overflow-wrap: anywhere;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+    }
+
+    .embed-name a
+    {
+        color: var(--color-ink);
+        text-decoration: none;
+    }
+
+    .embed-name a:hover
+    {
+        color: var(--color-accent);
+        text-decoration: underline;
+    }
+
+    .embed-age
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0 var(--space-3);
+        padding-top: var(--space-2);
+        border-top: 1px solid var(--color-line);
+        font-size: var(--text-interface);
+    }
+
+    .embed-age-range
+    {
+        font-weight: 700;
+    }
+
+    .embed-age-names
+    {
+        color: var(--color-muted);
+    }
+
+    .embed-summary
+    {
+        font-size: var(--text-interface);
+    }
+
+    .embed-facts
+    {
+        display: grid;
+        grid-template-columns: max-content minmax(0, 1fr);
+        margin: 0;
+        font-size: var(--text-small);
+    }
+
+    .embed-facts dt,
+    .embed-facts dd
+    {
+        padding-block: var(--space-1);
+        border-top: 1px solid var(--color-line);
+    }
+
+    .embed-facts dt
+    {
+        padding-right: var(--space-4);
+        color: var(--color-muted);
+    }
+
+    .embed-facts dd
+    {
+        margin: 0;
+    }
+
+    .embed-note
+    {
+        color: var(--color-muted);
+        font-size: var(--text-caption);
+    }
+
+    .embed-footer
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: var(--space-1) var(--space-4);
+        padding-top: var(--space-2);
+        border-top: 1px solid var(--color-line);
+        font-size: var(--text-small);
+    }
+
+    .embed-more
+    {
+        color: var(--color-accent);
+        font-weight: 600;
+    }
+
+    .embed-license
+    {
+        color: var(--color-muted);
+        font-size: var(--text-caption);
+    }
+
+    .embed-license a
+    {
+        color: inherit;
+    }
+</style>

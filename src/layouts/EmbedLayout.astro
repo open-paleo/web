@@ -1,0 +1,75 @@
+---
+import "../theme/theme.css";
+import { formatQuotes } from "../data/format.ts";
+
+/**
+ * Properties of the layout of an infobox, a page other sites show in a frame. It has no header,
+ * navigation or footer; the infobox links to the full page instead.
+ */
+type Props = {
+    /**
+     * Page title without the site name.
+     */
+    title: string;
+
+    /**
+     * The full page the infobox summarizes, as a path. Search engines are pointed to it, and
+     * told not to list the infobox itself.
+     */
+    canonicalPath: string;
+};
+
+const { canonicalPath } = Astro.props;
+const documentTitle = formatQuotes(Astro.props.title) + " | Open Paleo";
+// The canonical address needs the site's address, which local builds lack.
+const canonicalUrl = Astro.site ? new URL(canonicalPath, Astro.site).href : undefined;
+// Plausible counts views of infoboxes as it counts every other page, on the published site only.
+const isCountingVisits = Astro.site !== undefined;
+// Plausible's queue snippet, verbatim, as in BaseLayout.astro.
+const plausibleQueueScript = "window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()";
+const plausibleScriptUrl = "https://plausible.io/js/pa-kxif62VY-48TH3yxyC6EQ.js";
+// Loads Plausible unless the infobox is framed by a page of this site: the preview on each genus
+// page, whose visit is already counted. A page of another site can't be read from inside the
+// frame, so reading its origin throws there, and the infobox is counted. Emitted as text, like
+// the queue snippet, so it runs before the page has loaded.
+const countingScript = "(function(){var isFramedBySite=false;"
+    + "try{isFramedBySite=window.parent!==window&&window.parent.location.origin===window.location.origin}catch(error){}"
+    + "if(isFramedBySite){return}"
+    + plausibleQueueScript + ";"
+    + "var script=document.createElement(\"script\");script.async=true;script.src=" + JSON.stringify(plausibleScriptUrl) + ";document.head.appendChild(script)})()";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noindex">
+        <title>{documentTitle}</title>
+        <meta name="color-scheme" content="light dark">
+        <meta name="format-detection" content="telephone=no">
+        {canonicalUrl && <link rel="canonical" href={canonicalUrl}>}
+        {/* Links open in a new tab, rather than loading the site inside the frame or taking the
+            reader away from the page the infobox is shown on. */}
+        <base target="_blank">
+        {isCountingVisits && <script is:inline set:html={countingScript}></script>}
+    </head>
+    <body>
+        <main>
+            <slot />
+        </main>
+        <script>
+            import "../scripts/embed-height.ts";
+        </script>
+    </body>
+</html>
+
+<style>
+    /* The page around the infobox is transparent, so its rounded corners show the embedding
+       page's background. */
+    html,
+    body
+    {
+        background: transparent;
+    }
+</style>

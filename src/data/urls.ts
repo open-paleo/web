@@ -20,6 +20,20 @@ export function createPagePath(baseUrl: string, section: PageSection, slug: stri
 }
 
 /**
+ * Create the path of a genus's infobox, the page other sites embed: "/embed/genus/tyrannosaurus/".
+ *
+ * @param baseUrl - The site's base path, from import.meta.env.BASE_URL.
+ * @param slug - The genus slug.
+ * @returns The path, with a trailing slash.
+ */
+export function createGenusEmbedPath(baseUrl: string, slug: string): string
+{
+    const base = baseUrl.endsWith("/") ? baseUrl : baseUrl + "/";
+
+    return base + "embed/genus/" + slug + "/";
+}
+
+/**
  * Create the absolute address of a record's page: "https://open-paleo.org/genus/tyrannosaurus/".
  *
  * @param siteUrl - The site's address with its base path: "https://open-paleo.org/", or

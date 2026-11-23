@@ -1,6 +1,6 @@
-// Shows the "Copy citation" and "Copy BibTeX" buttons beside citations (HowToCite.astro) and
-// copies the text when one is pressed. The buttons stay hidden where the page cannot use the
-// clipboard.
+// Shows the copy buttons beside citations (HowToCite.astro) and embed code (EmbedCode.astro), and
+// copies a button's text when it is pressed. Each button names its confirmation in
+// data-copied-message. The buttons stay hidden where the page cannot use the clipboard.
 
 /**
  * Copy a button's text and confirm the copy beside the button.
@@ -13,7 +13,7 @@ async function copyButtonText(button: HTMLButtonElement, status: HTMLElement): P
     try
     {
         await navigator.clipboard.writeText(button.dataset.copyText ?? "");
-        status.textContent = button.textContent === "Copy BibTeX" ? "BibTeX copied." : "Citation copied.";
+        status.textContent = button.dataset.copiedMessage ?? "Copied.";
     }
     catch
     {

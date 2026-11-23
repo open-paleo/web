@@ -1,0 +1,324 @@
+---
+import PageSection from "../../components/PageSection.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { createEmbedCode, createEmbedResizeCode, embedFrameHeight, embedFrameWidth } from "../../data/embed.ts";
+import type { EmbedHeightMessage } from "../../data/embed-message.ts";
+import { embedHeightMessageType } from "../../data/embed-message.ts";
+import { getSiteData } from "../../data/site-data.ts";
+import { createSlug } from "../../data/slugs.ts";
+import { createGenusEmbedPath } from "../../data/urls.ts";
+
+/**
+ * A heading on the page, for the heading itself and its entry in the contents.
+ */
+type PageHeading = {
+    /**
+     * The heading's text.
+     */
+    title: string;
+
+    /**
+     * The heading's id, as PageSection gives it: "section-" and the title's slug.
+     */
+    id: string;
+};
+
+/**
+ * One topic in the contents: its heading, and the headings of the parts under it.
+ */
+type ContentsEntry = {
+    /**
+     * The topic's heading, a second-level heading on the page.
+     */
+    heading: PageHeading;
+
+    /**
+     * The headings of its parts, third-level headings on the page.
+     */
+    subheadings: Array<PageHeading>;
+};
+
+/**
+ * Create a heading, with the id PageSection gives a heading of that title, so the third-level
+ * headings follow the same pattern and their ids don't change if one becomes a section of its own.
+ *
+ * @param title - The heading's text.
+ * @returns The heading.
+ */
+function createHeading(title: string): PageHeading
+{
+    return { title, id: "section-" + createSlug(title) };
+}
+
+const siteData = getSiteData();
+const baseUrl = import.meta.env.BASE_URL;
+// The site's address for the examples; local builds without SITE_URL use the preview server's.
+const siteUrl = Astro.site ?? new URL("http://localhost:4321");
+// The examples show one genus's infobox; any genus would do.
+const exampleGenus = siteData.genusByName.get("Tyrannosaurus") ?? siteData.genera[0];
+const exampleEmbedUrl = new URL(createGenusEmbedPath(baseUrl, exampleGenus.slug), siteUrl).href;
+const embedCode = createEmbedCode(exampleEmbedUrl, exampleGenus.name);
+const resizeCode = createEmbedResizeCode(siteUrl.origin);
+const exampleMessage: EmbedHeightMessage = { type: embedHeightMessageType, height: embedFrameHeight };
+const messageText = JSON.stringify(exampleMessage, undefined, 4);
+
+// Genus pages link to the part on fitting the frame by its id, which comes from its title.
+const embedding = createHeading("Embedding a genus infobox");
+const frameSize = createHeading("Frame size");
+const fitting = createHeading("Fitting the frame to the infobox");
+const credit = createHeading("Credit and privacy");
+const contents: Array<ContentsEntry> = [
+    { heading: embedding, subheadings: [frameSize, fitting, credit] },
+];
+---
+
+<BaseLayout title="Developers" description="How to show Open Paleo on your own site: embedding a genus's infobox, and fitting its frame to it." navigationItem="developers">
+    <div class="developers-page">
+        <header class="developers-header">
+            <h1>Developers</h1>
+            <p class="developers-summary">
+                How to show Open Paleo on your own site. For the dataset’s files and how to cite them, see
+                <a href={baseUrl + "data/"}>Data</a>.
+            </p>
+        </header>
+
+        <nav class="page-contents" aria-labelledby="page-contents-title">
+            <h2 class="page-contents-title" id="page-contents-title">On this page</h2>
+            <ol>
+                {contents.map((entry) => (
+                    <li>
+                        <a href={"#" + entry.heading.id}>{entry.heading.title}</a>
+                        <ol>
+                            {entry.subheadings.map((subheading) => <li><a href={"#" + subheading.id}>{subheading.title}</a></li>)}
+                        </ol>
+                    </li>
+                ))}
+            </ol>
+        </nav>
+
+        <div class="developers-content">
+            <PageSection title={embedding.title}>
+                <p>
+                    Every genus has an infobox: a card with its name, age, a one-sentence summary, a few facts and its
+                    outline, linking to its page on Open Paleo. The genus page gives the code to show it on your site,
+                    under “Embed this genus”. The code is one frame:
+                </p>
+                <pre class="code-block" tabindex="0" role="region" aria-label="Example embed code"><code>{embedCode}</code></pre>
+                <p>
+                    An infobox’s address is its genus page’s address with <code>embed/</code> before <code>genus/</code>.
+                    The infobox follows the reader’s light or dark setting, leaves the page around its card transparent,
+                    and opens its links in a new tab.
+                </p>
+
+                <section class="subsection" aria-labelledby={frameSize.id}>
+                    <h3 id={frameSize.id}>{frameSize.title}</h3>
+                    <p>
+                        The code sets the frame to {embedFrameWidth} × {embedFrameHeight} pixels, and
+                        <code>max-width: 100%</code> narrows it to fit a smaller column. You can change both: the infobox
+                        fits any width down to 280 pixels. An infobox taller than its frame scrolls inside it.
+                    </p>
+                </section>
+
+                <section class="subsection" aria-labelledby={fitting.id}>
+                    <h3 id={fitting.id}>{fitting.title}</h3>
+                    <p>
+                        Once it has loaded, and whenever its height changes, the infobox sends the page it is shown on its
+                        height in pixels, with <code>postMessage</code>:
+                    </p>
+                    <pre class="code-block" tabindex="0" role="region" aria-label="Example height message"><code>{messageText}</code></pre>
+                    <p>
+                        To fit each frame to its infobox, add this script once to your page. It accepts the message only
+                        from {siteUrl.origin}, and only for the frame that sent it, so other frames on the page are left
+                        alone. Without JavaScript the frame keeps the height the code gives it.
+                    </p>
+                    <pre class="code-block" tabindex="0" role="region" aria-label="Script that fits the frame to the infobox"><code>{resizeCode}</code></pre>
+                    <p class="copy-actions" hidden>
+                        <button class="copy-button" type="button" data-copy-text={resizeCode} data-copied-message="Script copied.">Copy script</button>
+                        <span class="copy-status" role="status"></span>
+                    </p>
+                </section>
+
+                <section class="subsection" aria-labelledby={credit.id}>
+                    <h3 id={credit.id}>{credit.title}</h3>
+                    <p>
+                        The infobox carries its own credit: the data’s
+                        <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> license and the outline’s
+                        credit line. Show the whole infobox, so both stay visible.
+                    </p>
+                    <p>
+                        Open Paleo counts views of infoboxes as visits, as it does for its own pages; the
+                        <a href={baseUrl + "privacy/"}>privacy policy</a> explains what that involves.
+                    </p>
+                </section>
+            </PageSection>
+        </div>
+    </div>
+</BaseLayout>
+
+<script>
+    import "../../scripts/copy-buttons.ts";
+</script>
+
+<style>
+    /* On narrow screens the header, contents and text stack; on wide ones the contents sit in a
+       column to the right and stay in view as the text scrolls. */
+    .developers-page
+    {
+        display: grid;
+        grid-template-columns: minmax(0, var(--measure));
+        gap: var(--space-7);
+    }
+
+    @media (min-width: 64rem)
+    {
+        .developers-page
+        {
+            grid-template-columns: minmax(0, var(--measure)) minmax(12rem, 16rem);
+            grid-template-areas:
+                "header contents"
+                "content contents";
+            column-gap: var(--space-8);
+        }
+
+        .developers-header
+        {
+            grid-area: header;
+        }
+
+        .developers-content
+        {
+            grid-area: content;
+        }
+
+        .page-contents
+        {
+            grid-area: contents;
+            position: sticky;
+            top: var(--space-6);
+            align-self: start;
+        }
+    }
+
+    .developers-header
+    {
+        display: grid;
+        gap: var(--space-4);
+    }
+
+    h1
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    .developers-content
+    {
+        display: grid;
+        gap: var(--space-8);
+        min-width: 0;
+    }
+
+    .page-contents
+    {
+        display: grid;
+        gap: var(--space-2);
+        padding-left: var(--space-4);
+        border-left: 1px solid var(--color-line);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+
+    .page-contents-title
+    {
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+        font-weight: 600;
+    }
+
+    .page-contents ol
+    {
+        display: grid;
+        gap: var(--space-2);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .page-contents ol ol
+    {
+        margin-top: var(--space-2);
+        padding-left: var(--space-4);
+    }
+
+    .page-contents a
+    {
+        color: var(--color-ink);
+        text-decoration: none;
+    }
+
+    .page-contents a:hover
+    {
+        color: var(--color-accent);
+        text-decoration: underline;
+    }
+
+    /* A part of a section: its own heading, and the same spacing as the section's text. */
+    .subsection
+    {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-4);
+        margin-top: var(--space-4);
+    }
+
+    /* Code is the one place a monospace face is used. */
+    .code-block
+    {
+        margin: 0;
+        padding: var(--space-4) var(--space-5);
+        overflow-x: auto;
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+        font-family: var(--font-mono);
+        font-size: var(--text-small);
+    }
+
+    p code
+    {
+        font-family: var(--font-mono);
+        font-size: 0.9em;
+    }
+
+    .copy-actions
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-2) var(--space-3);
+        font-family: var(--font-sans);
+    }
+
+    .copy-actions[hidden]
+    {
+        display: none;
+    }
+
+    .copy-button
+    {
+        padding: var(--space-1) var(--space-4);
+        color: var(--color-accent);
+        background: var(--color-surface);
+        border: 1px solid var(--color-accent);
+        border-radius: var(--radius);
+        font-size: var(--text-interface);
+        cursor: pointer;
+    }
+
+    .copy-status
+    {
+        color: var(--color-muted);
+        font-size: var(--text-small);
+    }
+</style>

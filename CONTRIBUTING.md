@@ -96,7 +96,7 @@ files.
 | Path | Contents |
 |------|----------|
 | `src/pages/` | One `.astro` file per page type; Astro turns each into one or more pages |
-| `src/layouts/` | Page shells shared by the pages (`BaseLayout.astro`) |
+| `src/layouts/` | Page shells shared by the pages (`BaseLayout.astro`), and the bare shell of the infoboxes other sites embed (`EmbedLayout.astro`) |
 | `src/components/` | Reusable components: dispute note, age figure, reference list and so on |
 | `src/data/` | TypeScript that loads the dataset and prepares lookup tables for the pages |
 | `src/scripts/` | Browser TypeScript: search, filters, maps, copy buttons and the tree extractor |
@@ -149,6 +149,7 @@ files.
 | `citations.ts`, `feed.ts` | Citations of the dataset and its records, and the feed of new genera |
 | `licenses.ts` | Every work by others the site serves or the repository holds, with its license, for the Licenses page and the built folders' `LICENSE.txt` |
 | `structured-data.ts` | The schema.org JSON-LD in the head of genus, clade and Data pages (see "Structured data" below) |
+| `embed.ts`, `embed-message.ts` | What a genus's infobox shows, the code other sites use to embed it, and the height message it sends them (see "Infoboxes" below) |
 | `known-names.ts` | The taxon and clade names the tree extractor matches labels against |
 | `glossary.ts` | `getGlossary()`: the glossary's terms in order, and finding them in text |
 | `media.ts` | `getMedia()`: the outlines by genus or clade, `findGenusOutline()`: a genus's own outline, or that of the nearest clade above it that has one, and `findCladeOutline()`: a clade's own outline, or else its type genus's |
@@ -214,6 +215,42 @@ The types come from [`schema-dts`](https://www.npmjs.com/package/schema-dts), wh
 declarations. JSON-LD addresses must be absolute, so, like the canonical link, it is written
 only when the build has `SITE_URL`. `npm run check-site` checks that every JSON-LD script parses
 and is a typed schema.org item. A new type is worth adding only when something reads it.
+
+### Infoboxes
+
+Every genus has an infobox at `embed/genus/{slug}/`: a card other sites show in an `iframe`, with
+the genus's name, parent clade, authority, status, age, the first sentence of its description,
+diet, locomotion, length, mass and where it was found, its outline with the credit line, and a
+link to the genus page. The genus page's "Embed this genus" section gives the code
+(`createEmbedCode()` in `src/data/embed.ts`), with a button that copies it, beside the infobox
+itself in a frame of the same size. The Developers page (`developers/`) documents embedding for
+the sites that do it: the code, the frame's size, the height message and the script that fits the
+frame.
+
+- **`EmbedLayout.astro` is the infobox's shell**: no header, navigation or footer, a transparent
+  page around the card, and `<base target="_blank">`, so links open in a new tab rather than
+  inside the frame
+- **Infoboxes stay out of search engines and site search.** They carry `noindex` and a canonical
+  link to the genus page, the sitemap leaves out `embed/`
+  (`src/integrations/sitemap-filter.ts`), and they have no `data-pagefind-body`
+- **The frame's height.** The embed code gives the frame a fixed size (`embedFrameWidth` and
+  `embedFrameHeight`), and a longer infobox scrolls inside it. With JavaScript, the infobox
+  sends its height to the embedding page whenever it changes (`src/scripts/embed-height.ts`), as
+  a message whose `type` is `embedHeightMessageType`; the Developers page offers a script that
+  listens for it and fits the frame (`createEmbedResizeCode()`), accepting it only from the
+  site's origin and only for the frame that sent it. The embedding page needs nothing from this
+  site but the frame
+- **Plausible counts infoboxes** like any other page, on the published site, with the
+  embedding site as where the visit came from; the privacy page says so. The preview on each
+  genus page is not: an infobox framed by a page of this site skips loading Plausible
+  (`EmbedLayout.astro`), since the genus page's own visit is counted. A page of another site
+  can't be read from inside the frame, so there the check fails and the infobox is counted
+- **The Developers page's contents** (beside the text on wide screens, above it on narrow ones)
+  come from the same list as its headings, so a new topic is a new entry in that list: its
+  heading as a `PageSection`, and its parts as third-level headings
+
+`npm run check-site` checks two infoboxes and the Developers page along with the other sample
+pages.
 
 ### Map outlines
 
