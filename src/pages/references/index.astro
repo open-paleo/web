@@ -24,7 +24,10 @@ for (const group of groups)
     <div class="index-page">
         <header class="index-header">
             <h1>References</h1>
-            <p class="index-summary">{referenceCount} published works cited in release {siteData.metadata.version}, by first author.</p>
+            <p class="index-summary">
+                Release {siteData.metadata.version} cites {referenceCount} published works, listed here by first author.
+                Each one’s page shows the names it first published and the records that cite it.
+            </p>
             {/* Shown by the script, which it needs; it reads the references from the list below. */}
             <form class="index-find" role="search" aria-label="Find a reference" hidden>
                 <label for="reference-find-field">Find a reference</label>

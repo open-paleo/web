@@ -25,9 +25,9 @@ const baseUrl = import.meta.env.BASE_URL;
         <header class="tree-header">
             <h1>Tree</h1>
             <p class="tree-summary">
-                The classification from Dinosauria down: {cladeCount} clades holding {formatGenusCount(siteData.genera.length)}.
-                In the chart, each tip sums up the genera of one clade. The outline below lists every clade with the number
-                of genera below it.
+                The classification runs from Dinosauria down through {cladeCount} clades, which together hold
+                {formatGenusCount(siteData.genera.length)}. In the chart, each tip stands for one clade and the genera in
+                it. The outline below lists every clade, with how many genera it contains.
             </p>
             {/* Shown by the script, which it needs. */}
             <form class="tree-find" role="search" aria-label="Find in the tree" hidden>

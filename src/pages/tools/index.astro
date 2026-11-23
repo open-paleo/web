@@ -13,7 +13,7 @@ const treeExtractorVersion = readWorkVersion(findLicensedWork("tree-extractor"),
     <div class="tools-page">
         <header class="tools-header">
             <h1>Tools</h1>
-            <p class="tools-summary">Tools for working with the dataset and the literature behind it. They run in your browser.</p>
+            <p class="tools-summary">These tools help with the dataset and the literature behind it. They run entirely in your browser.</p>
         </header>
 
         <ul class="tool-list">
@@ -21,16 +21,16 @@ const treeExtractorVersion = readWorkVersion(findLicensedWork("tree-extractor"),
                 <h2><a href={baseUrl + "tools/outline-tracer/"}>Outline tracer</a> <BetaBadge version={outlineTracerVersion} /></h2>
                 <p>
                     Traces a skeletal reconstruction into the outline a genus or clade page shows, and writes its record
-                    for Open Paleo's images. It keeps the animal, drops labels and scale bars, and fills the body; you
-                    check the outline over the figure. The figure never leaves your computer.
+                    for Open Paleo’s images. The tracer keeps the animal, drops labels and scale bars, and fills in the
+                    body, and then you check the outline against the figure. Your figure never leaves your computer.
                 </p>
             </li>
             <li>
                 <h2><a href={baseUrl + "tools/tree-extractor/"}>Tree extractor</a> <BetaBadge version={treeExtractorVersion} /></h2>
                 <p>
                     Reads a phylogenetic tree from a published figure and saves it as Newick or Nexus. It traces the
-                    branches, reads the tip labels and matches them to the names in Open Paleo; you correct what it got
-                    wrong. The figure never leaves your computer.
+                    branches, reads the tip labels and matches them to names in Open Paleo, and then you correct
+                    anything it got wrong. Your figure never leaves your computer.
                 </p>
             </li>
         </ul>
