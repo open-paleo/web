@@ -4,6 +4,18 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { createEmbedCode, createEmbedResizeCode, embedFrameHeight, embedFrameWidth } from "../../data/embed.ts";
 import type { EmbedHeightMessage } from "../../data/embed-message.ts";
 import { embedHeightMessageType } from "../../data/embed-message.ts";
+import {
+    bindingsFolderUrl,
+    bindingsSectionId,
+    createPackageInstructions,
+    dataChangelogUrl,
+    npmPackageName,
+    npmPackageUrl,
+    packageVersioningUrl,
+    pythonModuleName,
+    pythonPackageName,
+    pythonPackageUrl,
+} from "../../data/packages.ts";
 import { getSiteData } from "../../data/site-data.ts";
 import { createSlug } from "../../data/slugs.ts";
 import { createGenusEmbedPath } from "../../data/urls.ts";
@@ -61,23 +73,31 @@ const embedCode = createEmbedCode(exampleEmbedUrl, exampleGenus.name);
 const resizeCode = createEmbedResizeCode(siteUrl.origin);
 const exampleMessage: EmbedHeightMessage = { type: embedHeightMessageType, height: embedFrameHeight };
 const messageText = JSON.stringify(exampleMessage, undefined, 4);
+const packages = createPackageInstructions(siteData.metadata.schema_version);
 
-// Genus pages link to the part on fitting the frame by its id, which comes from its title.
+// The Data page links to the section on the packages by its fixed id, and genus pages link to the
+// part on fitting the frame by its id, which comes from its title.
+const bindings: PageHeading = { title: "Typed bindings for the dataset", id: bindingsSectionId };
+const typescript = createHeading("TypeScript");
+const python = createHeading("Python");
+const versions = createHeading("Package versions");
 const embedding = createHeading("Embedding a genus infobox");
 const frameSize = createHeading("Frame size");
 const fitting = createHeading("Fitting the frame to the infobox");
 const credit = createHeading("Credit and privacy");
 const contents: Array<ContentsEntry> = [
+    { heading: bindings, subheadings: [typescript, python, versions] },
     { heading: embedding, subheadings: [frameSize, fitting, credit] },
 ];
 ---
 
-<BaseLayout title="Developers" description="How to show Open Paleo on your own site: embedding a genus's infobox, and fitting its frame to it." navigationItem="developers">
+<BaseLayout title="Developers" description="How to build on Open Paleo: typed bindings for reading the dataset, and infoboxes that show a genus on your own site." navigationItem="developers">
     <div class="developers-page">
         <header class="developers-header">
             <h1>Developers</h1>
             <p class="developers-summary">
-                How to show Open Paleo on your own site. For the dataset’s files and how to cite them, see
+                How to build on Open Paleo: typed bindings for reading the dataset in code, and infoboxes that show a
+                genus on your own site. For the dataset’s files and how to cite them, see
                 <a href={baseUrl + "data/"}>Data</a>.
             </p>
         </header>
@@ -97,6 +117,77 @@ const contents: Array<ContentsEntry> = [
         </nav>
 
         <div class="developers-content">
+            <PageSection title={bindings.title} id={bindings.id}>
+                <p>
+                    Official bindings describe every object in the built dataset (<code>open-paleo.json</code>), so code
+                    that reads it is checked against its format: TypeScript declarations on npm, and Pydantic models for
+                    Python on PyPI. Both include the JSON Schema (draft 2020-12) they are generated from. Like the
+                    dataset, they are licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>,
+                    with credit to Open Paleo contributors. Projects without a package manager can take the same files
+                    from the data repository’s <a href={bindingsFolderUrl}><code>dist/bindings/</code></a> folder.
+                </p>
+                <p>
+                    In both, <code>genera</code>, <code>clades</code> and <code>stratigraphy</code> are keyed by name, not
+                    lists. The recursive <code>tree</code> is typed as a nested dictionary; the JSON Schema describes its
+                    full structure.
+                </p>
+
+                <section class="subsection" aria-labelledby={typescript.id}>
+                    <h3 id={typescript.id}>{typescript.title}</h3>
+                    <p>
+                        <a href={npmPackageUrl}><code>{npmPackageName}</code></a> holds the type declarations and the
+                        schema, with no code that runs. Install it as a development dependency:
+                    </p>
+                    <pre class="code-block" tabindex="0" role="region" aria-label="Command that installs the TypeScript package"><code>{packages.npmInstall}</code></pre>
+                    {packages.isUnstable && <p>Versions before 1.0.0 are published under npm’s <code>next</code> tag.</p>}
+                    <p>
+                        Each kind of object has its own type: <code>Genus</code>, <code>Species</code>, <code>Clade</code>,
+                        <code>Reference</code>, <code>StratigraphicUnit</code> and so on. Read a genus by name, or go through
+                        them all with <code>Object.values()</code>:
+                    </p>
+                    <pre class="code-block" tabindex="0" role="region" aria-label="Example of reading the dataset in TypeScript"><code>{packages.typescriptExample}</code></pre>
+                    <p>The package is published with npm provenance.</p>
+                </section>
+
+                <section class="subsection" aria-labelledby={python.id}>
+                    <h3 id={python.id}>{python.title}</h3>
+                    <p>
+                        <a href={pythonPackageUrl}><code>{pythonPackageName}</code></a>, imported as
+                        <code>{pythonModuleName}</code>, holds Pydantic models and the schema. It needs Python 3.9 or later
+                        and Pydantic 2.10 or later, below 3.
+                    </p>
+                    <pre class="code-block" tabindex="0" role="region" aria-label="Command that installs the Python package"><code>{packages.pipInstall}</code></pre>
+                    <p>Validate the dataset as you read it, then read a genus by name:</p>
+                    <pre class="code-block" tabindex="0" role="region" aria-label="Example of reading the dataset in Python"><code>{packages.pythonExample}</code></pre>
+                    <p>The package is uploaded with PyPI attestations, through trusted publishing.</p>
+                </section>
+
+                <section class="subsection" aria-labelledby={versions.id}>
+                    <h3 id={versions.id}>{versions.title}</h3>
+                    <p>
+                        A package’s version is the schema version of the dataset it describes, which the dataset gives in
+                        <code>_metadata.schema_version</code>; this site is built from schema {packages.version}. A data
+                        release that doesn’t change the format publishes no new package version, so install the version
+                        that matches the dataset you read.
+                    </p>
+                    {packages.isUnstable
+                        ? (
+                            <p>
+                                Before 1.0.0 the format may still change: a new minor version ({packages.compatibleLine} to
+                                {packages.nextLine}) is a breaking change, and a new patch version is any other change.
+                                The schema becomes 1.0.0 at the dataset’s first public release.
+                            </p>
+                        )
+                        : <p>A new major version ({packages.compatibleLine} to {packages.nextLine}) is a breaking change.</p>}
+                    <p>
+                        To stay on versions compatible with your code, use npm’s <code>{packages.npmRange}</code> or pip’s
+                        <code>{packages.pipRequirement}</code>; both stay within {packages.compatibleLine}.x. The data
+                        repository’s <a href={packageVersioningUrl}>versioning policy</a> and
+                        <a href={dataChangelogUrl}>changelog</a> have the details.
+                    </p>
+                </section>
+            </PageSection>
+
             <PageSection title={embedding.title}>
                 <p>
                     Every genus has an infobox: a card with its name, age, a one-sentence summary, a few facts and its

@@ -5,6 +5,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { createDatasetCitation, dataRepositoryUrl } from "../../data/citations.ts";
 import { formatGenusCount } from "../../data/format.ts";
 import { formatFileSize, getDatasetFiles } from "../../data/indexes.ts";
+import { bindingsSectionId } from "../../data/packages.ts";
 import { getSiteData } from "../../data/site-data.ts";
 import { createDatasetStructuredData } from "../../data/structured-data.ts";
 
@@ -82,6 +83,15 @@ const structuredData = Astro.site ? createDatasetStructuredData(metadata, files,
                 dataset’s stable, versioned contract, and its <a href={dataRepository + "/blob/main/docs/VERSIONING.md"}>versioning policy</a>
                 explains what each version number promises.
             </p>
+            <aside class="bindings-callout" aria-labelledby="bindings-callout-title">
+                <h3 class="bindings-callout-title" id="bindings-callout-title">Official typed bindings</h3>
+                <p>
+                    Reading the dataset in code? Official bindings describe every record: TypeScript types on npm, and
+                    Pydantic models for Python on PyPI, both with the JSON Schema. The
+                    <a href={baseUrl + "developers/#" + bindingsSectionId}>Developers page</a> explains how to install
+                    and use them.
+                </p>
+            </aside>
         </PageSection>
 
         <PageSection title="How to cite">
@@ -163,5 +173,25 @@ const structuredData = Astro.site ? createDatasetStructuredData(metadata, files,
         max-width: var(--measure);
         color: var(--color-muted);
         font-size: var(--text-interface);
+    }
+
+    /* A box in the accent's soft color sets the pointer to the bindings apart from the notes. */
+    .bindings-callout
+    {
+        display: grid;
+        gap: var(--space-2);
+        max-width: var(--measure);
+        padding: var(--space-4) var(--space-5);
+        background: var(--color-accent-soft);
+        border-left: 3px solid var(--color-accent);
+        border-radius: var(--radius);
+        font-size: var(--text-interface);
+    }
+
+    .bindings-callout-title
+    {
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
+        font-weight: 700;
     }
 </style>

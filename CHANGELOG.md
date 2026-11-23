@@ -16,6 +16,10 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   Plausible counts views of them
 - A Developers page (`developers/`, under Data) documents embedding an infobox: the code, the
   frame's size, the height message the infobox sends, and a script that fits the frame to it
+- The Developers page describes the dataset's official typed bindings: TypeScript declarations
+  on npm (`@open-paleo/types`) and Pydantic models on PyPI (`open-paleo`), with how to install
+  them, an example of reading the dataset with each, and which versions to use. The version
+  numbers come from the dataset's schema version. The Data page's downloads point to it
 
 ## 2026-11-20
 

@@ -9,10 +9,16 @@ type Props = {
      * The section heading.
      */
     title: string;
+
+    /**
+     * The heading's id, for a section other pages link to, so the link survives a change to the
+     * heading's wording. Left out, it is "section-" and the title's slug.
+     */
+    id?: string;
 };
 
 const { title } = Astro.props;
-const headingId = "section-" + createSlug(title);
+const headingId = Astro.props.id ?? "section-" + createSlug(title);
 ---
 
 <section class="page-section" aria-labelledby={headingId}>

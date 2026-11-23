@@ -150,6 +150,7 @@ files.
 | `licenses.ts` | Every work by others the site serves or the repository holds, with its license, for the Licenses page and the built folders' `LICENSE.txt` |
 | `structured-data.ts` | The schema.org JSON-LD in the head of genus, clade and Data pages (see "Structured data" below) |
 | `embed.ts`, `embed-message.ts` | What a genus's infobox shows, the code other sites use to embed it, and the height message it sends them (see "Infoboxes" below) |
+| `packages.ts` | The dataset's official typed bindings on npm and PyPI, for the Developers page: their install commands, compatible version ranges and examples, built from the dataset's schema version, which is also the packages' version |
 | `known-names.ts` | The taxon and clade names the tree extractor matches labels against |
 | `glossary.ts` | `getGlossary()`: the glossary's terms in order, and finding them in text |
 | `media.ts` | `getMedia()`: the outlines by genus or clade, `findGenusOutline()`: a genus's own outline, or that of the nearest clade above it that has one, and `findCladeOutline()`: a clade's own outline, or else its type genus's |
@@ -247,7 +248,9 @@ frame.
   can't be read from inside the frame, so there the check fails and the infobox is counted
 - **The Developers page's contents** (beside the text on wide screens, above it on narrow ones)
   come from the same list as its headings, so a new topic is a new entry in that list: its
-  heading as a `PageSection`, and its parts as third-level headings
+  heading as a `PageSection`, and its parts as third-level headings. A section other pages link
+  to gets a fixed `id` instead of one from its title, as the section on the typed bindings does
+  (`bindingsSectionId`, which the Data page's callout links to)
 
 `npm run check-site` checks two infoboxes and the Developers page along with the other sample
 pages.
