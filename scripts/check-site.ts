@@ -13,9 +13,11 @@
  */
 import * as fs from "node:fs";
 import * as path from "node:path";
+import { availableParallelism } from "node:os";
+import { setTimeout as wait } from "node:timers/promises";
 import * as url from "node:url";
 
-import type { Browser, BrowserContextOptions, Page, Route } from "playwright";
+import type { Browser, BrowserContextOptions, Page, Response, Route } from "playwright";
 import { chromium } from "playwright";
 
 import { getDeclaredHosts } from "../src/data/privacy.ts";
@@ -76,6 +78,71 @@ type TreeExtractorNewick = {
 type ColorScheme = "light" | "dark";
 
 /**
+ * A page's requests, to tell when its network has gone quiet.
+ */
+type RequestTraffic = {
+    /**
+     * Requests started and not yet finished or failed.
+     */
+    inFlight: number;
+
+    /**
+     * When a request last started, finished or failed, from performance.now().
+     */
+    lastChange: number;
+};
+
+/**
+ * A page opened on the local site, and the response to its address.
+ */
+type OpenedPage = {
+    /**
+     * The page.
+     */
+    page: Page;
+
+    /**
+     * The response to its address, or null when there was none.
+     */
+    response: Response | null;
+};
+
+/**
+ * What one check found: its problems, and the axe findings for someone to review.
+ */
+type CheckResult = {
+    /**
+     * Its failed checks.
+     */
+    problems: Array<SiteProblem>;
+
+    /**
+     * Lines to print: axe findings that need a person to review them.
+     */
+    notes: Array<string>;
+};
+
+/**
+ * One of the checks run in a browser: a sample page, or a tool or find field to try.
+ */
+type BrowserCheck = {
+    /**
+     * The sample page to check, or undefined for a feature check.
+     */
+    sample: SamplePage | undefined;
+
+    /**
+     * The feature check to run, when this isn't a sample page.
+     */
+    feature: FeatureCheck | undefined;
+};
+
+/**
+ * A check that tries one of the site's features, such as a tool or a find field.
+ */
+type FeatureCheck = (browser: Browser, siteUrl: string, problems: Array<SiteProblem>) => Promise<void>;
+
+/**
  * One page of each kind, plus the records with the most unusual content. If a record leaves the
  * dataset, its page is reported missing; replace it with another that shows the same thing.
  */
@@ -114,6 +181,15 @@ const samplePages: Array<SamplePage> = [
 ];
 
 const colorSchemes: Array<ColorScheme> = ["light", "dark"];
+
+// A page counts as loaded once its load event has fired and no request has started or ended for
+// this long, which is shorter than Playwright's network idle (500 ms) yet still waits for the maps,
+// search and tree chart, which fetch after loading.
+const quietTime = 200;
+const quietTimeout = 15000;
+
+// How many checks run at once: the CI runners have four cores.
+const checkConcurrency = Math.min(4, availableParallelism());
 
 const treeFigurePath = path.join(path.dirname(url.fileURLToPath(import.meta.url)), "site-checks", "tree-figure.png");
 
@@ -224,6 +300,70 @@ async function openLocalPage(browser: Browser, options: BrowserContextOptions): 
 }
 
 /**
+ * Count a page's requests in flight, from before it navigates.
+ *
+ * @param page - The page.
+ * @returns The running count.
+ */
+function trackRequests(page: Page): RequestTraffic
+{
+    const traffic: RequestTraffic = { inFlight: 0, lastChange: performance.now() };
+
+    page.on("request", () => changeTraffic(traffic, 1));
+    page.on("requestfinished", () => changeTraffic(traffic, -1));
+    page.on("requestfailed", () => changeTraffic(traffic, -1));
+
+    return traffic;
+}
+
+/**
+ * Note a request starting or ending.
+ *
+ * @param traffic - The page's count.
+ * @param change - 1 when one starts, -1 when one ends.
+ */
+function changeTraffic(traffic: RequestTraffic, change: number): void
+{
+    traffic.inFlight += change;
+    traffic.lastChange = performance.now();
+}
+
+/**
+ * Wait until no request is in flight and none has started or ended for quietTime, or until
+ * quietTimeout has passed.
+ *
+ * @param traffic - The page's count.
+ */
+async function waitForQuietNetwork(traffic: RequestTraffic): Promise<void>
+{
+    const deadline = performance.now() + quietTimeout;
+
+    while (performance.now() < deadline && (traffic.inFlight > 0 || performance.now() - traffic.lastChange < quietTime))
+    {
+        await wait(25);
+    }
+}
+
+/**
+ * Open a page of the local site and wait until it has loaded and its network has gone quiet.
+ *
+ * @param browser - The browser.
+ * @param options - The page's viewport and color scheme.
+ * @param address - The page's address.
+ * @returns The page and the response to its address.
+ */
+async function openSitePage(browser: Browser, options: BrowserContextOptions, address: string): Promise<OpenedPage>
+{
+    const page = await openLocalPage(browser, options);
+    const traffic = trackRequests(page);
+    const response = await page.goto(address, { waitUntil: "load" });
+
+    await waitForQuietNetwork(traffic);
+
+    return { page, response };
+}
+
+/**
  * Report each off-site host the pages contacted that the privacy data doesn't declare.
  *
  * @param problems - The list to add problems to.
@@ -252,14 +392,15 @@ function checkOffSiteHosts(problems: Array<SiteProblem>): void
  * @param browser - The browser.
  * @param siteUrl - The site's local address, ending in the base path.
  * @param sample - The page.
- * @param problems - The list to add problems to.
+ * @param result - Where to add problems and findings to review.
  */
-async function checkSamplePage(browser: Browser, siteUrl: string, sample: SamplePage, problems: Array<SiteProblem>): Promise<void>
+async function checkSamplePage(browser: Browser, siteUrl: string, sample: SamplePage, result: CheckResult): Promise<void>
 {
+    const problems = result.problems;
+
     for (const colorScheme of colorSchemes)
     {
-        const page = await openLocalPage(browser, { viewport: { width: 1280, height: 900 }, colorScheme });
-        const response = await page.goto(siteUrl + sample.path, { waitUntil: "networkidle" });
+        const { page, response } = await openSitePage(browser, { viewport: { width: 1280, height: 900 }, colorScheme }, siteUrl + sample.path);
         const location = "/" + sample.path + " (" + colorScheme + ")";
 
         if (!response || response.status() !== 200)
@@ -279,7 +420,7 @@ async function checkSamplePage(browser: Browser, siteUrl: string, sample: Sample
 
         for (const finding of report.needsReview)
         {
-            console.log("  Needs review, " + location + ": " + finding.rule + " at " + finding.target);
+            result.notes.push("  Needs review, " + location + ": " + finding.rule + " at " + finding.target);
         }
 
         if (colorScheme === "light")
@@ -293,9 +434,7 @@ async function checkSamplePage(browser: Browser, siteUrl: string, sample: Sample
         await page.close();
     }
 
-    const narrowPage = await openLocalPage(browser, { viewport: { width: 320, height: 800 } });
-
-    await narrowPage.goto(siteUrl + sample.path, { waitUntil: "networkidle" });
+    const narrowPage = (await openSitePage(browser, { viewport: { width: 320, height: 800 } }, siteUrl + sample.path)).page;
     const overflow = await measureOverflow(narrowPage);
 
     if (overflow > 0)
@@ -435,11 +574,10 @@ function isOutlineTraced(): boolean
  */
 async function checkSearchSuggestions(browser: Browser, siteUrl: string, problems: Array<SiteProblem>): Promise<void>
 {
-    const page = await openLocalPage(browser, { viewport: { width: 1280, height: 900 } });
+    const page = (await openSitePage(browser, { viewport: { width: 1280, height: 900 } }, siteUrl + "genus/tyrannosaurus/")).page;
     const location = "/genus/tyrannosaurus/ (search suggestions)";
     const option = page.locator("#site-search-field-suggestions li", { hasText: "Velociraptor" }).first();
 
-    await page.goto(siteUrl + "genus/tyrannosaurus/", { waitUntil: "networkidle" });
     await page.locator("#site-search-field").click();
     await page.keyboard.type("veloci");
 
@@ -492,11 +630,10 @@ async function checkSearchSuggestions(browser: Browser, siteUrl: string, problem
  */
 async function checkTreeFind(browser: Browser, siteUrl: string, problems: Array<SiteProblem>): Promise<void>
 {
-    const page = await openLocalPage(browser, { viewport: { width: 1280, height: 900 } });
+    const page = (await openSitePage(browser, { viewport: { width: 1280, height: 900 } }, siteUrl + "tree/")).page;
     const location = "/tree/ (find)";
     const option = page.locator("#tree-find-field-suggestions li", { hasText: "Velociraptor" }).first();
 
-    await page.goto(siteUrl + "tree/", { waitUntil: "networkidle" });
     await page.locator("#tree-find-field").click();
     await page.keyboard.type("velocirap");
 
@@ -548,11 +685,10 @@ async function checkTreeFind(browser: Browser, siteUrl: string, problems: Array<
  */
 async function checkReferenceFind(browser: Browser, siteUrl: string, problems: Array<SiteProblem>): Promise<void>
 {
-    const page = await openLocalPage(browser, { viewport: { width: 1280, height: 900 } });
+    const page = (await openSitePage(browser, { viewport: { width: 1280, height: 900 } }, siteUrl + "references/")).page;
     const location = "/references/ (find)";
     const option = page.locator("#reference-find-field-suggestions li", { hasText: "Osborn (1905)" }).first();
 
-    await page.goto(siteUrl + "references/", { waitUntil: "networkidle" });
     await page.locator("#reference-find-field").click();
     await page.keyboard.type("osborn 1905");
 
@@ -628,6 +764,91 @@ function printProblems(problems: Array<SiteProblem>): void
 }
 
 /**
+ * Run one browser check, collecting what it finds.
+ *
+ * @param browser - The browser.
+ * @param siteUrl - The site's local address.
+ * @param check - The check.
+ * @returns What it found.
+ */
+async function runBrowserCheck(browser: Browser, siteUrl: string, check: BrowserCheck): Promise<CheckResult>
+{
+    const result: CheckResult = { problems: [], notes: [] };
+
+    if (check.sample)
+    {
+        await checkSamplePage(browser, siteUrl, check.sample, result);
+    }
+    else if (check.feature)
+    {
+        await check.feature(browser, siteUrl, result.problems);
+    }
+
+    return result;
+}
+
+/**
+ * Run the browser checks, checkConcurrency at a time, each in its own pages.
+ *
+ * @param browser - The browser.
+ * @param siteUrl - The site's local address.
+ * @param checks - The checks.
+ * @returns What each found, in the checks' order, so the report reads the same however they ran.
+ */
+async function runBrowserChecks(browser: Browser, siteUrl: string, checks: Array<BrowserCheck>): Promise<Array<CheckResult>>
+{
+    const results = new Array<CheckResult>(checks.length);
+    const workers = new Array<Promise<void>>();
+    let next = 0;
+
+    /**
+     * Take the next check not yet started, until none are left.
+     */
+    async function runRemainingChecks(): Promise<void>
+    {
+        while (next < checks.length)
+        {
+            const index = next;
+
+            next++;
+            results[index] = await runBrowserCheck(browser, siteUrl, checks[index]);
+        }
+    }
+
+    for (let worker = 0; worker < checkConcurrency; worker++)
+    {
+        workers.push(runRemainingChecks());
+    }
+
+    await Promise.all(workers);
+
+    return results;
+}
+
+/**
+ * List the browser checks: every sample page, then the tools and find fields to try.
+ *
+ * @returns The checks.
+ */
+function createBrowserChecks(): Array<BrowserCheck>
+{
+    const checks = new Array<BrowserCheck>();
+    const features: Array<FeatureCheck> = [checkTreeExtractor, checkOutlineTracer, checkSearchSuggestions, checkTreeFind, checkReferenceFind];
+
+    for (const sample of samplePages)
+    {
+        checks.push({ sample, feature: undefined });
+    }
+
+    for (const feature of features)
+    {
+        checks.push({ sample: undefined, feature });
+    }
+
+    return checks;
+}
+
+/**
  * Run every check on the built site and set the exit status.
  */
 async function checkSite(): Promise<void>
@@ -654,16 +875,17 @@ async function checkSite(): Promise<void>
 
     try
     {
-        for (const sample of samplePages)
+        // Several at once, each in its own pages; the results come back in the list's order.
+        for (const result of await runBrowserChecks(browser, server.url, createBrowserChecks()))
         {
-            await checkSamplePage(browser, server.url, sample, problems);
+            problems.push(...result.problems);
+
+            for (const note of result.notes)
+            {
+                console.log(note);
+            }
         }
 
-        await checkTreeExtractor(browser, server.url, problems);
-        await checkOutlineTracer(browser, server.url, problems);
-        await checkSearchSuggestions(browser, server.url, problems);
-        await checkTreeFind(browser, server.url, problems);
-        await checkReferenceFind(browser, server.url, problems);
         checkOffSiteHosts(problems);
     }
     finally
