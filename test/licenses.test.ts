@@ -4,7 +4,7 @@ import * as path from "node:path";
 import * as url from "node:url";
 import { test } from "node:test";
 
-import { createDirectoryLicenseText, createLicenseEntries, createLicenseText, findLicensedWork, getLicensedDirectories, getLicensedWorks } from "../src/data/licenses.ts";
+import { createDirectoryLicenseText, createLicenseEntries, createLicenseText, findLicensedWork, getLicensedDirectories, getLicensedWorks, readWorkVersion } from "../src/data/licenses.ts";
 
 const rootDirectory = path.dirname(path.dirname(url.fileURLToPath(import.meta.url)));
 
@@ -85,4 +85,19 @@ test("the Licenses page links a work's text, or its license's page when it has n
 
     assert.equal(fonts[0].textPath, "licenses/alegreya.txt");
     assert.equal(fonts[0].version, "Fontsource 5.3.0");
+});
+
+test("the tools' beta badges show the versions package.json pins", () =>
+{
+    const manifest = JSON.parse(fs.readFileSync(path.join(rootDirectory, "package.json"), "utf8")) as Record<string, Record<string, string>>;
+
+    for (const slug of ["outline-tracer", "tree-extractor"])
+    {
+        const work = findLicensedWork(slug);
+        const pinned = manifest.dependencies[work.packageName ?? ""];
+        const version = readWorkVersion(work, rootDirectory);
+
+        assert.match(version, /^\d+\.\d+\.\d+$/, slug);
+        assert.ok(pinned.endsWith("-" + version + ".tgz"), slug + " is installed at " + version + " but package.json pins " + pinned);
+    }
 });

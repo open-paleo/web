@@ -1,9 +1,20 @@
 ---
-// No properties: the badge always reads "Beta".
+/**
+ * Properties of a beta badge.
+ */
+type Props = {
+    /**
+     * The tool's version, shown after "Beta": "0.3.0".
+     */
+    version: string;
+};
+
+const { version } = Astro.props;
 ---
 
-{/* Marks a tool that is usable but still being improved, in the caution colors. */}
-<span class="beta-badge">Beta</span>
+{/* Marks a tool that is usable but still being improved, in the caution colors, with the
+    version the site runs. */}
+<span class="beta-badge">Beta <span class="beta-version">{version}</span></span>
 
 <style>
     .beta-badge
@@ -18,5 +29,12 @@
         font-weight: 700;
         letter-spacing: normal;
         white-space: nowrap;
+    }
+
+    .beta-version
+    {
+        margin-left: var(--space-1);
+        font-variant-numeric: tabular-nums;
+        font-weight: 400;
     }
 </style>

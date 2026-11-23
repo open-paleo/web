@@ -9,6 +9,7 @@ const baseUrl = import.meta.env.BASE_URL;
 // The WebAssembly build of potrace the tracer runs, and the GPL's text as the tracer ships it.
 const potraceBuild = findLicensedWork("esm-potrace-wasm");
 const potraceBuildVersion = readWorkVersion(potraceBuild, process.cwd());
+const tracerVersion = readWorkVersion(findLicensedWork("outline-tracer"), process.cwd());
 const mediaUrl = "https://github.com/open-paleo/media";
 const guideUrl = mediaUrl + "/blob/main/CONTRIBUTING.md#tracing-a-skeletal-reconstruction";
 const licenseOptions = getLicenseOptions();
@@ -17,7 +18,7 @@ const licenseOptions = getLicenseOptions();
 <BaseLayout title="Outline tracer" description="Trace a skeletal reconstruction into the outline a genus page shows, and write its record for Open Paleo's media, in your browser." navigationItem="tools">
     <div class="tool-page">
         <header class="tool-header">
-            <h1><span>Outline tracer</span> <BetaBadge /></h1>
+            <h1><span>Outline tracer</span> <BetaBadge version={tracerVersion} /></h1>
             <p class="tool-summary">
                 Traces a skeletal reconstruction into the outline a genus or clade page shows beside its name. Open
                 a figure; the tracer keeps the animal, drops names, scale bars and ground lines, fills the body and

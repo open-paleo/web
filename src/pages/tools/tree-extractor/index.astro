@@ -1,16 +1,18 @@
 ---
 import BetaBadge from "../../../components/BetaBadge.astro";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { findLicensedWork, readWorkVersion } from "../../../data/licenses.ts";
 import { ocrSitePaths } from "../../../integrations/ocr-files.ts";
 
 const baseUrl = import.meta.env.BASE_URL;
 const sourceUrl = "https://github.com/open-paleo/tools/tree/main/tree-extractor";
+const extractorVersion = readWorkVersion(findLicensedWork("tree-extractor"), process.cwd());
 ---
 
 <BaseLayout title="Tree extractor" description="Read a phylogenetic tree from a published figure and save it as Newick or Nexus, in your browser." navigationItem="tools">
     <div class="tool-page">
         <header class="tool-header">
-            <h1><span>Tree extractor</span> <BetaBadge /></h1>
+            <h1><span>Tree extractor</span> <BetaBadge version={extractorVersion} /></h1>
             <p class="tool-summary">
                 Reads a phylogenetic tree from a published figure and turns it into Newick and Nexus. Open an
                 image of a cladogram; the tool traces its branches, reads the tip labels and matches them to the
