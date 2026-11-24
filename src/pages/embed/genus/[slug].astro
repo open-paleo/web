@@ -65,7 +65,7 @@ const { entry } = Astro.props;
 const siteData = getSiteData();
 const baseUrl = import.meta.env.BASE_URL;
 const embed = createGenusEmbed(entry.record);
-const outline = findGenusOutline(getMedia(siteData), entry, siteData);
+const outline = findGenusOutline(getMedia(siteData), entry);
 const genusPath = createPagePath(baseUrl, "genus", entry.slug);
 const parent = siteData.cladeByName.get(embed.parent);
 const parentPath = parent?.record ? createPagePath(baseUrl, "clade", parent.slug) : "";
@@ -83,7 +83,7 @@ const hasMeta = embed.authority !== "" || embed.status !== "valid";
                 <StatusBadge status={embed.status} />
             </p>
         )}
-        {outline && <TaxonOutline outline={outline} />}
+        {outline && <TaxonOutline outline={outline} subject={embed.name} />}
         {(embed.ageRange || embed.age) && (
             <p class="embed-age">{embed.ageRange && <span class="embed-age-range figures">{embed.ageRange}</span>}{embed.age && <span class="embed-age-names">{embed.age}</span>}</p>
         )}

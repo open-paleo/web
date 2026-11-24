@@ -49,8 +49,8 @@ const labelPriority: ExpressionSpecification = ["case", ["get", "isTypeSpecies"]
 
 // The credit for the "when it lived" views, which the map's attribution shows as HTML. CC BY 3.0
 // asks for the license's address and a note of the changes made.
-const paleoCredit = "Ancient positions and coastlines: <a href=\"https://doi.org/10.5194/bg-10-1529-2013\">Wright et al. 2013</a> "
-    + "(<a href=\"https://creativecommons.org/licenses/by/3.0/au/\">CC BY 3.0 AU</a>), simplified and moved to each stage’s midpoint";
+const paleoCredit = "Plate positions: <a href=\"https://doi.org/10.5194/bg-10-1529-2013\">Wright et al. 2013</a> "
+    + "(<a href=\"https://creativecommons.org/licenses/by/3.0/au/\">CC BY 3.0 AU</a>), with today’s coastlines simplified and moved to each stage’s midpoint";
 
 // The zoom a "when it lived" view opens at: the whole globe fits the map's height, poles included.
 const paleoZoom = 1;

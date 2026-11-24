@@ -1,6 +1,7 @@
 ---
 import type { OutlineEntry } from "../data/media.ts";
 import { formatOutlineChanges, getLicenseInfo } from "../data/media.ts";
+import Prose from "./Prose.astro";
 
 /**
  * Properties of the outline a genus or clade page shows beside its name, and its credit line.
@@ -11,18 +12,26 @@ type Props = {
      * The outline.
      */
     outline: OutlineEntry;
+
+    /**
+     * The name of the page's own taxon. When the outline is another taxon's (a clade showing its
+     * type genus's), the credit line says so.
+     */
+    subject: string;
 };
 
-const { outline } = Astro.props;
+const { outline, subject } = Astro.props;
 const record = outline.record;
 const license = getLicenseInfo(record.license);
 const changes = formatOutlineChanges(record.changes);
+const isTypeGenusOutline = outline.taxon !== subject;
 
 // The outline is decorative; the credit line describes it. open-paleo/media's build checks and
-// cleans every SVG, so it is inlined unchanged.
+// cleans every SVG, so it is inlined unchanged. The title goes through Prose, which sets the
+// genus name in it in italics.
 ---
 <div class="taxon-outline" aria-hidden="true"><Fragment set:html={outline.svg} /></div>
-<p class="taxon-outline-credit">{record.title}, based on <i class="taxon">{record.depicts}</i>. By <a href={record.source}>{record.creator}</a>, {license.url ? <a href={license.url}>{license.name}</a> : license.name}, {changes}.</p>
+<p class="taxon-outline-credit">{isTypeGenusOutline ? <>Outline of its type genus, <i class="taxon">{outline.taxon}</i></> : <Prose text={record.title} />}, based on <i class="taxon">{record.depicts}</i>. By <a href={record.source}>{record.creator}</a>, {license.url ? <a href={license.url}>{license.name}</a> : license.name}, {changes}.</p>
 
 <style>
     .taxon-outline

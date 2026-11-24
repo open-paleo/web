@@ -27,6 +27,31 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 - The Developers page describes what the site already offered developers: the Atom feed of
   newly named genera (`feed.xml`), the schema.org structured data on genus, clade and Data
   pages, and links to search results (`search/?q=`) and the OpenSearch description
+- Search results can be narrowed to rock units, as they already could to genera, clades,
+  references, stages and periods
+
+### Changed
+
+- A genus without an outline of its own no longer shows a relative's. Most showed the outline
+  of a clade several ranks above them, often a whole order's, which misrepresented the animal. A
+  clade without its own outline still shows its type genus's, and its credit line now says so
+- A reference in a record's list links to its page from its title, in place of the citation key
+  under it
+
+### Fixed
+
+- Outline credit lines listed only the first two changes as a sentence ("traced and rest of the
+  figure removed; filled; recolored"); they now read "traced and rest of the figure removed,
+  filled and recolored". The genus name in an outline's title is now in italics
+- A master's thesis was cited as a "Masters thesis"
+- The integument at a glance read "(inferred evidence)" for integument inferred from relatives;
+  it now reads "(inferred)"
+- The credit on genus maps' ancient views called the coastlines ancient; they're today's,
+  moved to where they were
+- With JavaScript off, the search page said "Loading search…" above the note that search needs
+  JavaScript
+- The find fields on the References and Tree pages announced matches as "names"
+- "Copy record" in the outline tracer confirmed with "Copied." and now says "Record copied."
 
 ## 2026-11-20
 

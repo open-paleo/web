@@ -195,6 +195,7 @@ const kindChoices: Array<KindChoice> = [
     { value: "", label: "All" },
     { value: "Genus", label: "Genera" },
     { value: "Clade", label: "Clades" },
+    { value: "Rock unit", label: "Rock units" },
     { value: "Reference", label: "References" },
     { value: "Stage", label: "Stages" },
     { value: "Period", label: "Periods" },
@@ -513,6 +514,8 @@ async function startSearchPage(): Promise<void>
     }
 
     elements.field.value = new URLSearchParams(window.location.search).get("q") ?? "";
+    // The script writes this, so it never shows when the script can't run.
+    elements.status.textContent = "Loading search…";
     pagefind = await loadPagefind();
 
     if (!pagefind)

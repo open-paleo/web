@@ -79,9 +79,6 @@ export type LicenseOption = {
     name: string;
 };
 
-// The longest chain of parent clades to follow; a longer one means the tree has a loop.
-const maximumDepth = 60;
-
 let cachedMedia: MediaIndex | undefined;
 
 /**
@@ -141,58 +138,37 @@ export function createMediaIndex(media: OpenPaleoMedia, mediaDirectory: string, 
 }
 
 /**
- * Find the outline a genus shows: its own, or that of the nearest clade above it that has one.
+ * Find a genus's own outline. A genus without one shows none: a relative's outline, often a
+ * whole order's, would be misleading beside its name.
  *
  * @param media - The media.
  * @param genus - The genus.
- * @param siteData - The lookup tables.
- * @returns The outline, or undefined when neither the genus nor any clade above it has one.
+ * @returns The outline, or undefined when the genus has none of its own.
  */
-export function findGenusOutline(media: MediaIndex, genus: GenusEntry, siteData: SiteData): OutlineEntry | undefined
+export function findGenusOutline(media: MediaIndex, genus: GenusEntry): OutlineEntry | undefined
 {
-    const own = media.outlineByTaxon.get(genus.name);
-
-    if (own)
-    {
-        return own;
-    }
-
-    let cladeName: string | undefined = genus.record.parent;
-
-    for (let depth = 0; cladeName !== undefined && depth < maximumDepth; depth++)
-    {
-        const outline = media.outlineByTaxon.get(cladeName);
-
-        if (outline)
-        {
-            return outline;
-        }
-
-        cladeName = siteData.cladeByName.get(cladeName)?.parentName;
-    }
-
-    return undefined;
+    return media.outlineByTaxon.get(genus.name);
 }
 
 /**
- * Find the outline a clade shows: its own, or else its type genus's; none if it has neither.
+ * Find the outline a clade shows: its own, or else its type genus's own outline, since the type
+ * genus is a member the clade is named for. The caller can tell which from the outline's taxon.
  *
  * @param media - The media.
  * @param clade - The clade.
- * @param siteData - The lookup tables.
- * @returns The outline, or undefined.
+ * @returns The outline, or undefined when neither the clade nor its type genus has one.
  */
-export function findCladeOutline(media: MediaIndex, clade: CladeEntry, siteData: SiteData): OutlineEntry | undefined
+export function findCladeOutline(media: MediaIndex, clade: CladeEntry): OutlineEntry | undefined
 {
     const own = media.outlineByTaxon.get(clade.name);
-    const typeGenus = clade.record?.type_genus ? siteData.genusByName.get(clade.record.type_genus) : undefined;
+    const typeGenus = clade.record?.type_genus;
 
     if (own)
     {
         return own;
     }
 
-    return typeGenus ? findGenusOutline(media, typeGenus, siteData) : undefined;
+    return typeGenus ? media.outlineByTaxon.get(typeGenus) : undefined;
 }
 
 /**
@@ -207,15 +183,31 @@ export function getLicenseInfo(license: string): LicenseInfo
 }
 
 /**
- * Format the changes made to an outline for its credit line: "Recolored; flipped horizontally"
- * becomes "recolored and flipped horizontally".
+ * Format the changes made to an outline for its credit line, as a list: "Recolored; flipped
+ * horizontally" becomes "recolored and flipped horizontally", and "Traced; filled; recolored"
+ * becomes "traced, filled and recolored".
  *
- * @param changes - The outline record's changes.
+ * @param changes - The outline record's changes, separated by semicolons.
  * @returns The changes as they read in the credit line.
  */
 export function formatOutlineChanges(changes: string): string
 {
-    return changes.toLowerCase().replace("; ", " and ");
+    const parts = new Array<string>();
+
+    for (const part of changes.toLowerCase().split(";"))
+    {
+        if (part.trim() !== "")
+        {
+            parts.push(part.trim());
+        }
+    }
+
+    if (parts.length <= 1)
+    {
+        return parts[0] ?? "";
+    }
+
+    return parts.slice(0, -1).join(", ") + " and " + parts[parts.length - 1];
 }
 
 /**

@@ -100,7 +100,7 @@ const authority = formatAuthority(record.authors, record.described, false);
 const authorityReferenceId = record.erected_in ?? "";
 const authorityAnchor = "#" + createReferenceAnchor(siteData.referenceById.get(authorityReferenceId)?.slug ?? authorityReferenceId);
 const typeGenus = record.type_genus ? siteData.genusByName.get(record.type_genus) : undefined;
-const outline = findCladeOutline(getMedia(siteData), entry, siteData);
+const outline = findCladeOutline(getMedia(siteData), entry);
 const descendantGenera = getDescendantGenera(entry, siteData);
 const ageSpan = createAgeSpan(descendantGenera, siteData.timeline);
 const genusRows = createGenusIndexRows(getPlacedGenera(entry, siteData), siteData, siteData.timeline, "clade");
@@ -122,7 +122,7 @@ const identifiers = record.identifiers ?? [];
         <header class:list={["clade-header", { "has-outline": outline }]}>
             <h1 class="clade-name" data-pagefind-weight="10" style={"--name-length: " + entry.name.length}>{entry.name}</h1>
             {authority && <p class="clade-meta"><a class="authority" href={authorityAnchor}>{authority}</a></p>}
-            {outline && <TaxonOutline outline={outline} />}
+            {outline && <TaxonOutline outline={outline} subject={entry.name} />}
         </header>
 
         <div class="clade-age">{ageSpan && <AgeFigure period={ageSpan} rangeIntroduction="Its genera lived" />}</div>

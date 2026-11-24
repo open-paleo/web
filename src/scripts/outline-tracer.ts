@@ -684,7 +684,7 @@ async function copyRecord(): Promise<void>
     try
     {
         await navigator.clipboard.writeText(elements.recordText.textContent ?? "");
-        elements.copyStatus.textContent = "Copied.";
+        elements.copyStatus.textContent = "Record copied.";
     }
     catch
     {

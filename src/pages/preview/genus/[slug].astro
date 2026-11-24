@@ -1,5 +1,6 @@
 ---
 import "../../../theme/theme.css";
+import Prose from "../../../components/Prose.astro";
 import { createGenusEmbed } from "../../../data/embed.ts";
 import { capitalizeFirstLetter, formatAgeRange } from "../../../data/format.ts";
 import { findGenusOutline, formatOutlineChanges, getLicenseInfo, getMedia } from "../../../data/media.ts";
@@ -66,7 +67,7 @@ const siteData = getSiteData();
 const embed = createGenusEmbed(entry.record);
 const period = getTypeSpecies(entry.record).period;
 const ageRange = period.from_ma !== undefined && period.to_ma !== undefined ? formatAgeRange(period.from_ma, period.to_ma) : "";
-const outline = findGenusOutline(getMedia(siteData), entry, siteData);
+const outline = findGenusOutline(getMedia(siteData), entry);
 const license = outline ? getLicenseInfo(outline.record.license) : undefined;
 const changes = outline ? formatOutlineChanges(outline.record.changes) : "";
 const timeScale = siteData.timeline ? createPreviewTimeScale(period, siteData.timeline) : undefined;
@@ -109,7 +110,7 @@ const pageStyle = "--name-length: " + embed.name.length + "; --image-width: " + 
                 )}
             </div>
             <footer class="preview-footer">
-                {outline && license && <p class="preview-credit">{outline.record.title}, based on <i class="taxon">{outline.record.depicts}</i>. By {outline.record.creator}, {license.name}, {changes}.</p>}
+                {outline && license && <p class="preview-credit"><Prose text={outline.record.title} />, based on <i class="taxon">{outline.record.depicts}</i>. By {outline.record.creator}, {license.name}, {changes}.</p>}
                 <p class="preview-host">{siteHost}</p>
             </footer>
         </main>

@@ -372,6 +372,7 @@ const baseUrl = import.meta.env.BASE_URL;
         form.addEventListener("submit", handleFindSubmit);
         connectNameCombobox(input, {
             listLabel: "Matching clades and genera",
+            matchNames: { singular: "clade or genus", plural: "clades and genera" },
             limit: findLimit,
             loadNames: loadFindNames,
             createNote: createFindNote,

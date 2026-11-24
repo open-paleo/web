@@ -97,6 +97,7 @@ function initializeSearchSuggestions(): void
     {
         connectNameCombobox(input, {
             listLabel: "Suggested names",
+            matchNames: { singular: "name", plural: "names" },
             limit: suggestionLimit,
             loadNames: loadSuggestions,
             createNote,

@@ -1,4 +1,4 @@
-import type { Location, Period, Reference, SizeRange } from "./dataset.ts";
+import type { Appearance, Location, Period, Reference, SizeRange } from "./dataset.ts";
 
 /**
  * A reference broken into the parts a citation displays, each already formatted.
@@ -385,9 +385,7 @@ export function createCitationParts(reference: Reference): CitationParts
 
     if (reference.thesis)
     {
-        const degree = reference.thesis === "dissertation-abstract"
-            ? "Dissertation abstract"
-            : capitalizeFirstLetter(reference.thesis) + " thesis";
+        const degree = formatThesisKind(reference.thesis);
 
         publisher = reference.school ? degree + ", " + reference.school : degree;
     }
@@ -663,6 +661,39 @@ export function formatCount(count: number, singular: string, plural: string): st
 }
 
 /**
+ * Say how a genus's integument is known, for the note after it: "direct evidence" when fossils
+ * preserve it, "inferred" when it comes from relatives.
+ *
+ * @param evidence - The appearance's evidence value.
+ * @returns The note's text.
+ */
+export function formatIntegumentEvidence(evidence: NonNullable<Appearance["evidence"]>): string
+{
+    return evidence === "inferred" ? "inferred" : "direct evidence";
+}
+
+/**
+ * Name a thesis by the degree it was submitted for: "Doctoral thesis", "Master’s thesis",
+ * "Habilitation thesis", or "Dissertation abstract".
+ *
+ * @param thesis - The reference's thesis value.
+ * @returns The kind of thesis.
+ */
+export function formatThesisKind(thesis: NonNullable<Reference["thesis"]>): string
+{
+    if (thesis === "dissertation-abstract")
+    {
+        return "Dissertation abstract";
+    }
+    else if (thesis === "masters")
+    {
+        return "Master’s thesis";
+    }
+
+    return capitalizeFirstLetter(thesis) + " thesis";
+}
+
+/**
  * Name the kind of a published work from the fields its reference has.
  *
  * @param reference - The reference.
@@ -671,13 +702,9 @@ export function formatCount(count: number, singular: string, plural: string): st
  */
 export function describeWorkKind(reference: Reference): string
 {
-    if (reference.thesis === "dissertation-abstract")
+    if (reference.thesis)
     {
-        return "Dissertation abstract";
-    }
-    else if (reference.thesis)
-    {
-        return capitalizeFirstLetter(reference.thesis) + " thesis";
+        return formatThesisKind(reference.thesis);
     }
     else if (reference.journal)
     {

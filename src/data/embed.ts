@@ -96,6 +96,12 @@ export const embedFrameWidth = 400;
 export const embedFrameHeight = 570;
 
 /**
+ * The id of the Developers page's part on fitting the frame to the infobox, which each genus
+ * page's embed instructions link to. Fixed, so the link survives a change to the heading.
+ */
+export const embedFrameSectionId = "fit-the-frame";
+
+/**
  * Create what a genus's infobox shows.
  *
  * @param genus - The genus record.

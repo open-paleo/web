@@ -96,7 +96,7 @@ const citationUrl = new URL(Astro.url.pathname, siteUrl).href;
 const genus = entry.record;
 const siteData = getSiteData();
 const typeSpecies = getTypeSpecies(genus);
-const outline = findGenusOutline(getMedia(siteData), entry, siteData);
+const outline = findGenusOutline(getMedia(siteData), entry);
 const references = genus.references ?? [];
 const genusMap = createGenusMap(genus, getMapShapes());
 const paleoViews = createPaleoViews(genus, getSiteData().timeline, getWright2013Model());
@@ -127,7 +127,7 @@ const structuredData = Astro.site ? createGenusStructuredData(entry, siteData, n
                 <StatusBadge status={typeSpecies.status} linkToGlossary />
             </p>
             {genus.etymology && <p class="etymology"><Prose text={genus.etymology.trim()} /></p>}
-            {outline && <TaxonOutline outline={outline} />}
+            {outline && <TaxonOutline outline={outline} subject={genus.genus} />}
         </header>
 
         <div class="genus-age"><AgeFigure period={typeSpecies.period} /></div>

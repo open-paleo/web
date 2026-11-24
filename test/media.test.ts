@@ -3,49 +3,40 @@ import { test } from "node:test";
 
 import { mediaSchemaVersion } from "../src/data/bindings/schema-version.ts";
 import { parseSemanticVersion } from "../src/data/load-dataset.ts";
-import { findCladeOutline, findGenusOutline, getLicenseInfo, readMedia } from "../src/data/media.ts";
+import { findCladeOutline, findGenusOutline, formatOutlineChanges, getLicenseInfo, readMedia } from "../src/data/media.ts";
 import { createSiteData } from "../src/data/site-data.ts";
 import { fixtureDirectory, readFixture, readMediaFixture } from "./fixture.ts";
 
 const siteData = createSiteData(readFixture());
 const media = readMediaFixture(siteData);
 
-test("a genus shows the outline of the nearest clade above it that has one", () =>
+test("a genus shows its own outline", () =>
 {
-    const tyrannosaurus = siteData.genusByName.get("Tyrannosaurus");
-    const acanthopholis = siteData.genusByName.get("Acanthopholis");
-
-    assert.ok(tyrannosaurus && acanthopholis);
-    assert.equal(findGenusOutline(media, tyrannosaurus, siteData)?.taxon, "Tyrannosauroidea");
-    assert.equal(findGenusOutline(media, acanthopholis, siteData)?.taxon, "Ankylosauria");
-});
-
-test("a genus with its own outline shows it rather than its clade's", () =>
-{
-    const tyrannosaurus = siteData.genusByName.get("Tyrannosaurus");
-    const clades = media.outlineByTaxon.get("Tyrannosauroidea");
-
-    assert.ok(tyrannosaurus && clades);
-
-    // The clade's outline, filed under the genus as a genus-specific outline would be.
-    const withOwn = { outlineByTaxon: new Map([...media.outlineByTaxon, ["Tyrannosaurus", { ...clades, taxon: "Tyrannosaurus" }]]) };
-
-    assert.equal(findGenusOutline(withOwn, tyrannosaurus, siteData)?.taxon, "Tyrannosaurus");
-
     const allosaurus = siteData.genusByName.get("Allosaurus");
 
     assert.ok(allosaurus);
-    assert.equal(findGenusOutline(media, allosaurus, siteData)?.taxon, "Allosaurus", "a traced genus outline");
+    assert.equal(findGenusOutline(media, allosaurus)?.taxon, "Allosaurus");
 });
 
-test("every genus in the fixture has an outline, and outlines are inline SVG in the page's color", () =>
+test("a genus without an outline of its own shows none, not a clade's", () =>
+{
+    const tyrannosaurus = siteData.genusByName.get("Tyrannosaurus");
+
+    assert.ok(tyrannosaurus);
+    assert.ok(media.outlineByTaxon.has("Tyrannosauroidea"), "a clade above it has an outline");
+    assert.equal(findGenusOutline(media, tyrannosaurus), undefined);
+});
+
+test("outlines are inline SVG in the page's color", () =>
 {
     for (const genus of siteData.genera)
     {
-        const outline = findGenusOutline(media, genus, siteData);
+        const outline = findGenusOutline(media, genus);
 
-        assert.ok(outline, genus.name);
-        assert.match(outline.svg, /^<svg\b[^>]*fill="currentColor"/);
+        if (outline)
+        {
+            assert.match(outline.svg, /^<svg\b[^>]*fill="currentColor"/);
+        }
     }
 });
 
@@ -62,14 +53,24 @@ test("readMedia refuses a different major schema version", () =>
     assert.throws(() => readMedia(fixtureDirectory, nextMajor), /breaking change/);
 });
 
-test("a clade shows its own outline, else its type genus's, else none", () =>
+test("a clade shows its own outline, else its type genus's own, else none", () =>
 {
     const sauropoda = siteData.cladeByName.get("Sauropoda");
     const allosauridae = siteData.cladeByName.get("Allosauridae");
     const avetheropoda = siteData.cladeByName.get("Avetheropoda");
+    const tyrannosauridae = siteData.cladeByName.get("Tyrannosauridae");
 
-    assert.ok(sauropoda && allosauridae && avetheropoda);
-    assert.equal(findCladeOutline(media, sauropoda, siteData)?.taxon, "Sauropoda");
-    assert.equal(findCladeOutline(media, allosauridae, siteData)?.taxon, "Allosaurus", "its type genus's own outline");
-    assert.equal(findCladeOutline(media, avetheropoda, siteData), undefined, "no outline and no type genus");
+    assert.ok(sauropoda && allosauridae && avetheropoda && tyrannosauridae);
+    assert.equal(findCladeOutline(media, sauropoda)?.taxon, "Sauropoda");
+    assert.equal(findCladeOutline(media, allosauridae)?.taxon, "Allosaurus", "its type genus's own outline");
+    assert.equal(findCladeOutline(media, avetheropoda), undefined, "no outline and no type genus");
+    assert.equal(findCladeOutline(media, tyrannosauridae), undefined, "its type genus has no outline of its own");
+});
+
+test("formatOutlineChanges lists the changes in a sentence", () =>
+{
+    assert.equal(formatOutlineChanges("Recolored"), "recolored");
+    assert.equal(formatOutlineChanges("Recolored; flipped horizontally"), "recolored and flipped horizontally");
+    assert.equal(formatOutlineChanges("Traced and rest of the figure removed; filled; recolored"), "traced and rest of the figure removed, filled and recolored");
+    assert.equal(formatOutlineChanges(""), "");
 });

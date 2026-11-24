@@ -21,6 +21,21 @@ export type NameComboboxQueryRow = {
 };
 
 /**
+ * What a combobox calls the things it lists, for the count it announces: "3 references match."
+ */
+export type MatchNames = {
+    /**
+     * The word for one: "name", "reference".
+     */
+    singular: string;
+
+    /**
+     * The word for more than one: "names", "references".
+     */
+    plural: string;
+};
+
+/**
  * What a combobox lists and what choosing from it does.
  */
 export type NameComboboxSettings = {
@@ -28,6 +43,11 @@ export type NameComboboxSettings = {
      * The list's accessible name: "Suggested names".
      */
     listLabel: string;
+
+    /**
+     * What it calls the things it lists, in the count it announces.
+     */
+    matchNames: MatchNames;
 
     /**
      * How many names the list shows, before any query row.
@@ -240,7 +260,11 @@ async function showMatches(combobox: NameCombobox): Promise<void>
     combobox.list.replaceChildren(...combobox.options);
     combobox.list.hidden = false;
     combobox.input.setAttribute("aria-expanded", "true");
-    combobox.announcement.textContent = suggestions.length === 1 ? "1 name matches." : suggestions.length + " names match.";
+    const matchNames = combobox.settings.matchNames;
+
+    combobox.announcement.textContent = suggestions.length === 1
+        ? "1 " + matchNames.singular + " matches."
+        : suggestions.length + " " + matchNames.plural + " match.";
     highlightOption(combobox, -1);
 }
 

@@ -1,5 +1,5 @@
 ---
-import { embedFrameHeight, embedFrameWidth } from "../data/embed.ts";
+import { embedFrameHeight, embedFrameSectionId, embedFrameWidth } from "../data/embed.ts";
 
 /**
  * Properties of the code other sites use to show a genus's infobox, with a button that copies
@@ -23,8 +23,8 @@ type Props = {
 };
 
 const { embedCode, embedPath, genusName } = Astro.props;
-// The developer page's section on fitting the frame, by the id PageSection gives its heading.
-const documentationPath = import.meta.env.BASE_URL + "developers/#section-fitting-the-frame-to-the-infobox";
+// The Developers page's part on fitting the frame, by its fixed id.
+const documentationPath = import.meta.env.BASE_URL + "developers/#" + embedFrameSectionId;
 ---
 
 {/* The copy button is hidden until src/scripts/copy-buttons.ts shows it, since it needs it;

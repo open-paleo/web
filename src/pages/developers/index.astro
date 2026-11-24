@@ -1,7 +1,7 @@
 ---
 import PageSection from "../../components/PageSection.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { createEmbedCode, createEmbedResizeCode, embedFrameHeight, embedFrameWidth } from "../../data/embed.ts";
+import { createEmbedCode, createEmbedResizeCode, embedFrameHeight, embedFrameSectionId, embedFrameWidth } from "../../data/embed.ts";
 import { genusFeedLength } from "../../data/feed.ts";
 import type { EmbedHeightMessage } from "../../data/embed-message.ts";
 import { embedHeightMessageType } from "../../data/embed-message.ts";
@@ -76,15 +76,15 @@ const exampleMessage: EmbedHeightMessage = { type: embedHeightMessageType, heigh
 const messageText = JSON.stringify(exampleMessage, undefined, 4);
 const packages = createPackageInstructions(siteData.metadata.schema_version);
 
-// The Data page links to the section on the packages by its fixed id, and genus pages link to the
-// part on fitting the frame by its id, which comes from its title.
+// The Data page links to the section on the packages, and genus pages to the part on fitting the
+// frame, each by a fixed id, so the links survive a change to the headings.
 const bindings: PageHeading = { title: "Typed bindings for the dataset", id: bindingsSectionId };
 const typescript = createHeading("TypeScript");
 const python = createHeading("Python");
 const versions = createHeading("Package versions");
 const embedding = createHeading("Embedding a genus infobox");
 const frameSize = createHeading("Frame size");
-const fitting = createHeading("Fitting the frame to the infobox");
+const fitting: PageHeading = { title: "Fit the frame to the infobox", id: embedFrameSectionId };
 const credit = createHeading("Credit and privacy");
 const following = createHeading("Feed, structured data and search");
 const feed = createHeading("Feed of newly named genera");

@@ -13,6 +13,7 @@ import {
     formatDistinctShortCitations,
     formatGenusCount,
     formatGeologicAge,
+    formatIntegumentEvidence,
     formatPlace,
     formatQuotes,
     formatShortCitation,
@@ -20,6 +21,7 @@ import {
     formatSpecimenName,
     formatSpecimenType,
     formatStratigraphicUnits,
+    formatThesisKind,
     getFirstSentence,
     getIdentifierUrl,
     getSurnames,
@@ -209,6 +211,21 @@ test("describeWorkKind names the kind of work from its fields", () =>
     assert.equal(describeWorkKind({ id: "d", thesis: "doctoral", school: "University of Kansas" }), "Doctoral thesis");
     assert.equal(describeWorkKind({ id: "e", thesis: "dissertation-abstract" }), "Dissertation abstract");
     assert.equal(describeWorkKind({ id: "f", title: "Sinopsis" }), "");
+});
+
+test("formatThesisKind names a thesis by its degree, with the apostrophe in Master’s", () =>
+{
+    assert.equal(formatThesisKind("doctoral"), "Doctoral thesis");
+    assert.equal(formatThesisKind("masters"), "Master’s thesis");
+    assert.equal(formatThesisKind("habilitation"), "Habilitation thesis");
+    assert.equal(formatThesisKind("dissertation-abstract"), "Dissertation abstract");
+    assert.equal(createCitationParts({ id: "g", thesis: "masters", school: "University of Alberta" }).publisher, "Master’s thesis, University of Alberta");
+});
+
+test("formatIntegumentEvidence says how the integument is known", () =>
+{
+    assert.equal(formatIntegumentEvidence("direct"), "direct evidence");
+    assert.equal(formatIntegumentEvidence("inferred"), "inferred");
 });
 
 test("formatSpecimenName quotes nicknames and leaves descriptive names alone", () =>

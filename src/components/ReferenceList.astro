@@ -23,9 +23,8 @@ const baseUrl = import.meta.env.BASE_URL;
 <ol class="reference-list" data-pagefind-ignore>
     {references.map((reference) => (
         <li id={createReferenceAnchor(siteData.referenceById.get(reference.id)?.slug ?? reference.id)}>
-            <Citation reference={reference} />
+            <Citation reference={reference} titleHref={createPagePath(baseUrl, "reference", siteData.referenceById.get(reference.id)?.slug ?? "")} />
             {reference.notes && <p class="reference-notes"><Prose text={reference.notes.trim()} /></p>}
-            <a class="reference-key" href={createPagePath(baseUrl, "reference", siteData.referenceById.get(reference.id)?.slug ?? "")}>{reference.id}</a>
         </li>
     ))}
 </ol>
@@ -56,15 +55,5 @@ const baseUrl = import.meta.env.BASE_URL;
     {
         margin-top: var(--space-1);
         color: var(--color-muted);
-    }
-
-    .reference-key
-    {
-        display: block;
-        width: fit-content;
-        margin-top: var(--space-1);
-        color: var(--color-muted);
-        font-family: var(--font-sans);
-        font-size: var(--text-caption);
     }
 </style>
