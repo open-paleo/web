@@ -75,10 +75,10 @@ export const externalServices: Array<ExternalService> = [
     },
     {
         name: "Plausible Analytics",
-        operator: "Plausible, Estonia",
+        operator: "Plausible Insights OÜ, Estonia",
         role: "Counts visits",
         whenContacted: "On every page of open-paleo.org, including infoboxes shown on other sites",
-        receives: "The page’s address, the site that linked to it, your browser’s description of itself, and your IP address.",
+        receives: "The page’s address, the site that linked to it, how far you scroll and how long the page is open, and, with every request, your IP address and your browser’s description of itself, which Plausible doesn’t store.",
         policyUrl: "https://plausible.io/data-policy",
         policyName: "Plausible’s data policy",
         hosts: ["plausible.io"],
