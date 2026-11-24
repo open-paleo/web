@@ -305,6 +305,25 @@ export function getMajorGroups(siteData: SiteData): Array<MajorGroup>
 }
 
 /**
+ * Count the genera in the major groups together, for the home page's sentence about them. The
+ * groups don't overlap, so their totals add up.
+ *
+ * @param groups - The major groups.
+ * @returns How many genera they include.
+ */
+export function countMajorGroupGenera(groups: Array<MajorGroup>): number
+{
+    let count = 0;
+
+    for (const group of groups)
+    {
+        count += group.clade.totalGenusCount;
+    }
+
+    return count;
+}
+
+/**
  * Choose the top of the chart's value axis: the largest count rounded up to a whole step, so
  * the tallest bar never touches the top and every tick is a round number.
  *

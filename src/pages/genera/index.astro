@@ -12,7 +12,7 @@ const rows = createGenusIndexRows(siteData.genera, siteData, siteData.timeline, 
 const filterOptions = getGenusFilterOptions(rows, siteData.timeline);
 ---
 
-<BaseLayout title="Genera" description={"An A–Z index of the " + formatGenusCount(siteData.genera.length) + " in Open Paleo, filterable by time, group, diet, locomotion, integument, status and year named."} navigationItem="genera">
+<BaseLayout title="Genera" description={"All " + formatGenusCount(siteData.genera.length) + " in Open Paleo from A to Z, with filters for time, group, diet, locomotion, integument, status and the year each was named."} navigationItem="genera">
     <div class="index-page">
         <header class="index-header">
             <h1>Genera</h1>
@@ -22,7 +22,11 @@ const filterOptions = getGenusFilterOptions(rows, siteData.timeline);
                 <TermLink term="type species" /> is known from.
             </p>
         </header>
-        <GenusFilterForm options={filterOptions} total={rows.length} isCollapsible={false} />
+        <GenusFilterForm
+            options={filterOptions}
+            total={rows.length}
+            isCollapsible={false}
+            introduction="Need to narrow it down a little? Filter by time, group, diet, locomotion, integument, status or the year a genus was named." />
         <GenusIndex rows={rows} label="Genera" headingLevel={2} isFilterable={true} isGroupedByLetter={true} />
     </div>
 </BaseLayout>

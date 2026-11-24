@@ -75,7 +75,7 @@ const sitemapUrl = Astro.site ? new URL(homeUrl + "sitemap-index.xml", Astro.sit
 // Link previews (Open Graph and Twitter cards) need absolute addresses, so like the canonical
 // link they're only added when the site's address is known.
 const previewImageUrl = Astro.site ? new URL(previewImage?.path ?? homeUrl + "social-preview.png", Astro.site).href : undefined;
-const previewImageDescription = previewImage?.description ?? siteName + ": a community-maintained phylogenetic dataset for paleontology, over the Triassic, Jurassic and Cretaceous periods in the colors of the geologic time scale.";
+const previewImageDescription = previewImage?.description ?? siteName + ": a free, community-built dataset of fossil genera and clades, such as dinosaurs, above a bar of the Triassic, Jurassic and Cretaceous periods and their stages in the colors of the geologic time scale.";
 // The header's color in each scheme, from the theme's tokens, for the theme-color meta tags.
 const headerColors = getHeaderColors();
 // Escaped by writeJsonLd so dataset text in it can't end the script element.
@@ -182,7 +182,7 @@ const currentPath = Astro.url.pathname;
             <div class="site-footer-inner">
                 <div class="footer-about">
                     <a class="footer-wordmark" href={homeUrl}>{siteName}</a>
-                    <p>A community-maintained phylogenetic dataset for paleontology, backed by published literature.</p>
+                    <p>A free, community-built dataset of fossil genera and clades, such as dinosaurs, with every value taken from published research.</p>
                     {/* The official marks, unchanged, in white as each brand allows beside other social
                         icons: Bluesky's butterfly (brand assets, used under its trademark policy, 4.1)
                         and the Threads logo (Meta's Threads logo pack). */}

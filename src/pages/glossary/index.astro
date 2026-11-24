@@ -22,11 +22,13 @@ for (const group of groups)
         <header class="index-header">
             <h1>Glossary</h1>
             <p class="index-summary">
-                Plain-English definitions of {termCount} terms used on Open Paleo’s pages. The definitions come
-                from <a href="https://github.com/open-paleo/glossary">open-paleo/glossary</a>, where corrections and
+                Paleontology has a lot of specialized words. Here are plain-English definitions of the {termCount} terms
+                you’ll meet on Open Paleo’s pages, from A to Z. When one of them appears in a description elsewhere on
+                the site, it links to its entry here. The definitions come from
+                <a href="https://github.com/open-paleo/glossary">open-paleo/glossary</a> on GitHub, where corrections and
                 new terms are welcome.
             </p>
-            <LetterJumpList letters={letters} label="Glossary" />
+            <LetterJumpList letters={letters} label="Glossary terms" />
         </header>
 
         {groups.map((group) => (

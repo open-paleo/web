@@ -1,6 +1,7 @@
 ---
 import GenusFilterForm from "../../components/GenusFilterForm.astro";
 import PageSection from "../../components/PageSection.astro";
+import TermLink from "../../components/TermLink.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatGenusCount, formatQuotes } from "../../data/format.ts";
 import { createGenusIndexRows, getGenusFilterOptions } from "../../data/genus-index.ts";
@@ -17,11 +18,17 @@ const filterOptions = getGenusFilterOptions(placedRows, siteData.timeline);
 const legendSteps = ["1", "2–4", "5–9", "10–24", "25 or more"];
 ---
 
-<BaseLayout title="Map" description={"Where the type species of " + formatGenusCount(placedCount) + " in Open Paleo were found, on today’s map, by region and country."} navigationItem="map">
+<BaseLayout title="Map" description={"A map of where the type specimens of " + formatGenusCount(placedCount) + " in Open Paleo were found, by region and country, on today’s continents."} navigationItem="map">
     <div class="map-page">
         <header class="map-header">
             <h1>Map</h1>
-            <p class="map-summary">The map shows where the type species of {formatGenusCount(placedCount)} were found, placed on today’s continents.</p>
+            <p class="map-summary">
+                Curious where fossils have been found? This map marks where the <TermLink term="type specimen" /> of each
+                genus’s <TermLink term="type species" /> was found, for the {formatGenusCount(placedCount)} in Open Paleo
+                whose country we know, on today’s continents. The continents sat in very different places when these
+                animals were alive, and a genus’s own page can show where its fossils were at the time. Further down,
+                Genera by place lists the same genera by country and region.
+            </p>
         </header>
 
         <GenusFilterForm options={filterOptions} total={placedCount} isCollapsible={true} />
@@ -29,7 +36,7 @@ const legendSteps = ["1", "2–4", "5–9", "10–24", "25 or more"];
         {/* The map and its panel show only where scripts run (see the styles below); without them,
            the index of genera by place below gives the same information. */}
         <div class="map-layout" id="site-map-layout">
-            <div class="site-map" id="site-map" data-places={baseUrl + "map/places.json"} data-base={baseUrl} role="region" aria-label="Map of where the genera were found"></div>
+            <div class="site-map" id="site-map" data-places={baseUrl + "map/places.json"} data-base={baseUrl} role="region" aria-label="Map of where the type specimens were found"></div>
             <aside class="map-panel" aria-label="Map legend and selected place">
                 <div class="map-legend">
                     <p class="legend-title">Genera per region</p>
@@ -37,8 +44,8 @@ const legendSteps = ["1", "2–4", "5–9", "10–24", "25 or more"];
                         {legendSteps.map((step, index) => <li><span class="legend-swatch" style={"background: var(--color-map-count-" + (index + 1) + ")"}></span><span>{step}</span></li>)}
                     </ol>
                     <ul class="legend-marks">
-                        <li><span class="legend-dot"></span><span>A genus with published coordinates</span></li>
-                        <li><span class="legend-country"></span><span>A whole country, where the region is not known</span></li>
+                        <li><span class="legend-dot"></span><span>Where a type specimen was found, from published coordinates</span></li>
+                        <li><span class="legend-country"></span><span>A whole country, where the region isn’t recorded</span></li>
                     </ul>
                 </div>
                 <div class="map-selection" id="map-selection" aria-live="polite">

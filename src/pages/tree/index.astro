@@ -1,4 +1,5 @@
 ---
+import TermLink from "../../components/TermLink.astro";
 import TreeOutline from "../../components/TreeOutline.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatGenusCount } from "../../data/format.ts";
@@ -20,14 +21,15 @@ const legend = getTreeChartLegend(siteData);
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
-<BaseLayout title="Tree" description={"The Open Paleo classification as a chart and an outline of " + cladeCount + " clades."} navigationItem="tree">
+<BaseLayout title="Tree" description={"How the " + cladeCount + " clades and " + formatGenusCount(siteData.genera.length) + " in Open Paleo are related, as a tree you can zoom into and an outline."} navigationItem="tree">
     <div class="tree-page">
         <header class="tree-header">
             <h1>Tree</h1>
             <p class="tree-summary">
-                The classification runs from Dinosauria down through {cladeCount} clades, which together hold
-                {formatGenusCount(siteData.genera.length)}. In the chart, each tip stands for one clade and the genera in
-                it. The outline below lists every clade, with how many genera it contains.
+                How are all these animals related? {top && <>The tree starts at {top.name} and branches</>}{!top && "The tree branches"}
+                into {cladeCount} <TermLink term="clade" text="clades" />, which together include
+                {formatGenusCount(siteData.genera.length)}. The outline below has every clade and the number of genera
+                in each.
             </p>
             {/* Shown by the script, which it needs. */}
             <form class="tree-find" role="search" aria-label="Find in the tree" hidden>
@@ -44,10 +46,11 @@ const baseUrl = import.meta.env.BASE_URL;
         <section class="tree-chart-section" aria-labelledby="tree-chart-heading" hidden>
             <h2 id="tree-chart-heading" class="visually-hidden">Chart</h2>
             <p class="tree-chart-help">
-                Zoom with the + and − buttons, by holding Ctrl (⌘ on a Mac) while scrolling, or with two fingers on a touch
-                screen; drag to move. Select a clade to open its page, or a tip to list its genera.
+                Zoom with the + and − buttons, by holding Ctrl (⌘ on a Mac) as you scroll, or by pinching on a touch
+                screen, and drag to move around. Select a clade’s name to go to its page, or a name at the end of a
+                branch to list the genera there.
             </p>
-            <ul class="tree-chart-legend" aria-label="Colors">
+            <ul class="tree-chart-legend" aria-label="Colors of the major groups">
                 {legend.map((entry) => <li><span class="tree-chart-swatch" style={"background: var(" + entry.colorToken + ")"}></span><a href={createPagePath(baseUrl, "clade", entry.slug)}>{entry.name}</a></li>)}
                 <li><span class="tree-chart-swatch" style={"background: var(" + otherCladeColorToken + ")"}></span><span>Other clades</span></li>
             </ul>

@@ -4,6 +4,7 @@ import { test } from "node:test";
 import { createGeologicTimeline } from "../src/data/age-figure.ts";
 import {
     countGeneraByStage,
+    countMajorGroupGenera,
     describeRecentYears,
     findAxisMaximum,
     findRecentNames,
@@ -108,6 +109,20 @@ test("getMajorGroups keeps the groups the tree has, with a one-sentence summary"
 
     assert.equal(groups[0].clade.name, "Theropoda");
     assert.ok(groups[0].summary.endsWith("."));
+});
+
+test("countMajorGroupGenera adds up the groups' genera, which is no more than all of them", () =>
+{
+    const groups = getMajorGroups(siteData);
+    let expected = 0;
+
+    for (const group of groups)
+    {
+        expected += group.clade.totalGenusCount;
+    }
+
+    assert.equal(countMajorGroupGenera(groups), expected);
+    assert.ok(countMajorGroupGenera(groups) <= siteData.genera.length);
 });
 
 test("findAxisMaximum rounds up to a whole step above the largest count", () =>

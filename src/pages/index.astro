@@ -1,9 +1,10 @@
 ---
 import GeneraThroughTime from "../components/GeneraThroughTime.astro";
 import PageSection from "../components/PageSection.astro";
+import TermLink from "../components/TermLink.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { formatGenusCount, formatQuotes } from "../data/format.ts";
-import { countGeneraByStage, describeRecentYears, findRecentNames, getMajorGroups } from "../data/home.ts";
+import { countGeneraByStage, countMajorGroupGenera, describeRecentYears, findRecentNames, getMajorGroups } from "../data/home.ts";
 import { getSiteData } from "../data/site-data.ts";
 import { createPagePath } from "../data/urls.ts";
 
@@ -27,13 +28,17 @@ const firstStage = stages[0];
 const lastStage = stages[stages.length - 1];
 ---
 
-<BaseLayout description="Open Paleo is a community-maintained phylogenetic dataset for paleontology, backed by published literature: browse every genus, clade and cited work.">
+<BaseLayout description="Open Paleo is a free, community-built dataset of fossil genera and clades, such as dinosaurs, with every value taken from published research.">
     <div class="home">
         <section class="home-opening" aria-labelledby="home-title">
             <h1 id="home-title">Open Paleo</h1>
             <p class="home-lede">
-                A community-maintained phylogenetic dataset for paleontology. Every genus, clade
-                and value in it is backed by published literature.
+                Open Paleo is a free dataset of fossil genera and clades, such as dinosaurs, built by volunteers from
+                published research. It records how they’re related, when they lived and where their fossils were
+                found, and each genus and clade page cites the papers behind it. Look up a
+                <a href={baseUrl + "genera/"}>genus</a>, explore the <a href={baseUrl + "tree/"}>tree</a>, see where
+                fossils were found on the <a href={baseUrl + "map/"}>map</a>, or browse through
+                <a href={baseUrl + "time/"}>geologic time</a>.
             </p>
             <form class="home-search" role="search" action={baseUrl + "search/"} method="get">
                 <label for="home-search-field">Search the dataset</label>
@@ -65,16 +70,20 @@ const lastStage = stages[stages.length - 1];
         {stages.length > 0 && firstStage && lastStage && (
             <PageSection title="Genera through time">
                 <p class="section-intro">
-                    The chart counts the dataset’s genera in each stage, from the {firstStage.name} to
-                    the {lastStage.name}. A genus whose type species spans several stages counts in each,
-                    and long stages such as the Campanian hold more genera partly because they last longer.
-                    Select a stage or period to see its genera.
+                    The chart shows how many genera are known from each <TermLink term="stage" /> of geologic time,
+                    from the {firstStage.name} to the {lastStage.name}. A genus whose <TermLink term="type species" />
+                    is known from more than one stage counts in each, and long stages tend to have more genera
+                    because they cover more time. Select a stage or a period to see its genera.
                 </p>
                 <GeneraThroughTime stages={stages} label="Genera known from each stage" axisGrouping="period" />
             </PageSection>
         )}
 
         <PageSection title="Major groups">
+            <p class="section-intro">
+                These groups include {numberFormat.format(countMajorGroupGenera(groups))} of the
+                {formatGenusCount(siteData.genera.length)} in Open Paleo. Select one to see the clades and genera in it.
+            </p>
             <ul class="group-list">
                 {groups.map((group) => (
                     <li>
@@ -92,13 +101,13 @@ const lastStage = stages[stages.length - 1];
         {recent && (
             <PageSection title={"Named in " + describeRecentYears(recent)}>
                 <p class="section-intro">
-                    The dataset adds newly named genera as they are published. These {recent.genera.length} were
-                    named in {describeRecentYears(recent)}.
+                    Paleontologists name new genera every year, and we add them to Open Paleo once they’re published.
+                    These {recent.genera.length} were named in {describeRecentYears(recent)}.
                 </p>
                 <ul class="name-list">
                     {recent.genera.map((genus) => <li><a class="taxon" href={createPagePath(baseUrl, "genus", genus.slug)}>{genus.name}</a></li>)}
                 </ul>
-                <p class="section-note">Follow newly named genera in a feed reader with the <a href={baseUrl + "feed.xml"}>Atom feed</a>.</p>
+                <p class="section-note">Want to be notified of newly named genera? Subscribe to the <a href={baseUrl + "feed.xml"}>Atom feed</a>!</p>
             </PageSection>
         )}
 
@@ -106,15 +115,15 @@ const lastStage = stages[stages.length - 1];
             <ul class="use-list">
                 <li>
                     <h3><a href={baseUrl + "data/"}>Download and cite</a></h3>
-                    <p>The dataset as JSON, YAML, Newick, NEXUS and BibTeX, free to use under CC BY 4.0, and how to cite the release you used.</p>
+                    <p>Download the whole dataset as JSON, YAML, Newick, NEXUS or BibTeX. It’s free to use under CC BY 4.0, and the page shows how to cite the release you used.</p>
                 </li>
                 <li>
                     <h3><a href={dataRepository + "/blob/main/CONTRIBUTING.md"}>Contribute</a></h3>
-                    <p>Add a genus or correct a record with a pull request to the data repository. Every change needs a published source.</p>
+                    <p>Know of a genus we’re missing, or a record that needs fixing? Add or correct it with a pull request to the data repository on GitHub. Every change needs a published source.</p>
                 </li>
                 <li>
                     <h3><a href={dataRepository + "/issues/new?template=correction.yml"}>Report an error</a></h3>
-                    <p>Found a value that does not match its source? Report it with the published source that supports the correction. Every genus, clade and reference page also has a link that names the record for you.</p>
+                    <p>Found a value that doesn’t match its source? Let us know, and include the published source that supports the correction.</p>
                 </li>
             </ul>
         </PageSection>

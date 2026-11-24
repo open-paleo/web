@@ -570,6 +570,23 @@ export function joinNonEmpty(parts: Array<string>): string
 }
 
 /**
+ * Join the items of a list as a sentence does, with "and" before the last and no comma before it:
+ * ["Triassic", "Jurassic", "Cretaceous"] becomes "Triassic, Jurassic and Cretaceous".
+ *
+ * @param items - The items.
+ * @returns The list, or an empty string for none.
+ */
+export function joinWithAnd(items: Array<string>): string
+{
+    if (items.length <= 1)
+    {
+        return items[0] ?? "";
+    }
+
+    return items.slice(0, -1).join(", ") + " and " + items[items.length - 1];
+}
+
+/**
  * Get the first sentence of a passage, for a page's search-engine description.
  *
  * A sentence ends at a period, question mark or exclamation mark, optionally followed by a

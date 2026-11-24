@@ -150,7 +150,7 @@ function writeImagePage(): string
 
     p
     {
-        max-width: 820px;
+        max-width: 960px;
         margin-top: 28px;
         color: var(--color-header-muted);
         font-size: 36px;
@@ -206,7 +206,7 @@ function writeImagePage(): string
 <body>
     <div>
         <h1>Open Paleo</h1>
-        <p>A community-maintained phylogenetic dataset for paleontology, backed by published literature.</p>
+        <p>A free, community-built dataset of fossil genera and clades, such as dinosaurs, with every value taken from published research.</p>
     </div>
     <div class="scale">
         <div class="row periods">${writeBandRow(createBands(periods, "--period-"), periodNames)}</div>

@@ -247,10 +247,10 @@ function showTipPanel(view: TreeChartView, tip: TreeChartTip, highlightedGenus: 
         return;
     }
 
-    heading.textContent = tip.isDirect ? "Placed directly in " + tip.cladeName : tip.cladeName;
+    heading.textContent = tip.isDirect ? "Other genera in " + tip.cladeName : tip.cladeName;
     cladeLink.href = baseUrl + "clade/" + tip.cladeSlug + "/";
     cladeLink.textContent = tip.cladeName;
-    summary.replaceChildren((tip.genera.length === 1 ? "1 genus" : tip.genera.length + " genera") + ". Open ", cladeLink, ".");
+    summary.replaceChildren((tip.genera.length === 1 ? "1 genus" : tip.genera.length + " genera") + ". For more, see ", cladeLink, ".");
     list.replaceChildren();
 
     for (const genus of tip.genera)
@@ -439,7 +439,7 @@ function showChartUnavailable(container: HTMLElement): void
     const message = document.createElement("p");
 
     message.className = "tree-chart-unavailable";
-    message.textContent = "The chart could not be shown in this browser. The outline below lists the same clades.";
+    message.textContent = "Your browser can’t show the chart, but the outline below has the same clades.";
     container.replaceChildren(message);
 }
 

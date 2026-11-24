@@ -26,6 +26,7 @@ import {
     getIdentifierUrl,
     getSurnames,
     joinNonEmpty,
+    joinWithAnd,
     splitParagraphs,
     splitPronunciationReadings,
 } from "../src/data/format.ts";
@@ -220,6 +221,14 @@ test("formatThesisKind names a thesis by its degree, with the apostrophe in Mast
     assert.equal(formatThesisKind("habilitation"), "Habilitation thesis");
     assert.equal(formatThesisKind("dissertation-abstract"), "Dissertation abstract");
     assert.equal(createCitationParts({ id: "g", thesis: "masters", school: "University of Alberta" }).publisher, "Master’s thesis, University of Alberta");
+});
+
+test("joinWithAnd joins a list as a sentence does", () =>
+{
+    assert.equal(joinWithAnd([]), "");
+    assert.equal(joinWithAnd(["Jurassic"]), "Jurassic");
+    assert.equal(joinWithAnd(["Jurassic", "Cretaceous"]), "Jurassic and Cretaceous");
+    assert.equal(joinWithAnd(["Triassic", "Jurassic", "Cretaceous"]), "Triassic, Jurassic and Cretaceous");
 });
 
 test("formatIntegumentEvidence says how the integument is known", () =>

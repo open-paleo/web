@@ -1,5 +1,6 @@
 ---
 import LetterJumpList from "../../components/LetterJumpList.astro";
+import TermLink from "../../components/TermLink.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatGenusCount, formatGeologicAge } from "../../data/format.ts";
 import { createLetterAnchor, groupByLetter } from "../../data/indexes.ts";
@@ -84,13 +85,15 @@ for (const group of groups)
 const pageCount = new Intl.NumberFormat("en-US").format(units.pages.length);
 ---
 
-<BaseLayout title="Stratigraphy" description={"The " + pageCount + " rock units dinosaurs in Open Paleo were found in, with their ages and genera."} navigationItem="stratigraphy">
+<BaseLayout title="Stratigraphy" description={"The " + pageCount + " rock units where the type specimens of genera in Open Paleo were found, with each unit’s age and the genera known from it."} navigationItem="stratigraphy">
     <div class="index-page">
         <header class="index-header">
             <h1>Stratigraphy</h1>
             <p class="index-summary">
-                The dataset’s genera were found in {pageCount} formations, groups and other rock units, each with a page
-                of its own. Members and beds are described on the page of the unit they belong to.
+                The type specimens of the genera in Open Paleo come from {pageCount} rock units:
+                <TermLink term="formation" text="formations" />, groups and others, listed here from A to Z. Each entry
+                shows what kind of unit it is, how old it is and how many genera are known from it. Members and beds are
+                listed too, and each is described on the page of the unit it’s part of.
             </p>
             <LetterJumpList letters={letters} label="Rock units" />
         </header>

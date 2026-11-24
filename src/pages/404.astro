@@ -4,14 +4,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const homeUrl = import.meta.env.BASE_URL;
 ---
 
-<BaseLayout title="Page not found" description="There is no page at this address on Open Paleo.">
+<BaseLayout title="Page not found" description="There’s no page at this address on Open Paleo.">
     <div class="not-found">
         <h1>Page not found</h1>
-        <p>There is no page at this address. It may have been mistyped, or the record it pointed to may have been renamed.</p>
+        <p>There’s no page at this address. It may be mistyped, or the page may have moved after a genus or clade was renamed. Try one of these instead:</p>
         <ul>
             <li><a href={homeUrl + "search/"}>Search the dataset</a></li>
             <li><a href={homeUrl + "genera/"}>Browse all genera</a></li>
-            <li><a href={homeUrl + "tree/"}>Browse the tree of clades</a></li>
+            <li><a href={homeUrl + "tree/"}>Explore the tree</a></li>
             <li><a href={homeUrl}>Go to the home page</a></li>
         </ul>
     </div>

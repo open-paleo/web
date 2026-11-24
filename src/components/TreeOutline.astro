@@ -55,7 +55,7 @@ const directCount = clade.genusNames.length;
             <ul class="tree-children">
                 {children.map((child) => <Astro.self clade={child} level={level + 1} />)}
             </ul>
-            {directCount > 0 && <p class="direct-genera figures">{formatGenusCount(directCount)} placed directly in {clade.name}</p>}
+            {directCount > 0 && <p class="direct-genera figures">Plus {formatGenusCount(directCount)} assigned to {clade.name} itself</p>}
         </div>
     )}
 </li>

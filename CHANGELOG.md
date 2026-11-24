@@ -32,6 +32,15 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ### Changed
 
+- The home page, the Genera, Clades, Tree, Map, Time, Stratigraphy, Glossary and Search pages,
+  the 404 page and the footer are rewritten in a warmer, plainer voice: they speak to the reader,
+  say what each page is for and what each entry shows, and link terms such as *stage*, *type
+  species* and *formation* to the glossary. The site describes itself as a dataset of fossil
+  genera and clades, such as dinosaurs, in the footer, the home page and its link preview image.
+  Corrections along the way: the Map counts only the genera whose country is known and says what
+  its dots are (where type specimens were found); the Tree and Time pages take the tree's top
+  clade and the periods from the data; and the Genera page's filters say what they do, inside the
+  filter form, which shows only with JavaScript
 - Every page ends with a line naming the dataset release it was built from, linked to Data, in
   place of the release in the footer, on the home page and in the Genera, Clades and References
   intros. Those intros now say what each entry shows, and link *type species* and *epoch* to the

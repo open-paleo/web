@@ -41,15 +41,22 @@ type Props = {
      * summary and "Clear filters". The Map page folds them so the map fits the first screen.
      */
     isCollapsible: boolean;
+
+    /**
+     * A sentence above the fields, saying what the filters do. It's in the form, so like the form
+     * it shows only where scripts run.
+     */
+    introduction?: string;
 };
 
-const { options, total, isCollapsible, itemNames = { singular: "genus", plural: "genera" } } = Astro.props;
+const { options, total, isCollapsible, introduction, itemNames = { singular: "genus", plural: "genera" } } = Astro.props;
 ---
 
 {/* A reader without JavaScript sees the full list and no controls that do nothing, so the form
    shows only where scripts run (see the styles below). The script reads the filters from the
    page address and writes them back to it, so a filtered list can be shared. */}
 <form class:list={["genus-filters", { "is-collapsible": isCollapsible }]} id="genus-filters" data-total={total} data-singular={itemNames.singular} data-plural={itemNames.plural} aria-label={"Filter " + itemNames.plural}>
+    {introduction && <p class="filter-introduction">{introduction}</p>}
     <div class="filter-fields" id="genus-filter-fields" hidden={isCollapsible}>
         {options.choices.map((choice) => (
             <label class="filter-field">
@@ -70,7 +77,7 @@ const { options, total, isCollapsible, itemNames = { singular: "genus", plural: 
         {/* A group rather than a fieldset: a legend is laid out apart from the fieldset's other
            content, which put these fields out of line with the lists beside them. */}
         <div class="filter-field filter-years" role="group" aria-labelledby="genus-filter-years">
-            <span class="filter-label" id="genus-filter-years">Named</span>
+            <span class="filter-label" id="genus-filter-years">Year named</span>
             <span class="year-fields">
                 <label>
                     <span class="visually-hidden">Named from</span>
@@ -133,6 +140,11 @@ const { options, total, isCollapsible, itemNames = { singular: "genus", plural: 
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
         gap: var(--space-4);
+    }
+
+    .filter-introduction
+    {
+        font-size: var(--text-interface);
     }
 
     .filter-field

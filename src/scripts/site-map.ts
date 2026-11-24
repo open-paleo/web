@@ -274,7 +274,7 @@ async function drawMap(page: MapPage): Promise<void>
 
     if (!page.view)
     {
-        showMapMessage(page.container, "The map could not be shown in this browser. The genera are listed by place below.");
+        showMapMessage(page.container, "Your browser can’t show the map, but Genera by place, below, lists the same genera.");
 
         return;
     }
@@ -328,7 +328,7 @@ async function initializeMapPage(): Promise<void>
     if (!data)
     {
         controls.form.hidden = true;
-        showMapMessage(container, "The map could not be loaded. The genera are listed by place below.");
+        showMapMessage(container, "The map couldn’t be loaded, but Genera by place, below, lists the same genera.");
 
         return;
     }

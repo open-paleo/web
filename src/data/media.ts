@@ -3,6 +3,7 @@ import * as path from "node:path";
 
 import type { OpenPaleoMedia, Outline } from "./bindings/media";
 import { mediaSchemaVersion } from "./bindings/schema-version.ts";
+import { joinWithAnd } from "./format.ts";
 import { compareSchemaVersions } from "./load-dataset.ts";
 import { findMediaDirectory, mediaFileName } from "./locate-dataset.ts";
 import type { CladeEntry, GenusEntry, SiteData } from "./site-data.ts";
@@ -202,12 +203,7 @@ export function formatOutlineChanges(changes: string): string
         }
     }
 
-    if (parts.length <= 1)
-    {
-        return parts[0] ?? "";
-    }
-
-    return parts.slice(0, -1).join(", ") + " and " + parts[parts.length - 1];
+    return joinWithAnd(parts);
 }
 
 /**
