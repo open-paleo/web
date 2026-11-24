@@ -574,13 +574,56 @@ const { dispute, question } = Astro.props;
 
 ## Writing site copy
 
-- Plain, specific English from the reader's side: "Show 6 more ranks", not "Expand"
-- Sentence case for headings, buttons and navigation
-- A button's label describes what it does, and the result uses the same word ("Copy
+The site is a view into the dataset, and also a place where someone curious comes to learn about
+fossil animals. Its own words (intros, headings, labels, notes, messages and meta descriptions)
+are written for that reader: warm, plain and specific.
+
+### Voice
+
+- **Talk to the reader.** The reader is "you" and Open Paleo is "we": "the genera we assign to
+  it", "you'll find". An intro says what the page is for and what you can do there, then what
+  each entry shows: "Explore all 1,429 genera in Open Paleo, from A to Z. Each entry shows who
+  named the genus and when…"
+- **Say it plainly.** Use "is", "are" and "has": "each tip is a clade", not "each tip stands for
+  a clade" or "each tip represents a clade"
+- **Point with "see".** To send the reader elsewhere, write "see …" or "refer to …": "For how
+  they all fit together, see the Tree." Not "the Tree shows how they fit together" or "the
+  Licenses page lists them"
+- **Contract where it reads naturally**: it's, don't, isn't, we've, you'll, there's, can't,
+  couldn't
+- **No -ing nouns.** Headings and labels are noun phrases or imperatives: "Frame size", "Fit the
+  frame to the infobox", "Links to search results"; not "Embedding a genus infobox"
+- **Questions and exclamation marks, sparingly.** A question can open an intro ("Curious where
+  fossils have been found?"); keep it to one per page, and vary how intros begin
+- **Tools need steps.** Tool pages give numbered steps named after the buttons ("Select Trace"),
+  and status messages name the button to press next
+- **Sentence case** for headings, buttons and navigation, and **American English**
+- **A button's label describes what it does, and the result uses the same word** ("Copy
   citation", then "Citation copied.")
-- Paleontological terms (holotype, nomen dubium, junior subjective synonym) are used as they
-  are, not replaced with paraphrases
-- Never state a fact about a taxon in copy; facts come from the dataset
+
+### Facts, definitions and scope
+
+- **Never state a fact about a taxon in copy**; facts come from the dataset. Counts, names and
+  ages go in through the data ("all {count} genera"), never as numbers or names in a template
+- **Never define a term in copy**; definitions come only from open-paleo/glossary. Link the term
+  instead, with `TermLink` (`<TermLink term="type species" />`), which links when the glossary
+  has the term and is plain text until it does. A term the site needs and the glossary lacks is
+  requested there
+- **Paleontological terms are used as they are** (holotype, nomen dubium, junior subjective
+  synonym), not replaced with paraphrases
+- **Abbreviations are spelled out the first time** on a page, with the abbreviation after:
+  "Paleobiology Database (PBDB)", then "PBDB"
+- **Describe the scope generically**: "a free dataset of fossil genera and clades", adding "such
+  as dinosaurs" where it helps. The dataset will grow beyond dinosaurs (pterosaurs,
+  dinosauriforms and marine reptiles), and "such as dinosaurs" becomes "such as dinosaurs and
+  pterosaurs" then
+- **The dataset release appears once**, in the line at the end of every page
+  (`BaseLayout.astro`). Intros give counts, not the release. It stays in the places that need it:
+  the Data page's release facts, citations, and the Developers page's package versions. The
+  dataset's version is its "release" in copy, since "version" also means the schema's and the
+  packages'
+- **One name for each thing.** The page listing the works we cite is "References" everywhere,
+  not also "cited works" or "published works"
 
 ## Before opening a pull request
 
