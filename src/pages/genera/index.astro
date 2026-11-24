@@ -1,6 +1,7 @@
 ---
 import GenusFilterForm from "../../components/GenusFilterForm.astro";
 import GenusIndex from "../../components/GenusIndex.astro";
+import TermLink from "../../components/TermLink.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatGenusCount } from "../../data/format.ts";
 import { createGenusIndexRows, getGenusFilterOptions } from "../../data/genus-index.ts";
@@ -15,7 +16,11 @@ const filterOptions = getGenusFilterOptions(rows, siteData.timeline);
     <div class="index-page">
         <header class="index-header">
             <h1>Genera</h1>
-            <p class="index-summary">{formatGenusCount(siteData.genera.length)} in release {siteData.metadata.version}, from A to Z.</p>
+            <p class="index-summary">
+                Explore all {formatGenusCount(siteData.genera.length)} in Open Paleo, from A to Z. Each entry shows who
+                named the genus and when, the group we place it in, when it lived and the country its
+                <TermLink term="type species" /> is known from.
+            </p>
         </header>
         <GenusFilterForm options={filterOptions} total={rows.length} isCollapsible={false} />
         <GenusIndex rows={rows} label="Genera" headingLevel={2} isFilterable={true} isGroupedByLetter={true} />

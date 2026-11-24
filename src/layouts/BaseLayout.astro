@@ -173,6 +173,9 @@ const currentPath = Astro.url.pathname;
         <div class="site-page">
             <main class="site-main" id="content" tabindex="-1">
                 <slot />
+                {/* Which release of the dataset the page shows, at the end of every page; the
+                    intros give the counts instead. */}
+                <p class="page-release" data-pagefind-ignore>This page was built from <a href={homeUrl + "data/"}>release {release.version}</a> of the Open Paleo dataset.</p>
             </main>
         </div>
         <footer class="site-footer">
@@ -214,9 +217,8 @@ const currentPath = Astro.url.pathname;
                 </nav>
                 <p class="footer-license">
                     Data by Open Paleo contributors, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
-                    Site code licensed under the <a href="https://github.com/open-paleo/web/blob/main/LICENSE">MIT License</a>;
-                    the work of others it uses is listed under <a href={homeUrl + "licenses/"}>Licenses</a>.
-                    Built from release {release.version}.
+                    Site code licensed under the <a href="https://github.com/open-paleo/web/blob/main/LICENSE">MIT License</a>.
+                    For the work of others the site uses, see <a href={homeUrl + "licenses/"}>Licenses</a>.
                 </p>
             </div>
         </footer>
@@ -640,6 +642,22 @@ const currentPath = Astro.url.pathname;
     .site-main:focus
     {
         outline: none;
+    }
+
+    /* A quiet line under the page's content, set apart from it by a rule. */
+    .page-release
+    {
+        margin-top: var(--space-8);
+        padding-top: var(--space-3);
+        border-top: 1px solid var(--color-line);
+        color: var(--color-muted);
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+
+    .page-release a
+    {
+        color: inherit;
     }
 
     @media (max-width: 40rem)

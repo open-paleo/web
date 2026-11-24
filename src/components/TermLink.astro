@@ -1,0 +1,28 @@
+---
+import { findGlossaryEntry, getGlossary } from "../data/glossary.ts";
+import GlossaryTerm from "./GlossaryTerm.astro";
+
+/**
+ * Properties of a glossary term written into the site's own copy, such as "type species" in a
+ * page's intro.
+ */
+type Props = {
+    /**
+     * The term or one of its forms, as the glossary lists it: "type species", "epoch".
+     */
+    term: string;
+
+    /**
+     * The text as written, when it differs from the term: "epochs" for "epoch".
+     */
+    text?: string;
+};
+
+const { term, text } = Astro.props;
+const entry = findGlossaryEntry(getGlossary(), term);
+
+// Links to the term's glossary entry when the glossary has one, and is plain text until it does,
+// so copy can name a term the glossary hasn't defined yet. Keep the markup on one line: whitespace
+// around it would appear in the text.
+---
+{entry ? <GlossaryTerm entry={entry} text={text ?? term} /> : text ?? term}

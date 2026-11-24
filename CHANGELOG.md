@@ -32,6 +32,10 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ### Changed
 
+- Every page ends with a line naming the dataset release it was built from, linked to Data, in
+  place of the release in the footer, on the home page and in the Genera, Clades and References
+  intros. Those intros now say what each entry shows, and link *type species* and *epoch* to the
+  glossary
 - A genus without an outline of its own no longer shows a relative's. Most showed the outline
   of a clade several ranks above them, often a whole order's, which misrepresented the animal. A
   clade without its own outline still shows its type genus's, and its credit line now says so

@@ -1,6 +1,7 @@
 ---
 import GenusFilterForm from "../../components/GenusFilterForm.astro";
 import GenusIndex from "../../components/GenusIndex.astro";
+import TermLink from "../../components/TermLink.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatCount } from "../../data/format.ts";
 import { createCladeIndexRows, getCladeFilterOptions } from "../../data/genus-index.ts";
@@ -18,9 +19,9 @@ const cladeCount = formatCount(rows.length, "clade", "clades");
         <header class="index-header">
             <h1>Clades</h1>
             <p class="index-summary">
-                Release {siteData.metadata.version} has {cladeCount}, listed here from A to Z. Each shows the clade it
-                belongs to, how many genera it contains and when they lived. To see how they fit together, open the
-                <a href={import.meta.env.BASE_URL + "tree/"}>Tree</a>.
+                Here are all {cladeCount} in Open Paleo, from A to Z. Each entry shows who named the clade and when, the
+                clade it’s part of, how many genera it includes, and the <TermLink term="epoch" text="epochs" /> those
+                genera lived in. For how they all fit together, see the <a href={import.meta.env.BASE_URL + "tree/"}>Tree</a>.
             </p>
         </header>
         <GenusFilterForm options={filterOptions} total={rows.length} isCollapsible={false} itemNames={{ singular: "clade", plural: "clades" }} />
