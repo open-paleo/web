@@ -51,6 +51,14 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   "genus pages that cite it"; a clade's own genera are "other genera in" it, "not in a
   subclade". The period pages' intro no longer says their genera all come from stages, since
   some are dated only to an epoch
+- The Data, Developers, Tools and Licenses pages, the tool pages and the embed instructions are
+  rewritten the same way. The tools give numbered steps named after their buttons; the Data
+  page's file list describes `open-paleo.json` fully (rock units and the geologic time scale
+  were missing); the Licenses page lists the logos in a section of their own; and the beta
+  badges read "Beta, version 0.3.0" to screen readers
+- The Licenses page said all of Open Paleo's own code is under the MIT License; the outline
+  tracer is under the GPL, which it now says. The outline tracer's page said opening a figure
+  traces it; you select Trace
 - Every page ends with a line naming the dataset release it was built from, linked to Data, in
   place of the release in the footer, on the home page and in the Genera, Clades and References
   intros. Those intros now say what each entry shows, and link *type species* and *epoch* to the

@@ -21,20 +21,20 @@ const citation = createDatasetCitation(metadata);
 const structuredData = Astro.site ? createDatasetStructuredData(metadata, files, new URL(Astro.url.pathname, Astro.site).href) : undefined;
 ---
 
-<BaseLayout title="Data" description="Download the Open Paleo dataset, and how to cite it." navigationItem="data" structuredData={structuredData}>
+<BaseLayout title="Data" description="Download the Open Paleo dataset as JSON, YAML, Newick, NEXUS or BibTeX, and find out how to cite it." navigationItem="data" structuredData={structuredData}>
     <div class="data-page">
         <header class="data-header">
             <h1>Data</h1>
             <p class="data-summary">
-                The genera, clades, rock units and references on this site come from the Open Paleo dataset,
-                which is free to use under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
-                with attribution to Open Paleo contributors. The files below are the dataset’s built output,
-                maintained in the <a href={dataRepository}>open-paleo/data repository</a>.
+                Everything this site tells you about genera, clades, rock units and references comes from the Open
+                Paleo dataset. You’re free to use it under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>,
+                as long as you credit Open Paleo contributors. The files below are built from the dataset’s source in the
+                <a href={dataRepository}>open-paleo/data repository</a> on GitHub.
             </p>
             <p class="data-summary">
-                Not everything on the site is under that license. Each outline beside a genus or clade name
-                carries its own, named in its credit line, and the maps, fonts and software are the work of
-                others under theirs. The <a href={baseUrl + "licenses/"}>Licenses</a> page lists them.
+                Not everything on the site is under that license, though. Each outline beside a genus or clade name has
+                its own license, named in its credit line, and the maps, fonts and software are other people’s work under
+                their own licenses. For the full list, see <a href={baseUrl + "licenses/"}>Licenses</a>.
             </p>
         </header>
 
@@ -44,7 +44,7 @@ const structuredData = Astro.site ? createDatasetStructuredData(metadata, files,
                 <dd class="figures">{metadata.version}</dd>
             </div>
             <div>
-                <dt>Output schema</dt>
+                <dt>Schema version</dt>
                 <dd class="figures">{metadata.schema_version}</dd>
             </div>
             <div>
@@ -79,27 +79,26 @@ const structuredData = Astro.site ? createDatasetStructuredData(metadata, files,
                 </table>
             </div>
             <p class="section-note">
-                Build against the JSON or YAML output and validate it with the schema: the files under <code>dist/</code> are the
-                dataset’s stable, versioned contract, and its <a href={dataRepository + "/blob/main/docs/VERSIONING.md"}>versioning policy</a>
-                explains what each version number promises.
+                Writing code that reads the dataset? Use the JSON or YAML file and check it against the schema. These files
+                are the dataset’s stable, versioned output; for what a change to each part of the version number means,
+                see the <a href={dataRepository + "/blob/main/docs/VERSIONING.md"}>versioning policy</a>.
             </p>
             <aside class="bindings-callout" aria-labelledby="bindings-callout-title">
                 <h3 class="bindings-callout-title" id="bindings-callout-title">Official typed bindings</h3>
                 <p>
-                    Reading the dataset in code? Official bindings describe every record: TypeScript types on npm, and
-                    Pydantic models for Python on PyPI, both with the JSON Schema. The
-                    <a href={baseUrl + "developers/#" + bindingsSectionId}>Developers page</a> explains how to install
-                    and use them.
+                    We also publish official bindings that describe the format of every record: TypeScript types on npm and
+                    Pydantic models for Python on PyPI, each with the JSON Schema. To install and use them, see
+                    <a href={baseUrl + "developers/#" + bindingsSectionId}>Developers</a>.
                 </p>
             </aside>
         </PageSection>
 
         <PageSection title="How to cite">
-            <p>Cite the release you used, so others can reproduce your work:</p>
+            <p>Please cite the release you used, so others can check your work against the same data:</p>
             <HowToCite citation={citation} subject="the dataset" />
             <p class="section-note">
-                The dataset rests on published literature. If your work draws on it, consider citing the original papers too:
-                <a href={fileBaseUrl + "references.bib"}>references.bib</a> lists every one.
+                The dataset is built from published literature, so if your work draws on it, please consider citing the
+                original papers too. You’ll find every one in <a href={fileBaseUrl + "references.bib"}>references.bib</a>.
             </p>
         </PageSection>
     </div>

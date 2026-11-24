@@ -9,24 +9,26 @@ const sourceUrl = "https://github.com/open-paleo/tools/tree/main/tree-extractor"
 const extractorVersion = readWorkVersion(findLicensedWork("tree-extractor"), process.cwd());
 ---
 
-<BaseLayout title="Tree extractor" description="Read a phylogenetic tree from a published figure and save it as Newick or Nexus, in your browser." navigationItem="tools">
+<BaseLayout title="Tree extractor" description="Read a phylogenetic tree from a published figure and save it as Newick or NEXUS, right in your browser." navigationItem="tools">
     <div class="tool-page">
         <header class="tool-header">
             <h1><span>Tree extractor</span> <BetaBadge version={extractorVersion} /></h1>
-            <p class="tool-summary">
-                Reads a phylogenetic tree from a published figure and turns it into Newick and Nexus. Open an
-                image of a cladogram and the tool traces its branches, reads the tip labels and matches them to
-                names in Open Paleo. Then you correct anything it got wrong before saving the tree.
-            </p>
+            <p class="tool-summary">Read a phylogenetic tree from a published figure and save it as Newick or NEXUS.</p>
+            <ol class="tool-steps">
+                <li>Choose an image of a cladogram.</li>
+                <li>Select Extract tree. The extractor traces the branches, reads the tip labels and matches them to names in Open Paleo.</li>
+                <li>Check the tree against the figure, and correct anything it got wrong.</li>
+                <li>Download the tree as Newick (.nwk) or NEXUS (.nex).</li>
+            </ol>
             <ul class="tool-notes">
-                <li>It runs entirely in your browser: the figure is never uploaded.</li>
-                <li>The first time it reads labels it downloads about 10 MB of text-recognition data from this site, which your browser keeps. Reading unmatched labels a second time downloads about 12 MB more, the first time you use it.</li>
-                <li>It is a beta. Check every tree against its figure before you use it, and refer to <a href={sourceUrl + "#status"}>its documentation</a> for the kinds of figure it handles well.</li>
+                <li>It runs entirely in your browser, so your figure is never uploaded.</li>
+                <li>The first time it reads labels, it downloads about 10 MB of text-recognition data from this site, which your browser keeps for next time. If you tick “Read unmatched labels a second time”, it downloads about 12 MB more for a second text-recognition engine, also only once.</li>
+                <li>It’s still in beta, so check every tree against its figure before you use it. For the kinds of figure it handles well, refer to <a href={sourceUrl + "#status"}>its documentation</a>.</li>
             </ul>
         </header>
 
         <noscript>
-            <p class="tool-unavailable">The tree extractor needs JavaScript. The command-line version is described in <a href={sourceUrl}>its repository</a>.</p>
+            <p class="tool-unavailable">The tree extractor needs JavaScript. To run it from the command line instead, see <a href={sourceUrl}>its repository</a>.</p>
         </noscript>
 
         <tree-extractor
@@ -40,8 +42,8 @@ const extractorVersion = readWorkVersion(findLicensedWork("tree-extractor"), pro
         ></tree-extractor>
 
         <p class="tool-source">
-            The tree extractor is open source, in <a href={sourceUrl}>open-paleo/tools</a>, where it also runs from the
-            command line on whole folders of figures.
+            The tree extractor is open source. Its code is in <a href={sourceUrl}>open-paleo/tools</a>, along with a
+            command-line version that reads whole folders of figures.
         </p>
     </div>
 </BaseLayout>
@@ -74,10 +76,19 @@ const extractorVersion = readWorkVersion(findLicensedWork("tree-extractor"), pro
     }
 
     .tool-summary,
+    .tool-steps,
     .tool-notes,
     .tool-source
     {
         max-width: var(--measure);
+    }
+
+    .tool-steps
+    {
+        display: grid;
+        gap: var(--space-1);
+        margin: 0;
+        padding-left: var(--space-5);
     }
 
     .tool-notes

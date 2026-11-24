@@ -15,25 +15,26 @@ const guideUrl = mediaUrl + "/blob/main/CONTRIBUTING.md#tracing-a-skeletal-recon
 const licenseOptions = getLicenseOptions();
 ---
 
-<BaseLayout title="Outline tracer" description="Trace a skeletal reconstruction into the outline a genus page shows, and write its record for Open Paleo's media, in your browser." navigationItem="tools">
+<BaseLayout title="Outline tracer" description="Trace a skeletal reconstruction into the outline shown beside a genus or clade name, and write its record for Open Paleo’s media, right in your browser." navigationItem="tools">
     <div class="tool-page">
         <header class="tool-header">
             <h1><span>Outline tracer</span> <BetaBadge version={tracerVersion} /></h1>
-            <p class="tool-summary">
-                Traces a skeletal reconstruction into the outline a genus or clade page shows beside its name. Open
-                a figure and the tracer keeps the animal, drops names, scale bars and ground lines, fills in the body
-                and traces its edge. Then check the outline against the figure, adjust the settings if it needs it,
-                and copy the record for <a href={mediaUrl}>open-paleo/media</a>.
-            </p>
+            <p class="tool-summary">Turn a skeletal reconstruction into the outline shown beside a genus or clade name.</p>
+            <ol class="tool-steps">
+                <li>Open a figure, or drop one on the page.</li>
+                <li>Select Trace. The tracer keeps the animal, drops names, scale bars and ground lines, fills in the body and traces its edge.</li>
+                <li>Check the outline against the figure. If it needs it, adjust the settings and select Trace again.</li>
+                <li>Fill in the record from the figure’s source page, then copy it into <a href={mediaUrl}>open-paleo/media</a>.</li>
+            </ol>
             <ul class="tool-notes">
-                <li>It runs entirely in your browser: the figure is never uploaded.</li>
-                <li>Trace only figures under a license the media repository accepts, and credit the artist as the figure's source does: see <a href={guideUrl}>Tracing a skeletal reconstruction</a>.</li>
-                <li>This is a preview. The outline that is committed comes from the record, by <code>npm run trace</code> in the media repository; a JPEG figure can come out a pixel different there.</li>
+                <li>It runs entirely in your browser, so your figure is never uploaded.</li>
+                <li>Only trace figures under a license the media repository accepts, and credit the artist the way the figure’s source does. For details, see <a href={guideUrl}>Tracing a skeletal reconstruction</a>.</li>
+                <li>The outline you see here is a preview. The outline that gets committed is traced from the record by <code>npm run trace</code> in the media repository, and for a JPEG figure it can differ by a pixel.</li>
             </ul>
         </header>
 
         <noscript>
-            <p class="tool-unavailable">The outline tracer needs JavaScript. Without it, write the record by hand and run <code>npm run trace</code> in <a href={mediaUrl}>open-paleo/media</a>.</p>
+            <p class="tool-unavailable">The outline tracer needs JavaScript. Without it, you can write the record by hand and run <code>npm run trace</code> in <a href={mediaUrl}>open-paleo/media</a>.</p>
         </noscript>
 
         <div class="tracer" id="outline-tracer" hidden>
@@ -52,15 +53,16 @@ const licenseOptions = getLicenseOptions();
                         <input type="number" id="tracer-threshold-value" min="1" max="254" value="180" aria-label="Threshold" aria-describedby="tracer-threshold-help" />
                     </div>
                     <p class="setting-help" id="tracer-threshold-help">
-                        How dark a pixel must be to count as part of the drawing, from 0 (black) to 255 (white). Lower it if a
-                        gray background is traced; raise it if thin lines break up.
+                        Pixels darker than this count as part of the drawing, on a scale from 0 (black) to 255 (white). If a
+                        gray background gets traced, lower it. If thin lines break up, raise it.
                     </p>
                 </div>
                 <div class="setting">
                     <p class="setting-label">Keep-open points</p>
                     <p class="setting-help">
-                        Click the figure inside a space that must stay open, such as the space under the body that overlapping
-                        legs close off. Click a point to remove it.
+                        To keep a space open, click inside it on the figure: for example, the gap under the body that
+                        overlapping legs close off. Click a point to remove it. You can also type a point’s x and y in pixels
+                        and select Add point.
                     </p>
                     <ul class="point-list" id="tracer-points"></ul>
                     <div class="point-form">
@@ -82,7 +84,7 @@ const licenseOptions = getLicenseOptions();
                 <figure class="tracer-view">
                     <figcaption>
                         <span>Figure</span>
-                        <label class="view-option"><input type="checkbox" id="tracer-show-outline" checked /> Show overlay</label>
+                        <label class="view-option"><input type="checkbox" id="tracer-show-outline" checked /> Show outline on figure</label>
                     </figcaption>
                     <div class="figure-frame" id="tracer-figure">
                         <div class="figure-canvas">
@@ -97,7 +99,7 @@ const licenseOptions = getLicenseOptions();
                     <div class="outline-frame">
                         <div class="outline-large" id="tracer-outline" role="img" aria-label="The traced outline"></div>
                         <div class="outline-size">
-                            <p>Size as shown on website</p>
+                            <p>Actual size on the site</p>
                             <div class="outline-small" id="tracer-outline-small" aria-hidden="true"></div>
                         </div>
                     </div>
@@ -116,7 +118,7 @@ const licenseOptions = getLicenseOptions();
                     <input type="text" id="record-creator" autocomplete="off" />
                     <label for="record-source">Source page</label>
                     <input type="url" id="record-source" placeholder="https://commons.wikimedia.org/wiki/File:…" autocomplete="off" />
-                    <label for="record-image">Image file</label>
+                    <label for="record-image">Image file address</label>
                     <input type="url" id="record-image" placeholder="https://upload.wikimedia.org/…" autocomplete="off" />
                     <label for="record-license">License</label>
                     <select id="record-license">
@@ -135,9 +137,9 @@ const licenseOptions = getLicenseOptions();
         <p class="tool-source">
             The outline tracer is open source, in <a href={sourceUrl}>open-paleo/tools</a>. It includes
             <a href="https://potrace.sourceforge.net">potrace</a>, compiled to WebAssembly by
-            <a href={potraceBuild.sourceUrl}>esm-potrace-wasm</a> {potraceBuildVersion}, so it is licensed under the
+            <a href={potraceBuild.sourceUrl}>esm-potrace-wasm</a> {potraceBuildVersion}, so it’s licensed under the
             <a href={baseUrl + "licenses/outline-tracer.txt"}>GNU General Public License, version 2 or later</a>.
-            The <a href={baseUrl + "licenses/"}>Licenses</a> page lists everything else the site uses.
+            For everything else the site uses, see <a href={baseUrl + "licenses/"}>Licenses</a>.
         </p>
     </div>
 </BaseLayout>
@@ -170,10 +172,19 @@ const licenseOptions = getLicenseOptions();
     }
 
     .tool-summary,
+    .tool-steps,
     .tool-notes,
     .tool-source
     {
         max-width: var(--measure);
+    }
+
+    .tool-steps
+    {
+        display: grid;
+        gap: var(--space-1);
+        margin: 0;
+        padding-left: var(--space-5);
     }
 
     .tool-notes

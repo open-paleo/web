@@ -33,9 +33,9 @@ const documentationPath = import.meta.env.BASE_URL + "developers/#" + embedFrame
     <div class="embed-instructions">
         <p>
             Want to show information about <i class="taxon">{genusName}</i> on your own website? Add the code below to
-            your site to show <a href={embedPath}>an infobox</a>. By default the box is {embedFrameWidth} × {embedFrameHeight}
-            pixels, so its content may scroll inside the frame. The <a href={documentationPath}>developer documentation</a>
-            explains how to resize the frame to fit once it has loaded.
+            your site to show <a href={embedPath}>an infobox</a>. The box is {embedFrameWidth} × {embedFrameHeight}
+            pixels, so a longer infobox scrolls inside the frame. To resize the frame to fit once it has loaded, see the
+            <a href={documentationPath}>developer documentation</a>.
         </p>
         <pre class="code-block" tabindex="0" role="region" aria-label={"Embed code for " + genusName}><code>{embedCode}</code></pre>
         <p class="copy-actions" hidden>

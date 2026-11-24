@@ -393,8 +393,8 @@ export function createDatasetStructuredData(metadata: Metadata, files: Array<Dat
         "@type": "Dataset",
         "@id": pageUrl,
         name: "Open Paleo",
-        description: "A community-maintained phylogenetic dataset for paleontology, backed by published literature: "
-            + formatGenusCount(metadata.genus_count) + " in " + metadata.clade_count + " clades, with the clade tree and every cited work.",
+        description: "A free, community-built dataset of fossil genera and clades, such as dinosaurs, with every value taken from published research: "
+            + formatGenusCount(metadata.genus_count) + " in " + metadata.clade_count + " clades, with the clade tree and every work cited.",
         url: pageUrl,
         sameAs: dataRepositoryUrl,
         version: metadata.version,

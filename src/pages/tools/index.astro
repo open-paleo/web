@@ -9,28 +9,28 @@ const outlineTracerVersion = readWorkVersion(findLicensedWork("outline-tracer"),
 const treeExtractorVersion = readWorkVersion(findLicensedWork("tree-extractor"), process.cwd());
 ---
 
-<BaseLayout title="Tools" description="Tools for working with the Open Paleo dataset and the literature behind it, in your browser." navigationItem="tools">
+<BaseLayout title="Tools" description="Browser tools that turn published figures into data: trace an outline from a skeletal reconstruction, or read a phylogenetic tree from a figure." navigationItem="tools">
     <div class="tools-page">
         <header class="tools-header">
             <h1>Tools</h1>
-            <p class="tools-summary">These tools help with the dataset and the literature behind it. They run entirely in your browser.</p>
+            <p class="tools-summary">These tools help you turn figures from published papers into data. They run entirely in your browser, so your figures never leave your computer.</p>
         </header>
 
         <ul class="tool-list">
             <li>
                 <h2><a href={baseUrl + "tools/outline-tracer/"}>Outline tracer</a> <BetaBadge version={outlineTracerVersion} /></h2>
                 <p>
-                    Traces a skeletal reconstruction into the outline a genus or clade page shows, and writes its record
-                    for Open Paleo’s images. The tracer keeps the animal, drops labels and scale bars, and fills in the
-                    body, and then you check the outline against the figure. Your figure never leaves your computer.
+                    Turn a skeletal reconstruction into the outline shown beside a genus or clade name. The tracer keeps
+                    the animal, drops labels and scale bars, and fills in the body. You check the outline against the
+                    figure, then copy its record for Open Paleo’s media repository.
                 </p>
             </li>
             <li>
                 <h2><a href={baseUrl + "tools/tree-extractor/"}>Tree extractor</a> <BetaBadge version={treeExtractorVersion} /></h2>
                 <p>
-                    Reads a phylogenetic tree from a published figure and saves it as Newick or Nexus. It traces the
-                    branches, reads the tip labels and matches them to names in Open Paleo, and then you correct
-                    anything it got wrong. Your figure never leaves your computer.
+                    Read a phylogenetic tree from a published figure and save it as Newick or NEXUS. The extractor
+                    traces the branches, reads the tip labels and matches them to names in Open Paleo. Then you correct
+                    anything it got wrong.
                 </p>
             </li>
         </ul>

@@ -82,14 +82,14 @@ const bindings: PageHeading = { title: "Typed bindings for the dataset", id: bin
 const typescript = createHeading("TypeScript");
 const python = createHeading("Python");
 const versions = createHeading("Package versions");
-const embedding = createHeading("Embedding a genus infobox");
+const embedding = createHeading("Genus infoboxes for your site");
 const frameSize = createHeading("Frame size");
 const fitting: PageHeading = { title: "Fit the frame to the infobox", id: embedFrameSectionId };
 const credit = createHeading("Credit and privacy");
 const following = createHeading("Feed, structured data and search");
 const feed = createHeading("Feed of newly named genera");
 const structuredData = createHeading("Structured data");
-const search = createHeading("Linking to a search");
+const search = createHeading("Links to search results");
 const contents: Array<ContentsEntry> = [
     { heading: bindings, subheadings: [typescript, python, versions] },
     { heading: embedding, subheadings: [frameSize, fitting, credit] },
@@ -99,14 +99,14 @@ const feedUrl = new URL(baseUrl + "feed.xml", siteUrl).href;
 const exampleSearchPath = baseUrl + "search/?q=" + encodeURIComponent(exampleGenus.name);
 ---
 
-<BaseLayout title="Developers" description="How to build on Open Paleo: typed bindings for reading the dataset, infoboxes that show a genus on your own site, and the feed, structured data and search links the site offers." navigationItem="developers">
+<BaseLayout title="Developers" description="Use Open Paleo in your own project: typed bindings for reading the dataset, infoboxes that show a genus on your site, and the site’s feed, structured data and search links." navigationItem="developers">
     <div class="developers-page">
         <header class="developers-header">
             <h1>Developers</h1>
             <p class="developers-summary">
-                How to build on Open Paleo: typed bindings for reading the dataset in code, infoboxes that show a genus
-                on your own site, and the feed, structured data and search links the site offers. For the dataset’s
-                files and how to cite them, see <a href={baseUrl + "data/"}>Data</a>.
+                Want to use Open Paleo in your own project? This page covers the typed bindings for reading the dataset
+                in code, the infoboxes you can add to your site to show a genus, and the site’s feed, structured data and
+                search links. To download the dataset’s files or cite them, see <a href={baseUrl + "data/"}>Data</a>.
             </p>
         </header>
 
@@ -127,51 +127,52 @@ const exampleSearchPath = baseUrl + "search/?q=" + encodeURIComponent(exampleGen
         <div class="developers-content">
             <PageSection title={bindings.title} id={bindings.id}>
                 <p>
-                    Official bindings describe every object in the built dataset (<code>open-paleo.json</code>), so code
-                    that reads it is checked against its format: TypeScript declarations on npm, and Pydantic models for
-                    Python on PyPI. Both include the JSON Schema (draft 2020-12) they are generated from. Like the
-                    dataset, they are licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>,
-                    with credit to Open Paleo contributors. Projects without a package manager can take the same files
-                    from the data repository’s <a href={bindingsFolderUrl}><code>dist/bindings/</code></a> folder.
+                    We publish official bindings that describe the format of every object in the built dataset
+                    (<code>open-paleo.json</code>), so your code can be checked against it: TypeScript declarations on npm
+                    and Pydantic models for Python on PyPI. Both include the JSON Schema (draft 2020-12) they’re generated
+                    from. Like the dataset, they’re licensed under
+                    <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, with credit to Open Paleo
+                    contributors. Not using a package manager? Download the same files from the
+                    <a href={bindingsFolderUrl}><code>dist/bindings/</code></a> folder of the data repository.
                 </p>
 
                 <section class="subsection" aria-labelledby={typescript.id}>
                     <h3 id={typescript.id}>{typescript.title}</h3>
                     <p>
-                        <a href={npmPackageUrl}><code>{npmPackageName}</code></a> holds the type declarations and the
-                        schema, with no code that runs. Install it as a development dependency:
+                        <a href={npmPackageUrl}><code>{npmPackageName}</code></a> contains only the type declarations and
+                        the schema, with no code to run. Install it as a development dependency:
                     </p>
                     <pre class="code-block" tabindex="0" role="region" aria-label="Command that installs the TypeScript package"><code>{packages.npmInstall}</code></pre>
                     {packages.isUnstable && <p>Versions before 1.0.0 are published under npm’s <code>next</code> tag.</p>}
                     <p>
                         Each kind of object has its own type: <code>Genus</code>, <code>Species</code>, <code>Clade</code>,
-                        <code>Reference</code>, <code>StratigraphicUnit</code> and so on. Read a genus by name, or go through
-                        them all with <code>Object.values()</code>:
+                        <code>Reference</code>, <code>StratigraphicUnit</code> and so on. Read a genus by name, or loop over
+                        every genus with <code>Object.values()</code>:
                     </p>
                     <pre class="code-block" tabindex="0" role="region" aria-label="Example of reading the dataset in TypeScript"><code>{packages.typescriptExample}</code></pre>
-                    <p>The package is published with npm provenance.</p>
+                    <p>Each release is published with npm provenance.</p>
                 </section>
 
                 <section class="subsection" aria-labelledby={python.id}>
                     <h3 id={python.id}>{python.title}</h3>
                     <p>
                         <a href={pythonPackageUrl}><code>{pythonPackageName}</code></a>, imported as
-                        <code>{pythonModuleName}</code>, holds Pydantic models and the schema. It needs Python 3.9 or later
-                        and Pydantic 2.10 or later, below 3.
+                        <code>{pythonModuleName}</code>, contains the Pydantic models and the schema. It needs Python 3.9 or
+                        later, and Pydantic 2.10 or later (but not Pydantic 3).
                     </p>
                     <pre class="code-block" tabindex="0" role="region" aria-label="Command that installs the Python package"><code>{packages.pipInstall}</code></pre>
                     <p>Validate the dataset as you read it, then read a genus by name:</p>
                     <pre class="code-block" tabindex="0" role="region" aria-label="Example of reading the dataset in Python"><code>{packages.pythonExample}</code></pre>
-                    <p>The package is uploaded with PyPI attestations, through trusted publishing.</p>
+                    <p>Each release is uploaded through PyPI’s trusted publishing, with attestations.</p>
                 </section>
 
                 <section class="subsection" aria-labelledby={versions.id}>
                     <h3 id={versions.id}>{versions.title}</h3>
                     <p>
-                        A package’s version is the schema version of the dataset it describes, which the dataset gives in
-                        <code>_metadata.schema_version</code>; this site is built from schema {packages.version}. A data
-                        release that doesn’t change the format publishes no new package version, so install the version
-                        that matches the dataset you read.
+                        Each package’s version is the schema version of the dataset format it describes, which you’ll
+                        find in the dataset’s <code>_metadata.schema_version</code>. This site is built from schema
+                        {packages.version}. A data release that doesn’t change the format doesn’t get a new package
+                        version, so install the version that matches the dataset you’re reading.
                     </p>
                     {packages.isUnstable
                         ? (
@@ -184,46 +185,47 @@ const exampleSearchPath = baseUrl + "search/?q=" + encodeURIComponent(exampleGen
                         : <p>A new major version ({packages.compatibleLine} to {packages.nextLine}) is a breaking change.</p>}
                     <p>
                         To stay on versions compatible with your code, use npm’s <code>{packages.npmRange}</code> or pip’s
-                        <code>{packages.pipRequirement}</code>; both stay within {packages.compatibleLine}.x. The data
-                        repository’s <a href={packageVersioningUrl}>versioning policy</a> and
-                        <a href={dataChangelogUrl}>changelog</a> have the details.
+                        <code>{packages.pipRequirement}</code>. Both stay within {packages.compatibleLine}.x. For the
+                        details, see the data repository’s <a href={packageVersioningUrl}>versioning policy</a> and
+                        <a href={dataChangelogUrl}>changelog</a>.
                     </p>
                 </section>
             </PageSection>
 
             <PageSection title={embedding.title}>
                 <p>
-                    Every genus has an infobox: a card with its name, age, a one-sentence summary, a few facts and its
-                    outline, linking to its page on Open Paleo. The genus page gives the code to show it on your site,
-                    under “Embed this genus”. The code is one frame:
+                    Every genus has an infobox, a small card you can show on your own site. It has the genus’s name and
+                    age, a one-sentence summary, a few facts and its outline, and links to the genus’s page on Open Paleo.
+                    You’ll find the code on each genus page, under “Embed this genus”. It’s a single iframe:
                 </p>
                 <pre class="code-block" tabindex="0" role="region" aria-label="Example embed code"><code>{embedCode}</code></pre>
                 <p>
                     An infobox’s address is its genus page’s address with <code>embed/</code> before <code>genus/</code>.
-                    The infobox follows the reader’s light or dark setting, leaves the page around its card transparent,
-                    and opens its links in a new tab.
+                    The infobox follows your visitor’s light or dark setting, keeps the space around its card
+                    transparent, and opens its links in a new tab.
                 </p>
 
                 <section class="subsection" aria-labelledby={frameSize.id}>
                     <h3 id={frameSize.id}>{frameSize.title}</h3>
                     <p>
-                        The code sets the frame to {embedFrameWidth} × {embedFrameHeight} pixels, and
-                        <code>max-width: 100%</code> narrows it to fit a smaller column. You can change both: the infobox
-                        fits any width down to 280 pixels. An infobox taller than its frame scrolls inside it.
+                        The code makes the frame {embedFrameWidth} × {embedFrameHeight} pixels, and
+                        <code>max-width: 100%</code> narrows it to fit a smaller column. You can change the width and
+                        height: the infobox fits any width down to 280 pixels. If an infobox is taller than its frame, it
+                        scrolls inside it.
                     </p>
                 </section>
 
                 <section class="subsection" aria-labelledby={fitting.id}>
                     <h3 id={fitting.id}>{fitting.title}</h3>
                     <p>
-                        Once it has loaded, and whenever its height changes, the infobox sends the page it is shown on its
-                        height in pixels, with <code>postMessage</code>:
+                        When it loads, and whenever its height changes, the infobox tells the page it’s on how tall it is,
+                        in pixels, with <code>postMessage</code>:
                     </p>
                     <pre class="code-block" tabindex="0" role="region" aria-label="Example height message"><code>{messageText}</code></pre>
                     <p>
-                        To fit each frame to its infobox, add this script once to your page. It accepts the message only
-                        from {siteUrl.origin}, and only for the frame that sent it, so other frames on the page are left
-                        alone. Without JavaScript the frame keeps the height the code gives it.
+                        To fit each frame to its infobox, add this script to your page once. It only accepts the message
+                        from {siteUrl.origin}, and only for the frame that sent it, so it leaves other frames on the page
+                        alone. Without JavaScript, the frame keeps the height the code gives it.
                     </p>
                     <pre class="code-block" tabindex="0" role="region" aria-label="Script that fits the frame to the infobox"><code>{resizeCode}</code></pre>
                     <p class="copy-actions" hidden>
@@ -235,13 +237,13 @@ const exampleSearchPath = baseUrl + "search/?q=" + encodeURIComponent(exampleGen
                 <section class="subsection" aria-labelledby={credit.id}>
                     <h3 id={credit.id}>{credit.title}</h3>
                     <p>
-                        The infobox carries its own credit: the data’s
+                        The infobox includes its own credit: the data’s
                         <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> license and the outline’s
-                        credit line. Show the whole infobox, so both stay visible.
+                        credit line. Please show the whole infobox, so both stay visible.
                     </p>
                     <p>
-                        Open Paleo counts views of infoboxes as visits, as it does for its own pages; the
-                        <a href={baseUrl + "privacy/"}>privacy policy</a> explains what that involves.
+                        We count each view of an infobox as a visit, just as we do for our own pages. For what that
+                        involves, see the <a href={baseUrl + "privacy/"}>privacy policy</a>.
                     </p>
                 </section>
             </PageSection>
@@ -252,35 +254,35 @@ const exampleSearchPath = baseUrl + "search/?q=" + encodeURIComponent(exampleGen
                     <p>
                         <a href={baseUrl + "feed.xml"}><code>feed.xml</code></a> is an Atom feed of the
                         {genusFeedLength} most recently named genera, newest first. Each entry has the genus’s name, who
-                        named it and when, and the first sentence of its description, and links to its page. Subscribe in
-                        a feed reader with its address:
+                        named it and when, and the first sentence of its description, with a link to its page. To
+                        subscribe, add this address to your feed reader:
                     </p>
                     <pre class="code-block" tabindex="0" role="region" aria-label="Address of the feed"><code>{feedUrl}</code></pre>
                     <p>
-                        The dataset records the year a genus was named, not when it was added, so every entry is dated by
-                        the release it comes from, and the feed changes when a new release is published. An entry’s id is
-                        its genus page’s address, so a feed reader shows each genus once.
+                        The dataset records the year a genus was named but not the date we added it, so each entry is
+                        dated by the release it comes from, and the feed updates when we publish a new release. An entry’s
+                        id is its genus page’s address, so your feed reader shows each genus only once.
                     </p>
                 </section>
 
                 <section class="subsection" aria-labelledby={structuredData.id}>
                     <h3 id={structuredData.id}>{structuredData.title}</h3>
                     <p>
-                        Genus and clade pages describe their taxon as schema.org JSON-LD in the page’s head, following
+                        Genus and clade pages describe their taxon in schema.org JSON-LD in the page’s head, following
                         the <a href="https://bioschemas.org/profiles/Taxon/1.0-RELEASE">Bioschemas Taxon profile</a>: its
-                        rank, the taxon it belongs to, its synonyms and its entries in other databases, and for a genus,
-                        its species. The <a href={baseUrl + "data/"}>Data</a> page describes the dataset, its license and
-                        its files as a schema.org <code>Dataset</code>.
+                        rank, the taxon it belongs to, its synonyms, its entries in other databases and, for a genus, its
+                        species. The <a href={baseUrl + "data/"}>Data</a> page’s JSON-LD describes the dataset, its license
+                        and its files as a schema.org <code>Dataset</code>.
                     </p>
                 </section>
 
                 <section class="subsection" aria-labelledby={search.id}>
                     <h3 id={search.id}>{search.title}</h3>
                     <p>
-                        To link to search results, add the words to <code>search/?q=</code>, as in
+                        To link to search results, put your search terms after <code>search/?q=</code>, as in
                         <a href={exampleSearchPath}><code>search/?q={encodeURIComponent(exampleGenus.name)}</code></a>.
-                        Browsers can also offer the site’s search from their address bar, through its OpenSearch
-                        description, <a href={baseUrl + "opensearch.xml"}><code>opensearch.xml</code></a>.
+                        Browsers can also add the site’s search to their address bar, using its OpenSearch description,
+                        <a href={baseUrl + "opensearch.xml"}><code>opensearch.xml</code></a>.
                     </p>
                 </section>
             </PageSection>

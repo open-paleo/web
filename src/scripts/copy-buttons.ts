@@ -17,7 +17,7 @@ async function copyButtonText(button: HTMLButtonElement, status: HTMLElement): P
     }
     catch
     {
-        status.textContent = "Could not copy; select the text instead.";
+        status.textContent = "Couldn’t copy. Select the text and copy it yourself.";
     }
 }
 

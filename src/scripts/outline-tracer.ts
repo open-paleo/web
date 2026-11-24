@@ -362,7 +362,7 @@ async function openFigure(file: File): Promise<void>
         elements.outline.replaceChildren();
         elements.outlineSmall.replaceChildren();
         elements.overlay.replaceChildren();
-        elements.status.textContent = "Opened. Change the settings if the figure needs it, then trace it.";
+        elements.status.textContent = "Opened. Adjust the settings if the figure needs it, then select Trace.";
         showPoints();
         updateRecord();
     }
@@ -379,7 +379,7 @@ function markOutlineOutdated(): void
 {
     if (state.isTraced)
     {
-        elements.status.textContent = "The settings have changed; trace again to update the outline.";
+        elements.status.textContent = "The settings have changed. Select Trace again to update the outline.";
     }
 }
 
@@ -457,7 +457,7 @@ function describeReport(report: TraceReport, milliseconds: number): string
 
     for (const [x, y] of report.keepOpenMissed)
     {
-        description += " The point (" + x + ", " + y + ") is on the drawing rather than in an open space, so it does nothing.";
+        description += " The point (" + x + ", " + y + ") has no effect, because it’s on the drawing. Move it into the open space.";
     }
 
     return description;
@@ -671,8 +671,8 @@ function updateRecord(): void
 
     elements.recordText.firstElementChild?.replaceChildren(createOutlineRecord(fields));
     elements.recordPath.textContent = path
-        ? "Save it as " + path + " in open-paleo/media, then run npm run trace there to write its outline."
-        : "Give the genus or clade to see where to save the record.";
+        ? "Save the record as " + path + " in open-paleo/media, then run npm run trace there to write its outline."
+        : "Enter the genus or clade to see where to save the record.";
     elements.copyStatus.textContent = "";
 }
 
@@ -688,7 +688,7 @@ async function copyRecord(): Promise<void>
     }
     catch
     {
-        elements.copyStatus.textContent = "Couldn't copy; select the record and copy it instead.";
+        elements.copyStatus.textContent = "Couldn’t copy the record. Select it and copy it yourself.";
     }
 }
 

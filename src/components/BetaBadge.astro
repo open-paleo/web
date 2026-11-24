@@ -14,7 +14,7 @@ const { version } = Astro.props;
 
 {/* Marks a tool that is usable but still being improved, in the caution colors, with the
     version the site runs. */}
-<span class="beta-badge">Beta <span class="beta-version">{version}</span></span>
+<span class="beta-badge">Beta <span class="beta-version"><span class="visually-hidden">version </span>{version}</span></span>
 
 <style>
     .beta-badge

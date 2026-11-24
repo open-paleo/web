@@ -12,7 +12,7 @@ import { modelRepository, modelRevision } from "../integrations/paddle-model.ts"
 /**
  * The part of the Licenses page a work is listed in.
  */
-export type LicenseGroup = "code" | "fonts" | "data";
+export type LicenseGroup = "code" | "logos" | "fonts" | "data";
 
 /**
  * A work by others that the site serves or the repository holds.
@@ -124,7 +124,7 @@ const licensedWorks: Array<LicensedWork> = [
         licenseUrl: mitLicenseUrl,
         holder: "Fred K. Schott; parts by the SvelteKit and Vite contributors",
         sourceUrl: "https://github.com/withastro/astro",
-        use: "Builds the site. The small part of it that runs page scripts ships with them.",
+        use: "Builds the site. A small part of it is bundled with the page scripts and runs in your browser.",
         licenseFiles: ["node_modules/astro/LICENSE"],
         siteDirectories: ["_astro"],
     },
@@ -152,7 +152,7 @@ const licensedWorks: Array<LicensedWork> = [
         licenseUrl: mitLicenseUrl,
         holder: "Pagefind",
         sourceUrl: "https://github.com/Pagefind/pagefind",
-        use: "Indexes the site for search, and runs the search page in the browser.",
+        use: "Builds the site’s search index, and runs searches in your browser.",
         licenseFiles: ["node_modules/pagefind/LICENSE/LICENSE"],
         siteDirectories: ["pagefind"],
     },
@@ -180,7 +180,7 @@ const licensedWorks: Array<LicensedWork> = [
         licenseUrl: apacheLicenseUrl,
         holder: "Tesseract.js contributors",
         sourceUrl: "https://github.com/naptha/tesseract.js",
-        use: "Reads the labels of a figure in the tree extractor. Its notices list the libraries bundled in its worker.",
+        use: "Reads the labels in a figure for the tree extractor. Its notices list the libraries bundled in its worker.",
         licenseFiles: ["node_modules/tesseract.js/LICENSE.md", "node_modules/tesseract.js/dist/worker.min.js.LICENSE.txt"],
         siteDirectories: ["_astro", "tools/tree-extractor/tesseract"],
     },
@@ -250,7 +250,7 @@ const licensedWorks: Array<LicensedWork> = [
         licenseUrl: gplLicenseUrl,
         holder: "Open Paleo contributors",
         sourceUrl: "https://github.com/open-paleo/tools/tree/main/outline-tracer",
-        use: "The outline tracer tool, in a Web Worker of its own. It includes potrace, so it is under the GPL; the rest of the site is not.",
+        use: "The outline tracer tool, which runs in its own Web Worker. It includes potrace, so it’s licensed under the GPL. The rest of the site isn’t.",
         licenseFiles: ["node_modules/@open-paleo/outline-tracer/LICENSE"],
         siteDirectories: ["_astro"],
     },
@@ -264,14 +264,14 @@ const licensedWorks: Array<LicensedWork> = [
         licenseUrl: gplLicenseUrl,
         holder: "Thomas Steiner (esm-potrace-wasm); Peter Selinger (potrace)",
         sourceUrl: "https://github.com/tomayac/esm-potrace-wasm",
-        use: "Peter Selinger’s potrace compiled to WebAssembly, which the outline tracer traces with. potrace’s own source is at https://potrace.sourceforge.net.",
+        use: "Peter Selinger’s potrace, compiled to WebAssembly, which the outline tracer uses to trace figures. The source of potrace itself is at https://potrace.sourceforge.net.",
         licenseFiles: ["node_modules/esm-potrace-wasm/LICENSE"],
         siteDirectories: ["_astro"],
     },
     {
         name: "GitHub mark, from Primer Octicons",
         slug: "octicons",
-        group: "code",
+        group: "logos",
         packageName: undefined,
         version: "19.42.0",
         license: mitLicense,
@@ -285,7 +285,7 @@ const licensedWorks: Array<LicensedWork> = [
     {
         name: "Bluesky butterfly logo",
         slug: "bluesky-logo",
-        group: "code",
+        group: "logos",
         packageName: undefined,
         version: undefined,
         license: "Bluesky Trademark Policy, social media icon use (section 4.1)",
@@ -299,7 +299,7 @@ const licensedWorks: Array<LicensedWork> = [
     {
         name: "Threads logo",
         slug: "threads-logo",
-        group: "code",
+        group: "logos",
         packageName: undefined,
         version: undefined,
         license: "Meta’s Threads brand guidelines",
@@ -348,7 +348,7 @@ const licensedWorks: Array<LicensedWork> = [
         licenseUrl: "https://creativecommons.org/licenses/by/4.0/",
         holder: "Open Paleo contributors",
         sourceUrl: "https://github.com/open-paleo/data",
-        use: "Everything the site says about taxa, rock units, references and terms. The Data page has the downloads and how to cite them.",
+        use: "Everything the site says about taxa, rock units, references and terms. To download the dataset or cite it, see the Data page.",
         licenseFiles: [],
         siteDirectories: [],
     },
@@ -362,7 +362,7 @@ const licensedWorks: Array<LicensedWork> = [
         licenseUrl: "https://github.com/open-paleo/media",
         holder: "The artists each credit line names",
         sourceUrl: "https://github.com/open-paleo/media",
-        use: "The outlines beside genus and clade names. Each carries a credit line with its creator, license and the changes made.",
+        use: "The outlines beside genus and clade names. Each has a credit line naming its creator, its license and the changes made to it.",
         licenseFiles: [],
         siteDirectories: [],
     },
@@ -376,7 +376,7 @@ const licensedWorks: Array<LicensedWork> = [
         licenseUrl: "https://creativecommons.org/licenses/by/3.0/au/",
         holder: "N. Wright, S. Zahirovic, R. D. Müller and M. Seton",
         sourceUrl: "https://doi.org/10.5194/bg-10-1529-2013",
-        use: "The ancient coastlines on genus maps, and the rotations that move fossil sites to where they were. The coastlines are simplified, and both are moved to the middle of each stage.",
+        use: "Today’s coastlines moved to where they were, on genus maps’ ancient views, and the plate rotations that place each fossil site where it was at the time. We simplified the coastlines, and move both to the middle of each stage.",
         licenseFiles: [],
         siteDirectories: [],
     },
@@ -390,7 +390,7 @@ const licensedWorks: Array<LicensedWork> = [
         licenseUrl: "https://www.naturalearthdata.com/about/terms-of-use/",
         holder: "Natural Earth",
         sourceUrl: "https://www.naturalearthdata.com",
-        use: "The region and country outlines the maps shade when a place is known only to its region or country, simplified.",
+        use: "The region and country outlines the maps shade when a fossil site is known only by its region or country. We simplified them.",
         licenseFiles: [],
         siteDirectories: [],
     },
@@ -404,7 +404,7 @@ const licensedWorks: Array<LicensedWork> = [
         licenseUrl: "https://www.openstreetmap.org/copyright",
         holder: "OpenStreetMap contributors; OpenMapTiles; OpenFreeMap",
         sourceUrl: "https://openfreemap.org",
-        use: "The base map. Browsers load its tiles from OpenFreeMap, not from this site, and each map credits it.",
+        use: "The base map. Your browser loads its tiles from OpenFreeMap, not from this site, and each map shows its credit.",
         licenseFiles: [],
         siteDirectories: [],
     },
@@ -524,7 +524,7 @@ export function createDirectoryLicenseText(siteDirectory: string, rootDirectory:
 {
     const parts = [
         "Third-party software in this folder of the Open Paleo website, with its licenses.",
-        "Every work the site uses is listed at https://open-paleo.org/licenses/.",
+        "For every work the site uses, see https://open-paleo.org/licenses/.",
     ];
 
     for (const work of licensedWorks)

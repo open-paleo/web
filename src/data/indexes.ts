@@ -45,14 +45,14 @@ export type DatasetFile = {
  * The files of the dataset's dist directory, in the order the Data page lists them.
  */
 const datasetFileDescriptions: Array<[string, string]> = [
-    ["open-paleo.json", "The complete dataset as JSON: every genus, clade and reference, and the tree."],
+    ["open-paleo.json", "The complete dataset as JSON: every genus, clade, rock unit and reference, with the tree and the geologic time scale."],
     ["open-paleo.yml", "The same dataset as YAML."],
-    ["open-paleo.schema.json", "JSON Schema (2020-12) describing the JSON and YAML output."],
-    ["tree.newick", "The clade tree in Newick notation, for tree visualization software."],
-    ["tree.nexus", "The clade tree in NEXUS format, for phylogenetic analysis tools."],
-    ["references.bib", "Every cited work as BibTeX."],
-    ["bindings/open-paleo.d.ts", "TypeScript type declarations for the JSON output."],
-    ["bindings/open_paleo.py", "Python Pydantic v2 models for the JSON output."],
+    ["open-paleo.schema.json", "The JSON Schema (draft 2020-12) for the JSON and YAML files."],
+    ["tree.newick", "The clade tree in Newick notation, for programs that draw trees."],
+    ["tree.nexus", "The clade tree in NEXUS format, for phylogenetic analysis software."],
+    ["references.bib", "Every work the dataset cites, as BibTeX."],
+    ["bindings/open-paleo.d.ts", "TypeScript type declarations for the JSON file."],
+    ["bindings/open_paleo.py", "Pydantic models for Python for the JSON file."],
 ];
 
 /**
