@@ -52,6 +52,61 @@ Run `npm run typecheck`, `npm run lint`, `npm run spellcheck`, `npm test`, `npm 
 `npx playwright install --only-shell chromium`). Don't pipe them through `tail` when checking the
 result: the pipe hides the exit code.
 
+## Site copy
+
+Every word the site shows (intros, headings, labels, notes, status and error messages, meta
+descriptions, and sentences built in `src/data/`) follows "Writing site copy" in
+[CONTRIBUTING.md](CONTRIBUTING.md): the voice, and the rules on facts, definitions, scope and the
+release. Read it before writing or changing copy.
+
+Most of the mistakes agents have made in the site's copy are about how things relate. Check each
+relationship against what the data records:
+
+| Not | But |
+| --- | --- |
+| Genera found in the Hell Creek Formation | Genera from the Hell Creek Formation; fossils found in it |
+| Where the type species was found | Where its type specimen was found; the country its type species is known from |
+| Clades hold genera | Clades include genera; we assign genera to clades |
+| A type species spans several stages | A type species is known from several stages |
+| Cited by genera | Genus pages that cite it (our pages cite works; genera don't) |
+| The tip of the tree (for its top clade) | The tree starts at Dinosauria (its root) |
+| The bindings describe every record | The bindings describe the format of every record |
+| We found these fossils | Fossils found there (we record where; others found them) |
+
+A species' place in the dataset is where its type specimen was found, so copy about places says
+"type specimen" or "fossils", never that a genus or species was found.
+
+Drafts from a language model drift into patterns that the owner rejects. Avoid them (see
+Wikipedia's [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)):
+
+- **Avoiding "is", "are" and "has"**: "serves as", "stands as", "stands for", "represents",
+  "marks", "functions as", "features", "offers", "boasts", "maintains", and definitional "X
+  refers to Y". ("Refer to the privacy policy", pointing the reader somewhere, is fine)
+- **Commentary tacked on with a participle**: "…, highlighting…", "…, ensuring…",
+  "…, reflecting…", "…, making it…"
+- **Inflated significance**: "plays a key role", "a testament to", "underscores", "a pivotal…"
+- **Contrast constructions**: "not only … but also", "not X but Y", "Y rather than X"
+- **Lists of three for rhythm**, and calling one thing by several names in turn
+- **Stock words**: crucial, key, vibrant, robust, delve, landscape, showcase, enhance, foster,
+  leverage, seamless, additionally; and stock figures of speech generally
+- **Em dashes as a habit, bold for emphasis, title case**, and chatty openers or closers
+
+Check copy against the site before writing it; these are the mistakes agents have made here:
+
+- **Every claim about a page is checked against its code and the built page**: which filters
+  exist, what each entry shows (an index's details line, not what it plausibly shows), what
+  needs JavaScript. An intro once offered a location filter the page didn't have, and called a
+  major group a "parent clade"
+- **Never write a number or name you haven't read** from the data or the built page; in copy it
+  goes in as a placeholder, and in a message to the owner it's looked up (`dist/` has the built
+  text), never estimated
+- **Copy that only makes sense with JavaScript lives with the script** (in the element the
+  script reveals, or written by the script), so a page without it never promises a control that
+  isn't there
+- **Terms aren't defined in copy, even in passing**. If an intro needs a definition to make
+  sense, link the term with `TermLink` and, if the glossary lacks it, raise it with
+  open-paleo/glossary
+
 ## Theme
 
 The site uses the Strata theme, documented in [docs/theme.md](docs/theme.md).
