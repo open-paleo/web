@@ -132,11 +132,11 @@ const identifiers = record.identifiers ?? [];
 
         <RecordMain>
             <FactList label="At a glance">
-                <dt>Rank</dt>
+                <dt><TermLink term="rank" text="Rank" /></dt>
                 <dd>{rankTerm ? <GlossaryTerm entry={rankTerm} text={rankLabel} /> : rankLabel}</dd>
                 {typeGenus && (
                     <>
-                        <dt>Type genus</dt>
+                        <dt><TermLink term="type genus" text="Type genus" /></dt>
                         <dd><a class="taxon" href={createPagePath(baseUrl, "genus", typeGenus.slug)}>{typeGenus.name}</a></dd>
                     </>
                 )}

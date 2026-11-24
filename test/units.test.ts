@@ -3,7 +3,7 @@ import { test } from "node:test";
 
 import { createUnitLabels, formatStratigraphicUnits, formatUnitName } from "../src/data/format.ts";
 import { createSiteData } from "../src/data/site-data.ts";
-import { createUnitIndex, describeUnitRank, findLocationUnit, getPageReferences, getUnitPath } from "../src/data/units.ts";
+import { createUnitIndex, describeUnitRank, findLocationUnit, getPageReferences, getUnitPath, getUnitRankTerm } from "../src/data/units.ts";
 import { readFixture } from "./fixture.ts";
 
 const dataset = readFixture();
@@ -110,4 +110,15 @@ test("a rank is described for display", () =>
     assert.equal(describeUnitRank({ rank: "formation", description: "", period: {}, references: [] }), "Formation");
     assert.equal(describeUnitRank({ rank: "bed", informal: true, description: "", period: {}, references: [] }), "Informal bed");
     assert.equal(describeUnitRank({ description: "", period: {}, references: [] }), "Rock unit");
+});
+
+test("a rank links to formation, strata or rock unit in the glossary", () =>
+{
+    const stratigraphy = dataset.stratigraphy ?? {};
+
+    assert.equal(getUnitRankTerm(stratigraphy.Conques), "formation");
+    assert.equal(getUnitRankTerm(stratigraphy["Brushy Basin"]), "rock unit", "a member");
+    assert.equal(getUnitRankTerm(stratigraphy.Tremp), "rock unit", "a group");
+    assert.equal(getUnitRankTerm(stratigraphy.Manuka), "rock unit", "a subgroup");
+    assert.equal(getUnitRankTerm({ rank: "bed", description: "", period: {}, references: [] }), "strata");
 });

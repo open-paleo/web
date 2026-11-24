@@ -177,7 +177,7 @@ const structuredData = Astro.site ? createGenusStructuredData(entry, siteData, n
 
             {genus.iczn_cases && genus.iczn_cases.length > 0 && (
                 <PageSection title="ICZN cases">
-                    <p class="section-lead">Cases about this genus’s names brought to the International Commission on Zoological Nomenclature (ICZN):</p>
+                    <p class="section-lead">Cases about this genus’s names brought to the <TermLink term="ICZN" text="International Commission on Zoological Nomenclature" /> (ICZN):</p>
                     <IcznCaseList cases={genus.iczn_cases} references={references} />
                 </PageSection>
             )}

@@ -11,6 +11,7 @@ import {
 import { getTypeSpecies, getSizeMeasurements } from "../data/records.ts";
 import FactList from "./FactList.astro";
 import IdentifierLinks from "./IdentifierLinks.astro";
+import Prose from "./Prose.astro";
 import TermLink from "./TermLink.astro";
 import UnitLinks from "./UnitLinks.astro";
 
@@ -45,31 +46,31 @@ const locomotion = genus.locomotion ? formatLocomotion(genus.locomotion) : "";
     {genus.diet && (
         <>
             <dt>Diet</dt>
-            <dd>{capitalizeFirstLetter(genus.diet)}</dd>
+            <dd><TermLink term={genus.diet} text={capitalizeFirstLetter(genus.diet)} /></dd>
         </>
     )}
     {locomotion && (
         <>
-            <dt>Locomotion</dt>
+            <dt><TermLink term="locomotion" text="Locomotion" /></dt>
             <dd><TermLink term={locomotion} text={capitalizeFirstLetter(locomotion)} /></dd>
         </>
     )}
     {integument && (
         <>
-            <dt>Integument</dt>
+            <dt><TermLink term="integument" text="Integument" /></dt>
             <dd>{integument}{appearance?.evidence && <span class="glance-muted"> ({formatIntegumentEvidence(appearance.evidence)})</span>}</dd>
         </>
     )}
     {appearance?.features && appearance.features.length > 0 && (
         <>
             <dt>Features</dt>
-            <dd>{capitalizeFirstLetter(appearance.features.join(", "))}</dd>
+            <dd><Prose text={capitalizeFirstLetter(appearance.features.join(", "))} linkTerms /></dd>
         </>
     )}
     {genus.paleoenvironment && genus.paleoenvironment.length > 0 && (
         <>
             <dt>Environment</dt>
-            <dd>{capitalizeFirstLetter(genus.paleoenvironment.join(", "))}</dd>
+            <dd><Prose text={capitalizeFirstLetter(genus.paleoenvironment.join(", "))} linkTerms /></dd>
         </>
     )}
     {measurements.map((measurement) => (

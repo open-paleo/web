@@ -350,6 +350,29 @@ export function getPageReferences(page: UnitPage): Array<Reference>
 }
 
 /**
+ * Get the glossary term a unit's rank links to. A formation has an entry of its own and a bed
+ * links to strata; the other ranks link to rock unit, whose definition explains them all. Their
+ * bare words aren't glossary forms, since "member" or "group" would link every "a member of" and
+ * "a group of" in the dataset's prose.
+ *
+ * @param record - The unit.
+ * @returns The term to look up: "formation", "strata" or "rock unit".
+ */
+export function getUnitRankTerm(record: StratigraphicUnit): string
+{
+    if (record.rank === "formation")
+    {
+        return "formation";
+    }
+    else if (record.rank === "bed")
+    {
+        return "strata";
+    }
+
+    return "rock unit";
+}
+
+/**
  * Describe a unit's rank for display: "Formation", "Informal bed", or "Rock unit" when it has
  * none.
  *

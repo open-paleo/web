@@ -15,7 +15,7 @@ import { formatGenusCount, formatGeologicAge, formatQuotes, getFirstSentence } f
 import { createGenusIndexRows, shouldGroupByLetter } from "../../data/genus-index.ts";
 import { getSiteData } from "../../data/site-data.ts";
 import type { UnitEntry, UnitPage } from "../../data/units.ts";
-import { describeUnitRank, getPageReferences, getUnits } from "../../data/units.ts";
+import { describeUnitRank, getPageReferences, getUnitRankTerm, getUnits } from "../../data/units.ts";
 import { createPagePath } from "../../data/urls.ts";
 
 /**
@@ -130,7 +130,7 @@ const searchDescription = record ? getFirstSentence(record.description) : "";
 
             <header class="unit-header">
                 <h1 data-pagefind-weight="10">{entry.displayName}</h1>
-                <p class="unit-meta">{describeUnitRank(record)}{parentPage && <> in the <a href={createPagePath(baseUrl, "unit", parentPage.entry.slug)}>{parentPage.entry.displayName}</a></>}</p>
+                <p class="unit-meta"><TermLink term={getUnitRankTerm(record)} text={describeUnitRank(record)} />{parentPage && <> in the <a href={createPagePath(baseUrl, "unit", parentPage.entry.slug)}>{parentPage.entry.displayName}</a></>}</p>
                 {variants.length > 0 && <p class="unit-variants">Also written {formatQuotes(variants.join(", "))}</p>}
             </header>
 
@@ -205,7 +205,7 @@ const searchDescription = record ? getFirstSentence(record.description) : "";
                             <section class="unit-section" id={child.slug} aria-labelledby={child.slug + "-heading"}>
                                 <h3 id={child.slug + "-heading"}>{child.displayName}</h3>
                                 <p class="section-meta">
-                                    {describeUnitRank(child.record)}{child.record.parent && child.record.parent !== entry.name && units.entryByName.get(child.record.parent) && " in the " + units.entryByName.get(child.record.parent)?.displayName}{formatGeologicAge(child.record.period) && ", " + formatGeologicAge(child.record.period)}
+                                    <TermLink term={getUnitRankTerm(child.record)} text={describeUnitRank(child.record)} />{child.record.parent && child.record.parent !== entry.name && units.entryByName.get(child.record.parent) && " in the " + units.entryByName.get(child.record.parent)?.displayName}{formatGeologicAge(child.record.period) && ", " + formatGeologicAge(child.record.period)}
                                 </p>
                                 {(child.record.variants ?? []).length > 0 && <p class="section-meta">Also written {formatQuotes((child.record.variants ?? []).join(", "))}</p>}
                                 <Description text={child.record.description} />

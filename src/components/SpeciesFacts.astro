@@ -91,7 +91,7 @@ const locality = location ? formatQuotes(joinNonEmpty([location.locality ?? "", 
     )}
     {horizon && (
         <>
-            <dt>Horizon</dt>
+            <dt><TermLink term="horizon" text="Horizon" /></dt>
             <dd>
                 {location && <UnitLinks location={location} />}{units && geologicAge && ", "}{geologicAge}{ageRange && <span class="age-range figures">, {ageRange}</span>}
                 {ageNote && <span class="age-note">{ageNote}</span>}

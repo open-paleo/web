@@ -4,6 +4,17 @@ The site is published continuously from `main`, so changes are grouped by the da
 live, newest first. Add to today's section, creating it if needed. The data the site shows has
 its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
+## 2026-11-24
+
+### Changed
+
+- Labels and values link to the glossary's new entries: the Locomotion, Integument, Rank, Type
+  genus and Horizon labels; diets such as piscivore; terms inside the Features and Environment
+  lists, such as *keratinous* and *fluvial*; synonym kinds such as "junior subjective synonym";
+  and the International Commission on Zoological Nomenclature. A rock unit's rank links to
+  *formation*, *strata* for a bed, or *rock unit* for the other ranks. The Time and Stratigraphy
+  intros link *periods* and *rock units*
+
 ## 2026-11-23
 
 ### Added

@@ -2,6 +2,7 @@
 import type { Synonym } from "../data/dataset.ts";
 import { formatSynonymType, sortSynonyms } from "../data/records.ts";
 import Prose from "./Prose.astro";
+import TermLink from "./TermLink.astro";
 
 /**
  * Properties of a table of synonyms.
@@ -29,7 +30,7 @@ const sorted = sortSynonyms(Astro.props.synonyms);
             {sorted.map((synonym) => (
                 <tr>
                     <td class="synonym-name"><i class="taxon">{synonym.name}</i></td>
-                    <td class="synonym-type">{formatSynonymType(synonym.type)}</td>
+                    <td class="synonym-type"><TermLink term={formatSynonymType(synonym.type)} /></td>
                     <td class="synonym-reason">{synonym.reason && <Prose text={synonym.reason.trim()} />}</td>
                 </tr>
             ))}
