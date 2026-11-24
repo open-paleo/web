@@ -8,81 +8,70 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ### Added
 
-- Every genus has an infobox other sites can embed (`embed/genus/{slug}/`): its name, parent
-  clade, authority, status, age, a one-sentence summary, diet, locomotion, length, mass, where
-  it was found and its outline, linking to the genus page. A new "Embed this genus" section on
-  genus pages gives the `iframe` code with a copy button, beside a preview of the infobox.
-  Infoboxes are left out of the sitemap and search, and the privacy policy now says that
-  Plausible counts views of them
-- A Developers page (`developers/`, under Data) documents embedding an infobox: the code, the
-  frame's size, the height message the infobox sends, and a script that fits the frame to it
-- The Developers page describes the dataset's official typed bindings: TypeScript declarations
-  on npm (`@open-paleo/types`) and Pydantic models on PyPI (`open-paleo`), with how to install
-  them, an example of reading the dataset with each, and which versions to use. The version
-  numbers come from the dataset's schema version. The Data page's downloads point to it
-- Each genus page has its own link preview image for Bluesky, Threads, Slack, Discord and other
-  sites that show one: the genus's name, parent clade, authority and status, its age marked on
-  the Triassic-to-Cretaceous time scale, and its outline with the outline's credit line. The
-  images are drawn after the build, and the site check fails a deploy if one is missing
-- The Developers page describes what the site already offered developers: the Atom feed of
-  newly named genera (`feed.xml`), the schema.org structured data on genus, clade and Data
-  pages, and links to search results (`search/?q=`) and the OpenSearch description
-- Search results can be narrowed to rock units, as they already could to genera, clades,
-  references, stages and periods
+- Infoboxes other sites can embed, one per genus (`embed/genus/{slug}/`): the genus's name,
+  parent clade, authority, status, age, a one-sentence summary, diet, locomotion, length, mass,
+  where its type species was found and its outline, linking back to the genus page. Each genus
+  page has an "Embed this genus" section with the `iframe` code, a copy button and a preview.
+  Infoboxes stay out of the sitemap and search, and Plausible counts their views on other sites
+- A Developers page (`developers/`, under Data) covering the dataset's typed bindings
+  (TypeScript declarations on npm as `@open-paleo/types`, Pydantic models on PyPI as
+  `open-paleo`, with install commands, examples and version ranges taken from the dataset's
+  schema version); embedding an infobox, with the frame's size, the height message and a script
+  that fits the frame; and the Atom feed of newly named genera, the schema.org structured data,
+  search links (`search/?q=`) and the OpenSearch description. The Data page's downloads link to
+  the bindings
+- A link preview image for every genus page, for Bluesky, Threads, Slack, Discord and other
+  sites that show one: the genus's name, parent clade, authority and status, its age on the
+  Triassic-to-Cretaceous time scale, and its outline with its credit. The images are drawn after
+  each build, and a deploy fails if one is missing
+- A rock unit filter for search results
 
 ### Changed
 
-- The home page, the Genera, Clades, Tree, Map, Time, Stratigraphy, Glossary and Search pages,
-  the 404 page and the footer are rewritten in a warmer, plainer voice: they speak to the reader,
-  say what each page is for and what each entry shows, and link terms such as *stage*, *type
-  species* and *formation* to the glossary. The site describes itself as a dataset of fossil
-  genera and clades, such as dinosaurs, in the footer, the home page and its link preview image.
-  Corrections along the way: the Map counts only the genera whose country is known and says what
-  its dots are (where type specimens were found); the Tree and Time pages take the tree's top
-  clade and the periods from the data; and the Genera page's filters say what they do, inside the
-  filter form, which shows only with JavaScript
-- Genus, clade, rock unit, reference, period and stage pages are rewritten the same way.
-  Sections such as Diagnosis, ICZN cases, References and Cite this record open with a sentence
-  saying what they hold, and labels name things fully: "Other databases" with the databases'
-  names spelled out, "Facultatively bipedal" for the dataset's "facultative" locomotion, "junior
-  subjective synonym", "Former numbers", "Citation key". Relationships are worded as the data
-  records them: genera are "from" a rock unit, where their species' type specimens were found;
-  the genus map lists where each species' type specimen was found; reference pages list the
-  "genus pages that cite it"; a clade's own genera are "other genera in" it, "not in a
-  subclade". The period pages' intro no longer says their genera all come from stages, since
-  some are dated only to an epoch
-- The Data, Developers, Tools and Licenses pages, the tool pages and the embed instructions are
-  rewritten the same way. The tools give numbered steps named after their buttons; the Data
-  page's file list describes `open-paleo.json` fully (rock units and the geologic time scale
-  were missing); the Licenses page lists the logos in a section of their own; and the beta
-  badges read "Beta, version 0.3.0" to screen readers
-- The Licenses page said all of Open Paleo's own code is under the MIT License; the outline
-  tracer is under the GPL, which it now says. The outline tracer's page said opening a figure
-  traces it; you select Trace
-- Every page ends with a line naming the dataset release it was built from, linked to Data, in
-  place of the release in the footer, on the home page and in the Genera, Clades and References
-  intros. Those intros now say what each entry shows, and link *type species* and *epoch* to the
-  glossary
-- A genus without an outline of its own no longer shows a relative's. Most showed the outline
-  of a clade several ranks above them, often a whole order's, which misrepresented the animal. A
-  clade without its own outline still shows its type genus's, and its credit line now says so
-- A reference in a record's list links to its page from its title, in place of the citation key
-  under it
+- A new voice for the whole site. Pages talk to the reader, use "we" for Open Paleo, open by
+  explaining what they're for and what each entry holds, and link terms such as *stage*, *type
+  species* and *formation* to the glossary. Record sections such as Diagnosis, ICZN cases,
+  References and Cite this record open with a sentence, and the tool pages give numbered steps
+  named after their buttons. The footer, the home page and the site's link preview image describe
+  Open Paleo as a dataset of fossil genera and clades, such as dinosaurs
+- Wording that matches what the data records: genera come "from" a rock unit, where their
+  species' type specimens were found; reference pages list the "genus pages that cite it"; a
+  clade's own genera are the "other genera in" it
+- Fuller labels: database names spelled out under "Other databases", "Facultatively bipedal" for
+  the dataset's `facultative`, "junior subjective synonym", "Former numbers", "Citation key". The
+  beta badges read "Beta, version 0.3.0" to screen readers
+- The dataset release appears once, in a line at the end of every page linked to Data, and no
+  longer in the footer, on the home page or in the Genera, Clades and References intros
+- Genus pages show only their own outline. Most genera showed a relative's, often one drawn for a
+  whole order. A clade without an outline still shows its type genus's, credited as such
+- Reference lists link each work's title to its page, replacing the citation key under it
+- The Licenses page lists logos in their own section
+- The privacy policy, in the new voice. Plausible's entry gives its operator's legal name
+  (Plausible Insights OÜ), what its script sends (scroll depth and time on the page) and that it
+  doesn't store IP addresses or browser descriptions, following Plausible's own policy. "Links to
+  other sites" covers "Report an error" and our GitHub, Bluesky and Threads pages
 
 ### Fixed
 
-- Outline credit lines listed only the first two changes as a sentence ("traced and rest of the
-  figure removed; filled; recolored"); they now read "traced and rest of the figure removed,
-  filled and recolored". The genus name in an outline's title is now in italics
-- A master's thesis was cited as a "Masters thesis"
-- The integument at a glance read "(inferred evidence)" for integument inferred from relatives;
-  it now reads "(inferred)"
-- The credit on genus maps' ancient views called the coastlines ancient; they're today's,
-  moved to where they were
-- With JavaScript off, the search page said "Loading search…" above the note that search needs
-  JavaScript
-- The find fields on the References and Tree pages announced matches as "names"
-- "Copy record" in the outline tracer confirmed with "Copied." and now says "Record copied."
+- The privacy policy claimed the site had no forms. It has a search form, and search terms travel
+  in the page's address, which GitHub Pages receives and Plausible discards
+- The Licenses page called all of Open Paleo's own code MIT-licensed; the outline tracer is under
+  the GPL
+- The outline tracer's page implied that opening a figure traces it; tracing starts when you
+  select Trace
+- The period pages claimed every genus came from one of their stages; some are dated only to an
+  epoch
+- The Data page's description of `open-paleo.json` left out the rock units and the geologic time
+  scale
+- Outline credit lines joined only the first two changes as a sentence ("traced and rest of the
+  figure removed; filled; recolored"), and genus names in outline titles were set in roman
+- "Masters thesis" for a master's thesis
+- "(inferred evidence)" for integument inferred from relatives, which reads "(inferred)"
+- The credit on genus maps' ancient views called the coastlines ancient; they're today's, moved to
+  where they were
+- "Loading search…" showed above the no-JavaScript note on the search page
+- The find fields on the References and Tree pages counted matches as "names"
+- "Copy record" in the outline tracer confirmed with a bare "Copied."
 
 ## 2026-11-20
 
