@@ -17,6 +17,7 @@ import DiagnosisList from "./DiagnosisList.astro";
 import GlossaryTerm from "./GlossaryTerm.astro";
 import UnitLinks from "./UnitLinks.astro";
 import Prose from "./Prose.astro";
+import TermLink from "./TermLink.astro";
 
 /**
  * Properties of the facts recorded for a species: its type specimen, horizon, locality and
@@ -68,7 +69,7 @@ const locality = location ? formatQuotes(joinNonEmpty([location.locality ?? "", 
     )}
     {specimen?.former_ids && specimen.former_ids.length > 0 && (
         <>
-            <dt>Formerly</dt>
+            <dt>{specimen.former_ids.length === 1 ? "Former number" : "Former numbers"}</dt>
             <dd>
                 {specimen.former_ids.map((formerId) => (
                     <span class="former-id"><span class="catalog-number">{formerId.from_id}</span> ({formerId.reason}{formerId.from_institution ? " from " + formatQuotes(formerId.from_institution) : ""})</span>
@@ -99,7 +100,7 @@ const locality = location ? formatQuotes(joinNonEmpty([location.locality ?? "", 
     )}
     {locality && (
         <>
-            <dt>Locality</dt>
+            <dt><TermLink term="locality" text="Locality" /></dt>
             <dd>
                 {locality}
                 {location?.notes && <span class="location-note">{capitalizeFirstLetter(formatQuotes(location?.notes ?? ""))}</span>}
@@ -108,7 +109,7 @@ const locality = location ? formatQuotes(joinNonEmpty([location.locality ?? "", 
     )}
     {species.diagnostic_features && species.diagnostic_features.length > 0 && (
         <>
-            <dt>Diagnosis</dt>
+            <dt><TermLink term="diagnosis" text="Diagnosis" /></dt>
             <dd><DiagnosisList features={species.diagnostic_features} /></dd>
         </>
     )}

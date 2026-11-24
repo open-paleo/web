@@ -37,8 +37,8 @@ export type GenusMapPlace = {
     description: string;
 
     /**
-     * How the map shows the place and why: "published coordinates", "region shaded; no
-     * coordinates published".
+     * How the map shows the place and why: "at its published coordinates", "no coordinates
+     * published, so we’ve shaded the region".
      */
     precisionNote: string;
 
@@ -319,22 +319,25 @@ function locatePlace(location: Location, shapes: MapShapes): [MapPrecision, Arra
  *
  * @param precision - How precisely the place is known.
  * @param location - The species' location.
- * @returns The note: "published coordinates", "region shaded; no coordinates published".
+ * @returns The note: "at its published coordinates", "no coordinates published, so we’ve
+ * shaded the region".
  */
 function describePrecision(precision: MapPrecision, location: Location): string
 {
     if (precision === "point")
     {
-        return "published coordinates";
+        return "at its published coordinates";
     }
     else if (precision === "region")
     {
-        return "region shaded; no coordinates published";
+        return "no coordinates published, so we’ve shaded the region";
     }
 
+    // A region the maps have no outline for is a gap in the maps, not in the record, so the
+    // reader is told only what's shaded.
     return location.region_code
-        ? "country shaded; no outline for its region"
-        : "country shaded; no region recorded";
+        ? "we’ve shaded the whole country"
+        : "only the country is recorded, so we’ve shaded it";
 }
 
 /**

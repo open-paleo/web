@@ -79,7 +79,7 @@ function describeBand(band: AgeBandData, isStage: boolean, centerPercent: number
         href: path === currentPath ? "" : path,
         kind: isStage ? "Stage of the " + (epochByStage.get(band.name) ?? "") : "Period",
         age: formatAgeRange(band.fromMa, band.toMa),
-        genera: page ? formatGenusCount(page.genera.length) : "No genera in the dataset",
+        genera: page ? formatGenusCount(page.genera.length) : "No genera in Open Paleo yet",
         alignment: centerPercent < 15 ? "start" : centerPercent > 85 ? "end" : "center",
     };
 }

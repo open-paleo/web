@@ -38,7 +38,7 @@ function createPopover(): HTMLElement
     definitionText = document.createElement("p");
 
     entryLink = document.createElement("a");
-    entryLink.textContent = "In the glossary";
+    entryLink.textContent = "See it in the glossary";
 
     element.append(termHeading, definitionText, entryLink);
     element.addEventListener("toggle", handleToggle);

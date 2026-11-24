@@ -20,6 +20,7 @@ import PronunciationReadings from "../../components/PronunciationReadings.astro"
 import SpeciesSection from "../../components/SpeciesSection.astro";
 import StatusBadge from "../../components/StatusBadge.astro";
 import SynonymTable from "../../components/SynonymTable.astro";
+import TermLink from "../../components/TermLink.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { createRecordCitation } from "../../data/citations.ts";
 import { createEmbedCode } from "../../data/embed.ts";
@@ -130,7 +131,7 @@ const structuredData = Astro.site ? createGenusStructuredData(entry, siteData, n
             {outline && <TaxonOutline outline={outline} subject={genus.genus} />}
         </header>
 
-        <div class="genus-age"><AgeFigure period={typeSpecies.period} /></div>
+        <div class="genus-age"><AgeFigure period={typeSpecies.period} rangeIntroduction="Its type species lived" /></div>
 
         <RecordMain>
             <GlancePanel genus={genus} />
@@ -151,6 +152,7 @@ const structuredData = Astro.site ? createGenusStructuredData(entry, siteData, n
 
             {genus.diagnostic_features && genus.diagnostic_features.length > 0 && (
                 <PageSection title="Diagnosis">
+                    <p class="section-lead">The features published as the <TermLink term="diagnosis" /> of <i class="taxon">{genus.genus}</i>:</p>
                     <DiagnosisList features={genus.diagnostic_features} />
                 </PageSection>
             )}
@@ -175,17 +177,20 @@ const structuredData = Astro.site ? createGenusStructuredData(entry, siteData, n
 
             {genus.iczn_cases && genus.iczn_cases.length > 0 && (
                 <PageSection title="ICZN cases">
+                    <p class="section-lead">Cases about this genus’s names brought to the International Commission on Zoological Nomenclature (ICZN):</p>
                     <IcznCaseList cases={genus.iczn_cases} references={references} />
                 </PageSection>
             )}
 
             {references.length > 0 && (
                 <PageSection title="References">
+                    <p class="section-lead">The published works we cite on this page.</p>
                     <ReferenceList references={references} />
                 </PageSection>
             )}
 
             <PageSection title="Cite this record">
+                <p class="section-lead">If you use this page in your work, please cite it:</p>
                 <HowToCite citation={citation} subject={genus.genus} />
             </PageSection>
 
@@ -327,4 +332,9 @@ const structuredData = Astro.site ? createGenusStructuredData(entry, siteData, n
         align-items: start;
     }
 
+    /* A sentence under a section's heading saying what the section holds. */
+    .section-lead
+    {
+        max-width: var(--measure);
+    }
 </style>

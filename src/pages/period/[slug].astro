@@ -2,6 +2,7 @@
 import GeneraThroughTime from "../../components/GeneraThroughTime.astro";
 import GenusIndex from "../../components/GenusIndex.astro";
 import PageSection from "../../components/PageSection.astro";
+import TermLink from "../../components/TermLink.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatAgeRange, formatGenusCount } from "../../data/format.ts";
 import type { StageCount } from "../../data/home.ts";
@@ -82,7 +83,7 @@ if (siteData.timeline)
 
 ---
 
-<BaseLayout title={period.name} description={"The " + formatGenusCount(period.genera.length) + " known from the " + period.name + ", " + formatAgeRange(period.fromMa, period.toMa) + "."} navigationItem={"period-" + period.slug}>
+<BaseLayout title={period.name} description={"The " + formatGenusCount(period.genera.length) + " whose type species is known from the " + period.name + ", " + formatAgeRange(period.fromMa, period.toMa) + ", stage by stage."} navigationItem={"period-" + period.slug}>
     <article class="period-page" data-pagefind-body data-pagefind-filter="kind:Period">
         <header class="period-header">
             <h1 data-pagefind-weight="10">{period.name}</h1>
@@ -91,23 +92,30 @@ if (siteData.timeline)
                 <span class="figures">{formatGenusCount(period.genera.length)}</span>
             </p>
             <p class="period-intro">
-                These genera have a type species known from the {period.name}, from any of its stages.
+                Here are the genera whose <TermLink term="type species" /> is known from the {period.name}.
+                {stageCounts.length > 0 && (
+                    <>
+                        The chart shows how many come from each <TermLink term="stage" />; select a bar to see that
+                        stage’s genera. A genus can count in more than one stage, and some are dated only to an
+                        <TermLink term="epoch" />, so the bars don’t add up to the total.
+                    </>
+                )}
             </p>
         </header>
 
         {stageCounts.length > 0 && (
-            <PageSection title={"Stages of the " + period.name}>
+            <PageSection title="Genera by stage">
                 <div data-pagefind-ignore>
                     <GeneraThroughTime stages={stageCounts} label={"Genera known from each stage of the " + period.name} axisGrouping="epoch" />
                 </div>
             </PageSection>
         )}
 
-        <PageSection title={"Genera of the " + period.name}>
+        <PageSection title={"Genera known from the " + period.name}>
             {/* The genera have their own pages in the search index; listing them here too would
                make the period a result for each of its genera. */}
             <div data-pagefind-ignore>
-                <GenusIndex rows={rows} label={"Genera of the " + period.name} headingLevel={3} isFilterable={false} isGroupedByLetter={shouldGroupByLetter(rows.length)} />
+                <GenusIndex rows={rows} label={"Genera known from the " + period.name} headingLevel={3} isFilterable={false} isGroupedByLetter={shouldGroupByLetter(rows.length)} />
             </div>
         </PageSection>
     </article>

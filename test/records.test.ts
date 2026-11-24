@@ -1,7 +1,7 @@
 import * as assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { getTypeSpecies, getSizeMeasurements, sortSynonyms } from "../src/data/records.ts";
+import { formatSynonymType, getTypeSpecies, getSizeMeasurements, sortSynonyms } from "../src/data/records.ts";
 import { readFixture } from "./fixture.ts";
 
 const dataset = readFixture();
@@ -47,4 +47,13 @@ test("sortSynonyms orders by name and leaves the given list unchanged", () =>
     assert.deepEqual(before, ["Manospondylus gigas", "Dynamosaurus imperiosus", "Dinotyrannus megagracilis"]);
     assert.deepEqual(sorted, ["Dinotyrannus megagracilis", "Dynamosaurus imperiosus", "Manospondylus gigas"]);
     assert.equal(synonyms[0].name, "Manospondylus gigas", "the given list keeps its order");
+});
+
+test("formatSynonymType completes the kinds that are half a term", () =>
+{
+    assert.equal(formatSynonymType("junior subjective"), "junior subjective synonym");
+    assert.equal(formatSynonymType("junior objective"), "junior objective synonym");
+    assert.equal(formatSynonymType("possible subjective"), "possible subjective synonym");
+    assert.equal(formatSynonymType("preoccupied"), "preoccupied");
+    assert.equal(formatSynonymType("nomen oblitum"), "nomen oblitum");
 });

@@ -69,6 +69,24 @@ export function getSizeMeasurements(size: Size | undefined): Array<SizeMeasureme
 }
 
 /**
+ * Name a synonym's kind for display. The dataset's "junior subjective", "junior objective" and
+ * "possible subjective" are completed as "… synonym"; the other kinds ("preoccupied", "nomen
+ * oblitum" and so on) are whole terms already.
+ *
+ * @param type - The synonym's type.
+ * @returns The kind as it reads on the page.
+ */
+export function formatSynonymType(type: Synonym["type"]): string
+{
+    if (type === "junior subjective" || type === "junior objective" || type === "possible subjective")
+    {
+        return type + " synonym";
+    }
+
+    return type;
+}
+
+/**
  * Orders names the way an index does: letters compared without regard to case or accents.
  */
 const nameCollator = new Intl.Collator("en", { sensitivity: "base" });

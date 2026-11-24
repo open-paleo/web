@@ -8,7 +8,7 @@ import PageSection from "../../components/PageSection.astro";
 import Prose from "../../components/Prose.astro";
 import RecordMain from "../../components/RecordMain.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { createCitationParts, describeWorkKind, formatShortCitation } from "../../data/format.ts";
+import { capitalizeFirstLetter, createCitationParts, describeWorkKind, formatShortCitation } from "../../data/format.ts";
 import type { Citation as CitationRecord, ReferenceEntry } from "../../data/site-data.ts";
 import { getSiteData } from "../../data/site-data.ts";
 
@@ -90,8 +90,10 @@ for (const citation of entry.citations)
 }
 
 const citingCount = entry.citations.length;
-const pageDescription = shortCitation + ". " + (parts.title ? parts.title + ". " : "") + "Cited by " + citingCount +
-    (citingCount === 1 ? " record" : " records") + " in Open Paleo.";
+const citingPages = citingCount === 1 ? "1 page" : citingCount + " pages";
+// "Tyrannosaurus and other Cretaceous carnivorous dinosaurs, a journal article by Osborn (1905)."
+const byline = (workKind ? "a " + workKind.charAt(0).toLowerCase() + workKind.slice(1) + " " : "") + "by " + shortCitation;
+const pageDescription = (parts.title ? parts.title + ", " + byline : capitalizeFirstLetter(byline)) + ". We cite it on " + citingPages + " of Open Paleo.";
 ---
 
 <BaseLayout title={shortCitation} description={pageDescription} navigationItem="references">
@@ -104,17 +106,11 @@ const pageDescription = shortCitation + ". " + (parts.title ? parts.title + ". "
 
         <RecordMain>
             <FactList label="About this work">
-                {workKind && (
-                    <>
-                        <dt>Kind</dt>
-                        <dd>{workKind}</dd>
-                    </>
-                )}
                 <dt>Year</dt>
                 <dd class="figures">{parts.year}</dd>
                 {parts.container && (
                     <>
-                        <dt>{reference.journal ? "Journal" : reference.book ? "In" : "Series"}</dt>
+                        <dt>{reference.journal ? "Journal" : reference.book ? "Book" : "Series"}</dt>
                         <dd><i>{parts.container}</i></dd>
                     </>
                 )}
@@ -130,9 +126,9 @@ const pageDescription = shortCitation + ". " + (parts.title ? parts.title + ". "
                         <dd class="figures">{reference.isbn}</dd>
                     </>
                 )}
-                <dt>Cited by</dt>
-                <dd class="figures">{citingCount === 1 ? "1 record" : citingCount + " records"}</dd>
-                <dt>Key</dt>
+                <dt>Cited on</dt>
+                <dd class="figures">{citingPages}</dd>
+                <dt>Citation key</dt>
                 <dd class="break-anywhere">{entry.id}</dd>
             </FactList>
 
@@ -141,25 +137,25 @@ const pageDescription = shortCitation + ". " + (parts.title ? parts.title + ". "
             </PageSection>
 
             {entry.namedTaxa.length > 0 && (
-                <PageSection title="Names first published here">
+                <PageSection title="Names first published in this work">
                     <NamedTaxonList taxa={entry.namedTaxa} />
                 </PageSection>
             )}
 
             {genusCitations.length > 0 && (
-                <PageSection title="Cited by genera">
+                <PageSection title="Genus pages that cite it">
                     <CitingRecordList citations={genusCitations} referenceSlug={entry.slug} />
                 </PageSection>
             )}
 
             {cladeCitations.length > 0 && (
-                <PageSection title="Cited by clades">
+                <PageSection title="Clade pages that cite it">
                     <CitingRecordList citations={cladeCitations} referenceSlug={entry.slug} />
                 </PageSection>
             )}
 
             {unitCitations.length > 0 && (
-                <PageSection title="Cited by rock units">
+                <PageSection title="Rock unit pages that cite it">
                     <CitingRecordList citations={unitCitations} referenceSlug={entry.slug} />
                 </PageSection>
             )}

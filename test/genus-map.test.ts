@@ -40,7 +40,7 @@ test("a species with published coordinates is a point, in longitude and latitude
     assert.ok(map);
     assert.equal(map.places[0].precision, "point");
     assert.deepEqual(map.places[0].position, [0.972953, 42.159484]);
-    assert.equal(map.places[0].precisionNote, "published coordinates");
+    assert.equal(map.places[0].precisionNote, "at its published coordinates");
     assert.deepEqual(map.bounds, [[0.972953, 42.159484], [0.972953, 42.159484]]);
 });
 
@@ -61,7 +61,7 @@ test("a species known only to its country shades the country, within the latitud
 
     assert.ok(map);
     assert.equal(map.places[0].precision, "country");
-    assert.equal(map.places[0].precisionNote, "country shaded; no region recorded");
+    assert.equal(map.places[0].precisionNote, "only the country is recorded, so we’ve shaded it");
     assert.ok(map.bounds[0][1] >= -78, "the bounds stop short of the pole");
 });
 
@@ -77,7 +77,7 @@ test("a region without an outline falls back to its country, and only unexpected
 
     assert.ok(map);
     assert.equal(map.places[0].precision, "country");
-    assert.equal(map.places[0].precisionNote, "country shaded; no outline for its region");
+    assert.equal(map.places[0].precisionNote, "we’ve shaded the whole country");
     assert.match(findMissingOutline(location, withoutMontana), /US-MT/);
     assert.equal(findMissingOutline(location, { ...withoutMontana, regionsWithoutOutline: ["US-MT"] }), "");
     assert.equal(findMissingOutline(location, shapes), "");

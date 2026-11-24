@@ -14,6 +14,7 @@ import {
     formatGenusCount,
     formatGeologicAge,
     formatIntegumentEvidence,
+    formatLocomotion,
     formatPlace,
     formatQuotes,
     formatShortCitation,
@@ -163,7 +164,8 @@ test("formatSpecimenType pluralizes a syntype series", () =>
 
 test("describeAgeResolution explains only qualified ages", () =>
 {
-    assert.match(describeAgeResolution("unit"), /containing rock unit/);
+    assert.match(describeAgeResolution("unit"), /rock unit as a whole/);
+    assert.match(describeAgeResolution("horizon"), /isn’t known which bed/);
     assert.equal(describeAgeResolution(undefined), "");
 });
 
@@ -229,6 +231,13 @@ test("joinWithAnd joins a list as a sentence does", () =>
     assert.equal(joinWithAnd(["Jurassic"]), "Jurassic");
     assert.equal(joinWithAnd(["Jurassic", "Cretaceous"]), "Jurassic and Cretaceous");
     assert.equal(joinWithAnd(["Triassic", "Jurassic", "Cretaceous"]), "Triassic, Jurassic and Cretaceous");
+});
+
+test("formatLocomotion says what facultative locomotion is", () =>
+{
+    assert.equal(formatLocomotion("bipedal"), "bipedal");
+    assert.equal(formatLocomotion("quadrupedal"), "quadrupedal");
+    assert.equal(formatLocomotion("facultative"), "facultatively bipedal");
 });
 
 test("formatIntegumentEvidence says how the integument is known", () =>

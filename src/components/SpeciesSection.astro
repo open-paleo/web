@@ -9,6 +9,7 @@ import Prose from "./Prose.astro";
 import SpeciesFacts from "./SpeciesFacts.astro";
 import StatusBadge from "./StatusBadge.astro";
 import SynonymList from "./SynonymList.astro";
+import TermLink from "./TermLink.astro";
 
 /**
  * Properties of the box describing one species of a genus.
@@ -37,7 +38,7 @@ const pronunciation = species.pronunciation;
             {pronunciation?.ipa && <PronunciationReadings text={pronunciation.ipa} />}
             <StatusBadge status={species.status} linkToGlossary />
         </p>
-        {species.type_species && <p class="species-role">Type species</p>}
+        {species.type_species && <p class="species-role"><TermLink term="type species" text="Type species" /></p>}
         {species.erected_as && <p class="species-role">First named as <i class="taxon">{species.erected_as}</i></p>}
     </header>
     {species.etymology && <p class="species-etymology"><Prose text={species.etymology.trim()} /></p>}

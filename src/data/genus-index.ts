@@ -2,7 +2,7 @@ import type { GeologicTimeline } from "./age-figure.ts";
 import { getPeriodName } from "./age-figure.ts";
 import type { Status } from "./dataset.ts";
 import { getDescendantGenera } from "./clades.ts";
-import { capitalizeFirstLetter, formatAgeNumbers, formatAuthority, formatCountry, formatGenusCount, formatShortAge, formatVocabularyValue } from "./format.ts";
+import { capitalizeFirstLetter, formatAgeNumbers, formatAuthority, formatCountry, formatGenusCount, formatLocomotion, formatShortAge, formatVocabularyValue } from "./format.ts";
 import type { ChoiceFilterName, GenusFilterValues } from "./genus-filters.ts";
 import { otherGroupValue } from "./genus-filters.ts";
 import { majorGroupNames } from "./home.ts";
@@ -568,7 +568,7 @@ export function getGenusFilterOptions(rows: Array<GenusIndexRow>, timeline: Geol
 
         countValue(group, values.group, values.group);
         countValue(diet, values.diet, formatOptionLabel(genus.diet ?? ""));
-        countValue(locomotion, values.locomotion, formatOptionLabel(genus.locomotion ?? ""));
+        countValue(locomotion, values.locomotion, formatOptionLabel(genus.locomotion ? formatLocomotion(genus.locomotion) : ""));
         countValue(integument, values.integument, formatOptionLabel(genus.appearance?.integument ?? ""));
         countValue(status, values.status, formatOptionLabel(row.status ?? ""));
 

@@ -5,6 +5,7 @@ import {
     formatAgeNumbers,
     formatAuthority,
     formatGeologicAge,
+    formatLocomotion,
     formatPlace,
     formatSizeRange,
     formatStratigraphicUnits,
@@ -120,7 +121,7 @@ export function createGenusEmbed(genus: Genus): GenusEmbed
 
     if (genus.locomotion)
     {
-        facts.push({ label: "Locomotion", value: capitalizeFirstLetter(genus.locomotion) });
+        facts.push({ label: "Locomotion", value: capitalizeFirstLetter(formatLocomotion(genus.locomotion)) });
     }
 
     if (typeSpecies.size?.length_m)
@@ -151,7 +152,7 @@ export function createGenusEmbed(genus: Genus): GenusEmbed
         age: formatGeologicAge(period),
         summary: getFirstSentence(genus.description),
         facts,
-        sizeNote: genus.species.length > 1 ? "Size and place are those of the type species." : "",
+        sizeNote: genus.species.length > 1 ? "Size and place are for the type species." : "",
     };
 }
 

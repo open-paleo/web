@@ -180,7 +180,7 @@ function addToView(views: Map<string, PaleoView>, stageInEpoch: StageInEpoch, sp
     }
 
     place.labels.push(abbreviateSpeciesName(speciesName));
-    place.details.push(speciesName + ": " + formatLatitude(rounded[1]) + (paleo.approximate ? ", from the center of its region" : ""));
+    place.details.push(speciesName + ": " + formatLatitude(rounded[1]) + " at the time" + (paleo.approximate ? ", estimated from the center of its region" : ""));
     place.isTypeSpecies ||= isTypeSpecies;
 }
 
@@ -266,6 +266,7 @@ export function describePaleoView(view: PaleoView): string
         hasApproximate ||= place.isApproximate;
     }
 
-    return "Today’s coastlines where they were " + view.ageMa + " million years ago (" + view.stage + ", " + view.epoch + "), reconstructed with the plate model of Wright et al. (2013)."
-        + (hasApproximate ? " Rings mark places known only by region, shown at the region’s center." : "");
+    return "This globe shows today’s coastlines moved back to where they were about " + view.ageMa + " million years ago, in the "
+        + view.stage + " (" + view.epoch + "). It doesn’t show the seas of the time. The plate positions come from Wright et al. (2013)."
+        + (hasApproximate ? " A ring is a place we know only by its region, drawn at the region’s center." : "");
 }

@@ -3,6 +3,7 @@ import type { GenusMap } from "../data/genus-map.ts";
 import { createGenusMapFeatures, createGenusMapView } from "../data/genus-map.ts";
 import type { PaleoView } from "../data/paleo-positions.ts";
 import { describePaleoView, formatPaleoViewLabel } from "../data/paleo-positions.ts";
+import TermLink from "./TermLink.astro";
 
 /**
  * Properties of a genus page's map.
@@ -26,7 +27,7 @@ type Props = {
 };
 
 const { map, genusName, paleoViews } = Astro.props;
-const todayNote = "Places are shown on today’s map.";
+const todayNote = "The map shows the world as it looks today.";
 const features = JSON.stringify(createGenusMapFeatures(map));
 const bounds = JSON.stringify(map.bounds);
 const view = JSON.stringify(createGenusMapView(map));
@@ -39,12 +40,13 @@ const view = JSON.stringify(createGenusMapView(map));
 <div class="genus-map">
     {/* Switches the map between today and each stage the species lived in; shown by the script. */}
     {paleoViews.length > 0 && (
-        <div class="map-views" role="group" aria-label="Map shows" hidden>
+        <div class="map-views" role="group" aria-label="Map view" hidden>
             <button type="button" data-map-view="today" data-note={todayNote} aria-pressed="true">Today</button>
             {paleoViews.map((paleoView, index) => <button type="button" data-map-view={String(index)} data-note={describePaleoView(paleoView)} aria-pressed="false">{formatPaleoViewLabel(paleoView)}</button>)}
         </div>
     )}
-    <div class="place-map" data-features={features} data-bounds={bounds} data-view={view} data-paleo={JSON.stringify(paleoViews)} role="region" aria-label={"Map of where " + genusName + " was found"} hidden></div>
+    <div class="place-map" data-features={features} data-bounds={bounds} data-view={view} data-paleo={JSON.stringify(paleoViews)} role="region" aria-label={"Map of where the type specimens of " + genusName + "’s species were found"} hidden></div>
+    <p class="map-places-introduction">Where the <TermLink term="type specimen" /> of each species was found:</p>
     <ul class="map-places">
         {map.places.map((place) => (
             <li>
@@ -111,6 +113,12 @@ const view = JSON.stringify(createGenusMapView(map));
     .place-map[hidden]
     {
         display: none;
+    }
+
+    .map-places-introduction
+    {
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
     }
 
     .map-places

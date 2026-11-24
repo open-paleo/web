@@ -41,6 +41,16 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
   its dots are (where type specimens were found); the Tree and Time pages take the tree's top
   clade and the periods from the data; and the Genera page's filters say what they do, inside the
   filter form, which shows only with JavaScript
+- Genus, clade, rock unit, reference, period and stage pages are rewritten the same way.
+  Sections such as Diagnosis, ICZN cases, References and Cite this record open with a sentence
+  saying what they hold, and labels name things fully: "Other databases" with the databases'
+  names spelled out, "Facultatively bipedal" for the dataset's "facultative" locomotion, "junior
+  subjective synonym", "Former numbers", "Citation key". Relationships are worded as the data
+  records them: genera are "from" a rock unit, where their species' type specimens were found;
+  the genus map lists where each species' type specimen was found; reference pages list the
+  "genus pages that cite it"; a clade's own genera are "other genera in" it, "not in a
+  subclade". The period pages' intro no longer says their genera all come from stages, since
+  some are dated only to an epoch
 - Every page ends with a line naming the dataset release it was built from, linked to Data, in
   place of the release in the footer, on the home page and in the Genera, Clades and References
   intros. Those intros now say what each entry shows, and link *type species* and *epoch* to the

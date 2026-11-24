@@ -1,4 +1,4 @@
-import type { Appearance, Location, Period, Reference, SizeRange } from "./dataset.ts";
+import type { Appearance, Genus, Location, Period, Reference, SizeRange } from "./dataset.ts";
 
 /**
  * A reference broken into the parts a citation displays, each already formatted.
@@ -439,13 +439,14 @@ export function getIdentifierUrl(source: string, id: string): string | undefined
  * Get the display name of an outside database.
  *
  * @param source - The database, as the dataset names it.
- * @returns Its usual name, such as "PBDB" or "ZooBank".
+ * @returns Its name, spelled out for a reader who doesn't know the abbreviation: "Paleobiology
+ * Database", "ZooBank".
  */
 export function getIdentifierSourceName(source: string): string
 {
     if (source === "pbdb")
     {
-        return "PBDB";
+        return "Paleobiology Database";
     }
     else if (source === "wikidata")
     {
@@ -453,11 +454,11 @@ export function getIdentifierSourceName(source: string): string
     }
     else if (source === "gbif")
     {
-        return "GBIF";
+        return "Global Biodiversity Information Facility";
     }
     else if (source === "eol")
     {
-        return "EOL";
+        return "Encyclopedia of Life";
     }
     else if (source === "zoobank")
     {
@@ -504,8 +505,8 @@ export function formatGeologicAge(period: Period): string
 }
 
 /**
- * Explain how a species' stage relates to the rock unit it was found in, when that needs
- * saying.
+ * Explain how a species' stage relates to the rock unit its type specimen was found in, when that
+ * needs saying.
  *
  * @param resolution - The period block's resolution value.
  * @returns A short note, or an empty string when the age needs no qualification.
@@ -514,15 +515,15 @@ export function describeAgeResolution(resolution: string | undefined): string
 {
     if (resolution === "unit")
     {
-        return "The age of the containing rock unit; no finer age has been published.";
+        return "This is the age of the rock unit as a whole; no closer age has been published for this species.";
     }
     else if (resolution === "reworked")
     {
-        return "The age of the older beds the specimen was reworked from.";
+        return "The type specimen was reworked from older rocks, so this is the age of those rocks.";
     }
     else if (resolution === "horizon")
     {
-        return "Covers every bed that may have yielded the type specimen.";
+        return "It isn’t known which bed the type specimen came from, so this age covers every bed it may have come from.";
     }
 
     return "";
@@ -675,6 +676,18 @@ export function formatGenusCount(count: number): string
 export function formatCount(count: number, singular: string, plural: string): string
 {
     return integerFormat.format(count) + " " + (count === 1 ? singular : plural);
+}
+
+/**
+ * Name how a genus moved, in lower case: "bipedal", "quadrupedal", or "facultatively bipedal" for
+ * the dataset's `facultative`, which on its own wouldn't say what was facultative.
+ *
+ * @param locomotion - The genus's locomotion value.
+ * @returns The words to show, which are also the glossary's term for it.
+ */
+export function formatLocomotion(locomotion: NonNullable<Genus["locomotion"]>): string
+{
+    return locomotion === "facultative" ? "facultatively bipedal" : locomotion;
 }
 
 /**

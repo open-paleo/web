@@ -15,6 +15,7 @@ import RecordMain from "../../components/RecordMain.astro";
 import ReferenceList from "../../components/ReferenceList.astro";
 import SubcladeList from "../../components/SubcladeList.astro";
 import SynonymTable from "../../components/SynonymTable.astro";
+import TermLink from "../../components/TermLink.astro";
 import TaxonOutline from "../../components/TaxonOutline.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { createRecordCitation } from "../../data/citations.ts";
@@ -107,6 +108,8 @@ const genusRows = createGenusIndexRows(getPlacedGenera(entry, siteData), siteDat
 const ancestors = record.taxonomy.slice(0, -1);
 const references = record.references ?? [];
 const placedDirectly = entry.genusNames.length;
+const hasSubclades = entry.childCladeNames.length > 0;
+const genusSectionTitle = (hasSubclades ? "Other genera in " : "Genera in ") + entry.name;
 const citation = createRecordCitation("Clade", entry.name, entry.slug, citationUrl, getSiteData().metadata);
 const structuredData = Astro.site ? createCladeStructuredData(entry, record, siteData, new URL(baseUrl, Astro.site)) : undefined;
 // The rank links to its glossary entry where the glossary has one.
@@ -139,17 +142,17 @@ const identifiers = record.identifiers ?? [];
                 )}
                 <dt>Genera</dt>
                 <dd class="figures">{formatGenusCount(entry.totalGenusCount)}</dd>
-                <dt>Placed directly</dt>
-                <dd class="figures">{formatGenusCount(placedDirectly)}</dd>
-                {entry.childCladeNames.length > 0 && (
+                {hasSubclades && (
                     <>
+                        <dt>Not in a subclade</dt>
+                        <dd class="figures">{formatGenusCount(placedDirectly)}</dd>
                         <dt>Subclades</dt>
                         <dd class="figures">{entry.childCladeNames.length}</dd>
                     </>
                 )}
                 {identifiers.length > 0 && (
                     <>
-                        <dt>Elsewhere</dt>
+                        <dt>Other databases</dt>
                         <IdentifierLinks identifiers={identifiers} />
                     </>
                 )}
@@ -165,19 +168,26 @@ const identifiers = record.identifiers ?? [];
 
             {record.diagnostic_features && record.diagnostic_features.length > 0 && (
                 <PageSection title="Diagnosis">
+                    <p class="section-lead">The features published as the <TermLink term="diagnosis" /> of {entry.name}:</p>
                     <DiagnosisList features={record.diagnostic_features} />
                 </PageSection>
             )}
 
-            {entry.childCladeNames.length > 0 && (
-                <PageSection title={"Clades within " + entry.name}>
+            {hasSubclades && (
+                <PageSection title={"Clades in " + entry.name}>
                     <SubcladeList names={entry.childCladeNames} />
                 </PageSection>
             )}
 
             {genusRows.length > 0 && (
-                <PageSection title={"Genera placed directly in " + entry.name}>
-                    <GenusIndex rows={genusRows} label={"Genera placed directly in " + entry.name} headingLevel={3} isFilterable={false} isGroupedByLetter={false} />
+                <PageSection title={genusSectionTitle}>
+                    {hasSubclades && (
+                        <p class="section-lead">
+                            We assign these genera to {entry.name} itself, not to any clade within it. You’ll find its other
+                            genera on its subclades’ pages.
+                        </p>
+                    )}
+                    <GenusIndex rows={genusRows} label={genusSectionTitle} headingLevel={3} isFilterable={false} isGroupedByLetter={false} />
                 </PageSection>
             )}
 
@@ -189,11 +199,13 @@ const identifiers = record.identifiers ?? [];
 
             {references.length > 0 && (
                 <PageSection title="References">
+                    <p class="section-lead">The published works we cite on this page.</p>
                     <ReferenceList references={references} />
                 </PageSection>
             )}
 
             <PageSection title="Cite this record">
+                <p class="section-lead">If you use this page in your work, please cite it:</p>
                 <HowToCite citation={citation} subject={entry.name} />
             </PageSection>
 
@@ -302,5 +314,11 @@ const identifiers = record.identifiers ?? [];
     {
         color: var(--color-accent);
         text-decoration: underline;
+    }
+
+    /* A sentence under a section's heading saying what the section holds. */
+    .section-lead
+    {
+        max-width: var(--measure);
     }
 </style>

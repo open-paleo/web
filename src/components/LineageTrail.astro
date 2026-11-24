@@ -75,7 +75,7 @@ const hiddenCount = ranks.length > visibleAtEachEnd * 2 + 1 ? ranks.length - vis
                 button.type = "button";
                 button.className = "lineage-expand";
                 button.textContent = hiddenCount + " more";
-                button.setAttribute("aria-label", "Show " + hiddenCount + " more ranks");
+                button.setAttribute("aria-label", "Show " + hiddenCount + " more clades");
                 button.addEventListener("click", () =>
                 {
                     trail.classList.remove("is-collapsed");

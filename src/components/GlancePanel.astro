@@ -3,6 +3,7 @@ import type { Genus } from "../data/dataset.ts";
 import {
     capitalizeFirstLetter,
     formatIntegumentEvidence,
+    formatLocomotion,
     formatPlace,
     formatStratigraphicUnits,
     joinNonEmpty,
@@ -10,6 +11,7 @@ import {
 import { getTypeSpecies, getSizeMeasurements } from "../data/records.ts";
 import FactList from "./FactList.astro";
 import IdentifierLinks from "./IdentifierLinks.astro";
+import TermLink from "./TermLink.astro";
 import UnitLinks from "./UnitLinks.astro";
 
 /**
@@ -35,7 +37,8 @@ const foundIn = typeSpecies.location
     : "";
 const measurements = getSizeMeasurements(typeSpecies.size);
 const identifiers = genus.identifiers ?? [];
-const sizeNote = genus.species.length > 1 ? "Size and place are those of the type species." : "";
+const hasSizeNote = genus.species.length > 1;
+const locomotion = genus.locomotion ? formatLocomotion(genus.locomotion) : "";
 ---
 
 <FactList label="At a glance">
@@ -45,10 +48,10 @@ const sizeNote = genus.species.length > 1 ? "Size and place are those of the typ
             <dd>{capitalizeFirstLetter(genus.diet)}</dd>
         </>
     )}
-    {genus.locomotion && (
+    {locomotion && (
         <>
             <dt>Locomotion</dt>
-            <dd>{capitalizeFirstLetter(genus.locomotion)}</dd>
+            <dd><TermLink term={locomotion} text={capitalizeFirstLetter(locomotion)} /></dd>
         </>
     )}
     {integument && (
@@ -83,11 +86,11 @@ const sizeNote = genus.species.length > 1 ? "Size and place are those of the typ
     )}
     {identifiers.length > 0 && (
         <>
-            <dt>Elsewhere</dt>
+            <dt>Other databases</dt>
             <IdentifierLinks identifiers={identifiers} />
         </>
     )}
-    {sizeNote && <p class="glance-note" slot="note">{sizeNote}</p>}
+    {hasSizeNote && <p class="glance-note" slot="note">Size and place are for the <TermLink term="type species" />, <i class="taxon">{typeSpecies.name}</i>.</p>}
 </FactList>
 
 <style>

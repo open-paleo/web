@@ -42,7 +42,7 @@ test("createGenusEmbed leaves out hip height and skull length", () =>
 
 test("createGenusEmbed notes when the size and place are the type species' of several", () =>
 {
-    assert.equal(createGenusEmbed(dataset.genera.Allosaurus).sizeNote, "Size and place are those of the type species.");
+    assert.equal(createGenusEmbed(dataset.genera.Allosaurus).sizeNote, "Size and place are for the type species.");
 });
 
 test("createGenusEmbed leaves out what a record doesn't have", () =>

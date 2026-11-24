@@ -26,9 +26,9 @@ const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : "";
 
 {/* Left out of the search index, since it is the same on every page. */}
 <p class="correction-note" data-pagefind-ignore>
-    <span>Found a value that does not match its source?</span>
+    <span>Spotted something that doesn’t match its source?</span>
     <a href={createCorrectionUrl(kind, name, pageUrl)}>Suggest a correction</a>
-    <span class="correction-where">on GitHub, with the published source that supports it.</span>
+    <span class="correction-where">on GitHub, and include the published source that supports it.</span>
 </p>
 
 <style>

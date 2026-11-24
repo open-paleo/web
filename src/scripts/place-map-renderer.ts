@@ -557,7 +557,7 @@ function showMapUnavailable(container: HTMLElement): void
     const message = document.createElement("p");
 
     message.className = "map-unavailable";
-    message.textContent = "The map could not be shown in this browser. The places are listed below.";
+    message.textContent = "Your browser can’t show this map, but every place is in the list below.";
     container.replaceChildren(message);
 }
 

@@ -9,6 +9,7 @@ import GenusIndex from "../../components/GenusIndex.astro";
 import PageSection from "../../components/PageSection.astro";
 import RecordMain from "../../components/RecordMain.astro";
 import ReferenceList from "../../components/ReferenceList.astro";
+import TermLink from "../../components/TermLink.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatGenusCount, formatGeologicAge, formatQuotes, getFirstSentence } from "../../data/format.ts";
 import { createGenusIndexRows, shouldGroupByLetter } from "../../data/genus-index.ts";
@@ -97,7 +98,9 @@ const rows = page ? createGenusIndexRows(page.genera, siteData, siteData.timelin
 const age = record ? formatGeologicAge(record.period) : "";
 const variants = record?.variants ?? [];
 const references = page ? getPageReferences(page) : [];
-const subunitsTitle = page && page.subunitPages.every((subunit) => subunit.record.rank === "formation") ? "Formations" : "Units within it";
+const subunitsAreFormations = page !== undefined && page.subunitPages.every((subunit) => subunit.record.rank === "formation");
+const subunitsLabel = subunitsAreFormations ? "Formations" : "Smaller units";
+const subunitsTitle = (subunitsAreFormations ? "Formations in the " : "Units in the ") + (entry?.displayName ?? "");
 const searchDescription = record ? getFirstSentence(record.description) : "";
 ---
 
@@ -113,7 +116,7 @@ const searchDescription = record ? getFirstSentence(record.description) : "";
         </head>
         <body>
             <main>
-                <p>The {section.displayName} is described on the page of the <a href={sectionUrl}>{sectionPage.entry.displayName}</a>.</p>
+                <p>The {section.displayName} is part of the {sectionPage.entry.displayName}. See it on the <a href={sectionUrl}>{sectionPage.entry.displayName} page</a>.</p>
             </main>
         </body>
     </html>
@@ -135,8 +138,6 @@ const searchDescription = record ? getFirstSentence(record.description) : "";
 
             <RecordMain>
                 <FactList label="At a glance">
-                    <dt>Rank</dt>
-                    <dd>{describeUnitRank(record)}</dd>
                     {parentPage && (
                         <>
                             <dt>Part of</dt>
@@ -153,7 +154,7 @@ const searchDescription = record ? getFirstSentence(record.description) : "";
                     <dd class="figures">{formatGenusCount(page.genera.length)}</dd>
                     {page.subunitPages.length > 0 && (
                         <>
-                            <dt>{subunitsTitle}</dt>
+                            <dt>{subunitsLabel}</dt>
                             <dd class="figures">{page.subunitPages.length}</dd>
                         </>
                     )}
@@ -186,14 +187,15 @@ const searchDescription = record ? getFirstSentence(record.description) : "";
                     </PageSection>
                 )}
 
-                <PageSection title={"Genera found in the " + entry.displayName}>
+                <PageSection title={"Genera from the " + entry.displayName}>
                     <p class="unit-intro">
-                        These genera have a species found in the {entry.displayName}{page.sections.length > 0 || page.subunitPages.length > 0 ? " or a unit within it" : ""}.
-                        A genus found in several units is listed on each unit’s page.
+                        Each of these genera has at least one species whose <TermLink term="type specimen" /> was found in
+                        the {entry.displayName}{page.sections.length > 0 || page.subunitPages.length > 0 ? " or a smaller unit within it" : ""}.
+                        A genus with species from more than one unit appears on each of their pages.
                     </p>
                     {/* The genera have their own pages in the search index. */}
                     <div data-pagefind-ignore>
-                        <GenusIndex rows={rows} label={"Genera of the " + entry.displayName} headingLevel={3} isFilterable={false} isGroupedByLetter={shouldGroupByLetter(rows.length)} />
+                        <GenusIndex rows={rows} label={"Genera from the " + entry.displayName} headingLevel={3} isFilterable={false} isGroupedByLetter={shouldGroupByLetter(rows.length)} />
                     </div>
                 </PageSection>
 
@@ -203,19 +205,19 @@ const searchDescription = record ? getFirstSentence(record.description) : "";
                             <section class="unit-section" id={child.slug} aria-labelledby={child.slug + "-heading"}>
                                 <h3 id={child.slug + "-heading"}>{child.displayName}</h3>
                                 <p class="section-meta">
-                                    {describeUnitRank(child.record)}{child.record.parent && child.record.parent !== entry.name && units.entryByName.get(child.record.parent) && " within the " + units.entryByName.get(child.record.parent)?.displayName}{formatGeologicAge(child.record.period) && ", " + formatGeologicAge(child.record.period)}
+                                    {describeUnitRank(child.record)}{child.record.parent && child.record.parent !== entry.name && units.entryByName.get(child.record.parent) && " in the " + units.entryByName.get(child.record.parent)?.displayName}{formatGeologicAge(child.record.period) && ", " + formatGeologicAge(child.record.period)}
                                 </p>
                                 {(child.record.variants ?? []).length > 0 && <p class="section-meta">Also written {formatQuotes((child.record.variants ?? []).join(", "))}</p>}
                                 <Description text={child.record.description} />
                                 {child.record.dispute && <DisputeNote dispute={child.record.dispute} />}
                                 {child.genera.length > 0 && (
                                     <p class="section-genera">
-                                        Genera: {child.genera.map((genus, index) => <>{index > 0 && ", "}<a href={createPagePath(baseUrl, "genus", genus.slug)}><i class="taxon">{genus.name}</i></a></>)}
+                                        Genera from this {describeUnitRank(child.record).toLowerCase()}: {child.genera.map((genus, index) => <>{index > 0 && ", "}<a href={createPagePath(baseUrl, "genus", genus.slug)}><i class="taxon">{genus.name}</i></a></>)}
                                     </p>
                                 )}
                                 {child.record.references.length > 0 && (
                                     <p class="section-sources">
-                                        Sources: {child.record.references.map((reference, index) => <>{index > 0 && "; "}<CitationLink id={reference.id} references={child.record.references} /></>)}
+                                        References: {child.record.references.map((reference, index) => <>{index > 0 && "; "}<CitationLink id={reference.id} references={child.record.references} /></>)}
                                     </p>
                                 )}
                             </section>
@@ -225,6 +227,7 @@ const searchDescription = record ? getFirstSentence(record.description) : "";
 
                 {references.length > 0 && (
                     <PageSection title="References">
+                        <p class="unit-intro">The published works we cite on this page.</p>
                         <ReferenceList references={references} />
                     </PageSection>
                 )}

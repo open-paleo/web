@@ -3,6 +3,7 @@ import AgeFigure from "../../components/AgeFigure.astro";
 import FactList from "../../components/FactList.astro";
 import GenusIndex from "../../components/GenusIndex.astro";
 import PageSection from "../../components/PageSection.astro";
+import TermLink from "../../components/TermLink.astro";
 import RecordMain from "../../components/RecordMain.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatAgeRange, formatDecimal, formatGenusCount } from "../../data/format.ts";
@@ -86,7 +87,7 @@ const rows = createGenusIndexRows(stage.genera, siteData, siteData.timeline, "st
 const duration = formatDecimal(stage.fromMa - stage.toMa);
 ---
 
-<BaseLayout title={stage.name} description={"The " + formatGenusCount(stage.genera.length) + " known from the " + stage.name + " stage, " + formatAgeRange(stage.fromMa, stage.toMa) + "."} navigationItem={period ? "period-" + period.slug : undefined}>
+<BaseLayout title={stage.name} description={"The " + formatGenusCount(stage.genera.length) + " whose type species is known from the " + stage.name + ", a stage of the " + stage.epochName + ", " + formatAgeRange(stage.fromMa, stage.toMa) + "."} navigationItem={period ? "period-" + period.slug : undefined}>
     <article class="stage-page" data-pagefind-body data-pagefind-filter="kind:Stage">
         <nav class="time-trail" aria-label="Geologic time">
             {period ? <a href={createPagePath(baseUrl, "period", period.slug)}>{stage.periodName}</a> : stage.periodName}
@@ -117,8 +118,9 @@ const duration = formatDecimal(stage.fromMa - stage.toMa);
             </FactList>
 
             <p class="stage-intro">
-                These genera have a type species known from the {stage.name}. A genus known from
-                several stages is listed on each stage’s page.
+                The {stage.name} is a <TermLink term="stage" /> of the {stage.epochName}, in the {stage.periodName} period.
+                Below are the genera whose <TermLink term="type species" /> is known from it. If a type species is known
+                from several stages, you’ll find its genus on each of their pages.
             </p>
 
             {(older || younger) && (
@@ -132,7 +134,7 @@ const duration = formatDecimal(stage.fromMa - stage.toMa);
                 {/* The genera have their own pages in the search index; listing them here too would
                    make every stage a result for each of its genera. */}
                 <div data-pagefind-ignore>
-                    <GenusIndex rows={rows} label={"Genera of the " + stage.name} headingLevel={3} isFilterable={false} isGroupedByLetter={shouldGroupByLetter(rows.length)} />
+                    <GenusIndex rows={rows} label={"Genera known from the " + stage.name} headingLevel={3} isFilterable={false} isGroupedByLetter={shouldGroupByLetter(rows.length)} />
                 </div>
             </PageSection>
         </RecordMain>
