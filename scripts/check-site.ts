@@ -165,6 +165,7 @@ const samplePages: Array<SamplePage> = [
     { path: "genus/aardonyx/", reason: "genus with a numbered diagnosis" },
     { path: "genus/archaeopteryx/", reason: "genus with an ICZN case" },
     { path: "genus/micropachycephalosaurus/", reason: "genus with the longest name, which must fit 320px" },
+    { path: "genus/megadontosaurus/", reason: "synonym of more than one genus, with a link to each" },
     { path: "embed/genus/tyrannosaurus/", reason: "genus infobox with an outline and every fact" },
     { path: "embed/genus/micropachycephalosaurus/", reason: "genus infobox with the longest name" },
     { path: "clade/dinosauria/", reason: "large clade" },
@@ -777,6 +778,75 @@ async function checkReferenceFind(browser: Browser, siteUrl: string, problems: A
 }
 
 /**
+ * Check the redirects: an address in the wrong letter case reaches the page through the 404 page,
+ * a genus synonym's page reaches its genus with the "Redirected from" note shown and the address
+ * cleaned, and a missing address in capitals still says the page wasn't found.
+ *
+ * @param browser - The browser.
+ * @param siteUrl - The site's address, ending in the base path.
+ * @param problems - Problems found, added to.
+ */
+async function checkRedirects(browser: Browser, siteUrl: string, problems: Array<SiteProblem>): Promise<void>
+{
+    const location = "redirects";
+    const context = { viewport: { width: 1280, height: 900 } };
+    const casePage = (await openSitePage(browser, context, siteUrl + "genus/Tyrannosaurus/")).page;
+
+    try
+    {
+        await casePage.waitForURL(siteUrl + "genus/tyrannosaurus/", { timeout: 10000 });
+    }
+    catch
+    {
+        problems.push({ location, check: "case", message: "genus/Tyrannosaurus/ did not go on to genus/tyrannosaurus/, but stayed at " + casePage.url() });
+    }
+
+    await casePage.close();
+
+    // Cheneosaurus is a synonym of Hypacrosaurus alone; if that changes, pick another such synonym.
+    // The note shows only after a redirect, so the sample pages' axe runs never see it; check its
+    // colors here, in both schemes.
+    for (const colorScheme of colorSchemes)
+    {
+        const synonymPage = (await openSitePage(browser, { ...context, colorScheme }, siteUrl + "genus/Cheneosaurus/")).page;
+
+        try
+        {
+            await synonymPage.locator(".redirect-note:not([hidden])", { hasText: "Redirected from Cheneosaurus" }).waitFor({ timeout: 10000 });
+
+            if (synonymPage.url() !== siteUrl + "genus/hypacrosaurus/")
+            {
+                problems.push({ location, check: "synonym", message: "the synonym's redirect ended at " + synonymPage.url() + ", not genus/hypacrosaurus/ without its query" });
+            }
+
+            for (const finding of (await checkAccessibility(synonymPage)).violations)
+            {
+                problems.push({ location: location + " (" + colorScheme + ")", check: "axe", message: finding.rule + " at " + finding.target + ": " + finding.summary });
+            }
+        }
+        catch
+        {
+            problems.push({ location, check: "synonym", message: "genus/Cheneosaurus/ did not reach genus/hypacrosaurus/ with the note \"Redirected from Cheneosaurus\"; it is at " + synonymPage.url() });
+        }
+
+        await synonymPage.close();
+    }
+
+    const missingPage = (await openSitePage(browser, context, siteUrl + "genus/Notagenus/")).page;
+
+    try
+    {
+        await missingPage.getByRole("heading", { name: "Page not found" }).waitFor({ state: "visible", timeout: 10000 });
+    }
+    catch
+    {
+        problems.push({ location, check: "case", message: "genus/Notagenus/ did not show \"Page not found\"" });
+    }
+
+    await missingPage.close();
+}
+
+/**
  * Report whether the tree extractor has finished a run. Runs in the browser.
  *
  * @returns True once the status reports the tips found.
@@ -911,7 +981,7 @@ function getSamplePages(siteDirectory: string): Array<SamplePage>
 function createBrowserChecks(samples: Array<SamplePage>): Array<BrowserCheck>
 {
     const checks = new Array<BrowserCheck>();
-    const features: Array<FeatureCheck> = [checkTreeExtractor, checkOutlineTracer, checkSearchSuggestions, checkTreeFind, checkReferenceFind];
+    const features: Array<FeatureCheck> = [checkTreeExtractor, checkOutlineTracer, checkSearchSuggestions, checkTreeFind, checkReferenceFind, checkRedirects];
 
     for (const sample of samples)
     {
@@ -974,7 +1044,7 @@ async function checkSite(): Promise<void>
         server.server.close();
     }
 
-    console.log("Pages: " + samples.length + " checked with axe (light and dark), for loose text, and at 320px wide; the tree extractor run on a figure; search suggestions and the Tree and References pages' find fields tried");
+    console.log("Pages: " + samples.length + " checked with axe (light and dark), for loose text, and at 320px wide; the tree extractor run on a figure; search suggestions and the Tree and References pages' find fields tried; case and synonym redirects followed");
     console.log("Off-site hosts contacted: " + ([...offSiteHosts].sort().join(", ") || "none") + " (each must be declared in src/data/privacy.ts)");
 
     if (problems.length > 0)

@@ -17,6 +17,7 @@ import Prose from "../../components/Prose.astro";
 import RecordMain from "../../components/RecordMain.astro";
 import ReferenceList from "../../components/ReferenceList.astro";
 import PronunciationReadings from "../../components/PronunciationReadings.astro";
+import RedirectNote from "../../components/RedirectNote.astro";
 import SpeciesSection from "../../components/SpeciesSection.astro";
 import StatusBadge from "../../components/StatusBadge.astro";
 import SynonymTable from "../../components/SynonymTable.astro";
@@ -34,6 +35,7 @@ import { getTypeSpecies } from "../../data/records.ts";
 import type { GenusEntry } from "../../data/site-data.ts";
 import { getSiteData } from "../../data/site-data.ts";
 import { createGenusStructuredData } from "../../data/structured-data.ts";
+import { findRedirectSources, getGenusSynonymRedirects, synonymsSectionId } from "../../data/synonym-redirects.ts";
 import { createGenusEmbedPath, createReferenceAnchor } from "../../data/urls.ts";
 
 /**
@@ -113,10 +115,12 @@ const embedCode = createEmbedCode(new URL(embedPath, siteUrl).href, genus.genus)
 // The link preview image, drawn after the build by scripts/create-preview-images.ts.
 const previewImage = getGenusPreviewImage(genus, entry.slug, outline?.record.title ?? "", import.meta.env.BASE_URL);
 const structuredData = Astro.site ? createGenusStructuredData(entry, siteData, new URL(import.meta.env.BASE_URL, Astro.site)) : undefined;
+const redirectSources = findRedirectSources(getGenusSynonymRedirects(siteData), "genus/" + entry.slug + "/");
 ---
 
 <BaseLayout title={genus.genus} description={getFirstSentence(genus.description)} navigationItem="genera" structuredData={structuredData} previewImage={previewImage}>
     <article class="genus-page" data-pagefind-body data-pagefind-filter="kind:Genus">
+        <RedirectNote sources={redirectSources} isTaxon />
         <LineageTrail taxonomy={genus.taxonomy} placement={genus.placement} />
 
         <header class:list={["genus-header", { "has-outline": outline }]}>
@@ -164,7 +168,7 @@ const structuredData = Astro.site ? createGenusStructuredData(entry, siteData, n
             </PageSection>
 
             {genus.synonyms && genus.synonyms.length > 0 && (
-                <PageSection title="Synonyms of the genus">
+                <PageSection title="Synonyms of the genus" id={synonymsSectionId}>
                     <SynonymTable synonyms={genus.synonyms} />
                 </PageSection>
             )}

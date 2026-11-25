@@ -5,6 +5,15 @@ const homeUrl = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Page not found" description="There’s no page at this address on Open Paleo.">
+    {/* An address with capital letters may be a page's address in another case. This runs as the
+       page is read, before the text below is drawn, and hides it while src/scripts/case-redirect.ts
+       looks for the page; that script shows it again if there's no page. */}
+    <script is:inline>
+        if (/[A-Z]/.test(window.location.pathname))
+        {
+            document.documentElement.classList.add("is-finding-page");
+        }
+    </script>
     <div class="not-found">
         <h1>Page not found</h1>
         <p>There’s no page at this address. It may be mistyped, or the page may have moved after a genus or clade was renamed. Try one of these instead:</p>
@@ -17,7 +26,16 @@ const homeUrl = import.meta.env.BASE_URL;
     </div>
 </BaseLayout>
 
+<script>
+    import "../scripts/case-redirect.ts";
+</script>
+
 <style>
+    :global(html.is-finding-page) .not-found
+    {
+        visibility: hidden;
+    }
+
     .not-found
     {
         display: grid;

@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { SynonymRedirect } from "../data/synonym-redirects.ts";
+import { createRedirectUrl } from "../data/synonym-redirects.ts";
+
+/**
+ * Properties of the page at a synonym's address.
+ */
+type Props = {
+    /**
+     * The synonym and the records it is a synonym of.
+     */
+    redirect: SynonymRedirect;
+};
+
+const { redirect } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+// Genus names are italic; clade names stay roman.
+const isTaxon = redirect.kind === "genus";
+const nameClass = isTaxon ? "taxon" : undefined;
+const targetUrl = redirect.targets.length === 1 ? createRedirectUrl(baseUrl, redirect) : "";
+const canonicalPath = redirect.targets.length === 1 ? baseUrl + redirect.targets[0].path : "";
+const recordWord = isTaxon ? "genus" : "clade";
+---
+
+{/* A synonym of one record sends the reader straight to it, naming the synonym in the address so
+   the record's page can say where they came from. Like a member or bed's page, it is left out of
+   the sitemap and search. */}
+{redirect.targets.length === 1 ? (
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="robots" content="noindex">
+            <title>{redirect.name} | Open Paleo</title>
+            <link rel="canonical" href={canonicalPath}>
+            <meta http-equiv="refresh" content={"0; url=" + targetUrl}>
+        </head>
+        <body>
+            <main>
+                <p>
+                    <span class={nameClass}>{redirect.name}</span> is a synonym of <span class={nameClass}>{redirect.targets[0].name}</span>.
+                    See the <a href={targetUrl}><span class={nameClass}>{redirect.targets[0].name}</span> page</a>.
+                </p>
+            </main>
+        </body>
+    </html>
+) : (
+    <BaseLayout title={redirect.name} description={redirect.name + " is a synonym of more than one " + recordWord + " in Open Paleo."} navigationItem={isTaxon ? "genera" : "clades"}>
+        <div class="synonym-page">
+            <h1 class={nameClass} style={"--name-length: " + redirect.name.length}>{redirect.name}</h1>
+            <p>We list <span class={nameClass}>{redirect.name}</span> as a synonym of more than one {recordWord}. See each {recordWord}’s page:</p>
+            <ul>
+                {redirect.targets.map((target) => (
+                    <li><a class={nameClass} href={baseUrl + target.path}>{target.name}</a></li>
+                ))}
+            </ul>
+        </div>
+    </BaseLayout>
+)}
+
+<style>
+    /* A size container, so the name can be sized to fit its width, as on genus pages. */
+    .synonym-page
+    {
+        display: grid;
+        gap: var(--space-5);
+        max-width: var(--measure);
+        container-type: inline-size;
+    }
+
+    h1
+    {
+        font-size: min(var(--text-display), 100cqi / (var(--name-length) * 0.5));
+        overflow-wrap: anywhere;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+    }
+
+    ul
+    {
+        display: grid;
+        gap: var(--space-2);
+        margin: 0;
+        padding-left: var(--space-5);
+    }
+</style>

@@ -1,0 +1,84 @@
+---
+import type { RedirectSource } from "../data/synonym-redirects.ts";
+import { redirectSourceParameter, synonymsSectionId } from "../data/synonym-redirects.ts";
+
+/**
+ * Properties of the note a page shows after a synonym's page redirects to it.
+ */
+type Props = {
+    /**
+     * The synonyms that redirect to the page.
+     */
+    sources: Array<RedirectSource>;
+
+    /**
+     * Whether the synonyms are genus names, set in italic; clade names stay roman.
+     */
+    isTaxon: boolean;
+};
+
+const { sources, isTaxon } = Astro.props;
+---
+
+{/* One hidden note per synonym that redirects here, its name linking to the page's synonyms
+   section (synonymsSectionId), which a page with synonyms always has. The script right after
+   them shows the one the address names (?from=cheneosaurus), and only that, so the address can't
+   make the page say any other text; then it takes the parameter out of the address. It runs as
+   the page is read, before the content below is drawn, so revealing the note doesn't move
+   anything. It needs JavaScript, so the note stays hidden without it. */}
+{sources.length > 0 && (
+    <>
+        {sources.map((source) => (
+            <p class="redirect-note" data-from={source.slug} hidden>Redirected from <a class={isTaxon ? "taxon" : undefined} href={"#" + synonymsSectionId}>{source.name}</a></p>
+        ))}
+        <script is:inline data-parameter={redirectSourceParameter}>
+            {
+                const parameter = document.currentScript?.dataset.parameter ?? "";
+                const address = new URL(window.location.href);
+                const from = address.searchParams.get(parameter);
+
+                if (from !== null)
+                {
+                    for (const note of document.querySelectorAll(".redirect-note"))
+                    {
+                        if (note instanceof HTMLElement && note.dataset.from === from)
+                        {
+                            note.hidden = false;
+                        }
+                    }
+
+                    address.searchParams.delete(parameter);
+                    window.history.replaceState(window.history.state, "", address.pathname + address.search + address.hash);
+                }
+            }
+        </script>
+    </>
+)}
+
+<style>
+    /* A chip, shaped like the Tools page's beta badges, in the accent colors: it's news to the
+       reader, not a caution. As wide as its text, in the page's grid. */
+    .redirect-note
+    {
+        justify-self: start;
+        width: fit-content;
+        padding: var(--space-1) var(--space-3);
+        color: var(--color-accent);
+        background: var(--color-accent-soft);
+        border-radius: var(--radius);
+        font-family: var(--font-sans);
+        font-size: var(--text-interface);
+        font-weight: 700;
+    }
+
+    .redirect-note a
+    {
+        color: inherit;
+        font-weight: 400;
+    }
+
+    .redirect-note[hidden]
+    {
+        display: none;
+    }
+</style>

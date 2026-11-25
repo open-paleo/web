@@ -10,6 +10,7 @@ import GlossaryTerm from "../../components/GlossaryTerm.astro";
 import HowToCite from "../../components/HowToCite.astro";
 import IdentifierLinks from "../../components/IdentifierLinks.astro";
 import LineageTrail from "../../components/LineageTrail.astro";
+import RedirectNote from "../../components/RedirectNote.astro";
 import PageSection from "../../components/PageSection.astro";
 import RecordMain from "../../components/RecordMain.astro";
 import ReferenceList from "../../components/ReferenceList.astro";
@@ -28,6 +29,7 @@ import { findCladeOutline, getMedia } from "../../data/media.ts";
 import type { CladeEntry } from "../../data/site-data.ts";
 import { getSiteData } from "../../data/site-data.ts";
 import { createCladeStructuredData } from "../../data/structured-data.ts";
+import { findRedirectSources, getCladeSynonymRedirects, synonymsSectionId } from "../../data/synonym-redirects.ts";
 import { createPagePath, createReferenceAnchor } from "../../data/urls.ts";
 
 /**
@@ -102,6 +104,7 @@ const authorityReferenceId = record.erected_in ?? "";
 const authorityAnchor = "#" + createReferenceAnchor(siteData.referenceById.get(authorityReferenceId)?.slug ?? authorityReferenceId);
 const typeGenus = record.type_genus ? siteData.genusByName.get(record.type_genus) : undefined;
 const outline = findCladeOutline(getMedia(siteData), entry);
+const redirectSources = findRedirectSources(getCladeSynonymRedirects(siteData), "clade/" + entry.slug + "/");
 const descendantGenera = getDescendantGenera(entry, siteData);
 const ageSpan = createAgeSpan(descendantGenera, siteData.timeline);
 const genusRows = createGenusIndexRows(getPlacedGenera(entry, siteData), siteData, siteData.timeline, "clade");
@@ -120,6 +123,7 @@ const identifiers = record.identifiers ?? [];
 
 <BaseLayout title={entry.name} description={getFirstSentence(record.description)} navigationItem="clades" structuredData={structuredData}>
     <article class="clade-page" data-pagefind-body data-pagefind-filter="kind:Clade">
+        <RedirectNote sources={redirectSources} isTaxon={false} />
         <LineageTrail taxonomy={ancestors} />
 
         <header class:list={["clade-header", { "has-outline": outline }]}>
@@ -192,7 +196,7 @@ const identifiers = record.identifiers ?? [];
             )}
 
             {record.synonyms && record.synonyms.length > 0 && (
-                <PageSection title="Synonyms">
+                <PageSection title="Synonyms" id={synonymsSectionId}>
                     <SynonymTable synonyms={record.synonyms} />
                 </PageSection>
             )}

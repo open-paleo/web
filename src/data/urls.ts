@@ -109,3 +109,24 @@ export function createCorrectionUrl(kind: CorrectionRecordKind, name: string, pa
 
     return correctionIssueUrl + "?" + parameters.toString();
 }
+
+/**
+ * Find a path's letters in lowercase below the site's base, where every page's address is. The
+ * 404 page uses it to send "/genus/Aardonyx/" to "/genus/aardonyx/".
+ *
+ * @param pathname - The address's path: "/genus/Aardonyx/".
+ * @param baseUrl - The site's base path, ending in "/".
+ * @returns The path in lowercase below the base, or an empty string when it is already lowercase
+ *     or outside the base.
+ */
+export function findLowercasePath(pathname: string, baseUrl: string): string
+{
+    if (!pathname.startsWith(baseUrl))
+    {
+        return "";
+    }
+
+    const lowercase = baseUrl + pathname.slice(baseUrl.length).toLowerCase();
+
+    return lowercase === pathname ? "" : lowercase;
+}

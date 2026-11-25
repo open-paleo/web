@@ -143,7 +143,8 @@ files.
 | `load-dataset.ts` | Reads and parses it, and checks the schema version |
 | `site-data.ts` | `getSiteData()`: sorted genera, the clade tree with children and genus counts, every reference with the records that cite it, and URL slugs |
 | `dataset.ts` | The dataset's types |
-| `slugs.ts`, `urls.ts` | URL slugs and page paths, and the correction links |
+| `slugs.ts`, `urls.ts` | URL slugs and page paths, the correction links, and an address in lowercase for the 404 page (see "Redirects" below) |
+| `synonym-redirects.ts` | The pages at genus and clade synonyms' addresses, and the synonyms each record's "Redirected from" note names (see "Redirects" below) |
 | `format.ts`, `records.ts`, `taxon-names.ts` | Formatting values for display, reading records, and finding taxon names in prose |
 | `age-figure.ts`, `time-pages.ts`, `home.ts` | The geologic timeline, the age figure, the stage and period pages, and the home page's chart and lists |
 | `clades.ts`, `indexes.ts` | Clade spans and genera, and the A–Z indexes |
@@ -279,6 +280,30 @@ credit line, in the header's dark band like the site's image. Each is 1200 by 63
 - **The outline's credit line is in the image**, as it must be wherever the outline is shown
 - **The card pages stay out of the sitemap** (`src/integrations/sitemap-filter.ts`) and carry
   `noindex`, in case the drawing step is skipped
+
+### Redirects
+
+Every page's address is lowercase, and GitHub Pages matches addresses exactly, letter case
+included, with no redirect rules of its own. Two things send readers on:
+
+- **A synonym's address leads to its record.** `genus/cheneosaurus/` redirects to
+  `genus/hypacrosaurus/` (`src/pages/genus/[...synonym].astro`, and the same for clades), like a
+  member or bed's page: an instant refresh, `noindex`, a canonical link to the record, and left
+  out of the sitemap. The redirect adds `?from=cheneosaurus`, and the record's page shows
+  "Redirected from *Cheneosaurus*" (`RedirectNote.astro`), the name linking to the page's
+  synonyms section (`#synonyms`): one hidden note per synonym that
+  redirects there, revealed by an inline script that runs before the content below it is drawn,
+  so nothing moves, and that then removes the parameter from the address. Only a synonym of the
+  page can be named, so the address can't make it show other text. A synonym of more than one
+  record gets a short page linking to each instead, and a synonym whose address a record's page
+  already has gets nothing
+- **An address in the wrong case finds its page.** `genus/Aardonyx/` lands on the 404 page,
+  whose script (`src/scripts/case-redirect.ts`) looks for the address in lowercase and goes there
+  if it's a page; an inline script hides "Page not found" while it looks. It needs JavaScript;
+  without it, the 404 page shows as before
+
+`npm run check-site` follows both, with its local server matching letter case as GitHub Pages
+does (macOS's file system doesn't), and checks a synonym of two genera.
 
 ### Map outlines
 

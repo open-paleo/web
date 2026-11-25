@@ -1,0 +1,63 @@
+---
+import SynonymPage from "../../components/SynonymPage.astro";
+import type { SynonymRedirect } from "../../data/synonym-redirects.ts";
+import { getCladeSynonymRedirects } from "../../data/synonym-redirects.ts";
+import { getSiteData } from "../../data/site-data.ts";
+
+/**
+ * Properties of a clade synonym's page.
+ */
+type Props = {
+    /**
+     * The synonym and the clades it is a synonym of.
+     */
+    redirect: SynonymRedirect;
+};
+
+/**
+ * One clade synonym's page: its URL parameter and its properties.
+ */
+type SynonymPath = {
+    /**
+     * URL parameters: the synonym's slug.
+     */
+    params: SynonymPathParameters;
+
+    /**
+     * Properties passed to the page.
+     */
+    props: Props;
+};
+
+/**
+ * URL parameters of a clade synonym's page.
+ */
+type SynonymPathParameters = {
+    /**
+     * The synonym's slug, as in clade/{synonym}/.
+     */
+    synonym: string;
+};
+
+/**
+ * List a page for every clade synonym whose address no clade page has. A rest parameter, so
+ * clade/[slug].astro comes first should the two ever name the same path.
+ *
+ * @returns The path and properties of every synonym's page.
+ */
+export function getStaticPaths(): Array<SynonymPath>
+{
+    const paths = new Array<SynonymPath>();
+
+    for (const redirect of getCladeSynonymRedirects(getSiteData()))
+    {
+        paths.push({ params: { synonym: redirect.slug }, props: { redirect } });
+    }
+
+    return paths;
+}
+
+const { redirect } = Astro.props;
+---
+
+<SynonymPage redirect={redirect} />

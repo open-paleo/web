@@ -1,0 +1,63 @@
+---
+import SynonymPage from "../../components/SynonymPage.astro";
+import type { SynonymRedirect } from "../../data/synonym-redirects.ts";
+import { getGenusSynonymRedirects } from "../../data/synonym-redirects.ts";
+import { getSiteData } from "../../data/site-data.ts";
+
+/**
+ * Properties of a genus synonym's page.
+ */
+type Props = {
+    /**
+     * The synonym and the genera it is a synonym of.
+     */
+    redirect: SynonymRedirect;
+};
+
+/**
+ * One genus synonym's page: its URL parameter and its properties.
+ */
+type SynonymPath = {
+    /**
+     * URL parameters: the synonym's slug.
+     */
+    params: SynonymPathParameters;
+
+    /**
+     * Properties passed to the page.
+     */
+    props: Props;
+};
+
+/**
+ * URL parameters of a genus synonym's page.
+ */
+type SynonymPathParameters = {
+    /**
+     * The synonym's slug, as in genus/{synonym}/.
+     */
+    synonym: string;
+};
+
+/**
+ * List a page for every genus synonym whose address no genus page has. A rest parameter, so
+ * genus/[slug].astro comes first should the two ever name the same path.
+ *
+ * @returns The path and properties of every synonym's page.
+ */
+export function getStaticPaths(): Array<SynonymPath>
+{
+    const paths = new Array<SynonymPath>();
+
+    for (const redirect of getGenusSynonymRedirects(getSiteData()))
+    {
+        paths.push({ params: { synonym: redirect.slug }, props: { redirect } });
+    }
+
+    return paths;
+}
+
+const { redirect } = Astro.props;
+---
+
+<SynonymPage redirect={redirect} />

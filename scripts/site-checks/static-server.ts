@@ -36,9 +36,22 @@ const contentTypes = new Map<string, string>([
 ]);
 
 /**
+ * Tell whether a file is in the built site under exactly the name requested, letter case included.
+ * GitHub Pages matches case; macOS's file system doesn't, so "genus/Aardonyx/index.html" would
+ * open "genus/aardonyx/index.html" there.
+ *
+ * @param filePath - The file, as an absolute path below the built site's real path.
+ * @returns Whether it exists as a file with that exact name.
+ */
+function isServedFile(filePath: string): boolean
+{
+    return fs.existsSync(filePath) && fs.statSync(filePath).isFile() && fs.realpathSync.native(filePath) === filePath;
+}
+
+/**
  * Send one file, or the site's 404 page when there is no file at the requested path.
  *
- * @param siteDirectory - The built site, as an absolute path.
+ * @param siteDirectory - The built site, as an absolute path with its real letter case.
  * @param basePath - The path the site is served under, ending in "/".
  * @param request - The request.
  * @param response - The response to write.
@@ -50,7 +63,7 @@ function sendFile(siteDirectory: string, basePath: string, request: http.Incomin
     const filePath = servedFile === undefined ? "" : path.join(siteDirectory, servedFile);
     const isInsideSite = filePath.startsWith(siteDirectory + path.sep);
 
-    if (isInsideSite && fs.existsSync(filePath) && fs.statSync(filePath).isFile())
+    if (isInsideSite && isServedFile(filePath))
     {
         response.writeHead(200, { "Content-Type": contentTypes.get(path.extname(filePath)) ?? "application/octet-stream" });
         response.end(fs.readFileSync(filePath));
@@ -71,7 +84,7 @@ function sendFile(siteDirectory: string, basePath: string, request: http.Incomin
  */
 export function startStaticServer(siteDirectory: string, basePath: string): Promise<StaticServer>
 {
-    const absoluteDirectory = path.resolve(siteDirectory);
+    const absoluteDirectory = fs.realpathSync.native(path.resolve(siteDirectory));
     const server = http.createServer((request, response) => sendFile(absoluteDirectory, basePath, request, response));
 
     return new Promise((resolve) =>

@@ -4,6 +4,17 @@ The site is published continuously from `main`, so changes are grouped by the da
 live, newest first. Add to today's section, creating it if needed. The data the site shows has
 its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
+## 2026-11-25
+
+### Added
+
+- Genus and clade synonyms have addresses: `genus/cheneosaurus/` takes you to
+  `genus/hypacrosaurus/`, which then says "Redirected from *Cheneosaurus*". A synonym of more
+  than one genus, such as *Megadontosaurus*, gets a short page linking to each. The redirects stay
+  out of the sitemap
+- An address with capital letters, such as `genus/Aardonyx/`, takes you to the page at the
+  lowercase address when there is one, instead of "Page not found"
+
 ## 2026-11-24
 
 ### Added
