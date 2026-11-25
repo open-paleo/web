@@ -102,6 +102,7 @@ const currentPath = Astro.url.pathname;
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content={headerColors.dark}>
         <meta name="format-detection" content="telephone=no">
         <link rel="alternate" type="application/atom+xml" title="Open Paleo: newly named genera" href={homeUrl + "feed.xml"}>
+        <link rel="alternate" type="application/atom+xml" title="Open Paleo: news" href={homeUrl + "news.xml"}>
         {canonicalUrl && <link rel="canonical" href={canonicalUrl}>}
         {sitemapUrl && <link rel="sitemap" href={sitemapUrl}>}
         {canonicalUrl && <link rel="search" type="application/opensearchdescription+xml" title={siteName} href={homeUrl + "opensearch.xml"}>}
@@ -155,8 +156,8 @@ const currentPath = Astro.url.pathname;
                     <button type="submit">Search</button>
                 </form>
             </div>
-            {/* The second row: the pages of the group the current page belongs to. */}
-            {currentGroup && (
+            {/* The second row: the pages of the group the current page belongs to, when it has more than one. */}
+            {currentGroup && currentGroup.items.length > 1 && (
                 <div class="group-navigation">
                     <nav class="group-navigation-inner" aria-label={currentGroup.label}>
                         <ul>

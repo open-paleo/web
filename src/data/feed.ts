@@ -7,34 +7,47 @@ import type { GenusEntry, SiteData } from "./site-data.ts";
 export const genusFeedLength = 50;
 
 /**
- * One entry of the feed of newly named genera.
+ * One entry of an Atom feed: a newly named genus, or a news post.
  */
 export type FeedEntry = {
     /**
-     * The entry's lasting identity: the genus page's address.
+     * The entry's lasting identity: its page's address.
      */
     id: string;
 
     /**
-     * The genus name.
+     * The genus name, or the post's title.
      */
     title: string;
 
     /**
-     * The genus page's address.
+     * Its page's address.
      */
     url: string;
 
     /**
-     * Authority and first sentence: "Smith et al., 2026. Xus is a genus of...".
+     * When the entry was last updated, as an ISO 8601 timestamp: the release's build for a genus,
+     * the post's date for a news post.
+     */
+    updated: string;
+
+    /**
+     * Authority and first sentence, "Smith et al., 2026. Xus is a genus of...", or the post's
+     * summary.
      */
     summary: string;
+
+    /**
+     * Who wrote a news post: "Sarah Tolsma". Empty for a genus, whose entry is by the feed's
+     * author.
+     */
+    author: string;
 };
 
 /**
- * The feed of newly named genera, ready to write as Atom.
+ * An Atom feed, ready to write: the feed of newly named genera, or the news feed.
  */
-export type GenusFeed = {
+export type AtomFeed = {
     /**
      * The feed's lasting identity: its own address.
      */
@@ -56,8 +69,9 @@ export type GenusFeed = {
     feedUrl: string;
 
     /**
-     * When the dataset release was built, as an ISO 8601 timestamp; the feed and its entries are
-     * dated by it, since the dataset records the year a genus was named but not when it was added.
+     * When the feed last changed, as an ISO 8601 timestamp. The genus feed and its entries are
+     * dated by the release's build, since the dataset records the year a genus was named but not
+     * when it was added; the news feed by its newest post.
      */
     updated: string;
 
@@ -67,7 +81,7 @@ export type GenusFeed = {
     author: string;
 
     /**
-     * The entries, newest names first.
+     * The entries, newest first.
      */
     entries: Array<FeedEntry>;
 };
@@ -96,7 +110,7 @@ export function getNewestGenera(siteData: SiteData, count: number): Array<GenusE
  * @param count - How many genera the feed lists.
  * @returns The feed.
  */
-export function createGenusFeed(siteData: SiteData, siteUrl: string, count: number): GenusFeed
+export function createGenusFeed(siteData: SiteData, siteUrl: string, count: number): AtomFeed
 {
     const entries = new Array<FeedEntry>();
 
@@ -106,7 +120,7 @@ export function createGenusFeed(siteData: SiteData, siteUrl: string, count: numb
         const authority = formatAuthority(genus.record.authors, genus.record.described, false);
         const firstSentence = getFirstSentence(genus.record.description);
 
-        entries.push({ id: url, title: genus.name, url, summary: authority ? authority + ". " + firstSentence : firstSentence });
+        entries.push({ id: url, title: genus.name, url, updated: siteData.metadata.built_at, summary: authority ? authority + ". " + firstSentence : firstSentence, author: "" });
     }
 
     const feedUrl = new URL("feed.xml", siteUrl).href;
@@ -139,7 +153,7 @@ export function escapeXml(text: string): string
  * @param feed - The feed.
  * @returns The XML.
  */
-export function writeAtomFeed(feed: GenusFeed): string
+export function writeAtomFeed(feed: AtomFeed): string
 {
     const lines = [
         "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
@@ -159,7 +173,15 @@ export function writeAtomFeed(feed: GenusFeed): string
             "    <id>" + escapeXml(entry.id) + "</id>",
             "    <title>" + escapeXml(entry.title) + "</title>",
             "    <link rel=\"alternate\" type=\"text/html\" href=\"" + escapeXml(entry.url) + "\"/>",
-            "    <updated>" + escapeXml(feed.updated) + "</updated>",
+            "    <updated>" + escapeXml(entry.updated) + "</updated>",
+        );
+
+        if (entry.author !== "")
+        {
+            lines.push("    <author><name>" + escapeXml(entry.author) + "</name></author>");
+        }
+
+        lines.push(
             "    <summary>" + escapeXml(entry.summary) + "</summary>",
             "  </entry>",
         );

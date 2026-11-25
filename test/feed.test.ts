@@ -31,6 +31,7 @@ test("feed entries link to genus pages under the site's address", () =>
     assert.equal(tyrannosaurus?.url, "https://open-paleo.org/genus/tyrannosaurus/");
     assert.ok(tyrannosaurus?.summary.startsWith("Osborn, 1905. "));
     assert.equal(feed.updated, siteData.metadata.built_at);
+    assert.equal(tyrannosaurus?.updated, siteData.metadata.built_at);
 });
 
 test("the Atom document escapes text and holds one entry per genus", () =>
@@ -41,4 +42,5 @@ test("the Atom document escapes text and holds one entry per genus", () =>
     assert.equal(escapeXml("A & B <\"c\">"), "A &amp; B &lt;&quot;c&quot;&gt;");
     assert.ok(xml.startsWith("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<feed xmlns=\"http://www.w3.org/2005/Atom\">"));
     assert.equal(xml.split("<entry>").length - 1, 2);
+    assert.equal(xml.split("<author>").length - 1, 1);
 });

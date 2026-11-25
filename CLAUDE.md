@@ -139,7 +139,8 @@ The site uses the Strata theme, documented in [docs/theme.md](docs/theme.md).
 - If the site needs something that is not in `dist/`, raise it as a change to the data
   repository's build; do not work around the contract
 - Never write a fact about a taxon into a template or into copy. Every value comes from the
-  dataset
+  dataset. News posts (`src/content/news/`) are dated and may state numbers as of their date,
+  but each number is still read from the data or the built site, never estimated
 - **Never edit, commit or push in open-paleo/data from this repository.** Raise what the site
   needs with that repository's maintainers (or its own Claude Code session), and let them make
   the change there

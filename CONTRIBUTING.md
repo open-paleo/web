@@ -97,6 +97,7 @@ files.
 | Path | Contents |
 |------|----------|
 | `src/pages/` | One `.astro` file per page type; Astro turns each into one or more pages |
+| `src/content/news/` | The news posts, one Markdown file each (see "News posts" below) |
 | `src/layouts/` | Page shells shared by the pages (`BaseLayout.astro`), and the bare shell of the infoboxes other sites embed (`EmbedLayout.astro`) |
 | `src/components/` | Reusable components: dispute note, age figure, reference list and so on |
 | `src/data/` | TypeScript that loads the dataset and prepares lookup tables for the pages |
@@ -126,7 +127,8 @@ files.
   run `npm run update-bindings`, fix what the type checker reports, and regenerate the test
   fixture
 - Never write data values into templates or copy. Every value on the site comes from the
-  dataset, which is backed by published literature
+  dataset, which is backed by published literature. News posts are the exception: each is dated,
+  so it can say what was true that day ("this release adds 37 genera")
 - The glossary is read the same way: only `dist/glossary.json` from open-paleo/glossary, with its
   bindings and schema version copied by `npm run update-bindings`, and a different major version
   refused
@@ -152,6 +154,7 @@ files.
 | `structured-data.ts` | The schema.org JSON-LD in the head of genus, clade and Data pages (see "Structured data" below) |
 | `preview-image.ts` | Each genus page's link preview image: its time scale with the genus's age marked, its path and its description (see "Link preview images" below) |
 | `embed.ts`, `embed-message.ts` | What a genus's infobox shows, the code other sites use to embed it, and the height message it sends them (see "Infoboxes" below) |
+| `news.ts`, `news-collection.ts` | The news posts: reading them (`getNewsPosts()`), their order, excerpts, dates, feed and the list the News page's find field searches (see "News posts" below) |
 | `packages.ts` | The dataset's official typed bindings on npm and PyPI, for the Developers page: their install commands, compatible version ranges and examples, built from the dataset's schema version, which is also the packages' version |
 | `known-names.ts` | The taxon and clade names the tree extractor matches labels against |
 | `glossary.ts` | `getGlossary()`: the glossary's terms in order, and finding them in text |
@@ -307,6 +310,46 @@ stage's midpoint (`src/data/paleo-positions.ts`), so it sits on that stage's coa
 of Wright et al. (2013) in `src/data/plate-models/wright-2013.rot`; `test/plate-rotation.test.ts`
 checks it against the dataset's own reconstructions. A genus whose species have no
 paleocoordinates gets no switch.
+
+## News posts
+
+The News page (`news/`) lists posts newest first, ten to a page (`news/2/` and on), each with its
+title, author, date and first paragraph. Each post has its own page, `news/{name}/`, and the newest
+twenty are in the news feed, `news.xml`. Posts stay out of the site's search, which is for the
+data; the News page has its own find field, which searches every post's title and summary.
+
+To write a post, add a Markdown file to `src/content/news/`. Its file name is its address, so
+`release-1-0.md` is `news/release-1-0/`:
+
+```markdown
+---
+title: Open Paleo 1.0 is out
+date: 2026-12-01
+author: Sarah Tolsma
+---
+
+The first paragraph is the post's excerpt on the News page and in the feed, so make it stand
+on its own.
+
+## A heading
+
+More text, [a link to a genus](/genus/tyrannosaurus/) and <i class="taxon">Tyrannosaurus</i>.
+```
+
+- **Front matter**: `title`, `date` (`YYYY-MM-DD`) and `author`, the name to show as written,
+  are required. `summary` replaces the first
+  paragraph as the excerpt, and `draft: true` leaves the post out of the build. The build stops
+  on a post whose front matter is missing or wrong, and on a file name that is only a number,
+  which would take a list page's address
+- **Link to the site's pages from the root**: `/genus/tyrannosaurus/`, not a relative path. The
+  build puts the site's base in front, so the link works in the post, in its excerpt and in a
+  copy of the site published under a path
+- **HTML works as written**: genus and species names in `<i class="taxon">`, or an infobox in an
+  `iframe` (`src="/embed/genus/tyrannosaurus/"`, with a `title`)
+- **No images yet.** Every image on the site carries its credit line, and posts don't have a
+  way to give one yet
+- **Posts follow the site's voice** ("Writing site copy" below). Because a post is dated, it can
+  state numbers and names as they were that day; it still doesn't define terms
 
 ## Code style
 
@@ -604,7 +647,8 @@ are written for that reader: warm, plain and specific.
 ### Facts, definitions and scope
 
 - **Never state a fact about a taxon in copy**; facts come from the dataset. Counts, names and
-  ages go in through the data ("all {count} genera"), never as numbers or names in a template
+  ages go in through the data ("all {count} genera"), never as numbers or names in a template.
+  News posts are dated, so they can state numbers as of their date (see "News posts")
 - **Never define a term in copy**; definitions come only from open-paleo/glossary. Link the term
   instead, with `TermLink` (`<TermLink term="type species" />`), which links when the glossary
   has the term and is plain text until it does. A term the site needs and the glossary lacks is

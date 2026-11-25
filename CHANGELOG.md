@@ -6,6 +6,14 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ## 2026-11-24
 
+### Added
+
+- A News section in the main navigation. Each Markdown file in `src/content/news/` becomes a post
+  at `news/{name}/`; the News page lists them newest first, ten to a page, with each post's
+  author, date and first paragraph, and has a find field of its own. Posts have an Atom feed,
+  `news.xml`, and stay out of the site's search. A draft post about the genus infoboxes waits in
+  the folder; until a post is published, the page says there's no news yet
+
 ### Changed
 
 - Labels and values link to the glossary's new entries: the Locomotion, Integument, Rank, Type

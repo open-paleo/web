@@ -58,6 +58,7 @@ export function createNavigationGroups(periods: Array<PeriodPage>): Array<Naviga
         { label: "Places", items: [{ id: "map", label: "Map", path: "map/" }, { id: "stratigraphy", label: "Stratigraphy", path: "stratigraphy/" }] },
         { label: "Learn", items: [{ id: "glossary", label: "Glossary", path: "glossary/" }, { id: "references", label: "References", path: "references/" }] },
         { label: "Data", items: [{ id: "data", label: "Download and cite", path: "data/" }, { id: "tools", label: "Tools", path: "tools/" }, { id: "developers", label: "Developers", path: "developers/" }] },
+        { label: "News", items: [{ id: "news", label: "News", path: "news/" }] },
     ];
 }
 

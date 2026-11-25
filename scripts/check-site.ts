@@ -20,6 +20,7 @@ import * as url from "node:url";
 import type { Browser, BrowserContextOptions, Page, Response, Route } from "playwright";
 import { chromium } from "playwright";
 
+import type { NewsIndexEntry } from "../src/data/news.ts";
 import { getDeclaredHosts } from "../src/data/privacy.ts";
 import type { SitePage } from "./site-checks/links.ts";
 import { checkLinks, readSitePages } from "./site-checks/links.ts";
@@ -171,6 +172,7 @@ const samplePages: Array<SamplePage> = [
     { path: "clade/carcharodontosauridae/", reason: "clade with one of the longest names" },
     { path: "privacy/", reason: "privacy page" },
     { path: "developers/", reason: "developer documentation: embed code, message and script" },
+    { path: "news/", reason: "News list with its find field and excerpts, or its line for no news" },
     { path: "licenses/", reason: "licenses page: the works by others and their licenses" },
     { path: "stratigraphy/", reason: "rock unit index" },
     { path: "clades/", reason: "clade index and its filters" },
@@ -876,16 +878,42 @@ async function runBrowserChecks(browser: Browser, siteUrl: string, checks: Array
 }
 
 /**
+ * Find the sample pages that depend on the build: the newest news post, when there is one. Posts
+ * come and go, so it is read from the built list rather than named.
+ *
+ * @param siteDirectory - The built site.
+ * @returns The fixed sample pages, then the newest post's page.
+ */
+function getSamplePages(siteDirectory: string): Array<SamplePage>
+{
+    const samples = [...samplePages];
+    const newsIndexPath = path.join(siteDirectory, "news", "posts.json");
+
+    if (fs.existsSync(newsIndexPath))
+    {
+        const posts = JSON.parse(fs.readFileSync(newsIndexPath, "utf8")) as Array<NewsIndexEntry>;
+
+        if (posts.length > 0)
+        {
+            samples.push({ path: posts[0].path, reason: "the newest news post" });
+        }
+    }
+
+    return samples;
+}
+
+/**
  * List the browser checks: every sample page, then the tools and find fields to try.
  *
+ * @param samples - The sample pages.
  * @returns The checks.
  */
-function createBrowserChecks(): Array<BrowserCheck>
+function createBrowserChecks(samples: Array<SamplePage>): Array<BrowserCheck>
 {
     const checks = new Array<BrowserCheck>();
     const features: Array<FeatureCheck> = [checkTreeExtractor, checkOutlineTracer, checkSearchSuggestions, checkTreeFind, checkReferenceFind];
 
-    for (const sample of samplePages)
+    for (const sample of samples)
     {
         checks.push({ sample, feature: undefined });
     }
@@ -916,6 +944,7 @@ async function checkSite(): Promise<void>
     }
 
     const pages = readSitePages(siteDirectory);
+    const samples = getSamplePages(siteDirectory);
 
     checkSiteLinks(pages, siteDirectory, basePath, problems);
     checkStructuredData(pages, problems);
@@ -927,7 +956,7 @@ async function checkSite(): Promise<void>
     try
     {
         // Several at once, each in its own pages; the results come back in the list's order.
-        for (const result of await runBrowserChecks(browser, server.url, createBrowserChecks()))
+        for (const result of await runBrowserChecks(browser, server.url, createBrowserChecks(samples)))
         {
             problems.push(...result.problems);
 
@@ -945,7 +974,7 @@ async function checkSite(): Promise<void>
         server.server.close();
     }
 
-    console.log("Pages: " + samplePages.length + " checked with axe (light and dark), for loose text, and at 320px wide; the tree extractor run on a figure; search suggestions and the Tree and References pages' find fields tried");
+    console.log("Pages: " + samples.length + " checked with axe (light and dark), for loose text, and at 320px wide; the tree extractor run on a figure; search suggestions and the Tree and References pages' find fields tried");
     console.log("Off-site hosts contacted: " + ([...offSiteHosts].sort().join(", ") || "none") + " (each must be declared in src/data/privacy.ts)");
 
     if (problems.length > 0)

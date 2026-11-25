@@ -1,0 +1,140 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import type { NewsPost } from "../../data/news.ts";
+import { formatNewsDate, formatNewsDateValue, getNewsSummary } from "../../data/news.ts";
+import { getNewsPosts } from "../../data/news-collection.ts";
+
+/**
+ * The page's properties.
+ */
+type Props = {
+    /**
+     * The post.
+     */
+    post: NewsPost;
+};
+
+/**
+ * One page a post, at news/{its file name}/.
+ *
+ * @returns The pages.
+ */
+export async function getStaticPaths()
+{
+    const paths = new Array<{ params: { slug: string }; props: Props }>();
+
+    for (const post of await getNewsPosts())
+    {
+        paths.push({ params: { slug: post.slug }, props: { post } });
+    }
+
+    return paths;
+}
+
+const { post } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title={post.title} description={getNewsSummary(post)} navigationItem="news">
+    <article class="news-post">
+        <header class="news-post-header">
+            <p class="news-post-back"><a href={baseUrl + "news/"}>News</a></p>
+            <h1>{post.title}</h1>
+            <p class="news-post-byline">By {post.author}, <time datetime={formatNewsDateValue(post.date)}>{formatNewsDate(post.date)}</time></p>
+        </header>
+        {/* The post's own Markdown from this repository, not dataset text. */}
+        <div class="news-post-body" set:html={post.html} />
+    </article>
+</BaseLayout>
+
+<style>
+    .news-post
+    {
+        display: grid;
+        grid-template-columns: minmax(0, var(--measure));
+        gap: var(--space-7);
+    }
+
+    .news-post-header
+    {
+        display: grid;
+        gap: var(--space-3);
+    }
+
+    .news-post-back,
+    .news-post-byline
+    {
+        font-family: var(--font-sans);
+        font-size: var(--text-small);
+    }
+
+    .news-post-byline
+    {
+        color: var(--color-muted);
+    }
+
+    h1
+    {
+        font-size: var(--text-display);
+        font-weight: 800;
+    }
+
+    /* The post's Markdown, written into the page, so its elements are styled through :global(). */
+    .news-post-body
+    {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-4);
+    }
+
+    .news-post-body :global(h2)
+    {
+        margin-top: var(--space-5);
+    }
+
+    .news-post-body :global(h3)
+    {
+        margin-top: var(--space-3);
+    }
+
+    .news-post-body :global(ul),
+    .news-post-body :global(ol)
+    {
+        display: grid;
+        gap: var(--space-2);
+        margin: 0;
+        padding-left: var(--space-5);
+    }
+
+    .news-post-body :global(blockquote)
+    {
+        margin: 0;
+        padding-left: var(--space-4);
+        border-left: 3px solid var(--color-line);
+        color: var(--color-muted);
+    }
+
+    /* Code is the one place a monospace face is used. */
+    .news-post-body :global(code)
+    {
+        font-family: var(--font-mono);
+        font-size: 0.9em;
+    }
+
+    .news-post-body :global(pre)
+    {
+        margin: 0;
+        padding: var(--space-4) var(--space-5);
+        overflow-x: auto;
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+        font-size: var(--text-small);
+    }
+
+    .news-post-body :global(iframe)
+    {
+        max-width: 100%;
+        border: 0;
+    }
+</style>

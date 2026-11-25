@@ -6,9 +6,9 @@ import { getUnitPath } from "./units.ts";
 
 /**
  * What a suggestion names. Genus and species names, and their synonyms, are set in italic;
- * clade names and references are not.
+ * clade names, references and news posts are not.
  */
-export type SuggestionKind = "genus" | "species" | "clade" | "genus-synonym" | "species-synonym" | "clade-synonym" | "unit" | "reference";
+export type SuggestionKind = "genus" | "species" | "clade" | "genus-synonym" | "species-synonym" | "clade-synonym" | "unit" | "reference" | "news";
 
 /**
  * One name the search fields suggest as the reader types.
