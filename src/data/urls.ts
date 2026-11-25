@@ -1,3 +1,5 @@
+import { createSlug } from "./slugs.ts";
+
 /**
  * The sections of the site that have one page per record.
  */
@@ -72,6 +74,32 @@ export function createPageUrl(siteUrl: URL, section: PageSection, slug: string):
 export function createReferenceAnchor(slug: string): string
 {
     return "reference-" + slug;
+}
+
+/**
+ * Create an id for each heading in a list, from its text, so each can be linked to. Headings with
+ * the same text, such as two "Uncataloged specimen", get a number after the first: "-2", "-3".
+ *
+ * @param prefix - What every id starts with: "specimen-".
+ * @param texts - The headings' text, in order.
+ * @returns One id a heading, in the same order.
+ */
+export function createHeadingAnchors(prefix: string, texts: Array<string>): Array<string>
+{
+    const anchors = new Array<string>();
+    const counts = new Map<string, number>();
+
+    for (const text of texts)
+    {
+        // A slash becomes a hyphen, so "MPC-D 100/54" doesn't run its numbers together.
+        const anchor = prefix + createSlug(text.replaceAll("/", " "));
+        const count = (counts.get(anchor) ?? 0) + 1;
+
+        counts.set(anchor, count);
+        anchors.push(count === 1 ? anchor : anchor + "-" + count);
+    }
+
+    return anchors;
 }
 
 /**

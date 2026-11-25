@@ -1,5 +1,6 @@
 ---
 import { createSlug } from "../data/slugs.ts";
+import HeadingLink from "./HeadingLink.astro";
 
 /**
  * Properties of a major section of a record page: a rule, a heading, and the content.
@@ -22,7 +23,7 @@ const headingId = Astro.props.id ?? "section-" + createSlug(title);
 ---
 
 <section class="page-section" aria-labelledby={headingId}>
-    <h2 id={headingId}>{title}</h2>
+    <h2 id={headingId}>{title}<HeadingLink id={headingId} label={title} /></h2>
     <slot />
 </section>
 

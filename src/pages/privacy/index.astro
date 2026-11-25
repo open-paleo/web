@@ -1,6 +1,8 @@
 ---
 import { externalServices, privacyContact, privacyPolicyEffectiveDate } from "../../data/privacy.ts";
+import HeadingLink from "../../components/HeadingLink.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { createSlug } from "../../data/slugs.ts";
 
 const contactUrl = "mailto:" + privacyContact;
 ---
@@ -17,7 +19,7 @@ const contactUrl = "mailto:" + privacyContact;
         </header>
 
         <section>
-            <h2>Who runs this site</h2>
+            <h2 id="section-who-runs-this-site">Who runs this site<HeadingLink id="section-who-runs-this-site" label="Who runs this site" /></h2>
             <p>
                 Open Paleo is a volunteer project. The project’s maintainers run this site and are responsible for this
                 policy. If you have a question or request about privacy, email us at
@@ -26,7 +28,7 @@ const contactUrl = "mailto:" + privacyContact;
         </section>
 
         <section>
-            <h2>What we collect, and why</h2>
+            <h2 id="section-what-we-collect-and-why">What we collect, and why<HeadingLink id="section-what-we-collect-and-why" label="What we collect, and why" /></h2>
             <p>
                 We count visits to learn which pages people read, which browsers and devices we need to support, and
                 how people find the site. Plausible Analytics does the counting for us (see
@@ -50,7 +52,7 @@ const contactUrl = "mailto:" + privacyContact;
         </section>
 
         <section>
-            <h2>What we don’t collect</h2>
+            <h2 id="section-not-collected">What we don’t collect<HeadingLink id="section-not-collected" label="What we don’t collect" /></h2>
             <ul>
                 <li>
                     There are no accounts or sign-ins, and nothing you type on the site is sent to us. When you search,
@@ -68,7 +70,7 @@ const contactUrl = "mailto:" + privacyContact;
         </section>
 
         <section>
-            <h2 id="services">Services that handle your requests</h2>
+            <h2 id="services">Services that handle your requests<HeadingLink id="services" label="Services that handle your requests" /></h2>
             <p>
                 These services receive your requests, either because they host the site or because a page asks your
                 browser to contact them. To find out what each one collects and what it does with it, see its privacy
@@ -76,7 +78,7 @@ const contactUrl = "mailto:" + privacyContact;
             </p>
             {externalServices.map((service) => (
                 <section class="service">
-                    <h3>{service.name}</h3>
+                    <h3 id={"service-" + createSlug(service.name)}>{service.name}<HeadingLink id={"service-" + createSlug(service.name)} label={service.name} /></h3>
                     <dl>
                         <dt>Operator</dt>
                         <dd>{service.operator}</dd>
@@ -94,7 +96,7 @@ const contactUrl = "mailto:" + privacyContact;
         </section>
 
         <section>
-            <h2>How long data is kept</h2>
+            <h2 id="section-how-long-data-is-kept">How long data is kept<HeadingLink id="section-how-long-data-is-kept" label="How long data is kept" /></h2>
             <p>
                 We keep only the visit totals in Plausible, for as long as the site uses Plausible. When we close our
                 Plausible account, they’re deleted with it. For how long each service keeps data, see its policy above.
@@ -102,7 +104,7 @@ const contactUrl = "mailto:" + privacyContact;
         </section>
 
         <section>
-            <h2>Your rights</h2>
+            <h2 id="section-your-rights">Your rights<HeadingLink id="section-your-rights" label="Your rights" /></h2>
             <p>
                 Depending on where you live, you may have the right to see, correct or delete personal data about you,
                 or to object to its use. We don’t hold anything that identifies you, so there’s usually nothing for us
@@ -115,14 +117,14 @@ const contactUrl = "mailto:" + privacyContact;
         </section>
 
         <section>
-            <h2>Children</h2>
+            <h2 id="section-children">Children<HeadingLink id="section-children" label="Children" /></h2>
             <p>
                 The site is for a general audience. Nothing we collect identifies anyone, including children.
             </p>
         </section>
 
         <section>
-            <h2>Links to other sites</h2>
+            <h2 id="section-links-to-other-sites">Links to other sites<HeadingLink id="section-links-to-other-sites" label="Links to other sites" /></h2>
             <p>
                 “Suggest a correction” and “Report an error” open a form on GitHub, where you sign in under GitHub’s
                 terms. References link to their publishers, and the header and footer link to our GitHub, Bluesky and
@@ -131,7 +133,7 @@ const contactUrl = "mailto:" + privacyContact;
         </section>
 
         <section>
-            <h2>Changes to this policy</h2>
+            <h2 id="section-changes-to-this-policy">Changes to this policy<HeadingLink id="section-changes-to-this-policy" label="Changes to this policy" /></h2>
             <p>
                 If we change how the site handles data, we’ll update this page and its effective date. You’ll find every
                 earlier version in

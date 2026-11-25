@@ -8,6 +8,11 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 
 ### Added
 
+- A link icon beside section headings, shown on hover (and always on touch screens), that jumps
+  to the heading and copies its address. Headings that had no id, on the Privacy and Licenses
+  pages and for notable specimens, have one now, and sections whose titles change with the data
+  keep a fixed id: `#species`, `#genera`, `#subunits` and `#recently-named`
+
 - Genus and clade synonyms have addresses: `genus/cheneosaurus/` takes you to
   `genus/hypacrosaurus/`, which then says "Redirected from *Cheneosaurus*". A synonym of more
   than one genus, such as *Megadontosaurus*, gets a short page linking to each. The redirects stay

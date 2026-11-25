@@ -305,6 +305,23 @@ included, with no redirect rules of its own. Two things send readers on:
 `npm run check-site` follows both, with its local server matching letter case as GitHub Pages
 does (macOS's file system doesn't), and checks a synonym of two genera.
 
+### Heading links
+
+Every heading a reader might link to has an id and a link icon after its text
+(`HeadingLink.astro`), shown on hover or focus, and always on touch screens. Following it jumps
+to the heading; with JavaScript it also copies the address and says "Link copied."
+(`src/scripts/heading-links.ts`).
+
+- **`PageSection` adds both itself**, with the id "section-" and the title's slug
+- **Other headings pass their id**: `<h3 id={id}>{text}<HeadingLink id={id} label={text} /></h3>`.
+  Species headings use the species' slug, and notable specimens "specimen-" and their heading
+  (`createHeadingAnchors()` in `src/data/urls.ts`)
+- **A title that changes with the data gets a fixed id**, so links people share keep working:
+  `#species` ("Species (2)"), `#genera` on clade pages, `#subunits` on rock unit pages,
+  `#synonyms`, and `#recently-named` on the home page. Changing an id breaks the links to it
+- **Headings that are links themselves**, such as the tools' names or the News list's titles,
+  don't get one
+
 ### Map outlines
 
 `src/data/map-shapes.json` holds the region and country outlines the maps shade when a place is

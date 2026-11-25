@@ -161,7 +161,7 @@ const redirectSources = findRedirectSources(getGenusSynonymRedirects(siteData), 
                 </PageSection>
             )}
 
-            <PageSection title={genus.species.length === 1 ? "Species" : "Species (" + genus.species.length + ")"}>
+            <PageSection title={genus.species.length === 1 ? "Species" : "Species (" + genus.species.length + ")"} id="species">
                 <div class="species-grid">
                     {genus.species.map((species) => <SpeciesSection species={species} />)}
                 </div>

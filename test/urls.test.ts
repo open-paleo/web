@@ -1,7 +1,7 @@
 import * as assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { createCorrectionUrl, createGenusEmbedPath, createPagePath } from "../src/data/urls.ts";
+import { createCorrectionUrl, createGenusEmbedPath, createHeadingAnchors, createPagePath } from "../src/data/urls.ts";
 
 test("createPagePath puts a record's page under the base path", () =>
 {
@@ -29,4 +29,12 @@ test("createCorrectionUrl fills in the issue form's title, record and page", () 
 test("createCorrectionUrl leaves out the page when it is not known", () =>
 {
     assert.equal(new URL(createCorrectionUrl("Clade", "Nodosauridae", "")).searchParams.has("page"), false);
+});
+
+test("createHeadingAnchors numbers headings that read the same", () =>
+{
+    assert.deepEqual(
+        createHeadingAnchors("specimen-", ["“Sue”", "Uncataloged specimen", "Uncataloged specimen", "MPC-D 100/54"]),
+        ["specimen-sue", "specimen-uncataloged-specimen", "specimen-uncataloged-specimen-2", "specimen-mpc-d-100-54"],
+    );
 });

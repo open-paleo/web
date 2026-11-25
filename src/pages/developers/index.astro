@@ -1,4 +1,5 @@
 ---
+import HeadingLink from "../../components/HeadingLink.astro";
 import PageSection from "../../components/PageSection.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { createEmbedCode, createEmbedResizeCode, embedFrameHeight, embedFrameSectionId, embedFrameWidth } from "../../data/embed.ts";
@@ -137,7 +138,7 @@ const exampleSearchPath = baseUrl + "search/?q=" + encodeURIComponent(exampleGen
                 </p>
 
                 <section class="subsection" aria-labelledby={typescript.id}>
-                    <h3 id={typescript.id}>{typescript.title}</h3>
+                    <h3 id={typescript.id}>{typescript.title}<HeadingLink id={typescript.id} label={typescript.title} /></h3>
                     <p>
                         <a href={npmPackageUrl}><code>{npmPackageName}</code></a> contains only the type declarations and
                         the schema, with no code to run. Install it as a development dependency:
@@ -154,7 +155,7 @@ const exampleSearchPath = baseUrl + "search/?q=" + encodeURIComponent(exampleGen
                 </section>
 
                 <section class="subsection" aria-labelledby={python.id}>
-                    <h3 id={python.id}>{python.title}</h3>
+                    <h3 id={python.id}>{python.title}<HeadingLink id={python.id} label={python.title} /></h3>
                     <p>
                         <a href={pythonPackageUrl}><code>{pythonPackageName}</code></a>, imported as
                         <code>{pythonModuleName}</code>, contains the Pydantic models and the schema. It needs Python 3.9 or
@@ -167,7 +168,7 @@ const exampleSearchPath = baseUrl + "search/?q=" + encodeURIComponent(exampleGen
                 </section>
 
                 <section class="subsection" aria-labelledby={versions.id}>
-                    <h3 id={versions.id}>{versions.title}</h3>
+                    <h3 id={versions.id}>{versions.title}<HeadingLink id={versions.id} label={versions.title} /></h3>
                     <p>
                         Each package’s version is the schema version of the dataset format it describes, which you’ll
                         find in the dataset’s <code>_metadata.schema_version</code>. This site is built from schema
@@ -206,7 +207,7 @@ const exampleSearchPath = baseUrl + "search/?q=" + encodeURIComponent(exampleGen
                 </p>
 
                 <section class="subsection" aria-labelledby={frameSize.id}>
-                    <h3 id={frameSize.id}>{frameSize.title}</h3>
+                    <h3 id={frameSize.id}>{frameSize.title}<HeadingLink id={frameSize.id} label={frameSize.title} /></h3>
                     <p>
                         The code makes the frame {embedFrameWidth} × {embedFrameHeight} pixels, and
                         <code>max-width: 100%</code> narrows it to fit a smaller column. You can change the width and
@@ -216,7 +217,7 @@ const exampleSearchPath = baseUrl + "search/?q=" + encodeURIComponent(exampleGen
                 </section>
 
                 <section class="subsection" aria-labelledby={fitting.id}>
-                    <h3 id={fitting.id}>{fitting.title}</h3>
+                    <h3 id={fitting.id}>{fitting.title}<HeadingLink id={fitting.id} label={fitting.title} /></h3>
                     <p>
                         When it loads, and whenever its height changes, the infobox tells the page it’s on how tall it is,
                         in pixels, with <code>postMessage</code>:
@@ -235,7 +236,7 @@ const exampleSearchPath = baseUrl + "search/?q=" + encodeURIComponent(exampleGen
                 </section>
 
                 <section class="subsection" aria-labelledby={credit.id}>
-                    <h3 id={credit.id}>{credit.title}</h3>
+                    <h3 id={credit.id}>{credit.title}<HeadingLink id={credit.id} label={credit.title} /></h3>
                     <p>
                         The infobox includes its own credit: the data’s
                         <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> license and the outline’s
@@ -250,7 +251,7 @@ const exampleSearchPath = baseUrl + "search/?q=" + encodeURIComponent(exampleGen
 
             <PageSection title={following.title}>
                 <section class="subsection" aria-labelledby={feed.id}>
-                    <h3 id={feed.id}>{feed.title}</h3>
+                    <h3 id={feed.id}>{feed.title}<HeadingLink id={feed.id} label={feed.title} /></h3>
                     <p>
                         <a href={baseUrl + "feed.xml"}><code>feed.xml</code></a> is an Atom feed of the
                         {genusFeedLength} most recently named genera, newest first. Each entry has the genus’s name, who
@@ -271,7 +272,7 @@ const exampleSearchPath = baseUrl + "search/?q=" + encodeURIComponent(exampleGen
                 </section>
 
                 <section class="subsection" aria-labelledby={structuredData.id}>
-                    <h3 id={structuredData.id}>{structuredData.title}</h3>
+                    <h3 id={structuredData.id}>{structuredData.title}<HeadingLink id={structuredData.id} label={structuredData.title} /></h3>
                     <p>
                         Genus and clade pages describe their taxon in schema.org JSON-LD in the page’s head, following
                         the <a href="https://bioschemas.org/profiles/Taxon/1.0-RELEASE">Bioschemas Taxon profile</a>: its
@@ -282,7 +283,7 @@ const exampleSearchPath = baseUrl + "search/?q=" + encodeURIComponent(exampleGen
                 </section>
 
                 <section class="subsection" aria-labelledby={search.id}>
-                    <h3 id={search.id}>{search.title}</h3>
+                    <h3 id={search.id}>{search.title}<HeadingLink id={search.id} label={search.title} /></h3>
                     <p>
                         To link to search results, put your search terms after <code>search/?q=</code>, as in
                         <a href={exampleSearchPath}><code>search/?q={encodeURIComponent(exampleGenus.name)}</code></a>.

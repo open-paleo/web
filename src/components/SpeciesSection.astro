@@ -4,6 +4,7 @@ import { formatAuthority } from "../data/format.ts";
 import { getSiteData } from "../data/site-data.ts";
 import { createSlug } from "../data/slugs.ts";
 import { createReferenceAnchor } from "../data/urls.ts";
+import HeadingLink from "./HeadingLink.astro";
 import PronunciationReadings from "./PronunciationReadings.astro";
 import Prose from "./Prose.astro";
 import SpeciesFacts from "./SpeciesFacts.astro";
@@ -31,7 +32,7 @@ const pronunciation = species.pronunciation;
 
 <section class="species-box" aria-labelledby={headingId}>
     <header class="species-header">
-        <h3 id={headingId}><i class="taxon">{species.name}</i></h3>
+        <h3 id={headingId}><i class="taxon">{species.name}</i><HeadingLink id={headingId} label={species.name} /></h3>
         <p class="species-meta">
             {authority && <a class="authority" href={authorityAnchor}>{authority}</a>}
             {pronunciation?.phonetic && <PronunciationReadings text={pronunciation.phonetic} />}

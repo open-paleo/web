@@ -1,7 +1,9 @@
 ---
 import type { NotableSpecimen, Reference } from "../data/dataset.ts";
 import { formatQuotes, formatSpecimenName, formatVocabularyValue } from "../data/format.ts";
+import { createHeadingAnchors } from "../data/urls.ts";
 import CitationLink from "./CitationLink.astro";
+import HeadingLink from "./HeadingLink.astro";
 import Prose from "./Prose.astro";
 
 /**
@@ -20,14 +22,23 @@ type Props = {
 };
 
 const { specimens, references } = Astro.props;
+const headings = new Array<string>();
+
+for (const specimen of specimens)
+{
+    headings.push(specimen.nickname ? formatSpecimenName(specimen.nickname) : specimen.specimen_id?.join(", ") ?? "Uncataloged specimen");
+}
+
+// Each heading's id, "specimen-" and its text, numbered where two read the same.
+const anchors = createHeadingAnchors("specimen-", headings);
 ---
 
 <ul class="notable-specimens">
-    {specimens.map((specimen) => (
+    {specimens.map((specimen, index) => (
         <li>
             {specimen.nickname
-                ? <h3 class="specimen-name" data-pagefind-weight="8">{formatSpecimenName(specimen.nickname)}</h3>
-                : <h3 class="specimen-name catalog-heading">{specimen.specimen_id?.join(", ") ?? "Uncataloged specimen"}</h3>}
+                ? <h3 class="specimen-name" id={anchors[index]} data-pagefind-weight="8">{headings[index]}<HeadingLink id={anchors[index]} label={headings[index]} /></h3>
+                : <h3 class="specimen-name catalog-heading" id={anchors[index]}>{headings[index]}<HeadingLink id={anchors[index]} label={headings[index]} /></h3>}
             <p class="specimen-facts">
                 {specimen.nickname && specimen.specimen_id && specimen.specimen_id.length > 0 && <span class="catalog-number">{specimen.specimen_id.join(", ")}</span>}
                 {specimen.institution && <span>{formatQuotes(specimen.institution)}</span>}

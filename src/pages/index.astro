@@ -99,7 +99,7 @@ const lastStage = stages[stages.length - 1];
         </PageSection>
 
         {recent && (
-            <PageSection title={"Named in " + describeRecentYears(recent)}>
+            <PageSection title={"Named in " + describeRecentYears(recent)} id="recently-named">
                 <p class="section-intro">
                     Paleontologists name new genera every year, and we add them to Open Paleo once they’re published.
                     These {recent.genera.length} were named in {describeRecentYears(recent)}.

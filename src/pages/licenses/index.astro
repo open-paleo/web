@@ -1,4 +1,5 @@
 ---
+import HeadingLink from "../../components/HeadingLink.astro";
 import LicenseList from "../../components/LicenseList.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { createLicenseEntries } from "../../data/licenses.ts";
@@ -24,22 +25,22 @@ const dataEntries = createLicenseEntries("data", rootDirectory);
         </header>
 
         <section>
-            <h2>Software and models</h2>
+            <h2 id="section-software-and-models">Software and models<HeadingLink id="section-software-and-models" label="Software and models" /></h2>
             <LicenseList entries={codeEntries} />
         </section>
 
         <section>
-            <h2>Logos</h2>
+            <h2 id="section-logos">Logos<HeadingLink id="section-logos" label="Logos" /></h2>
             <LicenseList entries={logoEntries} />
         </section>
 
         <section>
-            <h2>Fonts</h2>
+            <h2 id="section-fonts">Fonts<HeadingLink id="section-fonts" label="Fonts" /></h2>
             <LicenseList entries={fontEntries} />
         </section>
 
         <section>
-            <h2>Data and maps</h2>
+            <h2 id="section-data-and-maps">Data and maps<HeadingLink id="section-data-and-maps" label="Data and maps" /></h2>
             <LicenseList entries={dataEntries} />
         </section>
     </article>

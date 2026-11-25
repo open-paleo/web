@@ -269,7 +269,7 @@ const licensedWorks: Array<LicensedWork> = [
         siteDirectories: ["_astro"],
     },
     {
-        name: "GitHub mark, from Primer Octicons",
+        name: "GitHub mark and link icon, from Primer Octicons",
         slug: "octicons",
         group: "logos",
         packageName: undefined,
@@ -278,7 +278,7 @@ const licensedWorks: Array<LicensedWork> = [
         licenseUrl: mitLicenseUrl,
         holder: "GitHub Inc.",
         sourceUrl: "https://github.com/primer/octicons",
-        use: "The GitHub link in the header.",
+        use: "The GitHub link in the header, and the link icon beside headings.",
         licenseFiles: ["src/licenses/octicons.txt"],
         siteDirectories: [],
     },
