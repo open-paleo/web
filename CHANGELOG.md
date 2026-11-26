@@ -20,6 +20,14 @@ its own changelog in [open-paleo/data](https://github.com/open-paleo/data).
 - An address with capital letters, such as `genus/Aardonyx/`, takes you to the page at the
   lowercase address when there is one, instead of "Page not found"
 
+### Changed
+
+- Dataset releases are now named by the day they're published (`2026.11.26`), with a git tag for
+  each in open-paleo/data, so the site follows schema 0.4.8. The Data page links the release to
+  its tag and shows the commit it was built from in place of the build date. Its downloads, the
+  structured data's files and the dataset citation point at the release's tag, not `main`, so a
+  citation leads back to the data it names
+
 ## 2026-11-24
 
 ### Added

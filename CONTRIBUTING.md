@@ -150,7 +150,7 @@ files.
 | `clades.ts`, `indexes.ts` | Clade spans and genera, and the A–Z indexes |
 | `genus-index.ts`, `genus-filters.ts` | Lists of genera and of clades with their details, and the filters (shared with the browser) |
 | `genus-map.ts`, `site-map.ts`, `map-shapes.ts`, `map-geometry.ts` | The genus maps, the Map page, and the region and country outlines |
-| `citations.ts`, `feed.ts` | Citations of the dataset and its records, and the feed of new genera |
+| `citations.ts`, `feed.ts` | Citations of the dataset and its records, the links to a release's tag, files and commit in open-paleo/data, and the feed of new genera |
 | `licenses.ts` | Every work by others the site serves or the repository holds, with its license, for the Licenses page and the built folders' `LICENSE.txt` |
 | `structured-data.ts` | The schema.org JSON-LD in the head of genus, clade and Data pages (see "Structured data" below) |
 | `preview-image.ts` | Each genus page's link preview image: its time scale with the genus's age marked, its path and its description (see "Link preview images" below) |

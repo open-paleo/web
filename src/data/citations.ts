@@ -37,12 +37,70 @@ export type HowToCite = {
 export type CitableRecordKind = "Genus" | "Clade";
 
 /**
- * Where the dataset lives, which the dataset citation points to.
+ * Where the dataset lives.
  */
 export const dataRepositoryUrl = "https://github.com/open-paleo/data";
 
 /**
- * Get the year of a release from its version: "2026.11" gives "2026".
+ * Create the address of a release in the data repository: its git tag, which holds the files of
+ * that release. The dataset citation points here, so it leads back to the same data.
+ *
+ * @param version - The release: "2026.11.26".
+ * @returns The address: "https://github.com/open-paleo/data/tree/2026.11.26".
+ */
+export function createReleaseUrl(version: string): string
+{
+    return dataRepositoryUrl + "/tree/" + version;
+}
+
+/**
+ * Create the address of one of a release's files on GitHub, to view or download.
+ *
+ * @param version - The release.
+ * @param fileName - The file in dist/: "open-paleo.json".
+ * @returns The address: "https://github.com/open-paleo/data/blob/2026.11.26/dist/open-paleo.json".
+ */
+export function createReleaseFileUrl(version: string, fileName: string): string
+{
+    return dataRepositoryUrl + "/blob/" + version + "/dist/" + fileName;
+}
+
+/**
+ * Create the address of one of a release's files as the file itself, for software to download.
+ *
+ * @param version - The release.
+ * @param fileName - The file in dist/.
+ * @returns The address: "https://github.com/open-paleo/data/raw/2026.11.26/dist/open-paleo.json".
+ */
+export function createReleaseDownloadUrl(version: string, fileName: string): string
+{
+    return dataRepositoryUrl + "/raw/" + version + "/dist/" + fileName;
+}
+
+/**
+ * Create the address of the data commit a release was built from.
+ *
+ * @param commit - The commit's full SHA.
+ * @returns The commit's page on GitHub.
+ */
+export function createCommitUrl(commit: string): string
+{
+    return dataRepositoryUrl + "/commit/" + commit;
+}
+
+/**
+ * Shorten a commit's SHA to its first seven characters, as GitHub shows it.
+ *
+ * @param commit - The full SHA.
+ * @returns The short SHA: "13f11e6".
+ */
+export function formatShortCommit(commit: string): string
+{
+    return commit.slice(0, 7);
+}
+
+/**
+ * Get the year of a release from its version: "2026.11.26" gives "2026".
  *
  * @param metadata - The release metadata.
  * @returns The year.
@@ -84,7 +142,8 @@ function writeBibtexEntry(key: string, fields: Array<[string, string]>): string
 export function createDatasetCitation(metadata: Metadata): HowToCite
 {
     const year = getReleaseYear(metadata);
-    const text = "Open Paleo contributors. (" + year + "). Open Paleo (Version " + metadata.version + ") [Dataset]. " + dataRepositoryUrl;
+    const releaseUrl = createReleaseUrl(metadata.version);
+    const text = "Open Paleo contributors. (" + year + "). Open Paleo (Version " + metadata.version + ") [Dataset]. " + releaseUrl;
 
     return {
         before: text,
@@ -96,7 +155,7 @@ export function createDatasetCitation(metadata: Metadata): HowToCite
             ["title", "Open Paleo: A community-maintained phylogenetic dataset for paleontology"],
             ["year", year],
             ["publisher", "GitHub"],
-            ["url", dataRepositoryUrl],
+            ["url", releaseUrl],
             ["note", "Version " + metadata.version],
         ]),
     };

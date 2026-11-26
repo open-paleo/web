@@ -1,6 +1,6 @@
 import type { DataDownload, Dataset, Taxon, Thing, WithContext } from "schema-dts";
 
-import { createDatasetCitation, dataRepositoryUrl } from "./citations.ts";
+import { createDatasetCitation, createReleaseDownloadUrl, dataRepositoryUrl } from "./citations.ts";
 import type { Clade, CladeRanks, Identifier, Metadata, Species, Synonym } from "./dataset.ts";
 import { formatGenusCount, formatQuotes, getIdentifierUrl } from "./format.ts";
 import type { DatasetFile } from "./indexes.ts";
@@ -342,18 +342,19 @@ function findEncodingFormat(fileName: string): string | undefined
 }
 
 /**
- * Create one downloadable file of the dataset, at its address in the data repository.
+ * Create one downloadable file of the dataset, at its address in the release's tag.
  *
  * @param file - The file.
+ * @param version - The release.
  * @returns The download.
  */
-function createDataDownload(file: DatasetFile): DataDownload
+function createDataDownload(file: DatasetFile, version: string): DataDownload
 {
     const download: DataDownload = {
         "@type": "DataDownload",
         name: file.name,
         description: file.description,
-        contentUrl: dataRepositoryUrl + "/raw/main/dist/" + file.name,
+        contentUrl: createReleaseDownloadUrl(version, file.name),
     };
     const encodingFormat = findEncodingFormat(file.name);
 
@@ -385,7 +386,7 @@ export function createDatasetStructuredData(metadata: Metadata, files: Array<Dat
 
     for (const file of files)
     {
-        downloads.push(createDataDownload(file));
+        downloads.push(createDataDownload(file, metadata.version));
     }
 
     return {

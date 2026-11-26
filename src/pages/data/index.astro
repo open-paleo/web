@@ -2,7 +2,7 @@
 import HowToCite from "../../components/HowToCite.astro";
 import PageSection from "../../components/PageSection.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { createDatasetCitation, dataRepositoryUrl } from "../../data/citations.ts";
+import { createCommitUrl, createDatasetCitation, createReleaseFileUrl, createReleaseUrl, dataRepositoryUrl, formatShortCommit } from "../../data/citations.ts";
 import { formatGenusCount } from "../../data/format.ts";
 import { formatFileSize, getDatasetFiles } from "../../data/indexes.ts";
 import { bindingsSectionId } from "../../data/packages.ts";
@@ -14,8 +14,12 @@ const baseUrl = import.meta.env.BASE_URL;
 const metadata = siteData.metadata;
 const files = getDatasetFiles();
 const dataRepository = dataRepositoryUrl;
-const fileBaseUrl = dataRepository + "/blob/main/dist/";
-const builtDate = new Date(metadata.built_at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+// The files of the release this site was built from, at its tag, so a download matches the
+// release the page describes.
+const releaseUrl = createReleaseUrl(metadata.version);
+const releasesUrl = dataRepository + "/tags";
+const commitUrl = createCommitUrl(metadata.commit);
+const shortCommit = formatShortCommit(metadata.commit);
 
 const citation = createDatasetCitation(metadata);
 const structuredData = Astro.site ? createDatasetStructuredData(metadata, files, new URL(Astro.url.pathname, Astro.site).href) : undefined;
@@ -41,15 +45,15 @@ const structuredData = Astro.site ? createDatasetStructuredData(metadata, files,
         <dl class="release-facts">
             <div>
                 <dt>Release</dt>
-                <dd class="figures">{metadata.version}</dd>
+                <dd class="figures"><a href={releaseUrl}>{metadata.version}</a></dd>
             </div>
             <div>
                 <dt>Schema version</dt>
                 <dd class="figures">{metadata.schema_version}</dd>
             </div>
             <div>
-                <dt>Built</dt>
-                <dd>{builtDate}</dd>
+                <dt>Source commit</dt>
+                <dd class="figures"><a href={commitUrl}>{shortCommit}</a></dd>
             </div>
             <div>
                 <dt>Contents</dt>
@@ -70,7 +74,7 @@ const structuredData = Astro.site ? createDatasetStructuredData(metadata, files,
                     <tbody>
                         {files.map((file) => (
                             <tr>
-                                <td class="file-name"><a href={fileBaseUrl + file.name}>{file.name}</a></td>
+                                <td class="file-name"><a href={createReleaseFileUrl(metadata.version, file.name)}>{file.name}</a></td>
                                 <td>{file.description}</td>
                                 <td class="numeric figures">{file.sizeBytes === undefined ? "" : formatFileSize(file.sizeBytes)}</td>
                             </tr>
@@ -78,6 +82,10 @@ const structuredData = Astro.site ? createDatasetStructuredData(metadata, files,
                     </tbody>
                 </table>
             </div>
+            <p class="section-note">
+                These are the files of release {metadata.version}, the one this site was built from. We keep every
+                release in the data repository; for an earlier one, see the <a href={releasesUrl}>list of releases</a>.
+            </p>
             <p class="section-note">
                 Writing code that reads the dataset? Use the JSON or YAML file and check it against the schema. These files
                 are the dataset’s stable, versioned output; for what a change to each part of the version number means,
@@ -94,11 +102,11 @@ const structuredData = Astro.site ? createDatasetStructuredData(metadata, files,
         </PageSection>
 
         <PageSection title="How to cite">
-            <p>Please cite the release you used, so others can check your work against the same data:</p>
+            <p>Please cite the release you used. The citation links to that release’s files, so others can check your work against the same data:</p>
             <HowToCite citation={citation} subject="the dataset" />
             <p class="section-note">
                 The dataset is built from published literature, so if your work draws on it, please consider citing the
-                original papers too. You’ll find every one in <a href={fileBaseUrl + "references.bib"}>references.bib</a>.
+                original papers too. You’ll find every one in <a href={createReleaseFileUrl(metadata.version, "references.bib")}>references.bib</a>.
             </p>
         </PageSection>
     </div>

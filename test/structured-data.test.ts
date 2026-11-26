@@ -269,7 +269,7 @@ test("the dataset gives its release, license and every file", () =>
     assert.equal(data.version, dataset._metadata.version);
     assert.equal(data.license, "https://creativecommons.org/licenses/by/4.0/");
     assert.equal(data.distribution.length, 2);
-    assert.equal(data.distribution[0].contentUrl, "https://github.com/open-paleo/data/raw/main/dist/open-paleo.json");
+    assert.equal(data.distribution[0].contentUrl, "https://github.com/open-paleo/data/raw/" + dataset._metadata.version + "/dist/open-paleo.json");
     assert.equal(data.distribution[0].encodingFormat, "application/json");
     assert.equal(data.distribution[1].encodingFormat, undefined);
 });

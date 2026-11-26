@@ -1,7 +1,7 @@
 import * as assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { createDatasetCitation, createRecordCitation } from "../src/data/citations.ts";
+import { createCommitUrl, createDatasetCitation, createRecordCitation, createReleaseDownloadUrl, createReleaseFileUrl, formatShortCommit } from "../src/data/citations.ts";
 import { readFixture } from "./fixture.ts";
 
 const metadata = readFixture()._metadata;
@@ -32,6 +32,16 @@ test("the dataset citation is the one the data repository recommends", () =>
 {
     const citation = createDatasetCitation(metadata);
 
-    assert.equal(citation.text, "Open Paleo contributors. (" + year + "). Open Paleo (Version " + metadata.version + ") [Dataset]. https://github.com/open-paleo/data");
+    assert.equal(citation.text, "Open Paleo contributors. (" + year + "). Open Paleo (Version " + metadata.version + ") [Dataset]. https://github.com/open-paleo/data/tree/" + metadata.version);
     assert.match(citation.bibtex, /^@misc\{openpaleo,/);
+    assert.ok(citation.bibtex.includes("  url          = {https://github.com/open-paleo/data/tree/" + metadata.version + "},"));
+});
+
+test("a release's links point at its tag, and its commit is shortened as GitHub shows it", () =>
+{
+    assert.equal(createReleaseFileUrl("2026.11.26", "open-paleo.json"), "https://github.com/open-paleo/data/blob/2026.11.26/dist/open-paleo.json");
+    assert.equal(createReleaseDownloadUrl("2026.11.26", "tree.newick"), "https://github.com/open-paleo/data/raw/2026.11.26/dist/tree.newick");
+    assert.equal(createCommitUrl(metadata.commit), "https://github.com/open-paleo/data/commit/" + metadata.commit);
+    assert.equal(formatShortCommit(metadata.commit), metadata.commit.slice(0, 7));
+    assert.equal(formatShortCommit(metadata.commit).length, 7);
 });

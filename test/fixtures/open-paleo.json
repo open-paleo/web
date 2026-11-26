@@ -1,8 +1,9 @@
 {
   "_metadata": {
     "attribution": "Open Paleo contributors",
-    "built_at": "2026-11-23T21:51:23.963Z",
+    "built_at": "2026-11-26T00:49:31.258Z",
     "clade_count": 45,
+    "commit": "13f11e6cc347fcfdf6804f0984df428d8567c278",
     "genus_count": 14,
     "license": "CC-BY-4.0",
     "paleogeography": {
@@ -10,8 +11,8 @@
       "citation": "Wright, N.; Zahirovic, S.; Müller, R. D.; Seton, M. (2013). Towards community-driven paleogeographic reconstructions: integrating open-access paleogeographic and paleobiology data with plate tectonics. Biogeosciences 10(3): 1529-1541. doi:10.5194/bg-10-1529-2013",
       "license": "CC-BY-3.0-AU"
     },
-    "schema_version": "0.4.7",
-    "version": "2026.11"
+    "schema_version": "0.4.8",
+    "version": "2026.11.26"
   },
   "timescale": {
     "chart": "ICS International Chronostratigraphic Chart v2024/12",
@@ -7437,7 +7438,7 @@
           "journal": "Acta Geologica Hispanica",
           "volume": "27",
           "pages": "95-108",
-          "notes": "Erects the unit as the \"Formación Lutitas, Areniscas y Conglomerados de Conques\", with the Tossal d'Obà and Basturs Limestones members, in the Tremp Group. The type section is in the Barranco de Basturs, about 400 m thick, of variegated mudstones with lenticular sandstones; the base passes gradually into the Posa Formation and the top passes rapidly into the red mudstones of the Talarn. Gives no age of its own. Source of the lithology.\n"
+          "notes": "Erects the formation as the \"Formación Lutitas, Areniscas y Conglomerados de Conques\" of the Tremp Group, typified in the Barranco de Basturs, and gives it no age. Source of the lithology.\n"
         },
         {
           "id": "díez-canseco2014a",
@@ -7477,17 +7478,15 @@
     "West Melbury Marly Chalk": {
       "rank": "formation",
       "lithology": "soft marly chalk and hard gray limestone in couplets",
-      "description": "The West Melbury Marly Chalk is a formation in Cambridgeshire and Kent, United Kingdom, dated to the Albian to Cenomanian stages of the Early Cretaceous and the Late Cretaceous. It consists mainly of soft marly chalk and hard gray limestone in couplets. It includes the Cambridge Greensand. Dinosaurs known from it include Acanthopholis, Eucercosaurus, Macrurosaurus and Syngonosaurus.",
+      "description": "The West Melbury Marly Chalk is a formation in Cambridgeshire and Kent, United Kingdom, dated to the Cenomanian stage of the Late Cretaceous. It consists mainly of soft marly chalk and hard gray limestone in couplets. It includes the Cambridge Greensand. Dinosaurs known from it include Acanthopholis, Eucercosaurus, Macrurosaurus and Syngonosaurus.",
       "period": {
         "name": [
-          "Early Cretaceous",
           "Late Cretaceous"
         ],
         "stage": [
-          "Albian",
           "Cenomanian"
         ],
-        "from_ma": 113.2,
+        "from_ma": 100.5,
         "to_ma": 93.9
       },
       "references": [
@@ -7499,7 +7498,7 @@
           "journal": "British Geological Survey Research Report",
           "publisher": "British Geological Survey",
           "volume": "RR/05/01",
-          "notes": "Defines the formation and names Copt Point among its primary reference sections. Source of the lithology.\n"
+          "notes": "Defines the formation, \"Upper Cretaceous, Cenomanian\", from the erosion surface at the base of its Glauconitic Marl Member, and names Copt Point among its primary reference sections. Source of the lithology.\n"
         },
         {
           "id": "barrett2020a",
@@ -7733,7 +7732,10 @@
           "authors": "Li, K.; Liu, J.; Yang, C.; Hu, F.",
           "year": 2011,
           "title": "Dinosaur assemblages from the Middle Jurassic Shaximiao Formation and Chuanjie Formation in the Sichuan-Yunnan Basin, China",
-          "notes": "Argues that \"the entire Shaximiao Formation is of Bajocian-Callovian age (middle-late part of Middle Jurassic)\", putting the upper member \"of Middle Jurassic age (Bathonian-Callovian)\" in the abstract but \"namely the Bajocian-Bathonian\" in the discussion. It records the reading it argues against: the invertebrates placed the formation in the Middle Jurassic, \"although vertebrate fossils tended to indicate a Late Jurassic age for the upper member of the Shaximiao Formation\". Source of the lithology.\n"
+          "journal": "Volumina Jurassica",
+          "volume": "9",
+          "pages": "21-42",
+          "notes": "Argues that \"the entire Shaximiao Formation is of Bajocian–Callovian age\", against earlier vertebrate evidence for a Late Jurassic upper member. Source of the lithology.\n"
         },
         {
           "id": "buffetaut1999a",
@@ -7929,7 +7931,7 @@
           "journal": "Modern Geology",
           "volume": "22",
           "pages": "235-260",
-          "notes": "Dates the member by 40Ar/39Ar on sanidine from ash beds. The ages \"range systematically between 148.1 ± 0.5 (1 std. error of mean) at the top of the member to 150.3 ± 0.3 Ma near the bottom\", Kimmeridgian at the base and Tithonian at the top on the ICS chart v2024/12 (Tithonian base 149.2 Ma). The paper reads the member as Kimmeridgian–Tithonian on the timescales of its day, and calls one Montezuma Creek age, 147.82 ± 0.63 Ma, about 1 Ma too young. Source of the lithology.\n"
+          "notes": "Dates the member by 40Ar/39Ar on sanidine from ash beds, from 150.3 ± 0.3 Ma near the base to 148.1 ± 0.5 Ma at the top, and reads it as Kimmeridgian–Tithonian. Source of the lithology.\n"
         },
         {
           "id": "kirkland2016a",
@@ -7941,7 +7943,7 @@
           "volume": "3",
           "pages": "101-228",
           "doi": "10.31711/giw.v3.pp101-228",
-          "notes": "Relays \"150.00 ± 0.52 Ma from near the top of the Brushy Basin Member, near little Cedar Mesa, Emery County, Utah, based on a recalibrated 40Ar/39Ar age (Trujillo and Kowallis, 2015)\", Kimmeridgian on the ICS chart v2024/12, and concludes that \"the top of the Morrison Formation dates to the lower third of the Tithonian Stage\". Places the Jurassic–Cretaceous boundary \"just above the highest smectitic mudstone beds of the Brushy Basin Member\".\n"
+          "notes": "Relays a recalibrated 40Ar/39Ar age of 150.00 ± 0.52 Ma from near the top of the member, and places the Jurassic–Cretaceous boundary \"just above the highest smectitic mudstone beds\" of the member.\n"
         },
         {
           "id": "trujillo2015a",
@@ -8361,7 +8363,7 @@
           "book": "Dinosaur Provincial Park: A Spectacular Ancient Ecosystem Revealed",
           "publisher": "Indiana University Press, Bloomington",
           "pages": "54-82",
-          "notes": "The middle of the three, 40 m thick at the Park, \"made up of light-colored alluvial sandstones and mudstones that were first referred to as the 'Pale Beds' by Dowling (1916, 1917)\". It \"conformably overlies the Herronton Sandstone Zone at the top of the Foremost but is truncated at the top by a regional disconformity\", and it \"records the maximum regression of the Western Interior Seaway during the Campanian\".\n"
+          "notes": "Describes the formation at Dinosaur Provincial Park, 40 m of pale alluvial sandstones and mudstones, which \"records the maximum regression of the Western Interior Seaway during the Campanian\".\n"
         },
         {
           "id": "dowling1916a",
@@ -8868,7 +8870,7 @@
           "journal": "Geological Society of America Memoir",
           "volume": "38",
           "pages": "1-169",
-          "notes": "\"Imlay (1939a, p. 1738, Table 2) tentatively correlated the Glance, Morita, and the lower member of the Mural limestone with the Trinity group of Texas (Upper Aptian-Lower Albian), assigning the upper member of the Mural and the Cintura formation to the Fredericksburg (Middle Albian).\" The upper Aptian to lower Albian age is Imlay's, relayed in this paper as part of the history of readings of the Bisbee group of southeastern Arizona rather than argued from the Texas section.\n"
+          "notes": "Relays the correlation by Imlay (1939) of the lower Bisbee group of Arizona with \"the Trinity group of Texas (Upper Aptian-Lower Albian)\".\n"
         },
         {
           "id": "imlay1939a",
@@ -8981,7 +8983,7 @@
           "book": "Dinosaur Provincial Park: A Spectacular Ancient Ecosystem Revealed",
           "publisher": "Indiana University Press, Bloomington",
           "pages": "54-82",
-          "notes": "Gives the rank, the contents and the span. At Dinosaur Provincial Park \"the complete Belly River Group (outcrop and subsurface) is approximately 280 m thick and consists of the Foremost (170 m), Oldman (40 m), and Dinosaur Park (70 m) formations\", and \"the entire Belly River Group ... ranges in age from 80.0 to 74.2 Ma\". Records that the name began as Dawson's (1883) Belly River \"series\", which \"unintentionally included within it the underlying Pakowki marine shales\".\n"
+          "notes": "Treats it as a group: at Dinosaur Provincial Park about 280 m of the Foremost, Oldman and Dinosaur Park formations, ranging \"in age from 80.0 to 74.2 Ma\".\n"
         },
         {
           "id": "lull1942a",
@@ -9016,7 +9018,7 @@
           "journal": "Geological and Natural History Survey and Museum of Canada, Report of Progress, 1880–82",
           "issue": "pt. B",
           "pages": "1-23",
-          "notes": "Names the unit and positions it, and gives no stage. It works entirely in North American series terms — Laramie, Pierre, Fox Hills, Niobrara, Judith River, Fort Union, St. Mary River, Willow Creek — and its correlation table puts the \"Belly River series\", of \"Sandstones, shales and sandy clays\" with fresh and brackish water molluscs, below the Pierre and against a queried Niobrara. The rank in this paper is series, and the correlation carries the author's own question mark.\n"
+          "notes": "Names the \"Belly River series\", of \"Sandstones, shales and sandy clays\", and places it below the Pierre against a queried Niobrara; gives no stage.\n"
         },
         {
           "id": "rozhdestvensky1968a",
@@ -9033,7 +9035,7 @@
           "year": 2010,
           "title": "Belly River Formation",
           "publisher": "Canadian Society of Petroleum Geologists",
-          "notes": "Source of the lithology.\n"
+          "notes": "Gives the foothills Belly River, \"including Judith River, Pakowki and Milk River equivalents\", as \"Santonian - Campanian (85.8 - 70.6 ma)\"; the numbers are GTS2004's stage limits, not dates. Source of the lithology.\n"
         }
       ]
     }
