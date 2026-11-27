@@ -22,9 +22,15 @@ type Props = {
      * reads on its own when this is left out.
      */
     rangeIntroduction?: string;
+
+    /**
+     * A sentence qualifying the age, shown under the caption: on a genus page, why its type
+     * species' age is that of its rock unit, or of older rocks. Left out, no note is shown.
+     */
+    note?: string;
 };
 
-const { period, rangeIntroduction } = Astro.props;
+const { period, rangeIntroduction, note } = Astro.props;
 const timeline = getSiteData().timeline;
 const model = timeline ? createAgeFigureModel(period, timeline) : undefined;
 const ageRange = period.from_ma !== undefined && period.to_ma !== undefined ? formatAgeRange(period.from_ma, period.to_ma) : "";
@@ -123,6 +129,7 @@ if (model)
         <figcaption class="age-caption">
             <span class="age-range figures">{rangeIntroduction && <span class="age-introduction">{rangeIntroduction} </span>}{ageRange}</span>
             <span class="age-context">{captionParts.map((part) => part.section ? <a href={createPagePath(baseUrl, part.section, part.slug)}>{part.text}</a> : part.text)}</span>
+            {note && <span class="age-note">{note}</span>}
         </figcaption>
         {rows.map((row, rowIndex) => (
             <div class="age-row-group">
@@ -181,6 +188,15 @@ if (model)
     .age-scale
     {
         color: var(--color-muted);
+    }
+
+    /* On a line of its own below the range and its stages, at the reading measure. */
+    .age-note
+    {
+        flex-basis: 100%;
+        max-width: var(--measure);
+        color: var(--color-muted);
+        font-size: var(--text-caption);
     }
 
     /* The column may shrink below the width of the stage names, so the figure fits a 320px

@@ -164,9 +164,19 @@ test("formatSpecimenType pluralizes a syntype series", () =>
 
 test("describeAgeResolution explains only qualified ages", () =>
 {
-    assert.match(describeAgeResolution("unit"), /rock unit as a whole/);
-    assert.match(describeAgeResolution("horizon"), /isn’t known which bed/);
-    assert.equal(describeAgeResolution(undefined), "");
+    assert.match(describeAgeResolution("unit", "species"), /rock unit as a whole/);
+    assert.match(describeAgeResolution("horizon", "species"), /isn’t known which bed/);
+    assert.equal(describeAgeResolution(undefined, "species"), "");
+    assert.equal(describeAgeResolution(undefined, "genus"), "");
+});
+
+test("describeAgeResolution names the type species when the age is a genus's", () =>
+{
+    assert.equal(describeAgeResolution("unit", "species"), "This is the age of the rock unit as a whole; no closer age has been published for this species.");
+    assert.equal(describeAgeResolution("unit", "genus"), "This is the age of the rock unit as a whole; no closer age has been published for the type species.");
+    assert.equal(describeAgeResolution("reworked", "species"), "The type specimen was reworked from older rocks, so this is the age of those rocks.");
+    assert.equal(describeAgeResolution("reworked", "genus"), "The type specimen of the type species was reworked from older rocks, so this is the age of those rocks.");
+    assert.equal(describeAgeResolution("horizon", "genus"), "It isn’t known which bed the type specimen of the type species came from, so this age covers every bed it may have come from.");
 });
 
 test("joinNonEmpty skips empty parts", () =>

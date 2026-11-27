@@ -505,25 +505,36 @@ export function formatGeologicAge(period: Period): string
 }
 
 /**
+ * Whose age a note about the age's resolution is written for: a species, in its own box, or a
+ * genus, whose age is its type species'.
+ */
+export type AgeNoteSubject = "species" | "genus";
+
+/**
  * Explain how a species' stage relates to the rock unit its type specimen was found in, when that
  * needs saying.
  *
  * @param resolution - The period block's resolution value.
+ * @param subject - Whether the note follows the species' own age, or a genus's age taken from its
+ *     type species, which the note then names.
  * @returns A short note, or an empty string when the age needs no qualification.
  */
-export function describeAgeResolution(resolution: string | undefined): string
+export function describeAgeResolution(resolution: string | undefined, subject: AgeNoteSubject): string
 {
+    const species = subject === "genus" ? "the type species" : "this species";
+    const specimen = subject === "genus" ? "the type specimen of the type species" : "the type specimen";
+
     if (resolution === "unit")
     {
-        return "This is the age of the rock unit as a whole; no closer age has been published for this species.";
+        return "This is the age of the rock unit as a whole; no closer age has been published for " + species + ".";
     }
     else if (resolution === "reworked")
     {
-        return "The type specimen was reworked from older rocks, so this is the age of those rocks.";
+        return capitalizeFirstLetter(specimen) + " was reworked from older rocks, so this is the age of those rocks.";
     }
     else if (resolution === "horizon")
     {
-        return "It isn’t known which bed the type specimen came from, so this age covers every bed it may have come from.";
+        return "It isn’t known which bed " + specimen + " came from, so this age covers every bed it may have come from.";
     }
 
     return "";

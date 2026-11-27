@@ -25,7 +25,7 @@ import TermLink from "../../components/TermLink.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { createRecordCitation } from "../../data/citations.ts";
 import { createEmbedCode } from "../../data/embed.ts";
-import { formatAuthority, getFirstSentence } from "../../data/format.ts";
+import { describeAgeResolution, formatAuthority, getFirstSentence } from "../../data/format.ts";
 import { createGenusMap, getMapShapes, warnAboutMissingOutlines } from "../../data/genus-map.ts";
 import { findGenusOutline, getMedia } from "../../data/media.ts";
 import { createPaleoViews } from "../../data/paleo-positions.ts";
@@ -135,7 +135,7 @@ const redirectSources = findRedirectSources(getGenusSynonymRedirects(siteData), 
             {outline && <TaxonOutline outline={outline} subject={genus.genus} />}
         </header>
 
-        <div class="genus-age"><AgeFigure period={typeSpecies.period} rangeIntroduction="Its type species lived" /></div>
+        <div class="genus-age"><AgeFigure period={typeSpecies.period} rangeIntroduction="Its type species lived" note={describeAgeResolution(typeSpecies.period.resolution, "genus")} /></div>
 
         <RecordMain>
             <GlancePanel genus={genus} />

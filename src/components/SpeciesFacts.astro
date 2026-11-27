@@ -44,7 +44,7 @@ const geologicAge = formatGeologicAge(species.period);
 const ageRange = species.period.from_ma !== undefined && species.period.to_ma !== undefined
     ? formatAgeRange(species.period.from_ma, species.period.to_ma)
     : "";
-const ageNote = describeAgeResolution(species.period.resolution);
+const ageNote = describeAgeResolution(species.period.resolution, "species");
 const horizon = units !== "" || geologicAge !== "";
 const locality = location ? formatQuotes(joinNonEmpty([location.locality ?? "", place])) : "";
 ---
